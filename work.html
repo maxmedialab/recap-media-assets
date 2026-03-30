@@ -109,14 +109,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="work.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="packages/">Packages</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -125,11 +138,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="about.html">About</a>
-    <a href="packages/">Packages</a>
-    <a href="contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -147,12 +160,12 @@
 <!-- Case Study Cards -->
 <section class="section section-onyx">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Case studies</span>
             <h2 class="gradient-text">Featured Projects</h2>
         </div>
-        <div class="cards-grid reveal-group">
-            <a href="case-studies/flutter-vikings-2022-media-coverage-oslo.html" class="project-card card-tilt">
+        <div class="cards-grid gsap-stagger">
+            <a href="https://recapmedia.no/case-studies/flutter-vikings-2022-media-coverage-oslo" class="project-card card-tilt">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb8300f064072767184.jpg" alt="Flutter Vikings Conference 2022" class="project-card-image" width="640" height="360">
                 <div class="project-card-body">
                     <h3>Flutter Vikings Conference</h3>
@@ -160,7 +173,7 @@
                     <span class="project-card-link">View case study</span>
                 </div>
             </a>
-            <a href="case-studies/scotland-norway-decarbonisation-trade-mission-event-photography-oslo.html" class="project-card card-tilt">
+            <a href="https://recapmedia.no/case-studies/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="project-card card-tilt">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dc06e300f0606f878d404.jpeg" alt="NECCUS Trade Mission Oslo" class="project-card-image" width="640" height="360">
                 <div class="project-card-body">
                     <h3>NECCUS Trade Mission</h3>
@@ -168,7 +181,7 @@
                     <span class="project-card-link">View case study</span>
                 </div>
             </a>
-            <a href="case-studies/ocean-rise-public-art-documentation-oslo.html" class="project-card card-tilt">
+            <a href="https://recapmedia.no/case-studies/ocean-rise-public-art-documentation-oslo" class="project-card card-tilt">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bacebf7fbccfa3dd7.jpeg" alt="Ocean Rise public art Oslo" class="project-card-image" width="640" height="360">
                 <div class="project-card-body">
                     <h3>Ocean Rise Art Project</h3>
@@ -183,11 +196,11 @@
 <!-- Photo Gallery -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">From the archives</span>
             <h2>Event Photos</h2>
         </div>
-        <div class="gallery-grid reveal-group">
+        <div class="gallery-grid gsap-stagger">
             <div class="gallery-item"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691de9b9840ed1840d329278.jpg" alt="Conference speaker" width="640" height="480"></div>
             <div class="gallery-item"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dc06dc03e0f2eb2c417e1.jpeg" alt="Event speaker" width="640" height="800"></div>
             <div class="gallery-item"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb859e47bfe713fc48b.jpg" alt="Networking event" width="640" height="420"></div>
@@ -207,7 +220,7 @@
 <!-- CTA -->
 <section class="section section-onyx cta-section" style="padding: var(--space-2xl) 0;">
     <div class="gradient-orb" style="top: -80px; left: 50%; transform: translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Let's work together</span>
         <h2>Planning an event in Oslo?</h2>
         <p class="body">If you're organising a conference, developer meetup or corporate event in Oslo or Greater Oslo, we can join your team as local photo, video and livestream crew. Get in touch to discuss event photography and videography support for your next project.</p>
@@ -218,7 +231,7 @@
 <!-- FAQ -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">FAQ</span>
             <h2>Frequently Asked Questions</h2>
         </div>
@@ -263,18 +276,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="work.html">Work</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="packages/">Packages</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -285,7 +298,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="contact.html">Contact</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/contact">Contact</a></div>
         </div>
     </div>
 </footer>

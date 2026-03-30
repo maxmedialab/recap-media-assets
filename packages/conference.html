@@ -22,16 +22,30 @@
 
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
+
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="../index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li><li><a href="../work.html">Work</a></li><li><a href="../about.html">About</a></li><li><a href="../packages/">Packages</a></li><li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li><li><a href="https://recapmedia.no/work">Work</a></li><li><a href="https://recapmedia.no/about">About</a></li><li><a href="https://recapmedia.no/packages">Packages</a></li><li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" aria-hidden="true">
-    <a href="../index.html">Home</a><a href="../work.html">Work</a><a href="../about.html">About</a><a href="../packages/">Packages</a><a href="../contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a><a href="https://recapmedia.no/work">Work</a><a href="https://recapmedia.no/about">About</a><a href="https://recapmedia.no/packages">Packages</a><a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color:var(--color-ember)">Request a quote</a>
 </div>
 <main>
@@ -47,7 +61,7 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-text reveal-left">
+            <div class="col-text gsap-fade">
                 <span class="overline">What's included</span>
                 <h2>Conference Package</h2>
                 <p>A two-person crew — one photographer, one videographer — covering your full conference day from registration to closing. You get a complete media package ready for press, social, and internal channels the same week.</p>
@@ -63,10 +77,10 @@
                 </ul>
                 <div style="margin-top: 28px;">
                     <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>&nbsp;&nbsp;
-                    <a href="../packages/" class="btn btn-outline-ember" style="text-decoration:none">View all packages</a>
+                    <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration:none">View all packages</a>
                 </div>
             </div>
-            <div class="col-image reveal-right">
+            <div class="col-image gsap-fade">
                 <img src="https://placehold.co/600x420/1E1B24/E8593C?text=Conference+Package" alt="Conference event photography and videography" width="600" height="420">
             </div>
         </div>
@@ -75,22 +89,22 @@
 
 <section class="section section-warm">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">How it works</span>
             <h2>From Brief to Delivery</h2>
         </div>
         <div class="cards-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: var(--space-lg);">
-            <div class="step-card reveal">
+            <div class="step-card gsap-fade">
                 <div class="step-number">01</div>
                 <h3>Pre-Event Brief</h3>
                 <p>We review your programme, agree on key shots, and align on the visual tone. You get a crew that arrives knowing exactly what to capture.</p>
             </div>
-            <div class="step-card reveal">
+            <div class="step-card gsap-fade">
                 <div class="step-number">02</div>
                 <h3>Full-Day Coverage</h3>
                 <p>Photo and video running in parallel all day — every keynote, breakout, panel, and networking moment covered without you having to manage two separate crews.</p>
             </div>
-            <div class="step-card reveal">
+            <div class="step-card gsap-fade">
                 <div class="step-number">03</div>
                 <h3>Gallery + Film Delivered</h3>
                 <p>Edited gallery and highlight film delivered within 5–7 business days, straight to your inbox. Ready to share before the week is out.</p>
@@ -102,7 +116,7 @@
 <section class="section section-dark">
     <div class="container">
         <div class="two-col">
-            <div class="col-text reveal-left">
+            <div class="col-text gsap-fade">
                 <span class="overline">Add-ons</span>
                 <h2>Extend Your Package</h2>
                 <p>The Conference Package can be extended with optional add-ons, agreed before the event:</p>
@@ -116,7 +130,7 @@
                 </ul>
                 <p style="margin-top:16px; font-size:0.9rem; color:var(--color-stone);">All add-ons are priced upfront. No surprises on the invoice.</p>
             </div>
-            <div class="col-image reveal-right">
+            <div class="col-image gsap-fade">
                 <img src="https://placehold.co/560x400/141218/F2A623?text=Add-ons" alt="Conference package add-ons" width="560" height="400">
             </div>
         </div>
@@ -125,7 +139,7 @@
 
 <section class="section section-dark cta-section" style="padding:var(--space-2xl) 0;">
     <div class="gradient-orb" style="top:-80px;left:50%;transform:translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Get started</span>
         <h2>Ready to book?</h2>
         <p class="body">Tell us about your conference and we'll get back to you within one business day with a tailored quote.</p>
@@ -137,8 +151,8 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand"><h3>Recap Media</h3><p>Event photography and videography in Oslo. One crew handling photo, video and livestream.</p></div>
-            <div class="footer-col"><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../work.html">Work</a></li><li><a href="../packages/">Packages</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
-            <div class="footer-col"><h4>Legal</h4><ul><li><a href="../privacy.html">Privacy Policy</a></li><li><a href="../terms.html">Terms of Service</a></li></ul></div>
+            <div class="footer-col"><h4>Pages</h4><ul><li><a href="https://recapmedia.no/">Home</a></li><li><a href="https://recapmedia.no/work">Work</a></li><li><a href="https://recapmedia.no/packages">Packages</a></li><li><a href="https://recapmedia.no/contact">Contact</a></li></ul></div>
+            <div class="footer-col"><h4>Legal</h4><ul><li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li><li><a href="https://recapmedia.no/terms">Terms of Service</a></li></ul></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p></div>
     </div>

@@ -23,14 +23,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="../index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../packages/">Packages</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -39,11 +52,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="../index.html">Home</a>
-    <a href="../work.html">Work</a>
-    <a href="../about.html">About</a>
-    <a href="../packages/">Packages</a>
-    <a href="../contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -77,10 +90,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691de9b9840ed1840d329278.jpg" alt="Oslo Event Hub" width="560" height="400">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">About the event</span>
                 <h2>A Bilateral Climate &amp; Energy Mission</h2>
                 <p>The Scotland–Norway Decarbonisation Trade Mission 2023 brought together Scottish and Norwegian organisations working on industrial decarbonisation, carbon capture and storage (CCS), hydrogen, and low-carbon technologies.</p>
@@ -95,7 +108,7 @@
 <section class="section section-warm">
     <div class="container">
         <div class="two-col">
-            <div class="col-text reveal-left">
+            <div class="col-text gsap-fade">
                 <span class="overline">Our role</span>
                 <h2>Local Oslo Photography Crew</h2>
                 <p>Recap Media joined The Marketing Department's wider production team as the local Oslo photography crew — providing consistent visual coverage across both parts of the event without the client needing to fly in their own photographer.</p>
@@ -107,7 +120,7 @@
                 </ul>
                 <p style="margin-top: 16px; font-size: 0.9rem; color: var(--color-charcoal);">By using a local Oslo crew, the client avoided flying in a photographer from Scotland — reducing travel costs, eliminating logistics overhead, and gaining a team that knows the local venues and conditions.</p>
             </div>
-            <div class="col-image reveal-right">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dc06d840ed1175f2d7444.jpeg" alt="UK Ambassador's residence, Oslo" width="560" height="400">
             </div>
         </div>
@@ -118,10 +131,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dc06ec03e0f6186c417ff.jpeg" alt="Trade mission photography results" width="560" height="400" style="border-radius: var(--radius-lg);">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">Results</span>
                 <h2>Press-Ready and Politically Resonant</h2>
                 <p>The final image set was used across multiple communication channels:</p>
@@ -148,11 +161,11 @@
 <!-- Photo Gallery -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Visual highlights</span>
             <h2>From the Mission</h2>
         </div>
-        <div class="gallery-grid reveal-group">
+        <div class="gallery-grid gsap-stagger">
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dc06d88e1e6fc0784465b.jpeg" alt="Trade mission keynote" width="640" height="480"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dc06e5e13ecf376fb6ef2.jpeg" alt="Bilateral meeting" width="640" height="720"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dc06dd4f9b3e5d762ddcd.jpeg" alt="Diplomatic reception" width="640" height="480"></div>
@@ -166,7 +179,7 @@
 <!-- CTA -->
 <section class="section section-onyx cta-section" style="padding: var(--space-2xl) 0;">
     <div class="gradient-orb" style="top: -80px; left: 50%; transform: translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Plan your event</span>
         <h2>Planning a trade mission or corporate event in Oslo?</h2>
         <p class="body">If you're organising a conference, trade show, or diplomatic event in Oslo — we can provide local photo and video coverage your communications team can use immediately. International teams welcome.</p>
@@ -177,7 +190,7 @@
 <!-- FAQ -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">FAQ</span>
             <h2>Corporate Event Photography Questions</h2>
         </div>
@@ -214,18 +227,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../work.html">Work</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li><a href="../packages/">Packages</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
-                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -236,7 +249,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="../privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="../terms.html">Terms of Service</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
 </footer>

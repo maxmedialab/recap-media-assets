@@ -23,14 +23,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="../index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../packages/">Packages</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -39,11 +52,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="../index.html">Home</a>
-    <a href="../work.html">Work</a>
-    <a href="../about.html">About</a>
-    <a href="../packages/">Packages</a>
-    <a href="../contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -78,10 +91,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb8300f0639bb767199.jpg" alt="Felix Conference Center, Aker Brygge, Oslo" width="560" height="400">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">About the event</span>
                 <h2>Flutter Vikings 2022</h2>
                 <p>Flutter Vikings 2022 was one of the largest Flutter and Dart community conferences in the Nordics — a two-day gathering of developers, tech leads, open-source contributors and experts from across Europe and beyond.</p>
@@ -95,7 +108,7 @@
 <section class="section section-warm">
     <div class="container">
         <div class="two-col">
-            <div class="col-text reveal-left">
+            <div class="col-text gsap-fade">
                 <span class="overline">Our role</span>
                 <h2>End-to-End Media Coverage</h2>
                 <p>Recap Media provided end-to-end media coverage for Flutter Vikings 2022 — from livestreaming all three tracks simultaneously to event photography across the full venue and session recordings for YouTube.</p>
@@ -106,7 +119,7 @@
                     <li>B-roll footage for social and promotional use</li>
                 </ul>
             </div>
-            <div class="col-image reveal-right">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dabb85e13ec92cdf916a1.jpg" alt="Multi-camera livestreaming setup at Flutter Vikings" width="560" height="400">
             </div>
         </div>
@@ -117,10 +130,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dabb8300f0695bc767185.jpg" alt="Flutter Vikings session recording" width="560" height="400" style="border-radius: var(--radius-lg);">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">Results</span>
                 <h2>Media That Keeps Delivering</h2>
                 <p>The media package from Flutter Vikings 2022 has continued to deliver value long after the event:</p>
@@ -138,11 +151,11 @@
 <!-- Photo Gallery -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Visual highlights</span>
             <h2>From the Event</h2>
         </div>
-        <div class="gallery-grid reveal-group">
+        <div class="gallery-grid gsap-stagger">
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dabb859e47bfe713fc48b.jpg" alt="Flutter Vikings 2022 speaker" width="640" height="480"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dabb859e47b47aa3fc48d.jpg" alt="Flutter Vikings 2022 audience" width="640" height="720"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/K9u6cepBq4hbudcnIkVw/media/691dabb888e1e6225781f774.jpg" alt="Flutter Vikings 2022 networking" width="640" height="480"></div>
@@ -156,7 +169,7 @@
 <!-- CTA -->
 <section class="section section-onyx cta-section" style="padding: var(--space-2xl) 0;">
     <div class="gradient-orb" style="top: -80px; left: 50%; transform: translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Plan your event</span>
         <h2>Planning a tech conference in Oslo?</h2>
         <p class="body">If you're organising a developer conference, meetup, or tech event in Oslo or Greater Oslo, we can join your team as local photo, video and livestream crew. We know the venues, the light, and the logistics.</p>
@@ -167,7 +180,7 @@
 <!-- FAQ -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">FAQ</span>
             <h2>Event Photography &amp; Videography Questions</h2>
         </div>
@@ -212,18 +225,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../work.html">Work</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li><a href="../packages/">Packages</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
-                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -234,7 +247,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="../privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="../terms.html">Terms of Service</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
 </footer>

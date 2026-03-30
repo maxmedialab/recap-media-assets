@@ -129,19 +129,6 @@
             color: var(--color-stone);
             margin-bottom: 24px;
         }
-        .calendar-placeholder {
-            background: var(--color-onyx);
-            border-radius: var(--radius-lg);
-            padding: 40px 32px;
-            text-align: center;
-            border: 1px dashed rgba(255,255,255,0.1);
-            margin-top: 16px;
-        }
-        .calendar-placeholder p {
-            font-size: 0.875rem;
-            color: var(--color-stone);
-            margin-bottom: 12px;
-        }
     </style>
     <link rel="stylesheet" href="css/style.css?v=2">
     <!-- Splash overlay — renders instantly before external CSS loads -->
@@ -157,14 +144,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="work.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="packages/">Packages</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -173,11 +173,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="about.html">About</a>
-    <a href="packages/">Packages</a>
-    <a href="contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -198,7 +198,7 @@
 <!-- Contact Layout: Form + Sidebar -->
 <section class="section section-light">
     <div class="container">
-        <div class="contact-layout reveal">
+        <div class="contact-layout gsap-fade">
 
             <!-- Inline Form -->
             <div class="contact-form-wrap">
@@ -288,14 +288,9 @@
             <h2>Choose a Time That Works for You</h2>
             <p>Please choose a time when you have 20 minutes to speak and are in a quiet, undisturbed area.</p>
         </div>
-        <div class="calendar-placeholder reveal">
-            <!-- TODO: Replace with GHL calendar embed code -->
-            <!-- Example:
-            <iframe src="https://api.leadconnectorhq.com/widget/booking/..." style="width: 100%; border: none; min-height: 600px;" scrolling="no"></iframe>
-            -->
-            <p style="font-size: 1.5rem; margin-bottom: 16px;">📅</p>
-            <p>Calendar booking widget goes here.</p>
-            <p style="font-size: 0.8rem; opacity: 0.6;">Paste your GHL calendar embed code in this section.</p>
+        <div class="gsap-fade">
+            <iframe src="https://link.vidlead.com/widget/booking/qrGyKgqUP1OAMeLAGtoX" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="qrGyKgqUP1OAMeLAGtoX_1774894514296"></iframe>
+            <script src="https://link.vidlead.com/js/form_embed.js" type="text/javascript"></script>
         </div>
     </div>
 </section>
@@ -322,7 +317,7 @@
             </div>
             <div class="faq-item">
                 <button class="faq-question">What does a typical package cost? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,000 NOK for a half-day shoot and go up to 40,000 NOK and beyond for full conference production with live-streaming. We provide a detailed quote after a short briefing call. See our <a href="packages/" style="color: var(--color-ember);">Packages page</a> for a full breakdown.</div></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,000 NOK for a half-day shoot and go up to 40,000 NOK and beyond for full conference production with live-streaming. We provide a detailed quote after a short briefing call. See our <a href="https://recapmedia.no/packages" style="color: var(--color-ember);">Packages page</a> for a full breakdown.</div></div>
             </div>
         </div>
     </div>
@@ -340,18 +335,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="work.html">Work</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="packages/">Packages</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -362,7 +357,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
 </footer>

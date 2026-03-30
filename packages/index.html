@@ -23,14 +23,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="../index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../packages/">Packages</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -39,11 +52,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="../index.html">Home</a>
-    <a href="../work.html">Work</a>
-    <a href="../about.html">About</a>
-    <a href="../packages/">Packages</a>
-    <a href="../contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -60,7 +73,7 @@
 <!-- Packages -->
 <section class="section section-warm" style="padding-top: var(--space-2xl);">
     <div class="container">
-        <div class="packages-grid reveal-group">
+        <div class="packages-grid gsap-stagger">
 
             <div class="package-card">
                 <div class="package-card-header">
@@ -79,8 +92,8 @@
                     <li>Usage licence for digital/print</li>
                 </ul>
                 <div class="package-card-footer">
-                    <p class="package-card-footer-note">Ideal for smaller events, internal launches, or product reveals where speed and simplicity matter most.</p>
-                    <a href="day-coverage.html" class="btn btn-outline-ember" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none;">See full details</a>
+                    <p class="package-card-footer-note">Ideal for smaller events, internal launches, or product gsap-fades where speed and simplicity matter most.</p>
+                    <a href="https://recapmedia.no/packages/day-coverage" class="btn btn-outline-ember" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none;">See full details</a>
                     <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
                 </div>
             </div>
@@ -107,7 +120,7 @@
                 </ul>
                 <div class="package-card-footer">
                     <p class="package-card-footer-note">Our most popular option — a complete content suite ready for months of use across social, web, and PR.</p>
-                    <a href="conference.html" class="btn btn-outline" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none; border-color: rgba(255,255,255,0.3);">See full details</a>
+                    <a href="https://recapmedia.no/packages/conference" class="btn btn-outline" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none; border-color: rgba(255,255,255,0.3);">See full details</a>
                     <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
                 </div>
             </div>
@@ -134,7 +147,7 @@
                 </ul>
                 <div class="package-card-footer">
                     <p class="package-card-footer-note">For conferences, expos, or sponsor-driven events needing real-time media delivery and maximum post-event reach.</p>
-                    <a href="full-production.html" class="btn btn-outline-ember" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none;">See full details</a>
+                    <a href="https://recapmedia.no/packages/full-production" class="btn btn-outline-ember" style="width: 100%; justify-content: center; margin-bottom: 10px; text-decoration: none;">See full details</a>
                     <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
                 </div>
             </div>
@@ -142,7 +155,7 @@
         </div>
 
         <p class="text-center" style="margin-top: 32px; font-size: 0.9rem; color: var(--color-stone);">
-            Need a custom package, tailored for your event? <a href="../contact.html">Let's talk →</a>
+            Need a custom package, tailored for your event? <a href="https://recapmedia.no/contact">Let's talk →</a>
         </p>
     </div>
 </section>
@@ -150,11 +163,11 @@
 <!-- What's always included -->
 <section class="section section-light">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Always included</span>
             <h2>What's in every package</h2>
         </div>
-        <div class="values-grid reveal-group">
+        <div class="values-grid gsap-stagger">
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">📋</span>
                 <h3>Pre-Event Brief</h3>
@@ -177,7 +190,7 @@
 <!-- CTA -->
 <section class="section section-dark cta-section" style="padding: var(--space-2xl) 0;">
     <div class="gradient-orb" style="top: -80px; left: 50%; transform: translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Let's get started</span>
         <h2>Not sure which package fits?</h2>
         <p class="body">Tell us about your event and we'll recommend the right package — or put together something custom. No obligation, no hard sell.</p>
@@ -188,7 +201,7 @@
 <!-- FAQ -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Pricing FAQ</span>
             <h2>Common Questions About Packages</h2>
         </div>
@@ -225,18 +238,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../work.html">Work</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li><a href="../packages/">Packages</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
-                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -247,7 +260,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="../privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="../terms.html">Terms of Service</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
 </footer>

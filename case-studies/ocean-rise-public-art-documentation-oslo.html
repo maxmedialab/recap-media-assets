@@ -23,14 +23,27 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
 <nav class="nav" id="nav">
-    <a href="../index.html" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../packages/">Packages</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
         <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu">
@@ -39,11 +52,11 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
-    <a href="../index.html">Home</a>
-    <a href="../work.html">Work</a>
-    <a href="../about.html">About</a>
-    <a href="../packages/">Packages</a>
-    <a href="../contact.html">Contact</a>
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
@@ -81,10 +94,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791be03e9d0ceaa4dfc3.jpeg" alt="Tøyenparken, Oslo" width="560" height="400">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">About the project</span>
                 <h2>Ocean Rise — Public Art in Oslo</h2>
                 <p>Ocean Rise is a mixed-reality public artwork by London-based artist Aphra Shemza, created to highlight rising sea levels and the climate crisis. The physical sculpture — made from recycled marine materials — is paired with a digital soundscape accessible via QR code.</p>
@@ -99,7 +112,7 @@
 <section class="section section-warm">
     <div class="container">
         <div class="two-col">
-            <div class="col-text reveal-left">
+            <div class="col-text gsap-fade">
                 <span class="overline">Our role</span>
                 <h2>Documenting Across Two Key Moments</h2>
                 <p>Recap Media documented Ocean Rise across two separate engagements — an educational workshop in 2023 and the sculpture installation and artist interview in 2024 — creating a coherent visual story from concept through to completion.</p>
@@ -112,7 +125,7 @@
                 </ul>
                 <p style="margin-top: 16px; font-size: 0.9rem; color: var(--color-charcoal);">Filming conditions included an active children's workshop, outdoor park with strong sunlight, and limited time windows — requiring a focus on staying efficient and unobtrusive while producing clean, consistent material.</p>
             </div>
-            <div class="col-image reveal-right">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bb263273aef9311e3.jpeg" alt="Climate education workshop documentation" width="560" height="400">
             </div>
         </div>
@@ -123,10 +136,10 @@
 <section class="section section-light">
     <div class="container">
         <div class="two-col">
-            <div class="col-image reveal-left">
+            <div class="col-image gsap-fade">
                 <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791be7a09f520ef02d96.jpeg" alt="Ocean Rise documentary footage" width="560" height="400" style="border-radius: var(--radius-lg);">
             </div>
-            <div class="col-text reveal-right">
+            <div class="col-text gsap-fade">
                 <span class="overline">Results</span>
                 <h2>An Archive From Concept to Installation</h2>
                 <ul class="check-list">
@@ -152,11 +165,11 @@
 <!-- Photo Gallery -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">Visual highlights</span>
             <h2>Ocean Rise in Images</h2>
         </div>
-        <div class="gallery-grid reveal-group">
+        <div class="gallery-grid gsap-stagger">
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bacebf7fbccfa3dd7.jpeg" alt="Ocean Rise sculpture" width="640" height="480"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bea1b1288011cc83c.jpeg" alt="Children's workshop" width="640" height="720"></div>
             <div class="gallery-item"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bacebf7fd56fa3dd8.jpeg" alt="Artist interview" width="640" height="480"></div>
@@ -170,7 +183,7 @@
 <!-- CTA -->
 <section class="section section-onyx cta-section" style="padding: var(--space-2xl) 0;">
     <div class="gradient-orb" style="top: -80px; left: 50%; transform: translateX(-50%);"></div>
-    <div class="container reveal">
+    <div class="container gsap-fade">
         <span class="overline">Plan your project</span>
         <h2>Planning an art or culture project in Oslo?</h2>
         <p class="body">If you're commissioning public art, running a cultural programme, or organising workshops in Oslo or Greater Oslo, we can join your team as a local media partner — handling photo and video documentation, interviews, and archival footage.</p>
@@ -181,7 +194,7 @@
 <!-- FAQ -->
 <section class="section section-dark">
     <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header gsap-fade">
             <span class="overline">FAQ</span>
             <h2>Event &amp; Project Documentation Questions</h2>
         </div>
@@ -218,18 +231,18 @@
             <div class="footer-col">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../work.html">Work</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li><a href="../packages/">Packages</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="../privacy.html">Privacy Policy</a></li>
-                    <li><a href="../terms.html">Terms of Service</a></li>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
                 <h4 style="margin-top: 20px;">Contact</h4>
                 <ul>
@@ -240,7 +253,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
-            <div><a href="../privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="../terms.html">Terms of Service</a></div>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
 </footer>
