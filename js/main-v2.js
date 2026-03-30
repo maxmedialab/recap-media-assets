@@ -266,11 +266,19 @@
         }, 800);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function initAll() {
         initNav(); initScrollReveal(); initCardTilt(); initFAQ();
         initCarousel(); initGallery(); initModal(); initCtaGallery();
         initCursorGlow(); initCustomCursor(); initPageTransitions();
-    });
+    }
+
+    // GHL injects this script dynamically via tracking code, so DOMContentLoaded
+    // may have already fired by the time this runs. Check readyState first.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
 })();
 
 /* =============================================
