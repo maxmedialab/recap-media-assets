@@ -1,0 +1,190 @@
+/* ===========================
+   RECAP MEDIA — Forms
+   Custom form + modal styling
+   =========================== */
+
+/* ===========================
+   Form Layout
+   =========================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-warm-grey);
+    letter-spacing: 0.02em;
+}
+
+/* ===========================
+   Form Controls (dark variant — modal)
+   =========================== */
+
+.form-control {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 12px 14px;
+    width: 100%;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.form-control::placeholder {
+    color: var(--color-stone);
+    font-size: 0.875rem;
+}
+
+.form-control:focus {
+    border-color: var(--color-ember);
+    box-shadow: 0 0 0 3px rgba(232,89,60,0.15);
+}
+
+.form-control.error {
+    border-color: #E85C5C;
+    box-shadow: 0 0 0 3px rgba(232,92,92,0.12);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+select.form-control {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 12px;
+    padding-right: 36px;
+}
+
+select.form-control option {
+    background: var(--color-onyx);
+    color: var(--color-white);
+}
+
+/* ===========================
+   Consent Checkbox
+   =========================== */
+
+.form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 8px 0 20px;
+}
+
+.form-consent input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    margin-top: 1px;
+    position: relative;
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.form-consent input[type="checkbox"]:checked {
+    background-color: var(--color-ember);
+    border-color: var(--color-ember);
+}
+
+.form-consent input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+}
+
+.form-consent label {
+    font-size: 0.8rem;
+    color: var(--color-stone);
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+/* ===========================
+   Error Messages
+   =========================== */
+
+.form-error {
+    font-size: 0.78rem;
+    color: #E85C5C;
+    display: none;
+}
+
+.form-group.has-error .form-error { display: block; }
+
+/* ===========================
+   Light Form Variant
+   (contact page inline form)
+   =========================== */
+
+.form-light .form-control {
+    background: var(--color-white);
+    border-color: rgba(20,18,24,0.12);
+    color: var(--color-obsidian);
+}
+
+.form-light .form-control::placeholder { color: var(--color-warm-grey); }
+.form-light .form-control:focus { border-color: var(--color-ember); }
+
+.form-light label { color: var(--color-charcoal); }
+
+.form-light select.form-control {
+    background-color: var(--color-white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.form-light select.form-control option {
+    background: var(--color-white);
+    color: var(--color-obsidian);
+}
+
+.form-light .form-consent input[type="checkbox"] {
+    border-color: rgba(20,18,24,0.2);
+    background: var(--color-white);
+}
+
+.form-light .form-consent label { color: var(--color-charcoal); }
+
+/* ===========================
+   Hidden GHL Form
+   =========================== */
+
+.ghl-form-hidden { display: none !important; }
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 540px) {
+    .form-row { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,128 @@
+{
+  "_instructions": "Replace each 'TODO' URL with the real image URL from your GHL media storage. To get the URL: right-click the image on recapmedia.no → Inspect → copy the src attribute of the <img> tag. Or use the bulk method in README.md.",
+
+  "logo": {
+    "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69b19b15f3d78f7b38169791.png",
+    "url": "TODO",
+    "used_on": ["all pages — navigation bar"]
+  },
+
+  "homepage": {
+    "hero_video": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69c27845a98ba5094c2258d0.mp4",
+      "url": "TODO",
+      "description": "Looping event/conference video behind hero text"
+    },
+    "section_end_to_end": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb888e1e6178a81f772.jpg",
+      "url": "TODO",
+      "description": "Conference audience photo — right side of 'Your Event, Covered End-to-End' section"
+    },
+    "project_flutter_vikings": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb8300f064072767184.jpg",
+      "url": "TODO",
+      "description": "Flutter Vikings Conference card image — speaker on stage with green/yellow background"
+    },
+    "project_neccus": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dc06e300f0606f878d404.jpeg",
+      "url": "TODO",
+      "description": "NECCUS Trade Mission card image — meeting/presentation scene"
+    },
+    "project_ocean_rise": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bacebf7fbccfa3dd7.jpeg",
+      "url": "TODO",
+      "description": "Ocean Rise Art Project card image — outdoor performance/festival scene"
+    },
+    "testimonial_porsha_morgan": {
+      "file": "porsha-morgan.jpg",
+      "url": "TODO",
+      "description": "Small circular headshot — Porsha Morgan, CEO, PT Hub Oslo"
+    },
+    "testimonial_aneta_paleczka": {
+      "file": "aneta-paleczka.jpg",
+      "url": "TODO",
+      "description": "Small circular headshot — Aneta Paleczka, CEO, Flora Art&Show"
+    },
+    "testimonial_wioleta_straus": {
+      "file": "wioleta-straus.jpg",
+      "url": "TODO",
+      "description": "Small circular headshot — Wioleta Straus, CEO, Straus Massasje"
+    },
+    "testimonial_anita_abigel": {
+      "file": "anita-abigel.jpg",
+      "url": "TODO",
+      "description": "Small circular headshot — Nagyová Anita Abigél, CEO, Kunst og Moro Underholdning"
+    },
+    "fullwidth_networking": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dc06dc03e0f042cc417e7.jpeg",
+      "url": "TODO",
+      "description": "Full-width event networking photo between testimonials and CTA"
+    }
+  },
+
+  "work_page": {
+    "gallery": [
+      { "id": "gallery-01", "url": "TODO", "description": "Man in brown jacket speaking at podium" },
+      { "id": "gallery-02", "url": "TODO", "description": "Man writing/signing at table" },
+      { "id": "gallery-03", "url": "TODO", "description": "Overhead shot of crowd in circular atrium" },
+      { "id": "gallery-04", "url": "TODO", "description": "Conference audience in red seats — wide shot" },
+      { "id": "gallery-05", "url": "TODO", "description": "Older man in white shirt — portrait style" },
+      { "id": "gallery-06", "url": "TODO", "description": "Young man speaking with microphone — striped blazer" },
+      { "id": "gallery-07", "url": "TODO", "description": "Bald man speaking at podium — close-up" },
+      { "id": "gallery-08", "url": "TODO", "description": "Group of people networking/socializing in hallway" },
+      { "id": "gallery-09", "url": "TODO", "description": "Woman with wine glass at outdoor event" },
+      { "id": "gallery-10", "url": "TODO", "description": "Two men talking at event with badges — Flutter Vikings letters behind" },
+      { "id": "gallery-11", "url": "TODO", "description": "Group photo with red shirts and mascot" },
+      { "id": "gallery-12", "url": "TODO", "description": "Older man in glasses speaking — gesturing with hand" },
+      { "id": "gallery-13", "url": "TODO", "description": "Young woman outdoors by sculpture — Ocean Rise" },
+      { "id": "gallery-14", "url": "TODO", "description": "Two men in conversation at conference — one with lanyard" },
+      { "id": "gallery-15", "url": "TODO", "description": "Group of people at formal diplomatic-style event" },
+      { "id": "gallery-16", "url": "TODO", "description": "People at exhibition with sponsor banners (Microsoft, Northern, Tide)" },
+      { "id": "gallery-17", "url": "TODO", "description": "Presentation slide about energy demand" },
+      { "id": "gallery-18", "url": "TODO", "description": "Man presenting at podium — conference room" },
+      { "id": "gallery-19", "url": "TODO", "description": "Three people at formal event looking at camera" },
+      { "id": "gallery-20", "url": "TODO", "description": "Yellow shirt speaker — Felix lettering in background" },
+      { "id": "gallery-21", "url": "TODO", "description": "Two men in conversation — casual conference" },
+      { "id": "gallery-22", "url": "TODO", "description": "Conference panel or audience scene" },
+      { "id": "gallery-23", "url": "TODO", "description": "Northern Lights in numbers presentation slide" },
+      { "id": "gallery-24", "url": "TODO", "description": "Man photographing/close-up candid shot" },
+      { "id": "gallery-25", "url": "TODO", "description": "Man with grey hair speaking at conference" }
+    ]
+  },
+
+  "about_page": {
+    "max_headshot_default": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69a17b7b753f156e3fc7d17c.jpeg",
+      "url": "TODO",
+      "description": "Max wearing a cap and green jacket — default headshot"
+    },
+    "max_headshot_ironman": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69a17b0895735c58d197b5ad.jpeg",
+      "url": "TODO",
+      "description": "Max during Ironman — hover cycle photo 1"
+    },
+    "max_headshot_camera": {
+      "file": "max-camera.jpg",
+      "url": "TODO",
+      "description": "Max working with camera — hover cycle photo 2"
+    },
+    "max_headshot_swimming": {
+      "file": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69c27cc2cf240fb20e67a058.jpeg",
+      "url": "TODO",
+      "description": "Max swimming — hover cycle photo 3"
+    }
+  },
+
+  "icons": {
+    "_note": "These are blue line icons used across the site. Can be SVGs or icon font.",
+    "camera": "Used in 'About' page illustration + Day Coverage package card",
+    "video_camera": "Used in Step 2 and the cycling icon animation",
+    "broadcast": "Used in Full Production package card + cycling icon animation",
+    "clipboard": "Used in Step 1 — Pre-Event Brief",
+    "upload": "Used in Step 3 — Deliver",
+    "infinity_lens": "Used in Conference Package card",
+    "chat_bubble": "Used in Fast Communication value card",
+    "shield_check": "Used in No Surprises value card",
+    "screen_content": "Used in Content You'll Actually Use value card"
+  }
+}

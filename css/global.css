@@ -1,0 +1,100 @@
+/* ===========================
+   RECAP MEDIA — Brand Tokens
+   Direction: Obsidian + Ember
+   Fonts: General Sans (headings) + Inter (body)
+   =========================== */
+
+:root {
+    /* Core darks */
+    --color-void: #0C0A10;
+    --color-obsidian: #141218;
+    --color-onyx: #1E1B24;
+    --color-smoke: #2A2730;
+
+    /* Lights */
+    --color-cream: #F5F3EF;
+    --color-warm-white: #FAF7F2;
+    --color-white: #FFFFFF;
+
+    /* Accents */
+    --color-ember: #E8593C;
+    --color-ember-deep: #D44A2E;
+    --color-amber: #F2A623;
+
+    /* Neutrals */
+    --color-stone: #8a8680;
+    --color-warm-grey: #B5B1A9;
+    --color-charcoal: #555249;
+
+    /* Typography */
+    --font-heading: 'General Sans', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
+    --space-xl: 64px;
+    --space-2xl: 96px;
+
+    /* Layout */
+    --max-width: 1200px;
+
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background-color: var(--color-ember);
+    color: var(--color-white);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-charcoal);
+    background-color: var(--color-cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-obsidian);
+    line-height: 1.2;
+}
+
+a {
+    color: var(--color-ember);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-ember-deep);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
