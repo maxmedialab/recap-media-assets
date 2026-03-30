@@ -121,7 +121,9 @@ img {
     align-items: center;
     padding: 20px 32px;
     transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
-    background-color: transparent;
+    background-color: rgba(12, 10, 16, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .nav.scrolled {
@@ -548,7 +550,7 @@ main {
    =========================== */
 
 .two-col {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
     align-items: center;
@@ -1041,7 +1043,7 @@ main {
    =========================== */
 
 .steps-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
@@ -1095,7 +1097,7 @@ main {
    =========================== */
 
 .values-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
@@ -1382,6 +1384,41 @@ main {
     border: 1px solid rgba(232,89,60,0.4);
     color: var(--color-ember);
     background: rgba(232,89,60,0.06);
+}
+
+/* ===========================
+   Contact Layout
+   =========================== */
+
+.contact-layout {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .contact-layout { grid-template-columns: 1fr !important; }
+}
+
+.contact-form-wrap {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: 0 4px 24px rgba(20,18,24,0.07);
+}
+
+.contact-form-wrap h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--color-obsidian);
+}
+
+.contact-form-wrap .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-stone);
+    margin-bottom: 24px;
 }
 
 /* ===========================
@@ -1876,9 +1913,9 @@ textarea.form-control {
 
 select.form-control {
     cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 12px;
@@ -2054,7 +2091,7 @@ body {
        ============================================= */
 
     /* Nav */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease; background-color: transparent; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease; background-color: rgba(12,10,16,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
     .nav.scrolled { background-color: rgba(20,18,24,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 12px 32px; }
     .nav-logo { color: var(--color-white); font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
     .nav-logo img { max-height: 48px; width: auto; object-fit: contain; }
@@ -2125,7 +2162,11 @@ body {
     .btn-outline-ember:hover { background-color: var(--color-ember); color: var(--color-white); }
 
     /* Two-col */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
+    .two-col { display: grid !important; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
+    .contact-layout { display: grid !important; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+    .contact-form-wrap { background: var(--color-white); border-radius: var(--radius-lg); padding: 36px; box-shadow: 0 4px 24px rgba(20,18,24,0.07); }
+    .contact-form-wrap h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: var(--color-obsidian); }
+    .contact-form-wrap .form-subtitle { font-size: 0.875rem; color: var(--color-stone); margin-bottom: 24px; }
     .two-col.reverse { direction: rtl; }
     .two-col.reverse > * { direction: ltr; }
     .col-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 16px; }
@@ -2376,7 +2417,7 @@ body {
     .form-control:focus { border-color: var(--color-ember); box-shadow: 0 0 0 3px rgba(232,89,60,0.15); }
     .form-control.error { border-color: #E85C5C; box-shadow: 0 0 0 3px rgba(232,92,92,0.12); }
     textarea.form-control { min-height: 100px; resize: vertical; }
-    select.form-control { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 36px; }
+    select.form-control { cursor: pointer; appearance: none !important; -webkit-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 36px; }
     select.form-control option { background: var(--color-onyx); color: var(--color-white); }
     .form-consent { display: flex; align-items: flex-start; gap: 10px; margin: 8px 0 20px; }
     .form-consent input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; min-width: 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; background: rgba(255,255,255,0.05); cursor: pointer; margin-top: 1px; position: relative; transition: border-color var(--transition-fast), background-color var(--transition-fast); flex-shrink: 0; }
