@@ -272,12 +272,30 @@
         initCursorGlow(); initCustomCursor(); initPageTransitions();
     }
 
-    // GHL injects this script dynamically via tracking code, so DOMContentLoaded
-    // may have already fired by the time this runs. Check readyState first.
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAll);
-    } else {
+    // GHL injects Global Sections (nav, cursor, modal) asynchronously AFTER the
+    // tracking-code script runs — even after readyState === 'complete'. We watch
+    // the DOM with MutationObserver and only init once both the Global Header
+    // (.nav) and Global Footer (.modal-overlay) are actually present.
+    var _inited = false;
+    function _runOnce() {
+        if (_inited) return;
+        _inited = true;
         initAll();
+    }
+    function _waitForGHL() {
+        var required = ['.nav', '.modal-overlay'];
+        function ready() { return required.every(function(s) { return !!document.querySelector(s); }); }
+        if (ready()) { _runOnce(); return; }
+        var obs = new MutationObserver(function() {
+            if (ready()) { obs.disconnect(); _runOnce(); }
+        });
+        obs.observe(document.body || document.documentElement, { childList: true, subtree: true });
+        setTimeout(function() { obs.disconnect(); _runOnce(); }, 6000); // hard fallback
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', _waitForGHL);
+    } else {
+        _waitForGHL();
     }
 })();
 
