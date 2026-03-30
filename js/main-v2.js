@@ -266,10 +266,73 @@
         }, 800);
     }
 
+    function initFormBridge() {
+        var visibleForm = document.querySelector('.quote-form');
+        if (!visibleForm) return;
+        // GHL native form placed as a hidden section — selector confirmed by user
+        var ghlContainer = document.querySelector('#form-HH_r64xPsc')
+                        || document.querySelector('.ghl-form-hidden');
+        var ghlForm = ghlContainer ? ghlContainer.querySelector('form') : null;
+        if (!ghlForm) return;
+
+        // Maps visible field IDs → GHL field [name] attributes.
+        // To verify names: open DevTools on the live page, inspect the hidden section,
+        // and find the [name="..."] attribute on each input inside #form-HH_r64xPsc.
+        var FIELD_MAP = {
+            'visible-first-name': 'first_name',
+            'visible-last-name':  'last_name',
+            'visible-email':      'email',
+            'visible-phone':      'phone',
+            'visible-org':        'company_name',
+            'visible-message':    'message',
+            'visible-event-date': 'event_date',
+            'visible-source':     'lead_source',
+        };
+
+        visibleForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Sync every mapped field into the hidden GHL form
+            Object.keys(FIELD_MAP).forEach(function (visId) {
+                var ghlName = FIELD_MAP[visId];
+                var visEl   = document.getElementById(visId);
+                var ghlEl   = ghlContainer.querySelector('[name="' + ghlName + '"]');
+                if (visEl && ghlEl) {
+                    ghlEl.value = visEl.value;
+                    ghlEl.dispatchEvent(new Event('input',  { bubbles: true }));
+                    ghlEl.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+
+            // Click GHL's own submit — triggers reCAPTCHA + CRM workflow
+            var ghlSubmit = ghlForm.querySelector('[type="submit"]');
+            if (ghlSubmit) ghlSubmit.click();
+
+            // Show success message, then close the modal after 2.5 s
+            var submitBtn = visibleForm.querySelector('[type="submit"]');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
+            var existing = visibleForm.querySelector('.form-feedback');
+            if (existing) existing.remove();
+            var msg = document.createElement('p');
+            msg.className = 'form-feedback';
+            msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
+            msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
+            visibleForm.appendChild(msg);
+            setTimeout(function () {
+                visibleForm.reset();
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                if (msg.parentNode) msg.parentNode.removeChild(msg);
+                var overlay = document.querySelector('.modal-overlay');
+                if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+            }, 2500);
+        });
+    }
+
     function initAll() {
         initNav(); initScrollReveal(); initCardTilt(); initFAQ();
         initCarousel(); initGallery(); initModal(); initCtaGallery();
         initCursorGlow(); initCustomCursor(); initPageTransitions();
+        initFormBridge();
     }
 
     // GHL injects Global Sections (nav, cursor, modal) asynchronously AFTER the
@@ -297,17 +360,6 @@
     } else {
         _waitForGHL();
     }
-})();
-
-/* =============================================
-   form-bridge.js (inlined)
-   ============================================= */
-(function () {
-    'use strict';
-    // Form bridge is handled by the dedicated section below (direct API POST).
-    // This stub is kept so DOMContentLoaded fires correctly.
-    function initFormBridge() { /* handled by form-bridge.js block below */ }
-    document.addEventListener('DOMContentLoaded', initFormBridge);
 })();
 
 /* =============================================
@@ -379,96 +431,4 @@
             else { item.classList.remove('open'); gsap.to(answer, { maxHeight: 0, duration: 0.3, ease: 'power2.inOut' }); }
         });
     });
-})();
-// === form-bridge.js ===
-/**
- * GHL Form Bridge — Direct API Submission
- *
- * The GHL form is embedded as an iframe (cross-origin), so we cannot
- * programmatically access its fields or submit button. Instead, on
- * visible form submission we POST the data directly to GHL's form
- * submission endpoint, which fires all CRM workflows identically to
- * a native GHL form submit (including reCAPTCHA handled server-side).
- *
- * Form ID: DefzD8Urt68TpVkbgLwx
- * Location ID: K9u6cepBq4hbudcnIkVw  (from CDN asset path)
- */
-
-(function () {
-    'use strict';
-
-    var GHL_FORM_ID    = 'DefzD8Urt68TpVkbgLwx';
-    var GHL_LOCATION_ID = 'K9u6cepBq4hbudcnIkVw';
-
-    function getVal(id) {
-        var el = document.getElementById(id);
-        return el ? el.value.trim() : '';
-    }
-
-    function showMessage(form, success, text) {
-        var existing = form.querySelector('.form-feedback');
-        if (existing) existing.remove();
-        var msg = document.createElement('p');
-        msg.className = 'form-feedback';
-        msg.style.cssText = 'margin-top:12px;font-size:0.9rem;text-align:center;color:' + (success ? '#4caf50' : '#e74c3c');
-        msg.textContent = text;
-        form.appendChild(msg);
-    }
-
-    function initFormBridge() {
-        var visibleForm = document.querySelector('.quote-form');
-        if (!visibleForm) return;
-
-        visibleForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Basic client-side validation
-            var required = ['visible-first-name', 'visible-last-name', 'visible-email', 'visible-org', 'visible-source'];
-            var missing = required.some(function (id) { return !getVal(id); });
-            var consent = document.getElementById('visible-consent');
-            if (missing || (consent && !consent.checked)) {
-                showMessage(visibleForm, false, 'Please fill in all required fields and accept the terms.');
-                return;
-            }
-
-            var submitBtn = visibleForm.querySelector('[type="submit"]');
-            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-
-            var payload = {
-                formId:       GHL_FORM_ID,
-                location_id:  GHL_LOCATION_ID,
-                first_name:   getVal('visible-first-name'),
-                last_name:    getVal('visible-last-name'),
-                email:        getVal('visible-email'),
-                phone:        getVal('visible-phone'),
-                company_name: getVal('visible-org'),
-                message:      getVal('visible-message'),
-                event_date:   getVal('visible-event-date'),
-                lead_source:  getVal('visible-source'),
-            };
-
-            fetch('https://backend.leadconnectorhq.com/forms/submit', {
-                method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
-            })
-            .then(function (res) {
-                if (res.ok) {
-                    visibleForm.reset();
-                    showMessage(visibleForm, true, 'Thank you! We\'ll get back to you within one business day.');
-                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-                } else {
-                    return res.text().then(function (t) { throw new Error(t || res.status); });
-                }
-            })
-            .catch(function (err) {
-                console.error('Form submission error:', err);
-                showMessage(visibleForm, false, 'Something went wrong. Please email us at booking@recapmedia.no');
-                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-            });
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', initFormBridge);
-
 })();
