@@ -30,12 +30,30 @@
     }
 
     function initScrollReveal() {
-        const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-group');
+        const els = Array.from(document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-group'));
         if (!els.length) return;
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.1 });
-        els.forEach(el => observer.observe(el));
+
+        function revealVisible() {
+            let remaining = 0;
+            els.forEach(el => {
+                if (el.classList.contains('visible')) return;
+                remaining++;
+                if (el.getBoundingClientRect().top < window.innerHeight + 80) {
+                    el.classList.add('visible');
+                    remaining--;
+                }
+            });
+            if (remaining === 0) {
+                window.removeEventListener('scroll', revealVisible);
+                window.removeEventListener('resize', revealVisible);
+            }
+        }
+
+        window.addEventListener('scroll', revealVisible, { passive: true });
+        window.addEventListener('resize', revealVisible, { passive: true });
+        // Run immediately and after layout settles
+        revealVisible();
+        requestAnimationFrame(revealVisible);
     }
 
     function initCardTilt() {
