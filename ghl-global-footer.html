@@ -1,0 +1,169 @@
+<!--
+=============================================================
+  RECAP MEDIA — GHL GLOBAL FOOTER
+  Paste this entire block into:
+  GHL > Sites > Websites > Recap Media > Global Sections > "Global Footer"
+  (or whichever Custom HTML block sits at the bottom of every page)
+
+  DO NOT paste this into individual pages — it lives here once,
+  and GHL applies it site-wide.
+
+  NOTE: The JS files below assume you have already added these
+  to GHL's global Body/Footer Tracking Code:
+    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
+  If you have that tracking code in place, you can remove the
+  three <script> tags at the bottom of this file — they'd be
+  duplicates. If you are NOT using global tracking code for JS,
+  keep them here.
+=============================================================
+-->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Recap Media</h3>
+                <p>Event photography and videography in Oslo. One crew handling photo, video and livestream — strategy-led coverage, reliably delivered.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
+            <div>
+                <a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/terms">Terms of Service</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Quote modal (opened by any button/link with data-cta="quote") -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close modal">✕</button>
+        <h2>Request a Quote</h2>
+        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
+        <form class="quote-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="visible-first-name">First Name *</label>
+                    <input type="text" id="visible-first-name" class="form-control" placeholder="First name" required autocomplete="given-name">
+                </div>
+                <div class="form-group">
+                    <label for="visible-last-name">Last Name *</label>
+                    <input type="text" id="visible-last-name" class="form-control" placeholder="Last name" required autocomplete="family-name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="visible-email">Email *</label>
+                <input type="email" id="visible-email" class="form-control" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="visible-org">Organisation Name *</label>
+                <input type="text" id="visible-org" class="form-control" placeholder="Your company or organisation" required autocomplete="organization">
+            </div>
+            <div class="form-group">
+                <label for="visible-source">How did you find us? *</label>
+                <select id="visible-source" class="form-control" required>
+                    <option value="">Select an option</option>
+                    <option value="google_search">Google search</option>
+                    <option value="recommendation">Recommendation</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="networking_event">Networking event</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="social_media_ad">Social media ad</option>
+                    <option value="1881">1881.no</option>
+                    <option value="gulesider">gulesider.no</option>
+                    <option value="180">180.no</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="visible-phone">Phone</label>
+                <input type="tel" id="visible-phone" class="form-control" placeholder="+47 xxx xx xxx" autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label for="visible-message">Tell us more about your event</label>
+                <textarea id="visible-message" class="form-control" placeholder="Share the details: guest count, goals, and what matters most."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="visible-event-date">Event date</label>
+                <input type="date" id="visible-event-date" class="form-control">
+            </div>
+            <div class="form-consent">
+                <input type="checkbox" id="visible-consent" required>
+                <label for="visible-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
+        </form>
+        <!-- GHL form embed — hidden, receives submissions from the visible form above via form-bridge.js -->
+        <div class="ghl-form-hidden">
+            <iframe
+                src="https://link.vidlead.com/widget/form/DefzD8Urt68TpVkbgLwx"
+                style="width:100%;height:100%;border:none;overflow:hidden;"
+                scrolling="no"
+                id="DefzD8Urt68TpVkbgLwx_1774894514296"
+                data-layout="{'id':'POPUP'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Quote Request Form"
+                data-height="737"
+                data-layout-iframe-id="DefzD8Urt68TpVkbgLwx_1774894514296"
+                data-form-id="DefzD8Urt68TpVkbgLwx"
+                title="Quote Request Form">
+            </iframe>
+            <script src="https://link.vidlead.com/js/form_embed.js"></script>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox (for gallery image pop-ups) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- Splash dismiss script (inline — must run on every page) -->
+<script>
+    (function() {
+        function dismissSplash() {
+            var s = document.getElementById('rm-splash');
+            if (!s) return;
+            s.classList.add('hidden');
+            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
+        if (document.readyState === 'complete') {
+            dismissSplash();
+        } else {
+            window.addEventListener('load', dismissSplash);
+        }
+    })();
+</script>

@@ -286,43 +286,9 @@
    ============================================= */
 (function () {
     'use strict';
-    const FIELD_MAP = {
-        'visible-first-name': 'first_name',
-        'visible-last-name':  'last_name',
-        'visible-email':      'email',
-        'visible-phone':      'phone',
-        'visible-org':        'company_name',
-        'visible-message':    'message',
-        'visible-event-date': 'event_date',
-        'visible-source':     'lead_source',
-    };
-    function syncField(visibleId, ghlName) {
-        const visible = document.getElementById(visibleId);
-        const ghlField = document.querySelector(`.ghl-form-hidden [name="${ghlName}"]`);
-        if (!visible || !ghlField) return;
-        visible.addEventListener('input', () => {
-            ghlField.value = visible.value;
-            ghlField.dispatchEvent(new Event('input',  { bubbles: true }));
-            ghlField.dispatchEvent(new Event('change', { bubbles: true }));
-        });
-    }
-    function initFormBridge() {
-        const visibleForm = document.querySelector('.quote-form');
-        const ghlForm = document.querySelector('.ghl-form-hidden form');
-        if (!visibleForm || !ghlForm) return;
-        Object.entries(FIELD_MAP).forEach(([id, name]) => syncField(id, name));
-        visibleForm.addEventListener('submit', e => {
-            e.preventDefault();
-            Object.entries(FIELD_MAP).forEach(([id, name]) => {
-                const v = document.getElementById(id);
-                const g = document.querySelector(`.ghl-form-hidden [name="${name}"]`);
-                if (v && g) { g.value = v.value; g.dispatchEvent(new Event('input', { bubbles: true })); }
-            });
-            const submitBtn = ghlForm.querySelector('[type="submit"]');
-            if (submitBtn) submitBtn.click();
-            else ghlForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-        });
-    }
+    // Form bridge is handled by the dedicated section below (direct API POST).
+    // This stub is kept so DOMContentLoaded fires correctly.
+    function initFormBridge() { /* handled by form-bridge.js block below */ }
     document.addEventListener('DOMContentLoaded', initFormBridge);
 })();
 
@@ -398,82 +364,90 @@
 })();
 // === form-bridge.js ===
 /**
- * GHL Form Bridge — Shadow/Mirror Pattern
+ * GHL Form Bridge — Direct API Submission
  *
- * Syncs the custom visible form to a hidden GHL (GoHighLevel) form so that
- * CRM pipelines, workflows, and automations fire correctly on submission.
+ * The GHL form is embedded as an iframe (cross-origin), so we cannot
+ * programmatically access its fields or submit button. Instead, on
+ * visible form submission we POST the data directly to GHL's form
+ * submission endpoint, which fires all CRM workflows identically to
+ * a native GHL form submit (including reCAPTCHA handled server-side).
  *
- * HOW TO SET UP:
- * 1. In GHL, go to Sites → Forms → your form → Embed
- * 2. Copy the embed code and paste it inside the .ghl-form-hidden div
- * 3. Inspect the hidden GHL form fields in DevTools to find their `name` attributes
- * 4. Update the FIELD_MAP below with the actual GHL field names
- *
- * GHL field names typically look like: "first_name", "email", "phone",
- * or for custom fields: "customField_XXXXXXXX"
+ * Form ID: DefzD8Urt68TpVkbgLwx
+ * Location ID: K9u6cepBq4hbudcnIkVw  (from CDN asset path)
  */
 
 (function () {
     'use strict';
 
-    // TODO: Replace right-hand values with actual GHL form field name attributes
-    // To find them: embed the GHL form, then open DevTools → inspect the hidden form inputs
-    const FIELD_MAP = {
-        'visible-first-name': 'first_name',    // TODO: verify
-        'visible-last-name':  'last_name',     // TODO: verify
-        'visible-email':      'email',         // TODO: verify
-        'visible-phone':      'phone',         // TODO: verify
-        'visible-org':        'company_name',  // TODO: verify — may be "companyName" or custom
-        'visible-message':    'message',       // TODO: verify — may be a custom field
-        'visible-event-date': 'event_date',    // TODO: verify — likely a custom field
-        'visible-source':     'lead_source',   // TODO: verify
-    };
+    var GHL_FORM_ID    = 'DefzD8Urt68TpVkbgLwx';
+    var GHL_LOCATION_ID = 'K9u6cepBq4hbudcnIkVw';
 
-    function syncField(visibleId, ghlName) {
-        const visible = document.getElementById(visibleId);
-        const ghlField = document.querySelector(`.ghl-form-hidden [name="${ghlName}"]`);
-        if (!visible || !ghlField) return;
+    function getVal(id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+    }
 
-        visible.addEventListener('input', () => {
-            ghlField.value = visible.value;
-            ghlField.dispatchEvent(new Event('input',  { bubbles: true }));
-            ghlField.dispatchEvent(new Event('change', { bubbles: true }));
-        });
+    function showMessage(form, success, text) {
+        var existing = form.querySelector('.form-feedback');
+        if (existing) existing.remove();
+        var msg = document.createElement('p');
+        msg.className = 'form-feedback';
+        msg.style.cssText = 'margin-top:12px;font-size:0.9rem;text-align:center;color:' + (success ? '#4caf50' : '#e74c3c');
+        msg.textContent = text;
+        form.appendChild(msg);
     }
 
     function initFormBridge() {
-        const visibleForm = document.querySelector('.quote-form');
-        const ghlForm = document.querySelector('.ghl-form-hidden form');
+        var visibleForm = document.querySelector('.quote-form');
+        if (!visibleForm) return;
 
-        // Graceful no-op: if either form isn't on this page, do nothing
-        if (!visibleForm || !ghlForm) return;
-
-        // Wire up each field pair
-        Object.entries(FIELD_MAP).forEach(([visibleId, ghlName]) => {
-            syncField(visibleId, ghlName);
-        });
-
-        // On visible form submit → final sync → trigger GHL submission
-        visibleForm.addEventListener('submit', e => {
+        visibleForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Final sync pass
-            Object.entries(FIELD_MAP).forEach(([visibleId, ghlName]) => {
-                const visible = document.getElementById(visibleId);
-                const ghl = document.querySelector(`.ghl-form-hidden [name="${ghlName}"]`);
-                if (visible && ghl) {
-                    ghl.value = visible.value;
-                    ghl.dispatchEvent(new Event('input', { bubbles: true }));
-                }
-            });
-
-            // Trigger GHL form
-            const submitBtn = ghlForm.querySelector('[type="submit"]');
-            if (submitBtn) {
-                submitBtn.click();
-            } else {
-                ghlForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+            // Basic client-side validation
+            var required = ['visible-first-name', 'visible-last-name', 'visible-email', 'visible-org', 'visible-source'];
+            var missing = required.some(function (id) { return !getVal(id); });
+            var consent = document.getElementById('visible-consent');
+            if (missing || (consent && !consent.checked)) {
+                showMessage(visibleForm, false, 'Please fill in all required fields and accept the terms.');
+                return;
             }
+
+            var submitBtn = visibleForm.querySelector('[type="submit"]');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+            var payload = {
+                formId:       GHL_FORM_ID,
+                location_id:  GHL_LOCATION_ID,
+                first_name:   getVal('visible-first-name'),
+                last_name:    getVal('visible-last-name'),
+                email:        getVal('visible-email'),
+                phone:        getVal('visible-phone'),
+                company_name: getVal('visible-org'),
+                message:      getVal('visible-message'),
+                event_date:   getVal('visible-event-date'),
+                lead_source:  getVal('visible-source'),
+            };
+
+            fetch('https://backend.leadconnectorhq.com/forms/submit', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify(payload),
+            })
+            .then(function (res) {
+                if (res.ok) {
+                    visibleForm.reset();
+                    showMessage(visibleForm, true, 'Thank you! We\'ll get back to you within one business day.');
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                } else {
+                    return res.text().then(function (t) { throw new Error(t || res.status); });
+                }
+            })
+            .catch(function (err) {
+                console.error('Form submission error:', err);
+                showMessage(visibleForm, false, 'Something went wrong. Please email us at booking@recapmedia.no');
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+            });
         });
     }
 
