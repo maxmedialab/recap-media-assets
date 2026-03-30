@@ -450,7 +450,7 @@ img {
 }
 
 .hero-banner h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
     color: var(--color-white);
     font-weight: 700;
     letter-spacing: -0.3px;

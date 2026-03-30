@@ -105,8 +105,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="css/style.css">
+    <!-- Splash overlay — renders instantly before external CSS loads -->
+    <style>
+        #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
+        #rm-splash.hidden { opacity: 0; pointer-events: none; }
+        #rm-splash img { width: 120px; height: auto; animation: rm-pulse 1.2s ease-in-out infinite; }
+        @keyframes rm-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.96)} }
+    </style>
 </head>
 <body>
+
+<!-- Splash screen -->
+<div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
 
 <nav class="nav" id="nav">
     <a href="index.html" class="nav-logo">Recap Media</a>
@@ -388,5 +398,20 @@ if (iconEl) {
     iconEl.style.transition = 'opacity 0.2s ease';
 }
 </script><script src="js/main-v2.js"></script>
+<script>
+    (function() {
+        function dismissSplash() {
+            var s = document.getElementById('rm-splash');
+            if (!s) return;
+            s.classList.add('hidden');
+            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
+        if (document.readyState === 'complete') {
+            dismissSplash();
+        } else {
+            window.addEventListener('load', dismissSplash);
+        }
+    })();
+</script>
 </body>
 </html>
