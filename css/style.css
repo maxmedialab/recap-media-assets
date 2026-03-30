@@ -121,9 +121,7 @@ img {
     align-items: center;
     padding: 20px 32px;
     transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
-    background-color: rgba(12, 10, 16, 0.82);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: transparent;
 }
 
 .nav.scrolled {
@@ -364,23 +362,27 @@ main {
 }
 
 /* ── Custom cursor ── */
+@media (pointer: fine) {
+    body, a, button, input, select, label, [role="button"] { cursor: none !important; }
+}
+
 .cursor-dot {
     position: fixed;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: var(--color-ember);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    transition: opacity 0.3s ease;
 }
 
 .cursor-ring {
     position: fixed;
     width: 36px;
     height: 36px;
-    border: 1px solid rgba(232, 89, 60, 0.4);
+    border: 1.5px solid rgba(232, 89, 60, 0.55);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9997;
@@ -392,9 +394,9 @@ main {
 }
 
 .cursor-ring.expanded {
-    width: 58px;
-    height: 58px;
-    border-color: rgba(232, 89, 60, 0.65);
+    width: 56px;
+    height: 56px;
+    border-color: rgba(232, 89, 60, 0.8);
 }
 
 @media (pointer: coarse) {
@@ -2091,7 +2093,7 @@ body {
        ============================================= */
 
     /* Nav */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease; background-color: rgba(12,10,16,0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease; background-color: transparent; }
     .nav.scrolled { background-color: rgba(20,18,24,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 12px 32px; }
     .nav-logo { color: var(--color-white); font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
     .nav-logo img { max-height: 48px; width: auto; object-fit: contain; }
@@ -2143,8 +2145,8 @@ body {
     .hero-banner p { color: var(--color-warm-grey); font-size: 1.05rem; margin-top: 16px; max-width: 580px; line-height: 1.6; }
 
     /* Custom cursor */
-    .cursor-dot { position: fixed; width: 6px; height: 6px; background: var(--color-ember); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); mix-blend-mode: difference; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(232,89,60,0.4); border-radius: 50%; pointer-events: none; z-index: 9997; transform: translate(-50%,-50%); transition: width 0.35s cubic-bezier(0.34,1.56,0.64,1), height 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, opacity 0.3s ease; }
+    .cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--color-ember); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: opacity 0.3s ease; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid rgba(232,89,60,0.55); border-radius: 50%; pointer-events: none; z-index: 9997; transform: translate(-50%,-50%); transition: width 0.35s cubic-bezier(0.34,1.56,0.64,1), height 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, opacity 0.3s ease; }
     .cursor-ring.expanded { width: 58px; height: 58px; border-color: rgba(232,89,60,0.65); }
     @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
