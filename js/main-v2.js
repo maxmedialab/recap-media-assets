@@ -368,6 +368,18 @@
 (function () {
     'use strict';
 
+    // main-v2.js loads via GHL tracking code (early), but Lenis/GSAP/ScrollTrigger
+    // are loaded from the Global Footer HTML (late). Poll until all three are ready.
+    function initGSAP() {
+        if (typeof window.Lenis === 'undefined' || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+            setTimeout(initGSAP, 60);
+            return;
+        }
+        _runGSAP();
+    }
+
+    function _runGSAP() {
+
     window.__lenis = new Lenis({
         duration: 1.15,
         easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
@@ -431,4 +443,8 @@
             else { item.classList.remove('open'); gsap.to(answer, { maxHeight: 0, duration: 0.3, ease: 'power2.inOut' }); }
         });
     });
+
+    } // end _runGSAP
+
+    initGSAP();
 })();
