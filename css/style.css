@@ -362,41 +362,13 @@ main {
 }
 
 /* ── Custom cursor ── */
-@media (pointer: fine) {
-    body, a, button, input, select, label, [role="button"] { cursor: none !important; }
-}
-
+/* Native cursor is restored; the ring provides a brand accent around it */
 .cursor-dot {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--color-ember);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease;
+    display: none;
 }
 
 .cursor-ring {
-    position: fixed;
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid rgba(232, 89, 60, 0.55);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9997;
-    transform: translate(-50%, -50%);
-    transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border-color 0.3s ease,
-                opacity 0.3s ease;
-}
-
-.cursor-ring.expanded {
-    width: 56px;
-    height: 56px;
-    border-color: rgba(232, 89, 60, 0.8);
+    display: none;
 }
 
 @media (pointer: coarse) {
@@ -692,7 +664,7 @@ main {
 
 .project-card-image {
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -1674,6 +1646,12 @@ main {
     .col-image img { height: 280px; }
 
     .hero-banner { padding: 100px 0 52px; }
+
+    /* Fix GSAP stagger offset leaving bottom check-list items shifted */
+    .check-list li { transform: none !important; }
+
+    /* Remove white line artifact on left edge of dark/onyx sections */
+    .section-onyx, .section-dark, .work-section, .testimonials-section { border-left: none !important; overflow-x: hidden; }
 }
 
 @media (max-width: 480px) {
@@ -2144,10 +2122,9 @@ body {
     .hero-banner h1 { font-size: clamp(2rem, 4vw, 3rem); color: var(--color-white); font-weight: 700; letter-spacing: -0.3px; max-width: 700px; }
     .hero-banner p { color: var(--color-warm-grey); font-size: 1.05rem; margin-top: 16px; max-width: 580px; line-height: 1.6; }
 
-    /* Custom cursor */
-    .cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--color-ember); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: opacity 0.3s ease; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid rgba(232,89,60,0.55); border-radius: 50%; pointer-events: none; z-index: 9997; transform: translate(-50%,-50%); transition: width 0.35s cubic-bezier(0.34,1.56,0.64,1), height 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, opacity 0.3s ease; }
-    .cursor-ring.expanded { width: 58px; height: 58px; border-color: rgba(232,89,60,0.65); }
+    /* Custom cursor — dot hidden, ring hidden, native cursor restored */
+    .cursor-dot { display: none; }
+    .cursor-ring { display: none; }
     @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
     /* Buttons */
@@ -2193,7 +2170,7 @@ body {
     .project-card { background: var(--color-smoke); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; text-decoration: none; display: block; transition: box-shadow 0.3s ease; transform-style: preserve-3d; perspective: 800px; }
     .project-card:hover { box-shadow: 0 20px 60px rgba(12,10,16,0.4); }
     .section-light .project-card, .section-warm .project-card { background: var(--color-white); }
-    .project-card-image { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; display: block; transition: transform 0.4s ease; }
+    .project-card-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; display: block; transition: transform 0.4s ease; }
     .project-card:hover .project-card-image { transform: scale(1.04); }
     .project-card-body { padding: 24px; }
     .project-card-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--color-white); margin-bottom: 8px; transition: color var(--transition-fast); }
@@ -2210,7 +2187,7 @@ body {
     .carousel-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; align-items: flex-start; }
     .carousel-track::after { content: ''; flex: 0 0 calc(66.666% - 14px); align-self: stretch; }
     .carousel-track::-webkit-scrollbar { display: none; }
-    .testimonial-card { flex: 0 0 calc(33.333% - 14px); scroll-snap-align: start; background: var(--color-smoke); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; gap: 16px; min-height: 420px; }
+    .testimonial-card { flex: 0 0 calc(33.333% - 14px); scroll-snap-align: start; background: var(--color-smoke); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; gap: 12px; min-height: 300px; }
     .section-light .testimonial-card, .section-warm .testimonial-card { background: var(--color-white); box-shadow: 0 4px 20px rgba(20,18,24,0.06); }
     .stars { display: flex; gap: 3px; }
     .star { color: var(--color-amber); font-size: 0.9rem; }
@@ -2363,6 +2340,8 @@ body {
         .hero { min-height: 80vh; }
         .col-image img { height: 280px; }
         .hero-banner { padding: 100px 0 52px; }
+        .check-list li { transform: none !important; }
+        .section-onyx, .section-dark, .work-section, .testimonials-section { border-left: none !important; overflow-x: hidden; }
     }
     @media (max-width: 480px) {
         .gallery-grid { column-count: 1; }
@@ -2488,9 +2467,9 @@ body {
     .work-section .section-header-link { font-size: 0.85rem; color: var(--color-stone); white-space: nowrap; padding-bottom: 2px; border-bottom: 1px solid rgba(255,255,255,0.12); transition: color 0.2s ease, border-color 0.2s ease; text-decoration: none; }
     .work-section .section-header-link:hover { color: var(--color-warm-grey); border-color: var(--color-warm-grey); }
     .work-section .project-card { border-radius: var(--radius-lg); overflow: hidden; }
-    .work-section .project-card-image { aspect-ratio: 16 / 10; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .work-section .project-card-image { aspect-ratio: 16 / 9; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
     .work-section .project-card:hover .project-card-image { transform: scale(1.06); }
-    .testimonials-section .testimonial-card { padding: 36px; position: relative; }
+    .testimonials-section .testimonial-card { padding: 24px; position: relative; }
     .testimonial-mark { font-family: var(--font-heading); font-size: 4rem; line-height: 1; color: var(--color-ember); opacity: 0.15; position: absolute; top: 20px; left: 28px; pointer-events: none; }
     .testimonials-section .testimonial-quote { font-size: 0.95rem; line-height: 1.7; position: relative; z-index: 1; }
     .cta-section-v2 { text-align: center; position: relative; overflow: hidden; padding: clamp(40px, 6vw, 80px) 0 clamp(100px, 14vw, 180px) 0; }

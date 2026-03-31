@@ -148,6 +148,60 @@
     </div>
 </section>
 
+<!-- Video Highlights -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header gsap-fade">
+            <span class="overline">Session recordings</span>
+            <h2>Watch the Talks</h2>
+        </div>
+        <div class="cards-grid gsap-stagger" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="yt-thumb" data-yt-id="l1-QYqaGyMk" style="position:relative;cursor:pointer;border-radius:12px;overflow:hidden;">
+                <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69c3b2e9c6dd404f656b6750.jpeg" alt="Michael Hitzker presentation during Flutter Vikings Video Thumbnail" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="rgba(232,89,60,0.9)"/><polygon points="26,20 26,44 48,32" fill="white"/></svg>
+                </div>
+            </div>
+            <div class="yt-thumb" data-yt-id="uVxBGzRZY-k" style="position:relative;cursor:pointer;border-radius:12px;overflow:hidden;">
+                <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6932e16581eaa185bda15284.jpg" alt="Pooja Bhaumik presentation during Flutter Vikings Video Thumbnail" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="rgba(232,89,60,0.9)"/><polygon points="26,20 26,44 48,32" fill="white"/></svg>
+                </div>
+            </div>
+            <div class="yt-thumb" data-yt-id="fuaXTu7uA8w" style="position:relative;cursor:pointer;border-radius:12px;overflow:hidden;">
+                <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6932e165ac583f3f263513e5.jpg" alt="Interview with Remi Rousselet at Flutter Vikings Video Thumbnail" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="rgba(232,89,60,0.9)"/><polygon points="26,20 26,44 48,32" fill="white"/></svg>
+                </div>
+            </div>
+            <div class="yt-thumb" data-yt-id="zEoASR7DTIw" style="position:relative;cursor:pointer;border-radius:12px;overflow:hidden;">
+                <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6932e165ac583f5e283513e6.jpg" alt="Presentation of Guillaume Diallo-Mulliez during Flutter Vikings Video Thumbnail" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="rgba(232,89,60,0.9)"/><polygon points="26,20 26,44 48,32" fill="white"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- YouTube lightbox for session videos -->
+<div id="yt-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:10000;align-items:center;justify-content:center;">
+    <button onclick="document.getElementById('yt-modal').style.display='none';document.getElementById('yt-frame').src='';" style="position:absolute;top:20px;right:28px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:1;">✕</button>
+    <iframe id="yt-frame" width="900" height="506" src="" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="max-width:95vw;max-height:80vh;border-radius:8px;"></iframe>
+</div>
+<script>
+document.querySelectorAll('.yt-thumb').forEach(function(el){
+    el.addEventListener('click',function(){
+        var id=el.getAttribute('data-yt-id');
+        document.getElementById('yt-frame').src='https://www.youtube.com/embed/'+id+'?autoplay=1';
+        var m=document.getElementById('yt-modal');
+        m.style.display='flex';
+    });
+});
+document.getElementById('yt-modal').addEventListener('click',function(e){
+    if(e.target===this){this.style.display='none';document.getElementById('yt-frame').src='';}
+});
+</script>
+
 <!-- Photo Gallery -->
 <section class="section section-dark">
     <div class="container">
@@ -187,7 +241,7 @@
         <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-question">How much does event photography in Oslo cost? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,000 NOK for a half-day shoot and go up to 40,000 NOK+ for full conference production with live-streaming. We provide a detailed quote after a short briefing call.</div></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,900 NOK for a half-day shoot. The Conference Package is 57,450 NOK, and Full Production starts from 89,000 NOK. We provide a detailed quote after a short briefing call.</div></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">How many photos will we receive? <span class="faq-chevron">▾</span></button>
