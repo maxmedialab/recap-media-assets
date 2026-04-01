@@ -267,65 +267,64 @@
     }
 
     function initFormBridge() {
-        var visibleForm = document.querySelector('.quote-form');
-        if (!visibleForm) return;
-        // GHL native form placed as a hidden section — selector confirmed by user
-        var ghlContainer = document.querySelector('#form-HH_r64xPsc')
-                        || document.querySelector('.ghl-form-hidden');
+        // Attach bridge to every .quote-form on the page (inline + modal).
+        // Each input/select/textarea uses data-ghl="field_name" to declare
+        // which hidden GHL field it maps to. No hard-coded ID map needed.
+        var ghlContainer = document.querySelector('.ghl-form-hidden');
         var ghlForm = ghlContainer ? ghlContainer.querySelector('form') : null;
         if (!ghlForm) return;
 
-        // Maps visible field IDs → GHL field [name] attributes.
-        // To verify names: open DevTools on the live page, inspect the hidden section,
-        // and find the [name="..."] attribute on each input inside #form-HH_r64xPsc.
-        var FIELD_MAP = {
-            'visible-first-name': 'first_name',
-            'visible-last-name':  'last_name',
-            'visible-email':      'email',
-            'visible-phone':      'phone',
-            'visible-org':        'company_name',
-            'visible-message':    'message',
-            'visible-event-date': 'event_date',
-            'visible-source':     'lead_source',
-        };
+        var forms = document.querySelectorAll('.quote-form');
+        for (var i = 0; i < forms.length; i++) {
+            (function (visibleForm) {
+                visibleForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-        visibleForm.addEventListener('submit', function (e) {
-            e.preventDefault();
+                    // Honeypot — bots fill hidden fields, real users don't
+                    var hp = visibleForm.querySelector('.hp-field');
+                    if (hp && hp.value) return;
 
-            // Sync every mapped field into the hidden GHL form
-            Object.keys(FIELD_MAP).forEach(function (visId) {
-                var ghlName = FIELD_MAP[visId];
-                var visEl   = document.getElementById(visId);
-                var ghlEl   = ghlContainer.querySelector('[name="' + ghlName + '"]');
-                if (visEl && ghlEl) {
-                    ghlEl.value = visEl.value;
-                    ghlEl.dispatchEvent(new Event('input',  { bubbles: true }));
-                    ghlEl.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-            });
+                    // Sync every [data-ghl] field into the hidden GHL form
+                    var fields = visibleForm.querySelectorAll('[data-ghl]');
+                    for (var j = 0; j < fields.length; j++) {
+                        var visEl = fields[j];
+                        var ghlName = visEl.getAttribute('data-ghl');
+                        var ghlEl = ghlContainer.querySelector('[name="' + ghlName + '"]');
+                        if (!ghlEl) continue;
 
-            // Click GHL's own submit — triggers reCAPTCHA + CRM workflow
-            var ghlSubmit = ghlForm.querySelector('[type="submit"]');
-            if (ghlSubmit) ghlSubmit.click();
+                        if (visEl.type === 'checkbox') {
+                            ghlEl.checked = visEl.checked;
+                        } else {
+                            ghlEl.value = visEl.value;
+                        }
+                        ghlEl.dispatchEvent(new Event('input',  { bubbles: true }));
+                        ghlEl.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
 
-            // Show success message, then close the modal after 2.5 s
-            var submitBtn = visibleForm.querySelector('[type="submit"]');
-            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
-            var existing = visibleForm.querySelector('.form-feedback');
-            if (existing) existing.remove();
-            var msg = document.createElement('p');
-            msg.className = 'form-feedback';
-            msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
-            msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
-            visibleForm.appendChild(msg);
-            setTimeout(function () {
-                visibleForm.reset();
-                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-                if (msg.parentNode) msg.parentNode.removeChild(msg);
-                var overlay = document.querySelector('.modal-overlay');
-                if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
-            }, 2500);
-        });
+                    // Click GHL's own submit — fires CRM workflow
+                    var ghlSubmit = ghlForm.querySelector('[type="submit"]');
+                    if (ghlSubmit) ghlSubmit.click();
+
+                    // Show success message, then close the modal after 2.5 s
+                    var submitBtn = visibleForm.querySelector('[type="submit"]');
+                    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
+                    var existing = visibleForm.querySelector('.form-feedback');
+                    if (existing) existing.remove();
+                    var msg = document.createElement('p');
+                    msg.className = 'form-feedback';
+                    msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
+                    msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
+                    visibleForm.appendChild(msg);
+                    setTimeout(function () {
+                        visibleForm.reset();
+                        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                        if (msg.parentNode) msg.parentNode.removeChild(msg);
+                        var overlay = document.querySelector('.modal-overlay');
+                        if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+                    }, 2500);
+                });
+            })(forms[i]);
+        }
     }
 
     function initAll() {

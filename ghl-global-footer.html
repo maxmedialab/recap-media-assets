@@ -67,27 +67,28 @@
         <h2>Request a Quote</h2>
         <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
         <form class="quote-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
             <div class="form-row">
                 <div class="form-group">
                     <label for="visible-first-name">First Name *</label>
-                    <input type="text" id="visible-first-name" class="form-control" placeholder="First name" required autocomplete="given-name">
+                    <input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" placeholder="First name" required autocomplete="given-name">
                 </div>
                 <div class="form-group">
                     <label for="visible-last-name">Last Name *</label>
-                    <input type="text" id="visible-last-name" class="form-control" placeholder="Last name" required autocomplete="family-name">
+                    <input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" placeholder="Last name" required autocomplete="family-name">
                 </div>
             </div>
             <div class="form-group">
                 <label for="visible-email">Email *</label>
-                <input type="email" id="visible-email" class="form-control" placeholder="your@email.com" required autocomplete="email">
+                <input type="email" id="visible-email" class="form-control" data-ghl="email" placeholder="your@email.com" required autocomplete="email">
             </div>
             <div class="form-group">
                 <label for="visible-org">Organisation Name *</label>
-                <input type="text" id="visible-org" class="form-control" placeholder="Your company or organisation" required autocomplete="organization">
+                <input type="text" id="visible-org" class="form-control" data-ghl="organization" placeholder="Your company or organisation" required autocomplete="organization">
             </div>
             <div class="form-group">
                 <label for="visible-source">How did you find us? *</label>
-                <select id="visible-source" class="form-control" required>
+                <select id="visible-source" class="form-control" data-ghl="origin" required>
                     <option value="">Select an option</option>
                     <option value="google_search">Google search</option>
                     <option value="recommendation">Recommendation</option>
@@ -104,44 +105,24 @@
             </div>
             <div class="form-group">
                 <label for="visible-phone">Phone</label>
-                <input type="tel" id="visible-phone" class="form-control" placeholder="+47 xxx xx xxx" autocomplete="tel">
+                <input type="tel" id="visible-phone" class="form-control" data-ghl="phone" placeholder="+47 xxx xx xxx" autocomplete="tel">
             </div>
             <div class="form-group">
                 <label for="visible-message">Tell us more about your event</label>
-                <textarea id="visible-message" class="form-control" placeholder="Share the details: guest count, goals, and what matters most."></textarea>
+                <textarea id="visible-message" class="form-control" data-ghl="describe_your_event" placeholder="Share the details: guest count, goals, and what matters most."></textarea>
             </div>
             <div class="form-group">
                 <label for="visible-event-date">Event date</label>
-                <input type="date" id="visible-event-date" class="form-control">
+                <input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo">
             </div>
             <div class="form-consent">
-                <input type="checkbox" id="visible-consent" required>
+                <input type="checkbox" id="visible-consent" data-ghl="terms_and_conditions" required>
                 <label for="visible-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
         </form>
-        <!-- GHL form embed — hidden, receives submissions from the visible form above via form-bridge.js -->
-        <div class="ghl-form-hidden">
-            <iframe
-                src="https://link.vidlead.com/widget/form/DefzD8Urt68TpVkbgLwx"
-                style="width:100%;height:100%;border:none;overflow:hidden;"
-                scrolling="no"
-                id="DefzD8Urt68TpVkbgLwx_1774894514296"
-                data-layout="{'id':'POPUP'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Quote Request Form"
-                data-height="737"
-                data-layout-iframe-id="DefzD8Urt68TpVkbgLwx_1774894514296"
-                data-form-id="DefzD8Urt68TpVkbgLwx"
-                title="Quote Request Form">
-            </iframe>
-            <script src="https://link.vidlead.com/js/form_embed.js"></script>
-        </div>
+        <!-- GHL native form — placed via GHL page builder with custom class "ghl-form-hidden" on its section -->
+        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
     </div>
 </div>
 

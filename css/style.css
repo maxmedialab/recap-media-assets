@@ -343,28 +343,29 @@ main {
     opacity: 0.45;
 }
 
-/* Custom video player */
+/* Custom video player — !important to override GHL/Bootstrap */
 .video-player-wrap {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: #000;
+    position: relative !important;
+    max-width: 900px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+    background: #000 !important;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/9 !important;
 }
 .video-player-wrap:hover {
     transform: translateY(-4px);
     box-shadow: 0 28px 70px rgba(0,0,0,0.55), 0 0 48px rgba(232,89,60,0.18);
 }
 .video-player-wrap video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
 }
 .video-play-overlay {
     position: absolute;
@@ -514,21 +515,23 @@ main {
    Buttons
    =========================== */
 
+/* !important overrides needed — GHL loads Bootstrap which has its own .btn
+   with background-color:transparent and border:1px solid transparent */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: var(--radius-md);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 14px 28px !important;
+    border-radius: var(--radius-md) !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    border: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: transform var(--transition-fast), background-color var(--transition-fast) !important;
 }
 
 .btn:hover { transform: translateY(-2px); }
@@ -548,36 +551,36 @@ main {
 .btn:hover::after { left: 100%; }
 
 .btn-primary {
-    background-color: var(--color-ember);
-    color: var(--color-white);
+    background-color: var(--color-ember) !important;
+    color: var(--color-white) !important;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-ember-deep);
-    color: var(--color-white);
+    background-color: var(--color-ember-deep) !important;
+    color: var(--color-white) !important;
 }
 
 .btn-outline {
-    background-color: transparent;
-    color: var(--color-white);
-    border: 2px solid rgba(255, 255, 255, 0.4);
+    background-color: transparent !important;
+    color: var(--color-white) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
 }
 
 .btn-outline:hover {
-    border-color: var(--color-white);
-    background-color: rgba(255, 255, 255, 0.08);
-    color: var(--color-white);
+    border-color: var(--color-white) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--color-white) !important;
 }
 
 .btn-outline-ember {
-    background-color: transparent;
-    color: var(--color-ember);
-    border: 2px solid var(--color-ember);
+    background-color: transparent !important;
+    color: var(--color-ember) !important;
+    border: 2px solid var(--color-ember) !important;
 }
 
 .btn-outline-ember:hover {
-    background-color: var(--color-ember);
-    color: var(--color-white);
+    background-color: var(--color-ember) !important;
+    color: var(--color-white) !important;
 }
 
 /* ===========================
@@ -2081,6 +2084,7 @@ select.form-control option {
    =========================== */
 
 .ghl-form-hidden { display: none !important; }
+.hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; pointer-events: none; }
 
 /* ===========================
    Responsive
@@ -2185,9 +2189,9 @@ body {
     /* Hero */
     .hero { position: relative; min-height: 90vh; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; background-color: var(--color-void); padding-top: 80px; }
     .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.45; }
-    .video-player-wrap { position: relative; max-width: 900px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease; aspect-ratio: 16/9; }
+    .video-player-wrap { position: relative !important; max-width: 900px !important; width: 100% !important; margin: 0 auto !important; border-radius: var(--radius-lg) !important; overflow: hidden !important; background: #000 !important; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: pointer; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease; aspect-ratio: 16/9 !important; }
     .video-player-wrap:hover { transform: translateY(-4px); box-shadow: 0 28px 70px rgba(0,0,0,0.55), 0 0 48px rgba(232,89,60,0.18); }
-    .video-player-wrap video { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .video-player-wrap video { width: 100% !important; height: 100% !important; display: block !important; object-fit: cover !important; }
     .video-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
     .video-play-btn { display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; background: var(--color-ember); border: none; cursor: pointer; color: #fff; box-shadow: 0 8px 32px rgba(232,89,60,0.45), 0 2px 8px rgba(0,0,0,0.4); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
     .video-play-btn:hover { transform: scale(1.12); box-shadow: 0 12px 48px rgba(232,89,60,0.65), 0 4px 12px rgba(0,0,0,0.4); }
@@ -2210,17 +2214,17 @@ body {
     @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
     /* Buttons */
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-md); font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; cursor: pointer; text-decoration: none; border: none; position: relative; overflow: hidden; transition: transform var(--transition-fast), background-color var(--transition-fast); }
+    .btn { display: inline-flex !important; align-items: center !important; gap: 8px !important; padding: 14px 28px !important; border-radius: var(--radius-md) !important; font-family: var(--font-body) !important; font-size: 0.95rem !important; font-weight: 500 !important; cursor: pointer !important; text-decoration: none !important; border: none !important; position: relative !important; overflow: hidden !important; transition: transform var(--transition-fast), background-color var(--transition-fast) !important; }
     .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: translateY(0); }
     .btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); transition: left 0.5s ease; }
     .btn:hover::after { left: 100%; }
-    .btn-primary { background-color: var(--color-ember); color: var(--color-white); }
-    .btn-primary:hover { background-color: var(--color-ember-deep); color: var(--color-white); }
-    .btn-outline { background-color: transparent; color: var(--color-white); border: 2px solid rgba(255,255,255,0.4); }
-    .btn-outline:hover { border-color: var(--color-white); background-color: rgba(255,255,255,0.08); color: var(--color-white); }
-    .btn-outline-ember { background-color: transparent; color: var(--color-ember); border: 2px solid var(--color-ember); }
-    .btn-outline-ember:hover { background-color: var(--color-ember); color: var(--color-white); }
+    .btn-primary { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
+    .btn-primary:hover { background-color: var(--color-ember-deep) !important; color: var(--color-white) !important; }
+    .btn-outline { background-color: transparent !important; color: var(--color-white) !important; border: 2px solid rgba(255,255,255,0.4) !important; }
+    .btn-outline:hover { border-color: var(--color-white) !important; background-color: rgba(255,255,255,0.08) !important; color: var(--color-white) !important; }
+    .btn-outline-ember { background-color: transparent !important; color: var(--color-ember) !important; border: 2px solid var(--color-ember) !important; }
+    .btn-outline-ember:hover { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
 
     /* Two-col */
     .two-col { display: grid !important; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }

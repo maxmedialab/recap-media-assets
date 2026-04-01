@@ -197,24 +197,25 @@
                 <h2>Send us a message</h2>
                 <p class="form-subtitle">We respond to every enquiry within one business day.</p>
                 <form class="quote-form form-light" novalidate>
+                    <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
                     <div class="form-row">
-                        <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" placeholder="First name" required autocomplete="given-name"></div>
-                        <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" placeholder="Last name" required autocomplete="family-name"></div>
+                        <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" placeholder="First name" required autocomplete="given-name"></div>
+                        <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" placeholder="Last name" required autocomplete="family-name"></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" placeholder="your@email.com" required autocomplete="email"></div>
-                        <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+                        <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" placeholder="your@email.com" required autocomplete="email"></div>
+                        <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
                     </div>
-                    <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" placeholder="Your company or organisation" required autocomplete="organization"></div>
-                    <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" placeholder="Share the details: guest count, goals, and what matters most." style="min-height: 120px;"></textarea></div>
+                    <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
+                    <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" placeholder="Share the details: guest count, goals, and what matters most." style="min-height: 120px;"></textarea></div>
                     <div class="form-row">
-                        <div class="form-group"><label for="visible-event-date">Event date</label><input type="date" id="visible-event-date" class="form-control"></div>
-                        <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" required><option value="">Select an option</option><option value="google_search">Google Search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking Event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social Media Ad</option><option value="1881">1881</option><option value="gulesider">Gulesider</option><option value="180">180.no</option></select></div>
+                        <div class="form-group"><label for="visible-event-date">Event date</label><input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo"></div>
+                        <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" data-ghl="origin" required><option value="">Select an option</option><option value="google_search">Google Search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking Event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social Media Ad</option><option value="1881">1881</option><option value="gulesider">Gulesider</option><option value="180">180.no</option></select></div>
                     </div>
-                    <div class="form-consent"><input type="checkbox" id="visible-consent" required><label for="visible-consent" style="color: var(--color-charcoal);">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label></div>
+                    <div class="form-consent"><input type="checkbox" id="visible-consent" data-ghl="terms_and_conditions" required><label for="visible-consent" style="color: var(--color-charcoal);">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label></div>
                     <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
                 </form>
-                <div class="ghl-form-hidden"><!-- TODO: GHL embed --></div>
+                <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
             </div>
 
             <!-- Sidebar -->
@@ -363,17 +364,21 @@
         <h2>Request a Quote</h2>
         <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
         <form class="quote-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
             <div class="form-row">
-                <div class="form-group"><label for="modal-first-name">First Name *</label><input type="text" id="modal-first-name" class="form-control" placeholder="First name" required></div>
-                <div class="form-group"><label for="modal-last-name">Last Name *</label><input type="text" id="modal-last-name" class="form-control" placeholder="Last name" required></div>
+                <div class="form-group"><label for="modal-first-name">First Name *</label><input type="text" id="modal-first-name" class="form-control" data-ghl="first_name" placeholder="First name" required autocomplete="given-name"></div>
+                <div class="form-group"><label for="modal-last-name">Last Name *</label><input type="text" id="modal-last-name" class="form-control" data-ghl="last_name" placeholder="Last name" required autocomplete="family-name"></div>
             </div>
-            <div class="form-group"><label for="modal-email">Email *</label><input type="email" id="modal-email" class="form-control" placeholder="your@email.com" required></div>
-            <div class="form-group"><label for="modal-org">Organisation *</label><input type="text" id="modal-org" class="form-control" placeholder="Your company or organisation" required></div>
-            <div class="form-group"><label for="modal-message">Tell us about your event</label><textarea id="modal-message" class="form-control" placeholder="Guest count, goals, and what matters most."></textarea></div>
-            <div class="form-consent"><input type="checkbox" id="modal-consent" required><label for="modal-consent">I accept the terms and conditions and consent to being contacted.</label></div>
+            <div class="form-group"><label for="modal-email">Email *</label><input type="email" id="modal-email" class="form-control" data-ghl="email" placeholder="your@email.com" required autocomplete="email"></div>
+            <div class="form-group"><label for="modal-org">Organisation Name *</label><input type="text" id="modal-org" class="form-control" data-ghl="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
+            <div class="form-group"><label for="modal-source">How did you find us? *</label><select id="modal-source" class="form-control" data-ghl="origin" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
+            <div class="form-group"><label for="modal-phone">Phone</label><input type="tel" id="modal-phone" class="form-control" data-ghl="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+            <div class="form-group"><label for="modal-message">Tell us more about your event</label><textarea id="modal-message" class="form-control" data-ghl="describe_your_event" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
+            <div class="form-group"><label for="modal-event-date">Event date</label><input type="date" id="modal-event-date" class="form-control" data-ghl="date_picker_5uqo"></div>
+            <div class="form-consent"><input type="checkbox" id="modal-consent" data-ghl="terms_and_conditions" required><label for="modal-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label></div>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
         </form>
-        <div class="ghl-form-hidden"><!-- TODO: GHL embed --></div>
+        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
     </div>
 </div>
 
