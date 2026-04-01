@@ -257,22 +257,41 @@
 </section>
 
 <!-- Video: What It Looks Like on the Day -->
-<section class="section section-onyx" style="padding-top: 56px; padding-bottom: 40px;">
+<section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
             <span class="overline">In action</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">What It Looks Like on the Day</h2>
         </div>
-        <div class="gsap-fade" style="max-width: 900px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <div class="video-player-wrap gsap-fade">
             <video
+                id="home-video"
                 src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cc3929bd00af8b5794967c.mp4"
                 poster="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cccc9af2ec2d89a902d7a2.jpg"
-                controls
                 preload="none"
-                style="width: 100%; display: block; aspect-ratio: 16/9; background: #000;"
+                playsinline
                 title="Conference coverage by Recap Media"
             ></video>
+            <div class="video-play-overlay" id="home-video-overlay">
+                <button class="video-play-btn" aria-label="Play video">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
+        <script>
+        (function() {
+            var vid = document.getElementById('home-video');
+            var overlay = document.getElementById('home-video-overlay');
+            if (!vid || !overlay) return;
+            function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
+            function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; }
+            overlay.addEventListener('click', function() { vid.play(); hide(); });
+            vid.addEventListener('pause', show);
+            vid.addEventListener('ended', show);
+        })();
+        </script>
     </div>
 </section>
 
