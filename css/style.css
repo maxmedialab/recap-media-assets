@@ -1989,9 +1989,21 @@ body {
     font-size: 0.875rem !important;
 }
 
+/* Override browser autofill bright background */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(30,28,34,1) inset !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    border-color: var(--color-ember) !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
 .form-control:focus {
+    background: rgba(255,255,255,0.07) !important;
     border-color: var(--color-ember) !important;
     box-shadow: 0 0 0 3px rgba(232,89,60,0.15) !important;
+    color: var(--color-white) !important;
 }
 
 .form-control.error {
@@ -2005,14 +2017,14 @@ textarea.form-control {
 }
 
 select.form-control {
-    cursor: pointer;
+    cursor: pointer !important;
     appearance: none !important;
     -webkit-appearance: none !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 12px;
-    padding-right: 36px;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 12px !important;
+    padding-right: 36px !important;
 }
 
 select.form-control option {
@@ -2596,12 +2608,15 @@ body {
     .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--color-warm-grey); letter-spacing: 0.02em; }
-    .form-control { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); color: var(--color-white); font-family: var(--font-body); font-size: 0.9rem; padding: 12px 14px; width: 100%; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); outline: none; -webkit-appearance: none; }
-    .form-control::placeholder { color: var(--color-stone); font-size: 0.875rem; }
-    .form-control:focus { border-color: var(--color-ember); box-shadow: 0 0 0 3px rgba(232,89,60,0.15); }
+    .form-control { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: var(--radius-md) !important; color: var(--color-white) !important; font-family: var(--font-body) !important; font-size: 0.9rem !important; padding: 12px 14px !important; width: 100% !important; transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important; outline: none !important; -webkit-appearance: none !important; }
+    .form-control::placeholder { color: var(--color-stone) !important; font-size: 0.875rem !important; }
+    .form-control:-webkit-autofill,
+    .form-control:-webkit-autofill:hover,
+    .form-control:-webkit-autofill:focus { -webkit-box-shadow: 0 0 0 1000px rgba(30,28,34,1) inset !important; -webkit-text-fill-color: var(--color-white) !important; border-color: var(--color-ember) !important; transition: background-color 5000s ease-in-out 0s !important; }
+    .form-control:focus { background: rgba(255,255,255,0.07) !important; border-color: var(--color-ember) !important; box-shadow: 0 0 0 3px rgba(232,89,60,0.15) !important; color: var(--color-white) !important; }
     .form-control.error { border-color: #E85C5C; box-shadow: 0 0 0 3px rgba(232,92,92,0.12); }
     textarea.form-control { min-height: 100px; resize: vertical; }
-    select.form-control { cursor: pointer; appearance: none !important; -webkit-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 36px; }
+    select.form-control { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 14px center !important; background-size: 12px !important; padding-right: 36px !important; }
     select.form-control option { background: var(--color-onyx); color: var(--color-white); }
     .form-consent { display: flex; align-items: flex-start; gap: 10px; margin: 8px 0 20px; }
     .form-consent input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; min-width: 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; background: rgba(255,255,255,0.05); cursor: pointer; margin-top: 1px; position: relative; transition: border-color var(--transition-fast), background-color var(--transition-fast); flex-shrink: 0; }
