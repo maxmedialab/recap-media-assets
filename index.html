@@ -120,6 +120,28 @@
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
+<!--
+================================================================
+  GHL DEPLOYMENT — HOMEPAGE (recapmedia.no/)
+================================================================
+  SITE SETTINGS > HEADER TRACKING CODE:
+    [GTM head snippet]
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
+
+  SITE SETTINGS > BODY TRACKING CODE:
+    [GTM noscript snippet]
+    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
+    <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
+  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
+
+  PASTE ONLY THE main block below into GHL > PAGE > CUSTOM HTML
+================================================================
+-->
+
 <main>
 
 <section class="hero" id="hero">
@@ -130,8 +152,8 @@
         <div class="hero-inner">
             <span class="overline overline--ruled hero-overline">Event photography &amp; videography — Oslo</span>
             <h1 class="hero-heading">
-                <span class="line-wrap"><span class="line">Full Event Media</span></span>
-                <span class="line-wrap"><span class="line">Coverage in</span></span>
+                <span class="line-wrap"><span class="line">Conference &amp;</span></span>
+                <span class="line-wrap"><span class="line">Event Media in</span></span>
                 <span class="line-wrap"><span class="line"><em>Greater Oslo</em></span></span>
             </h1>
             <p class="hero-sub">Event content your team can actually publish — and footage that sells next year's event before it's announced.</p>
@@ -146,7 +168,7 @@
     <div class="hero-stats-strip">
         <div class="hero-stats-inner">
             <div class="hero-stat"><span class="hero-stat-number" data-count="50">50+</span><span class="hero-stat-label">Events covered</span></div>
-            <div class="hero-stat"><span class="hero-stat-number">3-in-1</span><span class="hero-stat-label">Photo · Video · Livestream</span></div>
+            <div class="hero-stat"><span class="hero-stat-number">3-in-1</span><span class="hero-stat-label">Photo · Video · Live</span></div>
             <div class="hero-stat"><span class="hero-stat-number ember">24h</span><span class="hero-stat-label">Fast-turnaround option</span></div>
             <div class="hero-stat"><span class="hero-stat-number amber">5★</span><span class="hero-stat-label">Client reviews</span></div>
         </div>
@@ -234,6 +256,26 @@
     </div>
 </section>
 
+<!-- Video: What It Looks Like on the Day -->
+<section class="section section-onyx" style="padding-top: 56px; padding-bottom: 40px;">
+    <div class="container">
+        <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
+            <span class="overline">In action</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">What It Looks Like on the Day</h2>
+        </div>
+        <div class="gsap-fade" style="max-width: 900px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+            <video
+                src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cc3929bd00af8b5794967c.mp4"
+                poster="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cccc9af2ec2d89a902d7a2.jpg"
+                controls
+                preload="none"
+                style="width: 100%; display: block; aspect-ratio: 16/9; background: #000;"
+                title="Conference coverage by Recap Media"
+            ></video>
+        </div>
+    </div>
+</section>
+
 <section class="section section--lg section-dark testimonials-section">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 52px;">
@@ -312,18 +354,19 @@
                     <span class="package-type-label">Day Coverage</span>
                     <div class="package-rule"></div>
                     <h3>Capture your event with speed and simplicity</h3>
-                    <div class="package-price">from 15,000 NOK</div>
+                    <div class="package-price">15,900 NOK</div>
                     <p class="package-price-note">Half-day shoot</p>
                 </div>
                 <ul class="package-features">
-                    <li>40–60 edited photos or 30–60 sec highlight video</li>
-                    <li>Quick turnaround time</li>
-                    <li>Single photographer or videographer</li>
+                    <li>4 hours on-site photography</li>
+                    <li>30–40 edited photos</li>
                     <li>Digital delivery via gallery</li>
+                    <li>7-day photo delivery</li>
                 </ul>
                 <div class="package-card-footer">
                     <p class="package-card-footer-note">Ideal for smaller events or internal launches where speed and simplicity matter most.</p>
                     <a href="#" class="btn btn-outline-ember" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
+                    <a href="https://recapmedia.no/packages/day-coverage" class="pkg-detail-link">View package details →</a>
                 </div>
             </div>
             <div class="package-card featured">
@@ -332,19 +375,21 @@
                     <span class="package-type-label">Conference Package</span>
                     <div class="package-rule"></div>
                     <h3>Turn one event into months of marketing</h3>
-                    <div class="package-price">from 30,000 NOK</div>
-                    <p class="package-price-note" style="color: var(--color-stone);">Full-day photo &amp; video crew</p>
+                    <div class="package-price">57,450 NOK</div>
+                    <p class="package-price-note" style="color: var(--color-stone);">Full-day photo &amp; video coverage</p>
                 </div>
                 <ul class="package-features">
+                    <li>8 hours on-site coverage</li>
+                    <li>Photo and video</li>
                     <li>2–3 min highlight video</li>
-                    <li>5–10 vertical social clips</li>
+                    <li>7 vertical social clips</li>
                     <li>50+ edited photos</li>
-                    <li>Quick turnaround time</li>
-                    <li>Full-day shoot</li>
+                    <li>7-day photos / 14-day video</li>
                 </ul>
                 <div class="package-card-footer">
                     <p class="package-card-footer-note">Our most popular option — a complete content suite ready for months of use across social, web, and PR.</p>
                     <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
+                    <a href="https://recapmedia.no/packages/conference" class="pkg-detail-link">View package details →</a>
                 </div>
             </div>
             <div class="package-card">
@@ -352,24 +397,29 @@
                     <span class="package-type-label">Full Production</span>
                     <div class="package-rule"></div>
                     <h3>Cinematic reach with press-ready assets</h3>
-                    <div class="package-price">from 40,000 NOK</div>
+                    <div class="package-price">from 89,000 NOK</div>
                     <p class="package-price-note">Photo &amp; video team</p>
                 </div>
                 <ul class="package-features">
                     <li>Up to 4 min recap film</li>
+                    <li>Full photo &amp; video crew</li>
                     <li>1× 30s social teaser</li>
-                    <li>Press-ready daily assets</li>
-                    <li>20–40 edited photos</li>
-                    <li>Optional live-streaming</li>
+                    <li>Press-ready daily selects</li>
+                    <li>B-roll library included</li>
+                    <li>Branded templates included</li>
                 </ul>
                 <div class="package-card-footer">
-                    <p class="package-card-footer-note">For conferences, expos, or sponsor-driven events needing real-time media delivery.</p>
+                    <p class="package-card-footer-note">For multi-day conferences, expos, or sponsor-driven events needing a full content operation.</p>
                     <a href="#" class="btn btn-outline-ember" style="width: 100%; justify-content: center;" data-cta="quote">Request a quote</a>
+                    <a href="https://recapmedia.no/packages/full-production" class="pkg-detail-link">View package details →</a>
                 </div>
             </div>
         </div>
         <p class="text-center" style="margin-top: 28px; font-size: 0.9rem; color: var(--color-stone);">
             Need a custom package, tailored for your event? <a href="https://recapmedia.no/contact">Let's talk →</a>
+        </p>
+        <p class="text-center" style="margin-top: 10px; font-size: 0.8rem; color: var(--color-stone); opacity: 0.7;">
+            All prices ex-MVA. Packages include 2 revision rounds and dedicated project management.
         </p>
     </div>
 </section>
@@ -382,11 +432,11 @@
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,000 NOK for a half-day shoot (Day Coverage) and range up to 40,000 NOK and beyond for full conference production with live-streaming. The final price depends on event duration, crew size, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,900 NOK for a half-day shoot (Day Coverage), 57,450 NOK for the Conference Package, and from 89,000 NOK for Full Production. The final price depends on event duration, crew size, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
             <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate crews? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo, video, and livestreaming under one roof. Our Conference Package and Full Production packages include both photo and video as a combined crew — so you have one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
             <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
             <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Greater Oslo — including Sandvika, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is 5–7 business days for edited photos and the full content package. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is 7 business days for edited photos and 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
             <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
             <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination for livestreaming, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
             <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
@@ -400,6 +450,7 @@
 </section>
 
 </main>
+<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
 
 <footer class="footer">
     <div class="container">

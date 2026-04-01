@@ -735,6 +735,7 @@ main {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    align-items: stretch;
 }
 
 .carousel-track::-webkit-scrollbar { display: none; }
@@ -1006,6 +1007,17 @@ main {
     color: var(--color-warm-grey);
 }
 
+.pkg-detail-link {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--color-stone);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.pkg-detail-link:hover { color: var(--color-ember); }
+
 .most-popular-badge {
     display: inline-block;
     font-size: 0.68rem;
@@ -1223,7 +1235,7 @@ main {
     transition: max-height 0.35s ease;
 }
 
-.faq-item.open .faq-answer { max-height: 400px; }
+.faq-item.open .faq-answer { max-height: 600px; }
 
 .faq-answer-inner {
     padding: 0 0 20px;
@@ -2192,15 +2204,15 @@ body {
 
     /* Testimonials */
     .carousel-wrapper { position: relative; }
-    .carousel-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; align-items: flex-start; }
+    .carousel-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; align-items: stretch; }
     .carousel-track::after { content: ''; flex: 0 0 calc(66.666% - 14px); align-self: stretch; }
     .carousel-track::-webkit-scrollbar { display: none; }
     .testimonial-card { flex: 0 0 calc(33.333% - 14px); scroll-snap-align: start; background: var(--color-smoke); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; gap: 12px; min-height: 300px; }
     .section-light .testimonial-card, .section-warm .testimonial-card { background: var(--color-white); box-shadow: 0 4px 20px rgba(20,18,24,0.06); }
     .stars { display: flex; gap: 3px; }
     .star { color: var(--color-amber); font-size: 0.9rem; }
-    .testimonial-quote { font-size: 0.875rem; color: var(--color-warm-grey); line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 6; line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; transition: all 0.3s ease; margin-bottom: 8px; }
-    .testimonial-quote.expanded { -webkit-line-clamp: unset; line-clamp: unset; display: block; }
+    .testimonial-quote { font-size: 0.875rem; color: var(--color-warm-grey); line-height: 1.65; flex: 1; }
+    .testimonial-quote.expanded { }
     .read-more-btn { background: none; border: none; padding: 0; margin-top: auto; color: var(--color-ember); font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: underline; align-self: flex-start; }
     .section-light .testimonial-quote, .section-warm .testimonial-quote { color: var(--color-charcoal); }
     .testimonial-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; margin-top: auto; }
@@ -2276,7 +2288,7 @@ body {
     .faq-chevron { flex-shrink: 0; font-size: 0.75rem; color: var(--color-ember); transition: transform 0.25s ease; }
     .faq-item.open .faq-chevron { transform: rotate(180deg); }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-item.open .faq-answer { max-height: 600px; }
     .faq-answer-inner { padding: 0 0 20px; font-size: 0.9rem; color: var(--color-stone); line-height: 1.7; }
     .section-light .faq-answer-inner, .section-warm .faq-answer-inner { color: var(--color-charcoal); }
 
@@ -2496,7 +2508,7 @@ body {
     .faq-footer p { font-size: 0.9rem; color: var(--color-stone); }
     @media (max-width: 768px) {
         .hero-heading { font-size: clamp(2.4rem, 8vw, 3.4rem); }
-        .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+        .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; align-items: start; }
         .hero-stat { border-right: none; }
         .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06); }
         .end-to-end .two-col { grid-template-columns: 1fr; }

@@ -66,6 +66,27 @@
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
+<!--
+================================================================
+  GHL DEPLOYMENT — 404 ERROR PAGE (recapmedia.no/404)
+================================================================
+  NOTE: For GHL custom 404, go to Site Settings > 404 Page and
+  set the URL, OR use a Custom HTML block in a dedicated GHL page.
+
+  SITE SETTINGS > HEADER TRACKING CODE:
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
+    [GTM head snippet]
+  SITE SETTINGS > BODY TRACKING CODE:
+    [GTM noscript snippet]
+    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
+  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
+  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
+
+  ▼▼▼ PASTE THE <main>...</main> BLOCK + THE error-flash DIV INTO GHL > PAGE > CUSTOM HTML ▼▼▼
+  (The error-flash div must come BEFORE <main> — paste it just before the <main> block)
+================================================================
+-->
+
 <main class="error-main">
     <div class="container">
         <div class="error-inner">
@@ -96,6 +117,7 @@
         </div>
     </div>
 </main>
+<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
 
 <footer class="footer">
     <div class="container">
