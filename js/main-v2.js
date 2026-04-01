@@ -267,19 +267,39 @@
     }
 
     function initFormBridge() {
-        // Attach bridge to every .quote-form on the page (inline + modal).
-        // Each input/select/textarea uses data-ghl="field_name" to declare
-        // which hidden GHL field it maps to. No hard-coded ID map needed.
+        // Direct API submission to GHL (LeadConnector).
+        // GHL renders forms as iframes (cross-origin), so DOM bridge won't work.
+        // Instead we POST directly to the GHL forms API.
         //
-        // Supports two GHL setups:
-        //   A) .ghl-form-hidden on a wrapper (section/div) containing a <form>
-        //   B) .ghl-form-hidden on the <form> element itself
+        // Config: set data-ghl-form-id and data-ghl-location-id on .ghl-form-hidden
+        //   <div class="ghl-form-hidden"
+        //        data-ghl-form-id="DefzD8Urt68TpVkbgLwx"
+        //        data-ghl-location-id="K9u6cepBq4hbudcnIkVw">
+        //
+        // Each visible input uses data-ghl="friendly_name" which is mapped
+        // to GHL's actual field name (random ID for custom fields).
+
+        // Config can be overridden via data attributes on .ghl-form-hidden,
+        // but defaults to the Recap Media form + location IDs.
         var ghlContainer = document.querySelector('.ghl-form-hidden');
-        if (!ghlContainer) return;
-        var ghlForm = ghlContainer.tagName === 'FORM'
-            ? ghlContainer
-            : ghlContainer.querySelector('form');
-        if (!ghlForm) return;
+        var formId     = (ghlContainer && ghlContainer.getAttribute('data-ghl-form-id'))     || 'DefzD8Urt68TpVkbgLwx';
+        var locationId = (ghlContainer && ghlContainer.getAttribute('data-ghl-location-id')) || 'K9u6cepBq4hbudcnIkVw';
+
+        // Map from data-ghl friendly names → actual GHL field names.
+        // Standard contact fields keep their name; custom fields use GHL IDs.
+        var FIELD_MAP = {
+            'first_name':          'first_name',
+            'last_name':           'last_name',
+            'email':               'email',
+            'phone':               'phone',
+            'organization':        'organization',
+            'describe_your_event': 'rqpVmIVY0MSM5Tk6jUZU',
+            'date_picker_5uqo':   'iLYg2CdXbkVDtYQFCYPD',
+            'origin':              'iL6SbBvHdRGke1TaZlNM',
+            'terms_and_conditions':'terms_and_conditions'
+        };
+
+        var GHL_ENDPOINT = 'https://backend.leadconnectorhq.com/forms/submit';
 
         var forms = document.querySelectorAll('.quote-form');
         for (var i = 0; i < forms.length; i++) {
@@ -291,44 +311,62 @@
                     var hp = visibleForm.querySelector('.hp-field');
                     if (hp && hp.value) return;
 
-                    // Sync every [data-ghl] field into the hidden GHL form
+                    // Collect form data from [data-ghl] fields
+                    var formData = {};
                     var fields = visibleForm.querySelectorAll('[data-ghl]');
                     for (var j = 0; j < fields.length; j++) {
-                        var visEl = fields[j];
-                        var ghlName = visEl.getAttribute('data-ghl');
-                        var ghlEl = ghlContainer.querySelector('[name="' + ghlName + '"]');
-                        if (!ghlEl) continue;
+                        var visEl  = fields[j];
+                        var friendly = visEl.getAttribute('data-ghl');
+                        var ghlKey = FIELD_MAP[friendly] || friendly;
 
                         if (visEl.type === 'checkbox') {
-                            ghlEl.checked = visEl.checked;
+                            formData[ghlKey] = visEl.checked;
                         } else {
-                            ghlEl.value = visEl.value;
+                            formData[ghlKey] = visEl.value;
                         }
-                        ghlEl.dispatchEvent(new Event('input',  { bubbles: true }));
-                        ghlEl.dispatchEvent(new Event('change', { bubbles: true }));
                     }
 
-                    // Click GHL's own submit — fires CRM workflow
-                    var ghlSubmit = ghlForm.querySelector('[type="submit"]');
-                    if (ghlSubmit) ghlSubmit.click();
+                    // Build multipart FormData payload
+                    var payload = new FormData();
+                    payload.append('formId',     formId);
+                    payload.append('locationId', locationId);
+                    payload.append('pageUrl',    window.location.href);
+                    payload.append('formData',   JSON.stringify(formData));
 
-                    // Show success message, then close the modal after 2.5 s
+                    // Disable button, show sending state
                     var submitBtn = visibleForm.querySelector('[type="submit"]');
                     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
-                    var existing = visibleForm.querySelector('.form-feedback');
-                    if (existing) existing.remove();
-                    var msg = document.createElement('p');
-                    msg.className = 'form-feedback';
-                    msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
-                    msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
-                    visibleForm.appendChild(msg);
-                    setTimeout(function () {
-                        visibleForm.reset();
-                        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-                        if (msg.parentNode) msg.parentNode.removeChild(msg);
-                        var overlay = document.querySelector('.modal-overlay');
-                        if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
-                    }, 2500);
+
+                    // POST to GHL API
+                    fetch(GHL_ENDPOINT, { method: 'POST', body: payload })
+                        .then(function (res) {
+                            if (res.ok || res.status === 200 || res.status === 201) {
+                                // Success — show thank-you message
+                                var existing = visibleForm.querySelector('.form-feedback');
+                                if (existing) existing.remove();
+                                var msg = document.createElement('p');
+                                msg.className = 'form-feedback';
+                                msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
+                                msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
+                                visibleForm.appendChild(msg);
+                                setTimeout(function () {
+                                    visibleForm.reset();
+                                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                                    if (msg.parentNode) msg.parentNode.removeChild(msg);
+                                    var overlay = document.querySelector('.modal-overlay');
+                                    if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+                                }, 2500);
+                            } else {
+                                // Server error — re-enable button
+                                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                                console.error('GHL form submission failed:', res.status);
+                            }
+                        })
+                        .catch(function (err) {
+                            // Network error — re-enable button
+                            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
+                            console.error('GHL form submission error:', err);
+                        });
                 });
             })(forms[i]);
         }
