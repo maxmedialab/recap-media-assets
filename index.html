@@ -279,23 +279,39 @@
                     </svg>
                 </button>
             </div>
+            <!-- Controls: mute + fullscreen (appear on hover) -->
+            <div class="video-controls" id="home-video-controls">
+                <button class="video-ctrl-btn" id="home-video-mute" aria-label="Mute">
+                    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </button>
+                <button class="video-ctrl-btn" id="home-video-fs" aria-label="Fullscreen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+                </button>
+            </div>
         </div>
-        <!-- Fullscreen button (appears on hover) -->
-        <button class="video-fs-btn" id="home-video-fs" aria-label="Fullscreen">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
-        </button>
         <script>
         (function() {
             var vid = document.getElementById('home-video');
             var overlay = document.getElementById('home-video-overlay');
+            var controls = document.getElementById('home-video-controls');
+            var muteBtn = document.getElementById('home-video-mute');
             var fsBtn = document.getElementById('home-video-fs');
             if (!vid || !overlay) return;
-            function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
-            function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; }
+            function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; if (controls) controls.style.opacity = '1'; }
+            function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; if (controls) controls.style.opacity = '0'; }
             overlay.addEventListener('click', function() { vid.play(); hide(); });
             vid.addEventListener('click', function() { if (!vid.paused) { vid.pause(); } else { vid.play(); hide(); } });
             vid.addEventListener('pause', show);
             vid.addEventListener('ended', show);
+            if (muteBtn) {
+                muteBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    vid.muted = !vid.muted;
+                    muteBtn.querySelector('.icon-unmuted').style.display = vid.muted ? 'none' : '';
+                    muteBtn.querySelector('.icon-muted').style.display = vid.muted ? '' : 'none';
+                });
+            }
             if (fsBtn) {
                 fsBtn.addEventListener('click', function(e) {
                     e.stopPropagation();

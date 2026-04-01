@@ -399,12 +399,23 @@ main {
     margin-left: 3px;
 }
 
-/* Fullscreen button for MP4 players */
-.video-fs-btn {
+/* Video controls bar (mute + fullscreen) — inside .video-player-wrap */
+.video-controls {
     position: absolute !important;
     bottom: 14px !important;
     right: 14px !important;
     z-index: 10 !important;
+    display: flex !important;
+    gap: 8px !important;
+    opacity: 0 !important;
+    transition: opacity 0.25s ease !important;
+    pointer-events: none !important;
+}
+.video-player-wrap:hover .video-controls {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+.video-ctrl-btn {
     background: rgba(0,0,0,0.55) !important;
     backdrop-filter: blur(6px) !important;
     border: 1px solid rgba(255,255,255,0.15) !important;
@@ -416,14 +427,11 @@ main {
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
-    opacity: 0 !important;
-    transition: opacity 0.25s ease, background 0.2s ease !important;
+    transition: background 0.2s ease !important;
     padding: 0 !important;
+    pointer-events: auto !important;
 }
-.video-player-wrap:hover .video-fs-btn {
-    opacity: 1 !important;
-}
-.video-fs-btn:hover {
+.video-ctrl-btn:hover {
     background: rgba(232,89,60,0.8) !important;
 }
 

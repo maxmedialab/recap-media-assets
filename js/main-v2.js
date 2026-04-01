@@ -112,18 +112,24 @@
                 dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
             }
 
-            if (prevBtn) prevBtn.addEventListener('click', () => goToIdx(getCurrentIdx() - 1));
-            if (nextBtn) nextBtn.addEventListener('click', () => goToIdx(getCurrentIdx() + 1));
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                const cur = getCurrentIdx();
+                goToIdx(cur <= 0 ? total - 1 : cur - 1);
+            });
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                const cur = getCurrentIdx();
+                goToIdx(cur >= total - 1 ? 0 : cur + 1);
+            });
             dots.forEach((dot, i) => dot.addEventListener('click', () => goToIdx(i)));
             track.addEventListener('scroll', updateDots, { passive: true });
 
-            // Auto-scroll every 3s, pause on hover/touch
+            // Auto-scroll every 3s, pause on hover/touch, loop back to start
             setTimeout(() => {
                 let paused = false;
                 setInterval(() => {
                     if (paused) return;
-                    const next = getCurrentIdx() + 1 >= total ? 0 : getCurrentIdx() + 1;
-                    goToIdx(next);
+                    const cur = getCurrentIdx();
+                    goToIdx(cur >= total - 1 ? 0 : cur + 1);
                 }, 3000);
                 wrapper.addEventListener('mouseenter', () => { paused = true; });
                 wrapper.addEventListener('mouseleave', () => { paused = false; });
