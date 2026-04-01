@@ -241,8 +241,41 @@
     <div class="container">
         <div class="section-header gsap-fade">
             <span class="overline">Video samples</span>
-            <h2>Session Recordings &amp; Event Films</h2>
+            <h2>Event Films &amp; Session Recordings</h2>
         </div>
+
+        <!-- Featured: Dustin event film -->
+        <div class="video-player-wrap gsap-fade" style="margin-bottom: 48px;">
+            <video
+                id="work-dustin-video"
+                src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cc3929bd00af8b5794967c.mp4"
+                poster="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69cccc9af2ec2d89a902d7a2.jpg"
+                preload="none"
+                playsinline
+                title="Dustin event coverage by Recap Media"
+            ></video>
+            <div class="video-play-overlay" id="work-dustin-overlay">
+                <button class="video-play-btn" aria-label="Play video">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <script>
+        (function() {
+            var vid = document.getElementById('work-dustin-video');
+            var overlay = document.getElementById('work-dustin-overlay');
+            if (!vid || !overlay) return;
+            function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
+            function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; }
+            overlay.addEventListener('click', function() { vid.play(); hide(); });
+            vid.addEventListener('pause', show);
+            vid.addEventListener('ended', show);
+        })();
+        </script>
+
+        <!-- Session recordings grid -->
         <div class="cards-grid gsap-stagger" style="grid-template-columns: repeat(3, 1fr);">
             <div class="yt-tile" data-yt-id="l1-QYqaGyMk">
                 <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69c3b2e9c6dd404f656b6750.jpeg" alt="Michael Hitzker — Flutter Vikings 2022">
