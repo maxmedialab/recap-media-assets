@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found — Recap Media</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Head back to Recap Media or get in touch.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <style>
+        /* Splash */
+        #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
+        #rm-splash.hidden { opacity: 0; pointer-events: none; }
+        #rm-splash img { width: 120px; height: auto; animation: rm-pulse 1.2s ease-in-out infinite; }
+        @keyframes rm-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.96)} }
+
+        /* 404 layout */
+        body { background: var(--color-obsidian); }
+        .error-page { min-height: 100vh; display: flex; flex-direction: column; }
+        .error-main { flex: 1; display: flex; align-items: center; padding: 120px 0 80px; }
+        .error-inner { max-width: 600px; }
+
+        /* Camera animation */
+        .error-camera { font-size: 5rem; display: block; margin-bottom: 32px; animation: cam-float 3s ease-in-out infinite; transform-origin: center; }
+        @keyframes cam-float {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50%       { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        /* Flash overlay — blinks twice then stops */
+        .error-flash { position: fixed; inset: 0; background: white; opacity: 0; pointer-events: none; z-index: 99998; animation: flash-blink 3.6s ease forwards; }
+        @keyframes flash-blink {
+            0%   { opacity: 0; }
+            2%   { opacity: 0.55; }
+            5%   { opacity: 0; }
+            8%   { opacity: 0.35; }
+            12%  { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Code number */
+        .error-code { font-family: var(--font-heading); font-size: clamp(5rem, 18vw, 9rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.9; color: var(--color-ember); opacity: 0.18; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; user-select: none; white-space: nowrap; }
+        .error-hero { position: relative; padding: 48px 0 40px; }
+
+        .error-headline { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--color-white); margin: 0 0 16px; }
+        .error-sub { font-size: 1rem; color: var(--color-warm-grey); line-height: 1.75; max-width: 480px; margin: 0 0 8px; }
+        .error-joke { font-size: 0.88rem; color: var(--color-stone); line-height: 1.6; margin: 0 0 36px; font-style: italic; }
+        .error-joke::before { content: '"'; }
+        .error-joke::after { content: '"'; }
+
+        .error-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 40px; }
+
+        .error-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0 0 32px; }
+
+        .error-contact-nudge { background: rgba(232,89,60,0.05); border: 1px solid rgba(232,89,60,0.18); border-radius: var(--radius-md); padding: 20px 22px; max-width: 480px; }
+        .error-contact-nudge p { font-size: 0.85rem; color: var(--color-stone); line-height: 1.65; margin: 0 0 14px; }
+        .error-contact-nudge p strong { color: var(--color-warm-grey); font-weight: 600; }
+        .error-contact-nudge a { font-size: 0.83rem; color: var(--color-ember); text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
+        .error-contact-nudge a:hover { opacity: 0.75; }
+    </style>
+</head>
+<body>
+
+<!-- Camera flash effect on load -->
+<div class="error-flash" aria-hidden="true"></div>
+
+<!-- Splash screen -->
+<div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Loading Recap Media"></div>
+
+<div class="cursor-dot" id="cur-dot"></div>
+<div class="cursor-ring" id="cur-ring"></div>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
+<div class="error-page">
+
+<nav class="nav" id="nav">
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69ca37ed027b158238eeb120.png" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <ul class="nav-links">
+        <li><a href="https://recapmedia.no/">Home</a></li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
+        <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+    <a href="https://recapmedia.no/">Home</a>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
+    <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
+</div>
+
+<main class="error-main">
+    <div class="container">
+        <div class="error-inner">
+
+            <span class="error-camera" role="img" aria-label="Camera">📷</span>
+
+            <div class="error-hero">
+                <div class="error-code" aria-hidden="true">404</div>
+                <span class="overline">Error 404</span>
+                <h1 class="error-headline">This page didn't show up.</h1>
+            </div>
+
+            <p class="error-sub">Kind of like that one speaker who cancelled last minute — except less of a disaster.</p>
+            <p class="error-joke">The page you're looking for isn't here, never was, or got quietly archived after the event.</p>
+
+            <div class="error-actions">
+                <a href="https://recapmedia.no/" class="btn btn-primary">Back to home</a>
+                <a href="https://recapmedia.no/packages" class="btn btn-ghost">See packages</a>
+            </div>
+
+            <div class="error-divider"></div>
+
+            <div class="error-contact-nudge">
+                <p><strong>Got here from a link on our site?</strong> That's probably on us. If you have a moment, we'd genuinely appreciate knowing how you ended up here — it helps us fix it.</p>
+                <a href="https://recapmedia.no/contact">Tell us what happened →</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Recap Media</h3>
+                <p>Event photography and videography in Oslo. One crew handling photo, video and livestream — strategy-led coverage, reliably delivered.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/">Home</a></li>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
+            <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
+        </div>
+    </div>
+</footer>
+
+</div><!-- /.error-page -->
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close modal">✕</button>
+        <h2>Request a Quote</h2>
+        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
+        <form class="quote-form" novalidate>
+            <div class="form-row">
+                <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" placeholder="First name" required></div>
+                <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" placeholder="Last name" required></div>
+            </div>
+            <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" placeholder="your@email.com" required></div>
+            <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" placeholder="+47 xxx xx xxx"></div>
+            <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" placeholder="Your company or organisation" required></div>
+            <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
+            <div class="form-row">
+                <div class="form-group"><label for="visible-event-date">Event date</label><input type="date" id="visible-event-date" class="form-control"></div>
+                <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" required><option value="">Select an option</option><option value="google">Google</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="referral">Referral</option><option value="linkedin">LinkedIn</option><option value="other">Other</option></select></div>
+            </div>
+            <div class="form-consent"><input type="checkbox" id="visible-consent" required><label for="visible-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label></div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
+        </form>
+        <div class="ghl-form-hidden"><!-- TODO: GHL embed --></div>
+    </div>
+</div>
+
+<script src="js/main-v2.js?v=2"></script>
+<script>
+    (function() {
+        function dismissSplash() {
+            var s = document.getElementById('rm-splash');
+            if (!s) return;
+            s.classList.add('hidden');
+            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
+        if (document.readyState === 'complete') {
+            dismissSplash();
+        } else {
+            window.addEventListener('load', dismissSplash);
+        }
+    })();
+</script>
+</body>
+</html>

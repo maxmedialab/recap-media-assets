@@ -163,32 +163,31 @@
 
 <main>
 
-<!-- Section 1: Hero -->
+<!-- Section 1: Hero with price panel -->
 <section class="hero-banner">
     <div class="container">
         <nav class="pkg-nav" aria-label="Package navigation">
             <a href="https://recapmedia.no/packages">Packages</a>
-            <span>→</span>
+            <span class="pkg-nav-sep">→</span>
             <span>Conference Package</span>
-            <span style="margin-left: auto; display: flex; gap: 16px;">
+            <span class="pkg-nav-also">
                 See also: <a href="https://recapmedia.no/packages/day-coverage">Day Coverage</a> · <a href="https://recapmedia.no/packages/full-production">Full Production</a>
             </span>
         </nav>
-        <span class="overline">Conference Package</span>
-        <h1>Full-day conference photography and video in Oslo</h1>
-        <p style="max-width: 640px; margin-top: 16px; color: var(--color-warm-grey); font-size: 1.05rem; line-height: 1.7;">The Conference Package is our most popular option — a complete content suite for single-day events that need to produce weeks of marketing material. Photo, video, highlight reel, and social clips from one crew, under one brief.</p>
-    </div>
-</section>
-
-<!-- Section 2: Price block -->
-<section class="section section-dark" style="padding-top: 0; padding-bottom: var(--space-2xl);">
-    <div class="container">
-        <div class="pkg-price-block gsap-fade">
-            <span class="pkg-price-badge">Most popular</span>
-            <div class="pkg-price-num">57,450 NOK</div>
-            <div class="pkg-price-mva">ex-MVA</div>
-            <p class="pkg-price-summary">Full-day photo &amp; video — 8 hours on-site, 50+ photos, highlight video, 7 social clips.</p>
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+        <div class="pkg-hero-split">
+            <div class="pkg-hero-text">
+                <span class="overline">Conference Package</span>
+                <h1>Full-day conference photography and video in Oslo</h1>
+                <p>The Conference Package is our most popular option — a complete content suite for single-day events that need to produce weeks of marketing material. Photo, video, highlight reel, and social clips from one crew, under one brief.</p>
+            </div>
+            <div class="pkg-price-panel">
+                <span class="pkg-price-badge">Most popular</span>
+                <div class="pkg-price-num">57,450 NOK</div>
+                <div class="pkg-price-mva">ex-MVA</div>
+                <div class="pkg-price-divider"></div>
+                <p class="pkg-price-summary"><strong>Full-day photo &amp; video</strong>8 hours on-site · 50+ photos · highlight video · 7 social clips</p>
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            </div>
         </div>
     </div>
 </section>
@@ -268,26 +267,28 @@
             <span class="overline">The process</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">How it works</h2>
         </div>
-        <div class="pkg-steps">
-            <div class="pkg-step">
-                <div class="pkg-step-num">01</div>
-                <h3>Discovery call</h3>
-                <p>We learn about your event, audience, and goals. You tell us what content you need and how you'll use it.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">02</div>
-                <h3>Pre-event brief</h3>
-                <p>We create a detailed shot list, timeline, and coverage plan. You approve it before event day.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">03</div>
-                <h3>Event day</h3>
-                <p>We handle everything on-site. You focus on your event — we focus on capturing it.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">04</div>
-                <h3>Edit &amp; deliver</h3>
-                <p>Photos in 7 days, video in 14 days. 2 revision rounds included. You get publish-ready content.</p>
+        <div class="pkg-steps-wrap">
+            <div class="pkg-steps-track">
+                <div class="pkg-step">
+                    <div class="pkg-step-num">01</div>
+                    <h3>Discovery call</h3>
+                    <p>We learn about your event, audience, and goals. You tell us what content you need and how you'll use it.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">02</div>
+                    <h3>Pre-event brief</h3>
+                    <p>We create a detailed shot list, timeline, and coverage plan. You approve it before event day.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">03</div>
+                    <h3>Event day</h3>
+                    <p>We handle everything on-site. You focus on your event — we focus on capturing it.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">04</div>
+                    <h3>Edit &amp; deliver</h3>
+                    <p>Photos in 7 days, video in 14 days. 2 revision rounds included. You get publish-ready content.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -328,52 +329,31 @@
         <div class="pkg-upgrades-list gsap-fade">
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Speaker recap clips</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Individual 60-90 second clips per speaker — great for speaker promotion and next-year marketing.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Interviews and testimonials</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">On-site recorded interviews with attendees, speakers, or sponsors.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Express video delivery (7 days)</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Get your video deliverables in half the standard time.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">AI transcription and quote extraction</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Full session transcriptions plus a curated quote sheet for faster edit approvals and content creation.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Additional photographer or videographer</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Cover parallel sessions, breakout rooms, or the exhibition floor simultaneously.</span>
             </div>
         </div>
+        <p class="pkg-upgrades-more">Plus additional options for livestreaming, branded graphics, and more.</p>
         <p class="pkg-upgrades-closing">We'll walk you through the options during your discovery call.</p>
     </div>
 </section>
 
-<!-- Section 7: FAQ -->
-<section class="section section-dark">
-    <div class="container" style="max-width: 800px;">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">Common questions</h2>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">Is one person really enough for photo and video at a conference? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">For most single-day conferences, yes. Max handles both disciplines and switches between them throughout the day based on the pre-planned shot list. For events with parallel tracks or complex schedules, we bring additional crew.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What do the vertical social clips include? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">7 short-form clips (15-60 seconds each) formatted in 9:16 for Instagram Reels, LinkedIn, or TikTok. They're edited with captions, music, and dynamic pacing — ready to post.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can this package cover a 2-day conference? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We offer a per-day add-on rate for multi-day events. The video deliverables cover the entire event — you don't pay for a second highlight reel.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How do revisions work for video? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You receive the first edit within 14 business days. Round 1 is open — you can request any changes (different music, swap shots, adjust pacing). Round 2 is restricted to refining the changes from round 1. If you don't submit feedback within the deadline, the deliverables are considered accepted.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What if I need photos or video faster? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Express photo delivery (3 business days) and express video delivery (7 business days) are available as upgrades. Same-day photo delivery is also possible for press and social media needs.</div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Section 8: CTA block -->
+<!-- Section 7: CTA block -->
 <section class="section section-dark cta-section" style="padding: var(--space-2xl) 0;">
     <div class="cta-orb cta-orb--1"></div>
     <div class="cta-orb cta-orb--2"></div>
@@ -389,8 +369,22 @@
     </div>
 </section>
 
-<!-- Section 9: Footer note -->
-<p class="pkg-footer-note container">All prices ex-MVA. Packages include 2 revision rounds and dedicated project management.</p>
+<!-- Section 8: FAQ -->
+<section class="section section-onyx">
+    <div class="container" style="max-width: 800px;">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">Common questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question">Is one person really enough for photo and video at a conference? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">For most single-day conferences, yes. Max handles both disciplines and switches between them throughout the day based on the pre-planned shot list. For events with parallel tracks or complex schedules, we bring additional crew.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What do the vertical social clips include? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">7 short-form clips (15-60 seconds each) formatted in 9:16 for Instagram Reels, LinkedIn, or TikTok. They're edited with captions, music, and dynamic pacing — ready to post.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can this package cover a 2-day conference? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We offer a per-day add-on rate for multi-day events. The video deliverables cover the entire event — you don't pay for a second highlight reel.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How do revisions work for video? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You receive the first edit within 14 business days. Round 1 is open — you can request any changes (different music, swap shots, adjust pacing). Round 2 is restricted to refining the changes from round 1. If you don't submit feedback within the deadline, the deliverables are considered accepted.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What if I need photos or video faster? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Express photo delivery (3 business days) and express video delivery (7 business days) are available as upgrades. Same-day photo delivery is also possible for press and social media needs.</div></div></div>
+        </div>
+    </div>
+</section>
 
 </main>
 
@@ -465,25 +459,7 @@
     if (document.readyState === 'complete') { dismissSplash(); }
     else { window.addEventListener('load', dismissSplash); }
 
-    var steps = document.querySelectorAll('.pkg-step');
-    if (!steps.length || !window.IntersectionObserver) {
-        steps.forEach(function(el) { el.classList.add('step-visible'); });
-        return;
-    }
-    var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                var el = entry.target;
-                var delay = parseInt(el.dataset.stepDelay, 10) || 0;
-                setTimeout(function() { el.classList.add('step-visible'); }, delay);
-                io.unobserve(el);
-            }
-        });
-    }, { threshold: 0.2 });
-    steps.forEach(function(el, i) {
-        el.dataset.stepDelay = i * 160;
-        io.observe(el);
-    });
+    // Steps animation is handled by GSAP ScrollTrigger in main-v2.js
 })();
 </script>
 </body>

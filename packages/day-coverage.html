@@ -163,31 +163,30 @@
 
 <main>
 
-<!-- Section 1: Hero -->
+<!-- Section 1: Hero with price panel -->
 <section class="hero-banner">
     <div class="container">
         <nav class="pkg-nav" aria-label="Package navigation">
             <a href="https://recapmedia.no/packages">Packages</a>
-            <span>→</span>
+            <span class="pkg-nav-sep">→</span>
             <span>Day Coverage</span>
-            <span style="margin-left: auto; display: flex; gap: 16px;">
+            <span class="pkg-nav-also">
                 See also: <a href="https://recapmedia.no/packages/conference-package">Conference Package</a> · <a href="https://recapmedia.no/packages/full-production">Full Production</a>
             </span>
         </nav>
-        <span class="overline">Day Coverage</span>
-        <h1>Half-day event photography in Oslo</h1>
-        <p style="max-width: 600px; margin-top: 16px; color: var(--color-warm-grey); font-size: 1.05rem; line-height: 1.7;">The Day Coverage package is designed for events where you need clean, professional photography delivered fast — without the overhead of a full video production. Four hours of dedicated coverage, 30-40 edited photos, and a 7-day turnaround.</p>
-    </div>
-</section>
-
-<!-- Section 2: Price block -->
-<section class="section section-dark" style="padding-top: 0; padding-bottom: var(--space-2xl);">
-    <div class="container">
-        <div class="pkg-price-block gsap-fade">
-            <div class="pkg-price-num">15,900 NOK</div>
-            <div class="pkg-price-mva">ex-MVA</div>
-            <p class="pkg-price-summary">Half-day photography — 4 hours on-site, 30-40 edited photos, 7-day delivery.</p>
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+        <div class="pkg-hero-split">
+            <div class="pkg-hero-text">
+                <span class="overline">Day Coverage</span>
+                <h1>Half-day event photography in Oslo</h1>
+                <p>The Day Coverage package is designed for events where you need clean, professional photography delivered fast — without the overhead of a full video production. Four hours of dedicated coverage, 30-40 edited photos, and a 7-day turnaround.</p>
+            </div>
+            <div class="pkg-price-panel">
+                <div class="pkg-price-num">15,900 NOK</div>
+                <div class="pkg-price-mva">ex-MVA</div>
+                <div class="pkg-price-divider"></div>
+                <p class="pkg-price-summary"><strong>Half-day photography</strong>4 hours on-site · 30-40 edited photos · 7-day delivery</p>
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            </div>
         </div>
     </div>
 </section>
@@ -253,26 +252,28 @@
             <span class="overline">The process</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">How it works</h2>
         </div>
-        <div class="pkg-steps">
-            <div class="pkg-step">
-                <div class="pkg-step-num">01</div>
-                <h3>Discovery call</h3>
-                <p>We learn about your event, audience, and goals. You tell us what content you need and how you'll use it.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">02</div>
-                <h3>Pre-event brief</h3>
-                <p>We create a detailed shot list, timeline, and coverage plan. You approve it before event day.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">03</div>
-                <h3>Event day</h3>
-                <p>We handle everything on-site. You focus on your event — we focus on capturing it.</p>
-            </div>
-            <div class="pkg-step">
-                <div class="pkg-step-num">04</div>
-                <h3>Edit &amp; deliver</h3>
-                <p>Photos delivered in 7 days. 2 revision rounds included. You get publish-ready content.</p>
+        <div class="pkg-steps-wrap">
+            <div class="pkg-steps-track">
+                <div class="pkg-step">
+                    <div class="pkg-step-num">01</div>
+                    <h3>Discovery call</h3>
+                    <p>We learn about your event, audience, and goals. You tell us what content you need and how you'll use it.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">02</div>
+                    <h3>Pre-event brief</h3>
+                    <p>We create a detailed shot list, timeline, and coverage plan. You approve it before event day.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">03</div>
+                    <h3>Event day</h3>
+                    <p>We handle everything on-site. You focus on your event — we focus on capturing it.</p>
+                </div>
+                <div class="pkg-step">
+                    <div class="pkg-step-num">04</div>
+                    <h3>Edit &amp; deliver</h3>
+                    <p>Photos delivered in 7 days. 2 revision rounds included. You get publish-ready content.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -313,47 +314,27 @@
         <div class="pkg-upgrades-list gsap-fade">
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Video highlight (30-60 sec)</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Add a short highlight video to capture the energy of your event for social media.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">24-hour photo delivery</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Need photos for a press release or social post the next morning? We can deliver within 24 hours.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Additional photographer</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Cover more ground with a second photographer for breakout rooms or parallel sessions.</span>
             </div>
             <div class="pkg-upgrade-item">
                 <span class="pkg-upgrade-name">Quote cards (set of 10)</span>
-                <span class="pkg-upgrade-sep">—</span>
                 <span class="pkg-upgrade-desc">Branded photo+text overlay graphics ready for LinkedIn, Instagram, and event recaps.</span>
             </div>
         </div>
+        <p class="pkg-upgrades-more">Plus additional options for extended coverage, express delivery, and more.</p>
         <p class="pkg-upgrades-closing">We'll walk you through the options during your discovery call.</p>
     </div>
 </section>
 
-<!-- Section 7: FAQ -->
-<section class="section section-dark">
-    <div class="container" style="max-width: 800px;">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">Common questions</h2>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">How many photos will I receive from a half-day event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You'll receive 30-40 professionally edited photos, culled from several hundred captures. Every image is color-corrected and delivered in high resolution.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can I add video coverage to this package? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. A 30-60 second highlight video is one of the most popular add-ons. We'll discuss your options during the discovery call.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What happens if my event runs longer than 4 hours? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We'll notify you before going into overtime. Additional coverage is billed at an hourly rate, agreed in advance.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How fast can I get the photos? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard delivery is 7 business days. Express delivery (3 days) and same-day delivery (24 hours) are available as upgrades.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you cover events outside Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We're based in Oslo and cover Greater Oslo and Akershus regularly. For events further afield in Norway or Scandinavia, we're happy to travel — just let us know the location.</div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- Section 8: CTA block -->
+<!-- Section 7: CTA block -->
 <section class="section section-dark cta-section" style="padding: var(--space-2xl) 0;">
     <div class="cta-orb cta-orb--1"></div>
     <div class="cta-orb cta-orb--2"></div>
@@ -369,8 +350,22 @@
     </div>
 </section>
 
-<!-- Section 9: Footer note -->
-<p class="pkg-footer-note container">All prices ex-MVA. Packages include 2 revision rounds and dedicated project management.</p>
+<!-- Section 8: FAQ -->
+<section class="section section-onyx">
+    <div class="container" style="max-width: 800px;">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;">Common questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question">How many photos will I receive from a half-day event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You'll receive 30-40 professionally edited photos, culled from several hundred captures. Every image is color-corrected and delivered in high resolution.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can I add video coverage to this package? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. A 30-60 second highlight video is one of the most popular add-ons. We'll discuss your options during the discovery call.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What happens if my event runs longer than 4 hours? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We'll notify you before going into overtime. Additional coverage is billed at an hourly rate, agreed in advance.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How fast can I get the photos? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard delivery is 7 business days. Express delivery (3 days) and same-day delivery (24 hours) are available as upgrades.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover events outside Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We're based in Oslo and cover Greater Oslo and Akershus regularly. For events further afield in Norway or Scandinavia, we're happy to travel — just let us know the location.</div></div></div>
+        </div>
+    </div>
+</section>
 
 </main>
 
@@ -446,26 +441,7 @@
     if (document.readyState === 'complete') { dismissSplash(); }
     else { window.addEventListener('load', dismissSplash); }
 
-    // Steps stagger animation via IntersectionObserver
-    var steps = document.querySelectorAll('.pkg-step');
-    if (!steps.length || !window.IntersectionObserver) {
-        steps.forEach(function(el) { el.classList.add('step-visible'); });
-        return;
-    }
-    var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                var el = entry.target;
-                var delay = parseInt(el.dataset.stepDelay, 10) || 0;
-                setTimeout(function() { el.classList.add('step-visible'); }, delay);
-                io.unobserve(el);
-            }
-        });
-    }, { threshold: 0.2 });
-    steps.forEach(function(el, i) {
-        el.dataset.stepDelay = i * 160;
-        io.observe(el);
-    });
+    // Steps animation is handled by GSAP ScrollTrigger in main-v2.js
 })();
 </script>
 </body>

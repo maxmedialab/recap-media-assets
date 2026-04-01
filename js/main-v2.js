@@ -430,6 +430,7 @@
     gsap.to('.cta-orb--1', { x: 30, y: -20, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true });
     gsap.to('.cta-orb--2', { x: -25, y: 15, duration: 7, ease: 'sine.inOut', repeat: -1, yoyo: true });
 
+
     document.querySelectorAll('.faq-question').forEach(function (btn) {
         btn.addEventListener('click', function () {
             var item = btn.closest('.faq-item');
