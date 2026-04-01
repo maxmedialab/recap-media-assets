@@ -270,8 +270,15 @@
         // Attach bridge to every .quote-form on the page (inline + modal).
         // Each input/select/textarea uses data-ghl="field_name" to declare
         // which hidden GHL field it maps to. No hard-coded ID map needed.
+        //
+        // Supports two GHL setups:
+        //   A) .ghl-form-hidden on a wrapper (section/div) containing a <form>
+        //   B) .ghl-form-hidden on the <form> element itself
         var ghlContainer = document.querySelector('.ghl-form-hidden');
-        var ghlForm = ghlContainer ? ghlContainer.querySelector('form') : null;
+        if (!ghlContainer) return;
+        var ghlForm = ghlContainer.tagName === 'FORM'
+            ? ghlContainer
+            : ghlContainer.querySelector('form');
         if (!ghlForm) return;
 
         var forms = document.querySelectorAll('.quote-form');
