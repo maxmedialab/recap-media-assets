@@ -399,6 +399,34 @@ main {
     margin-left: 3px;
 }
 
+/* Fullscreen button for MP4 players */
+.video-fs-btn {
+    position: absolute !important;
+    bottom: 14px !important;
+    right: 14px !important;
+    z-index: 10 !important;
+    background: rgba(0,0,0,0.55) !important;
+    backdrop-filter: blur(6px) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    opacity: 0 !important;
+    transition: opacity 0.25s ease, background 0.2s ease !important;
+    padding: 0 !important;
+}
+.video-player-wrap:hover .video-fs-btn {
+    opacity: 1 !important;
+}
+.video-fs-btn:hover {
+    background: rgba(232,89,60,0.8) !important;
+}
+
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -2142,8 +2170,10 @@ select.form-control option {
     font-weight: 500 !important;
 }
 .yt-tile iframe {
+    position: absolute !important;
+    inset: 0 !important;
     width: 100% !important;
-    aspect-ratio: 16/9 !important;
+    height: 100% !important;
     display: block !important;
     border: none !important;
     border-radius: 12px !important;
@@ -2654,8 +2684,10 @@ body {
     @media (max-width: 768px) {
         .hero-heading { font-size: clamp(2.4rem, 8vw, 3.4rem); }
         .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; align-items: start; }
-        .hero-stat { border-right: none; }
+        .hero-stat { border-right: none; text-align: center; padding: 0 16px; }
+        .hero-stat:first-child { padding-left: 16px; }
         .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06); }
+        .hero-stat-number { white-space: nowrap; }
         .end-to-end .two-col { grid-template-columns: 1fr; }
         .end-to-end .col-image img { height: 300px; }
         .work-section .section-header-row { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -2665,7 +2697,8 @@ body {
     @media (max-width: 480px) {
         .hero-stats-inner { padding: 24px var(--space-md); }
         .hero-stat { padding: 0 16px; }
-        .hero-stat-number { font-size: 1.5rem; }
+        .hero-stat-number { font-size: 1.5rem; white-space: nowrap; }
+        .hero-stat-label { font-size: 0.62rem; }
         .hero-inner { padding: 0 var(--space-md); }
     }
 

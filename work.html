@@ -262,16 +262,30 @@
                 </button>
             </div>
         </div>
+        <!-- Fullscreen button (appears on hover) -->
+        <button class="video-fs-btn" id="work-dustin-fs" aria-label="Fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+        </button>
         <script>
         (function() {
             var vid = document.getElementById('work-dustin-video');
             var overlay = document.getElementById('work-dustin-overlay');
+            var fsBtn = document.getElementById('work-dustin-fs');
             if (!vid || !overlay) return;
             function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; }
             function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; }
             overlay.addEventListener('click', function() { vid.play(); hide(); });
+            vid.addEventListener('click', function() { if (!vid.paused) { vid.pause(); } else { vid.play(); hide(); } });
             vid.addEventListener('pause', show);
             vid.addEventListener('ended', show);
+            if (fsBtn) {
+                fsBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (vid.requestFullscreen) vid.requestFullscreen();
+                    else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+                    else if (vid.webkitEnterFullScreen) vid.webkitEnterFullScreen();
+                });
+            }
         })();
         </script>
 
@@ -312,15 +326,24 @@ document.querySelectorAll('.yt-tile').forEach(function(tile){
         if(img) img.style.display='none';
         if(overlay) overlay.style.display='none';
         if(caption) caption.style.display='none';
+        tile.style.position='relative';
+        tile.style.aspectRatio='16/9';
         var iframe=document.createElement('iframe');
         iframe.src='https://www.youtube.com/embed/'+id+'?autoplay=1';
         iframe.allow='autoplay;encrypted-media';
         iframe.allowFullscreen=true;
         iframe.title='Video';
+        iframe.style.position='absolute';
+        iframe.style.inset='0';
+        iframe.style.width='100%';
+        iframe.style.height='100%';
+        iframe.style.border='none';
+        iframe.style.borderRadius='12px';
         tile.appendChild(iframe);
         var fsBtn=document.createElement('button');
         fsBtn.className='yt-fullscreen-btn';
         fsBtn.textContent='⛶ Fullscreen';
+        fsBtn.style.opacity='1';
         fsBtn.addEventListener('click',function(e){e.stopPropagation();iframe.requestFullscreen();});
         tile.appendChild(fsBtn);
     });
