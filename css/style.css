@@ -2604,6 +2604,43 @@ body {
 }
 
 /* ===========================
+   Packages — Add-on Strip & Promo Film Callout
+   =========================== */
+
+/* Add-ons strip below package cards */
+.addon-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+.addon-strip-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-stone); font-weight: 600; margin-right: 4px; }
+.addon-chip { font-size: 0.78rem; color: var(--color-warm-grey); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 4px 12px; white-space: nowrap; transition: border-color 0.2s, color 0.2s; }
+.addon-chip:hover { border-color: rgba(232,89,60,0.3); color: var(--color-white); }
+
+/* Promo film add-on section */
+.promo-addon-wrap { display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: center; }
+.promo-addon-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-ember); border: 1px solid rgba(232,89,60,0.35); border-radius: 20px; padding: 4px 14px; margin-bottom: 20px; }
+.promo-addon-headline { font-family: var(--font-heading); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--color-white); margin: 0 0 16px; }
+.promo-addon-body { font-size: 0.95rem; color: var(--color-warm-grey); line-height: 1.75; max-width: 520px; margin: 0 0 20px; }
+.promo-addon-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.promo-addon-bullets li { font-size: 0.84rem; color: var(--color-stone); padding-left: 18px; position: relative; line-height: 1.55; }
+.promo-addon-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--color-ember); font-size: 0.75rem; top: 1px; }
+
+/* Promo add-on right card */
+.promo-addon-card { background: var(--color-onyx); border: 1px solid rgba(232,89,60,0.25); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.promo-addon-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+.promo-addon-price-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 6px; }
+.promo-addon-price { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; color: var(--color-white); margin-bottom: 12px; }
+.promo-addon-note { font-size: 0.78rem; color: var(--color-stone); line-height: 1.6; margin: 0 0 20px; }
+
+/* Responsive */
+@media (max-width: 860px) {
+    .promo-addon-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .promo-addon-card { max-width: 400px; }
+}
+@media (max-width: 600px) {
+    .addon-strip { gap: 6px; }
+    .addon-chip { font-size: 0.74rem; padding: 3px 10px; }
+    .promo-addon-card { max-width: 100%; }
+}
+
+/* ===========================
    404 Error Page
    =========================== */
 .error-page-body { background: var(--color-obsidian); }
