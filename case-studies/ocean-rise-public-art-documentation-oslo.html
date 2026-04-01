@@ -213,9 +213,20 @@
             <h2>Ocean Rise — Behind the Work</h2>
         </div>
         <div class="gsap-fade" style="max-width: 840px; margin: 0 auto;">
-            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-                <iframe src="https://www.youtube.com/embed/ViatI5l8YR0" title="Ocean Rise documentary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000;">
+                <img id="or-poster" src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6939791bacebf7fbccfa3dd7.jpeg" alt="Ocean Rise documentary thumbnail" style="position:absolute;top:50%;left:50%;width:110%;height:110%;object-fit:cover;transform:translate(-50%,-50%);cursor:pointer;">
+                <div id="or-play" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.25);">
+                    <svg width="72" height="72" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="32" fill="rgba(232,89,60,0.9)"/><polygon points="26,20 26,44 48,32" fill="white"/></svg>
+                </div>
+                <iframe id="or-frame" src="" title="Ocean Rise documentary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;"></iframe>
             </div>
+            <script>
+            (function(){
+                var poster=document.getElementById('or-poster'),play=document.getElementById('or-play'),frame=document.getElementById('or-frame');
+                function start(){poster.style.display='none';play.style.display='none';frame.style.display='block';frame.src='https://www.youtube.com/embed/ViatI5l8YR0?autoplay=1';}
+                poster.addEventListener('click',start);play.addEventListener('click',start);
+            })();
+            </script>
             <p style="margin-top:14px;font-size:0.82rem;color:var(--color-stone);text-align:center;font-style:italic;">Video features partial footage filmed by us; fully edited and produced by client team.</p>
         </div>
     </div>
@@ -329,10 +340,12 @@
                 <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" placeholder="First name" required autocomplete="given-name"></div>
                 <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" placeholder="Last name" required autocomplete="family-name"></div>
             </div>
-            <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" placeholder="your@email.com" required autocomplete="email"></div>
+            <div class="form-row">
+                <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" placeholder="your@email.com" required autocomplete="email"></div>
+                <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+            </div>
             <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
             <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" data-ghl="origin" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
-            <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
             <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
             <div class="form-group"><label for="visible-event-date">Event date</label><input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo"></div>
             <div class="form-consent"><input type="checkbox" id="visible-consent" data-ghl="terms_and_conditions" required><label for="visible-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label></div>
