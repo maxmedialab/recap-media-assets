@@ -628,6 +628,8 @@ main {
     background-color: transparent !important;
     color: var(--color-white) !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    padding: 12px 28px !important;
+    border-radius: var(--radius-md) !important;
 }
 .btn-ghost:hover {
     background-color: rgba(255, 255, 255, 0.08) !important;
@@ -637,10 +639,11 @@ main {
 /* Ghost button on light backgrounds (contact page) */
 .contact-form-wrap .btn-ghost {
     color: var(--color-obsidian) !important;
-    border-color: rgba(20, 18, 24, 0.2) !important;
+    border: 1px solid rgba(20, 18, 24, 0.25) !important;
+    background-color: transparent !important;
 }
 .contact-form-wrap .btn-ghost:hover {
-    background-color: rgba(20, 18, 24, 0.04) !important;
+    background-color: rgba(20, 18, 24, 0.05) !important;
     border-color: rgba(20, 18, 24, 0.4) !important;
     color: var(--color-obsidian) !important;
 }
@@ -2783,7 +2786,11 @@ body {
     .form-success-body { font-size: 1rem !important; color: var(--color-stone) !important; line-height: 1.6 !important; margin: 0 0 20px !important; max-width: 400px !important; margin-left: auto !important; margin-right: auto !important; }
     .form-success-check { font-size: 0.82rem !important; color: var(--color-warm-grey) !important; line-height: 1.55 !important; margin: 0 0 28px !important; max-width: 400px !important; margin-left: auto !important; margin-right: auto !important; }
     .form-success-check a { color: var(--color-ember) !important; text-decoration: underline !important; }
-    .form-success-close { margin: 0 auto !important; }
+    .form-success-close { margin: 0 auto !important; display: inline-flex !important; }
+    .btn-ghost { background-color: transparent !important; color: var(--color-white) !important; border: 1px solid rgba(255,255,255,0.25) !important; padding: 12px 28px !important; border-radius: var(--radius-md) !important; cursor: pointer !important; font-family: var(--font-body) !important; font-size: 0.95rem !important; font-weight: 500 !important; }
+    .btn-ghost:hover { background-color: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.5) !important; }
+    .contact-form-wrap .btn-ghost { color: var(--color-obsidian) !important; border: 1px solid rgba(20,18,24,0.25) !important; }
+    .contact-form-wrap .btn-ghost:hover { background-color: rgba(20,18,24,0.05) !important; border-color: rgba(20,18,24,0.4) !important; }
     .form-error .form-success-heading { color: #e8a838 !important; }
     .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
     .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
