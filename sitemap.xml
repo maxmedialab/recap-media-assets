@@ -2,52 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://recapmedia.no/</loc>
-    <priority>1.0</priority>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/work.html</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://recapmedia.no/work</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/about.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://recapmedia.no/about</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/contact.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://recapmedia.no/contact</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/packages/</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://recapmedia.no/packages</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/case-studies/flutter-vikings-2022-media-coverage-oslo.html</loc>
-    <priority>0.7</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://recapmedia.no/packages/day-coverage</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/case-studies/scotland-norway-decarbonisation-trade-mission-event-photography-oslo.html</loc>
-    <priority>0.7</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://recapmedia.no/packages/conference-package</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/case-studies/ocean-rise-public-art-documentation-oslo.html</loc>
-    <priority>0.7</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://recapmedia.no/packages/full-production</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/privacy.html</loc>
-    <priority>0.3</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://recapmedia.no/case-studies/flutter-vikings-2022-media-coverage-oslo</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/terms.html</loc>
-    <priority>0.3</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://recapmedia.no/case-studies/scotland-norway-decarbonisation-trade-mission-event-photography-oslo</loc>
+    <lastmod>2026-04-02</lastmod>
+  </url>
+  <url>
+    <loc>https://recapmedia.no/case-studies/ocean-rise-public-art-documentation-oslo</loc>
+    <lastmod>2026-04-02</lastmod>
+  </url>
+  <url>
+    <loc>https://recapmedia.no/privacy</loc>
+    <lastmod>2026-04-02</lastmod>
+  </url>
+  <url>
+    <loc>https://recapmedia.no/terms</loc>
+    <lastmod>2026-04-02</lastmod>
   </url>
 </urlset>
