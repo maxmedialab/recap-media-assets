@@ -1077,7 +1077,7 @@ main {
 
 .package-tagline {
     font-size: 0.875rem !important;
-    color: var(--color-stone) !important;
+    color: var(--color-charcoal) !important;
     line-height: 1.5 !important;
     margin-bottom: 16px !important;
 }
@@ -1096,7 +1096,7 @@ main {
 
 .package-price-note {
     font-size: 0.78rem !important;
-    color: var(--color-stone) !important;
+    color: var(--color-charcoal) !important;
     margin-bottom: 20px !important;
 }
 
@@ -1142,7 +1142,7 @@ main {
 
 .package-card-footer-note {
     font-size: 0.8rem !important;
-    color: var(--color-stone) !important;
+    color: var(--color-charcoal) !important;
     line-height: 1.5 !important;
     padding: 12px 16px !important;
     background: linear-gradient(135deg, rgba(232,89,60,0.05), rgba(242,166,35,0.05)) !important;
@@ -1504,7 +1504,7 @@ main {
 
 .case-meta-label {
     color: var(--color-stone) !important;
-    min-width: 100px !important;
+    min-width: 150px !important;
     font-weight: 500 !important;
 }
 
@@ -2027,10 +2027,10 @@ body {
    =========================== */
 
 .form-control {
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: rgba(255,255,255,0.95) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
     border-radius: var(--radius-md) !important;
-    color: var(--color-white) !important;
+    color: var(--color-obsidian) !important;
     font-family: var(--font-body) !important;
     font-size: 0.9rem !important;
     padding: 12px 14px !important;
@@ -2049,17 +2049,17 @@ body {
 .form-control:-webkit-autofill,
 .form-control:-webkit-autofill:hover,
 .form-control:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px rgba(30,28,34,1) inset !important;
-    -webkit-text-fill-color: var(--color-white) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.95) inset !important;
+    -webkit-text-fill-color: var(--color-obsidian) !important;
     border-color: var(--color-ember) !important;
     transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .form-control:focus {
-    background: rgba(255,255,255,0.07) !important;
+    background: #FFFFFF !important;
     border-color: var(--color-ember) !important;
     box-shadow: 0 0 0 3px rgba(232,89,60,0.15) !important;
-    color: var(--color-white) !important;
+    color: var(--color-obsidian) !important;
 }
 
 .form-control.error {
@@ -2076,13 +2076,13 @@ select.form-control {
     cursor: pointer !important;
     appearance: none !important;
     -webkit-appearance: none !important;
-    background: rgba(255,255,255,0.07) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important;
+    background: rgba(255,255,255,0.95) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important;
     padding-right: 36px !important;
 }
 
 select.form-control option {
-    background: var(--color-onyx) !important;
-    color: var(--color-white) !important;
+    background: var(--color-white) !important;
+    color: var(--color-obsidian) !important;
 }
 
 /* ===========================
@@ -2576,17 +2576,17 @@ body {
     .package-label { font-size: 0.7rem !important; font-weight: 600 !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; color: var(--color-ember) !important; margin-bottom: 6px !important; }
     .package-card h3 { font-size: 1.25rem !important; font-weight: 700 !important; color: var(--color-obsidian) !important; margin-bottom: 6px !important; }
     .package-card.featured h3 { color: var(--color-white) !important; }
-    .package-tagline { font-size: 0.875rem !important; color: var(--color-stone) !important; line-height: 1.5 !important; margin-bottom: 16px !important; }
+    .package-tagline { font-size: 0.875rem !important; color: var(--color-charcoal) !important; line-height: 1.5 !important; margin-bottom: 16px !important; }
     .package-card.featured .package-tagline { color: var(--color-warm-grey) !important; }
     .package-price { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--color-obsidian) !important; font-family: var(--font-heading) !important; margin-bottom: 4px !important; }
     .package-card.featured .package-price { color: var(--color-white) !important; }
-    .package-price-note { font-size: 0.78rem !important; color: var(--color-stone) !important; margin-bottom: 20px !important; }
+    .package-price-note { font-size: 0.78rem !important; color: var(--color-charcoal) !important; margin-bottom: 20px !important; }
     .package-features { list-style: none !important; padding: 0 28px !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
     .package-features li { display: flex !important; align-items: flex-start !important; gap: 10px !important; font-size: 0.875rem !important; color: var(--color-charcoal) !important; line-height: 1.45 !important; }
     .package-card.featured .package-features li { color: var(--color-warm-grey) !important; }
     .package-features li::before { content: '' !important; display: inline-block !important; width: 16px !important; height: 16px !important; min-width: 16px !important; background-color: var(--color-ember) !important; border-radius: 50% !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: center !important; background-size: 70% !important; margin-top: 2px !important; flex-shrink: 0 !important; }
     .package-card-footer { margin-top: auto !important; padding: 20px 28px 28px !important; }
-    .package-card-footer-note { font-size: 0.8rem !important; color: var(--color-stone) !important; line-height: 1.5 !important; padding: 12px 16px !important; background: linear-gradient(135deg, rgba(232,89,60,0.05), rgba(242,166,35,0.05)) !important; border-radius: var(--radius-sm) !important; border-left: 3px solid var(--color-ember) !important; margin-bottom: 16px !important; }
+    .package-card-footer-note { font-size: 0.8rem !important; color: var(--color-charcoal) !important; line-height: 1.5 !important; padding: 12px 16px !important; background: linear-gradient(135deg, rgba(232,89,60,0.05), rgba(242,166,35,0.05)) !important; border-radius: var(--radius-sm) !important; border-left: 3px solid var(--color-ember) !important; margin-bottom: 16px !important; }
     .package-card.featured .package-card-footer-note { background: linear-gradient(135deg, rgba(232,89,60,0.14), rgba(242,166,35,0.08)) !important; color: var(--color-warm-grey) !important; }
     .most-popular-badge { display: inline-block !important; font-size: 0.68rem !important; font-weight: 600 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; background: var(--color-ember) !important; color: var(--color-white) !important; padding: 3px 10px !important; border-radius: 20px !important; margin-bottom: 12px !important; }
 
@@ -2751,16 +2751,16 @@ body {
     .form-group { display: flex !important; flex-direction: column !important; gap: 6px !important; margin-bottom: 16px !important; }
     .form-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
     .form-group label { font-size: 0.82rem !important; font-weight: 500 !important; color: var(--color-warm-grey) !important; letter-spacing: 0.02em !important; }
-    .form-control { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: var(--radius-md) !important; color: var(--color-white) !important; font-family: var(--font-body) !important; font-size: 0.9rem !important; padding: 12px 14px !important; width: 100% !important; transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important; outline: none !important; -webkit-appearance: none !important; }
+    .form-control { background: rgba(255,255,255,0.95) !important; border: 1px solid rgba(255,255,255,0.18) !important; border-radius: var(--radius-md) !important; color: var(--color-obsidian) !important; font-family: var(--font-body) !important; font-size: 0.9rem !important; padding: 12px 14px !important; width: 100% !important; transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important; outline: none !important; -webkit-appearance: none !important; }
     .form-control::placeholder { color: var(--color-stone) !important; font-size: 0.875rem !important; }
     .form-control:-webkit-autofill,
     .form-control:-webkit-autofill:hover,
-    .form-control:-webkit-autofill:focus { -webkit-box-shadow: 0 0 0 1000px rgba(30,28,34,1) inset !important; -webkit-text-fill-color: var(--color-white) !important; border-color: var(--color-ember) !important; transition: background-color 5000s ease-in-out 0s !important; }
-    .form-control:focus { background: rgba(255,255,255,0.07) !important; border-color: var(--color-ember) !important; box-shadow: 0 0 0 3px rgba(232,89,60,0.15) !important; color: var(--color-white) !important; }
+    .form-control:-webkit-autofill:focus { -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.95) inset !important; -webkit-text-fill-color: var(--color-obsidian) !important; border-color: var(--color-ember) !important; transition: background-color 5000s ease-in-out 0s !important; }
+    .form-control:focus { background: #FFFFFF !important; border-color: var(--color-ember) !important; box-shadow: 0 0 0 3px rgba(232,89,60,0.15) !important; color: var(--color-obsidian) !important; }
     .form-control.error { border-color: #E85C5C !important; box-shadow: 0 0 0 3px rgba(232,92,92,0.12) !important; }
     textarea.form-control { min-height: 100px !important; resize: vertical !important; }
-    select.form-control { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; background: rgba(255,255,255,0.07) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8680' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important; padding-right: 36px !important; }
-    select.form-control option { background: var(--color-onyx) !important; color: var(--color-white) !important; }
+    select.form-control { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; background: rgba(255,255,255,0.95) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important; padding-right: 36px !important; }
+    select.form-control option { background: var(--color-white) !important; color: var(--color-obsidian) !important; }
     .form-consent { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin: 8px 0 20px !important; }
     .form-consent input[type="checkbox"] { appearance: none !important; -webkit-appearance: none !important; width: 18px !important; height: 18px !important; min-width: 18px !important; border: 1px solid rgba(255,255,255,0.2) !important; border-radius: 4px !important; background: rgba(255,255,255,0.05) !important; cursor: pointer !important; margin-top: 1px !important; position: relative !important; transition: border-color var(--transition-fast), background-color var(--transition-fast) !important; flex-shrink: 0 !important; }
     .form-consent input[type="checkbox"]:checked { background-color: var(--color-ember) !important; border-color: var(--color-ember) !important; }
@@ -2980,8 +2980,18 @@ body {
 /* Add-ons strip below package cards */
 .addon-strip { display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 8px !important; margin-top: 24px !important; padding-top: 24px !important; border-top: 1px solid rgba(255,255,255,0.06) !important; }
 .addon-strip-label { font-size: 0.72rem !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; color: var(--color-stone) !important; font-weight: 600 !important; margin-right: 4px !important; }
-.addon-chip { font-size: 0.78rem !important; color: var(--color-warm-grey) !important; background: rgba(255,255,255,0.04) !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 20px !important; padding: 4px 12px !important; white-space: nowrap !important; transition: border-color 0.2s, color 0.2s !important; }
+.addon-chip { font-size: 0.78rem !important; color: var(--color-warm-grey) !important; background: rgba(255,255,255,0.04) !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 20px !important; padding: 4px 12px !important; white-space: nowrap !important; transition: border-color 0.2s, color 0.2s, background 0.2s !important; }
 .addon-chip:hover { border-color: rgba(232,89,60,0.3) !important; color: var(--color-white) !important; }
+
+/* Add-on strip light-section overrides */
+.section-warm .addon-strip,
+.section-light .addon-strip { border-top-color: rgba(20,18,24,0.08) !important; }
+.section-warm .addon-strip-label,
+.section-light .addon-strip-label { color: var(--color-charcoal) !important; }
+.section-warm .addon-chip,
+.section-light .addon-chip { color: var(--color-charcoal) !important; background: rgba(20,18,24,0.04) !important; border-color: rgba(20,18,24,0.12) !important; }
+.section-warm .addon-chip:hover,
+.section-light .addon-chip:hover { color: var(--color-obsidian) !important; border-color: rgba(232,89,60,0.4) !important; background: rgba(232,89,60,0.06) !important; }
 
 /* Promo film add-on section */
 .promo-addon-wrap { display: grid !important; grid-template-columns: 1fr 280px !important; gap: 56px !important; align-items: center !important; }
