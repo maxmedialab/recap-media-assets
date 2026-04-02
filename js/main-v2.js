@@ -483,12 +483,14 @@
         }
 
         // ── Hide the GHL native form section ──────────────────────────
+        // IMPORTANT: Only hide the form itself or its .ghl-form-hidden wrapper.
+        // Do NOT climb to .c-row — in GHL that row wraps the entire Global Footer
+        // section (footer, modal, AND the hidden form), hiding everything.
         var ghlSection = document.getElementById('form-builder');
         if (ghlSection) {
-            var ghlRow = ghlSection.closest('.c-row') || ghlSection.closest('[class*="row-"]');
-            if (ghlRow) {
-                ghlRow.style.cssText = 'position:absolute!important;left:-9999px!important;height:0!important;overflow:hidden!important;pointer-events:none!important;opacity:0!important;';
-            }
+            var ghlWrapper = ghlSection.closest('.ghl-form-hidden') || ghlSection.closest('.c-form');
+            var target = ghlWrapper || ghlSection;
+            target.style.cssText = 'position:absolute!important;left:-9999px!important;height:0!important;overflow:hidden!important;pointer-events:none!important;opacity:0!important;';
         }
 
         // ── Anti-spam: rate limiting + timing check ──────────────────
