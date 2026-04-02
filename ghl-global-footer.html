@@ -117,10 +117,10 @@
                 <label for="visible-event-date">Event date</label>
                 <input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD">
             </div>
-            <div class="form-consent" onclick="var cb=this.querySelector('input[type=checkbox]');if(event.target!==cb){event.preventDefault();cb.checked=!cb.checked;cb.dispatchEvent(new Event('change',{bubbles:true}));this.classList.remove('has-error');}">
-                <input type="checkbox" id="modal-consent" data-ghl="terms_and_conditions" name="terms_and_conditions" required>
-                <label for="modal-consent">I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</label>
-            </div>
+            <label class="form-consent">
+                <input type="checkbox" data-ghl="terms_and_conditions" name="terms_and_conditions" required>
+                <span>I accept the company's terms and conditions and consent to being contacted by the business using the information I have provided.</span>
+            </label>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
         </form>
         <!-- GHL native form — placed via GHL page builder with custom class "ghl-form-hidden" on its section -->

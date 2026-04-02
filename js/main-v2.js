@@ -638,41 +638,14 @@
             if (group) group.classList.remove('has-error');
         }, false);
 
-        // ── Checkbox toggle via JS ───────────────────────────────────
-        // GHL Custom HTML blocks may intercept/stop click propagation before
-        // it reaches document, so document-level delegation alone is NOT
-        // reliable for inline forms on page-level Custom HTML.
-        //
-        // Strategy: attach handlers DIRECTLY to each .form-consent element
-        // found on the page. This fires at the element itself — no delegation,
-        // no propagation needed, GHL can't intercept it.
-
-        function _consentClickHandler(e) {
-            var consent = this; // 'this' is the .form-consent element
-            var cb = consent.querySelector('input[type="checkbox"]');
-            if (!cb) return;
-            // If the click was directly on the checkbox, let it toggle naturally
-            if (e.target === cb) return;
-            // Otherwise toggle it via JS
-            e.preventDefault();
-            cb.checked = !cb.checked;
-            cb.dispatchEvent(new Event('change', { bubbles: true }));
-            // Clear validation error
-            consent.classList.remove('has-error');
-        }
-
-        // Attach directly to every .form-consent inside a .quote-form
-        var consentDivs = document.querySelectorAll('.quote-form .form-consent');
-        for (var ci = 0; ci < consentDivs.length; ci++) {
-            consentDivs[ci].addEventListener('click', _consentClickHandler, false);
-        }
-
-        // Also keep a document-level fallback (for dynamically added forms)
-        document.addEventListener('click', function (e) {
+        // ── Checkbox: clear validation error on toggle ────────────────
+        // The checkbox is now nested INSIDE a <label class="form-consent">,
+        // so clicking anywhere on the label (text or box) toggles it via
+        // native HTML — no JS toggle needed. We only clear .has-error here.
+        document.addEventListener('change', function (e) {
+            if (e.target.type !== 'checkbox') return;
             var consent = e.target.closest('.form-consent');
-            if (!consent) return;
-            if (!consent.closest('.quote-form')) return;
-            _consentClickHandler.call(consent, e);
+            if (consent) consent.classList.remove('has-error');
         }, false);
     }
 
