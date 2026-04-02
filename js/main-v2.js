@@ -103,7 +103,9 @@
             function goToIdx(idx) {
                 const clamped = Math.max(0, Math.min(idx, total - 1));
                 const target = cards[clamped] ? cards[clamped].offsetLeft : 0;
-                track.scrollTo({ left: target, behavior: 'smooth' });
+                // Don't scroll past the point where the last card hits the right edge
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                track.scrollTo({ left: Math.min(target, maxScroll), behavior: 'smooth' });
             }
 
             function updateDots() {
@@ -112,13 +114,23 @@
                 dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
             }
 
+            // How many cards are visible at once
+            function getVisibleCount() {
+                if (!cards.length) return 1;
+                return Math.max(1, Math.round(track.clientWidth / cards[0].offsetWidth));
+            }
+
+            function getMaxIdx() {
+                return Math.max(0, total - getVisibleCount());
+            }
+
             if (prevBtn) prevBtn.addEventListener('click', () => {
                 const cur = getCurrentIdx();
-                goToIdx(cur <= 0 ? total - 1 : cur - 1);
+                goToIdx(cur <= 0 ? getMaxIdx() : cur - 1);
             });
             if (nextBtn) nextBtn.addEventListener('click', () => {
                 const cur = getCurrentIdx();
-                goToIdx(cur >= total - 1 ? 0 : cur + 1);
+                goToIdx(cur >= getMaxIdx() ? 0 : cur + 1);
             });
             dots.forEach((dot, i) => dot.addEventListener('click', () => goToIdx(i)));
             track.addEventListener('scroll', updateDots, { passive: true });
@@ -129,7 +141,7 @@
                 setInterval(() => {
                     if (paused) return;
                     const cur = getCurrentIdx();
-                    goToIdx(cur >= total - 1 ? 0 : cur + 1);
+                    goToIdx(cur >= getMaxIdx() ? 0 : cur + 1);
                 }, 3000);
                 wrapper.addEventListener('mouseenter', () => { paused = true; });
                 wrapper.addEventListener('mouseleave', () => { paused = false; });
@@ -159,7 +171,11 @@
         if (!overlay) return;
         const closeBtn = overlay.querySelector('.modal-close');
         function open() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function close() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+        function close() {
+            // Don't close if confirmation message is showing — user must click "Got it"
+            if (overlay.querySelector('.form-success')) return;
+            overlay.classList.remove('open'); document.body.style.overflow = '';
+        }
         document.querySelectorAll('[data-cta="quote"]').forEach(btn => { btn.addEventListener('click', e => { e.preventDefault(); open(); }); });
         if (closeBtn) closeBtn.addEventListener('click', close);
         overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
@@ -273,13 +289,16 @@
     }
 
     function initFormBridge() {
-        // Submission is handled by the VidLead external tracking script
-        // (external-tracking.js). We MUST NOT bind to the form's submit event
-        // or the submit button's click event (Rule 5 from official docs).
+        // ── Architecture ───────────────────────────────────────────────
+        // Custom HTML form (.quote-form)  =  the UI users see
+        // GHL native form (#form-builder) =  hidden backend pipe
         //
-        // This function only provides UX polish:
-        //   1. "Sending…" button state on submit (passive capture listener)
-        //   2. Post-submission confirmation message (after delay)
+        // On submit we:
+        //   1. preventDefault on our custom form (stops GET redirect)
+        //   2. Copy field values into the hidden GHL form (Vue-compatible)
+        //   3. Click the GHL form's submit button (GHL JS handles the POST)
+        //   4. Show branded confirmation message
+        // ────────────────────────────────────────────────────────────────
 
         var SUCCESS_HTML =
             '<div class="form-success">' +
@@ -290,13 +309,133 @@
                 '<button type="button" class="btn btn-ghost form-success-close">Got it</button>' +
             '</div>';
 
-        function showConfirmation(form) {
+        var ERROR_HTML =
+            '<div class="form-success form-error">' +
+                '<span class="form-success-icon" aria-hidden="true">\u26A0\uFE0F</span>' +
+                '<h3 class="form-success-heading">Something went wrong.</h3>' +
+                '<p class="form-success-body">Your message couldn\u2019t be sent right now. Please email us directly and we\u2019ll get back to you promptly.</p>' +
+                '<p class="form-success-check"><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></p>' +
+                '<button type="button" class="btn btn-ghost form-success-close">Got it</button>' +
+            '</div>';
+
+        // ── Vue-compatible value setter ────────────────────────────────
+        // GHL forms are Vue/Nuxt — setting .value directly won't trigger
+        // reactivity. We use the native HTMLInputElement setter + events.
+        function setGHLValue(el, value) {
+            if (!el) return;
+            var proto = el.tagName === 'TEXTAREA'
+                ? HTMLTextAreaElement.prototype
+                : HTMLInputElement.prototype;
+            var setter = Object.getOwnPropertyDescriptor(proto, 'value').set;
+            setter.call(el, value);
+            el.dispatchEvent(new Event('input',  { bubbles: true }));
+            el.dispatchEvent(new Event('change', { bubbles: true }));
+            el.dispatchEvent(new Event('blur',   { bubbles: true }));
+        }
+
+        // ── Select a multiselect option by label ──────────────────────
+        // GHL renders <select>-type custom fields as Vue-Multiselect.
+        function selectMultiselectOption(container, label) {
+            if (!container) return;
+            var tags = container.querySelector('.multiselect__tags');
+            if (tags) tags.click(); // open dropdown
+            setTimeout(function () {
+                var opts = container.querySelectorAll('.multiselect__element');
+                for (var i = 0; i < opts.length; i++) {
+                    if (opts[i].textContent.trim() === label) {
+                        var optBtn = opts[i].querySelector('.multiselect__option');
+                        if (optBtn) optBtn.click();
+                        break;
+                    }
+                }
+            }, 150);
+        }
+
+        // ── Convert date from YYYY-MM-DD (HTML input) → DD/MM/YYYY (GHL) ─
+        function convertDateForGHL(isoDate) {
+            if (!isoDate) return '';
+            var parts = isoDate.split('-'); // ['2026','04','16']
+            if (parts.length !== 3) return isoDate;
+            return parts[2] + '/' + parts[1] + '/' + parts[0]; // '16/04/2026'
+        }
+
+        // ── Map values from custom form → GHL form ────────────────────
+        // Field name mapping: our custom form `name` attr → GHL form selector
+        var FIELD_MAP = [
+            { from: 'first_name',           to: '#first_name' },
+            { from: 'last_name',            to: '#last_name' },
+            { from: 'email',                to: '#email' },
+            { from: 'phone',                to: '#phone' },
+            { from: 'organization',         to: '#organization' },
+            { from: 'rqpVmIVY0MSM5Tk6jUZU', to: '#rqpVmIVY0MSM5Tk6jUZU' } // message
+        ];
+
+        // "How did you find us" needs special multiselect handling
+        var SOURCE_LABELS = {
+            'google_search':    'Google Search',
+            'recommendation':   'Recommendation',
+            'linkedin':         'LinkedIn',
+            'networking_event': 'Networking event',
+            'youtube':          'YouTube',
+            'instagram':        'Instagram',
+            'facebook':         'Facebook',
+            'social_media_ad':  'Social media ad',
+            '1881':             '1881.no',
+            'gulesider':        'gulesider.no',
+            '180':              '180.no'
+        };
+
+        function bridgeToGHL(customForm) {
+            var ghl = document.getElementById('form-builder');
+            if (!ghl) return false;
+
+            // Copy text/email/tel/textarea fields
+            FIELD_MAP.forEach(function (m) {
+                if (!m.to) return;
+                var src = customForm.querySelector('[name="' + m.from + '"]');
+                var dst = ghl.querySelector(m.to);
+                if (src && dst) setGHLValue(dst, src.value);
+            });
+
+            // Event date — HTML date input (YYYY-MM-DD) → GHL date picker (DD/MM/YYYY)
+            var dateField = customForm.querySelector('[name="iLYg2CdXbkVDtYQFCYPD"]');
+            if (dateField && dateField.value) {
+                var ghlDate = ghl.querySelector('.vdpWithInput input');
+                if (ghlDate) setGHLValue(ghlDate, convertDateForGHL(dateField.value));
+            }
+
+            // "How did you find us" — select → multiselect
+            var sourceSelect = customForm.querySelector('[name="iL6SbBvHdRGke1TaZlNM"]');
+            if (sourceSelect && sourceSelect.value) {
+                var label = SOURCE_LABELS[sourceSelect.value] || sourceSelect.value;
+                var ms = ghl.querySelector('.multiselect.multi_select_form');
+                selectMultiselectOption(ms, label);
+            }
+
+            // Terms checkbox
+            var ourCheckbox = customForm.querySelector('[name="terms_and_conditions"]');
+            var ghlCheckbox = ghl.querySelector('[name="terms_and_conditions"]');
+            if (ourCheckbox && ghlCheckbox && ourCheckbox.checked && !ghlCheckbox.checked) {
+                ghlCheckbox.click();
+            }
+
+            // Click GHL submit after a short delay (let multiselect settle)
+            setTimeout(function () {
+                var ghlBtn = ghl.querySelector('button[type="submit"]');
+                if (ghlBtn) ghlBtn.click();
+            }, 400);
+
+            return true;
+        }
+
+        // ── Confirmation UI ───────────────────────────────────────────
+        function showConfirmation(form, isError) {
             var container = form.closest('.modal-container') || form.closest('.contact-form-wrap');
             if (!container) return;
 
             var isModal = !!form.closest('.modal-container');
 
-            // Hide form elements, show success message
+            // Hide form elements, show success/error message
             var formEl = isModal ? container.querySelector('.quote-form') : form;
             var heading = isModal ? container.querySelector('h2') : null;
             var subtitle = isModal ? container.querySelector('.modal-subtitle') : null;
@@ -312,7 +451,7 @@
             if (formHeading) formHeading.style.display = 'none';
 
             var successDiv = document.createElement('div');
-            successDiv.innerHTML = SUCCESS_HTML;
+            successDiv.innerHTML = isError ? ERROR_HTML : SUCCESS_HTML;
             container.appendChild(successDiv.firstChild);
 
             // "Got it" button handler
@@ -343,32 +482,110 @@
             }
         }
 
-        // Passive listener in CAPTURING phase — does NOT preventDefault or stopPropagation.
-        // The tracking script's own handler on the form will fire normally.
+        // ── Hide the GHL native form section ──────────────────────────
+        var ghlSection = document.getElementById('form-builder');
+        if (ghlSection) {
+            var ghlRow = ghlSection.closest('.c-row') || ghlSection.closest('[class*="row-"]');
+            if (ghlRow) {
+                ghlRow.style.cssText = 'position:absolute!important;left:-9999px!important;height:0!important;overflow:hidden!important;pointer-events:none!important;opacity:0!important;';
+            }
+        }
+
+        // ── Anti-spam: rate limiting + timing check ──────────────────
+        var _lastSubmit = 0;
+        var _submitCount = 0;
+        var _pageLoadTime = Date.now();
+
+        // ── Main submit handler ───────────────────────────────────────
         document.addEventListener('submit', function (e) {
             var form = e.target;
             if (!form.classList || !form.classList.contains('quote-form')) return;
 
-            // Honeypot check
+            // PREVENT default — stops the GET redirect to current URL
+            e.preventDefault();
+
+            // ── Anti-spam checks ──────────────────────────────────────
+            // 1. Honeypot: bots auto-fill hidden fields
             var hp = form.querySelector('.hp-field');
             if (hp && hp.value) return;
+
+            // 2. Rate limit: max 2 submissions per 60 seconds
+            var now = Date.now();
+            if (now - _lastSubmit < 30000) {
+                _submitCount++;
+                if (_submitCount > 2) return; // silently drop
+            } else {
+                _submitCount = 1;
+            }
+            _lastSubmit = now;
+
+            // 3. Timing check: reject if form submitted < 3s after page load
+            //    (no human fills a form in under 3 seconds)
+            if (now - _pageLoadTime < 3000) return;
 
             // Show "Sending…" state
             var submitBtn = form.querySelector('[type="submit"]');
             if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
 
-            // After delay, show confirmation (tracking script has already fired by now)
+            // Bridge values to GHL form and trigger its submission
+            var bridged = bridgeToGHL(form);
+
+            if (!bridged) {
+                // GHL form not found on this page — show error with email fallback
+                setTimeout(function () {
+                    showConfirmation(form, true);
+                }, 500);
+                return;
+            }
+
+            // Show confirmation after GHL has time to submit
             setTimeout(function () {
                 showConfirmation(form);
-            }, 2000);
-        }, true); // <-- capturing phase, critical: does NOT intercept the event
+            }, 2500);
+        }, true); // capturing phase
+    }
+
+    function initPhotoStack() {
+        var stack = document.querySelector('.photo-stack');
+        if (!stack) return;
+        var imgs = stack.querySelectorAll('.photo-stack-img');
+        if (imgs.length < 2) return;
+
+        var current = 0;
+        var interval = null;
+        var DELAY = 1800; // ms between photos while hovering
+
+        function showNext() {
+            imgs[current].classList.remove('active');
+            current = (current + 1) % imgs.length;
+            imgs[current].classList.add('active');
+        }
+
+        function resetToFirst() {
+            // Smooth fade back to first image
+            imgs[current].classList.remove('active');
+            current = 0;
+            imgs[0].classList.add('active');
+        }
+
+        stack.addEventListener('mouseenter', function () {
+            showNext(); // immediately show next on hover
+            interval = setInterval(showNext, DELAY);
+        });
+
+        stack.addEventListener('mouseleave', function () {
+            clearInterval(interval);
+            interval = null;
+            // Smooth return to first photo after a short pause
+            setTimeout(resetToFirst, 300);
+        });
     }
 
     function initAll() {
         initNav(); initScrollReveal(); initCardTilt(); initFAQ();
         initCarousel(); initGallery(); initModal(); initCtaGallery();
         initCursorGlow(); initCustomCursor(); initPageTransitions();
-        initFormBridge();
+        initFormBridge(); initPhotoStack();
     }
 
     // GHL injects Global Sections (nav, cursor, modal) asynchronously AFTER the
@@ -420,6 +637,11 @@
         duration: 1.15,
         easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
         smoothWheel: true,
+        prevent: function (node) {
+            // Never let Lenis hand off to native scroll — this prevents jitter
+            // when cursor is over horizontal scroll containers
+            return false;
+        },
     });
     var lenis = window.__lenis;
     lenis.on('scroll', ScrollTrigger.update);

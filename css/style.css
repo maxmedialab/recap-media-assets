@@ -669,6 +669,62 @@ main {
     display: block !important;
 }
 
+/* ── Founder photo stack (about page) ────────────── */
+.founder-row {
+    align-items: stretch !important;
+}
+.founder-photo {
+    display: flex !important;
+}
+.photo-stack {
+    position: relative !important;
+    width: 100% !important;
+    flex: 1 !important;
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+}
+.photo-stack .photo-stack-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    opacity: 0 !important;
+    transition: opacity 0.8s ease !important;
+}
+.photo-stack .photo-stack-img.active {
+    opacity: 1 !important;
+}
+/* First image fills the stack container */
+.photo-stack .photo-stack-img:first-child {
+    position: relative !important;
+    height: 100% !important;
+}
+
+/* ── Founder actions (CTA + Instagram) ──────────── */
+.founder-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin-top: 24px !important;
+}
+.founder-social {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    color: var(--color-warm-grey) !important;
+    text-decoration: none !important;
+    font-size: 0.88rem !important;
+    transition: color 0.25s ease !important;
+}
+.founder-social:hover {
+    color: var(--color-ember) !important;
+}
+.founder-social svg {
+    flex-shrink: 0 !important;
+}
+
 /* Bullet list with ember checkmarks */
 .check-list {
     list-style: none !important;
@@ -825,18 +881,17 @@ main {
     display: flex !important;
     gap: 20px !important;
     overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
     scroll-behavior: smooth !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
     align-items: stretch !important;
+    overscroll-behavior-x: contain !important;
 }
 
 .carousel-track::-webkit-scrollbar { display: none !important; }
 
 .testimonial-card {
     flex: 0 0 calc(33.333% - 14px) !important;
-    scroll-snap-align: start !important;
     background: var(--color-smoke) !important;
     border-radius: var(--radius-lg) !important;
     padding: 28px !important;
@@ -2129,6 +2184,8 @@ select.form-control option {
    =========================== */
 
 .ghl-form-hidden { display: none !important; }
+/* Hide GHL native form section — used as backend submission pipe only */
+#form-builder, .hl_form-builder--main { position: absolute !important; left: -9999px !important; height: 0 !important; overflow: hidden !important; pointer-events: none !important; opacity: 0 !important; }
 .hp-field { position: absolute !important; left: -9999px !important; opacity: 0 !important; height: 0 !important; width: 0 !important; pointer-events: none !important; }
 
 /* ===========================
@@ -2196,10 +2253,14 @@ select.form-control option {
     to   { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
+/* Error variant — same layout, warm amber accent */
+.form-error .form-success-heading { color: #e8a838 !important; }
+
 /* Light-theme form success (contact page inline) */
 .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
 .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
 .contact-form-wrap .form-success-check { color: var(--color-warm-grey) !important; }
+.contact-form-wrap .form-error .form-success-heading { color: #c47e15 !important; }
 
 /* ===========================
    Legal Pages (Privacy / Terms)
@@ -2436,6 +2497,17 @@ body {
     .col-text .subheading { font-size: 1rem !important; font-weight: 600 !important; color: var(--color-ember) !important; margin-bottom: 12px !important; }
     .col-image { border-radius: var(--radius-lg) !important; overflow: hidden !important; }
     .col-image img { width: 100% !important; height: 420px !important; object-fit: cover !important; display: block !important; }
+    /* Founder photo stack */
+    .founder-row { align-items: stretch !important; }
+    .founder-photo { display: flex !important; }
+    .photo-stack { position: relative !important; width: 100% !important; flex: 1 !important; border-radius: var(--radius-lg) !important; overflow: hidden !important; }
+    .photo-stack .photo-stack-img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: top center !important; opacity: 0 !important; transition: opacity 0.8s ease !important; }
+    .photo-stack .photo-stack-img.active { opacity: 1 !important; }
+    .photo-stack .photo-stack-img:first-child { position: relative !important; height: 100% !important; }
+    .founder-actions { display: flex !important; align-items: center !important; gap: 20px !important; margin-top: 24px !important; }
+    .founder-social { display: inline-flex !important; align-items: center !important; gap: 7px !important; color: var(--color-warm-grey) !important; text-decoration: none !important; font-size: 0.88rem !important; transition: color 0.25s ease !important; }
+    .founder-social:hover { color: var(--color-ember) !important; }
+    .founder-social svg { flex-shrink: 0 !important; }
     .check-list { list-style: none !important; margin-top: 20px !important; display: flex !important; flex-direction: column !important; gap: 12px !important; }
     .check-list li { display: flex !important; align-items: flex-start !important; gap: 10px !important; font-size: 0.93rem !important; color: var(--color-charcoal) !important; line-height: 1.5 !important; }
     .section-dark .check-list li, .section-onyx .check-list li { color: var(--color-warm-grey) !important; }
@@ -2466,10 +2538,10 @@ body {
 
     /* Testimonials */
     .carousel-wrapper { position: relative !important; }
-    .carousel-track { display: flex !important; gap: 20px !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; scroll-behavior: smooth !important; -webkit-overflow-scrolling: touch !important; scrollbar-width: none !important; align-items: stretch !important; }
-    .carousel-track::after { content: '' !important; flex: 0 0 calc(66.666% - 14px) !important; align-self: stretch !important; }
+    .carousel-track { display: flex !important; gap: 20px !important; overflow-x: auto !important; scroll-behavior: smooth !important; -webkit-overflow-scrolling: touch !important; scrollbar-width: none !important; align-items: stretch !important; overscroll-behavior-x: contain !important; }
+    .carousel-track::after { display: none !important; }
     .carousel-track::-webkit-scrollbar { display: none !important; }
-    .testimonial-card { flex: 0 0 calc(33.333% - 14px) !important; scroll-snap-align: start !important; background: var(--color-smoke) !important; border-radius: var(--radius-lg) !important; padding: 28px !important; display: flex !important; flex-direction: column !important; gap: 12px !important; min-height: 300px !important; }
+    .testimonial-card { flex: 0 0 calc(33.333% - 14px) !important; background: var(--color-smoke) !important; border-radius: var(--radius-lg) !important; padding: 28px !important; display: flex !important; flex-direction: column !important; gap: 12px !important; min-height: 300px !important; }
     .section-light .testimonial-card, .section-warm .testimonial-card { background: var(--color-white) !important; box-shadow: 0 4px 20px rgba(20,18,24,0.06) !important; }
     .stars { display: flex !important; gap: 3px !important; }
     .star { color: var(--color-amber) !important; font-size: 0.9rem !important; }
@@ -2529,7 +2601,7 @@ body {
     /* CTA Gallery */
     .cta-gallery-wrapper { max-width: 1040px !important; margin: 0 auto 64px auto !important; }
     .cta-gallery { position: relative !important; border-radius: 16px !important; overflow: hidden !important; box-shadow: 0 30px 60px rgba(0,0,0,0.5) !important; aspect-ratio: 16/9 !important; background: var(--color-void) !important; }
-    .cta-gallery-track { display: flex !important; width: 100% !important; height: 100% !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; scroll-behavior: smooth !important; scrollbar-width: none !important; }
+    .cta-gallery-track { display: flex !important; width: 100% !important; height: 100% !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; scroll-behavior: smooth !important; scrollbar-width: none !important; overscroll-behavior-x: contain !important; }
     .cta-gallery-track::-webkit-scrollbar { display: none !important; }
     .cta-gallery-track img { flex: 0 0 100% !important; width: 100% !important; height: 100% !important; object-fit: cover !important; scroll-snap-align: center !important; border-radius: 16px !important; }
     .cta-gallery-btn { position: absolute !important; top: 50% !important; transform: translateY(-50%) !important; background: rgba(12,10,16,0.5) !important; color: #fff !important; width: 44px !important; height: 44px !important; border-radius: 50% !important; border: 1px solid rgba(255,255,255,0.1) !important; font-size: 1.2rem !important; display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; z-index: 2 !important; transition: all 0.3s ease !important; backdrop-filter: blur(8px) !important; }
@@ -2613,7 +2685,7 @@ body {
         .two-col { grid-template-columns: 1fr !important; gap: var(--space-lg) !important; }
         .two-col.reverse { direction: ltr !important; }
         .cards-grid, .packages-grid { grid-template-columns: 1fr !important; }
-        .carousel-track::after { flex: 0 0 15% !important; }
+        .carousel-track::after { display: none !important; }
         .testimonial-card { flex: 0 0 85% !important; }
         .gallery-grid { column-count: 2 !important; }
         .footer-grid { grid-template-columns: 1fr !important; gap: var(--space-lg) !important; }
@@ -2621,6 +2693,10 @@ body {
         .hero-content h1 { font-size: 2.2rem !important; }
         .hero { min-height: 80vh !important; }
         .col-image img { height: 280px !important; }
+        .founder-row { align-items: center !important; }
+        .photo-stack { min-height: 320px !important; }
+        .photo-stack-img:first-child { min-height: 320px !important; }
+        .founder-actions { flex-wrap: wrap !important; gap: 14px !important; }
         .hero-banner { padding: 100px 0 40px !important; }
         .check-list li { transform: none !important; }
         .section-onyx, .section-dark, .work-section, .testimonials-section { border-left: none !important; overflow-x: hidden !important; }
@@ -2701,6 +2777,8 @@ body {
     .form-light .form-consent input[type="checkbox"] { border-color: rgba(20,18,24,0.2) !important; background: var(--color-white) !important; }
     .form-light .form-consent label { color: var(--color-charcoal) !important; }
     .ghl-form-hidden { display: none !important; }
+    /* Hide GHL native form section — used as backend submission pipe only */
+    #form-builder, .hl_form-builder--main { position: absolute !important; left: -9999px !important; height: 0 !important; overflow: hidden !important; pointer-events: none !important; opacity: 0 !important; }
     @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
     .form-success { text-align: center !important; padding: 48px 24px !important; animation: formSuccessFadeIn 0.5s ease both !important; }
     .form-success-icon { display: block !important; font-size: 3rem !important; margin-bottom: 16px !important; animation: formSuccessPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both !important; }
@@ -2709,9 +2787,11 @@ body {
     .form-success-check { font-size: 0.82rem !important; color: var(--color-warm-grey) !important; line-height: 1.55 !important; margin: 0 0 28px !important; max-width: 400px !important; margin-left: auto !important; margin-right: auto !important; }
     .form-success-check a { color: var(--color-ember) !important; text-decoration: underline !important; }
     .form-success-close { margin: 0 auto !important; }
+    .form-error .form-success-heading { color: #e8a838 !important; }
     .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
     .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
     .contact-form-wrap .form-success-check { color: var(--color-warm-grey) !important; }
+    .contact-form-wrap .form-error .form-success-heading { color: #c47e15 !important; }
 
     /* =============================================
        index.html inline styles
@@ -2720,7 +2800,7 @@ body {
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     .grain { position: fixed !important; inset: 0 !important; pointer-events: none !important; z-index: 10 !important; opacity: 0.028 !important; mix-blend-mode: overlay !important; }
     .grain svg { width: 100% !important; height: 100% !important; }
-    .section--lg { padding: clamp(80px, 12vw, 160px) 0 !important; }
+    .section--lg { padding: clamp(64px, 8vw, 120px) 0 !important; }
     .section-num { font-family: 'Courier New', Courier, monospace !important; font-size: 0.7rem !important; letter-spacing: 0.08em !important; color: var(--color-stone) !important; display: inline-block !important; margin-bottom: 8px !important; }
     .section-num::after { content: '' !important; display: inline-block !important; width: 32px !important; height: 1px !important; background: var(--color-smoke) !important; vertical-align: middle !important; margin-left: 10px !important; }
     .section-dark .section-num::after, .section-onyx .section-num::after { background: rgba(255,255,255,0.12) !important; }
@@ -2767,7 +2847,7 @@ body {
     .testimonials-section .testimonial-card { padding: 24px !important; position: relative !important; }
     .testimonial-mark { font-family: var(--font-heading) !important; font-size: 4rem !important; line-height: 1 !important; color: var(--color-ember) !important; opacity: 0.15 !important; position: absolute !important; top: 20px !important; left: 28px !important; pointer-events: none !important; }
     .testimonials-section .testimonial-quote { font-size: 0.95rem !important; line-height: 1.7 !important; position: relative !important; z-index: 1 !important; }
-    .cta-section-v2 { text-align: center !important; position: relative !important; overflow: hidden !important; padding: clamp(40px, 6vw, 80px) 0 clamp(100px, 14vw, 180px) 0 !important; }
+    .cta-section-v2 { text-align: center !important; position: relative !important; overflow: hidden !important; padding: clamp(40px, 5vw, 64px) 0 clamp(64px, 8vw, 100px) 0 !important; }
     .cta-heading-v2 { font-size: clamp(2.8rem, 6vw, 5.2rem) !important; letter-spacing: -0.04em !important; line-height: 1.05 !important; margin: 16px 0 20px !important; color: var(--color-white) !important; }
     .cta-body { max-width: 460px !important; margin: 0 auto 40px !important; font-size: 0.95rem !important; color: var(--color-stone) !important; line-height: 1.65 !important; }
     .cta-orb { position: absolute !important; border-radius: 50% !important; background: radial-gradient(circle, rgba(232,89,60,0.1), transparent 70%) !important; filter: blur(100px) !important; pointer-events: none !important; z-index: 0 !important; }
