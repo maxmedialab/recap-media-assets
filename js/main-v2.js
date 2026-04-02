@@ -530,6 +530,57 @@
             //    (no human fills a form in under 3 seconds)
             if (now - _pageLoadTime < 3000) return;
 
+            // ── Client-side validation ───────────────────────────────
+            // Check all required fields before allowing submission.
+            // Highlights empty/invalid fields and scrolls to the first error.
+            var firstError = null;
+            var isValid = true;
+
+            // Clear previous errors
+            var prevErrors = form.querySelectorAll('.has-error');
+            for (var j = 0; j < prevErrors.length; j++) {
+                prevErrors[j].classList.remove('has-error');
+            }
+
+            // Validate required text/email/tel/select fields
+            var requiredFields = form.querySelectorAll('[required]');
+            for (var k = 0; k < requiredFields.length; k++) {
+                var field = requiredFields[k];
+                var val = (field.value || '').trim();
+                var empty = !val;
+
+                // Email format check
+                if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+                    empty = true;
+                }
+
+                // Checkbox check
+                if (field.type === 'checkbox' && !field.checked) {
+                    empty = true;
+                }
+
+                if (empty) {
+                    isValid = false;
+                    var group = field.closest('.form-group') || field.closest('.form-consent');
+                    if (group) {
+                        group.classList.add('has-error');
+                        if (!firstError) firstError = group;
+                    }
+                }
+            }
+
+            if (!isValid) {
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Focus the first invalid field
+                    var firstField = firstError.querySelector('input, select, textarea');
+                    if (firstField && firstField.type !== 'checkbox') {
+                        setTimeout(function() { firstField.focus(); }, 400);
+                    }
+                }
+                return; // Block submission
+            }
+
             // Show "Sending…" state
             var submitBtn = form.querySelector('[type="submit"]');
             if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
@@ -550,6 +601,21 @@
                 showConfirmation(form);
             }, 2500);
         }, true); // capturing phase
+
+        // ── Clear validation errors on input ─────────────────────────
+        // Remove .has-error as soon as the user starts fixing a field.
+        document.addEventListener('input', function (e) {
+            var field = e.target;
+            if (!field.closest || !field.closest('.quote-form')) return;
+            var group = field.closest('.form-group') || field.closest('.form-consent');
+            if (group) group.classList.remove('has-error');
+        }, false);
+        document.addEventListener('change', function (e) {
+            var field = e.target;
+            if (!field.closest || !field.closest('.quote-form')) return;
+            var group = field.closest('.form-group') || field.closest('.form-consent');
+            if (group) group.classList.remove('has-error');
+        }, false);
     }
 
     function initPhotoStack() {

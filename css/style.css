@@ -210,8 +210,9 @@ img {
     inset: 0 !important;
     background: rgba(20, 18, 24, 0.97) !important;
     transform: translateX(100%) !important;
-    transition: transform 0.35s ease !important;
+    transition: transform 0.35s ease, visibility 0s 0.35s !important;
     pointer-events: none !important;
+    visibility: hidden !important;
     z-index: 999 !important;
     display: flex !important;
     flex-direction: column !important;
@@ -223,6 +224,8 @@ img {
 .mobile-menu.open {
     transform: translateX(0) !important;
     pointer-events: auto !important;
+    visibility: visible !important;
+    transition: transform 0.35s ease, visibility 0s 0s !important;
 }
 
 .mobile-menu a {
@@ -2168,6 +2171,23 @@ select.form-control option {
 }
 
 .form-group.has-error .form-error { display: block !important; }
+.form-group.has-error .form-control {
+    border-color: #E85C5C !important;
+}
+.form-consent.has-error input[type="checkbox"] {
+    border-color: #E85C5C !important;
+    box-shadow: 0 0 0 1px #E85C5C !important;
+}
+.form-consent.has-error .consent-error {
+    display: block !important;
+}
+.consent-error {
+    display: none !important;
+    font-size: 0.78rem !important;
+    color: #E85C5C !important;
+    margin-top: 6px !important;
+    flex-basis: 100% !important;
+}
 
 /* ===========================
    Light Form Variant
@@ -2444,8 +2464,8 @@ body {
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
     .nav-hamburger.open span:nth-child(2) { opacity: 0 !important; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
-    .mobile-menu { position: fixed !important; inset: 0 !important; background: rgba(20,18,24,0.97) !important; transform: translateX(100%) !important; transition: transform 0.35s ease !important; z-index: 999 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 32px !important; pointer-events: none !important; }
-    .mobile-menu.open { transform: translateX(0) !important; pointer-events: auto !important; }
+    .mobile-menu { position: fixed !important; inset: 0 !important; background: rgba(20,18,24,0.97) !important; transform: translateX(100%) !important; transition: transform 0.35s ease, visibility 0s 0.35s !important; z-index: 999 !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 32px !important; pointer-events: none !important; visibility: hidden !important; }
+    .mobile-menu.open { transform: translateX(0) !important; pointer-events: auto !important; visibility: visible !important; transition: transform 0.35s ease, visibility 0s 0s !important; }
     .mobile-menu a { color: var(--color-white) !important; font-family: var(--font-heading) !important; font-size: 1.8rem !important; font-weight: 600 !important; text-decoration: none !important; transition: color var(--transition-fast) !important; }
     .mobile-menu a:hover { color: var(--color-ember) !important; }
 
@@ -2791,6 +2811,10 @@ body {
     .form-consent label { font-size: 0.8rem !important; color: var(--color-stone) !important; line-height: 1.5 !important; cursor: pointer !important; }
     .form-error { font-size: 0.78rem !important; color: #E85C5C !important; display: none !important; }
     .form-group.has-error .form-error { display: block !important; }
+    .form-group.has-error .form-control { border-color: #E85C5C !important; }
+    .form-consent.has-error input[type="checkbox"] { border-color: #E85C5C !important; box-shadow: 0 0 0 1px #E85C5C !important; }
+    .form-consent.has-error .consent-error { display: block !important; }
+    .consent-error { display: none !important; font-size: 0.78rem !important; color: #E85C5C !important; margin-top: 6px !important; flex-basis: 100% !important; }
     .form-light .form-control { background: var(--color-white) !important; border-color: rgba(20,18,24,0.12) !important; color: var(--color-obsidian) !important; }
     .form-light .form-control::placeholder { color: var(--color-warm-grey) !important; }
     .form-light .form-control:focus { border-color: var(--color-ember) !important; }
