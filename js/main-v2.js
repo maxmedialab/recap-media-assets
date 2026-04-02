@@ -433,13 +433,6 @@
                 selectMultiselectOption(ms, label);
             }
 
-            // Terms checkbox
-            var ourCheckbox = customForm.querySelector('[name="terms_and_conditions"]');
-            var ghlCheckbox = ghl.querySelector('[name="terms_and_conditions"]');
-            if (ourCheckbox && ghlCheckbox && ourCheckbox.checked && !ghlCheckbox.checked) {
-                ghlCheckbox.click();
-            }
-
             // Click GHL submit after a short delay (let multiselect settle)
             setTimeout(function () {
                 var ghlBtn = ghl.querySelector('button[type="submit"]');
@@ -575,14 +568,9 @@
                     empty = true;
                 }
 
-                // Checkbox check
-                if (field.type === 'checkbox' && !field.checked) {
-                    empty = true;
-                }
-
                 if (empty) {
                     isValid = false;
-                    var group = field.closest('.form-group') || field.closest('.form-consent');
+                    var group = field.closest('.form-group');
                     if (group) {
                         group.classList.add('has-error');
                         if (!firstError) firstError = group;
@@ -595,7 +583,7 @@
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     // Focus the first invalid field
                     var firstField = firstError.querySelector('input, select, textarea');
-                    if (firstField && firstField.type !== 'checkbox') {
+                    if (firstField) {
                         setTimeout(function() { firstField.focus(); }, 400);
                     }
                 }
@@ -628,24 +616,14 @@
         document.addEventListener('input', function (e) {
             var field = e.target;
             if (!field.closest || !field.closest('.quote-form')) return;
-            var group = field.closest('.form-group') || field.closest('.form-consent');
+            var group = field.closest('.form-group');
             if (group) group.classList.remove('has-error');
         }, false);
         document.addEventListener('change', function (e) {
             var field = e.target;
             if (!field.closest || !field.closest('.quote-form')) return;
-            var group = field.closest('.form-group') || field.closest('.form-consent');
+            var group = field.closest('.form-group');
             if (group) group.classList.remove('has-error');
-        }, false);
-
-        // ── Checkbox: clear validation error on toggle ────────────────
-        // The checkbox is now nested INSIDE a <label class="form-consent">,
-        // so clicking anywhere on the label (text or box) toggles it via
-        // native HTML — no JS toggle needed. We only clear .has-error here.
-        document.addEventListener('change', function (e) {
-            if (e.target.type !== 'checkbox') return;
-            var consent = e.target.closest('.form-consent');
-            if (consent) consent.classList.remove('has-error');
         }, false);
     }
 

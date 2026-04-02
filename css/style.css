@@ -2115,58 +2115,19 @@ select.form-control option {
    Consent Checkbox
    =========================== */
 
-.form-consent {
-    display: flex !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-    margin: 8px 0 20px !important;
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 2 !important;
-    cursor: pointer !important;
-}
-
-.form-consent input[type="checkbox"] {
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    width: 18px !important;
-    height: 18px !important;
-    min-width: 18px !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
-    border-radius: 4px !important;
-    background: rgba(255,255,255,0.05) !important;
-    cursor: pointer !important;
-    margin-top: 1px !important;
-    position: relative !important;
-    z-index: 3 !important;
-    pointer-events: auto !important;
-    transition: border-color var(--transition-fast), background-color var(--transition-fast) !important;
-    flex-shrink: 0 !important;
-}
-
-.form-consent input[type="checkbox"]:checked {
-    background-color: var(--color-ember) !important;
-    border-color: var(--color-ember) !important;
-}
-
-.form-consent input[type="checkbox"]:checked::after {
-    content: '' !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-size: 70% !important;
-}
-
-.form-consent span {
-    font-size: 0.8rem !important;
-    color: var(--color-stone) !important;
+.form-consent-text {
+    font-size: 0.75rem !important;
+    color: var(--color-warm-grey) !important;
     line-height: 1.5 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    z-index: 3 !important;
-    position: relative !important;
+    margin: 12px 0 0 !important;
+    text-align: center !important;
+}
+.form-consent-text a {
+    color: var(--color-stone) !important;
+    text-decoration: underline !important;
+}
+.form-consent-text a:hover {
+    color: var(--color-white) !important;
 }
 
 /* ===========================
@@ -2182,20 +2143,6 @@ select.form-control option {
 .form-group.has-error .form-error { display: block !important; }
 .form-group.has-error .form-control {
     border-color: #E85C5C !important;
-}
-.form-consent.has-error input[type="checkbox"] {
-    border-color: #E85C5C !important;
-    box-shadow: 0 0 0 1px #E85C5C !important;
-}
-.form-consent.has-error .consent-error {
-    display: block !important;
-}
-.consent-error {
-    display: none !important;
-    font-size: 0.78rem !important;
-    color: #E85C5C !important;
-    margin-top: 6px !important;
-    flex-basis: 100% !important;
 }
 
 /* ===========================
@@ -2224,12 +2171,9 @@ select.form-control option {
     color: var(--color-obsidian) !important;
 }
 
-.form-light .form-consent input[type="checkbox"] {
-    border-color: rgba(20,18,24,0.2) !important;
-    background: var(--color-white) !important;
-}
-
-.form-light .form-consent span { color: var(--color-charcoal) !important; }
+.form-light .form-consent-text { color: var(--color-warm-grey) !important; }
+.form-light .form-consent-text a { color: var(--color-charcoal) !important; }
+.form-light .form-consent-text a:hover { color: var(--color-obsidian) !important; }
 
 /* ===========================
    Hidden GHL Form
@@ -2814,25 +2758,21 @@ body {
     textarea.form-control { min-height: 100px !important; resize: vertical !important; }
     select.form-control { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; background: rgba(255,255,255,0.95) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important; padding-right: 36px !important; }
     select.form-control option { background: var(--color-white) !important; color: var(--color-obsidian) !important; }
-    .form-consent { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin: 8px 0 20px !important; pointer-events: auto !important; position: relative !important; z-index: 2 !important; cursor: pointer !important; }
-    .form-consent input[type="checkbox"] { appearance: none !important; -webkit-appearance: none !important; width: 18px !important; height: 18px !important; min-width: 18px !important; border: 1px solid rgba(255,255,255,0.2) !important; border-radius: 4px !important; background: rgba(255,255,255,0.05) !important; cursor: pointer !important; margin-top: 1px !important; position: relative !important; z-index: 3 !important; pointer-events: auto !important; transition: border-color var(--transition-fast), background-color var(--transition-fast) !important; flex-shrink: 0 !important; }
-    .form-consent input[type="checkbox"]:checked { background-color: var(--color-ember) !important; border-color: var(--color-ember) !important; }
-    .form-consent input[type="checkbox"]:checked::after { content: '' !important; position: absolute !important; inset: 0 !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: center !important; background-size: 70% !important; }
-    .form-consent span { font-size: 0.8rem !important; color: var(--color-stone) !important; line-height: 1.5 !important; cursor: pointer !important; pointer-events: auto !important; z-index: 3 !important; position: relative !important; }
+    .form-consent-text { font-size: 0.75rem !important; color: var(--color-warm-grey) !important; line-height: 1.5 !important; margin: 12px 0 0 !important; text-align: center !important; }
+    .form-consent-text a { color: var(--color-stone) !important; text-decoration: underline !important; }
+    .form-consent-text a:hover { color: var(--color-white) !important; }
     .form-error { font-size: 0.78rem !important; color: #E85C5C !important; display: none !important; }
     .form-group.has-error .form-error { display: block !important; }
     .form-group.has-error .form-control { border-color: #E85C5C !important; }
-    .form-consent.has-error input[type="checkbox"] { border-color: #E85C5C !important; box-shadow: 0 0 0 1px #E85C5C !important; }
-    .form-consent.has-error .consent-error { display: block !important; }
-    .consent-error { display: none !important; font-size: 0.78rem !important; color: #E85C5C !important; margin-top: 6px !important; flex-basis: 100% !important; }
     .form-light .form-control { background: var(--color-white) !important; border-color: rgba(20,18,24,0.12) !important; color: var(--color-obsidian) !important; }
     .form-light .form-control::placeholder { color: var(--color-warm-grey) !important; }
     .form-light .form-control:focus { border-color: var(--color-ember) !important; }
     .form-light label { color: var(--color-charcoal) !important; }
     .form-light select.form-control { background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important; color: var(--color-obsidian) !important; }
     .form-light select.form-control option { background: var(--color-white) !important; color: var(--color-obsidian) !important; }
-    .form-light .form-consent input[type="checkbox"] { border-color: rgba(20,18,24,0.2) !important; background: var(--color-white) !important; }
-    .form-light .form-consent span { color: var(--color-charcoal) !important; }
+    .form-light .form-consent-text { color: var(--color-warm-grey) !important; }
+    .form-light .form-consent-text a { color: var(--color-charcoal) !important; }
+    .form-light .form-consent-text a:hover { color: var(--color-obsidian) !important; }
     .ghl-form-hidden { display: none !important; }
     /* Hide GHL native form section — used as backend submission pipe only */
     #form-builder, .hl_form-builder--main { position: absolute !important; left: -9999px !important; height: 0 !important; overflow: hidden !important; pointer-events: none !important; opacity: 0 !important; }
