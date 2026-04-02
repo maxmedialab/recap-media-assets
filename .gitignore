@@ -1,2 +1,14 @@
 .DS_Store
 .claude/
+
+# Docs & scripts (not needed on CDN)
+*.md
+split_html.py
+
+# Assets (images/video hosted elsewhere)
+assets/
+
+# Unrelated projects
+claude-seo-main/
+pretext-main/
+ui-ux-pro-max-skill/
