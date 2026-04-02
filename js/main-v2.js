@@ -304,7 +304,7 @@
             '<div class="form-success">' +
                 '<span class="form-success-icon" aria-hidden="true">\uD83D\uDCEC</span>' +
                 '<h3 class="form-success-heading">Message received.</h3>' +
-                '<p class="form-success-body">We\u2019ll get back to you within one business day \u2014 usually faster if coffee\u2019s been had.</p>' +
+                '<p class="form-success-body">We\u2019ll get back to you within one business day \u2014 or we owe you a coffee.</p>' +
                 '<p class="form-success-check">Before you close this, check your inbox for a confirmation email. If nothing arrives within 2\u00A0minutes, reach out directly at <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a>.</p>' +
                 '<button type="button" class="btn btn-ghost form-success-close">Got it</button>' +
             '</div>';
