@@ -2258,7 +2258,7 @@ select.form-control option {
 /* Light-theme form success (contact page inline) */
 .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
 .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
-.contact-form-wrap .form-success-check { color: var(--color-warm-grey) !important; }
+.contact-form-wrap .form-success-check { color: var(--color-stone) !important; }
 .contact-form-wrap .form-error .form-success-heading { color: #c47e15 !important; }
 
 /* ===========================
@@ -2794,7 +2794,7 @@ body {
     .form-error .form-success-heading { color: #e8a838 !important; }
     .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
     .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
-    .contact-form-wrap .form-success-check { color: var(--color-warm-grey) !important; }
+    .contact-form-wrap .form-success-check { color: var(--color-stone) !important; }
     .contact-form-wrap .form-error .form-success-heading { color: #c47e15 !important; }
 
     /* =============================================
