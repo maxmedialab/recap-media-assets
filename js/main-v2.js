@@ -637,6 +637,29 @@
             var group = field.closest('.form-group') || field.closest('.form-consent');
             if (group) group.classList.remove('has-error');
         }, false);
+
+        // ── Checkbox toggle via JS ───────────────────────────────────
+        // The native <label for="id"> mechanism breaks when duplicate IDs
+        // exist (contact page inline form + modal form both have
+        // id="visible-consent"). GHL may also intercept native checkbox
+        // clicks. This handler makes clicking anywhere in .form-consent
+        // (label text OR the box) toggle the checkbox reliably.
+        document.addEventListener('click', function (e) {
+            var consent = e.target.closest('.form-consent');
+            if (!consent) return;
+            // Only act on .form-consent inside a .quote-form
+            if (!consent.closest('.quote-form')) return;
+            var cb = consent.querySelector('input[type="checkbox"]');
+            if (!cb) return;
+            // If the click was directly on the checkbox, let it toggle naturally
+            if (e.target === cb) return;
+            // Otherwise toggle it via JS
+            e.preventDefault();
+            cb.checked = !cb.checked;
+            cb.dispatchEvent(new Event('change', { bubbles: true }));
+            // Clear validation error
+            consent.classList.remove('has-error');
+        }, false);
     }
 
     function initPhotoStack() {

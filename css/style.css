@@ -1565,8 +1565,8 @@ main {
     align-items: start !important;
 }
 
-@media (max-width: 768px) {
-    .contact-layout { grid-template-columns: 1fr !important; }
+@media (max-width: 960px) {
+    .contact-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
 }
 
 .contact-form-wrap {
@@ -2719,6 +2719,7 @@ body {
         .package-card.featured:hover { transform: translateY(-4px) !important; }
         .footer-grid { grid-template-columns: 1fr 1fr !important; }
         .footer-brand { grid-column: 1 / -1 !important; }
+        .contact-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
     }
     @media (max-width: 768px) {
         .nav-logo span { display: none !important; }
