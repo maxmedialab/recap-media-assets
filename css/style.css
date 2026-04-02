@@ -619,6 +619,27 @@ main {
     color: var(--color-white) !important;
 }
 
+.btn-ghost {
+    background-color: transparent !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+.btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: var(--color-white) !important;
+}
+/* Ghost button on light backgrounds (contact page) */
+.contact-form-wrap .btn-ghost {
+    color: var(--color-obsidian) !important;
+    border-color: rgba(20, 18, 24, 0.2) !important;
+}
+.contact-form-wrap .btn-ghost:hover {
+    background-color: rgba(20, 18, 24, 0.04) !important;
+    border-color: rgba(20, 18, 24, 0.4) !important;
+    color: var(--color-obsidian) !important;
+}
+
 /* ===========================
    Two-Column Layout
    =========================== */
