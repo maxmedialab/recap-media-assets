@@ -273,127 +273,95 @@
     }
 
     function initFormBridge() {
-        // Direct API submission to GHL (LeadConnector).
-        // GHL renders forms as iframes (cross-origin), so DOM bridge won't work.
-        // Instead we POST directly to the GHL forms API.
+        // Submission is handled by the VidLead external tracking script
+        // (external-tracking.js). We MUST NOT bind to the form's submit event
+        // or the submit button's click event (Rule 5 from official docs).
+        //
+        // This function only provides UX polish:
+        //   1. "Sending…" button state on submit (passive capture listener)
+        //   2. Post-submission confirmation message (after delay)
 
-        var ghlContainer = document.querySelector('.ghl-form-hidden');
-        var formId     = (ghlContainer && ghlContainer.getAttribute('data-ghl-form-id'))     || 'DefzD8Urt68TpVkbgLwx';
-        var locationId = (ghlContainer && ghlContainer.getAttribute('data-ghl-location-id')) || 'K9u6cepBq4hbudcnIkVw';
+        var SUCCESS_HTML =
+            '<div class="form-success">' +
+                '<span class="form-success-icon" aria-hidden="true">\uD83D\uDCEC</span>' +
+                '<h3 class="form-success-heading">Message received.</h3>' +
+                '<p class="form-success-body">We\u2019ll get back to you within one business day \u2014 usually faster if coffee\u2019s been had.</p>' +
+                '<p class="form-success-check">Before you close this, check your inbox for a confirmation email. If nothing arrives within 2\u00A0minutes, reach out directly at <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a>.</p>' +
+                '<button type="button" class="btn btn-ghost form-success-close">Got it</button>' +
+            '</div>';
 
-        var FIELD_MAP = {
-            'first_name':          'first_name',
-            'last_name':           'last_name',
-            'email':               'email',
-            'phone':               'phone',
-            'organization':        'organization',
-            'describe_your_event': 'rqpVmIVY0MSM5Tk6jUZU',
-            'date_picker_5uqo':   'iLYg2CdXbkVDtYQFCYPD',
-            'origin':              'iL6SbBvHdRGke1TaZlNM',
-            'terms_and_conditions':'terms_and_conditions'
-        };
+        function showConfirmation(form) {
+            var container = form.closest('.modal-container') || form.closest('.contact-form-wrap');
+            if (!container) return;
 
-        var GHL_ENDPOINT = 'https://backend.leadconnectorhq.com/forms/submit';
+            var isModal = !!form.closest('.modal-container');
 
-        function handleSubmit(visibleForm) {
-            // Honeypot — bots fill hidden fields, real users don't
-            var hp = visibleForm.querySelector('.hp-field');
+            // Hide form elements, show success message
+            var formEl = isModal ? container.querySelector('.quote-form') : form;
+            var heading = isModal ? container.querySelector('h2') : null;
+            var subtitle = isModal ? container.querySelector('.modal-subtitle') : null;
+            var ghlHidden = container.querySelector('.ghl-form-hidden');
+            var formSubtitle = !isModal ? container.querySelector('.form-subtitle') : null;
+            var formHeading = !isModal ? container.querySelector('h2') : null;
+
+            if (formEl) formEl.style.display = 'none';
+            if (heading) heading.style.display = 'none';
+            if (subtitle) subtitle.style.display = 'none';
+            if (ghlHidden) ghlHidden.style.display = 'none';
+            if (formSubtitle) formSubtitle.style.display = 'none';
+            if (formHeading) formHeading.style.display = 'none';
+
+            var successDiv = document.createElement('div');
+            successDiv.innerHTML = SUCCESS_HTML;
+            container.appendChild(successDiv.firstChild);
+
+            // "Got it" button handler
+            var closeBtn = container.querySelector('.form-success-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    var successEl = container.querySelector('.form-success');
+                    if (successEl) successEl.remove();
+
+                    // Restore form
+                    if (formEl) { formEl.style.display = ''; formEl.reset(); }
+                    if (heading) heading.style.display = '';
+                    if (subtitle) subtitle.style.display = '';
+                    if (ghlHidden) ghlHidden.style.display = '';
+                    if (formSubtitle) formSubtitle.style.display = '';
+                    if (formHeading) formHeading.style.display = '';
+
+                    // Re-enable button
+                    var btn = formEl ? formEl.querySelector('[type="submit"]') : null;
+                    if (btn) { btn.disabled = false; btn.textContent = 'Request quote'; }
+
+                    // Close modal if applicable
+                    if (isModal) {
+                        var overlay = document.querySelector('.modal-overlay');
+                        if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+                    }
+                });
+            }
+        }
+
+        // Passive listener in CAPTURING phase — does NOT preventDefault or stopPropagation.
+        // The tracking script's own handler on the form will fire normally.
+        document.addEventListener('submit', function (e) {
+            var form = e.target;
+            if (!form.classList || !form.classList.contains('quote-form')) return;
+
+            // Honeypot check
+            var hp = form.querySelector('.hp-field');
             if (hp && hp.value) return;
 
-            // Collect form data from [data-ghl] fields
-            var formData = {};
-            var fields = visibleForm.querySelectorAll('[data-ghl]');
-            for (var j = 0; j < fields.length; j++) {
-                var visEl  = fields[j];
-                var friendly = visEl.getAttribute('data-ghl');
-                var ghlKey = FIELD_MAP[friendly] || friendly;
-
-                if (visEl.type === 'checkbox') {
-                    formData[ghlKey] = visEl.checked;
-                } else {
-                    formData[ghlKey] = visEl.value;
-                }
-            }
-
-            // Build multipart FormData payload
-            var payload = new FormData();
-            payload.append('formId',     formId);
-            payload.append('locationId', locationId);
-            payload.append('pageUrl',    window.location.href);
-            payload.append('formData',   JSON.stringify(formData));
-
-            // Disable button, show sending state
-            var submitBtn = visibleForm.querySelector('[type="submit"]');
+            // Show "Sending…" state
+            var submitBtn = form.querySelector('[type="submit"]');
             if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026'; }
 
-            function showSuccess() {
-                var existing = visibleForm.querySelector('.form-feedback');
-                if (existing) existing.remove();
-                var msg = document.createElement('p');
-                msg.className = 'form-feedback';
-                msg.style.cssText = 'margin-top:16px;text-align:center;color:#4caf50;font-size:0.9rem;font-weight:500;';
-                msg.textContent = 'Thank you! We\u2019ll get back to you within one business day.';
-                visibleForm.appendChild(msg);
-                setTimeout(function () {
-                    visibleForm.reset();
-                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-                    if (msg.parentNode) msg.parentNode.removeChild(msg);
-                    var overlay = document.querySelector('.modal-overlay');
-                    if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
-                }, 2500);
-            }
-
-            function showError(detail) {
-                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request quote'; }
-                console.error('GHL form submission error:', detail);
-            }
-
-            // POST to GHL API — try normal mode first, fall back to no-cors
-            fetch(GHL_ENDPOINT, { method: 'POST', body: payload })
-                .then(function (res) {
-                    if (res.ok || res.status === 200 || res.status === 201) {
-                        showSuccess();
-                    } else if (res.type === 'opaque') {
-                        // no-cors response — assume success
-                        showSuccess();
-                    } else {
-                        // CORS might block reading the response — retry with no-cors
-                        return fetch(GHL_ENDPOINT, { method: 'POST', body: payload, mode: 'no-cors' })
-                            .then(function () { showSuccess(); });
-                    }
-                })
-                .catch(function (err) {
-                    // CORS error — retry once with no-cors (fire-and-forget)
-                    console.warn('GHL form: CORS blocked, retrying with no-cors:', err);
-                    fetch(GHL_ENDPOINT, { method: 'POST', body: payload, mode: 'no-cors' })
-                        .then(function () { showSuccess(); })
-                        .catch(function (err2) { showError(err2); });
-                });
-        }
-
-        // Attach to .quote-form submit event
-        var forms = document.querySelectorAll('.quote-form');
-        for (var i = 0; i < forms.length; i++) {
-            (function (visibleForm) {
-                visibleForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleSubmit(visibleForm);
-                });
-                // Fallback: also listen for click on submit button directly,
-                // in case GHL or Bootstrap intercepts the form submit event
-                var btn = visibleForm.querySelector('[type="submit"]');
-                if (btn) {
-                    btn.addEventListener('click', function (e) {
-                        // Only handle if the form submit event didn't already fire
-                        if (btn.disabled) return; // submit handler already running
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleSubmit(visibleForm);
-                    });
-                }
-            })(forms[i]);
-        }
+            // After delay, show confirmation (tracking script has already fired by now)
+            setTimeout(function () {
+                showConfirmation(form);
+            }, 2000);
+        }, true); // <-- capturing phase, critical: does NOT intercept the event
     }
 
     function initAll() {
