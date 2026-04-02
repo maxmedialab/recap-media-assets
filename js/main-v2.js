@@ -10,6 +10,17 @@
         const hamburger = document.querySelector('.nav-hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
         if (!nav) return;
+
+        // ── Force mobile menu hidden via JS ──────────────────────────
+        // GHL overrides CSS transform (translateX(100%) → identity matrix),
+        // so the mobile menu sits invisibly on top of the page blocking all
+        // clicks. CSS pointer-events/visibility also get overridden.
+        // JS inline styles are the only reliable approach.
+        if (mobileMenu && !mobileMenu.classList.contains('open')) {
+            mobileMenu.style.setProperty('pointer-events', 'none', 'important');
+            mobileMenu.style.setProperty('visibility', 'hidden', 'important');
+        }
+
         function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 80); }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
@@ -18,12 +29,22 @@
                 const isOpen = mobileMenu.classList.toggle('open');
                 hamburger.classList.toggle('open', isOpen);
                 document.body.style.overflow = isOpen ? 'hidden' : '';
+                // Toggle mobile menu visibility via JS
+                if (isOpen) {
+                    mobileMenu.style.setProperty('pointer-events', 'auto', 'important');
+                    mobileMenu.style.setProperty('visibility', 'visible', 'important');
+                } else {
+                    mobileMenu.style.setProperty('pointer-events', 'none', 'important');
+                    mobileMenu.style.setProperty('visibility', 'hidden', 'important');
+                }
             });
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('open');
                     hamburger.classList.remove('open');
                     document.body.style.overflow = '';
+                    mobileMenu.style.setProperty('pointer-events', 'none', 'important');
+                    mobileMenu.style.setProperty('visibility', 'hidden', 'important');
                 });
             });
         }
