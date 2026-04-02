@@ -2827,7 +2827,7 @@ body {
     .ghl-form-hidden { display: none !important; }
     /* Hide GHL native form section — used as backend submission pipe only */
     #form-builder, .hl_form-builder--main { position: absolute !important; left: -9999px !important; height: 0 !important; overflow: hidden !important; pointer-events: none !important; opacity: 0 !important; }
-    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr !important; } }
     .form-success { text-align: center !important; padding: 48px 24px !important; animation: formSuccessFadeIn 0.5s ease both !important; }
     .form-success-icon { display: block !important; font-size: 3rem !important; margin-bottom: 16px !important; animation: formSuccessPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both !important; }
     .form-success-heading { font-family: 'General Sans', sans-serif !important; font-size: 1.6rem !important; font-weight: 700 !important; color: var(--color-white) !important; margin: 0 0 12px !important; letter-spacing: -0.02em !important; }
