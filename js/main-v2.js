@@ -504,6 +504,11 @@
             // PREVENT default — stops the GET redirect to current URL
             e.preventDefault();
 
+            // STOP propagation — prevents VidLead external tracking script
+            // from also catching this submit and creating a duplicate
+            // "External Form" submission in GHL.
+            e.stopPropagation();
+
             // ── Anti-spam checks ──────────────────────────────────────
             // 1. Honeypot: bots auto-fill hidden fields
             var hp = form.querySelector('.hp-field');
