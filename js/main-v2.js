@@ -582,10 +582,33 @@
     }
 
     function initAll() {
-        initNav(); initScrollReveal(); initCardTilt(); initFAQ();
-        initCarousel(); initGallery(); initModal(); initCtaGallery();
-        initCursorGlow(); initCustomCursor(); initPageTransitions();
-        initFormBridge(); initPhotoStack();
+        // Wrap each init in try-catch so one failure doesn't kill the rest.
+        // MutationObserver callbacks swallow errors silently, so without this
+        // a crash in e.g. initPageTransitions() would silently prevent
+        // initFormBridge() from ever running.
+        var fns = [
+            initNav, initScrollReveal, initCardTilt, initFAQ,
+            initCarousel, initGallery, initModal, initCtaGallery,
+            initCursorGlow, initCustomCursor, initPageTransitions,
+            initPhotoStack
+        ];
+        for (var i = 0; i < fns.length; i++) {
+            try { fns[i](); } catch (e) {
+                if (typeof console !== 'undefined' && console.error) {
+                    console.error('[RM] init error in ' + (fns[i].name || 'fn' + i) + ':', e);
+                }
+            }
+        }
+    }
+
+    // ── Form bridge: runs IMMEDIATELY ─────────────────────────────────
+    // The submit handler only needs `document` (not any GHL-injected DOM),
+    // so register it right away — independent of _waitForGHL timing.
+    // This ensures the handler is ALWAYS present before any form submit.
+    try { initFormBridge(); } catch (e) {
+        if (typeof console !== 'undefined' && console.error) {
+            console.error('[RM] initFormBridge error:', e);
+        }
     }
 
     // GHL injects Global Sections (nav, cursor, modal) asynchronously AFTER the
