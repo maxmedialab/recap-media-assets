@@ -557,6 +557,8 @@ main {
     font-weight: 700 !important;
     letter-spacing: -0.3px !important;
     max-width: 700px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .hero-banner p {
@@ -565,6 +567,8 @@ main {
     margin-top: 16px !important;
     max-width: 580px !important;
     line-height: 1.6 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* ===========================
@@ -2494,8 +2498,8 @@ body {
     .trust-line { margin-top: 20px !important; font-size: 0.8rem !important; color: var(--color-stone) !important; letter-spacing: 0.01em !important; }
     .hero-banner { position: relative !important; z-index: 1 !important; background-color: var(--color-onyx) !important; padding: 120px 0 40px !important; overflow: hidden !important; }
     .hero-banner::before { content: '' !important; position: absolute !important; inset: 0 !important; background: linear-gradient(135deg, rgba(232,89,60,0.05) 0%, transparent 60%) !important; pointer-events: none !important; }
-    .hero-banner h1 { font-size: clamp(2rem, 4vw, 3rem) !important; color: var(--color-white) !important; font-weight: 700 !important; letter-spacing: -0.3px !important; max-width: 700px !important; }
-    .hero-banner p { color: var(--color-warm-grey) !important; font-size: 1.05rem !important; margin-top: 16px !important; max-width: 580px !important; line-height: 1.6 !important; }
+    .hero-banner h1 { font-size: clamp(2rem, 4vw, 3rem) !important; color: var(--color-white) !important; font-weight: 700 !important; letter-spacing: -0.3px !important; max-width: 700px !important; margin-left: auto !important; margin-right: auto !important; }
+    .hero-banner p { color: var(--color-warm-grey) !important; font-size: 1.05rem !important; margin-top: 16px !important; max-width: 580px !important; line-height: 1.6 !important; margin-left: auto !important; margin-right: auto !important; }
 
     /* Custom cursor — dot hidden, ring hidden, native cursor restored */
     .cursor-dot { display: none !important; }
