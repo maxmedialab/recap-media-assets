@@ -663,6 +663,43 @@
         });
     }
 
+    function initVideoAutoPause() {
+        if (typeof IntersectionObserver === 'undefined') return;
+        var videos = document.querySelectorAll('video');
+        if (!videos.length) return;
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                var vid = entry.target;
+                var isBackground = vid.hasAttribute('autoplay') && vid.hasAttribute('loop');
+
+                if (!entry.isIntersecting) {
+                    // Scrolled out of view — pause
+                    if (!vid.paused) {
+                        vid.pause();
+                        vid._rmAutoPaused = true;
+                        // Show play overlay for user-initiated videos
+                        if (!isBackground) {
+                            var wrap = vid.closest('.video-player-wrap');
+                            if (wrap) {
+                                var overlay = wrap.querySelector('.video-play-overlay');
+                                var controls = wrap.querySelector('.video-controls');
+                                if (overlay) { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; }
+                                if (controls) controls.style.opacity = '0';
+                            }
+                        }
+                    }
+                } else if (isBackground && vid._rmAutoPaused) {
+                    // Background video scrolled back into view — resume
+                    vid.play();
+                    vid._rmAutoPaused = false;
+                }
+            });
+        }, { threshold: 0.15 });
+
+        videos.forEach(function (vid) { observer.observe(vid); });
+    }
+
     function initAll() {
         // Wrap each init in try-catch so one failure doesn't kill the rest.
         // MutationObserver callbacks swallow errors silently, so without this
@@ -672,7 +709,7 @@
             initNav, initScrollReveal, initCardTilt, initFAQ,
             initCarousel, initGallery, initModal, initCtaGallery,
             initCursorGlow, initCustomCursor, initPageTransitions,
-            initPhotoStack
+            initPhotoStack, initVideoAutoPause
         ];
         for (var i = 0; i < fns.length; i++) {
             try { fns[i](); } catch (e) {
