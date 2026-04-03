@@ -240,8 +240,28 @@
             if (!vid || !overlay) return;
             function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; if (controls) controls.style.opacity = '1'; }
             function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; if (controls) controls.style.opacity = '0'; }
-            overlay.addEventListener('click', function() { vid.play(); hide(); });
-            vid.addEventListener('click', function() { if (!vid.paused) { vid.pause(); } else { vid.play(); hide(); } });
+            overlay.addEventListener('click', function() {
+                vid.muted = true;
+                var p = vid.play();
+                if (p && p.then) {
+                    p.then(function() { vid.muted = false; });
+                } else {
+                    setTimeout(function() { vid.muted = false; }, 100);
+                }
+                hide();
+            });
+            vid.addEventListener('click', function() {
+                if (!vid.paused) { vid.pause(); } else {
+                    vid.muted = true;
+                    var p = vid.play();
+                    if (p && p.then) {
+                        p.then(function() { vid.muted = false; });
+                    } else {
+                        setTimeout(function() { vid.muted = false; }, 100);
+                    }
+                    hide();
+                }
+            });
             vid.addEventListener('pause', show);
             vid.addEventListener('ended', show);
             if (muteBtn) {
