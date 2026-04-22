@@ -12,3 +12,6 @@ assets/
 claude-seo-main/
 pretext-main/
 ui-ux-pro-max-skill/
+
+# Local-only GHL reference snippets (not deployed)
+ghl-body-tracking-code.html
