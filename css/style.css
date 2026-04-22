@@ -620,18 +620,6 @@ main {
     color: var(--color-white) !important;
 }
 
-.btn-outline {
-    background-color: transparent !important;
-    color: var(--color-ember) !important;
-    border: 2px solid var(--color-ember) !important;
-}
-
-.btn-outline:hover {
-    border-color: var(--color-ember-deep) !important;
-    background-color: var(--color-ember) !important;
-    color: var(--color-white) !important;
-}
-
 .btn-outline-ember {
     background-color: transparent !important;
     color: var(--color-ember) !important;
@@ -2490,8 +2478,6 @@ body {
     .btn:hover::after { left: 100% !important; }
     .btn-primary { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
     .btn-primary:hover { background-color: var(--color-ember-deep) !important; color: var(--color-white) !important; }
-    .btn-outline { background-color: transparent !important; color: var(--color-ember) !important; border: 2px solid var(--color-ember) !important; }
-    .btn-outline:hover { border-color: var(--color-ember-deep) !important; background-color: var(--color-ember) !important; color: var(--color-white) !important; }
     .btn-outline-ember { background-color: transparent !important; color: var(--color-ember) !important; border: 2px solid var(--color-ember) !important; }
     .btn-outline-ember:hover { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
 
