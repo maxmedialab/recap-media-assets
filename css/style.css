@@ -643,30 +643,6 @@ main {
     color: var(--color-white) !important;
 }
 
-.btn-ghost {
-    background-color: transparent !important;
-    color: var(--color-ember) !important;
-    border: 1px solid var(--color-ember) !important;
-    padding: 12px 28px !important;
-    border-radius: var(--radius-md) !important;
-}
-.btn-ghost:hover {
-    background-color: var(--color-ember) !important;
-    border-color: var(--color-ember) !important;
-    color: var(--color-white) !important;
-}
-/* Ghost button on light backgrounds (contact page) */
-.contact-form-wrap .btn-ghost {
-    color: var(--color-ember) !important;
-    border: 1px solid var(--color-ember) !important;
-    background-color: transparent !important;
-}
-.contact-form-wrap .btn-ghost:hover {
-    background-color: var(--color-ember) !important;
-    border-color: var(--color-ember) !important;
-    color: var(--color-white) !important;
-}
-
 /* ===========================
    Two-Column Layout
    =========================== */
@@ -2825,10 +2801,6 @@ body {
     .form-success-check { font-size: 0.82rem !important; color: var(--color-warm-grey) !important; line-height: 1.55 !important; margin: 0 0 28px !important; max-width: 400px !important; margin-left: auto !important; margin-right: auto !important; }
     .form-success-check a { color: var(--color-ember) !important; text-decoration: underline !important; }
     .form-success-close { margin: 0 auto !important; display: inline-flex !important; }
-    .btn-ghost { background-color: transparent !important; color: var(--color-ember) !important; border: 1px solid var(--color-ember) !important; padding: 12px 28px !important; border-radius: var(--radius-md) !important; cursor: pointer !important; font-family: var(--font-body) !important; font-size: 0.95rem !important; font-weight: 500 !important; }
-    .btn-ghost:hover { background-color: var(--color-ember) !important; border-color: var(--color-ember) !important; color: var(--color-white) !important; }
-    .contact-form-wrap .btn-ghost { color: var(--color-ember) !important; border: 1px solid var(--color-ember) !important; }
-    .contact-form-wrap .btn-ghost:hover { background-color: var(--color-ember) !important; border-color: var(--color-ember) !important; color: var(--color-white) !important; }
     .form-error .form-success-heading { color: #e8a838 !important; }
     .contact-form-wrap .form-success-heading { color: var(--color-obsidian) !important; }
     .contact-form-wrap .form-success-body { color: var(--color-charcoal) !important; }
