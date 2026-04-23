@@ -551,6 +551,10 @@ main {
     pointer-events: none !important;
 }
 
+.hero-banner .container {
+    text-align: center !important;
+}
+
 .hero-banner h1 {
     font-size: clamp(1.6rem, 3vw, 2.25rem) !important;
     color: var(--color-white) !important;
@@ -559,6 +563,7 @@ main {
     max-width: 700px !important;
     margin-left: auto !important;
     margin-right: auto !important;
+    text-wrap: balance;
 }
 
 .hero-banner p {
