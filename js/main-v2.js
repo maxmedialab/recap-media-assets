@@ -93,6 +93,10 @@
     function initFAQ() {
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
+                // The GSAP FAQ handler (in _runGSAP) owns the accordion once
+                // bound — without this guard both handlers fire on one click
+                // and cancel each other out, so FAQs never open.
+                if (btn._rmGsapFaq) return;
                 const item = btn.closest('.faq-item');
                 const isOpen = item.classList.contains('open');
                 item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(el => { el.classList.remove('open'); });
@@ -832,6 +836,7 @@
 
 
     document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn._rmGsapFaq = true; // tells initFAQ's fallback handler to stand down
         btn.addEventListener('click', function () {
             var item = btn.closest('.faq-item');
             var answer = item.querySelector('.faq-answer');
@@ -848,4 +853,48 @@
     } // end _runGSAP
 
     initGSAP();
+})();
+
+/* =============================================
+   Services nav dropdown (added 2026-06-11)
+   Hover/focus handled in CSS; this adds click/tap
+   toggle for touch devices in desktop layout.
+   ============================================= */
+(function () {
+    'use strict';
+    function initNavDropdown() {
+        var drops = document.querySelectorAll('.nav-dropdown');
+        if (!drops.length) return;
+        drops.forEach(function (drop) {
+            var trigger = drop.querySelector('.nav-drop-trigger');
+            if (!trigger) return;
+            trigger.addEventListener('click', function (e) {
+                e.preventDefault();
+                var open = drop.classList.toggle('open');
+                trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        });
+        document.addEventListener('click', function (e) {
+            drops.forEach(function (drop) {
+                if (!drop.contains(e.target) && drop.classList.contains('open')) {
+                    drop.classList.remove('open');
+                    var t = drop.querySelector('.nav-drop-trigger');
+                    if (t) t.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            drops.forEach(function (drop) {
+                drop.classList.remove('open');
+                var t = drop.querySelector('.nav-drop-trigger');
+                if (t) t.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNavDropdown);
+    } else {
+        initNavDropdown();
+    }
 })();

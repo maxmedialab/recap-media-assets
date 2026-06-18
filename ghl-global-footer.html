@@ -24,14 +24,15 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo. One crew handling photo, video and livestream — strategy-led coverage, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact — reliably delivered.</p>
             </div>
             <div class="footer-col">
+                <!-- Services group removed 2026-06-18 — service pages not yet updated; re-add when ready -->
                 <h4>Pages</h4>
                 <ul>
                     <li><a href="https://recapmedia.no/work">Work</a></li>
                     <li><a href="https://recapmedia.no/about">About</a></li>
-                    <li><a href="https://recapmedia.no/packages">Pricing</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
                     <li><a href="https://recapmedia.no/contact">Contact</a></li>
                 </ul>
             </div>
@@ -133,11 +134,29 @@
 <!-- Splash dismiss script (inline — must run on every page) -->
 <script>
     (function() {
+        function removeSplash(s) {
+            s.classList.add('hidden');
+            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
         function dismissSplash() {
             var s = document.getElementById('rm-splash');
             if (!s) return;
-            s.classList.add('hidden');
-            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+            var probe = document.querySelector('.hero-overline');
+            if (!probe) { removeSplash(s); return; } // no animated hero on this page
+            // The homepage hero is hidden then animated in by GSAP in main-v2.js, which only
+            // runs after Lenis/GSAP load late (it then sets window.__lenis). .hero-overline
+            // sits at opacity 1 BOTH before it's hidden and after it's revealed, so opacity
+            // alone can't tell "not yet hidden" from "revealed" — that ambiguity is why a
+            // plain opacity poll dismissed too early and flashed the cream background.
+            // Gate on window.__lenis (proof _runGSAP has run, so the hero is now under GSAP's
+            // control) AND opacity high (reveal finished). This keeps the splash covering the
+            // whole hide→reveal cycle. Hard cap so it can never hang (e.g. if GSAP fails).
+            var deadline = performance.now() + 3000;
+            (function waitForHero() {
+                var revealed = !!window.__lenis && parseFloat(getComputedStyle(probe).opacity) > 0.85;
+                if (revealed || performance.now() > deadline) removeSplash(s);
+                else requestAnimationFrame(waitForHero);
+            })();
         }
         if (document.readyState === 'complete') {
             dismissSplash();

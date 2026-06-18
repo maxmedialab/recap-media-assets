@@ -29,7 +29,7 @@
           "name": "Michael Hitzker – Flutter Vikings 2022 Talk",
           "description": "Session recording from Flutter Vikings 2022 at Felix Conference Center, Oslo. Filmed and produced by Recap Media.",
           "thumbnailUrl": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69c3b2e9c6dd404f656b6750.jpeg",
-          "uploadDate": "2022-09-15",
+          "uploadDate": "2022-09-15T12:00:00+02:00",
           "embedUrl": "https://www.youtube.com/embed/l1-QYqaGyMk",
           "url": "https://www.youtube.com/watch?v=l1-QYqaGyMk",
           "publisher": {
@@ -47,7 +47,7 @@
           "name": "Pooja Bhaumik – Flutter Vikings 2022 Talk",
           "description": "Session recording from Flutter Vikings 2022 at Felix Conference Center, Oslo. Filmed and produced by Recap Media.",
           "thumbnailUrl": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6932e16581eaa185bda15284.jpg",
-          "uploadDate": "2022-09-15",
+          "uploadDate": "2022-09-15T12:00:00+02:00",
           "embedUrl": "https://www.youtube.com/embed/uVxBGzRZY-k",
           "url": "https://www.youtube.com/watch?v=uVxBGzRZY-k",
           "publisher": {
@@ -65,7 +65,7 @@
           "name": "Guillaume Diallo-Mulliez – Flutter Vikings 2022 Talk",
           "description": "Session recording from Flutter Vikings 2022 at Felix Conference Center, Oslo. Filmed and produced by Recap Media.",
           "thumbnailUrl": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6932e165ac583f5e283513e6.jpg",
-          "uploadDate": "2022-09-15",
+          "uploadDate": "2022-09-15T12:00:00+02:00",
           "embedUrl": "https://www.youtube.com/embed/zEoASR7DTIw",
           "url": "https://www.youtube.com/watch?v=zEoASR7DTIw",
           "publisher": {
@@ -110,6 +110,14 @@
 <nav class="nav" id="nav">
     <a href="https://recapmedia.no/" class="nav-logo"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d70ea1636a6c65695174.png" alt="Recap Media Logo"><span>Recap Media</span></a>
     <ul class="nav-links">
+        <li class="nav-dropdown">
+            <a href="#" class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="nav-drop-caret" aria-hidden="true">▾</span></a>
+            <ul class="nav-drop-menu">
+                <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+                <li><a href="https://recapmedia.no/services/livestreaming">Live Streaming</a></li>
+            </ul>
+        </li>
         <li><a href="https://recapmedia.no/work">Work</a></li>
         <li><a href="https://recapmedia.no/about">About</a></li>
         <li><a href="https://recapmedia.no/packages">Pricing</a></li>
@@ -122,6 +130,12 @@
 </nav>
 
 <div class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-services">
+        <span class="mobile-menu-label">Services</span>
+        <a href="https://recapmedia.no/services/photography">Photography</a>
+        <a href="https://recapmedia.no/services/videography">Videography</a>
+        <a href="https://recapmedia.no/services/livestreaming">Live Streaming</a>
+    </div>
     <a href="https://recapmedia.no/work">Work</a>
     <a href="https://recapmedia.no/about">About</a>
     <a href="https://recapmedia.no/packages">Pricing</a>
@@ -334,7 +348,7 @@ document.querySelectorAll('.yt-tile').forEach(function(tile){
         <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-question">How much does event photography in Oslo cost? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Our packages start at 15,900 NOK for a half-day shoot. The Conference Package is 57,450 NOK, and Full Production starts from 89,000 NOK. We provide a detailed quote after a short briefing call.</div></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Pricing depends on event duration, scope of coverage, and deliverables. We provide a detailed quote after a short briefing call.</div></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">How many photos will we receive? <span class="faq-chevron">▾</span></button>
@@ -371,7 +385,13 @@ document.querySelectorAll('.yt-tile').forEach(function(tile){
                 <p>Event photography and videography in Oslo. One crew handling photo, video and livestream — strategy-led coverage, reliably delivered.</p>
             </div>
             <div class="footer-col">
-                <h4>Pages</h4>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                    <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+                    <li><a href="https://recapmedia.no/services/livestreaming">Live Streaming</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Pages</h4>
                 <ul>
                     <li><a href="https://recapmedia.no/work">Work</a></li>
                     <li><a href="https://recapmedia.no/about">About</a></li>
