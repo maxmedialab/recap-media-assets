@@ -1,0 +1,79 @@
+<!--
+  GTM Custom HTML Tag — BlogPosting structured data (JSON-LD)
+  ===========================================================
+
+  WHY GTM?
+  --------
+  GHL strips <script> tags from blog content blocks on save, so structured
+  data injected directly into post content never reaches the rendered page.
+  GTM fires after the page loads and is not affected by GHL's content sanitiser.
+
+  HOW TO DEPLOY
+  -------------
+  1. In GTM: Tags → New → Tag Configuration → Custom HTML
+  2. Paste the entire <script> block below as the tag body.
+  3. Trigger: Page Path → contains → /blog/
+     (This fires on every blog post URL. If your blog lives at a different
+     path, adjust the trigger to match.)
+  4. Name the tag something like "Schema — BlogPosting (JSON-LD)".
+  5. Preview → confirm the tag fires and the JSON-LD appears in DevTools
+     → Application → Structured Data (or paste the URL into
+     https://search.google.com/test/rich-results).
+  6. Submit & Publish the container.
+
+  DATA LAYER VARIABLES (set these up in GTM before publishing)
+  -------------------------------------------------------------
+  The tag expects these GTM variables to be populated. For GHL blogs the
+  simplest approach is to push them from a GHL blog template via a
+  dataLayer.push({...}) snippet in the page <head> custom code field —
+  or just hardcode/override per post.
+
+  Variable name            | Source suggestion
+  -------------------------|---------------------------------------------------
+  {{dlv - postTitle}}      | dataLayer key: postTitle  (post headline)
+  {{dlv - postDescription}}| dataLayer key: postDescription (meta description)
+  {{dlv - postDatePublished}}| dataLayer key: postDatePublished (ISO 8601, e.g. 2026-04-01)
+  {{dlv - postDateModified}} | dataLayer key: postDateModified  (ISO 8601)
+  {{dlv - postImage}}      | dataLayer key: postImage  (absolute URL to featured image)
+  {{dlv - postAuthorName}} | dataLayer key: postAuthorName (author display name)
+
+  Built-in GTM variables used (enable them under Variables → Built-In):
+  - {{Page URL}}  — full canonical URL of the current page
+  - {{Page Path}} — used only in the trigger, not in the tag body
+
+  TODO: If GHL doesn't support dataLayer.push in blog templates, replace
+  the {{dlv - *}} placeholders with hardcoded fallback values or use
+  DOM-scraping variables (GTM DOM Element variable type pointing at the
+  relevant meta tags GHL does render).
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{dlv - postTitle}}",
+  "description": "{{dlv - postDescription}}",
+  "image": "{{dlv - postImage}}",
+  "url": "{{Page URL}}",
+  "datePublished": "{{dlv - postDatePublished}}",
+  "dateModified": "{{dlv - postDateModified}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{dlv - postAuthorName}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Recap Media",
+    "url": "https://recapmedia.no",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://recapmedia.no/images/recap-media-logo.png"
+      // TODO: confirm the actual logo URL before publishing
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{Page URL}}"
+  }
+}
+</script>

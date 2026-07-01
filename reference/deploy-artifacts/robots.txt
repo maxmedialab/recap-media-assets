@@ -1,0 +1,29 @@
+# robots.txt — recapmedia.no
+# Served via Cloudflare Worker (see cloudflare-worker-robots-llms.js)
+# Last updated: 2026-06-10
+
+# All crawlers — allow everything except conversion/funnel pages
+User-agent: *
+Allow: /
+Disallow: /thank-you/
+Disallow: /funnel/
+
+# AI crawlers — explicitly allowed (inherits the Allow: / above,
+# listed here so intent is unambiguous and easy to audit)
+# GPTBot (OpenAI)
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Google-Extended (Gemini/Bard training)
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://recapmedia.no/sitemap.xml
