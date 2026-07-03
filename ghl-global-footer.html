@@ -138,9 +138,11 @@
             s.classList.add('hidden');
             setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
         }
+        var _dismissing = false;
         function dismissSplash() {
             var s = document.getElementById('rm-splash');
-            if (!s) return;
+            if (!s || _dismissing) return;
+            _dismissing = true;
             var probe = document.querySelector('.hero-overline');
             if (!probe) { removeSplash(s); return; } // no animated hero on this page
             // The homepage hero is hidden then animated in by GSAP in main-v2.js, which only
@@ -150,18 +152,26 @@
             // plain opacity poll dismissed too early and flashed the cream background.
             // Gate on window.__lenis (proof _runGSAP has run, so the hero is now under GSAP's
             // control) AND opacity high (reveal finished). This keeps the splash covering the
-            // whole hide→reveal cycle. Hard cap so it can never hang (e.g. if GSAP fails).
-            var deadline = performance.now() + 3000;
+            // whole hide→reveal cycle. Hard caps so it can never hang: ≤3s from poll start
+            // AND ≤4.5s from navigation start — on slow connections main-v2.js skips the
+            // hero intro past its 2.5s freshness window, so a long splash would just hide
+            // an already-painted page from the visitor.
+            var deadline = Math.min(performance.now() + 3000, 4500);
             (function waitForHero() {
                 var revealed = !!window.__lenis && parseFloat(getComputedStyle(probe).opacity) > 0.85;
                 if (revealed || performance.now() > deadline) removeSplash(s);
                 else requestAnimationFrame(waitForHero);
             })();
         }
-        if (document.readyState === 'complete') {
+        // Start at DOMContentLoaded (not window load — that waits on every image and
+        // video byte, holding the splash far too long on slow connections). Keep the
+        // load listener as a fallback: GHL injects Global Sections async, so the
+        // splash div may not exist yet at DCL.
+        if (document.readyState !== 'loading') {
             dismissSplash();
         } else {
-            window.addEventListener('load', dismissSplash);
+            document.addEventListener('DOMContentLoaded', dismissSplash);
         }
+        window.addEventListener('load', dismissSplash);
     })();
 </script>

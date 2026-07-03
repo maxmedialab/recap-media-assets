@@ -5,6 +5,8 @@
 (function () {
     'use strict';
 
+    var REDUCED_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
     function initNav() {
         const nav = document.querySelector('.nav');
         const hamburger = document.querySelector('.nav-hamburger');
@@ -25,10 +27,15 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         if (hamburger && mobileMenu) {
+            hamburger.setAttribute('aria-expanded', 'false');
             hamburger.addEventListener('click', () => {
                 const isOpen = mobileMenu.classList.toggle('open');
                 hamburger.classList.toggle('open', isOpen);
                 document.body.style.overflow = isOpen ? 'hidden' : '';
+                // Keep the accessibility tree in sync — the menu ships aria-hidden="true"
+                // and screen readers would otherwise see an open menu with suppressed links.
+                hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
                 // Toggle mobile menu visibility via JS
                 if (isOpen) {
                     mobileMenu.style.setProperty('pointer-events', 'auto', 'important');
@@ -43,6 +50,8 @@
                     mobileMenu.classList.remove('open');
                     hamburger.classList.remove('open');
                     document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
                     mobileMenu.style.setProperty('pointer-events', 'none', 'important');
                     mobileMenu.style.setProperty('visibility', 'hidden', 'important');
                 });
@@ -130,7 +139,7 @@
                 const target = cards[clamped] ? cards[clamped].offsetLeft : 0;
                 // Don't scroll past the point where the last card hits the right edge
                 const maxScroll = track.scrollWidth - track.clientWidth;
-                track.scrollTo({ left: Math.min(target, maxScroll), behavior: 'smooth' });
+                track.scrollTo({ left: Math.min(target, maxScroll), behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
             }
 
             function updateDots() {
@@ -160,7 +169,10 @@
             dots.forEach((dot, i) => dot.addEventListener('click', () => goToIdx(i)));
             track.addEventListener('scroll', updateDots, { passive: true });
 
-            // Auto-scroll every 3s, pause on hover/touch, loop back to start
+            // Auto-scroll every 3s, pause on hover/touch, loop back to start.
+            // Skipped under prefers-reduced-motion (WCAG 2.2.2 — auto-advance is motion
+            // the user asked to avoid; manual arrows/dots still work).
+            if (REDUCED_MOTION) return;
             setTimeout(() => {
                 let paused = false;
                 setInterval(() => {
@@ -221,40 +233,32 @@
         hero.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
     }
 
-    function initCustomCursor() {
-        if ('ontouchstart' in window) return;
-        const dot  = document.getElementById('cur-dot');
-        const ring = document.getElementById('cur-ring');
-        if (!dot || !ring) return;
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-        });
-        (function tick() {
-            rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-            ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-            requestAnimationFrame(tick);
-        })();
-        const CLICKABLE = 'a, button, [role="button"], input[type="submit"], input[type="button"], select, label, .faq-question';
-        document.querySelectorAll(CLICKABLE).forEach(el => {
-            el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
-            el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
-        });
-        document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-        document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
-    }
+    // initCustomCursor removed 2026-07-04: CSS permanently hides .cursor-dot/.cursor-ring
+    // (style.css display:none !important), yet the feature still ran an infinite rAF loop,
+    // a document-wide mousemove listener, and per-element hover listeners on every desktop
+    // pageview — all for an invisible element. The #cur-dot/#cur-ring divs are inert.
 
     function initPageTransitions() {
         document.querySelectorAll('a[href]').forEach(link => {
             if (link.hostname !== window.location.hostname || link.getAttribute('href').startsWith('#') || link.hasAttribute('data-cta') || link.getAttribute('target') === '_blank') return;
             link.addEventListener('click', e => {
+                // Respect open-in-new-tab/window intent — hijacking these turns
+                // cmd/ctrl/middle-click into a same-tab navigation.
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
                 e.preventDefault();
                 const href = link.href;
                 document.body.style.opacity = '0';
                 document.body.style.transition = 'opacity 0.25s ease';
                 setTimeout(() => { window.location.href = href; }, 250);
             });
+        });
+        // The opacity:0 set above is snapshotted into the back-forward cache —
+        // without this reset, Back restores the previous page fully invisible.
+        window.addEventListener('pageshow', e => {
+            if (e.persisted) {
+                document.body.style.opacity = '';
+                document.body.style.transition = '';
+            }
         });
     }
 
@@ -282,7 +286,7 @@
         function goToIdx(idx) {
             const clamped = Math.max(0, Math.min(idx, total - 1));
             const target = imgs[clamped] ? imgs[clamped].offsetLeft : 0;
-            ctaTrack.scrollTo({ left: target, behavior: 'smooth' });
+            ctaTrack.scrollTo({ left: target, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
         }
 
         function updateCtaDots() {
@@ -296,6 +300,7 @@
         dots.forEach((dot, i) => dot.addEventListener('click', () => goToIdx(i)));
         ctaTrack.addEventListener('scroll', updateCtaDots, { passive: true });
 
+        if (REDUCED_MOTION) return; // no auto-advance (WCAG 2.2.2)
         setTimeout(() => {
             let paused = false;
             setInterval(() => {
@@ -534,7 +539,7 @@
             var hp = form.querySelector('.hp-field');
             if (hp && hp.value) return;
 
-            // 2. Rate limit: max 2 submissions per 60 seconds
+            // 2. Rate limit: max 2 submissions per 30 seconds
             var now = Date.now();
             if (now - _lastSubmit < 30000) {
                 _submitCount++;
@@ -544,9 +549,14 @@
             }
             _lastSubmit = now;
 
-            // 3. Timing check: reject if form submitted < 3s after page load
-            //    (no human fills a form in under 3 seconds)
-            if (now - _pageLoadTime < 3000) return;
+            // 3. Timing check: reject if form submitted < 3s after page load.
+            //    Mostly bots — but browser-autofill users can legitimately beat 3s,
+            //    so show the error fallback (with the direct email) instead of
+            //    silently swallowing a real lead.
+            if (now - _pageLoadTime < 3000) {
+                setTimeout(function () { showConfirmation(form, true); }, 400);
+                return;
+            }
 
             // ── Client-side validation ───────────────────────────────
             // Check all required fields before allowing submission.
@@ -712,7 +722,7 @@
         var fns = [
             initNav, initScrollReveal, initCardTilt, initFAQ,
             initCarousel, initGallery, initModal, initCtaGallery,
-            initCursorGlow, initCustomCursor, initPageTransitions,
+            initCursorGlow, initPageTransitions,
             initPhotoStack, initVideoAutoPause
         ];
         for (var i = 0; i < fns.length; i++) {
@@ -769,15 +779,45 @@
 
     // main-v2.js loads via GHL tracking code (early), but Lenis/GSAP/ScrollTrigger
     // are loaded from the Global Footer HTML (late). Poll until all three are ready.
+    // Capped: past the deadline they aren't coming — nothing is pre-hidden without
+    // GSAP, so a missing lib means a static (but fully readable) page.
+    var _pollDeadline = performance.now() + 12000;
     function initGSAP() {
         if (typeof window.Lenis === 'undefined' || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
-            setTimeout(initGSAP, 60);
+            if (performance.now() < _pollDeadline) setTimeout(initGSAP, 60);
             return;
         }
         _runGSAP();
     }
 
+    // FAQ accordion — needed on every path (it's functionality, not decoration).
+    function _bindFAQ() {
+        document.querySelectorAll('.faq-question').forEach(function (btn) {
+            btn._rmGsapFaq = true; // tells initFAQ's fallback handler to stand down
+            btn.addEventListener('click', function () {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-answer');
+                var inner = item.querySelector('.faq-answer-inner');
+                var isOpen = item.classList.contains('open');
+                item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(function (el) {
+                    if (el !== item) { el.classList.remove('open'); gsap.to(el.querySelector('.faq-answer'), { maxHeight: 0, duration: 0.35, ease: 'power2.inOut' }); }
+                });
+                if (!isOpen) { item.classList.add('open'); gsap.to(answer, { maxHeight: inner.scrollHeight + 20, duration: 0.4, ease: 'power2.out' }); }
+                else { item.classList.remove('open'); gsap.to(answer, { maxHeight: 0, duration: 0.3, ease: 'power2.inOut' }); }
+            });
+        });
+    }
+
     function _runGSAP() {
+
+    // Reduced motion: no smooth-scroll hijack, no hide-then-reveal anywhere —
+    // content stays exactly where CSS painted it. The truthy __lenis sentinel
+    // keeps the splash-dismiss gate (Global Footer) working.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.__lenis = { reducedMotion: true };
+        _bindFAQ();
+        return;
+    }
 
     window.__lenis = new Lenis({
         duration: 1.15,
@@ -795,18 +835,29 @@
     gsap.ticker.lagSmoothing(0);
     gsap.registerPlugin(ScrollTrigger);
 
-    var heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 }, delay: 0.15 });
-    gsap.set('.hero-heading .line', { y: '105%' });
-    gsap.set('.hero-overline, .hero-sub, .hero-body, .hero-cta-row, .hero-trust', { opacity: 0, y: 24 });
-    gsap.set('.hero-stat', { opacity: 0, y: 20 });
-    heroTl
-        .to('.hero-overline', { opacity: 1, y: 0, duration: 0.7 })
-        .to('.hero-heading .line', { y: '0%', duration: 1, stagger: 0.1, ease: 'power3.out' }, '-=0.35')
-        .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.55')
-        .to('.hero-body', { opacity: 1, y: 0, duration: 0.7 }, '-=0.45')
-        .to('.hero-cta-row', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
-        .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
-        .to('.hero-stat', { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, '-=0.3');
+    // Hero entrance is a progressive enhancement with a freshness window.
+    // The hero paints VISIBLE at first paint (CSS never pre-hides it); the
+    // intro re-hides it and replays it. When the lib chain arrives late (slow
+    // network — and every throttled Lighthouse/PSI run), re-hiding an already-
+    // painted hero (a) pins lab LCP to the end of the reveal instead of first
+    // paint (the documented 9s+ lab LCP and the run-to-run score swings) and
+    // (b) makes slow-connection visitors watch the page load twice. Past the
+    // window: skip the intro, keep everything else. The splash covers the
+    // fast-path hide→reveal, so users never see a flash either way.
+    if (performance.now() < 2500) {
+        var heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 }, delay: 0.15 });
+        gsap.set('.hero-heading .line', { y: '105%' });
+        gsap.set('.hero-overline, .hero-sub, .hero-body, .hero-cta-row, .hero-trust', { opacity: 0, y: 24 });
+        gsap.set('.hero-stat', { opacity: 0, y: 20 });
+        heroTl
+            .to('.hero-overline', { opacity: 1, y: 0, duration: 0.7 })
+            .to('.hero-heading .line', { y: '0%', duration: 1, stagger: 0.1, ease: 'power3.out' }, '-=0.35')
+            .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.55')
+            .to('.hero-body', { opacity: 1, y: 0, duration: 0.7 }, '-=0.45')
+            .to('.hero-cta-row', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
+            .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
+            .to('.hero-stat', { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, '-=0.3');
+    }
 
     gsap.to('.hero-bg', { y: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
@@ -834,21 +885,7 @@
     gsap.to('.cta-orb--1', { x: 30, y: -20, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true });
     gsap.to('.cta-orb--2', { x: -25, y: 15, duration: 7, ease: 'sine.inOut', repeat: -1, yoyo: true });
 
-
-    document.querySelectorAll('.faq-question').forEach(function (btn) {
-        btn._rmGsapFaq = true; // tells initFAQ's fallback handler to stand down
-        btn.addEventListener('click', function () {
-            var item = btn.closest('.faq-item');
-            var answer = item.querySelector('.faq-answer');
-            var inner = item.querySelector('.faq-answer-inner');
-            var isOpen = item.classList.contains('open');
-            item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(function (el) {
-                if (el !== item) { el.classList.remove('open'); gsap.to(el.querySelector('.faq-answer'), { maxHeight: 0, duration: 0.35, ease: 'power2.inOut' }); }
-            });
-            if (!isOpen) { item.classList.add('open'); gsap.to(answer, { maxHeight: inner.scrollHeight + 20, duration: 0.4, ease: 'power2.out' }); }
-            else { item.classList.remove('open'); gsap.to(answer, { maxHeight: 0, duration: 0.3, ease: 'power2.inOut' }); }
-        });
-    });
+    _bindFAQ();
 
     } // end _runGSAP
 

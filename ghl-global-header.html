@@ -16,17 +16,25 @@
     #rm-splash.hidden { opacity: 0; pointer-events: none; }
     #rm-splash img { width: 120px; height: auto; animation: rm-pulse 1.2s ease-in-out infinite; }
     @keyframes rm-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.96)} }
+    /* Splash failsafe (2026-07-04): the ONLY thing that removes the splash is the
+       Global Footer script — if that section fails to inject or its JS errors out,
+       every page stays a solid black screen forever. This pure-CSS animation fades
+       the splash out at 6s with no JS required. Harmless on the normal path: the
+       footer script removes the node long before 6s. */
+    @keyframes rm-splash-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+    #rm-splash { animation: rm-splash-failsafe 0.45s ease 6s forwards; }
     /* Grain critical CSS — inlined 2026-06-18 to stop the full-opacity grain "static" flash before jsDelivr style.css loads (mirrors css/style.css L2806–2807) */
     .grain { position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: 0.028; mix-blend-mode: overlay; }
     .grain svg { width: 100%; height: 100%; }
 </style>
+<!-- No-JS failsafe (2026-07-04): with JS disabled nothing can dismiss the splash — hide it outright -->
+<noscript><style>#rm-splash { display: none !important; }</style></noscript>
 <div id="rm-splash">
     <img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d70ea1636a6c65695174.png" alt="Loading Recap Media">
 </div>
 
-<!-- Custom cursor elements (required for cursor JS to work) -->
-<div class="cursor-dot" id="cur-dot"></div>
-<div class="cursor-ring" id="cur-ring"></div>
+<!-- Custom cursor divs removed 2026-07-04 — dead feature (CSS hides .cursor-dot/.cursor-ring
+     permanently; the JS init was removed from main-v2.js the same day). -->
 
 <!-- Grain texture overlay -->
 <div class="grain" aria-hidden="true">

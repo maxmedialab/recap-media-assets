@@ -16,7 +16,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css?v=2">
     <!-- VideoObject structured data -->
@@ -81,6 +81,94 @@
       ]
     }
     </script>
+
+    <!-- Schema: BreadcrumbList (added 2026-07-04 — live @graph had breadcrumbs pointing
+         at the dead /case-studies/ path; this is the corrected /work/ version) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://recapmedia.no/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Work",
+      "item": "https://recapmedia.no/work"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Flutter Vikings 2022",
+      "item": "https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo"
+    }
+  ]
+}
+    </script>
+
+    <!-- Schema: FAQPage (added 2026-07-04 — matches the visible FAQ accordion below;
+         valuable for AI-engine extraction even though Google retired FAQ rich results) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does event photography in Oslo cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing depends on event duration, scope of coverage, and deliverables. We provide a detailed quote after a short briefing call."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many photos will we receive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Conference Package includes 50+ edited photos; the Full Production package includes 20–40 highly curated images alongside video deliverables. The number varies based on event length and scope — we'd rather deliver 80 excellent images than 300 mediocre ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly do you deliver photos after an event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard turnaround is 5–7 business days. Same-day social selects and 24-hour fast-turnaround are available on request."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you cover multi-room or multi-track events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks. We plan session priorities in advance and deploy additional crew as needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with international teams or organisers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We work with international clients regularly. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you coordinate with the venue's AV team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We send a pre-event brief covering AV coordination requirements and work directly with venue technical teams. At Flutter Vikings we coordinated with Felix Conference Center's AV infrastructure for the multi-track livestream setup."
+      }
+    }
+  ]
+}
+    </script>
     <!-- Splash overlay — renders instantly before external CSS loads -->
     <style>
         #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
@@ -94,8 +182,6 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d70ea1636a6c65695174.png" alt="Loading Recap Media"></div>
 
-<div class="cursor-dot" id="cur-dot"></div>
-<div class="cursor-ring" id="cur-ring"></div>
 
 <!-- Grain texture overlay -->
 <div class="grain" aria-hidden="true">
@@ -154,9 +240,9 @@
   SITE SETTINGS > BODY TRACKING CODE:
     [GTM noscript snippet]
     <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
-    <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
   GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
   GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
   ▼▼▼ PASTE ONLY THE <main>...</main> BLOCK INTO GHL > PAGE > CUSTOM HTML ▼▼▼
@@ -447,9 +533,9 @@ document.querySelectorAll('.yt-tile').forEach(function(tile){
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><button class="lightbox-close" aria-label="Close">✕</button><img src="" alt="" class="lightbox-img"></div>
 
-<script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 <script src="../js/main-v2.js?v=2"></script>
 <script>
     (function() {

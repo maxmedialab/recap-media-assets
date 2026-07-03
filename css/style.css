@@ -998,7 +998,7 @@ main {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
-    align-items: start !important;
+    align-items: stretch !important;
 }
 
 .package-card {
@@ -1904,6 +1904,20 @@ body {
 }
 
 /* ===========================
+   No-JS fallback
+   =========================== */
+
+/* JS-revealed elements (.reveal* get .visible from initScrollReveal) stay at
+   opacity:0 forever when scripts are disabled or blocked. Modern browsers
+   (Chrome 120+/FF 113+/Safari 17+) let CSS detect that and paint everything;
+   older no-JS browsers keep today's behavior. */
+@media (scripting: none) {
+    .reveal, .reveal-left, .reveal-right, .reveal-scale,
+    .reveal-group > * { opacity: 1 !important; transform: none !important; }
+    #rm-splash { display: none !important; }
+}
+
+/* ===========================
    Reduced Motion
    =========================== */
 
@@ -2057,6 +2071,10 @@ select.form-control option {
 }
 
 .form-group.has-error .form-error { display: block !important; }
+/* The submit-failure confirmation reuses the .form-error name as a .form-success
+   variant — without this override the inline-field rule above hides the whole
+   error panel and a failed submit shows an empty modal. */
+.form-success.form-error { display: block !important; }
 .form-group.has-error .form-control {
     border-color: #E85C5C !important;
 }
@@ -2467,7 +2485,7 @@ body {
     .dot.active { background: var(--color-ember) !important; transform: scale(1.3) !important; }
 
     /* Packages */
-    .packages-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 24px !important; align-items: start !important; }
+    .packages-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 24px !important; align-items: stretch !important; }
     .package-card { background: var(--color-white) !important; border-radius: var(--radius-lg) !important; overflow: hidden !important; box-shadow: 0 4px 24px rgba(20,18,24,0.07) !important; transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color 0.3s ease !important; border: 2px solid transparent !important; display: flex !important; flex-direction: column !important; }
     .package-card:hover { transform: translateY(-4px) !important; box-shadow: 0 16px 48px rgba(20,18,24,0.13), 0 0 20px rgba(232,89,60,0.08) !important; border-color: rgba(232,89,60,0.2) !important; }
     .package-card.featured { background: var(--color-obsidian) !important; border-color: var(--color-ember) !important; transform: translateY(-8px) !important; }
@@ -2565,7 +2583,10 @@ body {
 
     /* Responsive */
     /* Stylized image filter for brand coherence */
-    img:not(.nav-logo img), .hero-video { filter: sepia(0.15) hue-rotate(-5deg) saturate(1.1) contrast(1.05) !important; }
+    /* .hero-video removed from this rule: re-filtering every frame of the autoplaying
+       100vh video is continuous GPU cost, and its 0.45 opacity over --color-void
+       already does the grading. */
+    img:not(.nav-logo img) { filter: sepia(0.15) hue-rotate(-5deg) saturate(1.1) contrast(1.05) !important; }
 
     @media (max-width: 960px) {
         .cards-grid, .packages-grid { grid-template-columns: 1fr 1fr !important; }
@@ -2654,6 +2675,7 @@ body {
     .form-consent-text a:hover { color: var(--color-white) !important; }
     .form-error { font-size: 0.78rem !important; color: #E85C5C !important; display: none !important; }
     .form-group.has-error .form-error { display: block !important; }
+    .form-success.form-error { display: block !important; }
     .form-group.has-error .form-control { border-color: #E85C5C !important; }
     .form-light .form-control { background: var(--color-white) !important; border-color: rgba(20,18,24,0.12) !important; color: var(--color-obsidian) !important; }
     .form-light .form-control::placeholder { color: var(--color-warm-grey) !important; }

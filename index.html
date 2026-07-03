@@ -27,9 +27,12 @@
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://recapmedia.no/#business",
       "name": "Recap Media",
       "description": "Corporate event photography and videography in Oslo — photo and video under one booking, with one point of contact.",
       "url": "https://recapmedia.no",
+      "logo": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d70ea1636a6c65695174.png",
+      "image": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png",
       "email": "booking@recapmedia.no",
       "telephone": "+4796689356",
       "address": {
@@ -37,6 +40,7 @@
         "addressLocality": "Oslo",
         "addressCountry": "NO"
       },
+      "geo": { "@type": "GeoCoordinates", "latitude": 59.9139, "longitude": 10.7522 },
       "areaServed": ["Oslo", "Sandvika", "Drammen", "Lillestrøm", "Jessheim", "Holmestrand", "Moss"],
       "serviceType": ["Event Photography", "Event Videography"],
       "founder": { "@type": "Person", "name": "Maksymilian Strzepka" }
@@ -73,9 +77,9 @@
     <!-- Performance: the hero H1 is the LCP element and only reveals after the GSAP chain runs —
          preload the animation libs so they fetch in parallel with the CSS instead of queueing.
          (Live: also add <link rel="preload" as="script"> for the jsDelivr main-v2.js URL.) -->
-    <link rel="preload" as="script" href="https://unpkg.com/lenis@1/dist/lenis.min.js">
-    <link rel="preload" as="script" href="https://unpkg.com/gsap@3/dist/gsap.min.js">
-    <link rel="preload" as="script" href="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js">
+    <link rel="preload" as="script" href="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js">
+    <link rel="preload" as="script" href="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js">
+    <link rel="preload" as="script" href="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js">
     <!-- Performance: hero poster (paints while the 36 MB bg video is deferred);
          low priority — it's a backdrop and must not starve the CSS/script chain -->
     <link rel="preload" as="image" fetchpriority="low" href="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb888e1e6178a81f772.jpg">
@@ -83,7 +87,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css?v=2">
@@ -100,8 +104,6 @@
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d70ea1636a6c65695174.png" alt="Loading Recap Media"></div>
 
-<div class="cursor-dot" id="cur-dot"></div>
-<div class="cursor-ring" id="cur-ring"></div>
 
 <!-- Grain texture overlay -->
 <div class="grain" aria-hidden="true">
@@ -164,9 +166,9 @@
         parse and run in order after the DOM, instead of blocking the parser.
         main-v2.js self-polls for the libs, so order is non-critical (kept gsap before ScrollTrigger). <<<
     <script defer src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
-    <script defer src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-    <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script defer src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script defer src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 
   GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
   GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
@@ -184,7 +186,7 @@
          background video stops driving LCP; the poster paints instead. Poster = existing CDN event photo via
          the LeadConnector resize proxy. To swap in a true first-frame poster later, upload one to GHL media
          and replace the poster URL here + the matching preload href in <head>. -->
-    <video data-src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6a346bf6162c3e3e34194cca.mp4" poster="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb888e1e6178a81f772.jpg" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true" style="opacity:0.6;"></video>
+    <video data-src="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/6a346bf6162c3e3e34194cca.mp4" poster="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/691dabb888e1e6178a81f772.jpg" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true"></video>
     <div class="hero-content-wrap">
         <div class="hero-inner">
             <span class="overline overline--ruled hero-overline">Event photography &amp; videography — Oslo</span>
@@ -650,9 +652,9 @@
 </div>
 
 <!-- CDN Libraries (kept external — inlining would be impractical) -->
-<script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 
 <script src="js/main-v2.js?v=2"></script>
 <script>

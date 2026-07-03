@@ -1,0 +1,373 @@
+<!--
+  GTM Custom HTML Tag — VidLead external-tracking.js, gated on analytics_storage
+  ================================================================================
+  REV 3 (2026-07-02) — repaired after adversarial verification found 4 issues
+  in round 1 (see "REV 2 CHANGELOG" below), then a CRITICAL flaw in REV 2's
+  own fix (see "REV 3 CHANGELOG" at the bottom): REV 2 set the tag to
+  "Once per page" firing — but GTM's Additional Consent Checks CONSUME the
+  Once-per-page slot even when the tag is BLOCKED by the gate. On every fresh
+  visit the Page View trigger evaluates first, gets consent-blocked, and burns
+  the slot — so when the user then accepts the banner, the tag would NOT fire.
+  Net effect: the tracker would silently never load for first-time accepters
+  (the primary case), while passing a casual Preview test run by anyone with
+  pre-existing consent. REV 3: firing option stays at GTM's DEFAULT
+  "Once per event"; de-dup is handled by a runtime guard inside the script.
+
+  WHAT THIS FIXES
+  ----------------
+  external-tracking.js is VidLead's form-submission / attribution tracker.
+  It currently loads unconditionally from GHL's Body Tracking Code:
+
+    <script defer src="https://link.vidlead.com/js/external-tracking.js"
+            data-tracking-id="tk_f3f18d3c6413432c85cc0e3957cb61c8"></script>
+
+  (see reference/deploy-artifacts/perf-tracking-code-snippets.md and
+  ghl-body-tracking-code.html — both show it as the last line of Body
+  Tracking Code, right after main-v2.js).
+
+  Confirmed live 2026-07-02 (curl https://recapmedia.no/ + inspect the
+  embedded page-JSON): the exact same tag is what's rendered on the live
+  site — it is NOT inside GTM, it's a static <script defer> GHL injects into
+  every page on load, with no consent check of any kind.
+
+  Confirmed by inspecting the script itself (curled fresh from
+  https://link.vidlead.com/js/external-tracking.js, 2026-07-02): it ships
+  generic getCookie/setCookie helpers (document.cookie) and a
+  generateSessionId() call used to initialise tracking state on load. Grepping
+  the minified bundle does NOT surface literal `tr` / `v2_history_*` cookie
+  names anywhere (they're likely built from template strings the minifier
+  folded, e.g. `` `lc_session_${e}` `` / `` `session_${e}` `` patterns found
+  in the bundle) — so the specific cookie names can't be confirmed by static
+  grep alone. Treat the claim as: believed to set the attribution cookies in
+  the Advertising category per the cookie-consent-implementation.md inventory
+  table, based on behavioral fit (session/attribution cookies set on load,
+  same domain pattern as the inventory's `tr` / `v2_history_*` rows) — not a
+  byte-for-byte confirmed match. If this needs to be nailed down precisely,
+  the reliable method is behavioral: fresh incognito, load the page, diff
+  Application → Cookies before/after this script loads.
+
+  ==================================================================
+  CRITICAL — MAIN-V2.JS DEPENDENCY ANALYSIS (read before deploying)
+  ==================================================================
+  The verifier's top concern: does gating external-tracking.js behind
+  consent break the site's own form submission (main-v2.js) when consent
+  is denied and the tracker never loads? This site's whole purpose is lead
+  capture — a broken form for non-consenting visitors would be worse than
+  the cookie leak this artifact fixes.
+
+  CODE-LEVEL FINDING: NO functional dependency. The form works with
+  external-tracking.js absent. Evidence:
+
+  1. main-v2.js's form submit handler (initFormBridge, main-v2.js line
+     ~520) is registered as:
+       document.addEventListener('submit', function (e) { ... }, true);
+     — a CAPTURING-phase listener on `document` (the root). Per DOM event
+     order, capturing-phase listeners fire root-to-target — so a listener
+     on `document` in the capture phase runs BEFORE any capture-phase
+     listener attached to the `<form>` element itself.
+
+  2. At main-v2.js line ~527-530:
+       // STOP propagation — prevents VidLead external tracking script
+       // from also catching this submit and creating a duplicate
+       // "External Form" submission in GHL.
+       e.stopPropagation();
+     This is deliberate and one-directional: main-v2.js stops the event
+     from continuing down to any listener external-tracking.js may have
+     attached to the same form, specifically so VidLead doesn't ALSO log
+     a duplicate "External Form" submission on top of the real one GHL
+     receives via the native form bridge (see point 4). It exists to
+     prevent double-counting, not to enable functionality.
+
+  3. Confirmed by inspecting the live external-tracking.js bundle
+     (curled 2026-07-02, 270KB minified): it attaches its OWN submit
+     listener directly to each <form> element it discovers via
+     `document.querySelectorAll("form")`, not to `document`:
+       t.addEventListener("submit", n, {capture:!0})
+     This runs (when the script is present) as a capture-phase listener
+     on the form itself — deeper in the DOM than main-v2.js's
+     document-level listener — so main-v2.js's earlier stopPropagation()
+     call is exactly what prevents it from firing on that submit. This
+     confirms the comment's own stated intent and shows the dependency
+     direction: main-v2.js defends AGAINST external-tracking.js
+     double-firing, it does not rely on external-tracking.js to do
+     anything.
+
+  4. The actual submission mechanism — bridgeToGHL() (main-v2.js line
+     ~413) — has ZERO references to VidLead, external-tracking, `tk_`,
+     tracking cookies, or any window global external-tracking.js sets.
+     It copies field values into the hidden native GHL form
+     (`document.getElementById('form-builder')`, GHL's own Vue/Nuxt
+     form-builder element, unrelated to VidLead's script) and clicks
+     that form's own submit button, letting GHL's platform JS handle
+     the POST. grep of main-v2.js for consent/dataLayer/gtag/tracking
+     globals: zero hits outside the stopPropagation comment itself.
+
+  CONCLUSION: when external-tracking.js never loads (consent denied),
+  main-v2.js's submit handler still runs (it's registered independently
+  of external-tracking.js, unconditionally, at script-init time — see
+  main-v2.js line ~727 "Form bridge: runs IMMEDIATELY"), stopPropagation()
+  still executes (it doesn't check whether external-tracking.js is
+  present — it's a no-op in that case, not an error), and bridgeToGHL()
+  still fires the real GHL submission. Nothing throws; nothing silently
+  no-ops. The dependency is defensive/one-directional (main-v2.js guards
+  against a tracker that may or may not be there), not a hard requirement
+  in the other direction.
+
+  MUST STILL BE VERIFIED BEFORE TRUSTING THIS ANALYSIS BLIND: static code
+  reading can miss runtime surprises (GHL platform-side webhook or
+  automation that silently expects a VidLead session cookie to exist
+  before accepting the POST, for example — nothing in the client-side code
+  suggests this, but it lives server-side in GHL and isn't visible from
+  here). This is why the verification recipe below now makes a REAL form
+  submission with consent DENIED a mandatory step, not optional — do not
+  skip it, and do not consider this artifact "deployed" until that
+  specific test has passed once, live.
+
+  WHY GTM, AND WHY THIS PATTERN
+  -------------------------------
+  The site already runs Consent Mode v2 in the GTM head snippet (see
+  cookie-consent-implementation.md → "Reference: GTM head snippet"):
+  all four signals default to `denied`, and `gtag("consent","update",...)`
+  fires on the LeadConnector `LCCookieConsentDoneGTM` event when the user
+  accepts. GTM's native tag-level consent gate ("Additional Consent
+  Checks") reads that same Consent Mode state automatically — no
+  hand-rolled cookie/localStorage check needed, and no risk of drifting
+  out of sync with the banner logic. This tag uses that built-in gate,
+  not a custom analytics_storage check inside the HTML.
+
+  HOW IT BEHAVES
+  ---------------
+  - Consent Mode defaults to `analytics_storage: denied` on every fresh
+    load (per the head snippet) → GTM's built-in consent check blocks
+    this tag from firing on the Page View trigger → script does not load.
+  - `gtag('consent', 'update', {...})` itself is NOT usable as a GTM
+    trigger — it doesn't push a generically-triggerable dataLayer event
+    on its own. What IS triggerable is the LeadConnector banner's own
+    custom event, `LCCookieConsentDoneGTM`, which the head snippet
+    listens for and which happens immediately before it calls
+    `gtag('consent','update',...)`. So the Custom Event trigger on
+    `LCCookieConsentDoneGTM` (see Trigger section below) is the
+    mechanism that lets GTM re-evaluate this tag's consent gate at the
+    moment consent changes mid-session — it is NOT redundant with the
+    consent gate itself; the gate decides whether to allow the fire, the
+    trigger decides when to check.
+  - Google's own Additional Consent Checks are evaluated "when the tag is
+    triggered" (Tag Manager Help, official wording) — i.e. per-trigger-
+    event, not as a continuous background re-check. That's exactly why a
+    trigger tied to the actual consent-change event is required, and why
+    "the gate alone will handle it" is not a safe assumption for a
+    Custom HTML tag (that automatic-resend behavior is documented for
+    Google's own consent-aware tag templates via their internal
+    addConsentListener API — not a generic property of Additional
+    Consent Checks on an arbitrary Custom HTML tag).
+  - Net effect with the two triggers below: exactly one load per
+    pageview, whenever consent first becomes granted — immediately on
+    Page View if pre-granted from a previous visit, or on the
+    `LCCookieConsentDoneGTM` event if granted mid-session.
+  - ⚠️ FIRING OPTION — leave at GTM's default "Once per event". Do NOT
+    set "Once per page": Additional Consent Checks consume the
+    Once-per-page slot even when the tag is BLOCKED by the gate
+    (documented behavior — GTM Community threads on "Once per page +
+    additional consent checks", corroborated by Simo Ahava's Consent
+    Settings guidance: "From GTM's point of view, the tag has already
+    fired on that page, even though it was blocked… For Once per page
+    tags you need to use trigger logic to control the tag firing
+    instead."). With Once-per-page, the consent-blocked Page View
+    attempt on a fresh visit burns the slot, and the later
+    `LCCookieConsentDoneGTM` fire is suppressed — the tracker would
+    never load for first-time accepters.
+  - De-dup for the edge case where BOTH triggers pass their gate check
+    on the same pageview (e.g. a returning, already-consented visitor
+    whose banner re-dispatches `LCCookieConsentDoneGTM` to reapply
+    stored consent on load — plausible CMP behavior, not confirmed
+    either way for LeadConnector) is handled INSIDE the script below via
+    a per-pageview window flag (`window.__recapVidleadTrackerLoaded`) —
+    a second invocation is a harmless no-op. This makes double-fire
+    impossible without touching the firing option.
+
+  HOW TO DEPLOY (Max — do this in GTM, not here)
+  -------------------------------------------------
+  1. GTM container GTM-57M5LKFH → Tags → New.
+  2. Tag Configuration → Custom HTML → paste the entire <script> block
+     below (everything between the <script> tags, INCLUDING the tags
+     themselves) as the tag body.
+  3. Name it: "VidLead external-tracking.js — consent gated"
+  4. Advanced Settings → Consent Settings → "Require additional consent
+     for tag to fire" → check it → select `analytics_storage`.
+     This is GTM's native Consent Mode gate — do NOT also add a manual
+     `if (gtag consent...)` check inside the HTML; that would be redundant
+     and a second place for the logic to drift out of sync.
+  5. Advanced Settings → Tag firing options → LEAVE AT THE DEFAULT
+     "Once per event". Do NOT set "Once per page" — the consent gate
+     consumes the Once-per-page slot even on a BLOCKED attempt, so the
+     fresh-visit Page View check (blocked, consent still denied) would
+     burn the slot and the later banner-accept fire would be suppressed:
+     the tracker would never load for first-time accepters. Double-fire
+     protection lives inside the script's own window-flag guard instead
+     (see the <script> block — a second invocation is a no-op).
+  6. Triggering → add exactly TWO triggers (do not add more — see
+     "trigger options considered and rejected" below):
+       a. "All Pages" (Page View) — covers users who already granted
+          consent on a previous visit (stored consent applies before
+          this pageview's triggers evaluate, so the tag fires on the
+          very first trigger check of the pageview).
+       b. Custom Event trigger, event name `LCCookieConsentDoneGTM`
+          (exact match) — covers consent granted mid-session. This is
+          the literal event name the head snippet's own consent listener
+          already uses (see cookie-consent-implementation.md → "Reference:
+          GTM head snippet"), so it's guaranteed to match the site's real
+          consent-update signal — no need to guess at a generic
+          `consent_update` event name.
+     Both triggers point at the SAME tag — GTM's consent gate (step 4)
+     is what actually decides whether it fires each time a trigger check
+     happens; the triggers just decide when to check. If both pass in
+     the same pageview, the script's internal window-flag guard makes
+     the second execution a no-op (see step 5 — firing option must stay
+     "Once per event").
+
+     Trigger options considered and rejected:
+       - GTM's built-in "Consent Initialization – All Pages" /
+         "Initialization" trigger category is NOT a valid alternative
+         here and must not be used for this tag. That trigger category
+         is reserved for tags that SET or update consent state itself
+         (a CMP tag, or a tag pushing Consent Mode defaults) — it fires
+         before consent is known, specifically to establish the default
+         state ahead of everything else. Firing this tracking tag on
+         that trigger would mean it evaluates its consent gate before
+         the banner has had any chance to grant consent, which defeats
+         the entire point of gating it. Do not treat it as interchangeable
+         with the Page View / Custom Event pair above.
+
+  7. Preview mode → verify: fresh session (deny) → tag shows "Tag did
+     not fire — consent" in Tag Assistant → click Accept in the banner →
+     tag fires once, `external-tracking.js` appears in the Network tab.
+  8. Submit → Publish the container.
+
+  REMOVE THE UNGATED VERSION (do this too — otherwise it double-loads)
+  -------------------------------------------------------------------
+  In GHL: Sites → Settings → Tracking Code → Body Tracking Code.
+  Delete ONLY this one line (keep everything else — the animation libs
+  and main-v2.js must stay exactly as they are):
+
+    <script defer src="https://link.vidlead.com/js/external-tracking.js" data-tracking-id="tk_f3f18d3c6413432c85cc0e3957cb61c8"></script>
+
+  Save + Publish. The canonical Body Tracking Code reference
+  (perf-tracking-code-snippets.md, ghl-body-tracking-code.html) will be
+  stale by one line after this — note it there when you make the change;
+  this artifact file is not the place to edit that record.
+
+  VERIFICATION (fresh incognito window — DO NOT skip the form-submission
+  steps; they are the mandatory check for the main-v2.js dependency above)
+  ---------------------------------------------------------------------
+  PART A — consent DENIED (mandatory: this is the case that must not
+  break lead capture)
+  1. Open a new Incognito/Private window (no existing recapmedia.no cookies).
+  2. Go to recapmedia.no. Open DevTools → Network → filter "external-tracking".
+     Expect: NOTHING loads. (If it still loads here, either the GHL line
+     wasn't removed, or the GTM consent gate isn't wired — check both.)
+  3. Also check Application → Cookies → recapmedia.no: no `tr` or
+     `v2_history_*` cookies yet.
+  4. Click the cookie banner → "Essentials only" (i.e. explicitly DENY
+     Analytics/Advertising — do not accept).
+  5. MANDATORY: fill out and submit a real quote-request form (any form
+     using the .quote-form / #form-builder bridge) with consent still
+     denied. Confirm: (a) no JS errors in Console, (b) the branded
+     "Message received" confirmation appears, (c) the submission actually
+     lands in GHL (check the CRM/contact record or inbox for the
+     confirmation email). This is the test that validates the main-v2.js
+     dependency analysis above — do not consider this artifact safe to
+     leave deployed until this step has passed at least once, live.
+
+  PART B — consent GRANTED
+  6. Reload the page (still same incognito session, consent still denied
+     from Part A). Click the cookie banner → Accept all (or Customize →
+     enable Advertising, since these are Advertising-category cookies
+     per the inventory table in cookie-consent-implementation.md).
+  7. Re-check Network tab: `external-tracking.js` now appears, loaded from
+     link.vidlead.com. Re-check Application → Cookies: `tr` / `v2_history_*`
+     (or whatever the actual attribution cookie names turn out to be —
+     see the softened claim at the top of this file) now present.
+  8. Reload the page once more (still same session, consent stored as
+     granted): confirm external-tracking.js loads — EXACTLY ONCE — in
+     the Network tab (no duplicate request), and no duplicate `<script>`
+     execution errors in Console. This step checks BOTH failure modes:
+     (a) if it doesn't load at all on this reload, the returning-
+     consented-visitor path is broken (stored-consent restore is landing
+     after the Page View check AND the banner isn't re-dispatching
+     `LCCookieConsentDoneGTM` on load — escalate before publishing);
+     (b) if it loads twice, the script's window-flag guard isn't doing
+     its job.
+  9. MANDATORY: submit a real quote-request form again, this time with
+     consent granted. Confirm the same three checks as step 5 (no JS
+     errors, branded confirmation, submission lands in GHL) AND that it
+     still works the same way as the denied case — i.e. gating
+     external-tracking.js changed nothing about the form's own behavior
+     either way, consent granted or denied.
+
+  REV 2 CHANGELOG (2026-07-02, fixing round-1 verifier findings)
+  -----------------------------------------------------------------
+  1. [HIGH] Added the full main-v2.js dependency analysis above, with
+     code-level evidence from both main-v2.js and a fresh curl of
+     external-tracking.js, concluding no functional dependency — plus a
+     mandatory form-submission-with-consent-denied verification step
+     (Part A, step 5) that wasn't in round 1 at all.
+  2. [MEDIUM] Removed the round-1 claim that GTM's built-in gate
+     auto-refires a blocked tag once consent is granted, with no trigger
+     needed — that's not documented as generic Additional Consent Checks
+     behavior (confirmed: Google's own wording is gate-checked "when the
+     tag is triggered," and automatic resend-on-consent-change is
+     documented specifically for Google's own consent-aware tag templates
+     via addConsentListener, not for arbitrary Custom HTML tags). Kept
+     BOTH triggers (Page View + Custom Event on LCCookieConsentDoneGTM) as
+     the one correct mechanism, and added "Once per page" firing (step 5)
+     as an explicit belt-and-braces de-dup against the two-trigger setup
+     double-firing in the same pageview — labeled as belt-and-braces, not
+     as the primary correctness mechanism.
+  3. [MEDIUM] Removed "Consent Initialization" trigger category as an
+     alternative to the Custom Event trigger — that category is for
+     tags that set/update consent state itself and fires before consent
+     is known; using it here would defeat the gate. Now explicitly listed
+     under "trigger options considered and rejected."
+  4. [LOW] Softened the tr/v2_history_* cookie claim — grepping the fresh
+     minified bundle doesn't surface those literal names (likely
+     minifier-folded template strings), so the artifact now says
+     "believed to set the attribution cookies in the Advertising category
+     per the cookie-consent-implementation.md inventory" based on
+     behavioral fit, not a confirmed byte match, and verification step 7
+     now allows for the possibility the actual names differ.
+
+  REV 3 CHANGELOG (2026-07-02, fixing the round-2 verifier's critical)
+  -----------------------------------------------------------------
+  1. [CRITICAL] Reverted REV 2's "Once per page" firing option to GTM's
+     default "Once per event". Additional Consent Checks consume the
+     Once-per-page slot even when the tag is BLOCKED — so REV 2's config
+     would have burned the slot on the fresh-visit (consent-denied) Page
+     View check and silently suppressed the fire on banner accept: the
+     tracker would never load for first-time accepters, while passing a
+     casual Preview test by an already-consented tester. De-dup moved
+     into the script itself (window.__recapVidleadTrackerLoaded guard —
+     per-pageview scope, resets on navigation, exactly the intended
+     granularity). Deploy step 5, trigger notes, behavior notes, and
+     verification step 8 all updated to match.
+  2. [LOW] `s.defer = true` replaced with `s.async = true` — `defer` has
+     no effect on dynamically-inserted scripts (they're async by nature
+     per the HTML spec); the attribute was implying an ordering guarantee
+     that doesn't exist. No ordering dependency exists here anyway (see
+     the main-v2.js analysis above).
+-->
+
+<script>
+(function () {
+  // Per-pageview double-fire guard: if both triggers (Page View +
+  // LCCookieConsentDoneGTM) pass the consent gate on the same pageview,
+  // the second invocation is a no-op. The flag lives on window, so it
+  // resets on every navigation — exactly one load per consented pageview.
+  if (window.__recapVidleadTrackerLoaded) return;
+  window.__recapVidleadTrackerLoaded = true;
+  var s = document.createElement('script');
+  s.src = 'https://link.vidlead.com/js/external-tracking.js';
+  s.setAttribute('data-tracking-id', 'tk_f3f18d3c6413432c85cc0e3957cb61c8');
+  s.async = true; // dynamic scripts are async by nature; 'defer' would be a no-op here
+  document.body.appendChild(s);
+})();
+</script>
