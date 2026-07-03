@@ -2804,10 +2804,15 @@ body {
 .pkg-nav-also { margin-left: auto !important; display: flex !important; gap: 4px 10px !important; align-items: center !important; flex-wrap: wrap !important; }
 .pkg-nav-also a { color: var(--color-ember) !important; }
 
-/* Hero split — text left, price panel right */
-.pkg-hero-split { display: grid !important; grid-template-columns: 1fr 320px !important; gap: 48px !important; align-items: start !important; padding-bottom: 0 !important; }
-.pkg-hero-text h1 { font-size: clamp(2rem, 4vw, 3rem) !important; letter-spacing: -0.035em !important; line-height: 1.15 !important; margin: 10px 0 18px !important; }
-.pkg-hero-text p { color: var(--color-warm-grey) !important; font-size: 1rem !important; line-height: 1.75 !important; max-width: 520px !important; margin: 0 !important; }
+/* Hero split — text left, price panel right.
+   Scoped with .hero-banner prefixes: the generic page-hero rules
+   (.hero-banner .container { text-align:center } + the body-nested
+   .hero-banner h1/p { margin:auto } copy) otherwise out-rank these and
+   center the heading block inside the LEFT column — the "package-page
+   headers not aligned" bug, live since the split hero shipped. */
+.hero-banner .pkg-hero-split { display: grid !important; grid-template-columns: 1fr 320px !important; gap: 48px !important; align-items: start !important; padding-bottom: 0 !important; text-align: left !important; }
+.hero-banner .pkg-hero-text h1 { font-size: clamp(2rem, 4vw, 3rem) !important; letter-spacing: -0.035em !important; line-height: 1.15 !important; margin: 10px 0 18px !important; }
+.hero-banner .pkg-hero-text p { color: var(--color-warm-grey) !important; font-size: 1rem !important; line-height: 1.75 !important; max-width: 520px !important; margin: 0 !important; }
 
 /* Price panel — floating card inside hero */
 .pkg-price-panel { background: var(--color-onyx) !important; border-radius: var(--radius-lg) !important; border: 1px solid rgba(232,89,60,0.22) !important; padding: 28px 26px !important; display: flex !important; flex-direction: column !important; gap: 0 !important; box-shadow: 0 12px 40px rgba(0,0,0,0.35) !important; }
@@ -2862,7 +2867,8 @@ body {
 
 /* Responsive */
 @media (max-width: 960px) {
-    .pkg-hero-split { grid-template-columns: 1fr !important; gap: 32px !important; }
+    /* Must match the base rule's .hero-banner-prefixed specificity or it loses */
+    .hero-banner .pkg-hero-split { grid-template-columns: 1fr !important; gap: 32px !important; }
     .pkg-price-panel { max-width: 480px !important; }
     .pkg-steps-track { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 24px !important; }
     .pkg-steps-track::before { display: none !important; }
@@ -2870,7 +2876,7 @@ body {
     .pkg-for-grid { grid-template-columns: 1fr 1fr !important; }
 }
 @media (max-width: 600px) {
-    .pkg-hero-split { padding-bottom: 36px !important; }
+    .hero-banner .pkg-hero-split { padding-bottom: 36px !important; }
     .pkg-price-panel { max-width: 100% !important; }
     .pkg-steps-track { grid-template-columns: 1fr !important; gap: 24px !important; }
     .pkg-step { text-align: left !important; }
