@@ -431,8 +431,7 @@ main {
    (Chrome 120+/FF 113+/Safari 17+) let CSS detect that and paint everything;
    older no-JS browsers keep today's behavior. */
 @media (scripting: none) {
-    .reveal, .reveal-left, .reveal-right, .reveal-scale,
-    .reveal-group > * { opacity: 1 !important; transform: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
     #rm-splash { display: none !important; }
 }
 
@@ -442,21 +441,11 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .reveal,
-    .reveal-left,
-    .reveal-right,
-    .reveal-scale {
+    .reveal {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
     }
-
-    .reveal-group > * {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
 
     body {
         animation: none !important;
@@ -880,20 +869,6 @@ body {
        ============================================= */
     .reveal { opacity: 0 !important; transform: translateY(24px) !important; transition: opacity 0.6s ease, transform 0.6s ease !important; }
     .reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
-    .reveal-left { opacity: 0 !important; transform: translateX(-28px) !important; transition: opacity 0.65s ease, transform 0.65s ease !important; }
-    .reveal-left.visible { opacity: 1 !important; transform: translateX(0) !important; }
-    .reveal-right { opacity: 0 !important; transform: translateX(28px) !important; transition: opacity 0.65s ease, transform 0.65s ease !important; }
-    .reveal-right.visible { opacity: 1 !important; transform: translateX(0) !important; }
-    .reveal-scale { opacity: 0 !important; transform: scale(0.96) !important; transition: opacity 0.6s ease, transform 0.6s ease !important; }
-    .reveal-scale.visible { opacity: 1 !important; transform: scale(1) !important; }
-    .reveal-group > * { opacity: 0 !important; transform: translateY(20px) !important; transition: opacity 0.5s ease, transform 0.5s ease !important; }
-    .reveal-group.visible > *:nth-child(1) { transition-delay: 0s !important; }
-    .reveal-group.visible > *:nth-child(2) { transition-delay: 0.1s !important; }
-    .reveal-group.visible > *:nth-child(3) { transition-delay: 0.15s !important; }
-    .reveal-group.visible > *:nth-child(4) { transition-delay: 0.2s !important; }
-    .reveal-group.visible > *:nth-child(5) { transition-delay: 0.25s !important; }
-    .reveal-group.visible > *:nth-child(6) { transition-delay: 0.3s !important; }
-    .reveal-group.visible > * { opacity: 1 !important; transform: translateY(0) !important; }
     @keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }
     body { animation: page-enter 0.4s ease !important; }
     .card-tilt { transition: transform 0.3s ease, box-shadow 0.3s ease !important; transform-style: preserve-3d !important; will-change: transform !important; }
