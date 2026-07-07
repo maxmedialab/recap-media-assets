@@ -60,7 +60,7 @@
     }
 
     function initScrollReveal() {
-        const els = Array.from(document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-group'));
+        const els = Array.from(document.querySelectorAll('.reveal'));
         if (!els.length) return;
 
         function revealVisible() {
