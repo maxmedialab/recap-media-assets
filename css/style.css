@@ -137,14 +137,6 @@ main {
 }
 
 
-/* Native cursor is restored; the ring provides a brand accent around it */
-
-
-@media (pointer: coarse) {
-    .cursor-dot, .cursor-ring { display: none !important; }
-}
-
-
 /* Page hero banner (non-homepage) */
 
 
@@ -633,10 +625,6 @@ body {
     .hero-banner::before { content: '' !important; position: absolute !important; inset: 0 !important; background: linear-gradient(135deg, rgba(232,89,60,0.05) 0%, transparent 60%) !important; pointer-events: none !important; }
     .hero-banner h1 { font-size: clamp(2rem, 4vw, 3rem) !important; color: var(--color-white) !important; font-weight: 700 !important; letter-spacing: -0.3px !important; max-width: 700px !important; margin-left: auto !important; margin-right: auto !important; }
     .hero-banner p { color: var(--color-warm-grey) !important; font-size: 1.05rem !important; margin-top: 16px !important; max-width: 580px !important; line-height: 1.6 !important; margin-left: auto !important; margin-right: auto !important; }
-
-    /* Custom cursor — dot hidden, ring hidden, native cursor restored */
-    .cursor-dot { display: none !important; }
-    .cursor-ring { display: none !important; }
 
     /* Buttons */
     .btn { display: inline-flex !important; align-items: center !important; gap: 8px !important; padding: 14px 28px !important; border-radius: var(--radius-md) !important; font-family: var(--font-body) !important; font-size: 0.95rem !important; font-weight: 500 !important; cursor: pointer !important; text-decoration: none !important; border: none !important; position: relative !important; overflow: hidden !important; transition: transform var(--transition-fast), background-color var(--transition-fast) !important; }
