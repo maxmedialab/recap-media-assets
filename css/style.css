@@ -23,6 +23,7 @@
 
     /* Neutrals */
     --color-stone: #9B9790;
+    --color-stone-dark: #6F6B64; /* stone for LIGHT backgrounds — >=4.5:1 on white/warm-white/cream (stone itself is 2.6–2.9:1 there; keep stone on dark) */
     --color-warm-grey: #C7C3BB;
     --color-charcoal: #555249;
 
@@ -159,11 +160,13 @@ main {
     text-align: center !important;
     margin-top: 12px !important;
     font-size: 0.8rem !important;
-    color: var(--color-stone) !important;
+    color: var(--color-stone-dark) !important;
     text-decoration: none !important;
     transition: color 0.2s ease !important;
 }
 .pkg-detail-link:hover { color: var(--color-ember) !important; }
+/* Featured card is obsidian — original stone passes there (6.4:1); stone-dark would fail */
+.package-card.featured .pkg-detail-link { color: var(--color-stone) !important; }
 
 
 /* ===========================
@@ -474,7 +477,7 @@ main {
 .legal-content ul { padding-left: 20px !important; margin-bottom: 14px !important; list-style-type: disc !important; }
 .legal-content ul li { font-size: 0.9rem !important; line-height: 1.7 !important; color: var(--color-charcoal) !important; margin-bottom: 6px !important; }
 .legal-content a { color: var(--color-ember) !important; text-decoration: underline !important; }
-.legal-last-updated { font-size: 0.82rem !important; color: var(--color-stone) !important; margin-bottom: 32px !important; }
+.legal-last-updated { font-size: 0.82rem !important; color: var(--color-stone-dark) !important; margin-bottom: 32px !important; }
 
 /* ===========================
    Video Tiles (inline player, hover lift, fullscreen)
@@ -609,7 +612,11 @@ body {
 
     /* Hero */
     .hero { position: relative !important; min-height: 90vh !important; display: flex !important; align-items: center !important; justify-content: flex-start !important; overflow: hidden !important; background-color: var(--color-void) !important; padding-top: 80px !important; }
-    .hero-video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; z-index: 0 !important; opacity: 0.45 !important; }
+    /* CLS-lock: aspect-ratio + width reserve a 16:9 box whenever the absolute inset
+       geometry isn't in effect (pre-JS src swap / GHL wrapper states) — the poster/video
+       can't grow the box on arrival. Once inset+height:100% apply, aspect-ratio is
+       ignored by the spec, so rendered layout is unchanged at every viewport width. */
+    .hero-video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; aspect-ratio: 16 / 9 !important; object-fit: cover !important; z-index: 0 !important; opacity: 0.45 !important; }
     .video-player-wrap { position: relative !important; max-width: 900px !important; width: 100% !important; margin: 0 auto !important; border-radius: var(--radius-lg) !important; overflow: hidden !important; -webkit-mask-image: -webkit-radial-gradient(white, black) !important; mask-image: radial-gradient(white, black) !important; background: #000 !important; box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important; cursor: pointer !important; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease !important; aspect-ratio: 16/9 !important; }
     .video-player-wrap:hover { transform: translateY(-4px) !important; box-shadow: 0 28px 70px rgba(0,0,0,0.55), 0 0 48px rgba(232,89,60,0.18) !important; }
     .video-player-wrap video { position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; display: block !important; object-fit: cover !important; -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important; }
@@ -642,7 +649,7 @@ body {
     .contact-layout { display: grid !important; grid-template-columns: 1.2fr 1fr !important; gap: 48px !important; align-items: start !important; }
     .contact-form-wrap { background: var(--color-white) !important; border-radius: var(--radius-lg) !important; padding: 36px !important; box-shadow: 0 4px 24px rgba(20,18,24,0.07) !important; }
     .contact-form-wrap h2 { font-size: 1.4rem !important; font-weight: 700 !important; margin-bottom: 6px !important; color: var(--color-obsidian) !important; }
-    .contact-form-wrap .form-subtitle { font-size: 0.875rem !important; color: var(--color-stone) !important; margin-bottom: 24px !important; }
+    .contact-form-wrap .form-subtitle { font-size: 0.875rem !important; color: var(--color-stone-dark) !important; margin-bottom: 24px !important; }
     .col-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem) !important; font-weight: 700 !important; letter-spacing: -0.3px !important; margin-bottom: 16px !important; }
     .col-text p { color: var(--color-charcoal) !important; line-height: 1.7 !important; margin-bottom: 16px !important; font-size: 0.97rem !important; }
     .section-dark .col-text p, .section-onyx .col-text p { color: var(--color-warm-grey) !important; }
@@ -683,7 +690,8 @@ body {
     .project-card:hover .project-card-body h3 { color: var(--color-ember) !important; }
     .project-card-body p { font-size: 0.875rem !important; color: var(--color-stone) !important; line-height: 1.6 !important; margin-bottom: 16px !important; }
     .section-light .project-card-body p, .section-warm .project-card-body p { color: var(--color-charcoal) !important; }
-    .project-card-link { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--color-ember) !important; display: inline-flex !important; align-items: center !important; gap: 4px !important; }
+    /* #ED664A, not var(--color-ember): 4.61:1 on the smoke card bg (brand ember = 4.13:1, fails AA); all project cards sit on dark sections today */
+    .project-card-link { font-size: 0.85rem !important; font-weight: 500 !important; color: #ED664A !important; display: inline-flex !important; align-items: center !important; gap: 4px !important; }
     .project-card-link::after { content: '→' !important; transition: transform var(--transition-fast) !important; display: inline-block !important; }
     .project-card:hover .project-card-link::after { transform: translateX(4px) !important; }
 
@@ -920,8 +928,9 @@ body {
     .grain { position: fixed !important; inset: 0 !important; pointer-events: none !important; z-index: 10 !important; opacity: 0.028 !important; mix-blend-mode: overlay !important; }
     .grain svg { width: 100% !important; height: 100% !important; }
     .section--lg { padding: clamp(64px, 8vw, 120px) 0 !important; }
-    .section-num { font-family: 'Courier New', Courier, monospace !important; font-size: 0.7rem !important; letter-spacing: 0.08em !important; color: var(--color-stone) !important; display: inline-block !important; margin-bottom: 8px !important; }
+    .section-num { font-family: 'Courier New', Courier, monospace !important; font-size: 0.7rem !important; letter-spacing: 0.08em !important; color: var(--color-stone-dark) !important; display: inline-block !important; margin-bottom: 8px !important; }
     .section-num::after { content: '' !important; display: inline-block !important; width: 32px !important; height: 1px !important; background: var(--color-smoke) !important; vertical-align: middle !important; margin-left: 10px !important; }
+    .section-dark .section-num, .section-onyx .section-num { color: var(--color-stone) !important; }
     .section-dark .section-num::after, .section-onyx .section-num::after { background: rgba(255,255,255,0.12) !important; }
     .overline--ruled::before { content: '' !important; display: inline-block !important; width: 24px !important; height: 1px !important; background: var(--color-ember) !important; vertical-align: middle !important; margin-right: 10px !important; }
     .hero { min-height: 100vh !important; min-height: 100dvh !important; display: flex !important; flex-direction: column !important; justify-content: center !important; padding-top: 80px !important; }
@@ -972,7 +981,7 @@ body {
     .cta-orb { position: absolute !important; border-radius: 50% !important; background: radial-gradient(circle, rgba(232,89,60,0.1), transparent 70%) !important; filter: blur(100px) !important; pointer-events: none !important; z-index: 0 !important; }
     .cta-orb--1 { width: 500px !important; height: 500px !important; top: -150px !important; left: -100px !important; }
     .cta-orb--2 { width: 400px !important; height: 400px !important; bottom: -120px !important; right: -80px !important; background: radial-gradient(circle, rgba(242,166,35,0.07), transparent 70%) !important; }
-    .package-type-label { font-size: 0.65rem !important; letter-spacing: 0.2em !important; text-transform: uppercase !important; color: var(--color-stone) !important; display: block !important; margin-bottom: 12px !important; }
+    .package-type-label { font-size: 0.65rem !important; letter-spacing: 0.2em !important; text-transform: uppercase !important; color: var(--color-stone-dark) !important; display: block !important; margin-bottom: 12px !important; }
     .package-card.featured .package-type-label { color: var(--color-ember) !important; }
     .package-rule { width: 32px !important; height: 2px !important; background: var(--color-smoke) !important; margin-bottom: 20px !important; }
     .package-card.featured .package-rule { background: var(--color-ember) !important; }
@@ -1266,3 +1275,27 @@ body {
 @media (max-width: 768px) {
     .steps-grid--2, .steps-grid--4 { grid-template-columns: 1fr !important; }
 }
+
+
+/* ============================================================
+   A11Y CONTRAST FIXES (Lighthouse 2026-07-08)
+   ============================================================ */
+
+/* Links inside body-text paragraphs must not rely on color alone
+   (WCAG link-in-text-block). No .btn anchor is nested in a <p> today;
+   the :not() is a guard so button-styled links never get underlined. */
+p a:not(.btn) { text-decoration: underline !important; }
+
+/* Pricing footnotes on the homepage set color: var(--color-stone) via
+   inline style (+ opacity 0.7 on the VAT note -> computed #b8b4ad,
+   1.9:1 on warm-white). !important here outranks those inline styles. */
+.section-warm p.text-center { color: var(--color-stone-dark) !important; opacity: 1 !important; }
+
+/* Section-header intro <p> is stone in dark sections; on light sections
+   it computes 2.6:1 (services pages). Same split as .section-num above. */
+.section-light .section-header p, .section-warm .section-header p { color: var(--color-stone-dark) !important; }
+
+/* GHL's injected cookie-consent banner (markup not in this repo):
+   white 14px labels on brand ember were 3.54:1 — #C9432A is 4.86:1
+   with white. Selector from the live-DOM audit (.banner-actions-container). */
+.banner-actions-container button { background: #C9432A !important; }
