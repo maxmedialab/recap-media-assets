@@ -1,0 +1,691 @@
+<!--
+PLANNED PAGE — NOT LIVE. ICP homepage v2 (KRAFT remodel), drafted 2026-07-08.
+Do not paste into GHL until Max approves the copy doc
+(projects/recap-website-cleanup/icp-homepage-copy-v2.md). See _planned/README.md.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recap Media — Event Photography &amp; Videography Oslo</title>
+    <meta name="description" content="Event photography and videography in Oslo — one booking, one point of contact, fast turnaround. Conferences, launches and corporate events across Greater Oslo.">
+    <link rel="canonical" href="https://recapmedia.no/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://recapmedia.no/">
+    <meta property="og:title" content="Recap Media — Event Photography & Videography Oslo">
+    <meta property="og:description" content="Photo and video for your event under one booking and one point of contact. Founder-led coverage across Greater Oslo — conferences, launches, corporate events.">
+    <meta property="og:image" content="https://recapmedia.no/assets/og-image.jpg">
+    <meta property="og:site_name" content="Recap Media">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recap Media — Event Photography & Videography Oslo">
+    <meta name="twitter:description" content="Photo and video for your event under one booking and one point of contact. Founder-led coverage across Greater Oslo — conferences, launches, corporate events.">
+    <meta name="twitter:image" content="https://recapmedia.no/assets/og-image.jpg">
+
+    <!-- Schema: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://recapmedia.no/#business",
+      "name": "Recap Media",
+      "description": "Corporate event photography and videography in Oslo — photo and video under one booking, with one point of contact.",
+      "url": "https://recapmedia.no",
+      "logo": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp",
+      "image": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png",
+      "email": "booking@recapmedia.no",
+      "telephone": "+4796689356",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oslo",
+        "addressCountry": "NO"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 59.9139, "longitude": 10.7522 },
+      "areaServed": ["Oslo", "Sandvika", "Drammen", "Lillestrøm", "Jessheim", "Holmestrand", "Moss"],
+      "serviceType": ["Event Photography", "Event Videography"],
+      "founder": { "@type": "Person", "name": "Maksymilian Strzepka" }
+    }
+    </script>
+
+    <!-- Schema: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How much does event photography and videography in Oslo cost?", "acceptedAnswer": { "@type": "Answer", "text": "The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises." } },
+        { "@type": "Question", "name": "Do you cover both photo and video, or do I need to hire separate vendors?", "acceptedAnswer": { "@type": "Answer", "text": "We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables." } },
+        { "@type": "Question", "name": "What types of events do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences." } },
+        { "@type": "Question", "name": "Do you only work in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Our primary service area is Greater Oslo — including Sandvika, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote." } },
+        { "@type": "Question", "name": "How quickly do we receive the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "Standard turnaround is 5–7 business days for edited photos and the full content package. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief." } },
+        { "@type": "Question", "name": "What happens to the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece." } },
+        { "@type": "Question", "name": "Who actually shows up to our event?", "acceptedAnswer": { "@type": "Answer", "text": "Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects." } },
+        { "@type": "Question", "name": "Can you coordinate with our venue or AV team?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process." } },
+        { "@type": "Question", "name": "Do you cover multi-room or multi-track events?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks." } },
+        { "@type": "Question", "name": "Do you work with international teams or organisers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English." } }
+      ]
+    }
+    </script>
+
+    <!-- Performance: early connections to CDN / asset / image / font origins.
+         Local-preview-only here — for LIVE, mirror this block into GHL Header Tracking Code. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://images.leadconnectorhq.com">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <!-- Performance: the hero H1 is the LCP element and only reveals after the GSAP chain runs —
+         preload the animation libs so they fetch in parallel with the CSS instead of queueing.
+         (Live: also add <link rel="preload" as="script"> for the jsDelivr main-v2.js URL.) -->
+    <link rel="preload" as="script" href="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js">
+    <link rel="preload" as="script" href="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js">
+    <link rel="preload" as="script" href="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js">
+    <!-- Performance: hero poster (paints while the 36 MB bg video is deferred);
+         low priority — it's a backdrop and must not starve the CSS/script chain -->
+    <link rel="preload" as="image" fetchpriority="low" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css?v=2">
+    <!-- Splash overlay — renders instantly before external CSS loads -->
+    <style>
+        #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
+        #rm-splash.hidden { opacity: 0; pointer-events: none; }
+        #rm-splash img { width: 120px; height: auto; animation: rm-pulse 1.2s ease-in-out infinite; }
+        @keyframes rm-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.96)} }
+    </style>
+</head>
+<body>
+
+<!-- Splash screen -->
+<div id="rm-splash"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Loading Recap Media"></div>
+
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
+<nav class="nav" id="nav">
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <ul class="nav-links">
+        <li class="nav-dropdown">
+            <a href="#" class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="nav-drop-caret" aria-hidden="true">▾</span></a>
+            <ul class="nav-drop-menu">
+                <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+            </ul>
+        </li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
+        <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-services">
+        <span class="mobile-menu-label">Services</span>
+        <a href="https://recapmedia.no/services/photography">Photography</a>
+        <a href="https://recapmedia.no/services/videography">Videography</a>
+    </div>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
+    <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
+</div>
+
+<!--
+================================================================
+  GHL DEPLOYMENT — HOMEPAGE (recapmedia.no/)
+================================================================
+  SITE SETTINGS > HEADER TRACKING CODE:
+    [GTM head snippet]
+    >>> PERF (2026-06-18): paste the "Performance:" preconnect + lib-preload block
+        from this file's <head> BEFORE the stylesheet link below. Add one extra:
+        <link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"> <<<
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
+
+  SITE SETTINGS > BODY TRACKING CODE:
+    [GTM noscript snippet]
+    >>> PERF (2026-06-18): added defer to all 4 — they download in parallel during
+        parse and run in order after the DOM, instead of blocking the parser.
+        main-v2.js self-polls for the libs, so order is non-critical (kept gsap before ScrollTrigger). <<<
+    <script defer src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
+    <script defer src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script defer src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script defer src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+
+  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
+  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
+
+  PASTE ONLY THE main block below into GHL > PAGE > CUSTOM HTML
+================================================================
+-->
+
+<main>
+
+<section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+    <!-- Perf: src deferred to data-src (loaded after window.load by the script below the hero) so the 36 MB
+         background video stops driving LCP; the poster paints instead. Poster = existing CDN event photo via
+         the LeadConnector resize proxy. To swap in a true first-frame poster later, upload one to GHL media
+         and replace the poster URL here + the matching preload href in <head>. -->
+    <video data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/6a346bf6162c3e3e34194cca.mp4" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true"></video>
+    <div class="hero-content-wrap">
+        <div class="hero-inner">
+            <span class="overline overline--ruled hero-overline">Event photography &amp; videography — Oslo</span>
+            <h1 class="hero-heading">
+                <span class="line-wrap"><span class="line">Event Photography</span></span>
+                <span class="line-wrap"><span class="line">&amp; Video in <em>Oslo</em></span></span>
+            </h1>
+            <p class="hero-sub">Event content your team can actually publish — and footage that promotes next year's event long after the doors close.</p>
+            <!-- ▶ OPTION B (Max picks): <p class="hero-sub">Your event is too valuable to disappear in a day. We turn it into months of content your team actually uses.</p> -->
+            <p class="hero-body">One crew handling photo and video. No coordination overhead.</p>
+            <div class="hero-cta-row">
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+                <a href="https://recapmedia.no/work" class="hero-secondary-link">View our work <span class="arrow">→</span></a>
+            </div>
+            <p class="hero-trust">Trusted by conference organisers &amp; exhibitors &nbsp;·&nbsp; Serving Oslo, Sandvika, Drammen, Lillestrøm, Jessheim &amp; Moss</p>
+        </div>
+    </div>
+    <!-- PROOF SLOTS (KRAFT H3): when the Flutter Vikings proof sheet ships, slots 2-3 become impact numbers -->
+    <div class="hero-stats-strip">
+        <div class="hero-stats-inner">
+            <div class="hero-stat"><span class="hero-stat-number" data-count="20">20+</span><span class="hero-stat-label">Events covered</span></div>
+            <div class="hero-stat"><span class="hero-stat-number">2-in-1</span><span class="hero-stat-label">Photo + video</span></div>
+            <div class="hero-stat"><span class="hero-stat-number ember">24h</span><span class="hero-stat-label">Fast-turnaround option</span></div>
+            <div class="hero-stat"><span class="hero-stat-number amber">5★</span><span class="hero-stat-label">Client reviews</span></div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    // Hero background video: respect prefers-reduced-motion (poster stays as a still),
+    // otherwise load the video after window.load so it never competes with first paint.
+    var v = document.querySelector('.hero-video');
+    if (!v) return;
+    var src = v.getAttribute('data-src');
+    if (!src) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        v.removeAttribute('autoplay');
+        return;
+    }
+    function loadHeroVideo() {
+        v.src = src;
+        var p = v.play();
+        if (p && p.catch) p.catch(function() {});
+    }
+    // Idle-defer the ~6 MB fetch past load so it never counts against TTI/first interaction.
+    function queueHeroVideo() {
+        if (window.requestIdleCallback) {
+            requestIdleCallback(loadHeroVideo, { timeout: 2500 });
+        } else {
+            setTimeout(loadHeroVideo, 2500);
+        }
+    }
+    if (document.readyState === 'complete') {
+        queueHeroVideo();
+    } else {
+        window.addEventListener('load', queueHeroVideo);
+    }
+})();
+</script>
+
+<div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+        <span class="marquee-item">Event Photography</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Event Videography</span><span class="marquee-sep">◆</span>        <span class="marquee-item">Social Content</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Speaker Coverage</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Sponsor Documentation</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Highlight Reels</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Press-Ready Assets</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Event Photography</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Event Videography</span><span class="marquee-sep">◆</span>        <span class="marquee-item">Social Content</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Speaker Coverage</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Sponsor Documentation</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Highlight Reels</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">Press-Ready Assets</span><span class="marquee-sep">◆</span>
+    </div>
+</div>
+
+<!-- NEW (ICP v2): Pain — name what actually happens -->
+<section class="section section--lg section-onyx">
+    <div class="container">
+        <div class="section-header gsap-fade">
+            <span class="overline overline--ruled">What usually happens to event content</span>
+            <h2>The footage ends up on a drive. And dies there.</h2>
+            <p>Your event is one of the biggest marketing investments you make all year — venue, catering, speakers, production. Then the doors close, a highlight reel goes out, and the rest of the footage lands on a shared drive nobody opens again.</p>
+            <p style="margin-top: 16px;">One week of visibility from months of work. That's the part we think is broken.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--lg section-light end-to-end">
+    <div class="container">
+        <div class="two-col">
+            <div class="col-text gsap-fade">
+                <span class="section-num">01</span>
+                <span class="overline overline--ruled">One crew, then a content engine</span>
+                <h2>We cover the day.<br>Then we make it work for months.</h2>
+                <p>Recap is photo and video under one booking — planned before we arrive, shot with the end use in mind, delivered ready to publish. But capture is the starting point, not the product: from one event day we build a content engine — clips, posts, speaker moments and sponsor assets, mapped out and scheduled across the months after the event.</p>
+                <ul class="check-list gsap-stagger-items">
+                    <li><strong>Capture, covered.</strong> Photography and video with one point of contact — no coordinating separate vendors, no coverage gaps.</li>
+                    <li><strong>A content plan, not a file dump.</strong> You don't get a drive full of footage — you get a mapped-out series of content pieces built from the day, ready to publish.</li>
+                    <li><strong>Distribution, if you want it.</strong> We schedule and publish the plan for you. You approve what goes out — your involvement drops from hours of production back-and-forth to minutes of approval.</li>
+                </ul>
+            </div>
+            <div class="col-image gsap-fade">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp" alt="Event coverage by Recap Media" width="640" height="480" class="parallax-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEW (ICP v2): How it works — lean 4-step process strip (steps-grid--4 / step-card, same pattern as index-bnb §02) -->
+<section class="section section--lg section-warm">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="overline">How it works</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">From brief to content engine in four steps</h2>
+        </div>
+        <div class="steps-grid steps-grid--4 gsap-stagger">
+            <div class="step-card">
+                <div class="step-number">Step 1</div>
+                <h3>Brief</h3>
+                <p>A short call before the event — what you're running, who it's for, what the content needs to do afterwards.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 2</div>
+                <h3>Capture</h3>
+                <p>We cover the day — photo and video, one crew, one point of contact.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 3</div>
+                <h3>Build</h3>
+                <p>Within days you get the edited gallery and films, plus the content plan: what gets published, where, and when.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 4 (Optional)</div>
+                <h3>Run</h3>
+                <p>We schedule and publish it for you — you just approve. Or take the plan and run it in-house.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--lg section-onyx work-section" style="padding-bottom: clamp(40px, 5vw, 64px);">
+    <div class="container">
+        <div class="section-header-row gsap-fade">
+            <div>
+                <span class="section-num">02</span>
+                <span class="overline overline--ruled">Selected work</span>
+                <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">See Our Work in Action</h2>
+            </div>
+            <a href="https://recapmedia.no/work" class="section-header-link">View all work →</a>
+        </div>
+        <div class="cards-grid gsap-stagger">
+            <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="project-card card-tilt">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp 1024w" sizes="(max-width: 768px) 100vw, (max-width: 960px) 50vw, 370px" alt="Flutter Vikings Conference 2022, Oslo" class="project-card-image" width="640" height="360" loading="lazy">
+                <div class="project-card-body">
+                    <h3>Flutter Vikings Conference</h3>
+                    <p>Three-track event coverage, photography and session recordings for Flutter Vikings 2022 — supporting hybrid attendance and a session archive the Flutter community still uses today.</p>
+                    <span class="project-card-link">View case study</span>
+                </div>
+            </a>
+            <a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="project-card card-tilt">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06d840ed121322d7442.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06d840ed121322d7442-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06d840ed121322d7442.webp 1280w" sizes="(max-width: 768px) 100vw, (max-width: 960px) 50vw, 370px" alt="NECCUS Scotland-Norway Trade Mission, Oslo" class="project-card-image" width="640" height="360" loading="lazy">
+                <div class="project-card-body">
+                    <h3>NECCUS Trade Mission</h3>
+                    <p>Documented the Scotland–Norway decarbonisation trade mission at Oslo Event Hub and the UK Ambassador's residence, delivering press-ready photos within 24 hours.</p>
+                    <span class="project-card-link">View case study</span>
+                </div>
+            </a>
+            <a href="https://recapmedia.no/work/ocean-rise-public-art-documentation-oslo" class="project-card card-tilt">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6939791beeed04d17a9c3cc3.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6939791beeed04d17a9c3cc3-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6939791beeed04d17a9c3cc3.webp 1280w" sizes="(max-width: 768px) 100vw, (max-width: 960px) 50vw, 370px" alt="Ocean Rise public art documentation, Tøyenparken Oslo" class="project-card-image" width="640" height="360" loading="lazy">
+                <div class="project-card-body">
+                    <h3>Ocean Rise Art Project</h3>
+                    <p>Documented performances and workshops at a multi-day public arts project, providing artists and organizers with a rich portfolio of images and video highlights.</p>
+                    <span class="project-card-link">View case study</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Video: What It Looks Like on the Day -->
+<section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
+    <div class="container">
+        <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
+            <span class="overline">In action</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">What It Looks Like on the Day</h2>
+        </div>
+        <div class="video-player-wrap gsap-fade">
+            <video
+                id="home-video"
+                src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4"
+                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69cccc9af2ec2d89a902d7a2.webp"
+                preload="none"
+                playsinline
+                webkit-playsinline
+                title="Conference coverage by Recap Media"
+            ></video>
+            <div class="video-play-overlay" id="home-video-overlay">
+                <button class="video-play-btn" aria-label="Play video">
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- Controls: mute + fullscreen (appear on hover) -->
+            <div class="video-controls" id="home-video-controls">
+                <button class="video-ctrl-btn" id="home-video-mute" aria-label="Mute">
+                    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </button>
+                <button class="video-ctrl-btn" id="home-video-fs" aria-label="Fullscreen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+                </button>
+            </div>
+        </div>
+        <script>
+        (function() {
+            var vid = document.getElementById('home-video');
+            var overlay = document.getElementById('home-video-overlay');
+            var controls = document.getElementById('home-video-controls');
+            var muteBtn = document.getElementById('home-video-mute');
+            var fsBtn = document.getElementById('home-video-fs');
+            if (!vid || !overlay) return;
+            function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; if (controls) controls.style.opacity = '1'; }
+            function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; if (controls) controls.style.opacity = '0'; }
+            overlay.addEventListener('click', function() {
+                vid.muted = true;
+                var p = vid.play();
+                if (p && p.then) {
+                    p.then(function() { vid.muted = false; });
+                } else {
+                    setTimeout(function() { vid.muted = false; }, 100);
+                }
+                hide();
+            });
+            vid.addEventListener('click', function() {
+                if (!vid.paused) { vid.pause(); } else {
+                    vid.muted = true;
+                    var p = vid.play();
+                    if (p && p.then) {
+                        p.then(function() { vid.muted = false; });
+                    } else {
+                        setTimeout(function() { vid.muted = false; }, 100);
+                    }
+                    hide();
+                }
+            });
+            vid.addEventListener('pause', show);
+            vid.addEventListener('ended', show);
+            if (muteBtn) {
+                muteBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    vid.muted = !vid.muted;
+                    muteBtn.querySelector('.icon-unmuted').style.display = vid.muted ? 'none' : '';
+                    muteBtn.querySelector('.icon-muted').style.display = vid.muted ? '' : 'none';
+                });
+            }
+            if (fsBtn) {
+                fsBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (vid.requestFullscreen) vid.requestFullscreen();
+                    else if (vid.webkitRequestFullscreen) vid.webkitRequestFullscreen();
+                    else if (vid.webkitEnterFullScreen) vid.webkitEnterFullScreen();
+                });
+            }
+        })();
+        </script>
+    </div>
+</section>
+
+<section class="section section--lg section-dark testimonials-section" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">03</span>
+            <span class="overline">Client stories</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had the pleasure of working with Max on filming my interactive kids’ show in Oslo. We met well in advance, and he was truly dedicated to understanding the purpose of the video. He came thoroughly prepared with high-quality equipment and a clear plan. I’m also very happy with the post-production - the final video turned out just as I imagined. Worth every penny."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4D03AQH52fBfk2rzew/profile-displayphoto-shrink_800_800/B4DZaMuEdwGsAg-/0/1746117610017?e=1775088000&amp;v=beta&amp;t=QBKVP3FgwNQkgJISwOXxg5EfYASTF9Ehkc1NgP344ww" alt="Nagyová Anita Abigél" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=NA';"><div><div class="testimonial-name">Nagyová Anita Abigél</div><div class="testimonial-title">CEO, Kunst og Moro Underholdning</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
+                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark cta-section-v2">
+    <div class="cta-orb cta-orb--1"></div>
+    <div class="cta-orb cta-orb--2"></div>
+    <div class="container gsap-fade" style="position: relative; z-index: 1;">
+        
+        <div class="cta-gallery-wrapper">
+            <div class="cta-gallery">
+                <button class="cta-gallery-btn prev" aria-label="Previous image">&#10094;</button>
+                <div class="cta-gallery-track" id="ctaGalleryTrack">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp" alt="Large audience of tech conference attendees filling an auditorium in Oslo" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dc03e0f042cc417e7.webp" alt="Two professionals in conversation during a corporate reception, including the UK Ambassador to Norway" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="Two conference attendees sharing a laugh in the exhibition hall at a tech event" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting to an audience at a corporate conference in Oslo" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06d840ed1175f2d7444.webp" alt="Conference delegates engaged in a session at a corporate event in Oslo" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dc03e0f2905c417e9.webp" alt="Three professionals in discussion during a networking break at a corporate conference in Oslo" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dd4f9b3699b62ddd1.webp" alt="Attendees networking at a corporate reception in Oslo, with drinks in hand" loading="lazy">
+                </div>
+                <button class="cta-gallery-btn next" aria-label="Next image">&#10095;</button>
+                <div class="cta-gallery-dots">
+                    <button class="dot active" aria-label="Slide 1"></button>
+                    <button class="dot" aria-label="Slide 2"></button>
+                    <button class="dot" aria-label="Slide 3"></button>
+                    <button class="dot" aria-label="Slide 4"></button>
+                    <button class="dot" aria-label="Slide 5"></button>
+                    <button class="dot" aria-label="Slide 6"></button>
+                    <button class="dot" aria-label="Slide 7"></button>
+                </div>
+            </div>
+        </div>
+
+        <span class="overline">Let's work together</span>
+        <h2 class="cta-heading-v2">Tell Us About<br><span class="gradient-text">Your Event</span></h2>
+        <p class="cta-body">Get in touch to explore how we can help you capture, share, and get real use out of your next event.</p>
+        <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+    </div>
+</section>
+
+<!-- NEW (ICP v2): Who this is for -->
+<section class="section section--lg section-light">
+    <div class="container">
+        <div class="section-header gsap-fade" style="margin-bottom: 0;">
+            <h2>Who this is for</h2>
+            <p>We work with marketing and events leads at companies in Greater Oslo that run recurring B2B events — conferences, seminars, launches, internal summits — where the event carries the company's positioning, not just its calendar.</p>
+            <p style="margin-top: 16px;">Running a non-profit or mission-driven event? We offer reduced rates — mention it in your brief.</p>
+            <!-- ▶ NON-PROFIT LINE — option A is active above. Alternatives (Max picks):
+                 B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
+                 C (FAQ-only): remove the line above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
+        </div>
+    </div>
+</section>
+
+<!-- ICP v2: Offer block — REPLACES the old homepage packages section (the three-package menu; KRAFT N12: no package count anywhere).
+     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds. -->
+<section class="section section--lg section-onyx">
+    <div class="container">
+        <div class="section-header gsap-fade" style="margin-bottom: 32px;">
+            <span class="section-num">04</span>
+            <span class="overline">Working with us</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Scoped to your event, not to a menu</h2>
+            <p>Every event gets a scoped proposal — coverage, deliverables and timeline spelled out after a short briefing call, so the number doesn't move later. No retainers required to start: the first engagement stands on its own, and if you want the content engine running month to month, we set that up after you've seen what one event produces.</p>
+        </div>
+        <div class="hero-cta-row gsap-fade" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            <a href="https://recapmedia.no/work" class="hero-secondary-link">See our work <span class="arrow">→</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">05</span>
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate vendors? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Greater Oslo — including Sandvika, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is 7 business days for edited photos and 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What happens to the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you work with international teams or organisers? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics.</div></div></div>
+        </div>
+        <div class="faq-footer">
+            <p>Still have questions? We're happy to answer anything before you commit.</p>
+            <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="flex-shrink: 0;">Get in touch →</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Recap Media</h3>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact — reliably delivered.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                    <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Pages</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
+            <div>
+                <a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/terms">Terms of Service</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close modal">✕</button>
+        <h2>Request a Quote</h2>
+        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
+        <form class="quote-form" novalidate>
+            <input type="text" name="website" class="hp-field" aria-hidden="true" aria-label="Leave this field empty" tabindex="-1" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name"></div>
+                <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
+                <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+            </div>
+            <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
+            <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
+            <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
+            <div class="form-group"><label for="visible-event-date">Event date *</label><input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required></div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
+            <p class="form-consent-text">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+        </form>
+        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
+    </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- CDN Libraries (kept external — inlining would be impractical) -->
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+
+<script src="../js/main-v2.js?v=2"></script>
+<script>
+    (function() {
+        function dismissSplash() {
+            var s = document.getElementById('rm-splash');
+            if (!s) return;
+            s.classList.add('hidden');
+            setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
+        if (document.readyState === 'complete') {
+            dismissSplash();
+        } else {
+            window.addEventListener('load', dismissSplash);
+        }
+    })();
+</script>
+<script src="https://link.vidlead.com/js/external-tracking.js" data-tracking-id="tk_f3f18d3c6413432c85cc0e3957cb61c8" data-debug="true"></script>
+</body>
+</html>
