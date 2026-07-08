@@ -67,7 +67,7 @@
         <h2>Request a Quote</h2>
         <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
         <form class="quote-form" novalidate>
-            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
             <div class="form-row">
                 <div class="form-group">
                     <label for="visible-first-name">First Name *</label>
@@ -144,7 +144,27 @@
             if (!s || _dismissing) return;
             _dismissing = true;
             var probe = document.querySelector('.hero-overline');
-            if (!probe) { removeSplash(s); return; } // no animated hero on this page
+            if (!probe) {
+                // Subpage (no animated hero) — 2026-07-08: do NOT dismiss at DCL. Global
+                // Sections are server-rendered so this script runs early, but the
+                // stylesheet may not have applied yet — dismissing here exposed a raw-HTML
+                // flash until the late CSS landed. Poll until style.css has applied:
+                // --color-ember is a :root token that ONLY css/style.css defines, so its
+                // presence on the root computed style proves the sheet is active.
+                // Absolute 5500ms cap from navigation start (deliberately NOT
+                // poll-start-relative — a late DCL must not push the deadline past the 6s
+                // pure-CSS failsafe in the Global Header, which stays the
+                // black-screen-forever guard). The poll TIMES OUT to dismiss; it never
+                // holds forever.
+                var cssReady = function() {
+                    return getComputedStyle(document.documentElement).getPropertyValue('--color-ember').trim() !== '';
+                };
+                (function waitForCss() {
+                    if (cssReady() || performance.now() > 5500) removeSplash(s);
+                    else requestAnimationFrame(waitForCss);
+                })();
+                return;
+            }
             // The homepage hero is hidden then animated in by GSAP in main-v2.js, which only
             // runs after Lenis/GSAP load late (it then sets window.__lenis). .hero-overline
             // sits at opacity 1 BOTH before it's hidden and after it's revealed, so opacity
