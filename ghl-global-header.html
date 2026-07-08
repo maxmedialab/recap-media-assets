@@ -1,6 +1,6 @@
 <!-- Parser-discovered CSS — FOUC root-cause fix (2026-07-08): GHL server-renders Global Sections into the raw HTML but injects Tracking Code client-side post-hydration (~0.3–1.4s after DCL), so a stylesheet there fetches far too late. The pin below is THE css pin — the Header Tracking Code copy is removed (see reference/deploy-artifacts/perf-tracking-code-snippets.md). -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@REPIN/css/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/css/style.min.css">
 
 <!--
 =============================================================
@@ -35,7 +35,7 @@
 <noscript><style>#rm-splash { display: none !important; }</style></noscript>
 <div id="rm-splash">
     <!-- width/height = rendered size (#rm-splash img: width 120px, square source); -240 variant = 2× DPR -->
-    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@REPIN/images/69e9d70ea1636a6c65695174-240.webp" alt="Loading Recap Media" width="120" height="120">
+    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174-240.webp" alt="Loading Recap Media" width="120" height="120">
 </div>
 
 <!-- Custom cursor divs removed 2026-07-04 — dead feature (CSS hides .cursor-dot/.cursor-ring
@@ -55,7 +55,7 @@
 <nav class="nav" id="nav">
     <a href="https://recapmedia.no/" class="nav-logo">
         <!-- width/height = desktop rendered size (.nav-logo img: max-height 48px, square source) — sizes the logo in the pre-CSS window instead of its 1024px intrinsic -->
-        <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@REPIN/images/69e9d70ea1636a6c65695174-96.webp" alt="Recap Media Logo" width="48" height="48">
+        <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174-96.webp" alt="Recap Media Logo" width="48" height="48">
         <span>Recap Media</span>
     </a>
     <ul class="nav-links">
