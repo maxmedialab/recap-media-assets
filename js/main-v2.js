@@ -7,6 +7,9 @@
 
     var REDUCED_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
+    // GHL injects maximum-scale=1 + user-scalable=no into the viewport meta; rewrite it to restore pinch-zoom (a11y).
+    document.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1');
+
     function initNav() {
         const nav = document.querySelector('.nav');
         const hamburger = document.querySelector('.nav-hamburger');
