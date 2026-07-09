@@ -1,5 +1,10 @@
 <!--
 PLANNED PAGE — NOT LIVE. ICP homepage v2 (KRAFT remodel), drafted 2026-07-08.
+ROUND-3 FUNNEL RESTRUCTURE (2026-07-09): section order rebuilt as a conversion funnel —
+pain → qualification gate → solution + tier ladder (old §2 + §8 merged) → process strip →
+proof (work w/ R1 outcome line, video, testimonials) → top-2 objections inline → FAQ (reordered,
+deep layer) → single closing CTA. Marquee + duplicate offer/benefit sections removed;
+"Request a quote" appears exactly 3× in-page (hero / post-proof / end).
 Do not paste into GHL until Max approves the copy doc
 (projects/recap-website-cleanup/icp-homepage-copy-v2.md). See _planned/README.md.
 -->
@@ -59,14 +64,14 @@ Do not paste into GHL until Max approves the copy doc
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "How much does event photography and videography in Oslo cost?", "acceptedAnswer": { "@type": "Answer", "text": "The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises." } },
-        { "@type": "Question", "name": "Do you cover both photo and video, or do I need to hire separate vendors?", "acceptedAnswer": { "@type": "Answer", "text": "We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables." } },
-        { "@type": "Question", "name": "What types of events do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it." } },
-        { "@type": "Question", "name": "Do you only work in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote." } },
         { "@type": "Question", "name": "How quickly do we receive the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief." } },
         { "@type": "Question", "name": "What happens to the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece." } },
+        { "@type": "Question", "name": "Do you cover both photo and video, or do I need to hire separate vendors?", "acceptedAnswer": { "@type": "Answer", "text": "We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables." } },
         { "@type": "Question", "name": "Who actually shows up to our event?", "acceptedAnswer": { "@type": "Answer", "text": "Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects." } },
-        { "@type": "Question", "name": "Can you coordinate with our venue or AV team?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process." } },
+        { "@type": "Question", "name": "What types of events do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it." } },
         { "@type": "Question", "name": "Do you cover multi-room or multi-track events?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter." } },
+        { "@type": "Question", "name": "Can you coordinate with our venue or AV team?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process." } },
+        { "@type": "Question", "name": "Do you only work in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote." } },
         { "@type": "Question", "name": "Do you work with international teams or organisers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics." } }
       ]
     }
@@ -97,21 +102,29 @@ Do not paste into GHL until Max approves the copy doc
 
     <link rel="stylesheet" href="../css/style.css?v=2">
     <!-- PLANNED-PAGE ONLY — fold into style.css at approval (add !important on fold — GHL styles fight without it).
-         Additive .p2- classes for the 2026-07-09 scannability rebuild: §1 pain beat strip,
-         §7 narrow checklist column, §8 "start here" tier emphasis + shared centered note. -->
+         Additive .p2- classes for the 2026-07-09 funnel rebuild: pain beat strip (+ 4-col process
+         variant), narrow checklist column, tier "start here" emphasis, tier scope lines, centered note.
+         NOTE: .steps-grid--2 base is defined here because style.css carries only its media rules;
+         reconcile on fold (style.css lines ~1272/1276). -->
     <style>
         .p2-beats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+        .p2-beats--4 { grid-template-columns: repeat(4, 1fr); max-width: 1120px; }
         .p2-beat { border-left: 1px solid rgba(255,255,255,0.14); padding-left: 22px; }
         .p2-beat-kicker { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 10px; }
         .p2-beat-line { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; line-height: 1.25; color: var(--color-white); margin: 0 0 8px; text-wrap: balance; }
         .p2-beat-sub { font-size: 0.875rem; line-height: 1.6; color: var(--color-warm-grey); margin: 0; }
         .p2-note { text-align: center; font-size: 1rem; line-height: 1.6; color: var(--color-warm-grey); max-width: 560px; margin: 36px auto 0; }
-        .p2-note--gap { margin-bottom: 32px; }
         .p2-narrow { max-width: 640px; margin: 0 auto; }
-        .section-onyx .step-card.p2-start { box-shadow: inset 0 3px 0 0 var(--color-ember) !important; }
-        .section-onyx .step-card.p2-start:hover { box-shadow: inset 0 3px 0 0 var(--color-ember), 0 12px 32px rgba(0,0,0,0.25) !important; }
+        .p2-scope { font-size: 0.8rem !important; line-height: 1.5 !important; color: var(--color-stone) !important; border-top: 1px solid rgba(20,18,24,0.08); padding-top: 12px; margin-top: 16px; }
+        .step-card.p2-start { box-shadow: inset 0 3px 0 0 var(--color-ember) !important; border-top-color: transparent !important; }
+        .step-card.p2-start:hover { box-shadow: inset 0 3px 0 0 var(--color-ember), 0 12px 32px rgba(20,18,24,0.12) !important; }
+        .steps-grid--2 { grid-template-columns: repeat(2, 1fr) !important; max-width: 820px; margin: 0 auto; }
+        @media (max-width: 1024px) {
+            .p2-beats--4 { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
-            .p2-beats { grid-template-columns: 1fr; gap: 24px; }
+            .p2-beats, .p2-beats--4 { grid-template-columns: 1fr; gap: 24px; }
+            .steps-grid--2 { grid-template-columns: 1fr !important; }
         }
     </style>
     <!-- Splash overlay — renders instantly before external CSS loads -->
@@ -272,22 +285,9 @@ Do not paste into GHL until Max approves the copy doc
 })();
 </script>
 
-<div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-        <span class="marquee-item">Event Photography</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Event Videography</span><span class="marquee-sep">◆</span>        <span class="marquee-item">Social Content</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Speaker Coverage</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Sponsor Documentation</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Highlight Reels</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Press-Ready Assets</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Event Photography</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Event Videography</span><span class="marquee-sep">◆</span>        <span class="marquee-item">Social Content</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Speaker Coverage</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Sponsor Documentation</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Highlight Reels</span><span class="marquee-sep">◆</span>
-        <span class="marquee-item">Press-Ready Assets</span><span class="marquee-sep">◆</span>
-    </div>
-</div>
+<!-- ROUND-3 (2026-07-09): marquee CUT — a scrolling service-keyword loop is a vendor menu, not a
+     funnel step; it answered neither "why" nor "what do you get" (page-inventory verdict: noise)
+     and separated the hero's promise from the pain section that substantiates it. -->
 
 <!-- NEW (ICP v2): Pain — name what actually happens.
      Rebuilt 2026-07-09 for scannability: the two centered paragraphs became a 3-beat timeline
@@ -320,57 +320,103 @@ Do not paste into GHL until Max approves the copy doc
     </div>
 </section>
 
-<section class="section section--lg section-light end-to-end">
+<!-- ROUND-3 (2026-07-09): Who this is for — MOVED UP: qualification gates the pitch
+     (pain → "is this you?" → solution) instead of trailing the offer as an afterthought.
+     N2 sentence as a 3-item second-person checklist ("Oslo and beyond" rule kept); non-profit
+     A+B line in the highlighted call-cta-box. Same approved copy, no new claims. -->
+<section class="section section--lg section-light">
     <div class="container">
-        <div class="two-col">
+        <div class="section-header gsap-fade">
+            <h2>Who this is for</h2>
+        </div>
+        <div class="p2-narrow">
+            <ul class="check-list gsap-stagger-items">
+                <li><strong>You're a marketing or events lead</strong> — at a company in Oslo or beyond.</li>
+                <li><strong>You run recurring B2B events</strong> — conferences, seminars, launches, internal summits.</li>
+                <li><strong>Your event carries the company's positioning</strong> — not just its calendar.</li>
+            </ul>
+            <div class="call-cta-box gsap-fade" style="margin-top: 28px; margin-bottom: 0 !important;">
+                <p style="margin-bottom: 0 !important;">Running a non-profit or mission-driven event? We work at reduced rates — good events shouldn’t disappear because the budget is tight. Mention it in your brief.</p>
+            </div>
+            <!-- ▶ NON-PROFIT LINE — option A is active above (A+B blend, Max round 2). Alternatives (Max picks):
+                 B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
+                 C (FAQ-only): remove the callout above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
+        </div>
+    </div>
+</section>
+
+<!-- ROUND-3 MERGE (2026-07-09): ONE solution narrative. The old benefit checklist (§2) and the old
+     end-of-page offer tiers (§8) were the same offer told twice (and the process strip told it a
+     third time). Merged here: approved benefit story + the three tiers as the how-much-to-hand-off
+     ladder. Tier substance WITHOUT prices — scope lines reuse ONLY approved enumerations (live
+     homepage Conference Package deliverables; FAQ content-plan / publishing wording). Commercial
+     no-lock-in terms live in the objections section below; mechanics live in "How it works". -->
+<section class="section section--lg section-warm end-to-end">
+    <div class="container">
+        <div class="two-col" style="margin-bottom: clamp(40px, 5vw, 64px);">
             <div class="col-text gsap-fade">
                 <span class="section-num">01</span>
                 <span class="overline overline--ruled">What you get from the day</span>
                 <h2>From one event<br>to months of content</h2>
                 <p>One day of filming can fund months of content if you plan it that way from the start. You choose how much of it to hand off — pick what fits your team's bandwidth.</p>
-                <!-- Tightened 2026-07-09 for scannability: bold lead + ONE line each; depth moved out
-                     (plan approval + batch review → §3 steps 3–4; months-of-channel-feed → FAQ "What
-                     happens to the content after the event"; shared-drive burial → §1 owns the pain). -->
-                <ul class="check-list gsap-stagger-items">
-                    <li><strong>Your footage, ready to use.</strong> One crew captures your event; you receive organized, finished footage — no months of raw-file sorting.</li>
-                    <li><strong>Your content series, planned before filming starts.</strong> We map the full series up front — titles, formats, timing — and handle the editing.</li>
-                    <li><strong>Your content, published on schedule.</strong> We handle timing, platforms, and publishing — hours of coordination become minutes of approval.</li>
-                </ul>
             </div>
             <div class="col-image gsap-fade">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp" alt="Event coverage by Recap Media" width="640" height="480" class="parallax-img">
             </div>
         </div>
+        <div class="steps-grid gsap-stagger">
+            <div class="step-card p2-start">
+                <div class="step-number">Start here</div>
+                <h3>Capture</h3>
+                <p><strong>Your footage, ready to use.</strong> One crew captures your event; you receive organized, finished footage — no months of raw-file sorting.</p>
+                <p class="p2-scope">Typically: 50+ edited photos · a 2–3 min highlight video · 7 vertical social clips</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Add when you're ready</div>
+                <h3>Content series</h3>
+                <p><strong>Planned before filming starts.</strong> We map the full series up front — titles, formats, timing — and handle the editing.</p>
+                <p class="p2-scope">You get the plan: which clips and posts go out, where, and when</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Add later if it fits</div>
+                <h3>Distribution</h3>
+                <p><strong>Published on schedule.</strong> We handle timing, platforms, and publishing — hours of coordination become minutes of approval.</p>
+                <p class="p2-scope">We run the publishing; you approve each piece</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- NEW (ICP v2): How it works — lean 4-step process strip (steps-grid--4 / step-card, same pattern as index-bnb §02) -->
-<section class="section section--lg section-warm">
+<!-- ROUND-3 (2026-07-09): ONE mechanics strip. Rebuilt from step cards to a numbered beat strip
+     (.p2-beats--4) so process reads as a sequence, not as a second card-offer next to the tiers.
+     Step copy unchanged from the approved draft. -->
+<section class="section section--lg section-dark">
     <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 48px;">
+            <span class="section-num">02</span>
             <span class="overline">How it works</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">From brief to content engine in four steps</h2>
         </div>
-        <div class="steps-grid steps-grid--4 gsap-stagger">
-            <div class="step-card">
-                <div class="step-number">Step 1</div>
-                <h3>Brief</h3>
-                <p>A short call before the event — what you're running, who it's for, what the content needs to do afterwards.</p>
+        <div class="p2-beats p2-beats--4 gsap-stagger">
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Step 1</span>
+                <p class="p2-beat-line">Brief</p>
+                <p class="p2-beat-sub">A short call before the event — what you're running, who it's for, what the content needs to do afterwards.</p>
             </div>
-            <div class="step-card">
-                <div class="step-number">Step 2</div>
-                <h3>Capture</h3>
-                <p>We cover the day — photo and video, one crew, one point of contact.</p>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Step 2</span>
+                <p class="p2-beat-line">Capture</p>
+                <p class="p2-beat-sub">We cover the day — photo and video, one crew, one point of contact.</p>
             </div>
-            <div class="step-card">
-                <div class="step-number">Step 3</div>
-                <h3>Build</h3>
-                <p>Within days you get the edited gallery and films, plus the content plan: what gets published, where, and when.</p>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Step 3</span>
+                <p class="p2-beat-line">Build</p>
+                <p class="p2-beat-sub">Within days you get the edited gallery and films, plus the content plan: what gets published, where, and when.</p>
             </div>
-            <div class="step-card">
-                <div class="step-number">Step 4 (Optional)</div>
-                <h3>Run</h3>
-                <p>We schedule and publish it for you — you just approve. Or take the plan and run it in-house.</p>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Step 4 — optional</span>
+                <p class="p2-beat-line">Run</p>
+                <p class="p2-beat-sub">We schedule and publish it for you — you just approve. Or take the plan and run it in-house.</p>
             </div>
         </div>
     </div>
@@ -380,18 +426,22 @@ Do not paste into GHL until Max approves the copy doc
     <div class="container">
         <div class="section-header-row gsap-fade">
             <div>
-                <span class="section-num">02</span>
+                <span class="section-num">03</span>
                 <span class="overline overline--ruled">Selected work</span>
                 <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">See Our Work in Action</h2>
             </div>
             <a href="https://recapmedia.no/work" class="section-header-link">View all work →</a>
         </div>
+        <!-- PROOF SLOTS (KRAFT H2/#1): when the Flutter Vikings proof sheet ships (recap-own-content),
+             the ~20h footage → 4-min clip → ~20 pieces numbers land HERE (Flutter Vikings card /
+             a stat line above this grid) and in the hero stat strip. No invented metrics until then;
+             the R1 spoken proof line below is the approved truth-safe outcome statement. -->
         <div class="cards-grid gsap-stagger">
             <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="project-card card-tilt">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp 1024w" sizes="(max-width: 768px) 100vw, (max-width: 960px) 50vw, 370px" alt="Flutter Vikings Conference 2022, Oslo" class="project-card-image" width="640" height="360" loading="lazy">
                 <div class="project-card-body">
                     <h3>Flutter Vikings Conference</h3>
-                    <p>Three-track event coverage, photography and session recordings for Flutter Vikings 2022 — supporting hybrid attendance and a session archive the Flutter community still uses today.</p>
+                    <p>At Flutter Vikings 2022 we livestreamed three rooms, 46 speakers over two days — and it's still being watched on YouTube four years later.</p>
                     <span class="project-card-link">View case study</span>
                 </div>
             </a>
@@ -508,7 +558,7 @@ Do not paste into GHL until Max approves the copy doc
 <section class="section section--lg section-dark testimonials-section" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">03</span>
+            <span class="section-num">04</span>
             <span class="overline">Client stories</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
         </div>
@@ -530,14 +580,73 @@ Do not paste into GHL until Max approves the copy doc
                 <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
             </div>
         </div>
+        <!-- ROUND-3: CTA #2 of 3 (post-proof) — same label as hero + end CTA (label consistency rule).
+             Lead line reuses the approved pricing-FAQ wording; no urgency/scarcity. -->
+        <p class="p2-note gsap-fade" style="margin-top: 44px;">A detailed quote after a short briefing call — no surprises.</p>
+        <div class="hero-cta-row gsap-fade" style="justify-content: center; margin-top: 20px;">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+        </div>
     </div>
 </section>
 
+<!-- ROUND-3 (2026-07-09): top-2 objections handled INLINE before the final CTA (funnel notes §4) —
+     the FAQ stays as the deep layer. Card 1 = no-lock-in (approved offer sentences, moved here from
+     the merged offer block); card 2 = who-shows-up (FAQ "Who actually shows up", condensed). -->
+<section class="section section--lg section-warm">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="overline">Before you decide</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">No lock-in — and you know who shows up</h2>
+        </div>
+        <div class="steps-grid steps-grid--2 gsap-stagger">
+            <div class="step-card">
+                <div class="step-number">Are we locked into anything?</div>
+                <h3>Each tier stands alone</h3>
+                <p>No lock-in, no forced bundles. Start with capture alone if you like — the first engagement proves the partnership, and you decide what to build next.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Who actually shows up?</div>
+                <h3>Max — the founder, at every event</h3>
+                <p>He's the lead photographer and videographer, and your single point of contact on the day. Larger events add crew from a trusted, vetted Oslo-based roster.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">05</span>
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
+        </div>
+        <!-- ROUND-3: FAQ reordered — objection-critical questions lead (cost, turnaround, what-happens-
+             after, one-vendor, who-shows-up); logistics follow. FAQPage schema in <head> mirrors this
+             order 1:1. The faq-footer "Get in touch" button was CUT: the final CTA directly below is
+             the one closing ask (CTA-fatigue fix). All 10 answers unchanged. -->
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What happens to the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate vendors? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you work with international teams or organisers? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics.</div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ROUND-3: FINAL CTA (#3 of 3) — moved to page end from mid-page. The FAQ above absorbs the last
+     objections; the page closes on one ask. Gallery kept (visual proof at the ask moment; all 7
+     pinned assets retained). Post-submit expectation line added (matches the quote-modal promise). -->
 <section class="section section-dark cta-section-v2">
     <div class="cta-orb cta-orb--1"></div>
     <div class="cta-orb cta-orb--2"></div>
     <div class="container gsap-fade" style="position: relative; z-index: 1;">
-        
+
         <div class="cta-gallery-wrapper">
             <div class="cta-gallery">
                 <button class="cta-gallery-btn prev" aria-label="Previous image">&#10094;</button>
@@ -567,93 +676,7 @@ Do not paste into GHL until Max approves the copy doc
         <h2 class="cta-heading-v2">Tell Us About<br><span class="gradient-text">Your Event</span></h2>
         <p class="cta-body">Get in touch to explore how we can help you capture, share, and get real use out of your next event.</p>
         <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-    </div>
-</section>
-
-<!-- NEW (ICP v2): Who this is for.
-     Rebuilt 2026-07-09 for scannability: the N2 qualifying sentence split into a 3-item
-     second-person checklist ("Oslo and beyond" rule kept); the non-profit A+B line moved into
-     a highlighted call-cta-box instead of a buried paragraph. Same meaning, no new claims. -->
-<section class="section section--lg section-light">
-    <div class="container">
-        <div class="section-header gsap-fade">
-            <h2>Who this is for</h2>
-        </div>
-        <div class="p2-narrow">
-            <ul class="check-list gsap-stagger-items">
-                <li><strong>You're a marketing or events lead</strong> — at a company in Oslo or beyond.</li>
-                <li><strong>You run recurring B2B events</strong> — conferences, seminars, launches, internal summits.</li>
-                <li><strong>Your event carries the company's positioning</strong> — not just its calendar.</li>
-            </ul>
-            <div class="call-cta-box gsap-fade" style="margin-top: 28px; margin-bottom: 0 !important;">
-                <p style="margin-bottom: 0 !important;">Running a non-profit or mission-driven event? We work at reduced rates — good events shouldn’t disappear because the budget is tight. Mention it in your brief.</p>
-            </div>
-            <!-- ▶ NON-PROFIT LINE — option A is active above (A+B blend, Max round 2). Alternatives (Max picks):
-                 B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
-                 C (FAQ-only): remove the callout above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
-        </div>
-    </div>
-</section>
-
-<!-- ICP v2: Offer block — REPLACES the old homepage packages section (the three-package menu; KRAFT N12: no package count anywhere).
-     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds.
-     Rebuilt 2026-07-09 for scannability: the 43-word paragraph redistributed 1:1 into a subhead
-     ("Each tier works on its own…"), three tier cards (Capture = start here / Content series /
-     Distribution) and one closing line — the tiers ARE the offer; no sentence rewritten. -->
-<section class="section section--lg section-onyx">
-    <div class="container">
-        <div class="section-header gsap-fade">
-            <span class="section-num">04</span>
-            <span class="overline">Working with us</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Start with capture. Build from there.</h2>
-            <p>Each tier works on its own. No lock-in, no forced bundles.</p>
-        </div>
-        <div class="steps-grid gsap-stagger" style="max-width: 960px; margin: 0 auto;">
-            <div class="step-card p2-start">
-                <div class="step-number">Start here</div>
-                <h3>Capture</h3>
-                <p>Stands alone: useful footage you own.</p>
-            </div>
-            <div class="step-card">
-                <h3>Content series</h3>
-                <p>Add it when you're ready.</p>
-            </div>
-            <div class="step-card">
-                <h3>Distribution</h3>
-                <p>Add it later if it fits.</p>
-            </div>
-        </div>
-        <p class="p2-note p2-note--gap gsap-fade">The first engagement proves the partnership; you decide what to build next.</p>
-        <div class="hero-cta-row gsap-fade" style="justify-content: center;">
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/work" class="hero-secondary-link">See our work <span class="arrow">→</span></a>
-        </div>
-    </div>
-</section>
-
-<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">05</span>
-            <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate vendors? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What happens to the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you work with international teams or organisers? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics.</div></div></div>
-        </div>
-        <div class="faq-footer">
-            <p>Still have questions? We're happy to answer anything before you commit.</p>
-            <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="flex-shrink: 0;">Get in touch →</a>
-        </div>
+        <p class="p2-note" style="margin-top: 16px; font-size: 0.85rem;">We reply within one business day.</p>
     </div>
 </section>
 
