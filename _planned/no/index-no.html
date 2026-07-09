@@ -97,6 +97,25 @@ See _planned/README.md.
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../../css/style.css?v=2">
+    <!-- PLANNED-PAGE ONLY — fold into style.css at approval (add !important on fold — GHL styles fight without it).
+         Additive .p2- classes copied from _planned/index-icp-v2.html (2026-07-09 scannability rebuild):
+         pain beat strip, narrow checklist column, "start here" tier emphasis + shared centered note.
+         On fold, keep ONE copy — these are byte-identical to the EN homepage block. -->
+    <style>
+        .p2-beats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+        .p2-beat { border-left: 1px solid rgba(255,255,255,0.14); padding-left: 22px; }
+        .p2-beat-kicker { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 10px; }
+        .p2-beat-line { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; line-height: 1.25; color: var(--color-white); margin: 0 0 8px; text-wrap: balance; }
+        .p2-beat-sub { font-size: 0.875rem; line-height: 1.6; color: var(--color-warm-grey); margin: 0; }
+        .p2-note { text-align: center; font-size: 1rem; line-height: 1.6; color: var(--color-warm-grey); max-width: 560px; margin: 36px auto 0; }
+        .p2-note--gap { margin-bottom: 32px; }
+        .p2-narrow { max-width: 640px; margin: 0 auto; }
+        .section-onyx .step-card.p2-start { box-shadow: inset 0 3px 0 0 var(--color-ember) !important; }
+        .section-onyx .step-card.p2-start:hover { box-shadow: inset 0 3px 0 0 var(--color-ember), 0 12px 32px rgba(0,0,0,0.25) !important; }
+        @media (max-width: 768px) {
+            .p2-beats { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
     <!-- Splash overlay — renders instantly before external CSS loads -->
     <style>
         #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
@@ -271,15 +290,35 @@ See _planned/README.md.
     </div>
 </div>
 
-<!-- NEW (ICP v2): Pain — name what actually happens -->
+<!-- NEW (ICP v2): Pain — name what actually happens.
+     Rebuilt 2026-07-09 for scannability (§3b): the two centered paragraphs became a 3-beat timeline
+     strip + one short closing line — same sentences re-chunked, no new claims. Mirrors the EN
+     homepage rebuild. Skim path: H2 + "Måneder med arbeid → Én uke med synlighet → En fellesdisk
+     ingen åpner igjen". -->
 <section class="section section--lg section-onyx">
     <div class="container">
         <div class="section-header gsap-fade">
             <span class="overline overline--ruled">Det som vanligvis skjer med arrangementsinnholdet</span>
             <h2>Opptakene ender på en harddisk. Og dør der.</h2>
-            <p>Arrangementet ditt er en av de største markedsføringsinvesteringene du gjør i løpet av året — lokale, catering, talere, produksjon. Så stenger dørene, en highlight-video sendes ut, og resten av opptakene havner på en fellesdisk ingen åpner igjen.</p>
-            <p style="margin-top: 16px;">Én uke med synlighet etter måneder med arbeid. Det er den delen vi mener er ødelagt.</p>
         </div>
+        <div class="p2-beats gsap-stagger">
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Arrangementet</span>
+                <p class="p2-beat-line">Måneder med arbeid</p>
+                <p class="p2-beat-sub">Lokale, catering, talere, produksjon — en av de største markedsføringsinvesteringene du gjør i løpet av året.</p>
+            </div>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Uken etter</span>
+                <p class="p2-beat-line">Én uke med synlighet</p>
+                <p class="p2-beat-sub">Dørene stenger, og en highlight-video sendes ut.</p>
+            </div>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Hver uke etterpå</span>
+                <p class="p2-beat-line">En fellesdisk ingen åpner igjen</p>
+                <p class="p2-beat-sub">Det er der resten av opptakene havner.</p>
+            </div>
+        </div>
+        <p class="p2-note gsap-fade">Det er den delen vi mener er ødelagt.</p>
     </div>
 </section>
 
@@ -291,10 +330,14 @@ See _planned/README.md.
                 <span class="overline overline--ruled">Det du får fra dagen</span>
                 <h2>Fra ett arrangement<br>til måneder med innhold</h2>
                 <p>Én dag med filming kan gi måneder med innhold hvis du planlegger for det fra starten. Du velger selv hvor mye du vil sette bort — ut fra kapasiteten i teamet ditt.</p>
+                <!-- Tightened 2026-07-09 for scannability (§3b): bold lead + ≤2 short lines each; depth
+                     moved out (plan approval + batch review → "Slik fungerer det" steg 3–4;
+                     months-of-channel-feed → FAQ "Hva skjer med innholdet etter arrangementet?";
+                     no-plan/fellesdisk pain → pain section above owns it). Mirrors the EN rebuild. -->
                 <ul class="check-list gsap-stagger-items">
-                    <li><strong>Opptakene dine, klare til bruk.</strong> Ett team dekker arrangementet; du får organisert, ferdigredigert innhold. Publiser det, arkiver det, gjenbruk det — ingen måneder med sortering av råfiler.</li>
-                    <li><strong>Innholdsserien er planlagt før filmingen starter.</strong> Det meste av arrangementsinnhold blir liggende ubrukt fordi det aldri fantes en plan for det. Vi setter opp hele serien på forhånd — titler, formater, timing — og tar oss av redigeringen. Du godkjenner planen; arrangementet fyller kanalene dine i månedsvis.</li>
-                    <li><strong>Innholdet publiseres etter planen.</strong> Vi tar oss av timing, plattformer og publisering; du godkjenner i bolker underveis. Timer med koordinering blir minutter med godkjenning.</li>
+                    <li><strong>Opptakene dine, klare til bruk.</strong> Ett team dekker arrangementet; du får organisert, ferdigredigert innhold — ingen måneder med sortering av råfiler.</li>
+                    <li><strong>Innholdsserien er planlagt før filmingen starter.</strong> Vi setter opp hele serien på forhånd — titler, formater, timing — og tar oss av redigeringen.</li>
+                    <li><strong>Innholdet publiseres etter planen.</strong> Vi tar oss av timing, plattformer og publisering — timer med koordinering blir minutter med godkjenning.</li>
                 </ul>
             </div>
             <div class="col-image gsap-fade">
@@ -530,30 +573,61 @@ See _planned/README.md.
     </div>
 </section>
 
-<!-- NEW (ICP v2): Who this is for -->
+<!-- NEW (ICP v2): Who this is for.
+     Rebuilt 2026-07-09 for scannability (§3b): the N2 qualifying sentence split into a 3-item
+     second-person checklist; the non-profit A+B line moved into a highlighted call-cta-box
+     instead of a buried paragraph. Same meaning, no new claims. Mirrors the EN rebuild. -->
 <section class="section section--lg section-light">
     <div class="container">
-        <div class="section-header gsap-fade" style="margin-bottom: 0;">
+        <div class="section-header gsap-fade">
             <h2>Hvem dette er for</h2>
-            <p>Vi jobber med markedsførings- og eventansvarlige hos selskaper i Oslo og omegn som arrangerer jevnlige B2B-arrangementer — konferanser, seminarer, lanseringer, interne samlinger — der arrangementet bærer selskapets posisjonering, ikke bare fyller kalenderen.</p>
-            <p style="margin-top: 16px;">Arrangerer du noe for en ideell organisasjon eller et samfunnsnyttig formål? Da jobber vi til reduserte priser — gode arrangementer skal ikke forsvinne fordi budsjettet er stramt. Nevn det i briefen.</p>
+        </div>
+        <div class="p2-narrow">
+            <ul class="check-list gsap-stagger-items">
+                <li><strong>Du er markedsførings- eller eventansvarlig</strong> — hos et selskap i Oslo og omegn.</li>
+                <li><strong>Du arrangerer jevnlige B2B-arrangementer</strong> — konferanser, seminarer, lanseringer, interne samlinger.</li>
+                <li><strong>Arrangementet bærer selskapets posisjonering</strong> — det fyller ikke bare kalenderen.</li>
+            </ul>
+            <div class="call-cta-box gsap-fade" style="margin-top: 28px; margin-bottom: 0 !important;">
+                <p style="margin-bottom: 0 !important;">Arrangerer du noe for en ideell organisasjon eller et samfunnsnyttig formål? Da jobber vi til reduserte priser — gode arrangementer skal ikke forsvinne fordi budsjettet er stramt. Nevn det i briefen.</p>
+            </div>
             <!-- ▶ NON-PROFIT LINE — option A is active above. Alternatives (Max picks):
                  B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
-                 C (FAQ-only): remove the line above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
+                 C (FAQ-only): remove the callout above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
         </div>
     </div>
 </section>
 
 <!-- ICP v2: Offer block — REPLACES the old homepage packages section (the three-package menu; KRAFT N12: no package count anywhere).
-     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds. -->
+     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds.
+     Rebuilt 2026-07-09 for scannability (§3b): the 5-sentence paragraph redistributed 1:1 into a
+     subhead ("Hvert nivå fungerer på egen hånd…"), three tier cards (Opptak = start her /
+     Innholdsserie / Distribusjon) and one closing line — the tiers ARE the offer; no sentence
+     rewritten. Mirrors the EN rebuild. -->
 <section class="section section--lg section-onyx">
     <div class="container">
-        <div class="section-header gsap-fade" style="margin-bottom: 32px;">
+        <div class="section-header gsap-fade">
             <span class="section-num">04</span>
             <span class="overline">Jobb med oss</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Start med opptak. Bygg videre derfra.</h2>
-            <p>Hvert nivå fungerer på egen hånd. Ingen binding, ingen tvungne pakker. Opptak står alene: nyttig innhold du eier. Legg til innholdsserien når du er klar, og distribusjon senere hvis det passer. Det første oppdraget viser hva samarbeidet er verdt; du bestemmer hva vi bygger videre.</p>
+            <p>Hvert nivå fungerer på egen hånd. Ingen binding, ingen tvungne pakker.</p>
         </div>
+        <div class="steps-grid gsap-stagger" style="max-width: 960px; margin: 0 auto;">
+            <div class="step-card p2-start">
+                <div class="step-number">Start her</div>
+                <h3>Opptak</h3>
+                <p>Står alene: nyttig innhold du eier.</p>
+            </div>
+            <div class="step-card">
+                <h3>Innholdsserie</h3>
+                <p>Legg til når du er klar.</p>
+            </div>
+            <div class="step-card">
+                <h3>Distribusjon</h3>
+                <p>Legg til senere hvis det passer.</p>
+            </div>
+        </div>
+        <p class="p2-note p2-note--gap gsap-fade">Det første oppdraget viser hva samarbeidet er verdt; du bestemmer hva vi bygger videre.</p>
         <div class="hero-cta-row gsap-fade" style="justify-content: center;">
             <a href="#" class="btn btn-primary" data-cta="quote">Få tilbud</a>
             <a href="https://recapmedia.no/work" class="hero-secondary-link">Se arbeidet vårt <span class="arrow">→</span></a>

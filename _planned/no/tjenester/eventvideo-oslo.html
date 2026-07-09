@@ -82,6 +82,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/style.css?v=2">
+    <!-- PLANNED-PAGE ONLY — fold into style.css at approval (add !important on fold — GHL styles fight without it).
+         Additive .p2- class (copied from _planned/index-icp-v2.html) for the 2026-07-09 scannability fixes:
+         §01 short centered scope note under the steps-grid. -->
+    <style>
+        .p2-note { text-align: center; font-size: 1rem; line-height: 1.6; color: var(--color-warm-grey); max-width: 560px; margin: 36px auto 0; }
+    </style>
     <!-- Splash overlay — renders instantly before external CSS loads -->
     <style>
         #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
@@ -179,7 +185,7 @@
             <span class="section-num">01</span>
             <span class="overline">Hva du får</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Eventvideo som faktisk blir brukt</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">Videoproduksjon for konferanser og arrangementer i Oslo og omegn — fra enkle høydepunktsklipp til hele innholdsserier. Du velger omfanget; vi sørger for at hvert klipp har en jobb å gjøre etter at arrangementet er over.</p>
+            <p style="max-width: 620px; margin: 16px auto 0;">Videoproduksjon for konferanser og arrangementer i Oslo og omegn — fra enkle høydepunktsklipp til hele innholdsserier.</p>
         </div>
         <div class="steps-grid steps-grid--2 gsap-stagger">
             <div class="step-card">
@@ -199,6 +205,7 @@
                 <p>Korte intervjuer med deltakere og foredragsholdere underveis. Enkelt oppsett, stor effekt — få ting selger neste års arrangement bedre enn fornøyde deltakere som sier det selv.</p>
             </div>
         </div>
+        <p class="p2-note gsap-fade">Du velger omfanget; vi sørger for at hvert klipp har en jobb å gjøre etter at arrangementet er over.</p>
     </div>
 </section>
 
@@ -232,9 +239,12 @@
             <span class="section-num">03</span>
             <span class="overline">Etter arrangementet</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Innhold som lever videre i uker og måneder</h2>
-            <p style="margin-top: 16px;">De fleste eventvideoer blir levert, delt én gang og glemt. Vi planlegger klippingen rundt det markedsavdelingen din faktisk skal publisere i ukene og månedene etter arrangementet. Slik blir én opptaksdag til en innholdskalender, ikke bare én enkelt video:</p>
+            <p style="margin-top: 16px;">De fleste eventvideoer blir levert, delt én gang og glemt.</p>
         </div>
-        <ul class="check-list gsap-stagger-items" style="max-width: 620px; margin: 32px auto 0;">
+        <div class="gsap-fade" style="max-width: 620px; margin: 32px auto 0;">
+            <p><strong>Vi planlegger klippingen rundt det markedsavdelingen din faktisk skal publisere</strong> i ukene og månedene etter arrangementet. Slik blir én opptaksdag til en innholdskalender, ikke bare én enkelt video:</p>
+        </div>
+        <ul class="check-list gsap-stagger-items" style="max-width: 620px; margin: 20px auto 0;">
             <li>Foredragsklipp og korte snutter fra sesjonene, klare til å publiseres over flere uker</li>
             <li>Sitatklipp fra foredragsholdere som gir fagstoffet lengre levetid</li>
             <li>En promovideo på 60–90 sekunder til markedsføringen av neste års utgave</li>
@@ -279,26 +289,37 @@
 
 <!-- One booking cross-links -->
 <section class="section section-onyx">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
+    <div class="container" style="max-width: 880px;">
+        <div class="gsap-fade" style="text-align: center;">
             <span class="overline">Mer enn video</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">Foto og video i samme oppdrag</h2>
-            <p style="margin-top: 16px;">Slipp å koordinere fotograf og videograf hver for seg. Vi dekker begge deler under samme brief — ett samlet uttrykk, én faktura og én kontaktperson. For deg betyr det mindre koordinering på selve dagen — og et team som allerede kjenner programmet, lokalet og kjøreplanen. Lurer du på streaming? <a href="https://recapmedia.no/contact">Ta kontakt</a>, så ser vi på mulighetene sammen.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/no/tjenester/eventfotograf-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Eventfotograf i Oslo →</a>
-            </div>
+            <p style="margin-top: 16px;">Slipp å koordinere fotograf og videograf hver for seg.</p>
+        </div>
+        <ul class="check-list gsap-stagger-items" style="max-width: 620px; margin: 28px auto 0;">
+            <li><strong>Begge deler under samme brief</strong> — ett samlet uttrykk, én faktura og én kontaktperson.</li>
+            <li><strong>Mindre koordinering på selve dagen</strong> — og et team som allerede kjenner programmet, lokalet og kjøreplanen.</li>
+            <li><strong>Lurer du på streaming?</strong> <a href="https://recapmedia.no/contact">Ta kontakt</a>, så ser vi på mulighetene sammen.</li>
+        </ul>
+        <div class="gsap-fade" style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://recapmedia.no/no/tjenester/eventfotograf-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Eventfotograf i Oslo →</a>
         </div>
     </div>
 </section>
 
 <!-- Venues -->
 <section class="section section-light">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
+    <div class="container" style="max-width: 880px;">
+        <div class="gsap-fade" style="text-align: center;">
             <span class="overline">Vi filmer der du er</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">Lokaler i Oslo og omegn</h2>
-            <p style="margin-top: 16px;">Konferansesaler, hoteller og messehaller i og rundt Oslo. Vi befarer gjerne lokalet på forhånd, planlegger kameraposisjoner og lyd, og koordinerer med arrangør og venue før dagen. Er arrangementet ditt et annet sted? Vi dekker hele Oslo-området — og reiser gjerne lenger når det trengs.</p>
-            <div class="service-tags" style="justify-content: center;">
+            <p style="margin-top: 16px;">Konferansesaler, hoteller og messehaller i og rundt Oslo.</p>
+        </div>
+        <ul class="check-list gsap-stagger-items" style="max-width: 620px; margin: 28px auto 0;">
+            <li><strong>Vi befarer gjerne lokalet på forhånd</strong> — planlegger kameraposisjoner og lyd, og koordinerer med arrangør og venue før dagen.</li>
+            <li><strong>Er arrangementet ditt et annet sted?</strong> Vi dekker hele Oslo-området — og reiser gjerne lenger når det trengs.</li>
+        </ul>
+        <div class="gsap-fade">
+            <div class="service-tags" style="justify-content: center; margin-top: 28px;">
                 <span class="service-tag">Oslo Kongressenter</span>
                 <span class="service-tag">Clarion Hotel The Hub</span>
                 <span class="service-tag">NOVA Spektrum, Lillestrøm</span>
