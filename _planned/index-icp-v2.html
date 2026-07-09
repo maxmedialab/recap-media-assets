@@ -96,6 +96,24 @@ Do not paste into GHL until Max approves the copy doc
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css?v=2">
+    <!-- PLANNED-PAGE ONLY — fold into style.css at approval (add !important on fold — GHL styles fight without it).
+         Additive .p2- classes for the 2026-07-09 scannability rebuild: §1 pain beat strip,
+         §7 narrow checklist column, §8 "start here" tier emphasis + shared centered note. -->
+    <style>
+        .p2-beats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+        .p2-beat { border-left: 1px solid rgba(255,255,255,0.14); padding-left: 22px; }
+        .p2-beat-kicker { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 10px; }
+        .p2-beat-line { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; line-height: 1.25; color: var(--color-white); margin: 0 0 8px; text-wrap: balance; }
+        .p2-beat-sub { font-size: 0.875rem; line-height: 1.6; color: var(--color-warm-grey); margin: 0; }
+        .p2-note { text-align: center; font-size: 1rem; line-height: 1.6; color: var(--color-warm-grey); max-width: 560px; margin: 36px auto 0; }
+        .p2-note--gap { margin-bottom: 32px; }
+        .p2-narrow { max-width: 640px; margin: 0 auto; }
+        .section-onyx .step-card.p2-start { box-shadow: inset 0 3px 0 0 var(--color-ember) !important; }
+        .section-onyx .step-card.p2-start:hover { box-shadow: inset 0 3px 0 0 var(--color-ember), 0 12px 32px rgba(0,0,0,0.25) !important; }
+        @media (max-width: 768px) {
+            .p2-beats { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
     <!-- Splash overlay — renders instantly before external CSS loads -->
     <style>
         #rm-splash { position: fixed; inset: 0; z-index: 99999; background: #0C0A10; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; }
@@ -271,15 +289,34 @@ Do not paste into GHL until Max approves the copy doc
     </div>
 </div>
 
-<!-- NEW (ICP v2): Pain — name what actually happens -->
+<!-- NEW (ICP v2): Pain — name what actually happens.
+     Rebuilt 2026-07-09 for scannability: the two centered paragraphs became a 3-beat timeline
+     strip + one short closing line — same sentences re-chunked, no new claims. Skim path:
+     H2 + "Months of work → One week of visibility → A drive nobody opens again". -->
 <section class="section section--lg section-onyx">
     <div class="container">
         <div class="section-header gsap-fade">
             <span class="overline overline--ruled">What usually happens to event content</span>
             <h2>The footage ends up on a drive. And dies there.</h2>
-            <p>Your event is one of the biggest marketing investments you make all year — venue, catering, speakers, production. Then the doors close, a highlight reel goes out, and the rest of the footage lands on a shared drive nobody opens again.</p>
-            <p style="margin-top: 16px;">One week of visibility from months of work. That's the part we think is broken.</p>
         </div>
+        <div class="p2-beats gsap-stagger">
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">The event</span>
+                <p class="p2-beat-line">Months of work</p>
+                <p class="p2-beat-sub">Venue, catering, speakers, production — one of the biggest marketing investments you make all year.</p>
+            </div>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">The week after</span>
+                <p class="p2-beat-line">One week of visibility</p>
+                <p class="p2-beat-sub">The doors close and a highlight reel goes out.</p>
+            </div>
+            <div class="p2-beat">
+                <span class="p2-beat-kicker">Every week after</span>
+                <p class="p2-beat-line">A drive nobody opens again</p>
+                <p class="p2-beat-sub">That's where the rest of the footage lands.</p>
+            </div>
+        </div>
+        <p class="p2-note gsap-fade">That's the part we think is broken.</p>
     </div>
 </section>
 
@@ -291,10 +328,13 @@ Do not paste into GHL until Max approves the copy doc
                 <span class="overline overline--ruled">What you get from the day</span>
                 <h2>From one event<br>to months of content</h2>
                 <p>One day of filming can fund months of content if you plan it that way from the start. You choose how much of it to hand off — pick what fits your team's bandwidth.</p>
+                <!-- Tightened 2026-07-09 for scannability: bold lead + ONE line each; depth moved out
+                     (plan approval + batch review → §3 steps 3–4; months-of-channel-feed → FAQ "What
+                     happens to the content after the event"; shared-drive burial → §1 owns the pain). -->
                 <ul class="check-list gsap-stagger-items">
-                    <li><strong>Your footage, ready to use.</strong> One crew captures your event; you receive organized, finished footage. Publish it, archive it, repurpose it — no months of raw-file sorting.</li>
-                    <li><strong>Your content series is planned before filming starts.</strong> Most event footage gets buried because there was never a plan for it. We map the full series up front — titles, formats, timing — and handle the editing. You approve the plan; your event feeds your channels for months.</li>
-                    <li><strong>Your content, published on schedule.</strong> We handle timing, platforms, and publishing; you review in batches as it ships. Hours of coordination become minutes of approval.</li>
+                    <li><strong>Your footage, ready to use.</strong> One crew captures your event; you receive organized, finished footage — no months of raw-file sorting.</li>
+                    <li><strong>Your content series, planned before filming starts.</strong> We map the full series up front — titles, formats, timing — and handle the editing.</li>
+                    <li><strong>Your content, published on schedule.</strong> We handle timing, platforms, and publishing — hours of coordination become minutes of approval.</li>
                 </ul>
             </div>
             <div class="col-image gsap-fade">
@@ -530,30 +570,60 @@ Do not paste into GHL until Max approves the copy doc
     </div>
 </section>
 
-<!-- NEW (ICP v2): Who this is for -->
+<!-- NEW (ICP v2): Who this is for.
+     Rebuilt 2026-07-09 for scannability: the N2 qualifying sentence split into a 3-item
+     second-person checklist ("Oslo and beyond" rule kept); the non-profit A+B line moved into
+     a highlighted call-cta-box instead of a buried paragraph. Same meaning, no new claims. -->
 <section class="section section--lg section-light">
     <div class="container">
-        <div class="section-header gsap-fade" style="margin-bottom: 0;">
+        <div class="section-header gsap-fade">
             <h2>Who this is for</h2>
-            <p>We work with marketing and events leads at companies in Oslo and beyond that run recurring B2B events — conferences, seminars, launches, internal summits — where the event carries the company's positioning, not just its calendar.</p>
-            <p style="margin-top: 16px;">Running a non-profit or mission-driven event? We work at reduced rates — good events shouldn’t disappear because the budget is tight. Mention it in your brief.</p>
-            <!-- ▶ NON-PROFIT LINE — option A is active above. Alternatives (Max picks):
+        </div>
+        <div class="p2-narrow">
+            <ul class="check-list gsap-stagger-items">
+                <li><strong>You're a marketing or events lead</strong> — at a company in Oslo or beyond.</li>
+                <li><strong>You run recurring B2B events</strong> — conferences, seminars, launches, internal summits.</li>
+                <li><strong>Your event carries the company's positioning</strong> — not just its calendar.</li>
+            </ul>
+            <div class="call-cta-box gsap-fade" style="margin-top: 28px; margin-bottom: 0 !important;">
+                <p style="margin-bottom: 0 !important;">Running a non-profit or mission-driven event? We work at reduced rates — good events shouldn’t disappear because the budget is tight. Mention it in your brief.</p>
+            </div>
+            <!-- ▶ NON-PROFIT LINE — option A is active above (A+B blend, Max round 2). Alternatives (Max picks):
                  B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
-                 C (FAQ-only): remove the line above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
+                 C (FAQ-only): remove the callout above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
         </div>
     </div>
 </section>
 
 <!-- ICP v2: Offer block — REPLACES the old homepage packages section (the three-package menu; KRAFT N12: no package count anywhere).
-     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds. -->
+     Onyx, not warm: the hero-secondary-link class is styled for dark backgrounds.
+     Rebuilt 2026-07-09 for scannability: the 43-word paragraph redistributed 1:1 into a subhead
+     ("Each tier works on its own…"), three tier cards (Capture = start here / Content series /
+     Distribution) and one closing line — the tiers ARE the offer; no sentence rewritten. -->
 <section class="section section--lg section-onyx">
     <div class="container">
-        <div class="section-header gsap-fade" style="margin-bottom: 32px;">
+        <div class="section-header gsap-fade">
             <span class="section-num">04</span>
             <span class="overline">Working with us</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Start with capture. Build from there.</h2>
-            <p>Each tier works on its own. No lock-in, no forced bundles. Capture stands alone: useful footage you own. Add the content series when you're ready, and distribution later if it fits. The first engagement proves the partnership; you decide what to build next.</p>
+            <p>Each tier works on its own. No lock-in, no forced bundles.</p>
         </div>
+        <div class="steps-grid gsap-stagger" style="max-width: 960px; margin: 0 auto;">
+            <div class="step-card p2-start">
+                <div class="step-number">Start here</div>
+                <h3>Capture</h3>
+                <p>Stands alone: useful footage you own.</p>
+            </div>
+            <div class="step-card">
+                <h3>Content series</h3>
+                <p>Add it when you're ready.</p>
+            </div>
+            <div class="step-card">
+                <h3>Distribution</h3>
+                <p>Add it later if it fits.</p>
+            </div>
+        </div>
+        <p class="p2-note p2-note--gap gsap-fade">The first engagement proves the partnership; you decide what to build next.</p>
         <div class="hero-cta-row gsap-fade" style="justify-content: center;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
             <a href="https://recapmedia.no/work" class="hero-secondary-link">See our work <span class="arrow">→</span></a>
