@@ -780,6 +780,14 @@
 (function () {
     'use strict';
 
+    // Safari (incl. iOS) composites a transformed, decoding <video> far worse
+    // than Blink: Lenis smooth-wheel + a scrub parallax on the live hero video
+    // makes Safari scroll jank while Chrome stays smooth. Degrade Safari to
+    // native scroll (Mac trackpad already momentum-smooths) and drop the two
+    // scrub parallaxes below; ScrollTrigger still drives every reveal, so nothing
+    // else changes. No Safari branch existed before 2026-07-14 — this is the fix.
+    var isSafari = /^((?!chrome|android|crios|fxios|edg|opr|opera).)*safari/i.test(navigator.userAgent || '');
+
     // main-v2.js loads via GHL tracking code (early), but Lenis/GSAP/ScrollTrigger
     // are loaded from the Global Footer HTML (late). Poll until all three are ready.
     // Capped: past the deadline they aren't coming — nothing is pre-hidden without
@@ -822,21 +830,29 @@
         return;
     }
 
-    window.__lenis = new Lenis({
-        duration: 1.15,
-        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-        smoothWheel: true,
-        prevent: function (node) {
-            // Never let Lenis hand off to native scroll — this prevents jitter
-            // when cursor is over horizontal scroll containers
-            return false;
-        },
-    });
-    var lenis = window.__lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
     gsap.registerPlugin(ScrollTrigger);
+
+    if (isSafari) {
+        // Native scroll — no Lenis hijack. The truthy sentinel keeps the
+        // splash-dismiss gate (Global Footer) working; ScrollTrigger listens to
+        // native scroll, so every reveal below still fires.
+        window.__lenis = { native: true };
+    } else {
+        window.__lenis = new Lenis({
+            duration: 1.15,
+            easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+            smoothWheel: true,
+            prevent: function (node) {
+                // Never let Lenis hand off to native scroll — this prevents jitter
+                // when cursor is over horizontal scroll containers
+                return false;
+            },
+        });
+        var lenis = window.__lenis;
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+    }
 
     // Hero entrance is a progressive enhancement with a freshness window.
     // The hero paints VISIBLE at first paint (CSS never pre-hides it); the
@@ -862,7 +878,11 @@
             .to('.hero-stat', { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, '-=0.3');
     }
 
-    gsap.to('.hero-bg', { y: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    // Hero video parallax: skip on Safari — transforming the decoding hero
+    // <video> every scroll frame is the main WebKit jank source.
+    if (!isSafari) {
+        gsap.to('.hero-bg', { y: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    }
 
     gsap.set('.gsap-fade', { opacity: 0, y: 36 });
     gsap.utils.toArray('.gsap-fade').forEach(function (el) {
@@ -881,9 +901,14 @@
         gsap.to(items, { opacity: 1, x: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: list, start: 'top 88%', once: true } });
     });
 
-    gsap.utils.toArray('.parallax-img').forEach(function (img) {
-        gsap.fromTo(img, { y: -30 }, { y: 30, ease: 'none', scrollTrigger: { trigger: img.closest('.col-image, .image-break') || img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
+    // Image parallax is scrub-linked too; drop it on Safari alongside the video
+    // one so a single live-Safari check is decisive (images composite fine, but a
+    // wasted GHL deploy cycle to re-test costs more than a subtle parallax).
+    if (!isSafari) {
+        gsap.utils.toArray('.parallax-img').forEach(function (img) {
+            gsap.fromTo(img, { y: -30 }, { y: 30, ease: 'none', scrollTrigger: { trigger: img.closest('.col-image, .image-break') || img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+        });
+    }
 
     gsap.to('.cta-orb--1', { x: 30, y: -20, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true });
     gsap.to('.cta-orb--2', { x: -25, y: 15, duration: 7, ease: 'sine.inOut', repeat: -1, yoyo: true });

@@ -224,10 +224,25 @@
         v.removeAttribute('autoplay');
         return;
     }
+    // Safari with preload="none" buffers nothing until load() is called, and
+    // rejects play() before any data is ready (Chrome tolerates the eager call).
+    // So: kick the fetch with load(), play once the browser reports canplay,
+    // retry once, and on final failure (Low Power Mode / "Never Auto-Play")
+    // leave the poster showing — never a black box.
     function loadHeroVideo() {
+        var retried = false;
+        function attemptPlay() {
+            var p = v.play();
+            if (!p || !p.catch) return;
+            p.catch(function() {
+                if (retried) return;          // give up quietly; poster stays
+                retried = true;
+                setTimeout(attemptPlay, 400); // more buffer has arrived by now
+            });
+        }
+        v.addEventListener('canplay', attemptPlay, { once: true });
         v.src = src;
-        var p = v.play();
-        if (p && p.catch) p.catch(function() {});
+        v.load();
     }
     // Idle-defer the ~6 MB fetch past load so it never counts against TTI/first interaction.
     function queueHeroVideo() {
