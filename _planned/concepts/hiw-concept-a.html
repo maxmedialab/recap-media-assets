@@ -1,0 +1,905 @@
+<!--
+CONCEPT PAGE (NOT LIVE). "How it works" redesign, CONCEPT A: THE EXPANDING JOURNEY.
+Drafted 2026-08-19.
+
+The section is one continuous path read left to right: a real event photograph (the origin),
+a rail through Brief > Plan > Capture > Build, then the path leaves Build and blooms into the
+content outputs. Run (optional) carries it into the months after, and the section closes on
+"your event ends, your content keeps working".
+
+The we/you asymmetry rides the rail as a narrow "You" column beside the wide "We handle"
+column, so a glance reads "a lot on their side, very little on mine". It is never drawn as a
+second diagram.
+
+Structure: stub (problem section above) > this section > stub (testimonials below).
+Only page-local CSS/JS. css/style.css and js/main-v2.js are untouched.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it works, Concept A: The Expanding Journey (Recap Media)</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css?v=2">
+
+<style>
+/* ============================================================
+   CONCEPT A: page-local styles. All prefixed .j- (journey).
+   style.css is authored entirely in !important, so anything that
+   collides with an element-level site rule is declared !important too.
+   NOTHING here hides content: every hidden state is set by JS only.
+   ============================================================ */
+
+/* --- structural stubs for neighbouring sections --- */
+.stub {
+    min-height: 40vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #201D26 !important;
+    color: #6F6B64 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.22em !important;
+    text-transform: uppercase !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+/* --- section shell --- */
+#how-it-works { overflow: hidden !important; padding: clamp(48px, 5.2vw, 84px) 0 !important; }
+.j-wrap { --j-gap: 40px; --j-col1: 300px; --j-railx: 12px; }
+
+/* --- header row: heading left, lede right --- */
+.j-head {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
+    gap: var(--j-gap);
+    align-items: end;
+    margin-bottom: clamp(24px, 3vw, 38px);
+}
+.j-head h2 {
+    font-size: clamp(1.75rem, 2.5vw, 2.3rem) !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.12 !important;
+    margin: 0 !important;
+}
+.j-head h2 .j-em { color: var(--color-ember) !important; }
+.j-lede {
+    color: var(--color-warm-grey) !important;
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+    margin: 0 0 4px 0 !important;
+    max-width: 42ch;
+}
+
+/* --- the journey grid: origin | stages. The bloom sits full width below. --- */
+.j-grid {
+    display: grid !important;
+    grid-template-columns: var(--j-col1) minmax(0, 1fr);
+    column-gap: var(--j-gap);
+    row-gap: 0;
+    align-items: stretch;
+}
+
+/* column micro-labels (row of legends across the top of the journey) */
+.j-col-label {
+    font-size: 0.66rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--color-stone) !important;
+    margin: 0 0 16px 0 !important;
+    display: block !important;
+}
+.j-col-label.is-you { color: var(--color-ember) !important; }
+
+/* --- column 1: the origin photograph --- */
+.j-origin { display: flex !important; flex-direction: column !important; min-width: 0; }
+.j-photo {
+    position: relative !important;
+    flex: 1 1 auto !important;
+    min-height: 300px;
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+    background: var(--color-smoke) !important;
+}
+.j-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 50% 55% !important;
+}
+.j-photo::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: auto 0 0 0 !important;
+    height: 46% !important;
+    background: linear-gradient(to top, rgba(12,10,16,0.88) 0%, rgba(12,10,16,0.45) 50%, rgba(12,10,16,0) 100%) !important;
+    pointer-events: none !important;
+}
+.j-photo-copy {
+    position: absolute !important;
+    inset: auto 0 0 0 !important;
+    padding: 16px 18px !important;
+    z-index: 2 !important;
+}
+.j-photo-title {
+    font-family: var(--font-heading) !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    margin: 0 0 6px 0 !important;
+    line-height: 1.25 !important;
+}
+.j-photo-sub {
+    font-size: 0.85rem !important;
+    color: var(--color-warm-grey) !important;
+    line-height: 1.55 !important;
+    margin: 12px 0 0 0 !important;
+}
+.j-credit {
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 0.66rem !important;
+    letter-spacing: 0.1em !important;
+    color: var(--color-stone) !important;
+    margin: 8px 0 0 0 !important;
+}
+/* the node where the path leaves the photograph */
+.j-origin-node {
+    position: absolute !important;
+    right: -6px !important;
+    top: 38px !important;
+    width: 11px !important;
+    height: 11px !important;
+    border-radius: 50% !important;
+    background: var(--color-ember) !important;
+    box-shadow: 0 0 0 4px rgba(232,89,60,0.16) !important;
+    z-index: 3 !important;
+}
+
+/* --- column 2: the stage rail (we / you) --- */
+.j-stages-col { display: flex !important; flex-direction: column !important; min-width: 0; }
+.j-cols-head,
+.j-stages {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 178px;
+    column-gap: 20px;
+}
+.j-stages { position: relative !important; row-gap: 12px; flex: 1 1 auto !important; }
+
+/* the continuous rail */
+.j-rail {
+    position: absolute !important;
+    left: 12px !important;
+    top: 14px !important;
+    bottom: 0 !important;
+    width: 1px !important;
+    background: linear-gradient(to bottom, rgba(232,89,60,0.55), rgba(232,89,60,0.30)) !important;
+    transform-origin: top center;
+}
+/* lead-in from the photograph into the rail */
+.j-rail::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -52px !important;
+    width: 52px !important;
+    height: 1px !important;
+    background: rgba(232,89,60,0.55) !important;
+}
+
+.j-stage {
+    position: relative !important;
+    padding-left: 44px !important;
+    min-width: 0;
+}
+.j-stage-node {
+    position: absolute !important;
+    left: 0 !important;
+    top: 1px !important;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(232,89,60,0.45) !important;
+    background: var(--color-obsidian) !important;
+    color: var(--color-ember) !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 0.7rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.j-stage-name {
+    font-family: var(--font-heading) !important;
+    font-size: 1.02rem !important;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    letter-spacing: 0.02em !important;
+    margin: 0 0 5px 0 !important;
+    line-height: 1.3 !important;
+}
+.j-stage-when {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    color: var(--color-stone) !important;
+    margin-left: 10px !important;
+    font-weight: 400 !important;
+    font-family: var(--font-body) !important;
+}
+.j-stage-body {
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    color: var(--color-warm-grey) !important;
+    margin: 0 !important;
+    max-width: 62ch;
+}
+.j-tag {
+    display: inline-block !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--color-stone) !important;
+    border: 1px solid rgba(255,255,255,0.16) !important;
+    border-radius: 999px !important;
+    padding: 2px 8px !important;
+    margin-left: 10px !important;
+    vertical-align: 3px !important;
+    font-weight: 500 !important;
+}
+
+/* the "You" ribbon: deliberately small beside the wide we-column */
+.j-you {
+    align-self: center !important;
+    border-left: 2px solid rgba(232,89,60,0.55) !important;
+    background: rgba(255,255,255,0.035) !important;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
+    padding: 9px 12px !important;
+}
+.j-you-label {
+    display: block !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--color-ember) !important;
+    margin-bottom: 3px !important;
+}
+.j-you-act {
+    display: block !important;
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: var(--color-white) !important;
+}
+
+/* --- THE BLOOM: the path leaves Build and opens into the outputs --- */
+.j-bloom { position: relative !important; }
+.j-bloom-label {
+    position: absolute !important;
+    left: 0 !important;
+    top: 22px !important;
+    width: calc(var(--j-col1) - 8px) !important;
+    margin: 0 !important;
+}
+/* horizontal hand-off: from the rail out to the centre, where the fan opens */
+.j-trunk {
+    display: block !important;
+    height: 1px !important;
+    margin-left: calc(var(--j-col1) + var(--j-gap) + var(--j-railx)) !important;
+    margin-right: 50% !important;
+    background: rgba(232,89,60,0.55) !important;
+    transform-origin: left center;
+}
+.j-fan { display: block !important; width: 100% !important; height: 76px !important; }
+.j-fan path { fill: none !important; stroke: rgba(232,89,60,0.5) !important; stroke-width: 1 !important; }
+.j-fan-dot {
+    position: absolute !important;
+    left: calc(50% - 4px) !important;
+    top: -3px !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: var(--color-ember) !important;
+}
+
+.j-cards {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 16px;
+}
+.j-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: var(--color-smoke) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 12px 14px !important;
+    min-width: 0;
+}
+.j-card img {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: var(--radius-sm) !important;
+    object-fit: cover !important;
+    flex: 0 0 auto !important;
+}
+.j-card-name {
+    font-family: var(--font-heading) !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    margin: 0 0 3px 0 !important;
+    line-height: 1.25 !important;
+}
+.j-card-sub {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    color: var(--color-stone) !important;
+    margin: 0 !important;
+}
+
+/* --- the asymmetry summary line under the journey --- */
+.j-sum {
+    margin: clamp(22px, 2.8vw, 32px) 0 0 0 !important;
+    padding-top: 16px !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--color-warm-grey) !important;
+}
+.j-sum b { color: var(--color-white) !important; font-weight: 600 !important; }
+
+/* --- Run band + closing statement --- */
+.j-run {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 190px minmax(0, 0.62fr);
+    gap: 28px;
+    align-items: center;
+    margin-top: clamp(20px, 2.6vw, 30px) !important;
+    padding: 20px 24px !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-left: 2px solid rgba(232,89,60,0.55) !important;
+    border-radius: var(--radius-md) !important;
+    background: rgba(255,255,255,0.02) !important;
+}
+.j-run-main { display: flex !important; gap: 16px !important; align-items: flex-start !important; min-width: 0; }
+.j-run-node {
+    flex: 0 0 auto !important;
+    width: 25px !important; height: 25px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(232,89,60,0.45) !important;
+    color: var(--color-ember) !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 0.7rem !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    margin-top: 1px !important;
+}
+.j-close {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem) !important;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+}
+.j-close span { color: var(--color-ember) !important; }
+
+.j-cta { margin-top: clamp(26px, 3.2vw, 36px) !important; }
+
+/* --- mobile splitter (hidden on desktop) --- */
+.j-split-m { display: none !important; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1100px) {
+    .j-wrap { --j-col1: 250px; }
+    .j-cols-head, .j-stages { grid-template-columns: minmax(0, 1fr) 168px; }
+    .j-card-sub { font-size: 0.75rem !important; }
+}
+
+@media (max-width: 900px) {
+    .j-wrap { --j-gap: 28px; }
+    .j-head { grid-template-columns: 1fr; align-items: start; gap: 16px; }
+    .j-lede { max-width: none; }
+
+    .j-grid { grid-template-columns: 1fr; row-gap: 28px; }
+    .j-origin-node { display: none !important; }
+    .j-photo { min-height: 0 !important; aspect-ratio: 16 / 9; flex: 0 0 auto !important; }
+
+    .j-cols-head { display: none !important; }
+    .j-stages { grid-template-columns: 1fr; row-gap: 22px; }
+    .j-rail::before { display: none !important; }
+    .j-stages .j-you {
+        align-self: start !important;
+        margin: 10px 0 0 44px !important;
+        display: inline-block !important;
+    }
+    .j-stage-body { max-width: none; }
+
+    /* the bloom becomes a vertical split into a 2x2 output grid */
+    /* the rail runs straight into the splitter and on into the cards, so the
+       label steps aside to the top right instead of breaking the line */
+    .j-bloom-label {
+        left: auto !important;
+        right: 0 !important;
+        top: 2px !important;
+        width: auto !important;
+        margin: 0 !important;
+        text-align: right !important;
+    }
+    .j-trunk { display: none !important; }
+    .j-fan, .j-fan-dot { display: none !important; }
+    .j-split-m {
+        display: block !important;
+        height: 52px !important;
+        margin-left: 12px !important;
+        width: calc(100% - 12px) !important;
+    }
+    .j-split-m path { fill: none !important; stroke: rgba(232,89,60,0.5) !important; stroke-width: 1 !important; }
+    .j-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .j-card { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+    .j-card img { width: 100% !important; height: 62px !important; }
+
+    .j-run { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 520px) {
+    .j-head h2 { font-size: 1.75rem !important; }
+    .j-cards { grid-template-columns: 1fr 1fr; }
+    .j-card { padding: 10px !important; }
+    .j-card img { height: 56px !important; }
+    .j-card-sub { font-size: 0.74rem !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter"><feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/></filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
+<nav class="nav" id="nav">
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <ul class="nav-links">
+        <li class="nav-dropdown">
+            <a href="#" class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="nav-drop-caret" aria-hidden="true">▾</span></a>
+            <ul class="nav-drop-menu">
+                <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+            </ul>
+        </li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
+        <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-services">
+        <span class="mobile-menu-label">Services</span>
+        <a href="https://recapmedia.no/services/photography">Photography</a>
+        <a href="https://recapmedia.no/services/videography">Videography</a>
+    </div>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
+    <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
+</div>
+
+<main>
+
+<!-- ===== structural stub: the section that sits above ===== -->
+<section class="stub" aria-hidden="true">problem section above</section>
+
+<!-- ============================================================
+     HOW IT WORKS: Concept A: the expanding journey
+     ============================================================ -->
+<section class="section section--lg section-dark" id="how-it-works">
+    <div class="container j-wrap">
+
+        <div class="j-head gsap-fade">
+            <div>
+                <span class="section-num">01</span>
+                <span class="overline overline--ruled">How it works</span>
+                <h2>You host one event.<br>The content <span class="j-em">keeps working</span> for months.</h2>
+            </div>
+            <p class="j-lede">Here is the whole path, from the first conversation to the months after the day, and the five short moments where you step in.</p>
+        </div>
+
+        <!-- the journey: origin photograph > stages > bloom into outputs -->
+        <div class="j-grid">
+
+            <!-- column 1: origin -->
+            <div class="j-origin">
+                <span class="j-col-label">Where it starts</span>
+                <div class="j-photo">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp" alt="Flutter Vikings Conference 2022 at Felix Conference Center, Oslo" width="1280" height="853">
+                    <div class="j-photo-copy">
+                        <p class="j-photo-title">Your event day</p>
+                    </div>
+                    <span class="j-origin-node" aria-hidden="true"></span>
+                </div>
+                <p class="j-photo-sub">One day, one crew: photo, video and content production, all under one booking.</p>
+                <p class="j-credit">Flutter Vikings 2022, Oslo</p>
+            </div>
+
+            <!-- column 2: the stages, with the You ribbon alongside -->
+            <div class="j-stages-col">
+                <div class="j-cols-head">
+                    <span class="j-col-label">We handle</span>
+                    <span class="j-col-label is-you">You</span>
+                </div>
+
+                <div class="j-stages">
+                    <span class="j-rail" aria-hidden="true"></span>
+
+                    <div class="j-stage">
+                        <span class="j-stage-node" aria-hidden="true">1</span>
+                        <p class="j-stage-name">Brief<span class="j-stage-when">Before anything is booked</span></p>
+                        <p class="j-stage-body">You tell us about the event, your audience, and what the content needs to achieve.</p>
+                    </div>
+                    <div class="j-you">
+                        <span class="j-you-label">You</span>
+                        <span class="j-you-act">One conversation.</span>
+                    </div>
+
+                    <div class="j-stage">
+                        <span class="j-stage-node" aria-hidden="true">2</span>
+                        <p class="j-stage-name">Plan<span class="j-stage-when">Before the day</span></p>
+                        <p class="j-stage-body">You see the content plan before anything is filmed, with every deliverable mapped to a place and a date.</p>
+                    </div>
+                    <div class="j-you">
+                        <span class="j-you-label">You</span>
+                        <span class="j-you-act">Approve the plan.</span>
+                    </div>
+
+                    <div class="j-stage">
+                        <span class="j-stage-node" aria-hidden="true">3</span>
+                        <p class="j-stage-name">Capture<span class="j-stage-when">On the day</span></p>
+                        <p class="j-stage-body">One coordinated crew covers what you need, so you can stay with your guests.</p>
+                    </div>
+                    <div class="j-you">
+                        <span class="j-you-label">You</span>
+                        <span class="j-you-act">Host your event.</span>
+                    </div>
+
+                    <div class="j-stage">
+                        <span class="j-stage-node" aria-hidden="true">4</span>
+                        <p class="j-stage-name">Build<span class="j-stage-when">After the day</span></p>
+                        <p class="j-stage-body">You get finished content back, built from what we captured and ready to use.</p>
+                    </div>
+                    <div class="j-you">
+                        <span class="j-you-label">You</span>
+                        <span class="j-you-act">Pick your favourites.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- THE BLOOM: one path in, four kinds of content out -->
+        <div class="j-bloom">
+            <span class="j-col-label j-bloom-label">What the day turns into</span>
+            <span class="j-trunk" aria-hidden="true"></span>
+            <span class="j-fan-dot" aria-hidden="true"></span>
+
+            <svg class="j-fan" viewBox="0 0 1000 76" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M500,0 C500,14 125,54 125,76" vector-effect="non-scaling-stroke"/>
+                <path d="M500,0 C500,20 375,50 375,76" vector-effect="non-scaling-stroke"/>
+                <path d="M500,0 C500,20 625,50 625,76" vector-effect="non-scaling-stroke"/>
+                <path d="M500,0 C500,14 875,54 875,76" vector-effect="non-scaling-stroke"/>
+            </svg>
+
+            <!-- mobile splitter, replaces the fan below 900px -->
+            <svg class="j-split-m" viewBox="0 0 100 52" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M0,0 C0,30 23,20 23,52" vector-effect="non-scaling-stroke"/>
+                <path d="M0,0 C0,24 74,26 74,52" vector-effect="non-scaling-stroke"/>
+            </svg>
+
+            <div class="j-cards">
+                        <div class="j-card">
+                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69c3b2e9c6dd404f656b6750.webp" alt="Speaker at Flutter Vikings 2022" width="1280" height="720" loading="lazy">
+                            <div>
+                                <p class="j-card-name">Photography</p>
+                                <p class="j-card-sub">For press, decks and your channels.</p>
+                            </div>
+                        </div>
+                        <div class="j-card">
+                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6932e16581eaa185bda15284.webp" alt="Speaker at Flutter Vikings 2022" width="1280" height="720" loading="lazy">
+                            <div>
+                                <p class="j-card-name">Film</p>
+                                <p class="j-card-sub">The story of the day, cut to length.</p>
+                            </div>
+                        </div>
+                        <div class="j-card">
+                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="Evening reception at Flutter Vikings 2022" width="800" height="533" loading="lazy">
+                            <div>
+                                <p class="j-card-name">Content</p>
+                                <p class="j-card-sub">Clips and posts, each with a place and a date.</p>
+                            </div>
+                        </div>
+                        <div class="j-card">
+                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6932e165ac583f5e283513e6.webp" alt="Speaker at Flutter Vikings 2022" width="1280" height="720" loading="lazy">
+                            <div>
+                                <p class="j-card-name">Distribution</p>
+                                <p class="j-card-sub">A plan for where it all goes, and when.</p>
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+        <p class="j-sum gsap-fade">Everything on your side fits in five short moments: <b>one conversation, a plan to approve, the event you were hosting anyway, your favourites to pick, and a yes on each batch.</b></p>
+
+        <div class="j-run">
+            <div class="j-run-main">
+                <span class="j-run-node" aria-hidden="true">5</span>
+                <div>
+                    <p class="j-stage-name">Run<span class="j-tag">Optional</span><span class="j-stage-when">The months after</span></p>
+                    <p class="j-stage-body">You keep publishing long after the day. We run the schedule for you, or hand you the plan to run in-house.</p>
+                </div>
+            </div>
+            <div class="j-you">
+                <span class="j-you-label">You</span>
+                <span class="j-you-act">Approve each batch.</span>
+            </div>
+            <p class="j-close">Your event ends on the day.<br><span>Your content keeps working.</span></p>
+        </div>
+
+        <div class="hero-cta-row j-cta gsap-fade" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            <a href="https://recapmedia.no/contact#calendar" class="hero-secondary-link">Book a free 20-minute call <span class="arrow">→</span></a>
+        </div>
+
+    </div>
+</section>
+
+<script>
+/* ============================================================
+   Concept A choreography. One idea: the path draws itself, then
+   blooms. Everything is once-fired (no scrub, no pinning, so the
+   Safari degrade is a non-event). Hidden states are set here in
+   JS only, so no-JS, crawlers and reduced-motion users get the
+   fully painted section.
+   ============================================================ */
+(function() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tries = 0;
+    (function waitGSAP() {
+        if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+            if (tries++ < 120) { setTimeout(waitGSAP, 50); }
+            return;
+        }
+
+        var section = document.querySelector('#how-it-works');
+        if (!section) return;
+
+        /* 1. the origin photograph */
+        var origin = section.querySelector('.j-origin');
+        if (origin) {
+            gsap.set(origin, { opacity: 0, y: 24 });
+            gsap.to(origin, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+                scrollTrigger: { trigger: origin, start: 'top 86%', once: true } });
+        }
+
+        /* 2. the rail drawing downward */
+        var rail = section.querySelector('.j-rail');
+        if (rail) {
+            gsap.set(rail, { scaleY: 0, transformOrigin: 'top center' });
+            gsap.to(rail, { scaleY: 1, duration: 1.0, ease: 'power1.out',
+                scrollTrigger: { trigger: '.j-stages', start: 'top 84%', once: true } });
+        }
+
+        /* 3. each stage and its You marker, as they arrive */
+        gsap.utils.toArray('.j-stages .j-stage').forEach(function(stage) {
+            var you = stage.nextElementSibling;
+            var pair = you && you.classList.contains('j-you') ? [stage, you] : [stage];
+            gsap.set(pair, { opacity: 0, x: -14 });
+            gsap.to(pair, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', stagger: 0.12,
+                scrollTrigger: { trigger: stage, start: 'top 88%', once: true } });
+        });
+
+        /* 4. THE CLIMAX: the path leaves Build and blooms into the outputs */
+        var trunk = section.querySelector('.j-trunk');
+        var fanDot = section.querySelector('.j-fan-dot');
+        var cards = gsap.utils.toArray('.j-cards .j-card');
+        var outLabel = section.querySelector('.j-bloom-label');
+
+        /* only the branch drawing that is actually on screen at this width gets
+           the dash treatment: the desktop fan or the mobile splitter, never both. */
+        var isNarrow = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+        var drawable = gsap.utils.toArray(isNarrow ? '.j-split-m path' : '.j-fan path');
+        drawable = drawable.filter(function(p) {
+            var len = 0;
+            try { len = p.getTotalLength(); } catch (e) { return false; }
+            if (!len) return false;
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+            return true;
+        });
+        if (trunk && !isNarrow) gsap.set(trunk, { scaleX: 0 });
+        if (fanDot) gsap.set(fanDot, { opacity: 0 });
+        if (outLabel) gsap.set(outLabel, { opacity: 0, y: 8 });
+        gsap.set(cards, { opacity: 0, y: 16 });
+
+        var bloom = gsap.timeline({ paused: true });
+        if (trunk && !isNarrow) bloom.to(trunk, { scaleX: 1, duration: 0.55, ease: 'power2.inOut' }, 0);
+        if (fanDot) bloom.to(fanDot, { opacity: 1, duration: 0.25 }, 0.48);
+        if (drawable.length) {
+            bloom.to(drawable, { strokeDashoffset: 0, duration: 0.8, ease: 'power2.out', stagger: 0.07 }, 0.5);
+        }
+        if (outLabel) bloom.to(outLabel, { opacity: 1, y: 0, duration: 0.4 }, 0.2);
+        bloom.to(cards, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 }, 0.78);
+
+        ScrollTrigger.create({
+            trigger: '.j-bloom',
+            start: 'top 92%',
+            once: true,
+            onEnter: function() { bloom.play(); }
+        });
+
+        /* safety net: if the bloom never fired (odd viewport, very tall screens),
+           paint it in shortly after load rather than leave it hidden. */
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var out = section.querySelector('.j-bloom');
+                if (!out) return;
+                var r = out.getBoundingClientRect();
+                if (r.top < window.innerHeight && bloom.progress() === 0) bloom.play();
+            }, 800);
+        });
+
+        /* 5. the Run band and the closing statement */
+        var run = section.querySelector('.j-run');
+        if (run) {
+            gsap.set(run, { opacity: 0, y: 22 });
+            gsap.to(run, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+                scrollTrigger: { trigger: run, start: 'top 90%', once: true } });
+        }
+
+        ScrollTrigger.refresh();
+    })();
+})();
+</script>
+
+<!-- ===== structural stub: the section that sits below ===== -->
+<section class="stub" aria-hidden="true">testimonials below</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Recap Media</h3>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
+            <div>
+                <a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/terms">Terms of Service</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Quote modal (opened by any button/link with data-cta="quote") -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close modal">✕</button>
+        <h2>Request a Quote</h2>
+        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
+        <form class="quote-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="visible-first-name">First Name *</label>
+                    <input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name">
+                </div>
+                <div class="form-group">
+                    <label for="visible-last-name">Last Name *</label>
+                    <input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="visible-email">Email *</label>
+                    <input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="visible-phone">Phone</label>
+                    <input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="visible-org">Organisation Name *</label>
+                <input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization">
+            </div>
+            <div class="form-group">
+                <label for="visible-source">How did you find us? *</label>
+                <select id="visible-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required>
+                    <option value="">Select an option</option>
+                    <option value="google_search">Google search</option>
+                    <option value="recommendation">Recommendation</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="networking_event">Networking event</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="social_media_ad">Social media ad</option>
+                    <option value="1881">1881.no</option>
+                    <option value="gulesider">gulesider.no</option>
+                    <option value="180">180.no</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="visible-message">Tell us more about your event</label>
+                <textarea id="visible-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="visible-event-date">Event date *</label>
+                <input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
+            <p class="form-consent-text">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+        </form>
+        <div class="ghl-form-hidden"></div>
+    </div>
+</div>
+
+<!-- Lightbox (for gallery image pop-ups) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="../../js/main-v2.js?v=2"></script>
+</body>
+</html>

@@ -325,6 +325,77 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
 <main>
 
+<!-- ============================================================================================
+     VERTICAL RHYTHM (2026-08-19) — page-local, spacing only.
+     Lives INSIDE <main> because the GHL deploy path pastes only <main>'s contents into a Custom
+     HTML block; a <head> <style> would not travel.
+
+     WHY THIS EXISTS
+     style.css sets `.section { padding: var(--space-xl) 0 !important }` and
+     `.section--lg { padding: clamp(64px,8vw,120px) 0 !important }`. Because both carry
+     !important, EVERY per-section inline `style="padding-top: clamp(...)"` on this page was
+     silently dead: the testimonials, work, day-video and FAQ sections were all rendering the
+     same flat 8vw padding regardless of what their inline attributes asked for. The seams were
+     therefore accidental, not authored, and drifted from 128px to 240px across the page with no
+     rule behind the differences.
+
+     THE SYSTEM
+     A seam is the sum of two half-seams (the section above contributes its bottom padding, the
+     section below its top). Two half-seam tokens = at most two seam sizes on the page:
+
+       --seam-major  chapter break (hero > problem > how it works > testimonials > selected work
+                     > closing ask > FAQ). Value is intentionally IDENTICAL to the just-rebuilt
+                     #how-it-works section's own padding, clamp(48px,6vw,88px), so that section
+                     is the tuning reference the rest of the page is normalised to rather than
+                     an exception to it.  Seam: 96px @390 · 154 @1280 · 173 @1440 · 176 @1728+
+       --seam-minor  within one chapter: "Selected work" and the "In action" day-video are one
+                     proof beat, so they sit closer than a chapter break.
+                     Seam: 56px @390 · 87 @1280 · 96 @1440+
+
+     Ratio is ~0.55, so the two sizes read as clearly different intents, not as drift.
+     SUPERSEDED BY THIS BLOCK (left in place, now inert — do not re-tune them, they no longer
+     render): the head <style> rule `.cta-section-v2 { padding-bottom: clamp(24px,3vw,40px) }`
+     (ROUND-6, a manual compensation for the FAQ's old 8vw top padding, which the seam scale now
+     handles), and every per-section inline `style="padding-top/bottom: ..."` attribute in <main>,
+     which style.css's !important already killed before this block existed.
+
+     This is padding only. No copy, structure, animation, FAQ or schema is touched here.
+     ============================================================================================ -->
+<style>
+    main {
+        --seam-major: clamp(48px, 6vw, 88px);
+        --seam-minor: clamp(28px, 3.4vw, 48px);
+    }
+
+    /* Every chapter section contributes a major half-seam top and bottom.
+       !important + the `main > section.section` specificity (0,1,2) are both required: they beat
+       style.css's !important .section / .section--lg padding AND the page's own inline padding
+       attributes, which is the whole point (those inline values were already dead). */
+    main > section.section {
+        padding-top: var(--seam-major) !important;
+        padding-bottom: var(--seam-major) !important;
+    }
+
+    /* The one minor seam: "Selected work" and the "In action" video are a single proof beat.
+       Addressed by sibling selector rather than a new class so the markup stays untouched. */
+    main > section.work-section {
+        padding-bottom: var(--seam-minor) !important;
+    }
+    main > section.work-section + section.section {
+        padding-top: var(--seam-minor) !important;
+    }
+
+    /* The hero is outside the system (full-viewport bleed, no bottom padding) and its last ink is
+       the stat strip, which sits flush on its bottom edge. It therefore contributes no half-seam,
+       so the section after it carries the whole major seam and the hero > problem break measures
+       the same as every other chapter break instead of half of one.
+       (Addressed by id, not by `.hero + section`: a script block sits between the two sections,
+       so the adjacent-sibling selector does not match.) */
+    main > section#after-the-event {
+        padding-top: calc(var(--seam-major) * 2) !important;
+    }
+</style>
+
 <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
@@ -518,142 +589,417 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 })();
 </script>
 
-<!-- ROUND-4 MERGE (2026-07-15): the old solution+tiers section and the old "How it works" strip
-     said the same thing twice (Max's round-4 flag) — now ONE section, Clockwise-shaped, told once.
-     Solution H2 = Max's own lines. Tier ladder appears exactly once, inside step 2 (Plan) — the
-     honest spot: the hand-off choice is made at planning, before filming. No-lock-in closes Run.
-     Livestream line in Capture per Max 2026-07-15 ("bring it back — can-do, not we're-great"):
-     affirmative but scoped-per-event; proof lives in the FAQ (FV 2022, three parallel rooms).
-     NOTE: this supersedes the SOFTEN "ask us"-only wording ON THIS PAGE — the gate-then-publish
-     decision for the dedicated /services/livestreaming page still stands (CLAUDE.md).
-     data-timestamp attrs reserved: when Max films the how-we-work video, each step becomes a
-     clickable chapter marker — copy needs no rewrite. -->
-<section class="section section--lg section-dark" id="how-it-works">
+<!-- ROUND-9 REBUILD (2026-08-19): "How it works" rebuilt as the origin-photograph + five-row
+     we/you ledger + delta + output plates ("your event happens once, your content keeps working").
+     Replaces the old .p2-rail five-step vertical rail and its two page-local scripts.
+     Everything is page-local and lives INSIDE <main>: the GHL deploy path pastes <main>'s
+     contents into a Custom HTML block, so a <head> <style> would not travel. css/style.css and
+     js/main-v2.js (shared, pinned CDN files serving every page) are untouched.
+     Class prefix: .hw-  (the old .p2-* rules in the head <style> are left alone; other sections use them).
+     Tier ladder and the "No lock-in" line are NOT in this section any more (the #faq-lock-in FAQ entry
+     still carries lock-in). Livestream stays, scoped, inside the Capture row per Max 2026-07-15. -->
+<style>
+    /* ===== HOW IT WORKS: page-local, prefix .hw- =====================================
+       !important is used ONLY where style.css's element-level !important rules collide:
+       h1..h6 {font-family,color,line-height}, img {max-width,display}, .section--lg padding,
+       .section-dark h1..h4 {color}. Everything else is plain so this can fold into
+       style.css later without a de-!important pass. ================================== */
+
+    /* section shell: beats .section--lg's clamp(64px,8vw,120px) vertical padding (page-local only) */
+    .hw { padding: clamp(48px, 6vw, 88px) 0 !important; }
+
+    /* ---------- A. masthead ---------- */
+    .hw-head { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin: 0 0 clamp(20px, 2.2vw, 22px); }
+    .hw-head h2 { font-size: clamp(1.72rem, 3.2vw, 2.7rem); font-weight: 700; letter-spacing: -0.02em; margin: 0; text-wrap: balance; line-height: 1.14 !important; }
+    .hw-head h2 em { font-style: normal; color: var(--color-ember); }
+    .hw-deck { font-size: clamp(0.98rem, 1.4vw, 1.06rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 6px; }
+
+    /* ---------- B. the spread: origin photograph | five-stage ledger ---------- */
+    .hw-spread { display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); gap: clamp(26px, 3.4vw, 48px); align-items: stretch; }
+
+    /* the anchor stretches to the ledger's height: no dead space under it, and its bottom
+       edge is exactly where the stem (and then the delta trunk) starts. */
+    .hw-anchor { margin: 0; display: flex; flex-direction: column; position: relative; }
+    .hw-anchor-frame { position: relative; flex: 1 1 auto; min-height: 280px; border-radius: 2px; }
+    .hw-anchor-frame::before { content: ''; position: absolute; left: -12px; top: -12px; right: 22px; bottom: 22px; border: 1px solid rgba(232, 89, 60, 0.38); pointer-events: none; z-index: 2; }
+    /* height:100% !important: style.css sets img{max-width;display} with no height, so the HTML
+       height attribute would win as a presentational hint and collapse the cover crop. */
+    .hw-anchor-frame img { position: relative; z-index: 1; width: 100%; height: 100% !important; object-fit: cover; object-position: center 46%; border-radius: 2px; }
+    .hw-anchor-copy { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; margin: 0; padding: 52px 18px 15px; background: linear-gradient(to top, rgba(12, 10, 16, 0.92), rgba(12, 10, 16, 0.74) 48%, rgba(12, 10, 16, 0)); }
+    .hw-anchor-tag { display: inline-block; background: var(--color-obsidian); color: var(--color-ember); font-family: var(--font-body); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 9px; }
+    .hw-anchor-copy p { font-size: 0.88rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0 0 7px; }
+    .hw-credit { display: block; font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.05em; color: var(--color-stone); }
+    /* the line that visibly leaves the photograph's bottom edge and becomes the delta trunk */
+    .hw-stem { position: absolute; left: 50%; top: 100%; width: 1px; margin-left: -0.5px; height: 20px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.85), rgba(232, 89, 60, 0.3)); }
+
+    /* the ledger. WE is wide and grey, YOU is narrow and white: the empty gutter is the argument. */
+    .hw-ledger { padding-top: 2px; }
+    .hw-ledger-kicker { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: var(--color-white); margin: 0 0 10px; }
+    .hw-ledger-head { display: grid; grid-template-columns: 22px 112px minmax(0, 1fr) 160px; gap: 0 16px; padding-bottom: 8px; }
+    .hw-ledger-head span { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; color: var(--color-stone); }
+    .hw-h-we { grid-column: 2 / 4; }
+    .hw-h-you { grid-column: 4; color: var(--color-ember); padding-left: 18px; }
+    .hw-stages { list-style: none; margin: 0; padding: 0; }
+    .hw-stage { display: grid; grid-template-columns: 22px 112px minmax(0, 1fr) 160px; gap: 0 16px; align-items: start; padding: 8px 0 9px; border-top: 1px solid rgba(255, 255, 255, 0.11); }
+    .hw-stage:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.11); }
+    .hw-stage-num { font-family: 'Courier New', Courier, monospace; font-size: 0.7rem; line-height: 1.95; color: var(--color-stone); }
+    .hw-stage-name { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.35 !important; }
+    .hw-stage-when { display: block; font-family: var(--font-body); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-stone); line-height: 1.5; margin-top: 1px; }
+    .hw-stage-we { font-size: 0.88rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
+    .hw-stage-you { margin: 0; padding: 1px 0 0 18px; border-left: 1px solid rgba(255, 255, 255, 0.11); font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; line-height: 1.45; color: var(--color-white); align-self: stretch; }
+    .hw-stage-opt { display: inline-block; margin-top: 4px; font-family: var(--font-body); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--color-ember); border: 1px solid rgba(232, 89, 60, 0.45); border-radius: 999px; padding: 1px 8px; }
+
+    /* ---------- C. the turn ---------- */
+    .hw-turn { margin-top: clamp(14px, 1.6vw, 16px); }
+    .hw-turn-labels { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+    .hw-turn-labels span { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+    .hw-turn-left { color: var(--color-stone); }
+    .hw-turn-right { color: var(--color-ember); text-align: right; }
+    .hw-turn-arrow { display: none; color: var(--color-ember); }
+    .hw-delta { display: block; width: 100%; height: clamp(40px, 4.4vw, 56px); margin-top: 6px; }
+    .hw-delta path { fill: none; stroke: var(--color-ember); stroke-width: 1; opacity: 0.75; }
+
+    /* ---------- D. outputs: four plates on one baseline ---------- */
+    .hw-outs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: start; }
+    .hw-out { position: relative; border-top: 1px solid rgba(232, 89, 60, 0.32); padding-top: 14px; }
+    .hw-out::before { content: ''; position: absolute; top: -3.5px; left: 50%; margin-left: -3.5px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-ember); }
+    .hw-well { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 2px; margin-bottom: 10px; }
+    .hw-well img { width: 100%; height: 100% !important; object-fit: cover; }
+    /* Distribution has no photograph on purpose; its plate is the same height and ends in a
+       line that is still going, so the absence reads as intentional. */
+    .hw-well--rule { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(232, 89, 60, 0.22); overflow: visible; }
+    .hw-well--rule::before { content: ''; position: absolute; left: 18px; top: 0; bottom: -40px; width: 1px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.5) 58%, rgba(232, 89, 60, 0)); }
+    .hw-well-label { position: absolute; left: 32px; bottom: 12px; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-ember); }
+    .hw-out-body h3 { font-size: 1.02rem; font-weight: 600; margin: 0 0 6px; line-height: 1.3 !important; }
+    .hw-out-body p { font-size: 0.86rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
+
+    /* ---------- E. close ---------- */
+    .hw-close { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(20px, 3vw, 48px); align-items: start; border-top: 1px solid rgba(255, 255, 255, 0.11); padding-top: clamp(20px, 2.4vw, 22px); margin-top: clamp(22px, 2.6vw, 26px); }
+    .hw-close-line { font-family: var(--font-heading); font-size: clamp(1.05rem, 1.8vw, 1.32rem); font-weight: 600; line-height: 1.4; color: var(--color-white); margin: 0 0 8px; max-width: 30ch; text-wrap: balance; }
+    .hw-close-invite { font-size: 0.92rem; line-height: 1.6; color: var(--color-warm-grey); margin: 0; max-width: 46ch; }
+    .hw-yours-lead { display: block; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; color: var(--color-ember); margin-bottom: 10px; }
+    .hw-chips { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; margin: 0; padding: 0; }
+    .hw-chips li { padding: 7px 14px; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; font-size: 0.84rem; line-height: 1.3; color: var(--color-white); }
+    .hw-cta { grid-column: 1 / -1; margin-top: clamp(14px, 1.8vw, 16px); }
+    /* the secondary reads as a second path, not a footnote. No .btn (shine sweep + lift would
+       make it a second button); colour is left to .hero-secondary-link. */
+    .hw-cta-ghost { padding: 13px 24px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: var(--radius-md); font-size: 0.95rem; transition: color 0.2s ease, border-color 0.2s ease; }
+    .hw-cta-ghost:hover { border-color: var(--color-ember); }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 1080px) {
+        .hw-spread { grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr); }
+        .hw-stage, .hw-ledger-head { grid-template-columns: 20px 104px minmax(0, 1fr) 140px; gap: 0 14px; }
+        .hw-outs { gap: 18px; }
+    }
+    /* ONE stacked mode. Below 940px the spread stacks AND the delta becomes a vertical rail,
+       so the section is never in a half-broken in-between state. */
+    @media (max-width: 940px) {
+        .hw-head { grid-template-columns: 1fr; gap: 8px; align-items: start; margin-bottom: 16px; }
+        .hw-deck { margin-bottom: 0; }
+        .hw-spread { grid-template-columns: 1fr; gap: 22px; }
+        .hw-anchor-frame { flex: 0 0 auto; min-height: 0; aspect-ratio: 16 / 9; }
+        .hw-anchor-frame img { height: auto !important; aspect-ratio: 16 / 9; }
+        .hw-anchor-frame::before { right: 16px; bottom: 16px; }
+        .hw-stem { display: none; }
+
+        /* ledger stacks: number in a gutter, then name, the we-line, then the You line */
+        .hw-ledger-head { display: none; }
+        .hw-stage { grid-template-columns: 22px minmax(0, 1fr); gap: 0 12px; padding: 8px 0 9px; }
+        .hw-stage-name { grid-column: 2; margin-bottom: 4px; }
+        .hw-stage-when { display: inline-block; margin: 0 0 0 9px; }
+        .hw-stage-we { grid-column: 2; font-size: 0.84rem; }
+        .hw-stage-you { grid-column: 2; margin-top: 7px; padding: 0 0 0 12px; border-left: 1px solid rgba(232, 89, 60, 0.5); font-size: 0.88rem; align-self: start; }
+        .hw-stage-you::before { content: 'You: '; color: var(--color-ember); }
+        .hw-stage-opt { margin: 0 0 0 8px; }
+
+        /* the before/after axis stays on ONE line */
+        .hw-turn { margin-top: 16px; }
+        .hw-turn-labels { justify-content: flex-start; gap: 8px; flex-wrap: wrap; }
+        .hw-turn-right { text-align: left; }
+        .hw-turn-arrow { display: inline; }
+        .hw-delta { display: none; }
+
+        /* outputs become a vertical rail: one line down the left, one node per output */
+        .hw-outs { display: block; position: relative; margin-top: 12px; padding-left: 30px; }
+        .hw-outs::before { content: ''; position: absolute; left: 3px; top: 0; bottom: 28px; width: 1px; background: linear-gradient(to bottom, var(--color-ember), rgba(232, 89, 60, 0.18)); transform-origin: top center; transform: scaleY(var(--hw-rail, 1)); }
+        .hw-out { border-top: none; padding: 0 0 10px; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 0 16px; align-items: start; }
+        .hw-out::before { top: 7px; left: -30px; margin-left: 0; }
+        /* same <img>, re-cropped to a 76px square: nothing is downloaded twice */
+        .hw-well { width: 76px; height: 76px; aspect-ratio: auto; margin: 0; }
+        .hw-well img { height: 76px !important; }
+        .hw-out-body { grid-column: 2; }
+        /* Distribution goes full width on the rail: no empty photo box, but its ember rule
+           stays visible so the column still ends in a line that is going somewhere. */
+        .hw-out--rule { grid-template-columns: minmax(0, 1fr); }
+        .hw-out--rule .hw-well--rule { width: 22px; height: 22px; border: none; background: none; margin: 1px 0 3px; }
+        .hw-out--rule .hw-well--rule::before { left: 0; top: 0; bottom: 0; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.6), rgba(232, 89, 60, 0)); }
+        .hw-out--rule .hw-out-body { grid-column: 1; }
+        .hw-well-label { display: none; }
+        /* the caption must not swallow the photograph at 342px wide */
+        .hw-anchor-copy { padding: 40px 14px 12px; }
+        .hw-anchor-tag { margin-bottom: 6px; }
+        .hw-anchor-copy p { font-size: 0.82rem; line-height: 1.45; margin-bottom: 5px; }
+
+        .hw-close { grid-template-columns: 1fr; gap: 14px; margin-top: 20px; padding-top: 18px; }
+        .hw-close-line, .hw-close-invite { max-width: none; }
+        .hw-cta { margin-top: 2px; gap: 12px; }
+        .hw-chips li { padding: 6px 12px; }
+        .hw-cta .btn { width: 100%; justify-content: center; }
+        .hw-cta-ghost { width: 100%; justify-content: center; }
+    }
+</style>
+
+<section class="section section--lg section-dark hw" id="how-it-works">
     <div class="container">
-        <div class="two-col" style="margin-bottom: clamp(40px, 5vw, 64px);">
-            <div class="col-text gsap-fade">
+
+        <!-- A. masthead -->
+        <div class="hw-head gsap-fade">
+            <div>
                 <span class="section-num">01</span>
                 <span class="overline overline--ruled">How it works</span>
-                <h2>The event doesn't have<br>to end on the day</h2>
-                <p style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; color: var(--color-white); margin-bottom: 12px;">We can turn it into months of content.</p>
+                <h2>Your event happens once.<br>Your content <em>keeps working</em>.</h2>
             </div>
-            <div class="col-image gsap-fade">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp" alt="Event coverage by Recap Media" width="640" height="480" class="parallax-img">
+            <p class="hw-deck">You step in five times. Everything between those five moments sits with us.</p>
+        </div>
+
+        <!-- B. the spread: the origin photograph beside the five-stage ledger -->
+        <div class="hw-spread gsap-fade">
+
+            <figure class="hw-anchor">
+                <div class="hw-anchor-frame">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp"
+                         alt="Audience filling the auditorium at Flutter Vikings Conference 2022, Felix Konferansesenter, Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                    <figcaption class="hw-anchor-copy">
+                        <span class="hw-anchor-tag">Where everything starts</span>
+                        <p>One event day, one crew: photo, video and content production under one booking. Everything below comes out of this.</p>
+                        <span class="hw-credit">Flutter Vikings 2022, Oslo</span>
+                    </figcaption>
+                </div>
+                <span class="hw-stem" aria-hidden="true"></span>
+            </figure>
+
+            <div class="hw-ledger">
+                <p class="hw-ledger-kicker">You run the event. We run the production.</p>
+                <div class="hw-ledger-head" aria-hidden="true">
+                    <span class="hw-h-we">We handle</span>
+                    <span class="hw-h-you">You</span>
+                </div>
+                <ol class="hw-stages">
+                    <li class="hw-stage">
+                        <span class="hw-stage-num">01</span>
+                        <h3 class="hw-stage-name">Brief<span class="hw-stage-when">Before booking</span></h3>
+                        <p class="hw-stage-we">Your event, your audience, and what the content needs to achieve: that is where we start.</p>
+                        <p class="hw-stage-you">One conversation.</p>
+                    </li>
+                    <li class="hw-stage">
+                        <span class="hw-stage-num">02</span>
+                        <h3 class="hw-stage-name">Plan<span class="hw-stage-when">Before the day</span></h3>
+                        <p class="hw-stage-we">You see the whole plan before anything is filmed, every piece mapped to a place and a date.</p>
+                        <p class="hw-stage-you">Approve the plan.</p>
+                    </li>
+                    <li class="hw-stage">
+                        <span class="hw-stage-num">03</span>
+                        <h3 class="hw-stage-name">Capture<span class="hw-stage-when">On the day</span></h3>
+                        <p class="hw-stage-we">One coordinated crew covers the day, including livestream when you want it, working to the plan you already approved.</p>
+                        <p class="hw-stage-you">Host your event.</p>
+                    </li>
+                    <li class="hw-stage">
+                        <span class="hw-stage-num">04</span>
+                        <h3 class="hw-stage-name">Build<span class="hw-stage-when">After the day</span></h3>
+                        <p class="hw-stage-we">Your finished content comes back ready to use, built from what we captured.</p>
+                        <p class="hw-stage-you">Pick your favourites.</p>
+                    </li>
+                    <li class="hw-stage">
+                        <span class="hw-stage-num">05</span>
+                        <h3 class="hw-stage-name">Run<span class="hw-stage-when">The months after</span><span class="hw-stage-opt">Optional</span></h3>
+                        <p class="hw-stage-we">Your content keeps going out for months, or you take the plan and run it in-house.</p>
+                        <p class="hw-stage-you">Approve each batch.</p>
+                    </li>
+                </ol>
             </div>
         </div>
-        <!-- HOW-WE-WORK VIDEO SLOT (Max films this later — "ship text now, video will come later").
-             Embed lands HERE, above the rail; until then the five steps carry the section as text.
-             On embed: wire each .p2-step's data-timestamp to a chapter jump. -->
-        <div class="p2-rail">
-            <span class="p2-rail-line" aria-hidden="true"></span>
-            <div class="p2-step" data-timestamp="">
-                <span class="p2-step-num">1</span>
-                <span class="p2-step-kicker">Where it starts</span>
-                <p class="p2-step-title">Brief</p>
-                <p class="p2-step-body">We listen first: your event, your audience, and what the content needs to do once it's over. If we can't help, we'll say so.</p>
-                <p class="p2-you"><span class="p2-you-label">You:</span>One conversation.</p>
+
+        <!-- C. the turn: one hairline leaves the day and fans into four.
+             Trunk x=148/1000 = the anchor column's horizontal centre at the shipped 0.62/1.38
+             spread ratio, so the stem and the trunk are the same line. Arms land on the four
+             output-column centres (11.7% / 37.2% / 62.8% / 88.3%). -->
+        <div class="hw-turn">
+            <div class="hw-turn-labels">
+                <span class="hw-turn-left">The day ends</span>
+                <span class="hw-turn-arrow" aria-hidden="true">&rarr;</span>
+                <span class="hw-turn-right">Your content keeps going out</span>
             </div>
-            <div class="p2-step" data-timestamp="">
-                <span class="p2-step-num">2</span>
-                <span class="p2-step-kicker">Before the event</span>
-                <p class="p2-step-title">Plan</p>
-                <p class="p2-step-body">We turn that into a plan: every deliverable mapped to a place and a date, before anything is filmed.</p>
-                <p class="p2-you"><span class="p2-you-label">You:</span>Choose how much to hand off, then approve the plan.</p>
-                <ul class="p2-tiers">
-                    <li class="p2-tier">
-                        <span class="p2-tier-name">Capture</span>
-                        <span class="p2-tier-desc">the day, shot and delivered: photos and film, ready to use.</span>
-                    </li>
-                    <li class="p2-tier">
-                        <span class="p2-tier-name"><span class="p2-tier-plus" aria-hidden="true">+</span>Content series</span>
-                        <span class="p2-tier-desc">the weeks after, planned and edited: every clip with a place and a date.</span>
-                    </li>
-                    <li class="p2-tier">
-                        <span class="p2-tier-name"><span class="p2-tier-plus" aria-hidden="true">+</span>Distribution</span>
-                        <span class="p2-tier-desc">published for you, on schedule; you approve each piece.</span>
-                    </li>
+            <svg class="hw-delta" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path class="hw-trunk" d="M148 0 V 18" vector-effect="non-scaling-stroke"/>
+                <path class="hw-arm" d="M148 18 C 148 38, 117 36, 117 56" vector-effect="non-scaling-stroke"/>
+                <path class="hw-arm" d="M148 18 C 196 38, 336 40, 372 56" vector-effect="non-scaling-stroke"/>
+                <path class="hw-arm" d="M148 18 C 330 26, 546 34, 628 56" vector-effect="non-scaling-stroke"/>
+                <path class="hw-arm" d="M148 18 C 470 18, 782 30, 883 56" vector-effect="non-scaling-stroke"/>
+            </svg>
+        </div>
+
+        <!-- D. what comes out: four plates, one baseline -->
+        <div class="hw-outs">
+
+            <div class="hw-out">
+                <div class="hw-well">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0639bb767199.webp"
+                         alt="Row of conference attendees watching a session at Flutter Vikings 2022, Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                </div>
+                <div class="hw-out-body">
+                    <h3>Photography</h3>
+                    <p>Frames you can put straight into press, decks and your channels.</p>
+                </div>
+            </div>
+
+            <div class="hw-out">
+                <div class="hw-well">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp"
+                         alt="Speaker presenting on stage at Flutter Vikings 2022, Oslo"
+                         width="800" height="534" loading="lazy" decoding="async">
+                </div>
+                <div class="hw-out-body">
+                    <h3>Film</h3>
+                    <p>Video that carries the room to everyone who could not be there.</p>
+                </div>
+            </div>
+
+            <div class="hw-out">
+                <div class="hw-well">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0695bc767185.webp"
+                         alt="Attendees talking at an exhibitor stand during Flutter Vikings 2022, Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                </div>
+                <div class="hw-out-body">
+                    <h3>Content</h3>
+                    <p>Short pieces cut from the same day, shaped for the places you post.</p>
+                </div>
+            </div>
+
+            <div class="hw-out hw-out--rule">
+                <div class="hw-well hw-well--rule">
+                    <span class="hw-well-label">On a schedule</span>
+                </div>
+                <div class="hw-out-body">
+                    <h3>Distribution</h3>
+                    <p>Your content goes out on a schedule instead of sitting in a folder, and you approve each batch before it does.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- E. close -->
+        <div class="hw-close gsap-fade">
+            <div class="hw-close-main">
+                <p class="hw-close-line">Your event ends on the day. Your content carries on without you.</p>
+                <p class="hw-close-invite">Tell us what you are planning and we will map it onto these five steps.</p>
+            </div>
+            <div class="hw-yours">
+                <span class="hw-yours-lead">Your whole part</span>
+                <ul class="hw-chips">
+                    <li>One conversation</li>
+                    <li>Approve the plan</li>
+                    <li>Host your event</li>
+                    <li>Pick your favourites</li>
+                    <li>Approve each batch</li>
                 </ul>
-                <p class="p2-lockline">No lock-in. Each engagement stands alone. <a href="#faq-lock-in" data-faq-open="faq-lock-in">More in the FAQ ↓</a></p>
             </div>
-            <div class="p2-step" data-timestamp="">
-                <span class="p2-step-num">3</span>
-                <span class="p2-step-kicker">On the day</span>
-                <p class="p2-step-title">Capture</p>
-                <p class="p2-step-body">One crew covers it all: photo, video, and livestream if you want it.</p>
-                <p class="p2-you"><span class="p2-you-label">You:</span>Host your event.</p>
-            </div>
-            <div class="p2-step" data-timestamp="">
-                <span class="p2-step-num">4</span>
-                <span class="p2-step-kicker">The days after</span>
-                <p class="p2-step-title">Build</p>
-                <p class="p2-step-body">Something to post right away, then the full gallery, the films, and the content plan: what publishes, where, and when.</p>
-                <p class="p2-you"><span class="p2-you-label">You:</span>Pick your favourites.</p>
-            </div>
-            <div class="p2-step" data-timestamp="">
-                <span class="p2-step-num">5</span>
-                <span class="p2-step-kicker">The months after</span>
-                <p class="p2-step-title">Run <span class="p2-step-tag">Optional</span></p>
-                <p class="p2-step-body">We schedule and publish for months, or hand you the plan to run in-house.</p>
-                <p class="p2-you"><span class="p2-you-label">You:</span>Approve each batch.</p>
+            <div class="hero-cta-row hw-cta">
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+                <a href="https://recapmedia.no/contact#calendar"
+                   class="hero-secondary-link hw-cta-ghost"
+                   data-cta="call">Book a free 20-minute call <span class="arrow">&rarr;</span></a>
             </div>
         </div>
-        <div class="hero-cta-row gsap-fade" style="justify-content: center; margin-top: clamp(36px, 5vw, 56px);">
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/contact#calendar" class="hero-secondary-link">Book a free 20-minute call <span class="arrow">→</span></a>
-        </div>
+
     </div>
 </section>
 
 <script>
-(function() {
-    // ROUND-5 (2026-07-15): per-step scroll reveal for the process rail. Each .p2-step fades/slides
-    // in as IT scrolls into view (its own ScrollTrigger), vs the shared .gsap-stagger which fires all
-    // children together. Page-local so main-v2.js (the shared CDN file) stays untouched. GSAP is loaded
-    // late (Body Tracking Code / bottom of page), so poll for it; hidden state is set in JS only, so
-    // no-JS / no-GSAP / crawlers always see the full content. No scrub → survives the Safari degrade.
+(function () {
+    /* THE one bespoke moment in this section: the hairline leaves the photograph, fans into
+       four, and the four outputs arrive behind it. Everything else uses main-v2's .gsap-fade.
+
+       Rules honoured:
+         - reduced motion: early return as the FIRST statement, so the static render IS the
+           finished state (nothing is ever hidden in CSS).
+         - hidden state set in JS only: no-JS / crawlers / GSAP-blocked see the whole section.
+         - once-fired ScrollTrigger, no scrub, no pinning (the two things that break in Safari,
+           where main-v2 swaps Lenis for native scroll).
+       GSAP loads late (bottom of page / GHL Body Tracking Code), so poll for it like the other
+       page-local scripts. Page-local: js/main-v2.js (shared CDN file) stays untouched. */
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var section = document.querySelector('#how-it-works');
+    if (!section) return;
+
     var tries = 0;
     (function waitGSAP() {
         if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
             if (tries++ < 120) { setTimeout(waitGSAP, 50); }
             return;
         }
-        var steps = gsap.utils.toArray('.p2-rail .p2-step');
-        if (steps.length) {
-            gsap.set(steps, { opacity: 0, y: 28 });
-            steps.forEach(function(step) {
-                gsap.to(step, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
-                    scrollTrigger: { trigger: step, start: 'top 82%', once: true } });
+
+        var turn = section.querySelector('.hw-turn');
+        var outsEl = section.querySelector('.hw-outs');
+        var outs = gsap.utils.toArray(section.querySelectorAll('.hw-out'));
+        if (!turn || !outsEl || !outs.length) return;
+
+        var isNarrow = window.matchMedia('(max-width: 940px)').matches;
+        var tl = gsap.timeline({ paused: true });
+
+        if (!isNarrow) {
+            var stem = section.querySelector('.hw-stem');
+            if (stem) {
+                gsap.set(stem, { scaleY: 0, transformOrigin: 'top center' });
+                tl.to(stem, { scaleY: 1, duration: 0.3, ease: 'power1.out' });
+            }
+            /* dash lengths come from getTotalLength(), never from CSS, so a page without JS
+               shows fully drawn lines */
+            var drawn = [];
+            gsap.utils.toArray(section.querySelectorAll('.hw-delta path')).forEach(function (p) {
+                var len = 0;
+                try { len = p.getTotalLength(); } catch (e) { len = 0; }
+                if (!len) return;
+                gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
+                drawn.push(p);
             });
+            var trunk = drawn.filter(function (p) { return p.classList.contains('hw-trunk'); });
+            var arms = drawn.filter(function (p) { return p.classList.contains('hw-arm'); });
+            if (trunk.length) { tl.to(trunk, { strokeDashoffset: 0, duration: 0.28, ease: 'none' }, '-=0.05'); }
+            if (arms.length) { tl.to(arms, { strokeDashoffset: 0, duration: 0.85, ease: 'power2.out', stagger: 0.07 }, '>-0.05'); }
+            gsap.set(outs, { opacity: 0, y: 22 });
+            tl.to(outs, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1 }, '-=0.55');
+        } else {
+            /* stacked mode: the rail draws down and the plates land on it, so the
+               transformation beat survives the stack */
+            gsap.set(outsEl, { '--hw-rail': 0 });
+            tl.to(outsEl, { '--hw-rail': 1, duration: 0.7, ease: 'power1.out' });
+            gsap.set(outs, { opacity: 0, y: 22 });
+            tl.to(outs, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1 }, '-=0.45');
         }
-        var line = document.querySelector('.p2-rail-line');
-        if (line) {
-            gsap.set(line, { scaleY: 0, transformOrigin: 'top center' });
-            gsap.to(line, { scaleY: 1, duration: 1.1, ease: 'power1.out',
-                scrollTrigger: { trigger: '.p2-rail', start: 'top 80%', once: true } });
-        }
+
+        ScrollTrigger.create({
+            trigger: turn,
+            start: 'top 78%',
+            once: true,
+            onEnter: function () { tl.play(); }
+        });
+
+        /* safety net: restored scroll positions, in-page anchors and very tall viewports can
+           leave the trigger unfired with the output row already on screen */
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (tl.progress() === 0 && turn.getBoundingClientRect().top < window.innerHeight) {
+                    tl.play();
+                }
+            }, 800);
+        });
+
         ScrollTrigger.refresh();
     })();
-})();
-</script>
-
-<script>
-(function() {
-    // ROUND-6: "More in the FAQ" signpost from the Plan step → scroll to the lock-in Q and open it.
-    // Reuses main-v2's .faq-item.open convention; no copy is duplicated on the page.
-    var link = document.querySelector('[data-faq-open="faq-lock-in"]');
-    if (!link) return;
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var item = document.getElementById('faq-lock-in');
-        if (!item) return;
-        var list = item.closest('.faq-list');
-        if (list) {
-            list.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
-        }
-        item.classList.add('open');
-        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
 })();
 </script>
 
@@ -837,7 +1183,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         <p class="cta-body">It starts with a conversation. Detailed quote after, no surprises.</p>
         <div class="hero-cta-row" style="justify-content: center;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/contact#calendar" class="hero-secondary-link">Book a free 20-minute call <span class="arrow">→</span></a>
+            <a href="https://recapmedia.no/contact#calendar" class="hero-secondary-link" data-cta="call">Book a free 20-minute call <span class="arrow">→</span></a>
         </div>
         <p class="p2-note" style="margin-top: 16px; font-size: 0.85rem;">We reply within one business day.</p>
 
@@ -896,6 +1242,197 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         </div>
     </div>
 </section>
+
+<!-- ============================================================================================
+     BOOK-A-CALL MODAL (2026-08-19) — page-local, prefix .hw-cm-
+     Every [data-cta="call"] on this page (the #how-it-works close + the final CTA) opens this
+     instead of navigating to /contact#calendar. The href stays as the no-JS / init-failure
+     fallback: preventDefault only runs AFTER the modal has actually opened, so any throw lets
+     the browser navigate as before.
+     The calendar is the SAME GHL booking widget the live /contact page embeds
+     (link.vidlead.com/widget/booking/qrGyKgqUP1OAMeLAGtoX + link.vidlead.com/js/form_embed.js).
+     The iframe ships with an EMPTY src: src + the companion script inject on FIRST open only, so
+     the page never pays the widget cost up front, and the iframe then stays alive across
+     open/close (no reloads).
+     Markup, <style> and <script> all live INSIDE <main> because the GHL deploy path pastes only
+     <main>'s contents into a Custom HTML block. On init the JS re-parents the overlay to
+     <body> so no transformed ancestor (GSAP sets transforms all over this page) can trap a
+     position:fixed overlay — the markup still ORIGINATES inside <main>, which is what the paste
+     needs; the move happens at runtime.
+     Reduced motion: this script is functionality, not decoration, so it must NOT early-return
+     (that would leave the CTA dead for those users). The motion is removed in CSS instead.
+     ========================================================================================= -->
+<style>
+    /* ===== BOOK-A-CALL MODAL: page-local, prefix .hw-cm- ===============================
+       !important only on the containment-critical overlay properties (same defensive set
+       style.css uses on .modal-overlay), so a stray GHL wrapper rule cannot un-fix it. */
+    .hw-cm { position: fixed !important; inset: 0 !important; z-index: 4000 !important; display: flex !important; align-items: center; justify-content: center; padding: 24px; background: rgba(12, 10, 16, 0.85); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+    .hw-cm.is-open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.3s ease; }
+
+    .hw-cm-dialog { position: relative; display: flex; flex-direction: column; width: 100%; max-width: 560px; max-height: 90vh; background: var(--color-onyx); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-lg); padding: 26px 24px 18px; transform: translateY(16px) scale(0.98); transition: transform 0.3s ease; }
+    .hw-cm.is-open .hw-cm-dialog { transform: none; }
+    .hw-cm-dialog:focus { outline: none; }
+
+    .hw-cm-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.06); border: none; border-radius: 50%; color: var(--color-stone); font-size: 0.9rem; line-height: 1; cursor: pointer; transition: background-color var(--transition-fast), color var(--transition-fast); }
+    .hw-cm-close:hover { background: rgba(255, 255, 255, 0.12); color: var(--color-white); }
+    .hw-cm-close:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 2px; }
+
+    .hw-cm-title { font-size: 1.25rem !important; font-weight: 700 !important; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0 40px 4px 0 !important; }
+    .hw-cm-sub { font-size: 0.88rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0 0 14px; }
+
+    /* the calendar itself scrolls inside the sheet; the widget resizes its own iframe via
+       form_embed.js postMessage, so min-height is only the pre-resize floor */
+    .hw-cm-frame { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-sm); }
+    .hw-cm-frame iframe { display: block; width: 100%; min-height: 620px; border: none; overflow: hidden; }
+    /* MEASURED (2026-08-19, CDP): once the widget loads, form_embed.js writes
+       "visibility: visible; pointer-events: auto; position: relative; height: NNNpx" INLINE on the
+       iframe. Those inline values override the closed overlay's own visibility/pointer-events, so
+       after the first open a closed modal left an invisible full-viewport click-catcher over the
+       page (a second CTA click landed on the iframe, not the link). An author !important rule beats
+       an inline non-important one, so the closed state is re-asserted here. The 0.3s visibility
+       delay matches the overlay's own fade so the calendar does not blink out early. */
+    .hw-cm-cal { transition: visibility 0s linear 0.3s; }
+    .hw-cm:not(.is-open) .hw-cm-cal { visibility: hidden !important; pointer-events: none !important; }
+    .hw-cm.is-open .hw-cm-cal { transition: visibility 0s; }
+
+    .hw-cm-fallback { font-size: 0.76rem; line-height: 1.5; color: var(--color-stone); margin: 12px 0 0; }
+    .hw-cm-fallback a { color: var(--color-ember); }
+
+    /* full-screen sheet on phones: the calendar needs the whole viewport */
+    @media (max-width: 700px) {
+        .hw-cm { padding: 0; }
+        .hw-cm-dialog { max-width: none; width: 100%; height: 100%; max-height: none; border: none; border-radius: 0; padding: 22px 16px 14px; }
+        .hw-cm-frame iframe { min-height: 560px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hw-cm { transition: none; }
+        .hw-cm-dialog { transition: none; transform: none; }
+    }
+</style>
+
+<div class="hw-cm" id="hw-call-modal" role="dialog" aria-modal="true" aria-label="Book a free 20-minute call" aria-hidden="true">
+    <div class="hw-cm-dialog" tabindex="-1">
+        <button type="button" class="hw-cm-close" aria-label="Close booking dialog">&#10005;</button>
+        <h2 class="hw-cm-title">Book a free 20-minute call</h2>
+        <p class="hw-cm-sub">Pick a time that suits you. Nothing to prepare.</p>
+        <div class="hw-cm-frame">
+            <!-- src injected on first open (see script below) -->
+            <iframe class="hw-cm-cal" src="" title="Booking calendar" scrolling="no" style="width:100%;border:none;overflow:hidden;" loading="lazy"></iframe>
+        </div>
+        <p class="hw-cm-fallback">Calendar not loading? <a href="https://recapmedia.no/contact#calendar">Open the booking page</a>.</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    /* No reduced-motion early return on purpose: this is the booking CTA, not an animation.
+       Motion is stripped in CSS via @media (prefers-reduced-motion: reduce) above. */
+    var CAL_SRC  = 'https://link.vidlead.com/widget/booking/qrGyKgqUP1OAMeLAGtoX';
+    var CAL_ID   = 'qrGyKgqUP1OAMeLAGtoX';
+    var EMBED_JS = 'https://link.vidlead.com/js/form_embed.js';
+
+    var overlay = document.getElementById('hw-call-modal');
+    if (!overlay) return;
+    var dialog  = overlay.querySelector('.hw-cm-dialog');
+    var closeBtn = overlay.querySelector('.hw-cm-close');
+    var cal     = overlay.querySelector('.hw-cm-cal');
+    var links   = document.querySelectorAll('[data-cta="call"]');
+    if (!dialog || !closeBtn || !cal || !links.length) return;
+
+    /* escape any transformed ancestor: a position:fixed overlay inside a GSAP-transformed
+       subtree would be clipped to that subtree. Markup originates in <main> (GHL paste);
+       this move is runtime-only. */
+    if (document.body && overlay.parentNode !== document.body) document.body.appendChild(overlay);
+
+    var isOpen = false, calLoaded = false, lastFocus = null;
+
+    function loadCalendar() {
+        if (calLoaded) return;
+        calLoaded = true;
+        /* GHL's form_embed.js resizes the iframe by matching the id it receives over
+           postMessage, and the live /contact embed uses "<widgetId>_<timestamp>" — same here. */
+        cal.id = CAL_ID + '_' + Date.now();
+        cal.src = CAL_SRC;
+        if (!document.querySelector('script[src="' + EMBED_JS + '"]')) {
+            var s = document.createElement('script');
+            s.src = EMBED_JS;
+            s.type = 'text/javascript';
+            document.body.appendChild(s);
+        }
+    }
+
+    function lockScroll() {
+        document.body.style.overflow = 'hidden';
+        var l = window.__lenis;                       // set by main-v2.js; may be a sentinel object
+        if (l && typeof l.stop === 'function') l.stop();
+    }
+    function unlockScroll() {
+        document.body.style.overflow = '';
+        var l = window.__lenis;
+        if (l && typeof l.start === 'function') l.start();
+    }
+
+    function focusables() {
+        return Array.prototype.filter.call(
+            dialog.querySelectorAll('a[href], button:not([disabled]), iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])'),
+            function (el) { return el.offsetWidth || el.offsetHeight || el.getClientRects().length; }
+        );
+    }
+
+    function openModal(trigger) {
+        lastFocus = trigger || document.activeElement;
+        loadCalendar();
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        lockScroll();
+        isOpen = true;
+        closeBtn.focus();
+    }
+
+    function closeModal() {
+        if (!isOpen) return;
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        unlockScroll();
+        isOpen = false;
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+        lastFocus = null;
+    }
+
+    Array.prototype.forEach.call(links, function (link) {
+        link.addEventListener('click', function (e) {
+            /* progressive enhancement: preventDefault ONLY after the modal actually opened.
+               If anything throws, the click falls through to the href (contact page). */
+            try {
+                openModal(link);
+            } catch (err) {
+                return;
+            }
+            e.preventDefault();
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+    document.addEventListener('keydown', function (e) {
+        if (!isOpen) return;
+        if (e.key === 'Escape' || e.key === 'Esc') { closeModal(); return; }
+        if (e.key !== 'Tab') return;
+        var items = focusables();
+        if (!items.length) return;
+        var first = items[0], last = items[items.length - 1];
+        if (!dialog.contains(document.activeElement)) { e.preventDefault(); first.focus(); return; }
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* never strand the page unscrollable: if anything else removed the overlay mid-session */
+    window.addEventListener('pagehide', function () { if (isOpen) closeModal(); });
+})();
+</script>
 
 </main>
 <!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->

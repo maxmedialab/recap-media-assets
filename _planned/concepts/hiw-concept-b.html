@@ -1,0 +1,1047 @@
+<!--
+================================================================
+  CONCEPT PROTOTYPE — NOT LIVE, NOT FOR DEPLOY.
+  "How It Works" redesign · CONCEPT B: INTERACTIVE PROCESS (2026-08-19)
+================================================================
+  One stage active at a time (Brief / Plan / Capture / Build / Run).
+  Clicking a stage tab switches it; scrolling the section also advances it
+  in discrete steps (no scrub, no pin, no scroll trapping) until the visitor
+  takes control, after which scroll-advance stops for good.
+
+  The single editorial event photograph is the journey's origin; the four
+  outputs sit tucked behind its lower edge and fan out at Build/Run. That
+  fan is the ONE sophisticated interaction in the section.
+
+  Fallbacks: no JS  -> every stage panel and the fanned outputs render as a
+  plain readable document (all "hidden" states live under .hiwb--enhanced,
+  a class only JS ever adds). Reduced motion -> tabs still work, all
+  transitions collapse to 0s, scroll-advance is disabled.
+
+  Copy follows the copywriter pack: zero em dashes, no contrast-negation,
+  buyer as grammatical subject, no invented numbers, no tiers/packages.
+  Gray stubs above and below stand in for the neighbouring sections.
+  Deep link / screenshot helper: append ?stage=4 or #hiw-stage-4.
+================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept B · Interactive Process · Recap Media</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css?v=2">
+
+<style>
+/* ==========================================================================
+   CONCEPT B — page-local styles. Prefix: .hiwb-  (how it works, concept b)
+   Everything in style.css is !important, so anything that touches a shared
+   class or a bare element selector is !important here too.
+   ========================================================================== */
+
+/* ---- structural stubs for the neighbouring sections ---------------------- */
+.stub {
+    min-height: 40vh;
+    display: flex; align-items: center; justify-content: center;
+    background: repeating-linear-gradient(135deg, #1a1820 0 12px, #17151d 12px 24px);
+    color: #6F6B64;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    border-block: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ---- section shell ------------------------------------------------------- */
+/* tighter than the shared .section--lg: this section earns its height back by
+   showing one stage at a time instead of five stacked blocks */
+.hiwb { overflow: hidden !important; padding: clamp(48px, 5.4vw, 84px) 0 !important; }
+.hiwb .container { position: relative; z-index: 1; }
+
+/* ---- header -------------------------------------------------------------- */
+.hiwb-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 64px);
+    align-items: end;
+    margin-bottom: clamp(26px, 3.2vw, 38px);
+}
+.hiwb-head h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.6rem) !important;
+    line-height: 1.12 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.4px !important;
+    margin: 0 !important;
+}
+.hiwb-lede {
+    color: var(--color-warm-grey) !important;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 46ch;
+    padding-bottom: 4px;
+}
+
+/* ---- stage track (the tabs) --------------------------------------------- */
+.hiwb-track {
+    position: relative;
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    margin-bottom: clamp(22px, 3vw, 32px);
+    padding-top: 4px;
+}
+/* the connecting rail sits behind the dots, spanning first dot centre to last */
+.hiwb-track::before {
+    content: '';
+    position: absolute;
+    left: 10%; right: 10%;
+    top: 27px; height: 1px;
+    background: rgba(255,255,255,0.13);
+}
+.hiwb-track-fill {
+    position: absolute;
+    left: 10%; top: 27px; height: 1px;
+    width: 0%;
+    background: var(--color-ember);
+    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    pointer-events: none;
+}
+
+.hiwb-tab {
+    flex: 1 1 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 4px 13px;
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    font-family: var(--font-body);
+    cursor: pointer;
+    -webkit-appearance: none; appearance: none;
+    transition: background-color 0.2s ease;
+}
+.hiwb-tab-dot {
+    position: relative; z-index: 1;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: var(--color-obsidian);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: var(--color-stone);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.hiwb-tab-name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-warm-grey);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+.hiwb-tab-opt {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    font-weight: 400;
+    padding: 2px 6px;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+}
+/* the ember bar that says "this tab owns the panel below" */
+.hiwb-tab::after {
+    content: '';
+    position: absolute;
+    left: 14%; right: 14%; bottom: -1px;
+    height: 2px;
+    background: var(--color-ember);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.hiwb-tab:hover { background: rgba(255,255,255,0.04); }
+.hiwb-tab:hover .hiwb-tab-name { color: var(--color-white); }
+.hiwb-tab:hover .hiwb-tab-dot { border-color: rgba(232,89,60,0.65); color: var(--color-white); }
+.hiwb-tab:focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 2px;
+    background: rgba(255,255,255,0.05);
+}
+.hiwb-tab.is-active .hiwb-tab-dot {
+    background: var(--color-ember);
+    border-color: var(--color-ember);
+    color: var(--color-white);
+    box-shadow: 0 0 0 5px rgba(232,89,60,0.16);
+}
+.hiwb-tab.is-active .hiwb-tab-name { color: var(--color-white); font-weight: 600; }
+.hiwb-tab.is-active::after { transform: scaleX(1); }
+.hiwb-tab.is-done .hiwb-tab-dot { border-color: rgba(232,89,60,0.55); color: var(--color-warm-grey); }
+
+/* track progress per stage (5 dots at 10/30/50/70/90% -> fill spans 0..80% of the container) */
+.hiwb[data-stage="1"] .hiwb-track-fill { width: 0%; }
+.hiwb[data-stage="2"] .hiwb-track-fill { width: 20%; }
+.hiwb[data-stage="3"] .hiwb-track-fill { width: 40%; }
+.hiwb[data-stage="4"] .hiwb-track-fill { width: 60%; }
+.hiwb[data-stage="5"] .hiwb-track-fill { width: 80%; }
+
+/* ---- the stage area: media (left) + detail panels (right) ---------------- */
+.hiwb-stage { display: block; }
+
+/* ---- the anchor photograph ---------------------------------------------- */
+.hiwb-anchor { margin: 0 0 22px; position: relative; isolation: isolate; }
+.hiwb-anchor-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-smoke);
+    aspect-ratio: 3 / 2;
+}
+.hiwb-anchor-frame img {
+    width: 100% !important; height: 100% !important;
+    object-fit: cover !important;
+}
+.hiwb-anchor-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(12,10,16,0.88) 0%, rgba(12,10,16,0.25) 34%, rgba(12,10,16,0) 62%);
+    pointer-events: none;
+}
+.hiwb-anchor-cap {
+    position: absolute;
+    left: 18px; bottom: 14px; right: 18px;
+    z-index: 2;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--color-warm-grey);
+    margin: 0;
+}
+.hiwb-anchor-cap b {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ember);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* ---- the outputs (the expansion) ---------------------------------------- */
+.hiwb-outputs { margin: 0 0 26px; }
+.hiwb-outputs-label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 12px;
+}
+.hiwb-fan {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    list-style: none;
+    margin: 0; padding: 0;
+}
+.hiwb-out {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-smoke);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+                opacity 0.45s ease,
+                border-color 0.4s ease;
+}
+.hiwb-out-thumb { display: block; position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.hiwb-out-thumb img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+.hiwb-out-name {
+    display: block;
+    padding: 7px 10px 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-warm-grey);
+    background: rgba(255,255,255,0.03);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* the "keeps going" rail, revealed at stage 5 */
+.hiwb-cont {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--color-stone);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,0.61,0.36,1);
+}
+.hiwb-cont-rail {
+    flex: 1 1 auto;
+    height: 1px;
+    background: repeating-linear-gradient(to right, rgba(232,89,60,0.75) 0 8px, transparent 8px 16px);
+}
+.hiwb-cont span { white-space: nowrap; }
+
+/* ---- detail panels ------------------------------------------------------- */
+.hiwb-panels { display: block; }
+.hiwb-panel {
+    position: relative;
+    padding: 20px 0 22px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hiwb-panel:first-child { border-top: 0; }
+.hiwb-kicker {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 8px;
+}
+.hiwb-panel h3 {
+    font-size: clamp(1.45rem, 2.4vw, 1.95rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.3px !important;
+    margin: 0 0 12px !important;
+    line-height: 1.1 !important;
+}
+.hiwb-we {
+    color: var(--color-warm-grey) !important;
+    font-size: 1.02rem;
+    line-height: 1.62;
+    margin: 0 0 18px;
+    max-width: 52ch;
+}
+.hiwb-you {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: var(--radius-md);
+    background: rgba(232,89,60,0.07);
+    border-left: 2px solid var(--color-ember);
+    margin: 0 0 14px;
+    max-width: 34ch;
+}
+.hiwb-you-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ember);
+    white-space: nowrap;
+    font-weight: 600;
+}
+.hiwb-you-text {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--color-white);
+    line-height: 1.3;
+}
+.hiwb-leads {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--color-stone) !important;
+    line-height: 1.55;
+}
+.hiwb-leads b {
+    color: var(--color-warm-grey);
+    font-weight: 500;
+}
+
+/* ---- closing beat -------------------------------------------------------- */
+.hiwb-close {
+    margin-top: clamp(22px, 3vw, 32px);
+    padding-top: clamp(20px, 2.4vw, 26px);
+    border-top: 1px solid rgba(255,255,255,0.10);
+}
+.hiwb-close-line {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 600;
+    color: var(--color-white) !important;
+    line-height: 1.28;
+    margin: 0 0 20px;
+    max-width: 30ch;
+}
+.hiwb-yours {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    list-style: none;
+    margin: 0; padding: 0;
+}
+.hiwb-yours-lead {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ember);
+    margin-right: 4px;
+}
+.hiwb-yours li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+    color: var(--color-warm-grey);
+    font-size: 0.84rem;
+}
+.hiwb-yours li::before {
+    content: '';
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--color-ember);
+    flex: 0 0 auto;
+}
+
+.hiwb-cta { margin-top: clamp(20px, 2.6vw, 30px); }
+
+/* ==========================================================================
+   DESKTOP LAYOUT (>= 900px): two columns, one panel visible at a time
+   ========================================================================== */
+@media (min-width: 900px) {
+    .hiwb-stage {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+        column-gap: clamp(32px, 4vw, 60px);
+        align-items: start;
+    }
+    .hiwb-anchor  { grid-column: 1; grid-row: 1; margin-bottom: 0; }
+    .hiwb-outputs { grid-column: 1; grid-row: 2; margin: 18px 0 0; z-index: 2; position: relative; }
+    .hiwb-panels  { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+
+    .hiwb-anchor-frame { aspect-ratio: 2.05 / 1; }
+    .hiwb-outputs-label { padding-left: 2px; }
+
+    /* the closing beat runs as one band: the transformation line beside the
+       visitor's entire workload, so the asymmetry lands in a single glance */
+    .hiwb-close {
+        display: grid;
+        grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+        gap: clamp(24px, 4vw, 56px);
+        align-items: center;
+    }
+    .hiwb-close-line { margin-bottom: 0; }
+
+    /* the outputs sit tucked behind the photograph until Build */
+    .hiwb--enhanced .hiwb-out {
+        transform: translate3d(calc(var(--tuck) * 100%), -14px, 0) scale(0.9);
+        opacity: 0.28;
+        border-color: rgba(255,255,255,0.05);
+    }
+    .hiwb--enhanced .hiwb-out:nth-child(1) { --tuck: 0; transition-delay: 0s; }
+    .hiwb--enhanced .hiwb-out:nth-child(2) { --tuck: -0.86; transition-delay: 0.05s; }
+    .hiwb--enhanced .hiwb-out:nth-child(3) { --tuck: -1.72; transition-delay: 0.10s; }
+    .hiwb--enhanced .hiwb-out:nth-child(4) { --tuck: -2.58; transition-delay: 0.15s; }
+    .hiwb--enhanced .hiwb-out:nth-child(1) { opacity: 0.72; }
+    .hiwb--enhanced .hiwb-outputs-label { opacity: 0.5; transition: opacity 0.4s ease; }
+    /* while the frames are stacked, their labels would overprint each other */
+    .hiwb--enhanced .hiwb-out-name { opacity: 0; transition: opacity 0.35s ease; }
+
+    /* ...and fan out at Build and Run */
+    .hiwb--enhanced[data-stage="4"] .hiwb-out,
+    .hiwb--enhanced[data-stage="5"] .hiwb-out {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+        border-color: rgba(255,255,255,0.10);
+    }
+    .hiwb--enhanced[data-stage="4"] .hiwb-outputs-label,
+    .hiwb--enhanced[data-stage="5"] .hiwb-outputs-label { opacity: 1; }
+    .hiwb--enhanced[data-stage="4"] .hiwb-out-name,
+    .hiwb--enhanced[data-stage="5"] .hiwb-out-name { opacity: 1; transition-delay: 0.2s; }
+
+    .hiwb--enhanced .hiwb-cont { opacity: 0; transform: translateY(-6px); }
+    .hiwb--enhanced[data-stage="5"] .hiwb-cont { opacity: 1; transform: translateY(0); }
+
+    /* one panel at a time */
+    .hiwb--enhanced .hiwb-panel { display: none; border-top: 0; padding-top: 0; }
+    .hiwb--enhanced .hiwb-panel.is-active { display: block; }
+}
+
+/* wider screens: a touch more air in the panel column */
+@media (min-width: 1120px) {
+    .hiwb-panels { padding-left: 8px; }
+}
+
+/* ==========================================================================
+   MOBILE / TABLET (< 900px): compact vertical journey, everything readable
+   ========================================================================== */
+@media (max-width: 899px) {
+    .hiwb-head { grid-template-columns: 1fr; gap: 14px; align-items: start; }
+    .hiwb-lede { font-size: 0.95rem; }
+
+    /* the tab track collapses: every stage is on screen anyway, so the track
+       becomes a compact non-essential overview strip */
+    .hiwb-track { display: none; }
+
+    .hiwb-stage { display: flex; flex-direction: column; }
+    .hiwb-anchor  { order: 1; }
+    .hiwb-panels  { order: 2; }
+    .hiwb-outputs { order: 3; }
+
+    .hiwb-anchor-frame { aspect-ratio: 16 / 10; }
+
+    /* the vertical rail: numbered dots joined by a line */
+    .hiwb-panels { position: relative; padding-left: 40px; }
+    .hiwb-panels::before {
+        content: '';
+        position: absolute;
+        left: 14px; top: 12px; bottom: 26px;
+        width: 1px;
+        background: linear-gradient(to bottom, rgba(232,89,60,0.55), rgba(255,255,255,0.10));
+    }
+    .hiwb-panel { padding: 16px 0 18px; }
+    .hiwb-panel::before {
+        content: attr(data-num);
+        position: absolute;
+        left: -40px; top: 15px;
+        width: 29px; height: 29px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%;
+        background: var(--color-obsidian);
+        border: 1px solid rgba(255,255,255,0.22);
+        color: var(--color-stone);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.75rem;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .hiwb--enhanced .hiwb-panel.is-active::before {
+        background: var(--color-ember);
+        border-color: var(--color-ember);
+        color: var(--color-white);
+    }
+    .hiwb-panel h3 { font-size: 1.3rem !important; margin-bottom: 10px !important; }
+    .hiwb-we { font-size: 0.95rem; margin-bottom: 14px; }
+    .hiwb-you { max-width: none; padding: 11px 14px; }
+    .hiwb-you-text { font-size: 0.95rem; }
+
+    .hiwb-outputs { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .hiwb-fan { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .hiwb-out-name { font-size: 0.68rem; padding: 8px 9px; }
+    .hiwb-cont { font-size: 0.72rem; }
+
+    .hiwb-close-line { max-width: none; }
+    .hiwb-yours { gap: 7px; }
+    .hiwb-yours li { font-size: 0.8rem; padding: 6px 12px; }
+    .hiwb-cta { flex-direction: column; align-items: stretch !important; gap: 14px !important; }
+    .hiwb-cta .btn { justify-content: center !important; width: 100%; }
+    .hiwb-cta .hero-secondary-link { justify-content: center !important; }
+}
+
+@media (max-width: 420px) {
+    .hiwb-fan { grid-template-columns: 1fr 1fr; }
+    .hiwb-panels { padding-left: 34px; }
+    .hiwb-panel::before { left: -34px; width: 25px; height: 25px; font-size: 0.68rem; }
+    .hiwb-panels::before { left: 12px; }
+}
+
+/* ==========================================================================
+   Reduced motion: the tabs keep working (that is interaction, not motion),
+   but every transition collapses to nothing and scroll-advance is off.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .hiwb *, .hiwb *::before, .hiwb *::after {
+        transition-duration: 0.001s !important;
+        transition-delay: 0s !important;
+        animation: none !important;
+    }
+}
+
+/* No JS at all: nothing is ever hidden, because .hiwb--enhanced never lands. */
+@media (scripting: none) {
+    .hiwb-track { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
+
+<nav class="nav" id="nav">
+    <a href="https://recapmedia.no/" class="nav-logo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Recap Media Logo"><span>Recap Media</span></a>
+    <ul class="nav-links">
+        <li class="nav-dropdown">
+            <a href="#" class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="nav-drop-caret" aria-hidden="true">▾</span></a>
+            <ul class="nav-drop-menu">
+                <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+            </ul>
+        </li>
+        <li><a href="https://recapmedia.no/work">Work</a></li>
+        <li><a href="https://recapmedia.no/about">About</a></li>
+        <li><a href="https://recapmedia.no/packages">Packages</a></li>
+        <li><a href="https://recapmedia.no/contact">Contact</a></li>
+        <li class="nav-cta"><a href="#" data-cta="quote">Request a quote</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-services">
+        <span class="mobile-menu-label">Services</span>
+        <a href="https://recapmedia.no/services/photography">Photography</a>
+        <a href="https://recapmedia.no/services/videography">Videography</a>
+    </div>
+    <a href="https://recapmedia.no/work">Work</a>
+    <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
+    <a href="https://recapmedia.no/contact">Contact</a>
+    <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
+</div>
+
+<main>
+
+<!-- ===== STRUCTURAL STUB: the section that sits above ===== -->
+<div class="stub">problem section above</div>
+
+
+<!-- =====================================================================
+     HOW IT WORKS — CONCEPT B
+     ===================================================================== -->
+<section class="section section--lg section-dark hiwb" id="how-it-works" data-stage="1">
+    <div class="container">
+
+        <!-- header -->
+        <div class="hiwb-head gsap-fade">
+            <div>
+                <span class="section-num">01</span>
+                <span class="overline overline--ruled">How it works</span>
+                <h2>You run the event.<br>We run the production.</h2>
+            </div>
+            <p class="hiwb-lede">Your event moves through five stages, from the first conversation to content that keeps working months later. Your part stays small at every one.</p>
+        </div>
+
+        <!-- stage track / tabs -->
+        <div class="hiwb-track" id="hiwb-track">
+            <span class="hiwb-track-fill" aria-hidden="true"></span>
+
+            <button type="button" class="hiwb-tab is-active" data-stage-btn="1" id="hiwb-tab-1">
+                <span class="hiwb-tab-dot" aria-hidden="true">1</span>
+                <span class="hiwb-tab-name">Brief</span>
+            </button>
+            <button type="button" class="hiwb-tab" data-stage-btn="2" id="hiwb-tab-2">
+                <span class="hiwb-tab-dot" aria-hidden="true">2</span>
+                <span class="hiwb-tab-name">Plan</span>
+            </button>
+            <button type="button" class="hiwb-tab" data-stage-btn="3" id="hiwb-tab-3">
+                <span class="hiwb-tab-dot" aria-hidden="true">3</span>
+                <span class="hiwb-tab-name">Capture</span>
+            </button>
+            <button type="button" class="hiwb-tab" data-stage-btn="4" id="hiwb-tab-4">
+                <span class="hiwb-tab-dot" aria-hidden="true">4</span>
+                <span class="hiwb-tab-name">Build</span>
+            </button>
+            <button type="button" class="hiwb-tab" data-stage-btn="5" id="hiwb-tab-5">
+                <span class="hiwb-tab-dot" aria-hidden="true">5</span>
+                <span class="hiwb-tab-name">Run<span class="hiwb-tab-opt">Optional</span></span>
+            </button>
+        </div>
+
+        <!-- the stage area -->
+        <div class="hiwb-stage">
+
+            <!-- the origin photograph -->
+            <figure class="hiwb-anchor">
+                <div class="hiwb-anchor-frame">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp"
+                         alt="A full conference room at Felix Conference Center, Oslo, covered by Recap Media"
+                         width="1280" height="853" loading="lazy" decoding="async">
+                </div>
+                <figcaption class="hiwb-anchor-cap"><b>Where it starts</b>One event day, covered properly.</figcaption>
+            </figure>
+
+            <!-- the five detail panels -->
+            <div class="hiwb-panels" id="hiwb-panels">
+
+                <article class="hiwb-panel is-active" data-stage-panel="1" data-num="1" id="hiwb-panel-1">
+                    <span class="hiwb-kicker">Stage 1 of 5 · Before anything is booked</span>
+                    <h3>Brief</h3>
+                    <p class="hiwb-we">You get clear on your event, your audience, and what the content needs to achieve once the day is over. We ask the questions, you talk about your event.</p>
+                    <p class="hiwb-you"><span class="hiwb-you-label">Your part</span><span class="hiwb-you-text">One conversation.</span></p>
+                    <p class="hiwb-leads"><b>Leads to:</b> one shared picture of what a good result looks like.</p>
+                </article>
+
+                <article class="hiwb-panel" data-stage-panel="2" data-num="2" id="hiwb-panel-2">
+                    <span class="hiwb-kicker">Stage 2 of 5 · Before the day</span>
+                    <h3>Plan</h3>
+                    <p class="hiwb-we">You see the content plan before anything is filmed: what gets made, where it goes, and when. Rooms, moments and timings are mapped in advance.</p>
+                    <p class="hiwb-you"><span class="hiwb-you-label">Your part</span><span class="hiwb-you-text">Approve the plan.</span></p>
+                    <p class="hiwb-leads"><b>Leads to:</b> nothing left to decide while the event is running.</p>
+                </article>
+
+                <article class="hiwb-panel" data-stage-panel="3" data-num="3" id="hiwb-panel-3">
+                    <span class="hiwb-kicker">Stage 3 of 5 · On the day</span>
+                    <h3>Capture</h3>
+                    <p class="hiwb-we">One coordinated crew covers the day for you: photo, video and content production under a single point of contact, working to the plan you approved.</p>
+                    <p class="hiwb-you"><span class="hiwb-you-label">Your part</span><span class="hiwb-you-text">Host your event.</span></p>
+                    <p class="hiwb-leads"><b>Leads to:</b> the day fully covered while you stay with your guests.</p>
+                </article>
+
+                <article class="hiwb-panel" data-stage-panel="4" data-num="4" id="hiwb-panel-4">
+                    <span class="hiwb-kicker">Stage 4 of 5 · After the day</span>
+                    <h3>Build</h3>
+                    <p class="hiwb-we">You get finished content, ready to use. One event day becomes photos, film and pieces built for the places you publish, all from the same coverage.</p>
+                    <p class="hiwb-you"><span class="hiwb-you-label">Your part</span><span class="hiwb-you-text">Pick your favourites.</span></p>
+                    <p class="hiwb-leads"><b>Leads to:</b> one day, many outputs, all on brief.</p>
+                </article>
+
+                <article class="hiwb-panel" data-stage-panel="5" data-num="5" id="hiwb-panel-5">
+                    <span class="hiwb-kicker">Stage 5 of 5 · Optional · The months after</span>
+                    <h3>Run</h3>
+                    <p class="hiwb-we">You keep the content moving for months. We schedule and publish it for you, or hand you the plan so your team can run it in house.</p>
+                    <p class="hiwb-you"><span class="hiwb-you-label">Your part</span><span class="hiwb-you-text">Approve each batch.</span></p>
+                    <p class="hiwb-leads"><b>Leads to:</b> your event still earning attention long after it ends.</p>
+                </article>
+
+            </div>
+
+            <!-- the outputs: tucked behind the photograph, fanned open at Build and Run -->
+            <div class="hiwb-outputs">
+                <span class="hiwb-outputs-label">One day, many outputs</span>
+                <ul class="hiwb-fan">
+                    <li class="hiwb-out">
+                        <span class="hiwb-out-thumb"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="Evening reception at a conference in Oslo" width="800" height="533" decoding="async"></span>
+                        <span class="hiwb-out-name">Photo</span>
+                    </li>
+                    <li class="hiwb-out">
+                        <span class="hiwb-out-thumb"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6939791bacebf7fbccfa3dd7-800.webp" alt="Keynote address filmed on location" width="800" height="533" decoding="async"></span>
+                        <span class="hiwb-out-name">Film</span>
+                    </li>
+                    <li class="hiwb-out">
+                        <span class="hiwb-out-thumb"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69c3b2e9c6dd404f656b6750.webp" alt="Speaker on stage at Flutter Vikings 2022" width="1280" height="720" decoding="async"></span>
+                        <span class="hiwb-out-name">Content</span>
+                    </li>
+                    <li class="hiwb-out">
+                        <span class="hiwb-out-thumb"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06e300f0606f878d404-800.webp" alt="Audience at a trade mission event in Oslo" width="800" height="533" decoding="async"></span>
+                        <span class="hiwb-out-name">Distribution</span>
+                    </li>
+                </ul>
+                <p class="hiwb-cont"><span>and it keeps going</span><span class="hiwb-cont-rail" aria-hidden="true"></span><span>for months after</span></p>
+            </div>
+
+        </div>
+
+        <!-- closing beat -->
+        <div class="hiwb-close gsap-fade">
+            <p class="hiwb-close-line">Your event ends on the day. Your content carries on without you.</p>
+            <ul class="hiwb-yours">
+                <li class="hiwb-yours-lead" style="border:0;background:none;padding-left:0;">Your whole part</li>
+                <li>One conversation</li>
+                <li>Approve the plan</li>
+                <li>Host your event</li>
+                <li>Pick your favourites</li>
+                <li>Approve each batch</li>
+            </ul>
+        </div>
+
+        <!-- section CTAs -->
+        <div class="hero-cta-row hiwb-cta gsap-fade" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            <a href="https://recapmedia.no/contact#calendar" class="hero-secondary-link">Book a free 20-minute call <span class="arrow">→</span></a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ===== STRUCTURAL STUB: the section that sits below ===== -->
+<div class="stub">testimonials below</div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Recap Media</h3>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                    <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Pages</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/work">Work</a></li>
+                    <li><a href="https://recapmedia.no/about">About</a></li>
+                    <li><a href="https://recapmedia.no/packages">Packages</a></li>
+                    <li><a href="https://recapmedia.no/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
+                    <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MAXFILMS Strzepka. All rights reserved. &nbsp;·&nbsp; Org. nr. 928 325 261</p>
+            <div>
+                <a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/terms">Terms of Service</a> &nbsp;·&nbsp;
+                <a href="https://recapmedia.no/contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Quote modal — inlined for local preview only (in production this arrives via the GHL Global Footer) -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close modal">✕</button>
+        <h2>Request a Quote</h2>
+        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
+        <form class="quote-form" novalidate>
+            <input type="text" name="website" class="hp-field" aria-hidden="true" aria-label="Leave this field empty" tabindex="-1" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name"></div>
+                <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
+                <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+            </div>
+            <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
+            <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
+        </form>
+        <div class="ghl-form-hidden"></div>
+    </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="../../js/main-v2.js?v=2"></script>
+
+<!-- =====================================================================
+     CONCEPT B — page-local behaviour.
+     Two independent blocks:
+       (1) the stage machine (interaction; runs for reduced-motion users too,
+           because switching a tab is not motion)
+       (2) the once-fired GSAP entry reveal (motion; early-returns on
+           prefers-reduced-motion, polls for GSAP exactly like the other
+           page-local scripts)
+     ===================================================================== -->
+<script>
+/* ---- (1) stage machine ------------------------------------------------- */
+(function () {
+    var sec = document.getElementById('how-it-works');
+    if (!sec) return;
+
+    var tabs   = Array.prototype.slice.call(sec.querySelectorAll('[data-stage-btn]'));
+    var panels = Array.prototype.slice.call(sec.querySelectorAll('[data-stage-panel]'));
+    var track  = document.getElementById('hiwb-track');
+    if (!tabs.length || !panels.length) return;
+
+    var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var COUNT = panels.length;
+    var current = 1;
+    var userTook = false;   // once the visitor clicks, scroll never overrides them again
+
+    /* enhance: only now is it legal to hide anything */
+    sec.classList.add('hiwb--enhanced');
+
+    /* tab semantics are added by JS, so a no-JS page is not lying about roles */
+    if (track) {
+        track.setAttribute('role', 'tablist');
+        track.setAttribute('aria-label', 'How it works: five stages');
+    }
+    tabs.forEach(function (t, i) {
+        t.setAttribute('role', 'tab');
+        t.setAttribute('aria-controls', 'hiwb-panel-' + (i + 1));
+        t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+        t.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    });
+    panels.forEach(function (p, i) {
+        p.setAttribute('role', 'tabpanel');
+        p.setAttribute('aria-labelledby', 'hiwb-tab-' + (i + 1));
+        p.setAttribute('tabindex', '0');
+    });
+
+    function setStage(n, fromUser) {
+        n = Math.max(1, Math.min(COUNT, n));
+        if (fromUser) userTook = true;
+        if (n === current) return;
+        current = n;
+        sec.setAttribute('data-stage', String(n));
+
+        tabs.forEach(function (t, i) {
+            var on = (i + 1) === n;
+            t.classList.toggle('is-active', on);
+            t.classList.toggle('is-done', (i + 1) < n);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.setAttribute('tabindex', on ? '0' : '-1');
+        });
+        panels.forEach(function (p, i) {
+            p.classList.toggle('is-active', (i + 1) === n);
+        });
+    }
+
+    /* click / tap */
+    tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+            setStage(parseInt(t.getAttribute('data-stage-btn'), 10), true);
+        });
+    });
+
+    /* keyboard: arrows, home, end — standard tablist behaviour */
+    if (track) {
+        track.addEventListener('keydown', function (e) {
+            var next = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = current + 1;
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = current - 1;
+            else if (e.key === 'Home') next = 1;
+            else if (e.key === 'End') next = COUNT;
+            if (next === null) return;
+            e.preventDefault();
+            next = Math.max(1, Math.min(COUNT, next));
+            setStage(next, true);
+            var t = tabs[next - 1];
+            if (t && t.focus) t.focus();
+        });
+    }
+
+    /* deep link / screenshot helper: ?stage=4 or #hiw-stage-4 */
+    (function () {
+        var m = /[?&]stage=([1-5])/.exec(window.location.search) ||
+                /#hiw-stage-([1-5])/.exec(window.location.hash);
+        if (m) setStage(parseInt(m[1], 10), true);
+    })();
+
+    /* ---- stepped scroll advance (desktop, until the visitor takes over) ----
+       Discrete state changes only: no scrub, no pin, no scroll hijacking, and
+       the visitor can always override by clicking (after which this stops for
+       good). The section's own travel through the viewport is split into five
+       bands; crossing a band boundary toggles the stage exactly once.
+
+       Driven by a rAF loop that only runs while the section is on screen,
+       rather than a window 'scroll' listener: Lenis drives scrolling on this
+       site and a programmatic Lenis scroll does not always emit a native
+       scroll event, so polling position while visible is the reliable read. */
+    if (!reduced && 'IntersectionObserver' in window) {
+        var running = false;
+        var LO = 0.30, HI = 0.82;   // the window in which the section owns the screen
+
+        function tick() {
+            if (!running) return;
+            if (userTook || window.innerWidth < 900) { running = false; return; }
+            var r = sec.getBoundingClientRect();
+            var vh = window.innerHeight || document.documentElement.clientHeight;
+            var travel = r.height + vh;
+            if (travel > 0) {
+                var p = (vh - r.top) / travel;          // 0 entering, 1 fully past
+                var t = (p - LO) / (HI - LO);
+                var idx = Math.floor(t * COUNT) + 1;
+                if (idx < 1) idx = 1;
+                if (idx > COUNT) idx = COUNT;
+                if (idx !== current) setStage(idx, false);
+            }
+            window.requestAnimationFrame(tick);
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    if (!running && !userTook) { running = true; window.requestAnimationFrame(tick); }
+                } else {
+                    running = false;
+                }
+            }
+        }, { threshold: 0 });
+        io.observe(sec);
+    }
+
+    /* ---- mobile: the same stepped advance, read off the stacked cards -------
+       Every card is already fully readable; this only moves the ember dot down
+       the rail as the visitor scrolls, so the journey still reads as a journey. */
+    if (!reduced && 'IntersectionObserver' in window) {
+        var mio = new IntersectionObserver(function (entries) {
+            if (window.innerWidth >= 900) return;
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    setStage(parseInt(entries[i].target.getAttribute('data-stage-panel'), 10), false);
+                }
+            }
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+        panels.forEach(function (p) { mio.observe(p); });
+    }
+})();
+</script>
+
+<script>
+/* ---- (2) once-fired entry reveal (motion only) -------------------------- */
+(function () {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var sec = document.getElementById('how-it-works');
+    if (!sec) return;
+    var tries = 0;
+    (function waitGSAP() {
+        if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+            if (tries++ < 120) { setTimeout(waitGSAP, 50); }
+            return;
+        }
+        var tabs = sec.querySelectorAll('.hiwb-tab');
+        var anchor = sec.querySelector('.hiwb-anchor');
+        if (!tabs.length || !anchor) return;
+
+        gsap.set(tabs, { opacity: 0, y: 10 });
+        gsap.set(anchor, { opacity: 0, y: 20 });
+
+        ScrollTrigger.create({
+            trigger: sec,
+            start: 'top 82%',
+            once: true,
+            onEnter: function () {
+                gsap.to(anchor, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
+                gsap.to(tabs, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out' });
+            }
+        });
+
+        ScrollTrigger.refresh();
+    })();
+})();
+</script>
+
+</body>
+</html>
