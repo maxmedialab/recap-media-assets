@@ -1,35 +1,41 @@
 <!--
 PLANNED PAGE — NOT LIVE. ICP homepage v2 (KRAFT remodel), drafted 2026-07-08.
-ROUND-3 FUNNEL RESTRUCTURE (2026-07-09): section order rebuilt as a conversion funnel —
-pain → qualification gate → solution + tier ladder (old §2 + §8 merged) → process strip →
-proof (work w/ R1 outcome line, video, testimonials) → top-2 objections inline → FAQ (reordered,
-deep layer) → single closing CTA. Marquee + duplicate offer/benefit sections removed;
-"Request a quote" appears exactly 3× in-page (hero / post-proof / end).
-Do not paste into GHL until Max approves the copy doc
-(projects/recap-website-cleanup/icp-homepage-copy-v2.md). See _planned/README.md.
+ROUND-4 REWORK (2026-07-15, Max's live feedback): 11 → 8 sections. Hero H1 = the UVP ("Your event
+is too valuable to disappear in a day"); keywords moved to overline/<title> (+ "content
+production" added to the offer naming). Problem section rebuilt on Max's own draft (empathy
+question + goldmine insight + KRAFT manpower line), timeline beats now hover-to-reveal. "Who this
+is for" CUT → self-select hinge line; non-profit → FAQ. Solution + tier cards + process strip
+merged into ONE rail section (tier ladder inside Plan; livestream can-do line in Capture —
+supersedes SOFTEN wording on this page only). "Before you decide" CUT → FAQ (no-lock-in Q).
+FAQ +3 Qs (lock-in / livestream / non-profit), moved to page END below the final CTA; CTA heading
+now sits above the gallery. data-timestamp attrs reserved on process steps for Max's future
+how-we-work video (ship text now, video later — Max). "Months" confirmed; 20+ events + 5★ Google
+confirmed by Max 2026-07-15.
+ROUND-3 (2026-07-09): funnel restructure — see git history for the old section order.
+Do not paste into GHL until Max approves (copy doc: projects/recap-website-cleanup/icp-homepage-copy-v2.md).
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recap Media — Event Photography &amp; Videography Oslo</title>
-    <meta name="description" content="Event photography and videography in Oslo — one booking, one point of contact, fast turnaround. Conferences, launches and corporate events in Oslo and beyond.">
+    <title>Recap Media — Event Photography, Video &amp; Content Production Oslo</title>
+    <meta name="description" content="Event photography, videography and content production in Oslo. One crew for photo and video — and a content plan that turns one event into months of material.">
     <link rel="canonical" href="https://recapmedia.no/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://recapmedia.no/">
-    <meta property="og:title" content="Recap Media — Event Photography & Videography Oslo">
-    <meta property="og:description" content="Photo and video for your event under one booking and one point of contact. Founder-led coverage in Oslo and beyond — conferences, launches, corporate events.">
+    <meta property="og:title" content="Recap Media — Event Photography, Video & Content Production Oslo">
+    <meta property="og:description" content="One crew for photo and video — and a content plan that turns one event into months of material. Founder-led coverage in Oslo and beyond.">
     <meta property="og:image" content="https://recapmedia.no/assets/og-image.jpg">
     <meta property="og:site_name" content="Recap Media">
     <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Recap Media — Event Photography & Videography Oslo">
-    <meta name="twitter:description" content="Photo and video for your event under one booking and one point of contact. Founder-led coverage in Oslo and beyond — conferences, launches, corporate events.">
+    <meta name="twitter:title" content="Recap Media — Event Photography, Video & Content Production Oslo">
+    <meta name="twitter:description" content="One crew for photo and video — and a content plan that turns one event into months of material. Founder-led coverage in Oslo and beyond.">
     <meta name="twitter:image" content="https://recapmedia.no/assets/og-image.jpg">
 
     <!-- Schema: LocalBusiness -->
@@ -39,7 +45,7 @@ Do not paste into GHL until Max approves the copy doc
       "@type": "LocalBusiness",
       "@id": "https://recapmedia.no/#business",
       "name": "Recap Media",
-      "description": "Corporate event photography and videography in Oslo — photo and video under one booking, with one point of contact.",
+      "description": "Event photography, videography and content production in Oslo — one crew for photo and video, plus a content plan that keeps the event working for months.",
       "url": "https://recapmedia.no",
       "logo": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp",
       "image": "https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png",
@@ -52,7 +58,7 @@ Do not paste into GHL until Max approves the copy doc
       },
       "geo": { "@type": "GeoCoordinates", "latitude": 59.9139, "longitude": 10.7522 },
       "areaServed": ["Oslo", "Sandvika", "Fornebu", "Drammen", "Lillestrøm", "Jessheim", "Holmestrand", "Moss"],
-      "serviceType": ["Event Photography", "Event Videography"],
+      "serviceType": ["Event Photography", "Event Videography", "Event Content Production"],
       "founder": { "@type": "Person", "name": "Maksymilian Strzepka" }
     }
     </script>
@@ -63,11 +69,14 @@ Do not paste into GHL until Max approves the copy doc
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How much does event photography and videography in Oslo cost?", "acceptedAnswer": { "@type": "Answer", "text": "The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises." } },
+        { "@type": "Question", "name": "How much does event photography and videography in Oslo cost?", "acceptedAnswer": { "@type": "Answer", "text": "The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short conversation — no surprises." } },
         { "@type": "Question", "name": "How quickly do we receive the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief." } },
         { "@type": "Question", "name": "What happens to the content after the event?", "acceptedAnswer": { "@type": "Answer", "text": "That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece." } },
         { "@type": "Question", "name": "Do you cover both photo and video, or do I need to hire separate vendors?", "acceptedAnswer": { "@type": "Answer", "text": "We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables." } },
         { "@type": "Question", "name": "Who actually shows up to our event?", "acceptedAnswer": { "@type": "Answer", "text": "Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects." } },
+        { "@type": "Question", "name": "Are we locked into anything after the first booking?", "acceptedAnswer": { "@type": "Answer", "text": "No. Each engagement stands on its own — start with capture alone, see how the first event goes, and decide what to build from there. No retainers required, no forced bundles." } },
+        { "@type": "Question", "name": "Can you live stream our event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — we livestreamed three parallel rooms over two days at Flutter Vikings 2022. Live streaming is scoped per event, so tell us what you're planning in the brief and we'll map the setup together." } },
+        { "@type": "Question", "name": "Do you offer non-profit rates?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear because the budget is tight. Mention it in your brief." } },
         { "@type": "Question", "name": "What types of events do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it." } },
         { "@type": "Question", "name": "Do you cover multi-room or multi-track events?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter." } },
         { "@type": "Question", "name": "Can you coordinate with our venue or AV team?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process." } },
@@ -119,12 +128,113 @@ Do not paste into GHL until Max approves the copy doc
         .step-card.p2-start { box-shadow: inset 0 3px 0 0 var(--color-ember) !important; border-top-color: transparent !important; }
         .step-card.p2-start:hover { box-shadow: inset 0 3px 0 0 var(--color-ember), 0 12px 32px rgba(20,18,24,0.12) !important; }
         .steps-grid--2 { grid-template-columns: repeat(2, 1fr) !important; max-width: 820px; margin: 0 auto; }
+        /* ROUND-4 (2026-07-15): hover-to-reveal problem beats — line visible, explanation revealed
+           on hover (desktop) / tap (touch) / focus (keyboard). Content stays in DOM (SEO-safe). */
+        .p2-reveal { cursor: pointer; outline: none; transition: border-color 0.3s ease; position: relative; padding-right: 28px; }
+        .p2-reveal .p2-beat-sub { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.45s ease, opacity 0.35s ease; margin: 0; }
+        .p2-reveal:hover .p2-beat-sub, .p2-reveal:focus-visible .p2-beat-sub, .p2-reveal.open .p2-beat-sub { max-height: 200px; opacity: 1; margin-top: 8px; }
+        .p2-reveal:hover, .p2-reveal:focus-visible, .p2-reveal.open { border-left-color: var(--color-ember); }
+        .p2-reveal-hint { position: absolute; top: 0; right: 0; font-size: 1.1rem; line-height: 1; color: var(--color-stone); transition: transform 0.35s ease, color 0.3s ease; }
+        .p2-reveal:hover .p2-reveal-hint, .p2-reveal:focus-visible .p2-reveal-hint, .p2-reveal.open .p2-reveal-hint { transform: rotate(45deg); color: var(--color-ember); }
+        .p2-lead { text-align: center; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--color-ember); margin: 0 0 16px; }
+        .p2-insight { text-align: center; font-size: 1.15rem; line-height: 1.65; color: var(--color-warm-grey); max-width: 720px; margin: 0 auto clamp(36px, 4vw, 56px); }
+        .p2-hinge { text-align: center; font-family: var(--font-heading); font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.4; color: var(--color-white); max-width: 880px; margin: clamp(40px, 5vw, 64px) auto 0; text-wrap: balance; }
+        .p2-hinge em { color: var(--color-ember); font-style: normal; }
+        /* ROUND-5 (2026-07-15) spacing fixes: hero sub one-line, tighter problem header, gallery air */
+        .hero .hero-sub { max-width: 680px !important; }
+        #after-the-event .section-header { margin-bottom: 20px !important; }
+        .cta-section-v2 .cta-gallery-wrapper { margin: clamp(56px, 7vw, 96px) auto 0 !important; }
+        /* ROUND-6: trim the dead space under the closing gallery (FAQ's own top padding follows) */
+        .cta-section-v2 { padding-bottom: clamp(24px, 3vw, 40px) !important; }
+        /* ROUND-6: touch devices — problem beats can't rely on hover; show the sub always, drop the
+           tap hint (they reveal on scroll instead, wired in JS). */
+        @media (hover: none) {
+            .p2-reveal .p2-beat-sub { max-height: 240px; opacity: 1; margin-top: 8px; }
+            .p2-reveal-hint { display: none; }
+            .p2-reveal { cursor: default; padding-right: 0; }
+        }
+        /* ROUND-7 (2026-07-15): hero polish.
+           The .line-wrap reveal mask (overflow:hidden) was clipping descenders AND the tops of
+           letters (the dot on "is"). Give it vertical room top + bottom, loosen line-height a hair. */
+        .hero .hero-heading { line-height: 1.08 !important; }
+        /* The reveal mask (overflow:hidden on .line-wrap) exists ONLY for the slide-up intro
+           (.line animates y:105%→0%). Keeping it at rest clipped descenders wherever font metrics
+           run taller than the mask (Safari + Fontshare). Fix in two parts:
+           (1) mask stays TIGHT during the intro — NO extra padding, or the letters (parked at 105%,
+               just below) peek through the enlarged mask before they travel = the leak Max saw;
+           (2) the mask is RELEASED the instant the lines land (JS adds .mask-released), so at rest
+               nothing clips, in any browser, regardless of font metrics. */
+        .hero .hero-heading .line-wrap.mask-released { overflow: visible !important; }
+        /* Gradient word ("in a day"): -webkit-background-clip:text painted only the inline line box,
+           so the "y" descender fell outside the gradient (Safari especially). inline-block gives it a
+           real paint box; padding extends it past the descender, negative margins cancel the layout. */
+        .hero .hero-heading em { display: inline-block !important; padding-bottom: 0.3em !important; margin-bottom: -0.3em !important; padding-right: 0.06em !important; margin-right: -0.06em !important; }
+        /* Sub: one line on desktop; on mobile the break falls between the two sentences (below). */
+        .hero-sub-br { display: none; }
+        /* ROUND-8: overline has a full desktop string + a shorter mobile string (swapped below at ≤768px)
+           so "Oslo" never orphans onto its own line. Short string uses a middot, not the em-dash. */
+        .hero-overline-short { display: none; }
+        @media (max-width: 768px) {
+            .hero-sub-br { display: inline; }
+            /* Overline: tighter tracking + smaller; swap to the short string and drop the ruled dash
+               (the 24px ::before rule from style.css) so the shorter line sits centred and unbroken. */
+            .hero .hero-overline { font-size: 0.6rem !important; letter-spacing: 0.1em !important; line-height: 1.7 !important; text-wrap: balance; }
+            .hero .hero-overline.overline--ruled::before { display: none !important; }
+            .hero-overline-full { display: none; }
+            .hero-overline-short { display: inline; }
+        }
+        /* ROUND-4 (2026-07-15): process rail — numbered vertical timeline (show the sequence, don't
+           card it). Each step carries data-timestamp="" reserved for the future how-we-work video
+           chapter markers. */
+        .p2-rail { max-width: 720px; margin: 0 auto; position: relative; }
+        /* ROUND-5: real element (not ::before) so GSAP can grow it on scroll */
+        .p2-rail-line { position: absolute; left: 21px; top: 10px; bottom: 10px; width: 1px; background: linear-gradient(to bottom, var(--color-ember), rgba(232,89,60,0.15)); }
+        .p2-step { position: relative; padding: 0 0 clamp(28px, 3.5vw, 40px) 68px; }
+        .p2-step:last-child { padding-bottom: 0; }
+        .p2-step-num { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--color-onyx, #141218); border: 1px solid rgba(232,89,60,0.5); color: var(--color-ember); font-family: var(--font-heading); font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; }
+        .p2-step:hover .p2-step-num { background: var(--color-ember); color: #fff; transform: scale(1.08); }
+        .p2-step-title { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; color: var(--color-white); margin: 8px 0 6px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .p2-step-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); }
+        .p2-step-body { font-size: 0.95rem; line-height: 1.65; color: var(--color-warm-grey); margin: 0; max-width: 560px; }
+        /* ROUND-8 (2026-07-15): workload-ledger treatment. Kicker = a when-it-happens overline above
+           the step name; .p2-you = the short client-effort line (ember "You:" label). The deliberate
+           brevity of the You-line vs the We-body IS the argument — don't pad it. */
+        .p2-step-kicker { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-stone); margin: 4px 0 0; }
+        .p2-step-kicker + .p2-step-title { margin-top: 2px; }
+        .p2-you { font-size: 0.9rem; line-height: 1.55; color: var(--color-white); margin: 13px 0 0; max-width: 560px; }
+        .p2-you-label { font-family: var(--font-heading); font-weight: 600; color: var(--color-ember); letter-spacing: 0.02em; margin-right: 7px; }
+        /* ROUND-6: tier ladder as a choices table — fixed label column so names align; the "+" sits
+           in a gutter (ember) for add-on rows and is absent on the first, so nothing shifts. */
+        .p2-tiers { list-style: none; margin: 18px 0 0; padding: 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .p2-tier { display: grid; grid-template-columns: 168px 1fr; align-items: baseline; gap: 4px 18px; padding: 13px 16px; transition: background 0.25s ease; }
+        .p2-tier + .p2-tier { border-top: 1px solid rgba(255,255,255,0.08); }
+        .p2-tier:hover { background: rgba(232,89,60,0.05); }
+        .p2-tier-name { position: relative; padding-left: 20px; font-family: var(--font-heading); font-weight: 600; color: var(--color-white); font-size: 0.98rem; }
+        .p2-tier-plus { position: absolute; left: 0; top: 0; color: var(--color-ember); font-weight: 600; }
+        .p2-tier-desc { font-size: 0.9rem; line-height: 1.55; color: var(--color-warm-grey); }
+        .p2-lockline { font-size: 0.85rem; color: var(--color-stone); margin: 14px 0 0; padding-left: 2px; }
+        .p2-lockline a { color: var(--color-ember); text-decoration: none; border-bottom: 1px solid rgba(232,89,60,0.4); transition: border-color 0.2s ease; }
+        .p2-lockline a:hover { border-bottom-color: var(--color-ember); }
         @media (max-width: 1024px) {
             .p2-beats--4 { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .p2-beats, .p2-beats--4 { grid-template-columns: 1fr; gap: 24px; }
             .steps-grid--2 { grid-template-columns: 1fr !important; }
+            .p2-rail-line { left: 17px; }
+            .p2-step { padding-left: 56px; padding-bottom: 24px; }
+            .p2-step-num { width: 36px; height: 36px; font-size: 0.9rem; }
+            .p2-step-body { font-size: 1rem; }
+            /* ROUND-6 mobile text polish */
+            .p2-insight br { display: none; }
+            .p2-lead { font-size: 1.3rem; text-wrap: balance; }
+            #after-the-event .section-header h2, .p2-hinge { text-wrap: balance; }
+            /* tier table stacks: name over description, description aligned under the name text */
+            .p2-tier { grid-template-columns: 1fr; gap: 3px; padding: 12px 14px; }
+            .p2-tier-desc { padding-left: 20px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .p2-reveal .p2-beat-sub, .p2-reveal-hint, .p2-step-num, .p2-tiers li { transition: none; }
         }
     </style>
     <!-- Splash overlay — renders instantly before external CSS loads -->
@@ -225,15 +335,16 @@ Do not paste into GHL until Max approves the copy doc
     <video data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/6a346bf6162c3e3e34194cca.mp4" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true"></video>
     <div class="hero-content-wrap">
         <div class="hero-inner">
-            <span class="overline overline--ruled hero-overline">Event photography &amp; videography — Oslo</span>
+            <!-- ROUND-4 (2026-07-15, Max's direction): UVP promoted to the H1 (keyword search traffic
+                 belongs to the BnB sub-pages, not this ICP page); keywords carry on in the overline +
+                 <title>. "owned" cut. "months" confirmed by Max (ICP events support it). -->
+            <span class="overline overline--ruled hero-overline"><span class="hero-overline-full">Event photography, videography &amp; content production — Oslo</span><span class="hero-overline-short">Photo, video &amp; content production · Oslo</span></span>
             <h1 class="hero-heading">
-                <span class="line-wrap"><span class="line">Event Photography</span></span>
-                <span class="line-wrap"><span class="line">&amp; Video in <em>Oslo</em></span></span>
+                <span class="line-wrap"><span class="line">Your event is too valuable</span></span>
+                <span class="line-wrap"><span class="line">to disappear <em>in a day</em>.</span></span>
             </h1>
-            <!-- ICP v2 round 2: option B anchor line + buyer-benefit support line (Max's round-2 note: B chosen, but carry their benefit alongside the anchor). -->
-            <p class="hero-sub">Your event is too valuable to disappear in a day. One day of filming becomes months of owned content.</p>
-            <!-- ▶ ALT SUPPORT LINE (Max picks): "Your event funds your content calendar for months ahead." -->
-            <p class="hero-body">One crew handling photo and video. No coordination overhead.</p>
+            <p class="hero-sub">From one event to months of content.<br class="hero-sub-br"> Get the most out of your event.</p>
+            <p class="hero-body">One crew handling photo and video.</p>
             <div class="hero-cta-row">
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                 <a href="https://recapmedia.no/work" class="hero-secondary-link">View our work <span class="arrow">→</span></a>
@@ -247,7 +358,7 @@ Do not paste into GHL until Max approves the copy doc
             <div class="hero-stat"><span class="hero-stat-number" data-count="20">20+</span><span class="hero-stat-label">Events covered</span></div>
             <div class="hero-stat"><span class="hero-stat-number">2-in-1</span><span class="hero-stat-label">Photo + video</span></div>
             <div class="hero-stat"><span class="hero-stat-number ember">24h</span><span class="hero-stat-label">Fast-turnaround option</span></div>
-            <div class="hero-stat"><span class="hero-stat-number amber">5★</span><span class="hero-stat-label">Client reviews</span></div>
+            <div class="hero-stat"><span class="hero-stat-number amber">5★</span><span class="hero-stat-label">Google reviews</span></div>
         </div>
     </div>
 </section>
@@ -283,140 +394,291 @@ Do not paste into GHL until Max approves the copy doc
         window.addEventListener('load', queueHeroVideo);
     }
 })();
+
+(function() {
+    // ROUND-7: release the H1 reveal mask once the intro lands. overflow:hidden exists only for the
+    // slide-up animation; keeping it afterwards risks descender clipping wherever font metrics run
+    // taller than the mask (Safari + Fontshare). Poll each line's transform until it reaches rest
+    // (translateY ≈ 0), then unmask; 6s hard fallback covers reduced-motion / no-GSAP / any stall.
+    var wraps = document.querySelectorAll('.hero-heading .line-wrap');
+    if (!wraps.length) return;
+    var released = false;
+    function release() {
+        if (released) return;
+        released = true;
+        for (var i = 0; i < wraps.length; i++) wraps[i].classList.add('mask-released');
+    }
+    var t0 = Date.now();
+    (function poll() {
+        if (released) return;
+        if (Date.now() - t0 > 6000) { release(); return; }
+        var allAtRest = true;
+        for (var i = 0; i < wraps.length; i++) {
+            var line = wraps[i].querySelector('.line');
+            if (!line) continue;
+            var tr = getComputedStyle(line).transform;
+            if (tr && tr !== 'none') {
+                var m = tr.match(/matrix\(([^)]+)\)/);
+                if (m && Math.abs(parseFloat(m[1].split(',')[5])) > 0.5) { allAtRest = false; break; }
+            }
+            if (getComputedStyle(line).opacity === '0') { allAtRest = false; break; }
+        }
+        // Only meaningful once the intro has had a chance to start — wait at least 1s.
+        if (allAtRest && Date.now() - t0 > 1000) { release(); return; }
+        setTimeout(poll, 200);
+    })();
+})();
 </script>
 
 <!-- ROUND-3 (2026-07-09): marquee CUT — a scrolling service-keyword loop is a vendor menu, not a
      funnel step; it answered neither "why" nor "what do you get" (page-inventory verdict: noise)
      and separated the hero's promise from the pain section that substantiates it. -->
 
-<!-- NEW (ICP v2): Pain — name what actually happens.
-     Rebuilt 2026-07-09 for scannability: the two centered paragraphs became a 3-beat timeline
-     strip + one short closing line — same sentences re-chunked, no new claims. Skim path:
-     H2 + "Months of work → One week of visibility → A drive nobody opens again". -->
-<section class="section section--lg section-onyx">
+<!-- ROUND-4 (2026-07-15): Problem — rebuilt on Max's own draft, empathy-question-led. The three
+     timeline beats are hover-to-reveal (invite, don't lecture — Max's ask): line visible, mechanism
+     revealed on hover/tap/focus; content stays in DOM. KRAFT insight ("no manpower to go through
+     the footage") woven into beat 3. Section spine: the footage is a real investment — it pays back
+     only if it gets used. The old "Who this is for" section is CUT; its job is done by the
+     self-select hinge line at the tail (non-profit line moved to FAQ). -->
+<section class="section section--lg section-onyx" id="after-the-event">
     <div class="container">
         <div class="section-header gsap-fade">
-            <span class="overline overline--ruled">What usually happens to event content</span>
-            <h2>The footage ends up on a drive. And dies there.</h2>
+            <h2>Is the footage from your last event sitting on a drive?</h2>
         </div>
-        <div class="p2-beats gsap-stagger">
-            <div class="p2-beat">
+        <p class="p2-lead gsap-fade">Don't let your investment collect dust.</p>
+        <p class="p2-insight gsap-fade">You pay for the event, and for the crew to capture it.<br>A highlight video goes out — and a goldmine of footage stays in the cloud.</p>
+        <div class="p2-beats">
+            <div class="p2-beat p2-reveal" tabindex="0" role="button" aria-expanded="false">
+                <span class="p2-reveal-hint" aria-hidden="true">+</span>
                 <span class="p2-beat-kicker">The event</span>
-                <p class="p2-beat-line">Months of work</p>
-                <p class="p2-beat-sub">Venue, catering, speakers, production — one of the biggest marketing investments you make all year.</p>
+                <p class="p2-beat-line">Two investments, one goal</p>
+                <p class="p2-beat-sub">The event and its coverage are both investments — made to pay you back in attention and authority long after the day.</p>
             </div>
-            <div class="p2-beat">
+            <div class="p2-beat p2-reveal" tabindex="0" role="button" aria-expanded="false">
+                <span class="p2-reveal-hint" aria-hidden="true">+</span>
                 <span class="p2-beat-kicker">The week after</span>
-                <p class="p2-beat-line">One week of visibility</p>
-                <p class="p2-beat-sub">The doors close and a highlight reel goes out.</p>
+                <p class="p2-beat-line">One highlight video goes out</p>
+                <p class="p2-beat-sub">It gets watched, shared, and filed. For most events, that video was the whole plan.</p>
             </div>
-            <div class="p2-beat">
+            <div class="p2-beat p2-reveal" tabindex="0" role="button" aria-expanded="false">
+                <span class="p2-reveal-hint" aria-hidden="true">+</span>
                 <span class="p2-beat-kicker">Every week after</span>
-                <p class="p2-beat-line">A drive nobody opens again</p>
-                <p class="p2-beat-sub">That's where the rest of the footage lands.</p>
+                <p class="p2-beat-line">An untouched goldmine</p>
+                <p class="p2-beat-sub">Turning hours of footage into content is a job of its own — and it lands on a team that's already full. So the goldmine sits there.</p>
             </div>
         </div>
-        <p class="p2-note gsap-fade">That's the part we think is broken.</p>
+        <!-- Self-select hinge (replaces the "Who this is for" section) — written so the ICP reads it
+             and thinks "that's us"; hands straight into the solution below. -->
+        <p class="p2-hinge gsap-fade">If your events are how you lead the conversation in your industry, they deserve more than a highlight reel. <em>We can help with that.</em></p>
     </div>
 </section>
 
-<!-- ROUND-3 (2026-07-09): Who this is for — MOVED UP: qualification gates the pitch
-     (pain → "is this you?" → solution) instead of trailing the offer as an afterthought.
-     N2 sentence as a 3-item second-person checklist ("Oslo and beyond" rule kept); non-profit
-     A+B line in the highlighted call-cta-box. Same approved copy, no new claims. -->
-<section class="section section--lg section-light">
-    <div class="container">
-        <div class="section-header gsap-fade">
-            <h2>Who this is for</h2>
-        </div>
-        <div class="p2-narrow">
-            <ul class="check-list gsap-stagger-items">
-                <li><strong>You're a marketing or events lead</strong> — at a company in Oslo or beyond.</li>
-                <li><strong>You run recurring B2B events</strong> — conferences, seminars, launches, internal summits.</li>
-                <li><strong>Your event carries the company's positioning</strong> — not just its calendar.</li>
-            </ul>
-            <div class="call-cta-box gsap-fade" style="margin-top: 28px; margin-bottom: 0 !important;">
-                <p style="margin-bottom: 0 !important;">Running a non-profit or mission-driven event? We work at reduced rates — good events shouldn’t disappear because the budget is tight. Mention it in your brief.</p>
-            </div>
-            <!-- ▶ NON-PROFIT LINE — option A is active above (A+B blend, Max round 2). Alternatives (Max picks):
-                 B (why-we-do-it): "For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear just because the budget is tight."
-                 C (FAQ-only): remove the callout above and carry it in the FAQ instead ("Do you offer non-profit rates?" — copy doc §9.3; NOT built into this page). -->
-        </div>
-    </div>
-</section>
+<script>
+(function() {
+    // ROUND-6: problem beats. Desktop (hover-capable) → hover expands the sub, click/keyboard also
+    // toggle it. Touch (hover:none) → subs are always shown via CSS, so no tapping; the beats reveal
+    // on scroll instead (below). Both paths: each beat fades/slides in as it enters view.
+    var beats = document.querySelectorAll('.p2-reveal');
+    var hoverCapable = !(window.matchMedia && window.matchMedia('(hover: none)').matches);
+    if (hoverCapable) {
+        for (var i = 0; i < beats.length; i++) {
+            (function(el) {
+                function toggle() {
+                    var open = el.classList.toggle('open');
+                    el.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+                el.addEventListener('click', toggle);
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
+            })(beats[i]);
+        }
+    } else {
+        // Not an interactive control on touch — the sub is always visible.
+        for (var j = 0; j < beats.length; j++) {
+            beats[j].removeAttribute('role');
+            beats[j].removeAttribute('tabindex');
+            beats[j].removeAttribute('aria-expanded');
+        }
+    }
+    // Per-beat scroll reveal (both desktop + touch). Page-local, GSAP-guarded, JS-only hidden state
+    // (crawlers/no-JS see everything), no scrub → Safari-safe. Mirrors the process-rail reveal.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tries = 0;
+    (function waitGSAP() {
+        if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+            if (tries++ < 120) { setTimeout(waitGSAP, 50); }
+            return;
+        }
+        gsap.set(beats, { opacity: 0, y: 26 });
+        Array.prototype.forEach.call(beats, function(b) {
+            gsap.to(b, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+                scrollTrigger: { trigger: b, start: 'top 85%', once: true } });
+        });
+        ScrollTrigger.refresh();
+    })();
+})();
+</script>
 
-<!-- ROUND-3 MERGE (2026-07-09): ONE solution narrative. The old benefit checklist (§2) and the old
-     end-of-page offer tiers (§8) were the same offer told twice (and the process strip told it a
-     third time). Merged here: approved benefit story + the three tiers as the how-much-to-hand-off
-     ladder. Tier substance WITHOUT prices — scope lines reuse ONLY approved enumerations (live
-     homepage Conference Package deliverables; FAQ content-plan / publishing wording). Commercial
-     no-lock-in terms live in the objections section below; mechanics live in "How it works". -->
-<section class="section section--lg section-warm end-to-end">
+<!-- ROUND-4 MERGE (2026-07-15): the old solution+tiers section and the old "How it works" strip
+     said the same thing twice (Max's round-4 flag) — now ONE section, Clockwise-shaped, told once.
+     Solution H2 = Max's own lines. Tier ladder appears exactly once, inside step 2 (Plan) — the
+     honest spot: the hand-off choice is made at planning, before filming. No-lock-in closes Run.
+     Livestream line in Capture per Max 2026-07-15 ("bring it back — can-do, not we're-great"):
+     affirmative but scoped-per-event; proof lives in the FAQ (FV 2022, three parallel rooms).
+     NOTE: this supersedes the SOFTEN "ask us"-only wording ON THIS PAGE — the gate-then-publish
+     decision for the dedicated /services/livestreaming page still stands (CLAUDE.md).
+     data-timestamp attrs reserved: when Max films the how-we-work video, each step becomes a
+     clickable chapter marker — copy needs no rewrite. -->
+<section class="section section--lg section-dark" id="how-it-works">
     <div class="container">
         <div class="two-col" style="margin-bottom: clamp(40px, 5vw, 64px);">
             <div class="col-text gsap-fade">
                 <span class="section-num">01</span>
-                <span class="overline overline--ruled">What you get from the day</span>
-                <h2>From one event<br>to months of content</h2>
-                <p>One day of filming can fund months of content if you plan it that way from the start. You choose how much of it to hand off — pick what fits your team's bandwidth.</p>
+                <span class="overline overline--ruled">How it works</span>
+                <h2>The event doesn't have<br>to end on the day</h2>
+                <p style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; color: var(--color-white); margin-bottom: 12px;">We can turn it into months of content.</p>
+                <p>Here's how it works — what we do, and what we ask of you.</p>
             </div>
             <div class="col-image gsap-fade">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp" alt="Event coverage by Recap Media" width="640" height="480" class="parallax-img">
             </div>
         </div>
-        <div class="steps-grid gsap-stagger">
-            <div class="step-card p2-start">
-                <div class="step-number">Start here</div>
-                <h3>Capture</h3>
-                <p><strong>Your footage, ready to use.</strong> One crew captures your event; you receive organized, finished footage — no months of raw-file sorting.</p>
-                <p class="p2-scope">Typically: 50+ edited photos · a 2–3 min highlight video · 7 vertical social clips</p>
+        <!-- HOW-WE-WORK VIDEO SLOT (Max films this later — "ship text now, video will come later").
+             Embed lands HERE, above the rail; until then the five steps carry the section as text.
+             On embed: wire each .p2-step's data-timestamp to a chapter jump. -->
+        <div class="p2-rail">
+            <span class="p2-rail-line" aria-hidden="true"></span>
+            <div class="p2-step" data-timestamp="">
+                <span class="p2-step-num">1</span>
+                <span class="p2-step-kicker">Where it starts</span>
+                <p class="p2-step-title">Brief</p>
+                <p class="p2-step-body">We listen first — your event, your audience, and what the content needs to do once it's over. If we can't help, we'll say so.</p>
+                <p class="p2-you"><span class="p2-you-label">You:</span>One conversation.</p>
             </div>
-            <div class="step-card">
-                <div class="step-number">Add when you're ready</div>
-                <h3>Content series</h3>
-                <p><strong>Planned before filming starts.</strong> We map the full series up front — titles, formats, timing — and handle the editing.</p>
-                <p class="p2-scope">You get the plan: which clips and posts go out, where, and when</p>
+            <div class="p2-step" data-timestamp="">
+                <span class="p2-step-num">2</span>
+                <span class="p2-step-kicker">Before the event</span>
+                <p class="p2-step-title">Plan</p>
+                <p class="p2-step-body">We turn that into a plan — every deliverable mapped to a place and a date, before a single frame is filmed.</p>
+                <p class="p2-you"><span class="p2-you-label">You:</span>Choose how much to hand off — then approve the plan.</p>
+                <ul class="p2-tiers">
+                    <li class="p2-tier">
+                        <span class="p2-tier-name">Capture</span>
+                        <span class="p2-tier-desc">the day, shot and delivered: photos and film, ready to use.</span>
+                    </li>
+                    <li class="p2-tier">
+                        <span class="p2-tier-name"><span class="p2-tier-plus" aria-hidden="true">+</span>Content series</span>
+                        <span class="p2-tier-desc">the weeks after, planned and edited — every clip with a place and a date.</span>
+                    </li>
+                    <li class="p2-tier">
+                        <span class="p2-tier-name"><span class="p2-tier-plus" aria-hidden="true">+</span>Distribution</span>
+                        <span class="p2-tier-desc">published for you, on schedule; you approve each piece.</span>
+                    </li>
+                </ul>
+                <p class="p2-lockline">No lock-in — each engagement stands alone. <a href="#faq-lock-in" data-faq-open="faq-lock-in">More in the FAQ ↓</a></p>
             </div>
-            <div class="step-card">
-                <div class="step-number">Add later if it fits</div>
-                <h3>Distribution</h3>
-                <p><strong>Published on schedule.</strong> We handle timing, platforms, and publishing — hours of coordination become minutes of approval.</p>
-                <p class="p2-scope">We run the publishing; you approve each piece</p>
+            <div class="p2-step" data-timestamp="">
+                <span class="p2-step-num">3</span>
+                <span class="p2-step-kicker">On the day</span>
+                <p class="p2-step-title">Capture</p>
+                <p class="p2-step-body">One crew covers it all — photo, video, and livestream if you want it.</p>
+                <p class="p2-you"><span class="p2-you-label">You:</span>Host your event.</p>
+            </div>
+            <div class="p2-step" data-timestamp="">
+                <span class="p2-step-num">4</span>
+                <span class="p2-step-kicker">The days after</span>
+                <p class="p2-step-title">Build</p>
+                <p class="p2-step-body">Something to post right away — then the full gallery, the films, and the content plan: what publishes, where, and when.</p>
+                <p class="p2-you"><span class="p2-you-label">You:</span>Pick your favourites.</p>
+            </div>
+            <div class="p2-step" data-timestamp="">
+                <span class="p2-step-num">5</span>
+                <span class="p2-step-kicker">The months after</span>
+                <p class="p2-step-title">Run <span class="p2-step-tag">Optional</span></p>
+                <p class="p2-step-body">We schedule and publish for months — or hand you the plan to run in-house.</p>
+                <p class="p2-you"><span class="p2-you-label">You:</span>Approve each batch.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ROUND-3 (2026-07-09): ONE mechanics strip. Rebuilt from step cards to a numbered beat strip
-     (.p2-beats--4) so process reads as a sequence, not as a second card-offer next to the tiers.
-     Step copy unchanged from the approved draft. -->
-<section class="section section--lg section-dark">
+<script>
+(function() {
+    // ROUND-5 (2026-07-15): per-step scroll reveal for the process rail. Each .p2-step fades/slides
+    // in as IT scrolls into view (its own ScrollTrigger), vs the shared .gsap-stagger which fires all
+    // children together. Page-local so main-v2.js (the shared CDN file) stays untouched. GSAP is loaded
+    // late (Body Tracking Code / bottom of page), so poll for it; hidden state is set in JS only, so
+    // no-JS / no-GSAP / crawlers always see the full content. No scrub → survives the Safari degrade.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tries = 0;
+    (function waitGSAP() {
+        if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+            if (tries++ < 120) { setTimeout(waitGSAP, 50); }
+            return;
+        }
+        var steps = gsap.utils.toArray('.p2-rail .p2-step');
+        if (steps.length) {
+            gsap.set(steps, { opacity: 0, y: 28 });
+            steps.forEach(function(step) {
+                gsap.to(step, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+                    scrollTrigger: { trigger: step, start: 'top 82%', once: true } });
+            });
+        }
+        var line = document.querySelector('.p2-rail-line');
+        if (line) {
+            gsap.set(line, { scaleY: 0, transformOrigin: 'top center' });
+            gsap.to(line, { scaleY: 1, duration: 1.1, ease: 'power1.out',
+                scrollTrigger: { trigger: '.p2-rail', start: 'top 80%', once: true } });
+        }
+        ScrollTrigger.refresh();
+    })();
+})();
+</script>
+
+<script>
+(function() {
+    // ROUND-6: "More in the FAQ" signpost from the Plan step → scroll to the lock-in Q and open it.
+    // Reuses main-v2's .faq-item.open convention; no copy is duplicated on the page.
+    var link = document.querySelector('[data-faq-open="faq-lock-in"]');
+    if (!link) return;
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var item = document.getElementById('faq-lock-in');
+        if (!item) return;
+        var list = item.closest('.faq-list');
+        if (list) {
+            list.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+        }
+        item.classList.add('open');
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+})();
+</script>
+
+<section class="section section--lg section-dark testimonials-section" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
     <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 48px;">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">02</span>
-            <span class="overline">How it works</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">From brief to content engine in four steps</h2>
+            <span class="overline">Client stories</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
         </div>
-        <div class="p2-beats p2-beats--4 gsap-stagger">
-            <div class="p2-beat">
-                <span class="p2-beat-kicker">Step 1</span>
-                <p class="p2-beat-line">Brief</p>
-                <p class="p2-beat-sub">A short call before the event — what you're running, who it's for, what the content needs to do afterwards.</p>
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had the pleasure of working with Max on filming my interactive kids’ show in Oslo. We met well in advance, and he was truly dedicated to understanding the purpose of the video. He came thoroughly prepared with high-quality equipment and a clear plan. I’m also very happy with the post-production - the final video turned out just as I imagined. Worth every penny."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4D03AQH52fBfk2rzew/profile-displayphoto-shrink_800_800/B4DZaMuEdwGsAg-/0/1746117610017?e=1775088000&amp;v=beta&amp;t=QBKVP3FgwNQkgJISwOXxg5EfYASTF9Ehkc1NgP344ww" alt="Nagyová Anita Abigél" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=NA';"><div><div class="testimonial-name">Nagyová Anita Abigél</div><div class="testimonial-title">CEO, Kunst og Moro Underholdning</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
             </div>
-            <div class="p2-beat">
-                <span class="p2-beat-kicker">Step 2</span>
-                <p class="p2-beat-line">Capture</p>
-                <p class="p2-beat-sub">We cover the day — photo and video, one crew, one point of contact.</p>
-            </div>
-            <div class="p2-beat">
-                <span class="p2-beat-kicker">Step 3</span>
-                <p class="p2-beat-line">Build</p>
-                <p class="p2-beat-sub">Within days you get the edited gallery and films, plus the content plan: what gets published, where, and when.</p>
-            </div>
-            <div class="p2-beat">
-                <span class="p2-beat-kicker">Step 4 — optional</span>
-                <p class="p2-beat-line">Run</p>
-                <p class="p2-beat-sub">We schedule and publish it for you — you just approve. Or take the plan and run it in-house.</p>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
+                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
             </div>
         </div>
     </div>
@@ -433,15 +695,18 @@ Do not paste into GHL until Max approves the copy doc
             <a href="https://recapmedia.no/work" class="section-header-link">View all work →</a>
         </div>
         <!-- PROOF SLOTS (KRAFT H2/#1): when the Flutter Vikings proof sheet ships (recap-own-content),
-             the ~20h footage → 4-min clip → ~20 pieces numbers land HERE (Flutter Vikings card /
-             a stat line above this grid) and in the hero stat strip. No invented metrics until then;
-             the R1 spoken proof line below is the approved truth-safe outcome statement. -->
+             the reconciled numbers land HERE (Flutter Vikings card / a stat line above this grid)
+             and in the hero stat strip. Ground truth (impact-model.md §7-G, confirmed 2026-07-09):
+             2 days · 3 rooms · 46 speakers · ~20 h footage → 43 published videos; cumulative view
+             tally still pending. The old "4-min clip / ~20 pieces / watched 4 years later" framing
+             is RETIRED (2026-07-09) — do not reintroduce it. No invented metrics until then.
+             [Claude 2026-07-10: card copy below swapped off the retired R1 ending — needs Max's voice pass.] -->
         <div class="cards-grid gsap-stagger">
             <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="project-card card-tilt">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp 1024w" sizes="(max-width: 768px) 100vw, (max-width: 960px) 50vw, 370px" alt="Flutter Vikings Conference 2022, Oslo" class="project-card-image" width="640" height="360" loading="lazy">
                 <div class="project-card-body">
                     <h3>Flutter Vikings Conference</h3>
-                    <p>At Flutter Vikings 2022 we livestreamed three rooms, 46 speakers over two days — and it's still being watched on YouTube four years later.</p>
+                    <p>At Flutter Vikings 2022 we livestreamed three rooms and 46 speakers over two days — around 20 hours of footage that became 43 published videos, with thousands of views since.</p>
                     <span class="project-card-link">View case study</span>
                 </div>
             </a>
@@ -555,97 +820,34 @@ Do not paste into GHL until Max approves the copy doc
     </div>
 </section>
 
-<section class="section section--lg section-dark testimonials-section" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">04</span>
-            <span class="overline">Client stories</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
-        </div>
-        <div class="carousel-wrapper">
-            <div class="carousel-track">
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had the pleasure of working with Max on filming my interactive kids’ show in Oslo. We met well in advance, and he was truly dedicated to understanding the purpose of the video. He came thoroughly prepared with high-quality equipment and a clear plan. I’m also very happy with the post-production - the final video turned out just as I imagined. Worth every penny."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4D03AQH52fBfk2rzew/profile-displayphoto-shrink_800_800/B4DZaMuEdwGsAg-/0/1746117610017?e=1775088000&amp;v=beta&amp;t=QBKVP3FgwNQkgJISwOXxg5EfYASTF9Ehkc1NgP344ww" alt="Nagyová Anita Abigél" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=NA';"><div><div class="testimonial-name">Nagyová Anita Abigél</div><div class="testimonial-title">CEO, Kunst og Moro Underholdning</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
-                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
-            </div>
-        </div>
-        <!-- ROUND-3: CTA #2 of 3 (post-proof) — same label as hero + end CTA (label consistency rule).
-             Lead line reuses the approved pricing-FAQ wording; no urgency/scarcity. -->
-        <p class="p2-note gsap-fade" style="margin-top: 44px;">A detailed quote after a short briefing call — no surprises.</p>
+<!-- ROUND-3/8: CTA #2 of 3 (post-proof) — detached from testimonials in the round-8 reorder;
+     now closes the proof cluster (testimonials → work → day-video → this) before the final
+     CTA. Same label as hero + end CTA (label-consistency rule); no urgency/scarcity. -->
+<section class="section section-onyx" style="padding-top: 8px; padding-bottom: clamp(48px, 6vw, 72px);">
+    <div class="container" style="text-align: center;">
+        <p class="p2-note gsap-fade">It starts with a conversation. Detailed quote after — no surprises.</p>
         <div class="hero-cta-row gsap-fade" style="justify-content: center; margin-top: 20px;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
         </div>
     </div>
 </section>
 
-<!-- ROUND-3 (2026-07-09): top-2 objections handled INLINE before the final CTA (funnel notes §4) —
-     the FAQ stays as the deep layer. Card 1 = no-lock-in (approved offer sentences, moved here from
-     the merged offer block); card 2 = who-shows-up (FAQ "Who actually shows up", condensed). -->
-<section class="section section--lg section-warm">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="overline">Before you decide</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">No lock-in — and you know who shows up</h2>
-        </div>
-        <div class="steps-grid steps-grid--2 gsap-stagger">
-            <div class="step-card">
-                <div class="step-number">Are we locked into anything?</div>
-                <h3>Each tier stands alone</h3>
-                <p>No lock-in, no forced bundles. Start with capture alone if you like — the first engagement proves the partnership, and you decide what to build next.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">Who actually shows up?</div>
-                <h3>Max — the founder, at every event</h3>
-                <p>He's the lead photographer and videographer, and your single point of contact on the day. Larger events add crew from a trusted, vetted Oslo-based roster.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- ROUND-4 (2026-07-15): "Before you decide" section CUT (Max) — no-lock-in became an FAQ entry
+     (and closes process step 5); who-shows-up already lives in the FAQ. FAQ moved BELOW the final
+     CTA (it mainly serves SEO — Max); the page now closes on the ask, with the FAQ as the tail. -->
 
-<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">05</span>
-            <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
-        </div>
-        <!-- ROUND-3: FAQ reordered — objection-critical questions lead (cost, turnaround, what-happens-
-             after, one-vendor, who-shows-up); logistics follow. FAQPage schema in <head> mirrors this
-             order 1:1. The faq-footer "Get in touch" button was CUT: the final CTA directly below is
-             the one closing ask (CTA-fatigue fix). All 10 answers unchanged. -->
-        <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short briefing call — no surprises.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What happens to the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate vendors? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you work with international teams or organisers? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics.</div></div></div>
-        </div>
-    </div>
-</section>
-
-<!-- ROUND-3: FINAL CTA (#3 of 3) — moved to page end from mid-page. The FAQ above absorbs the last
-     objections; the page closes on one ask. Gallery kept (visual proof at the ask moment; all 7
-     pinned assets retained). Post-submit expectation line added (matches the quote-modal promise). -->
+<!-- ROUND-4: FINAL CTA — heading/ask now sits ABOVE the gallery (Max's swap); the gallery runs as
+     the visual sign-off beneath. All 7 pinned assets retained. -->
 <section class="section section-dark cta-section-v2">
     <div class="cta-orb cta-orb--1"></div>
     <div class="cta-orb cta-orb--2"></div>
     <div class="container gsap-fade" style="position: relative; z-index: 1;">
+
+        <span class="overline">Let's work together</span>
+        <h2 class="cta-heading-v2">Tell Us About<br><span class="gradient-text">Your Event</span></h2>
+        <p class="cta-body">Get in touch to explore how we can help you capture, share, and get real use out of your next event.</p>
+        <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+        <p class="p2-note" style="margin-top: 16px; font-size: 0.85rem;">We reply within one business day.</p>
 
         <div class="cta-gallery-wrapper">
             <div class="cta-gallery">
@@ -671,12 +873,35 @@ Do not paste into GHL until Max approves the copy doc
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <span class="overline">Let's work together</span>
-        <h2 class="cta-heading-v2">Tell Us About<br><span class="gradient-text">Your Event</span></h2>
-        <p class="cta-body">Get in touch to explore how we can help you capture, share, and get real use out of your next event.</p>
-        <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-        <p class="p2-note" style="margin-top: 16px; font-size: 0.85rem;">We reply within one business day.</p>
+<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">04</span>
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Frequently Asked Questions</h2>
+        </div>
+        <!-- ROUND-4 (2026-07-15): 3 entries added — no-lock-in (absorbs the cut "Before you decide"
+             card), live streaming (Max's bring-it-back call: can-do + FV proof, no overclaim),
+             non-profit rates (moved from the cut "Who this is for" callout). FAQPage schema in
+             <head> mirrors this order 1:1 — keep them in sync. -->
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question">How much does event photography and videography in Oslo cost? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The final price depends on event duration, scope of coverage, deliverables, and turnaround requirements. We provide a detailed quote after a short conversation — no surprises.</div></div></div>
+            <div class="faq-item"><button class="faq-question">How quickly do we receive the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard turnaround is up to 7 business days for edited photos and up to 14 business days for video. We also offer same-day social selects and a 24-hour fast-turnaround option for press-critical events — just let us know in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What happens to the content after the event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">That's the point where most event content dies — ours is built for it. You get a content plan alongside the deliverables: which clips and posts go out, where, and when, across the months after the event. If you want, we run the publishing too and you just approve each piece.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover both photo and video, or do I need to hire separate vendors? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We handle photo and video under one booking — one point of contact, one brief, and one consistent visual story across all deliverables.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Who actually shows up to our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Max (the founder) attends every event and acts as the lead photographer/videographer and your single point of contact on the day. For larger events requiring additional crew, we work with a trusted roster of Oslo-based photographers and videographers who've been vetted through past projects.</div></div></div>
+            <div class="faq-item" id="faq-lock-in"><button class="faq-question">Are we locked into anything after the first booking? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">No. Each engagement stands on its own — start with capture alone, see how the first event goes, and decide what to build from there. No retainers required, no forced bundles.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can you live stream our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes — we livestreamed three parallel rooms over two days at Flutter Vikings 2022. Live streaming is scoped per event, so tell us what you're planning in the brief and we'll map the setup together.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you offer non-profit rates? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For non-profits and mission-driven events we work at reduced rates — good events shouldn't disappear because the budget is tight. Mention it in your brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question">What types of events do you cover? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We specialise in conferences, developer events, trade shows, corporate gatherings, product launches, and public/cultural events. We've covered everything from 20-person boardroom sessions to 500-attendee multi-track developer conferences. If it has a programme, speakers, or an audience — we can cover it.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you cover multi-room or multi-track events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. For multi-track events we plan which sessions to prioritise in advance based on your content goals, and can deploy additional crew to cover simultaneous tracks. Flutter Vikings 2022 required simultaneous coverage of three parallel conference tracks — that kind of complexity is our bread and butter.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Can you coordinate with our venue or AV team? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We send a pre-event brief to you and your venue contact before the day, covering access requirements, AV coordination, and any technical prep needed. We've worked with Oslo Event Hub, Felix Conference Center, and various hotel venues — venue coordination is part of our standard process.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you only work in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings — including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Do you work with international teams or organisers? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We work with international clients regularly — including UK-based agencies organising events in Oslo, global tech community events, and international art commissions. All communication and deliverables are in English. Being Oslo-based means international teams avoid flying in their own crew, saving on travel costs and logistics.</div></div></div>
+        </div>
     </div>
 </section>
 

@@ -5,7 +5,7 @@
 
 | File | Target URL | Lang | Status | hreflang pair | Notes |
 |---|---|---|---|---|---|
-| `index-icp-v2.html` | `/` (replaces live homepage) | EN | needs-Max-review (round-3 FUNNEL restructure done — 11-section conversion flow; screenshots: preview-shots/icp-v2-funnel-*.png) | → `no/index-no.html` (planned) | Copy doc: `projects/recap-website-cleanup/icp-homepage-copy-v2.md`; non-profit A+B + "Oslo and beyond" applied |
+| `index-icp-v2.html` | `/` (replaces live homepage) | EN | needs-Max-review (**reworked live through round 8, 2026-07-15** — 8-section funnel: UVP hero, empathy problem section, workload-ledger "how it works", testimonials above Selected work, mobile overline fix; supersedes the round-3 11-section state. Current state + preview/verify recipe: `STATE.md`. Screenshots: preview-shots/icp-v2-r8-*.png) | → `no/index-no.html` (planned) | Copy doc: `projects/recap-website-cleanup/icp-homepage-copy-v2.md`; non-profit A+B + "Oslo and beyond" applied |
 | `services/conference-coverage-oslo.html` | `/services/conference-coverage-oslo` | EN | needs-Max-review | — | Plan P4 |
 | `services/corporate-video-oslo.html` | `/services/corporate-video-oslo` | EN | needs-Max-review | — | Plan P5 |
 | `services/headshots-oslo.html` | `/services/headshots-oslo` | EN | needs-Max-review | — | Plan P6 |
@@ -22,3 +22,5 @@
 - 6.4 project-folder reorg: 7 records moved to records/, references swept, verified clean.
 ▶ Max review queue: this map's rows + preview-index.html + the copy doc's two open ▶s (hero ALT line, SOFTEN drafts). Known ride-along for a future paste: the gtm-external-tracking-consent-gate.html artifact's comments cite cookie-consent-implementation.md by bare name (now records/) — cosmetic.
 If files on disk contradict this note, trust the files.
+
+**Update 2026-07-15:** the `index-icp-v2.html` homepage was reworked live across rounds 4–8 (see the row above + `STATE.md`); it's ahead of the 2026-07-09 pickup-state snapshot. The 7 other pages are unchanged since then.
