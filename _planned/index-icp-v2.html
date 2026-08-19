@@ -589,327 +589,449 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 })();
 </script>
 
-<!-- ROUND-9 REBUILD (2026-08-19): "How it works" rebuilt as the origin-photograph + five-row
-     we/you ledger + delta + output plates ("your event happens once, your content keeps working").
-     Replaces the old .p2-rail five-step vertical rail and its two page-local scripts.
-     Everything is page-local and lives INSIDE <main>: the GHL deploy path pastes <main>'s
-     contents into a Custom HTML block, so a <head> <style> would not travel. css/style.css and
-     js/main-v2.js (shared, pinned CDN files serving every page) are untouched.
-     Class prefix: .hw-  (the old .p2-* rules in the head <style> are left alone; other sections use them).
-     Tier ladder and the "No lock-in" line are NOT in this section any more (the #faq-lock-in FAQ entry
-     still carries lock-in). Livestream stays, scoped, inside the Capture row per Max 2026-07-15. -->
-<style>
-    /* ===== HOW IT WORKS: page-local, prefix .hw- =====================================
-       !important is used ONLY where style.css's element-level !important rules collide:
-       h1..h6 {font-family,color,line-height}, img {max-width,display}, .section--lg padding,
-       .section-dark h1..h4 {color}. Everything else is plain so this can fold into
-       style.css later without a de-!important pass. ================================== */
+<!-- ROUND-10 REBUILD (2026-08-19): "How it works" rebuilt as an INTERACTIVE FIVE-STAGE PROCESS
+     (the concept-B mechanic, art-directed) followed by the CONTENT WATERFALL.
+     Replaces the .hw- ledger/delta design and its two page-local blocks.
 
-    /* section shell: beats .section--lg's clamp(64px,8vw,120px) vertical padding (page-local only) */
-    .hw { padding: clamp(48px, 6vw, 88px) 0 !important; }
+     WHAT IT IS
+       PROCESS ("how do we work together?")  ->  "The day ends. The content keeps going."
+       ->  CONTENT OUTPUTS ("what can come out of the event?").
+
+     RULES HONOURED
+       - Click/tap only. NO scroll-driven stage advance (concept B's scroll machine is gone):
+         the section is correct and complete standing still.
+       - prefers-reduced-motion changes transition DURATIONS only, never what is visible or
+         interactive. The only thing that hides a panel is the .hwb--js class, which JS adds.
+       - No-JS / crawlers: every stage panel, every caption and every output renders as a plain
+         readable document (nothing is hidden until .hwb--js lands).
+       - No essential information behind hover.
+       - Everything page-local and INSIDE <main>: the GHL deploy path pastes only <main>'s
+         contents into a Custom HTML block, so a <head> <style> would not travel.
+         css/style.css and js/main-v2.js (shared, pinned CDN files) are untouched.
+       - Class prefix: .hwb-   Livestream stays, scoped, inside the Capture panel (Max 2026-07-15).
+       - No GSAP: the section's only motion is a <300ms CSS opacity crossfade, so it cannot be
+         left half-animated by a blocked/slow library. .gsap-fade is used for the entry reveal
+         exactly as the rest of the page does.
+
+     ART DIRECTION
+       Film contact sheet / production board: typographic folio counters (rectangular slugs, not
+       dots), thin ember rules, monospace annotations in the margins, deliberately varied image
+       crops, and a waterfall that steps down and across instead of sitting in a 4-up card grid.
+       Distribution deliberately has no photograph: it is the output that has not happened yet,
+       so it is a rule that runs off the right edge. -->
+<style>
+    /* ===== HOW IT WORKS: page-local, prefix .hwb- ====================================
+       !important is used ONLY where style.css's element-level !important rules collide:
+       h1..h6 {font-family,color,line-height}, a {color,text-decoration}, img {max-width,display},
+       .section-dark h1..h4 {color}. Everything else is plain so this can fold into style.css
+       later without a de-!important pass. =========================================== */
+
+    .hwb { overflow: hidden; }
+    .hwb .container { position: relative; z-index: 1; }
 
     /* ---------- A. masthead ---------- */
-    .hw-head { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin: 0 0 clamp(20px, 2.2vw, 22px); }
-    .hw-head h2 { font-size: clamp(1.72rem, 3.2vw, 2.7rem); font-weight: 700; letter-spacing: -0.02em; margin: 0; text-wrap: balance; line-height: 1.14 !important; }
-    .hw-head h2 em { font-style: normal; color: var(--color-ember); }
-    .hw-deck { font-size: clamp(0.98rem, 1.4vw, 1.06rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 6px; }
+    .hwb-head { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin: 0 0 clamp(18px, 2vw, 22px); }
+    .hwb-head h2 { font-size: clamp(1.68rem, 2.95vw, 2.45rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1 !important; margin: 0; text-wrap: balance; }
+    .hwb-lede { font-size: clamp(0.95rem, 1.35vw, 1.02rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 4px; max-width: 44ch; }
 
-    /* ---------- B. the spread: origin photograph | five-stage ledger ---------- */
-    .hw-spread { display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr); gap: clamp(26px, 3.4vw, 48px); align-items: stretch; }
+    /* ---------- B. the stage index (the tabs) ----------
+       A production board, not a node diagram: rectangular folio counters on a hairline,
+       each stage carrying its own time marker and its own one-line action, so the whole
+       argument is legible before anything is clicked. */
+    .hwb-index { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 clamp(10px, 1.4vw, 20px); padding: 0 0 2px; margin: 0 0 clamp(18px, 2vw, 22px); }
+    /* the connecting line: runs through the counters, from the first to the last */
+    .hwb-index::before { content: ''; position: absolute; left: 0; right: 0; top: 9px; height: 1px; background: rgba(255, 255, 255, 0.13); }
+    .hwb-index-fill { position: absolute; left: 0; top: 9px; height: 1px; background: var(--color-ember); width: 10%; transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); pointer-events: none; }
+    .hwb[data-stage="1"] .hwb-index-fill { width: 10%; }
+    .hwb[data-stage="2"] .hwb-index-fill { width: 30%; }
+    .hwb[data-stage="3"] .hwb-index-fill { width: 50%; }
+    .hwb[data-stage="4"] .hwb-index-fill { width: 70%; }
+    .hwb[data-stage="5"] .hwb-index-fill { width: 90%; }
 
-    /* the anchor stretches to the ledger's height: no dead space under it, and its bottom
-       edge is exactly where the stem (and then the delta trunk) starts. */
-    .hw-anchor { margin: 0; display: flex; flex-direction: column; position: relative; }
-    .hw-anchor-frame { position: relative; flex: 1 1 auto; min-height: 280px; border-radius: 2px; }
-    .hw-anchor-frame::before { content: ''; position: absolute; left: -12px; top: -12px; right: 22px; bottom: 22px; border: 1px solid rgba(232, 89, 60, 0.38); pointer-events: none; z-index: 2; }
+    .hwb-step { position: relative; display: block; width: 100%; text-align: left; background: none; border: 0; border-radius: 0; padding: 0 0 11px; margin: 0; font-family: var(--font-body); cursor: pointer; -webkit-appearance: none; appearance: none; color: inherit; }
+    /* the ember rule that says "this stage owns the panel below" */
+    .hwb-step::after { content: ''; position: absolute; left: 0; right: clamp(10px, 1.4vw, 20px); bottom: 0; height: 1px; background: rgba(255, 255, 255, 0.10); }
+    .hwb-step:last-child::after { right: 0; }
+    .hwb-step-num { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 18px; padding: 0 5px; background: var(--color-obsidian); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-stone); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease; }
+    .hwb-step-name { display: block; margin-top: 8px; font-family: var(--font-heading); font-size: 1.02rem; font-weight: 500; letter-spacing: -0.01em; color: var(--color-warm-grey); transition: color 0.2s ease; }
+    .hwb-step-opt { font-family: var(--font-body); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); margin-left: 7px; vertical-align: 2px; }
+    .hwb-step-when { display: block; margin-top: 3px; font-family: 'Courier New', Courier, monospace; font-size: 0.63rem; letter-spacing: 0.05em; color: var(--color-stone); }
+    /* the low-effort argument, readable straight down the strip without a single click */
+    .hwb-step-act { display: block; margin-top: 6px; font-size: 0.78rem; line-height: 1.35; color: var(--color-stone); transition: color 0.2s ease; }
+    .hwb-step-act::before { content: ''; display: inline-block; width: 10px; height: 1px; background: currentColor; vertical-align: middle; margin-right: 7px; opacity: 0.7; }
+
+    .hwb-step:hover .hwb-step-name { color: var(--color-white); }
+    .hwb-step:hover .hwb-step-num { border-color: rgba(232, 89, 60, 0.7); color: var(--color-white); }
+    .hwb-step:hover .hwb-step-act { color: var(--color-warm-grey); }
+    .hwb-step:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 3px; }
+
+    .hwb-step.is-active::after { background: var(--color-ember); height: 2px; }
+    .hwb-step.is-active .hwb-step-num { background: var(--color-ember); border-color: var(--color-ember); color: var(--color-white); }
+    .hwb-step.is-active .hwb-step-name { color: var(--color-white); font-weight: 600; }
+    .hwb-step.is-active .hwb-step-act { color: var(--color-white); }
+    .hwb-step.is-done .hwb-step-num { border-color: rgba(232, 89, 60, 0.5); color: var(--color-warm-grey); }
+
+    /* ---------- C. the stage body: plate | panel ---------- */
+    .hwb-body { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: clamp(26px, 3.6vw, 52px); align-items: start; }
+    /* the panel is optically centred against the plate: the column ends level instead of
+       leaving a hole under the shortest stage */
+    .hwb-panels { align-self: center; }
+
+    .hwb-plate { margin: 0; position: relative; }
+    .hwb-frame { position: relative; aspect-ratio: 2.6 / 1; overflow: hidden; background: var(--color-smoke); border-radius: 2px; }
     /* height:100% !important: style.css sets img{max-width;display} with no height, so the HTML
-       height attribute would win as a presentational hint and collapse the cover crop. */
-    .hw-anchor-frame img { position: relative; z-index: 1; width: 100%; height: 100% !important; object-fit: cover; object-position: center 46%; border-radius: 2px; }
-    .hw-anchor-copy { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; margin: 0; padding: 52px 18px 15px; background: linear-gradient(to top, rgba(12, 10, 16, 0.92), rgba(12, 10, 16, 0.74) 48%, rgba(12, 10, 16, 0)); }
-    .hw-anchor-tag { display: inline-block; background: var(--color-obsidian); color: var(--color-ember); font-family: var(--font-body); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 9px; }
-    .hw-anchor-copy p { font-size: 0.88rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0 0 7px; }
-    .hw-credit { display: block; font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.05em; color: var(--color-stone); }
-    /* the line that visibly leaves the photograph's bottom edge and becomes the delta trunk */
-    .hw-stem { position: absolute; left: 50%; top: 100%; width: 1px; margin-left: -0.5px; height: 20px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.85), rgba(232, 89, 60, 0.3)); }
+       height attribute would otherwise win as a presentational hint and collapse the cover crop. */
+    .hwb-shot { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; opacity: 0; transition: opacity 0.26s ease; }
+    .hwb-shot.is-active { opacity: 1; }
+    /* deliberately varied crops: each stage reads a different part of the same frame */
+    .hwb-shot[data-shot="1"] { object-position: center 42%; }
+    .hwb-shot[data-shot="2"] { object-position: 62% 50%; }
+    .hwb-shot[data-shot="3"] { object-position: 46% 40%; }
+    .hwb-shot[data-shot="4"] { object-position: center 38%; }
+    .hwb-shot[data-shot="5"] { object-position: 40% 46%; }
+    /* stage 05 is the one that leaves the room: the frame cools and a dashed rule runs out of it */
+    .hwb[data-stage="5"] .hwb-frame::after { opacity: 1; }
+    .hwb-frame::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: repeating-linear-gradient(to right, var(--color-ember) 0 9px, transparent 9px 18px); opacity: 0; transition: opacity 0.26s ease; }
+    /* registration mark: a printer's corner, not a border */
+    .hwb-frame::before { content: ''; position: absolute; z-index: 2; left: 0; top: 0; width: 26px; height: 26px; border-top: 2px solid var(--color-ember); border-left: 2px solid var(--color-ember); }
 
-    /* the ledger. WE is wide and grey, YOU is narrow and white: the empty gutter is the argument. */
-    .hw-ledger { padding-top: 2px; }
-    .hw-ledger-kicker { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: var(--color-white); margin: 0 0 10px; }
-    .hw-ledger-head { display: grid; grid-template-columns: 22px 112px minmax(0, 1fr) 160px; gap: 0 16px; padding-bottom: 8px; }
-    .hw-ledger-head span { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; color: var(--color-stone); }
-    .hw-h-we { grid-column: 2 / 4; }
-    .hw-h-you { grid-column: 4; color: var(--color-ember); padding-left: 18px; }
-    .hw-stages { list-style: none; margin: 0; padding: 0; }
-    .hw-stage { display: grid; grid-template-columns: 22px 112px minmax(0, 1fr) 160px; gap: 0 16px; align-items: start; padding: 8px 0 9px; border-top: 1px solid rgba(255, 255, 255, 0.11); }
-    .hw-stage:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.11); }
-    .hw-stage-num { font-family: 'Courier New', Courier, monospace; font-size: 0.7rem; line-height: 1.95; color: var(--color-stone); }
-    .hw-stage-name { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.35 !important; }
-    .hw-stage-when { display: block; font-family: var(--font-body); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-stone); line-height: 1.5; margin-top: 1px; }
-    .hw-stage-we { font-size: 0.88rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
-    .hw-stage-you { margin: 0; padding: 1px 0 0 18px; border-left: 1px solid rgba(255, 255, 255, 0.11); font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; line-height: 1.45; color: var(--color-white); align-self: stretch; }
-    .hw-stage-opt { display: inline-block; margin-top: 4px; font-family: var(--font-body); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--color-ember); border: 1px solid rgba(232, 89, 60, 0.45); border-radius: 999px; padding: 1px 8px; }
+    .hwb-cap { position: relative; margin: 9px 0 0; padding-left: 14px; min-height: 32px; }
+    .hwb-cap::before { content: ''; position: absolute; left: 0; top: 3px; bottom: 3px; width: 1px; background: rgba(255, 255, 255, 0.14); }
+    .hwb-note { display: none; }
+    .hwb-note.is-active { display: block; }
+    .hwb-note span { display: block; font-size: 0.84rem; line-height: 1.45; color: var(--color-warm-grey); }
+    .hwb-note em { display: block; font-style: normal; margin-top: 3px; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
 
-    /* ---------- C. the turn ---------- */
-    .hw-turn { margin-top: clamp(14px, 1.6vw, 16px); }
-    .hw-turn-labels { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
-    .hw-turn-labels span { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
-    .hw-turn-left { color: var(--color-stone); }
-    .hw-turn-right { color: var(--color-ember); text-align: right; }
-    .hw-turn-arrow { display: none; color: var(--color-ember); }
-    .hw-delta { display: block; width: 100%; height: clamp(40px, 4.4vw, 56px); margin-top: 6px; }
-    .hw-delta path { fill: none; stroke: var(--color-ember); stroke-width: 1; opacity: 0.75; }
+    .hwb-panel { position: relative; padding: 0 0 4px; }
+    /* the no-JS document keeps all five readable and separated */
+    .hwb-panel + .hwb-panel { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.09); }
+    .hwb--js .hwb-panel { display: none; margin-top: 0; padding-top: 0; border-top: 0; }
+    .hwb--js .hwb-panel.is-active { display: block; }
+    .hwb-meta { display: block; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 9px; }
+    .hwb-panel h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.08 !important; margin: 0 0 12px; }
+    .hwb-say { font-size: clamp(0.95rem, 1.3vw, 1rem); line-height: 1.62; color: var(--color-warm-grey); margin: 0 0 18px; max-width: 44ch; }
 
-    /* ---------- D. outputs: four plates on one baseline ---------- */
-    .hw-outs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: start; }
-    .hw-out { position: relative; border-top: 1px solid rgba(232, 89, 60, 0.32); padding-top: 14px; }
-    .hw-out::before { content: ''; position: absolute; top: -3.5px; left: 50%; margin-left: -3.5px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-ember); }
-    .hw-well { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 2px; margin-bottom: 10px; }
-    .hw-well img { width: 100%; height: 100% !important; object-fit: cover; }
-    /* Distribution has no photograph on purpose; its plate is the same height and ends in a
-       line that is still going, so the absence reads as intentional. */
-    .hw-well--rule { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(232, 89, 60, 0.22); overflow: visible; }
-    .hw-well--rule::before { content: ''; position: absolute; left: 18px; top: 0; bottom: -40px; width: 1px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.5) 58%, rgba(232, 89, 60, 0)); }
-    .hw-well-label { position: absolute; left: 32px; bottom: 12px; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-ember); }
-    .hw-out-body h3 { font-size: 1.02rem; font-weight: 600; margin: 0 0 6px; line-height: 1.3 !important; }
-    .hw-out-body p { font-size: 0.86rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
+    /* YOUR PART: a ruled entry, not a tinted card */
+    .hwb-part { margin: 0; padding-top: 12px; border-top: 1px solid rgba(232, 89, 60, 0.55); max-width: 30ch; }
+    .hwb-part-label { display: block; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-ember); margin-bottom: 5px; }
+    .hwb-part-act { display: block; font-family: var(--font-heading); font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 600; line-height: 1.25; color: var(--color-white); }
 
-    /* ---------- E. close ---------- */
-    .hw-close { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(20px, 3vw, 48px); align-items: start; border-top: 1px solid rgba(255, 255, 255, 0.11); padding-top: clamp(20px, 2.4vw, 22px); margin-top: clamp(22px, 2.6vw, 26px); }
-    .hw-close-line { font-family: var(--font-heading); font-size: clamp(1.05rem, 1.8vw, 1.32rem); font-weight: 600; line-height: 1.4; color: var(--color-white); margin: 0 0 8px; max-width: 30ch; text-wrap: balance; }
-    .hw-close-invite { font-size: 0.92rem; line-height: 1.6; color: var(--color-warm-grey); margin: 0; max-width: 46ch; }
-    .hw-yours-lead { display: block; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; color: var(--color-ember); margin-bottom: 10px; }
-    .hw-chips { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; margin: 0; padding: 0; }
-    .hw-chips li { padding: 7px 14px; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; font-size: 0.84rem; line-height: 1.3; color: var(--color-white); }
-    .hw-cta { grid-column: 1 / -1; margin-top: clamp(14px, 1.8vw, 16px); }
-    /* the secondary reads as a second path, not a footnote. No .btn (shine sweep + lift would
-       make it a second button); colour is left to .hero-secondary-link. */
-    .hw-cta-ghost { padding: 13px 24px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: var(--radius-md); font-size: 0.95rem; transition: color 0.2s ease, border-color 0.2s ease; }
-    .hw-cta-ghost:hover { border-color: var(--color-ember); }
+    /* ---------- D. the turn: the dictated line, and the label for what follows ---------- */
+    .hwb-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr) minmax(0, auto); align-items: center; gap: 18px; margin: clamp(22px, 2.6vw, 30px) 0 clamp(14px, 1.5vw, 16px); }
+    .hwb-turn-line { font-family: var(--font-heading) !important; font-size: clamp(1.1rem, 1.9vw, 1.45rem); font-weight: 600; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0; text-wrap: balance; }
+    .hwb-turn-rule { height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(232, 89, 60, 0.18)); }
+    .hwb-turn-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
+
+    /* ---------- E. the content waterfall ----------
+       Three photographic outputs step down and across in three different crops, and the fourth
+       (Distribution, the one that has not happened yet) is a rule that keeps going. */
+    /* The three photographic outputs hang from ONE caption baseline: their frames differ in
+       crop and in height, so the tops of the strip are deliberately ragged while the captions
+       all sit on the same line. Contact sheet, not a 4-up card grid. */
+    .hwb-outs { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 clamp(14px, 1.8vw, 22px); align-items: stretch; }
+    .hwb-out { display: grid; grid-template-rows: 1fr auto; color: inherit !important; text-decoration: none !important; }
+    .hwb-out-frame { align-self: end; }
+    /* one fixed caption slot, so a one-line and a two-line caption still start level */
+    .hwb-out-cap { display: block; min-height: 74px; }
+    .hwb-out-frame { display: block; position: relative; overflow: hidden; background: var(--color-smoke); border-radius: 2px; }
+    .hwb-out-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
+    /* the caption bar: a contact-sheet rule with an ember lead-in, the same grammar as the
+       Distribution rule below, so the four outputs read as one system of plates */
+    .hwb-out-title { position: relative; display: block; font-family: var(--font-heading); font-weight: 600; color: var(--color-white) !important; margin: 12px 0 5px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.14); letter-spacing: -0.01em; }
+    .hwb-out-title::before { content: ''; position: absolute; left: 0; top: -1px; width: 30px; height: 1px; background: var(--color-ember); }
+    .hwb-out-line { display: block; font-size: 0.83rem; line-height: 1.48; color: var(--color-warm-grey) !important; margin: 0; }
+
+    .hwb-out--photography { grid-column: 1 / span 5; }
+    /* the lead plate: widest and tallest, so Photography carries the most weight */
+    .hwb-out--photography .hwb-out-frame { aspect-ratio: 1.85 / 1; }
+    .hwb-out--photography .hwb-out-title { font-size: 1.26rem; }
+    /* Film gets the letterbox crop its own medium implies */
+    .hwb-out--film { grid-column: 6 / span 4; }
+    .hwb-out--film .hwb-out-frame { aspect-ratio: 21 / 9; }
+    .hwb-out--film .hwb-out-title { font-size: 1.1rem; }
+    .hwb-out--content { grid-column: 10 / span 3; }
+    .hwb-out--content .hwb-out-frame { aspect-ratio: 5 / 4; }
+    .hwb-out--content .hwb-out-title { font-size: 1rem; }
+
+    /* Distribution: no photograph on purpose. A hairline that leaves the composition. */
+    .hwb-out--distribution { grid-column: 1 / span 12; margin-top: clamp(14px, 1.6vw, 20px); padding-top: 12px; border-top: 1px solid rgba(232, 89, 60, 0.4); display: grid; grid-template-rows: auto; grid-template-columns: minmax(0, 0.32fr) minmax(0, 0.68fr); gap: clamp(16px, 2.4vw, 40px); align-items: baseline; position: relative; }
+    .hwb-out--distribution::after { content: ''; position: absolute; right: 0; top: -1px; width: 34%; height: 1px; background: repeating-linear-gradient(to right, rgba(232, 89, 60, 0.75) 0 9px, transparent 9px 18px); }
+    .hwb-out--distribution .hwb-out-title { font-size: 1.12rem; margin-top: 0; padding-top: 0; border-top: 0; }
+    .hwb-out--distribution .hwb-out-title::before { display: none; }
+    .hwb-out--distribution .hwb-out-line { max-width: 58ch; }
+
+    /* affordances stay dormant until the service pages ship and the hrefs land */
+    .hwb-out[href] { cursor: pointer; }
+    .hwb-out[href]:hover .hwb-out-title { color: var(--color-ember) !important; }
+    .hwb-out[href]:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 4px; }
+
+    /* ---------- F. close ---------- */
+    .hwb-close { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: 18px clamp(24px, 3vw, 48px); align-items: center; margin-top: clamp(18px, 2vw, 24px); padding-top: clamp(14px, 1.7vw, 18px); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .hwb-close-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; max-width: 42ch; }
+    .hwb-cta { gap: 20px !important; }
+    /* a second path, not a second button: no .btn (its shine sweep would make it one) */
+    .hwb-ghost { padding: 13px 22px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: var(--radius-md); font-size: 0.93rem; transition: border-color 0.2s ease; }
+    .hwb-ghost:hover { border-color: var(--color-ember); }
 
     /* ---------- responsive ---------- */
     @media (max-width: 1080px) {
-        .hw-spread { grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr); }
-        .hw-stage, .hw-ledger-head { grid-template-columns: 20px 104px minmax(0, 1fr) 140px; gap: 0 14px; }
-        .hw-outs { gap: 18px; }
+        .hwb-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; }
+        .hwb-step-name { font-size: 0.95rem; }
+        .hwb-step-act { font-size: 0.74rem; }
     }
-    /* ONE stacked mode. Below 940px the spread stacks AND the delta becomes a vertical rail,
-       so the section is never in a half-broken in-between state. */
-    @media (max-width: 940px) {
-        .hw-head { grid-template-columns: 1fr; gap: 8px; align-items: start; margin-bottom: 16px; }
-        .hw-deck { margin-bottom: 0; }
-        .hw-spread { grid-template-columns: 1fr; gap: 22px; }
-        .hw-anchor-frame { flex: 0 0 auto; min-height: 0; aspect-ratio: 16 / 9; }
-        .hw-anchor-frame img { height: auto !important; aspect-ratio: 16 / 9; }
-        .hw-anchor-frame::before { right: 16px; bottom: 16px; }
-        .hw-stem { display: none; }
 
-        /* ledger stacks: number in a gutter, then name, the we-line, then the You line */
-        .hw-ledger-head { display: none; }
-        .hw-stage { grid-template-columns: 22px minmax(0, 1fr); gap: 0 12px; padding: 8px 0 9px; }
-        .hw-stage-name { grid-column: 2; margin-bottom: 4px; }
-        .hw-stage-when { display: inline-block; margin: 0 0 0 9px; }
-        .hw-stage-we { grid-column: 2; font-size: 0.84rem; }
-        .hw-stage-you { grid-column: 2; margin-top: 7px; padding: 0 0 0 12px; border-left: 1px solid rgba(232, 89, 60, 0.5); font-size: 0.88rem; align-self: start; }
-        .hw-stage-you::before { content: 'You: '; color: var(--color-ember); }
-        .hw-stage-opt { margin: 0 0 0 8px; }
+    /* ONE stacked mode. The tab track is dropped and all five stages are fully visible, so the
+       section is never in a half-interactive in-between state on a phone. */
+    @media (max-width: 768px) {
+        .hwb-head { grid-template-columns: 1fr; gap: 8px; align-items: start; margin-bottom: 16px; }
+        .hwb-head h2 { font-size: 1.55rem; }
+        .hwb-lede { font-size: 0.92rem; line-height: 1.55; }
+        .hwb-lede { max-width: none; margin-bottom: 0; }
 
-        /* the before/after axis stays on ONE line */
-        .hw-turn { margin-top: 16px; }
-        .hw-turn-labels { justify-content: flex-start; gap: 8px; flex-wrap: wrap; }
-        .hw-turn-right { text-align: left; }
-        .hw-turn-arrow { display: inline; }
-        .hw-delta { display: none; }
+        .hwb-index { display: none; }
+        .hwb-body { grid-template-columns: 1fr; gap: 18px; }
+        .hwb-frame { aspect-ratio: 3 / 1; }
+        .hwb-cap { margin-top: 8px; min-height: 0; }
+        .hwb-note span { display: inline; font-size: 0.8rem; }
+        .hwb-note em { display: inline; margin-left: 7px; font-size: 0.62rem; }
+        /* one establishing photograph; the stage-reactive crossfade is a pointer affordance */
+        .hwb-shot { opacity: 0; }
+        .hwb-shot[data-shot="1"] { opacity: 1; }
+        .hwb-note { display: none !important; }
+        .hwb-note[data-note="1"] { display: block !important; }
 
-        /* outputs become a vertical rail: one line down the left, one node per output */
-        .hw-outs { display: block; position: relative; margin-top: 12px; padding-left: 30px; }
-        .hw-outs::before { content: ''; position: absolute; left: 3px; top: 0; bottom: 28px; width: 1px; background: linear-gradient(to bottom, var(--color-ember), rgba(232, 89, 60, 0.18)); transform-origin: top center; transform: scaleY(var(--hw-rail, 1)); }
-        .hw-out { border-top: none; padding: 0 0 10px; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 0 16px; align-items: start; }
-        .hw-out::before { top: 7px; left: -30px; margin-left: 0; }
-        /* same <img>, re-cropped to a 76px square: nothing is downloaded twice */
-        .hw-well { width: 76px; height: 76px; aspect-ratio: auto; margin: 0; }
-        .hw-well img { height: 76px !important; }
-        .hw-out-body { grid-column: 2; }
-        /* Distribution goes full width on the rail: no empty photo box, but its ember rule
-           stays visible so the column still ends in a line that is going somewhere. */
-        .hw-out--rule { grid-template-columns: minmax(0, 1fr); }
-        .hw-out--rule .hw-well--rule { width: 22px; height: 22px; border: none; background: none; margin: 1px 0 3px; }
-        .hw-out--rule .hw-well--rule::before { left: 0; top: 0; bottom: 0; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.6), rgba(232, 89, 60, 0)); }
-        .hw-out--rule .hw-out-body { grid-column: 1; }
-        .hw-well-label { display: none; }
-        /* the caption must not swallow the photograph at 342px wide */
-        .hw-anchor-copy { padding: 40px 14px 12px; }
-        .hw-anchor-tag { margin-bottom: 6px; }
-        .hw-anchor-copy p { font-size: 0.82rem; line-height: 1.45; margin-bottom: 5px; }
+        /* Every stage visible, on one rail: a compact production list. Title, time marker and
+           the visitor's one action per stage, so the whole argument is on screen at once. */
+        .hwb-panels { position: relative; padding-left: 30px; }
+        .hwb-panels::before { content: ''; position: absolute; left: 9px; top: 7px; bottom: 24px; width: 1px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.6), rgba(232, 89, 60, 0.12)); }
+        .hwb--js .hwb-panel { display: grid; }
+        .hwb-panel, .hwb--js .hwb-panel, .hwb--js .hwb-panel.is-active { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 9px; align-items: baseline; padding: 0 0 10px; margin: 0; border-top: 0; }
+        .hwb-panel + .hwb-panel, .hwb--js .hwb-panel + .hwb-panel { margin-top: 8px; padding-top: 0; border-top: 0; }
+        .hwb-panel::before { content: attr(data-panel); position: absolute; left: -30px; width: 21px; height: 16px; display: flex; align-items: center; justify-content: center; background: var(--color-obsidian); border: 1px solid rgba(232, 89, 60, 0.55); color: var(--color-ember); font-family: 'Courier New', Courier, monospace; font-size: 0.62rem; }
+        /* title and time marker share one line; the "Stage NN / 05" half is redundant beside
+           the numbered rail, so it is dropped rather than restated */
+        .hwb-panel h3 { grid-column: 1; grid-row: 1; font-size: 1.12rem; margin: 0; }
+        .hwb-meta { grid-column: 2; grid-row: 1; margin: 0; font-size: 0.62rem; }
+        .hwb-meta-n { display: none; }
+        .hwb-say { grid-column: 1 / -1; grid-row: 2; font-size: 0.88rem; line-height: 1.5; margin: 5px 0 0; max-width: none; }
+        .hwb-part { grid-column: 1 / -1; grid-row: 3; display: flex; align-items: baseline; gap: 10px; max-width: none; margin-top: 8px; padding-top: 7px; }
+        .hwb-part-label { margin: 0; white-space: nowrap; }
+        .hwb-part-act { font-size: 0.98rem; }
 
-        .hw-close { grid-template-columns: 1fr; gap: 14px; margin-top: 20px; padding-top: 18px; }
-        .hw-close-line, .hw-close-invite { max-width: none; }
-        .hw-cta { margin-top: 2px; gap: 12px; }
-        .hw-chips li { padding: 6px 12px; }
-        .hw-cta .btn { width: 100%; justify-content: center; }
-        .hw-cta-ghost { width: 100%; justify-content: center; }
+        .hwb-turn { grid-template-columns: 1fr; gap: 7px; margin: 20px 0 13px; }
+        .hwb-turn-rule { display: none; }
+
+        /* the waterfall keeps its varied weights: one lead frame, then a pair, then the rule */
+        .hwb-outs { gap: 0 12px; }
+        .hwb-out { display: block; }
+        .hwb-out-cap { min-height: 0; }
+        .hwb-out--photography { grid-column: 1 / span 12; }
+        .hwb-out--photography .hwb-out-frame { aspect-ratio: 2.6 / 1; }
+        .hwb-out--photography .hwb-out-title { font-size: 1.12rem; }
+        .hwb-out--film { grid-column: 1 / span 6; margin-top: 18px; }
+        .hwb-out--film .hwb-out-frame { aspect-ratio: 3 / 2; }
+        .hwb-out--content { grid-column: 7 / span 6; margin-top: 18px; }
+        .hwb-out--content .hwb-out-frame { aspect-ratio: 3 / 2; }
+        .hwb-out--title-slot-unused { display: none; }
+        .hwb-out-title { margin-top: 9px; padding-top: 7px; }
+        .hwb-out--film .hwb-out-title, .hwb-out--content .hwb-out-title { font-size: 0.95rem; }
+        .hwb-out--film .hwb-out-line, .hwb-out--content .hwb-out-line { font-size: 0.78rem; line-height: 1.42; }
+        .hwb-out--distribution { grid-column: 1 / span 12; grid-template-columns: 1fr; gap: 4px; margin-top: 15px; padding-top: 10px; }
+        .hwb-out--distribution::after { width: 46%; }
+
+        .hwb-close { grid-template-columns: 1fr; gap: 13px; margin-top: 16px; padding-top: 13px; }
+        .hwb-close-line { font-size: 0.88rem; line-height: 1.5; }
+        .hwb-close-line { max-width: none; }
+        .hwb-cta { flex-direction: column; align-items: stretch !important; gap: 12px !important; }
+        .hwb-cta .btn { width: 100%; justify-content: center !important; }
+        .hwb-ghost { width: 100%; justify-content: center !important; }
+    }
+
+    /* Motion only. Nothing here changes what is visible or what is interactive. */
+    @media (prefers-reduced-motion: reduce) {
+        .hwb *, .hwb *::before, .hwb *::after { transition-duration: 0.001ms !important; transition-delay: 0s !important; animation: none !important; }
     }
 </style>
 
-<section class="section section--lg section-dark hw" id="how-it-works">
+<section class="section section--lg section-dark hwb" id="how-it-works" data-stage="1">
     <div class="container">
 
         <!-- A. masthead -->
-        <div class="hw-head gsap-fade">
+        <div class="hwb-head gsap-fade">
             <div>
                 <span class="section-num">01</span>
                 <span class="overline overline--ruled">How it works</span>
-                <h2>Your event happens once.<br>Your content <em>keeps working</em>.</h2>
+                <h2>You run the event.<br>We run the production.</h2>
             </div>
-            <p class="hw-deck">You step in five times. Everything between those five moments sits with us.</p>
+            <p class="hwb-lede">Five stages, from the first conversation to content that still works months later. We do the work. You make the important decisions.</p>
         </div>
 
-        <!-- B. the spread: the origin photograph beside the five-stage ledger -->
-        <div class="hw-spread gsap-fade">
+        <!-- B. the stage index -->
+        <div class="hwb-index gsap-fade" id="hwb-index">
+            <span class="hwb-index-fill" aria-hidden="true"></span>
 
-            <figure class="hw-anchor">
-                <div class="hw-anchor-frame">
-                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp"
-                         alt="Audience filling the auditorium at Flutter Vikings Conference 2022, Felix Konferansesenter, Oslo"
+            <button type="button" class="hwb-step is-active" data-step="1" id="hwb-step-1">
+                <span class="hwb-step-num">01</span>
+                <span class="hwb-step-name">Brief</span>
+                <span class="hwb-step-when">Before booking</span>
+                <span class="hwb-step-act">One conversation.</span>
+            </button>
+            <button type="button" class="hwb-step" data-step="2" id="hwb-step-2">
+                <span class="hwb-step-num">02</span>
+                <span class="hwb-step-name">Plan</span>
+                <span class="hwb-step-when">Before the day</span>
+                <span class="hwb-step-act">Approve the plan.</span>
+            </button>
+            <button type="button" class="hwb-step" data-step="3" id="hwb-step-3">
+                <span class="hwb-step-num">03</span>
+                <span class="hwb-step-name">Capture</span>
+                <span class="hwb-step-when">On the day</span>
+                <span class="hwb-step-act">Host your event.</span>
+            </button>
+            <button type="button" class="hwb-step" data-step="4" id="hwb-step-4">
+                <span class="hwb-step-num">04</span>
+                <span class="hwb-step-name">Build</span>
+                <span class="hwb-step-when">After the day</span>
+                <span class="hwb-step-act">Pick your favourites.</span>
+            </button>
+            <button type="button" class="hwb-step" data-step="5" id="hwb-step-5">
+                <span class="hwb-step-num">05</span>
+                <span class="hwb-step-name">Run<span class="hwb-step-opt">Optional</span></span>
+                <span class="hwb-step-when">The months after</span>
+                <span class="hwb-step-act">Approve each batch.</span>
+            </button>
+        </div>
+
+        <!-- C. the stage body: the stage-reactive plate beside the stage panel -->
+        <div class="hwb-body">
+
+            <figure class="hwb-plate gsap-fade">
+                <div class="hwb-frame">
+                    <img class="hwb-shot is-active" data-shot="1"
+                         src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp"
+                         alt="A full auditorium of conference attendees in Oslo before a session starts"
                          width="1024" height="683" loading="lazy" decoding="async">
-                    <figcaption class="hw-anchor-copy">
-                        <span class="hw-anchor-tag">Where everything starts</span>
-                        <p>One event day, one crew: photo, video and content production under one booking. Everything below comes out of this.</p>
-                        <span class="hw-credit">Flutter Vikings 2022, Oslo</span>
-                    </figcaption>
+                    <img class="hwb-shot" data-shot="2"
+                         src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0639bb767199.webp"
+                         alt="A row of attendees seated under the Felix Konferansesenter wordmark, Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                    <img class="hwb-shot" data-shot="3"
+                         src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp"
+                         alt="A speaker presenting on stage at Flutter Vikings 2022 in Oslo"
+                         width="800" height="534" loading="lazy" decoding="async">
+                    <img class="hwb-shot" data-shot="4"
+                         src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp"
+                         alt="Wide view of the Flutter Vikings 2022 auditorium in Oslo with the session running on the main screen"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                    <img class="hwb-shot" data-shot="5"
+                         src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dc03e0f042cc417e7.webp"
+                         alt="Two guests in conversation at a corporate reception in Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
                 </div>
-                <span class="hw-stem" aria-hidden="true"></span>
+                <figcaption class="hwb-cap">
+                    <span class="hwb-note is-active" data-note="1"><span>The day you are planning for, before a single decision is made.</span><em>Flutter Vikings 2022, Oslo</em></span>
+                    <span class="hwb-note" data-note="2"><span>A full room, running to a plan agreed well before it filled.</span><em>Felix Konferansesenter, Oslo</em></span>
+                    <span class="hwb-note" data-note="3"><span>The crew works to the plan while you stay with your guests.</span><em>Flutter Vikings 2022, Oslo</em></span>
+                    <span class="hwb-note" data-note="4"><span>One day of coverage becomes a set of finished pieces.</span><em>Flutter Vikings 2022: 43 published videos</em></span>
+                    <span class="hwb-note" data-note="5"><span>One afternoon in the room, still going out as content months later.</span><em>Corporate reception, Oslo</em></span>
+                </figcaption>
             </figure>
 
-            <div class="hw-ledger">
-                <p class="hw-ledger-kicker">You run the event. We run the production.</p>
-                <div class="hw-ledger-head" aria-hidden="true">
-                    <span class="hw-h-we">We handle</span>
-                    <span class="hw-h-you">You</span>
-                </div>
-                <ol class="hw-stages">
-                    <li class="hw-stage">
-                        <span class="hw-stage-num">01</span>
-                        <h3 class="hw-stage-name">Brief<span class="hw-stage-when">Before booking</span></h3>
-                        <p class="hw-stage-we">Your event, your audience, and what the content needs to achieve: that is where we start.</p>
-                        <p class="hw-stage-you">One conversation.</p>
-                    </li>
-                    <li class="hw-stage">
-                        <span class="hw-stage-num">02</span>
-                        <h3 class="hw-stage-name">Plan<span class="hw-stage-when">Before the day</span></h3>
-                        <p class="hw-stage-we">You see the whole plan before anything is filmed, every piece mapped to a place and a date.</p>
-                        <p class="hw-stage-you">Approve the plan.</p>
-                    </li>
-                    <li class="hw-stage">
-                        <span class="hw-stage-num">03</span>
-                        <h3 class="hw-stage-name">Capture<span class="hw-stage-when">On the day</span></h3>
-                        <p class="hw-stage-we">One coordinated crew covers the day, including livestream when you want it, working to the plan you already approved.</p>
-                        <p class="hw-stage-you">Host your event.</p>
-                    </li>
-                    <li class="hw-stage">
-                        <span class="hw-stage-num">04</span>
-                        <h3 class="hw-stage-name">Build<span class="hw-stage-when">After the day</span></h3>
-                        <p class="hw-stage-we">Your finished content comes back ready to use, built from what we captured.</p>
-                        <p class="hw-stage-you">Pick your favourites.</p>
-                    </li>
-                    <li class="hw-stage">
-                        <span class="hw-stage-num">05</span>
-                        <h3 class="hw-stage-name">Run<span class="hw-stage-when">The months after</span><span class="hw-stage-opt">Optional</span></h3>
-                        <p class="hw-stage-we">Your content keeps going out for months, or you take the plan and run it in-house.</p>
-                        <p class="hw-stage-you">Approve each batch.</p>
-                    </li>
-                </ol>
+            <div class="hwb-panels" id="hwb-panels">
+                <article class="hwb-panel is-active" data-panel="01" id="hwb-panel-1">
+                    <span class="hwb-meta"><span class="hwb-meta-n">Stage 01 / 05 &middot; </span>Before booking</span>
+                    <h3>Brief</h3>
+                    <p class="hwb-say">We start with your event, your audience, and what the content needs to achieve once the day is over.</p>
+                    <p class="hwb-part"><span class="hwb-part-label">Your part</span><span class="hwb-part-act">One conversation.</span></p>
+                </article>
+                <article class="hwb-panel" data-panel="02" id="hwb-panel-2">
+                    <span class="hwb-meta"><span class="hwb-meta-n">Stage 02 / 05 &middot; </span>Before the day</span>
+                    <h3>Plan</h3>
+                    <p class="hwb-say">You see the whole plan before anything is filmed: what gets made, where it goes, and when.</p>
+                    <p class="hwb-part"><span class="hwb-part-label">Your part</span><span class="hwb-part-act">Approve the plan.</span></p>
+                </article>
+                <article class="hwb-panel" data-panel="03" id="hwb-panel-3">
+                    <span class="hwb-meta"><span class="hwb-meta-n">Stage 03 / 05 &middot; </span>On the day</span>
+                    <h3>Capture</h3>
+                    <p class="hwb-say">One coordinated crew covers the day: photo, video and livestream when you want it, under one point of contact.</p>
+                    <p class="hwb-part"><span class="hwb-part-label">Your part</span><span class="hwb-part-act">Host your event.</span></p>
+                </article>
+                <article class="hwb-panel" data-panel="04" id="hwb-panel-4">
+                    <span class="hwb-meta"><span class="hwb-meta-n">Stage 04 / 05 &middot; </span>After the day</span>
+                    <h3>Build</h3>
+                    <p class="hwb-say">The day becomes finished content, edited and ready to use in the places you publish.</p>
+                    <p class="hwb-part"><span class="hwb-part-label">Your part</span><span class="hwb-part-act">Pick your favourites.</span></p>
+                </article>
+                <article class="hwb-panel" data-panel="05" id="hwb-panel-5">
+                    <span class="hwb-meta"><span class="hwb-meta-n">Stage 05 / 05 &middot; </span>Optional &middot; The months after</span>
+                    <h3>Run</h3>
+                    <p class="hwb-say">Your content keeps going out for months on a schedule, or you take the plan and run it in house.</p>
+                    <p class="hwb-part"><span class="hwb-part-label">Your part</span><span class="hwb-part-act">Approve each batch.</span></p>
+                </article>
             </div>
         </div>
 
-        <!-- C. the turn: one hairline leaves the day and fans into four.
-             Trunk x=148/1000 = the anchor column's horizontal centre at the shipped 0.62/1.38
-             spread ratio, so the stem and the trunk are the same line. Arms land on the four
-             output-column centres (11.7% / 37.2% / 62.8% / 88.3%). -->
-        <div class="hw-turn">
-            <div class="hw-turn-labels">
-                <span class="hw-turn-left">The day ends</span>
-                <span class="hw-turn-arrow" aria-hidden="true">&rarr;</span>
-                <span class="hw-turn-right">Your content keeps going out</span>
-            </div>
-            <svg class="hw-delta" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                <path class="hw-trunk" d="M148 0 V 18" vector-effect="non-scaling-stroke"/>
-                <path class="hw-arm" d="M148 18 C 148 38, 117 36, 117 56" vector-effect="non-scaling-stroke"/>
-                <path class="hw-arm" d="M148 18 C 196 38, 336 40, 372 56" vector-effect="non-scaling-stroke"/>
-                <path class="hw-arm" d="M148 18 C 330 26, 546 34, 628 56" vector-effect="non-scaling-stroke"/>
-                <path class="hw-arm" d="M148 18 C 470 18, 782 30, 883 56" vector-effect="non-scaling-stroke"/>
-            </svg>
+        <!-- D. the turn -->
+        <div class="hwb-turn gsap-fade">
+            <h3 class="hwb-turn-line">The day ends. The content keeps going.</h3>
+            <span class="hwb-turn-rule" aria-hidden="true"></span>
+            <span class="hwb-turn-label">What comes out of the day</span>
         </div>
 
-        <!-- D. what comes out: four plates, one baseline -->
-        <div class="hw-outs">
+        <!-- E. the content waterfall.
+             Each output is a real <a> with no href yet: the hrefs land here when the service
+             pages ship, and the data-service attribute is the routing key. -->
+        <div class="hwb-outs">
 
-            <div class="hw-out">
-                <div class="hw-well">
-                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0639bb767199.webp"
-                         alt="Row of conference attendees watching a session at Flutter Vikings 2022, Oslo"
+            <a class="hwb-out hwb-out--photography" data-service="photography">
+                <span class="hwb-out-frame">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp"
+                         alt="Two conference attendees sharing a laugh in the exhibition hall at a tech event in Oslo"
                          width="1024" height="683" loading="lazy" decoding="async">
-                </div>
-                <div class="hw-out-body">
-                    <h3>Photography</h3>
-                    <p>Frames you can put straight into press, decks and your channels.</p>
-                </div>
-            </div>
+                </span>
+                <span class="hwb-out-cap">
+                    <span class="hwb-out-title">Photography</span>
+                    <span class="hwb-out-line">Frames you can put straight into press, decks and your channels.</span>
+                </span>
+            </a>
 
-            <div class="hw-out">
-                <div class="hw-well">
-                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp"
-                         alt="Speaker presenting on stage at Flutter Vikings 2022, Oslo"
-                         width="800" height="534" loading="lazy" decoding="async">
-                </div>
-                <div class="hw-out-body">
-                    <h3>Film</h3>
-                    <p>Video that carries the room to everyone who could not be there.</p>
-                </div>
-            </div>
+            <a class="hwb-out hwb-out--film" data-service="film">
+                <span class="hwb-out-frame">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bfe713fc48b.webp"
+                         alt="A speaker presenting to a seated audience at a corporate conference in Oslo"
+                         width="1024" height="683" loading="lazy" decoding="async">
+                </span>
+                <span class="hwb-out-cap">
+                    <span class="hwb-out-title">Film</span>
+                    <span class="hwb-out-line">Video that carries the room to everyone who could not be there.</span>
+                </span>
+            </a>
 
-            <div class="hw-out">
-                <div class="hw-well">
+            <a class="hwb-out hwb-out--content" data-service="content">
+                <span class="hwb-out-frame">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0695bc767185.webp"
-                         alt="Attendees talking at an exhibitor stand during Flutter Vikings 2022, Oslo"
+                         alt="Attendees talking at an exhibitor stand during a conference in Oslo"
                          width="1024" height="683" loading="lazy" decoding="async">
-                </div>
-                <div class="hw-out-body">
-                    <h3>Content</h3>
-                    <p>Short pieces cut from the same day, shaped for the places you post.</p>
-                </div>
-            </div>
+                </span>
+                <span class="hwb-out-cap">
+                    <span class="hwb-out-title">Content</span>
+                    <span class="hwb-out-line">Short pieces cut from the same day, shaped for where you post.</span>
+                </span>
+            </a>
 
-            <div class="hw-out hw-out--rule">
-                <div class="hw-well hw-well--rule">
-                    <span class="hw-well-label">On a schedule</span>
-                </div>
-                <div class="hw-out-body">
-                    <h3>Distribution</h3>
-                    <p>Your content goes out on a schedule instead of sitting in a folder, and you approve each batch before it does.</p>
-                </div>
-            </div>
+            <a class="hwb-out hwb-out--distribution" data-service="distribution">
+                <span class="hwb-out-title">Distribution</span>
+                <span class="hwb-out-line">Your content keeps going out on a schedule for months after the day.</span>
+            </a>
         </div>
 
-        <!-- E. close -->
-        <div class="hw-close gsap-fade">
-            <div class="hw-close-main">
-                <p class="hw-close-line">Your event ends on the day. Your content carries on without you.</p>
-                <p class="hw-close-invite">Tell us what you are planning and we will map it onto these five steps.</p>
-            </div>
-            <div class="hw-yours">
-                <span class="hw-yours-lead">Your whole part</span>
-                <ul class="hw-chips">
-                    <li>One conversation</li>
-                    <li>Approve the plan</li>
-                    <li>Host your event</li>
-                    <li>Pick your favourites</li>
-                    <li>Approve each batch</li>
-                </ul>
-            </div>
-            <div class="hero-cta-row hw-cta">
+        <!-- F. close -->
+        <div class="hwb-close gsap-fade">
+            <p class="hwb-close-line">Tell us what you are planning and we will map it onto these five stages.</p>
+            <div class="hero-cta-row hwb-cta">
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                 <a href="https://recapmedia.no/contact#calendar"
-                   class="hero-secondary-link hw-cta-ghost"
+                   class="hero-secondary-link hwb-ghost"
                    data-cta="call">Book a free 20-minute call <span class="arrow">&rarr;</span></a>
             </div>
         </div>
@@ -919,87 +1041,138 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
 <script>
 (function () {
-    /* THE one bespoke moment in this section: the hairline leaves the photograph, fans into
-       four, and the four outputs arrive behind it. Everything else uses main-v2's .gsap-fade.
+    'use strict';
+    /* THE STAGE MACHINE. Interaction, not motion: it runs identically for
+       prefers-reduced-motion users (switching a stage is not an animation). The only motion in
+       the section is a CSS opacity crossfade, and the reduced-motion media query above collapses
+       its duration to nothing without changing a single visibility rule.
 
-       Rules honoured:
-         - reduced motion: early return as the FIRST statement, so the static render IS the
-           finished state (nothing is ever hidden in CSS).
-         - hidden state set in JS only: no-JS / crawlers / GSAP-blocked see the whole section.
-         - once-fired ScrollTrigger, no scrub, no pinning (the two things that break in Safari,
-           where main-v2 swaps Lenis for native scroll).
-       GSAP loads late (bottom of page / GHL Body Tracking Code), so poll for it like the other
-       page-local scripts. Page-local: js/main-v2.js (shared CDN file) stays untouched. */
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+       No scroll listener, no IntersectionObserver stage advance, no GSAP: the section is driven
+       by clicks and keys only, so it cannot swap text mid-read or depend on page scroll.
 
-    var section = document.querySelector('#how-it-works');
-    if (!section) return;
+       .hwb--js is the ONE class that is allowed to hide anything, and only JS ever adds it, so a
+       no-JS render (or a crawler) sees all five stages, all five captions and every output. */
 
-    var tries = 0;
-    (function waitGSAP() {
-        if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
-            if (tries++ < 120) { setTimeout(waitGSAP, 50); }
-            return;
-        }
+    var sec = document.getElementById('how-it-works');
+    if (!sec) return;
 
-        var turn = section.querySelector('.hw-turn');
-        var outsEl = section.querySelector('.hw-outs');
-        var outs = gsap.utils.toArray(section.querySelectorAll('.hw-out'));
-        if (!turn || !outsEl || !outs.length) return;
+    var steps  = Array.prototype.slice.call(sec.querySelectorAll('[data-step]'));
+    var panels = Array.prototype.slice.call(sec.querySelectorAll('[data-panel]'));
+    var shots  = Array.prototype.slice.call(sec.querySelectorAll('[data-shot]'));
+    var notes  = Array.prototype.slice.call(sec.querySelectorAll('[data-note]'));
+    var index  = document.getElementById('hwb-index');
+    if (!steps.length || !panels.length) return;
 
-        var isNarrow = window.matchMedia('(max-width: 940px)').matches;
-        var tl = gsap.timeline({ paused: true });
+    var COUNT = steps.length;
+    var current = 1;
 
-        if (!isNarrow) {
-            var stem = section.querySelector('.hw-stem');
-            if (stem) {
-                gsap.set(stem, { scaleY: 0, transformOrigin: 'top center' });
-                tl.to(stem, { scaleY: 1, duration: 0.3, ease: 'power1.out' });
+    sec.classList.add('hwb--js');
+
+    /* Tab semantics are added by JS, so the no-JS document is not lying about roles, and they
+       are applied ONLY at the widths where the strip actually exists. Below 769px the strip is
+       gone and all five stages are visible, so tab/tabpanel roles (and five extra tab stops)
+       would describe an interface that is not there. Kept in sync on viewport change. */
+    var wide = window.matchMedia('(min-width: 769px)');
+
+    function applyRoles(on) {
+        if (index) {
+            if (on) {
+                index.setAttribute('role', 'tablist');
+                index.setAttribute('aria-label', 'How it works: five stages');
+            } else {
+                index.removeAttribute('role');
+                index.removeAttribute('aria-label');
             }
-            /* dash lengths come from getTotalLength(), never from CSS, so a page without JS
-               shows fully drawn lines */
-            var drawn = [];
-            gsap.utils.toArray(section.querySelectorAll('.hw-delta path')).forEach(function (p) {
-                var len = 0;
-                try { len = p.getTotalLength(); } catch (e) { len = 0; }
-                if (!len) return;
-                gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
-                drawn.push(p);
-            });
-            var trunk = drawn.filter(function (p) { return p.classList.contains('hw-trunk'); });
-            var arms = drawn.filter(function (p) { return p.classList.contains('hw-arm'); });
-            if (trunk.length) { tl.to(trunk, { strokeDashoffset: 0, duration: 0.28, ease: 'none' }, '-=0.05'); }
-            if (arms.length) { tl.to(arms, { strokeDashoffset: 0, duration: 0.85, ease: 'power2.out', stagger: 0.07 }, '>-0.05'); }
-            gsap.set(outs, { opacity: 0, y: 22 });
-            tl.to(outs, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1 }, '-=0.55');
-        } else {
-            /* stacked mode: the rail draws down and the plates land on it, so the
-               transformation beat survives the stack */
-            gsap.set(outsEl, { '--hw-rail': 0 });
-            tl.to(outsEl, { '--hw-rail': 1, duration: 0.7, ease: 'power1.out' });
-            gsap.set(outs, { opacity: 0, y: 22 });
-            tl.to(outs, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1 }, '-=0.45');
         }
-
-        ScrollTrigger.create({
-            trigger: turn,
-            start: 'top 78%',
-            once: true,
-            onEnter: function () { tl.play(); }
+        steps.forEach(function (b, i) {
+            if (on) {
+                b.setAttribute('role', 'tab');
+                b.setAttribute('aria-controls', 'hwb-panel-' + (i + 1));
+                b.setAttribute('tabindex', (i + 1) === current ? '0' : '-1');
+                b.setAttribute('aria-selected', (i + 1) === current ? 'true' : 'false');
+            } else {
+                b.removeAttribute('role');
+                b.removeAttribute('aria-controls');
+                b.removeAttribute('aria-selected');
+                b.removeAttribute('tabindex');
+            }
         });
-
-        /* safety net: restored scroll positions, in-page anchors and very tall viewports can
-           leave the trigger unfired with the output row already on screen */
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                if (tl.progress() === 0 && turn.getBoundingClientRect().top < window.innerHeight) {
-                    tl.play();
-                }
-            }, 800);
+        panels.forEach(function (p, i) {
+            if (on) {
+                p.setAttribute('role', 'tabpanel');
+                p.setAttribute('aria-labelledby', 'hwb-step-' + (i + 1));
+                p.setAttribute('tabindex', '0');
+            } else {
+                p.removeAttribute('role');
+                p.removeAttribute('aria-labelledby');
+                p.removeAttribute('tabindex');
+            }
         });
+    }
+    applyRoles(wide.matches);
+    if (wide.addEventListener) { wide.addEventListener('change', function (e) { applyRoles(e.matches); }); }
+    else if (wide.addListener) { wide.addListener(function (e) { applyRoles(e.matches); }); }
 
-        ScrollTrigger.refresh();
-    })();
+    function toggle(list, n) {
+        list.forEach(function (el, i) { el.classList.toggle('is-active', (i + 1) === n); });
+    }
+
+    function setStage(n) {
+        n = Math.max(1, Math.min(COUNT, n));
+        if (n === current) return;
+        current = n;
+        sec.setAttribute('data-stage', String(n));
+        steps.forEach(function (b, i) {
+            var on = (i + 1) === n;
+            b.classList.toggle('is-active', on);
+            b.classList.toggle('is-done', (i + 1) < n);
+            if (b.getAttribute('role') === 'tab') {
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+                b.setAttribute('tabindex', on ? '0' : '-1');
+            }
+        });
+        toggle(panels, n);
+        toggle(shots, n);
+        toggle(notes, n);
+    }
+
+    steps.forEach(function (b) {
+        b.addEventListener('click', function () {
+            setStage(parseInt(b.getAttribute('data-step'), 10));
+        });
+    });
+
+    if (index) {
+        index.addEventListener('keydown', function (e) {
+            var next = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = current + 1;
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = current - 1;
+            else if (e.key === 'Home') next = 1;
+            else if (e.key === 'End') next = COUNT;
+            if (next === null) return;
+            e.preventDefault();
+            next = Math.max(1, Math.min(COUNT, next));
+            setStage(next);
+            var b = steps[next - 1];
+            if (b && b.focus) b.focus();
+        });
+    }
+
+    /* screenshot / deep-link helper: ?stage=4 or #hiw-stage-4 */
+    var m = /[?&]stage=([1-5])/.exec(window.location.search) ||
+            /#hiw-stage-([1-5])/.exec(window.location.hash);
+    if (m) setStage(parseInt(m[1], 10));
+
+    /* Every stage photograph is fetched after first paint, so switching a stage never flashes an
+       empty frame. loading="lazy" stays in the markup for the initial page cost; flipping it to
+       eager after load is what actually starts the fetch for the four off-screen crops. */
+    function preload() {
+        shots.forEach(function (img) {
+            if (!img.complete) img.loading = 'eager';
+        });
+    }
+    if (document.readyState === 'complete') { setTimeout(preload, 400); }
+    else { window.addEventListener('load', function () { setTimeout(preload, 400); }); }
 })();
 </script>
 
