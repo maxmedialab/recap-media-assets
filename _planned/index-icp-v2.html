@@ -555,6 +555,36 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hwp-beat:not(:last-child)::before { left: 11px; top: 19px; }
         .hwp-slug { min-width: 23px; height: 16px; font-size: 0.62rem; }
     }
+
+    /* ===== R11.5: sequential emphasis ==============================================
+       Max: "Display all the stages at once and move through them slowly with scrolling."
+       All four beats stay fully visible and fully readable at every scroll position. The
+       ONLY thing scroll changes is emphasis: a beat that has not been reached yet sits at
+       0.6 opacity (legible, just quieter) and its slug is stone rather than ember; once
+       reached it takes full emphasis and the rail segment under it warms.
+
+       The dim state exists ONLY under .hwp--seq, a class the page-local script adds. With
+       JS off, with prefers-reduced-motion on, or in the moments before the script runs,
+       every beat is at FULL emphasis: the dimming is the enhancement, never the default,
+       and the section is never gated. Once a beat lights it stays lit, so scrolling back
+       up never re-dims the story and a fast scroller reads all four either way. =========== */
+    .hwp--seq .hwp-line,
+    .hwp--seq .hwp-when,
+    .hwp--seq .hwp-slug { transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.55s ease, background-color 0.55s ease, border-color 0.55s ease; }
+    .hwp--seq .hwp-beat::before { transition: opacity 0.55s ease; }
+
+    .hwp--seq .hwp-beat:not(.is-lit) .hwp-line { opacity: 0.6; }
+    .hwp--seq .hwp-beat:not(.is-lit) .hwp-when { opacity: 0.62; }
+    /* the slug keeps its solid background (it masks the rail line running behind it), so it
+       dims by colour rather than by opacity */
+    .hwp--seq .hwp-beat:not(.is-lit) .hwp-slug { border-color: rgba(255, 255, 255, 0.11); color: rgba(155, 151, 144, 0.62); }
+    .hwp--seq .hwp-beat:not(.is-lit)::before { opacity: 0.38; }
+
+    /* beat 04 is the turn: before it is reached it reads as stone like the rest, and it
+       arrives at exactly the ember treatment it already had */
+    .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-slug { background: var(--color-onyx); border-color: rgba(255, 255, 255, 0.11); color: rgba(155, 151, 144, 0.62); }
+    .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-when { color: var(--color-stone); }
+    .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-line { color: var(--color-warm-grey); }
 </style>
 
 <section class="section section--lg section-onyx" id="after-the-event">
@@ -599,26 +629,100 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     </div>
 </section>
 
+<script>
+(function () {
+    'use strict';
+    /* R11.5: SEQUENTIAL EMPHASIS FOR THE LIFECYCLE BEATS.
+       The only script in this section. It adds one class to the block (.hwp--seq, which turns
+       the dim state on) and .is-lit to each beat as the section travels up the viewport. It
+       never hides, moves or reorders anything: with JS disabled the four beats render at full
+       emphasis, which is also where reduced-motion users start and stay. Progress is mapped
+       from the section's own position rather than from per-beat observers, so the four steps
+       spread across the whole time the section is on screen instead of firing within 200px.
+       No rAF loop, no scrub: one passive scroll listener that writes a class at most four
+       times, then never again. */
+    var sec = document.getElementById('after-the-event');
+    if (!sec) return;
+    var block = sec.querySelector('.hwp');
+    var beats = Array.prototype.slice.call(sec.querySelectorAll('.hwp-beat'));
+    if (!block || !beats.length) return;
+
+    /* Reduced motion: nothing dims at all. Full emphasis, statically, exactly like no-JS. */
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (rm && rm.matches) return;
+
+    block.classList.add('hwp--seq');
+
+    var lit = 0, ticking = false;
+
+    function light(n) {
+        if (n <= lit) return;               /* monotonic: a lit beat never goes back to dim */
+        for (var i = lit; i < n; i++) beats[i].classList.add('is-lit');
+        lit = n;
+        if (lit >= beats.length) {          /* the story is fully told; stop listening */
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        }
+    }
+
+    /* p = 0 when the section's top sits 78% down the viewport, p = 1 when its bottom has
+       risen to 30% down. At 1280x800 that is roughly 1030px of scroll for four beats, so
+       each holds for about 260px. */
+    function update() {
+        var r = sec.getBoundingClientRect();
+        var vh = window.innerHeight || 800;
+        var span = 0.48 * vh + r.height;
+        if (span <= 0) return;
+        var p = (0.78 * vh - r.top) / span;
+        if (p < 0) return;                  /* not reached yet: everything stays dim */
+        if (p > 1) p = 1;
+        light(Math.min(beats.length, Math.floor(p * beats.length) + 1));
+    }
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () { ticking = false; update(); });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+})();
+</script>
+
 <!-- ROUND-11 REBUILD (2026-08-19): HOW IT WORKS — a scroll-driven guided journey.
      Replaces the round-10 click-tab stage machine (.hwb-) and the separate content waterfall,
      and their two page-local blocks. Max's brief: "Scroll position = progression through the
      story. NOT another grid, card layout, accordion, click-tab, or static timeline."
 
+     R11.5 (2026-08-20): the stages now CYCLE instead of stacking. Max: "each stage should have
+     room to breathe, and as the person scrolls, each stage should cycle from one to the other.
+     I don't want all the stages displayed at the same time." Nothing about the design language,
+     copy, imagery, nav or mechanics changed; the stage column became a pinned scene, and stage
+     05 got its "Optional" marker back (Run is a separate engagement: claim accuracy).
+
      WHAT IT IS
-       LEFT  a sticky column: the chapter chip, the promise, and the five stage names. The active
-             stage updates as you scroll. Nothing else moves.
-       RIGHT the five stages as normal-flow content blocks, each with its folio number, title,
-             time marker, one short explanation, YOUR PART, and a supporting frame.
+       LEFT  the chapter chip, the promise, and the five stage names. The active stage updates
+             as you scroll. Nothing else moves.
+       RIGHT the five stages, each with its folio number, title, time marker, one short
+             explanation, YOUR PART, and a supporting frame. On a desktop viewport they share
+             one pinned panel and swap as scroll progresses; below that, and with JS off, they
+             are normal-flow blocks stacked top to bottom exactly as in r11.
        THEN  "The day ends. The content keeps going." + a compact strip of what comes out of the
              day + the two CTAs.
 
      RULES HONOURED
-       - The pin is CSS position:sticky. No JS pinning, no GSAP pin, no scrub, no scroll-jacking:
-         native scrolling everywhere, Safari included. The section cannot be left mid-animation.
-       - The ONLY JS is an IntersectionObserver that adds .is-active / .is-done to the left-hand
-         stage names. It changes nothing that carries information: with JS off (or the observer
-         unsupported) the section reads top to bottom complete and the nav simply does not
-         highlight. Nothing is display:none-d by script, ever.
+       - The pin is CSS position:sticky inside a tall wrapper. No JS pinning, no GSAP pin, no
+         scrub, no scroll-jacking: native scrolling everywhere, Safari included, so the page can
+         never be trapped or rubber-banded on the way in or out.
+       - The JS adds .is-active / .is-done to the left-hand stage names and, on a viewport that
+         can hold the scene, .hws--cycle to the section plus .is-on to one stage. It changes
+         nothing that carries information: with JS off the five stages render stacked and the
+         section reads top to bottom complete, the nav simply not highlighting. All five stages
+         are in the DOM in source order at all times; nothing is display:none-d by script, ever.
+       - The cycling class is applied only at >= 960 x 640 and removed again on resize below it,
+         so a phone keeps the r11 stacked rail untouched.
        - Ancestors of the sticky element must not carry overflow:hidden (it would create a
          scrollport and kill the stick), so .hws deliberately has NO overflow rule, and the
          section's own frames clip locally instead.
@@ -692,6 +796,11 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hws-meta { font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-stone); }
 
     .hws-h { font-size: clamp(1.45rem, 2.4vw, 1.95rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1 !important; margin: 0 0 10px; }
+    /* Stage 05 is a separate engagement, not part of the event-day scope: the marker is a
+       claim-accuracy fix, restored from round 10 in its round-10 typographic form (a small
+       caps tag beside the title, never a pill). The h3 carries style.css's !important
+       font-family/colour; the span sets its own, which is more specific than inheritance. */
+    .hws-opt { font-family: var(--font-body); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); margin-left: 6px; vertical-align: 5px; white-space: nowrap; }
     .hws-say { font-size: clamp(0.95rem, 1.3vw, 1.03rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 16px; max-width: 46ch; }
 
     /* YOUR PART: a ruled entry, not a tinted card */
@@ -786,7 +895,73 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hws-ghost { width: 100%; justify-content: center !important; }
     }
 
-    /* Motion only. Nothing here changes what is visible or what is reachable. */
+    /* ===== R11.5: THE PINNED STAGE SCENE ===========================================
+       Max: "each stage should have room to breathe, and as the person scrolls, each stage
+       should cycle from one to the other. I don't want all the stages displayed at the same
+       time."
+
+       HOW IT IS BUILT
+         .hws-scene   a tall wrapper: five segments of scroll room plus one viewport.
+         .hws-sticky  a position:sticky viewport inside it, holding the existing left nav and
+                      the stage deck. It is CSS sticky and nothing else: no JS pinning, no
+                      GSAP pin, no scrub, no scroll-jacking. Native scroll always wins, so
+                      entering and leaving the section cannot trap or rubber-band the page.
+         .hws-stage   all five stay in the DOM in source order and are stacked in one place;
+                      script marks exactly one .is-on and the rest crossfade out.
+
+       EVERYTHING HERE IS INERT UNTIL SCRIPT ADDS .hws--cycle, and script only adds it at
+       >= 960 x 640. Without it (no JS, small viewport, phone) the section is exactly the r11
+       stacked flow: five stages top to bottom, nothing hidden, nothing to click. ========== */
+    @media (min-width: 960px) {
+        .hws--cycle {
+            --hws-top: clamp(88px, 11vh, 116px);   /* matches the r11 rail's own sticky offset */
+            --hws-seg: 88vh;                       /* scroll room per stage */
+            --hws-vp: calc(100vh - var(--hws-top) - 26px);
+        }
+
+        .hws--cycle .hws-scene { height: calc(var(--hws-seg) * 5 + var(--hws-vp)); }
+        .hws--cycle .hws-sticky { position: -webkit-sticky; position: sticky; top: var(--hws-top); height: var(--hws-vp); }
+        .hws--cycle .hws-grid { height: 100%; align-items: center; }
+
+        /* the rail rides inside the pinned viewport, so it no longer needs to stick itself */
+        .hws--cycle .hws-rail { position: static; top: auto; }
+
+        /* Deliberately opacity-only: no display:none, no visibility:hidden, no aria-hidden.
+           A stage that is not on screen is still in the accessibility tree and still in the
+           page text, so a screen reader and a crawler both get all five in source order. The
+           stages carry no focusable elements, so nothing hides in the tab order either. */
+        .hws--cycle .hws-stages { position: relative; height: 100%; }
+        /* Top-anchored (not self-centered): every stage's head lands on the same y, so
+           unequal stage heights can't jog the composition at a swap; matches the rail's
+           align-self:start. Fade is SEQUENCED, not simultaneous: outgoing drops fast,
+           incoming arrives after a beat — kills the double-exposure ghosting. */
+        .hws--cycle .hws-stage {
+            position: absolute; left: 0; right: 0; top: 0; transform: none;
+            margin-top: 0 !important;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.16s ease-out;
+        }
+        .hws--cycle .hws-stage.is-on {
+            opacity: 1; pointer-events: auto;
+            transition: opacity 0.28s ease 0.12s;
+        }
+
+        /* room to breathe: the stage now owns a whole viewport instead of a 554px block.
+           The frame grows (2.15:1 -> 1.95:1) and is then capped twice: 42vh keeps it from
+           dominating a tall screen, and 100vh - 410px keeps the whole stage inside the pinned
+           viewport on a short one. MEASURED at 1280x640 / 700 / 800, 1024x800, 1440x900 and
+           1920x1080: the tallest stage clears the sticky height at every one. */
+        .hws--cycle .hws-stage-head { margin-bottom: 15px; }
+        .hws--cycle .hws-h { margin-bottom: 13px; }
+        .hws--cycle .hws-say { margin-bottom: 22px; }
+        .hws--cycle .hws-part { margin-bottom: clamp(24px, 3vw, 34px); padding-top: 13px; }
+        .hws--cycle .hws-frame { aspect-ratio: 1.95 / 1; max-height: min(42vh, calc(100vh - 410px)); }
+        .hws--cycle .hws-cap { margin-top: 13px; }
+    }
+
+    /* Motion only. Nothing here changes what is visible or what is reachable. Under reduced
+       motion the scene still cycles (which stage you are on is state, not motion) and the
+       swaps simply happen instantly. */
     @media (prefers-reduced-motion: reduce) {
         .hws *, .hws *::before, .hws *::after { transition-duration: 0.001ms !important; transition-delay: 0s !important; animation: none !important; }
         .hws-stage { scroll-behavior: auto; }
@@ -795,6 +970,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
 <section class="section section--lg section-dark hws" id="how-it-works">
     <div class="container">
+
+      <!-- R11.5: .hws-scene is the tall scroll room and .hws-sticky the pinned viewport.
+           Both are plain unstyled <div>s until script adds .hws--cycle, so with JS off they
+           collapse to nothing and .hws-grid lays out exactly as it did in r11. -->
+      <div class="hws-scene">
+        <div class="hws-sticky">
 
         <div class="hws-grid">
 
@@ -894,7 +1075,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                         <span class="hws-slug" aria-hidden="true">05</span>
                         <span class="hws-meta">Stage 05 / 05 &middot; Months after</span>
                     </div>
-                    <h3 class="hws-h">Run</h3>
+                    <h3 class="hws-h">Run <span class="hws-opt">Optional</span></h3>
                     <p class="hws-say">The event continues working after the room is empty.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve each batch.</span></p>
                     <figure class="hws-plate">
@@ -909,6 +1090,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
             </div>
         </div>
+
+        </div>
+      </div>
 
         <!-- C. the close -->
         <div class="hws-close">
@@ -956,20 +1140,36 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 (function () {
     'use strict';
     /* THE ONLY SCRIPT IN THIS SECTION.
-       It highlights the stage you are reading in the sticky column. That is all it does: it adds
-       and removes .is-active / .is-done on five links and writes data-active on the nav. It never
-       hides, moves, pins or scrolls anything, so with JS disabled the section is complete and
-       correct, only unhighlighted. No scroll listener, no rAF loop, no pinning, no scrub. */
+       It does two things and nothing else:
+         1. keeps the left nav's .is-active / .is-done in step with the stage being read;
+         2. on a viewport big enough to hold it (>= 960 x 640), turns the stage column into a
+            pinned scene by adding .hws--cycle to the section and marking exactly one stage
+            .is-on as scroll progresses.
+
+       WHAT IT DOES NOT DO: it never pins, scrolls, scrubs or jacks anything. The pin is CSS
+       position:sticky inside a tall wrapper, so native scroll always wins and the section can
+       never trap or rubber-band the page. All five stages stay in the DOM in source order at
+       all times, so crawlers and JS-disabled visitors read the whole thing stacked, exactly as
+       in r11. The class is removed again the moment the viewport gets too small. */
 
     var nav = document.getElementById('hws-nav');
     var sec = document.getElementById('how-it-works');
-    if (!nav || !sec || !('IntersectionObserver' in window)) return;
+    if (!nav || !sec) return;
 
     var items  = Array.prototype.slice.call(nav.querySelectorAll('[data-nav]'));
     var stages = Array.prototype.slice.call(sec.querySelectorAll('.hws-stage'));
-    if (items.length !== stages.length || !stages.length) return;
+    var scene  = sec.querySelector('.hws-scene');
+    var sticky = sec.querySelector('.hws-sticky');
+    if (items.length !== stages.length || !stages.length || !scene || !sticky) return;
+
+    var COUNT = stages.length;              /* 5 */
+    var MIN_W = 960, MIN_H = 640;
+    var EPS = 0.03;                         /* hysteresis, in segments (~21px at 1280x800) */
 
     var current = 0;
+    var cycling = false;
+    var ticking = false;
+    var travel = 0, seg = 0, topPx = 0;
 
     function paint(n) {
         if (n === current) return;
@@ -981,38 +1181,128 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             if ((i + 1) === n) { a.setAttribute('aria-current', 'true'); }
             else { a.removeAttribute('aria-current'); }
         });
+        stages.forEach(function (s, i) { s.classList.toggle('is-on', (i + 1) === n); });
     }
 
-    /* A thin reading band across the upper-middle of the viewport. Whichever stage is crossing it
+    /* ---------- stacked mode: the r11 observer, unchanged ----------
+       A thin reading band across the upper-middle of the viewport. Whichever stage is crossing it
        is the one being read; the topmost wins when two overlap. When the band falls in the gap
        between two stages nothing intersects, and the last stage stays lit rather than blanking. */
-    var live = Object.create(null);
+    var io = null;
+    if ('IntersectionObserver' in window) {
+        var live = Object.create(null);
+        io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                var n = parseInt(e.target.getAttribute('data-stage'), 10);
+                if (e.isIntersecting) { live[n] = 1; } else { delete live[n]; }
+            });
+            if (cycling) return;            /* the scene owns the state while pinned */
+            var keys = Object.keys(live);
+            if (!keys.length) return;
+            var lowest = keys.reduce(function (a, b) { return Math.min(a, +b); }, Infinity);
+            paint(lowest);
+        }, { rootMargin: '-32% 0px -56% 0px', threshold: 0 });
+        stages.forEach(function (s) { io.observe(s); });
+    }
 
-    var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-            var n = parseInt(e.target.getAttribute('data-stage'), 10);
-            if (e.isIntersecting) { live[n] = 1; } else { delete live[n]; }
-        });
-        var keys = Object.keys(live);
-        if (!keys.length) return;
-        var lowest = keys.reduce(function (a, b) { return Math.min(a, +b); }, Infinity);
-        paint(lowest);
-    }, { rootMargin: '-32% 0px -56% 0px', threshold: 0 });
+    /* ---------- pinned mode: scroll position -> stage index ----------
+       The scene's own rect is the clock. p = 0 the frame the sticky viewport locks, p = 1 the
+       frame it releases; the five segments divide that travel evenly. Reading the rect each
+       frame means no cached document offsets to go stale when images above finish loading. */
+    function remeasure() {
+        topPx = parseFloat(getComputedStyle(sticky).top) || 0;
+        travel = Math.max(1, scene.offsetHeight - sticky.offsetHeight);
+        seg = travel / COUNT;
+    }
 
-    stages.forEach(function (s) { io.observe(s); });
+    function update() {
+        var p = (topPx - scene.getBoundingClientRect().top) / travel;
+        if (p < 0) p = 0; else if (p > 1) p = 1;
+        var raw = p * COUNT;                /* stage n owns raw in [n-1, n) */
+        var n = current || 1;
+        /* hysteresis in both directions, so a stage never flickers at a boundary, and a while
+           loop rather than a jump so a fast flick still steps through every state in order */
+        while (n < COUNT && raw > n + EPS) n++;
+        while (n > 1 && raw < (n - 1) - EPS) n--;
+        paint(n);
+    }
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () { ticking = false; update(); });
+    }
+
+    function fits() { return window.innerWidth >= MIN_W && window.innerHeight >= MIN_H; }
+
+    function enable() {
+        if (cycling) return;
+        cycling = true;
+        sec.classList.add('hws--cycle');
+        remeasure();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+    }
+
+    function disable() {
+        if (!cycling) return;
+        cycling = false;
+        window.removeEventListener('scroll', onScroll);
+        sec.classList.remove('hws--cycle');
+        stages.forEach(function (s) { s.classList.remove('is-on'); });
+        /* We just stripped .is-on from every stage, so the DOM no longer matches `current`.
+           Leaving it set made paint() short-circuit on its identity guard when the viewport
+           came back (resize, fullscreen toggle, external display, tablet rotation) and the same
+           stage index was recomputed: the section went back into .hws--cycle with no stage lit,
+           i.e. an empty stage column that only ~575px of scrolling could recover. Zero is not a
+           valid stage, so the next paint() always repaints; update() reads `current || 1` and
+           re-derives the index from the scene rect, so nothing else depends on the old value. */
+        current = 0;
+    }
+
+    function sync() { if (fits()) { enable(); remeasure(); update(); } else { disable(); } }
+
     paint(1);
+    sync();
+    window.addEventListener('load', sync);
 
-    /* The stage names are ordinary in-page anchors, and scrolling is never required to be
+    var rt = 0;
+    window.addEventListener('resize', function () {
+        window.clearTimeout(rt);
+        rt = window.setTimeout(sync, 150);
+    });
+
+    /* ---------- the nav anchors ----------
+       In stacked mode these are ordinary in-page anchors and scrolling is never required to be
        programmatic: with JS off (no Lenis either) the browser jumps natively and correctly.
        With JS on, Lenis is driving. MEASURED (CDP, 2026-08-19): Lenis keeps its own target
        scroll and writes it back every frame, which swallowed an UPWARD native hash jump while
-       downward ones landed. So when Lenis is actually driving, hand it the target; in every
-       other case this handler returns and the browser behaves exactly as before. */
+       downward ones landed. So when Lenis is actually driving, hand it the target.
+
+       In pinned mode the stage is no longer at a document offset of its own: its "position" is
+       a scroll segment inside the scene, so the target is recomputed from the scene's rect.
+       Landing 40% into the segment leaves the stage plenty of hold in both directions and puts
+       the jump unambiguously inside the segment rather than on its boundary. */
     items.forEach(function (a) {
         a.addEventListener('click', function (e) {
             var L = window.__lenis;
-            if (!L || typeof L.scrollTo !== 'function') return;
+            var driving = L && typeof L.scrollTo === 'function';
             var href = a.getAttribute('href');
+
+            if (cycling) {
+                var n = parseInt(a.getAttribute('data-nav'), 10);
+                if (!n) return;
+                e.preventDefault();
+                remeasure();
+                var y = Math.max(0, Math.round(
+                    window.pageYOffset + scene.getBoundingClientRect().top - topPx + seg * (n - 1) + seg * 0.4
+                ));
+                if (driving) { L.scrollTo(y); } else { window.scrollTo(0, y); }
+                if (history.replaceState) history.replaceState(null, '', href);
+                return;
+            }
+
+            if (!driving) return;
             var t = href && href.charAt(0) === '#' ? document.getElementById(href.slice(1)) : null;
             if (!t) return;
             e.preventDefault();
