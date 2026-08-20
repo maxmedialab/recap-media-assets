@@ -5,15 +5,13 @@
 
 | File | Target URL | Lang | Status | hreflang pair | Notes |
 |---|---|---|---|---|---|
-| `index-icp-v2.html` | `/` (replaces live homepage) | EN | needs-Max-review (**reworked live through round 8, 2026-07-15** — 8-section funnel: UVP hero, empathy problem section, workload-ledger "how it works", testimonials above Selected work, mobile overline fix; supersedes the round-3 11-section state. Current state + preview/verify recipe: `STATE.md`. Screenshots: preview-shots/icp-v2-r8-*.png) | → `no/index-no.html` (planned) | Copy doc: `projects/recap-website-cleanup/icp-homepage-copy-v2.md`; non-profit A+B + "Oslo and beyond" applied |
+| `index-icp-v2.html` | `/` (replaces live homepage) | EN | needs-Max-review (**reworked live through round 8, 2026-07-15** — 8-section funnel: UVP hero, empathy problem section, workload-ledger "how it works", testimonials above Selected work, mobile overline fix; supersedes the round-3 11-section state. Current state + preview/verify recipe: `STATE.md`. Screenshots: preview-shots/icp-v2-r8-*.png) | — (NO deferred) | Copy doc: `projects/recap-website-cleanup/icp-homepage-copy-v2.md`; non-profit A+B + "Oslo and beyond" applied |
 | `services/conference-coverage-oslo.html` | `/services/conference-coverage-oslo` | EN | needs-Max-review | — | Plan P4 |
 | `services/corporate-video-oslo.html` | `/services/corporate-video-oslo` | EN | needs-Max-review | — | Plan P5 |
 | `services/headshots-oslo.html` | `/services/headshots-oslo` | EN | needs-Max-review | — | Plan P6 |
-| `no/index-no.html` | `/no/` | NO | needs-Max-review | → `index-icp-v2.html` | Optional-to-deploy (Max: "perhaps") |
-| `no/tjenester/eventvideo-oslo.html` | `/no/tjenester/eventvideo-oslo` | NO | needs-Max-review | — | Plan P1 — native copy, not translation |
-| `no/tjenester/eventfotograf-oslo.html` | `/no/tjenester/eventfotograf-oslo` | NO | needs-Max-review | — | Plan P2 — absorbs all conference terms |
-| `no/guider/pris-eventfoto-video-oslo.html` | `/no/guider/pris-eventfoto-video-oslo` | NO | needs-Max-review | — | Plan P3 — `[MAX: price]` placeholders only |
 | `preview-index.html` | (never deployed) | — | built | — | One-tab morning review |
+
+**NO cluster DEFERRED (Max, 2026-08-20):** no Norwegian pages deploy for now — the four `_planned/no/` drafts (P1 eventvideo, P2 eventfotograf, P3 prisguide, optional NO homepage) were deleted from this folder to cut clutter. They'll be **rebuilt fresh** once the final shape of each EN page is done and published, so the July drafts weren't worth carrying. Recover if ever needed: `git show 680c3f4:_planned/no/<path>`. The §4 research verdicts in `site-restructure-plan.md` stay valid for the rebuild.
 
 **Pickup state (FINAL, 2026-07-09 ~13:45): brief §6 fully executed — nothing queued.**
 - 6.1 scannability fixes: all 8 pages pass (homepage + 7 others, committed).
