@@ -916,11 +916,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hws--cycle {
             --hws-top: clamp(88px, 11vh, 116px);   /* matches the r11 rail's own sticky offset */
             --hws-seg: 88vh;                       /* scroll room per stage */
-            --hws-vp: calc(100vh - var(--hws-top) - 26px);
+            /* Cap the pinned viewport at 880px: on very tall windows the stage content
+               (~700px) can't fill 100vh, and an uncapped block pools the slack below the
+               top-anchored stage as dead space (Max's 2026-08-20 report). Capped + centered
+               (see .hws-sticky top), tall viewports read cinematic instead of empty. */
+            --hws-vp: min(calc(100vh - var(--hws-top) - 26px), 880px);
         }
 
         .hws--cycle .hws-scene { height: calc(var(--hws-seg) * 5 + var(--hws-vp)); }
-        .hws--cycle .hws-sticky { position: -webkit-sticky; position: sticky; top: var(--hws-top); height: var(--hws-vp); }
+        .hws--cycle .hws-sticky { position: -webkit-sticky; position: sticky; top: max(var(--hws-top), calc((100vh - var(--hws-vp)) / 2)); height: var(--hws-vp); }
         .hws--cycle .hws-grid { height: 100%; align-items: center; }
 
         /* the rail rides inside the pinned viewport, so it no longer needs to stick itself */
