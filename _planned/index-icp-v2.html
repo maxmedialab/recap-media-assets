@@ -500,30 +500,187 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      ART DIRECTION
      Same folio language as How It Works: rectangular monospace slugs on a hairline that warms
      from stone to ember as it descends, monospace time markers in a fixed margin column, and a
-     single quiet establishing frame holding the right edge. -->
+     single quiet establishing frame closing the section.
+     (R12 corrected this line: the frame used to sit in a right-hand column beside the beats, so
+     it was described as "holding the right edge". Since the two sections were put on one shared
+     grid it is a full-width plate in the MAIN column, under the four beats, on the same left
+     edge as every stage frame in How It Works — see CONTRACT §1 below.) -->
 <style>
+    /* ==============================================================================================
+       R12 LAYOUT CONTRACT (2026-08-20) — the shared grid for #after-the-event AND #how-it-works.
+
+       WHY IT EXISTS
+       Both sections were built with their own column split, their own gutter and their own ad-hoc
+       margins. MEASURED at 1280x800 before this block existed: the problem section's sentences
+       started at x=298.7 while the how-it-works stage text started at x=500.5 (201.8px apart), the
+       two gutters were 51.2px and 64px, and the right column's first line sat 7.0px above the left
+       column's. Read one after the other, the two sections did not look like one page.
+
+       THE CONTRACT. Every LAYOUT rule in both sections is written in these tokens: column
+       positions, block-to-block spacing, the vertical rhythm, the counter box and the spines
+       hung off it. Nothing in that list is a one-off pixel margin.
+       WHAT IS STILL BARE PIXELS, and deliberately so (R13 correction — the r12 wording claimed
+       more than the file delivered): everything BELOW the scale's smallest step. Hairlines and
+       their insets, the registration marks, the two sub-line nudges in the caption, the small-caps
+       tag's offsets, and the button's own padding are type detail, not grid. They are listed here
+       rather than tokenised because a token implies "reuse me", and reusing any of them would be
+       wrong. Every one is commented at the rule where it appears; if a bare pixel value below has
+       no comment, that is a bug in this contract.
+
+       1. THE COLUMN GRID — one two-column split, page-wide.
+              | --g-rail | --g-gap | the main column (1fr) |
+          --g-rail is a FIXED rail width and --g-gap is THE gutter; both sections use the same two
+          values, so every left edge lines up down the page:
+            · the rail's left edge  = the counter/slug column  (nav counters, beat slugs)
+            · the rail's inner edge = the label column          (nav names, beat kickers)
+            · the main column's left edge = ALL running text and every image frame
+          In #how-it-works the rail holds the chapter mark, the promise and the five stage names,
+          and the main column holds the stage panel. In #after-the-event the SAME rail holds each
+          beat's slug + time marker, and the SAME main column holds each beat's sentence and the
+          establishing frame. That is why the two sections now read as one system.
+
+       2. THE SPACING SCALE — five steps, nothing between them. --g-s1/--g-s2 reuse the site's
+          own --space-* so this scale is a subset of the site's, not a competing one.
+            --g-s0  18px            part -> part of ONE component (a line and its rule, a line
+                                    and its button row). Deliberately below a band step.
+            --g-s1  16px            within a band          (head -> title, title -> line)
+            --g-s2  32px            band -> band           (line -> your-part, part -> frame)
+            --g-s3  36-52px         block -> block         (title -> body, beat -> beat)
+            --g-s4  48-76px         movement -> movement   (stage deck -> the close)
+          --g-slug-gap (12px) is a GRID measure, not a spacing step: it is the distance from any
+          mark to the thing it annotates (counter -> label, frame -> caption). Used nowhere else.
+
+       3. THE CROSS-COLUMN RULE — in every band, the first line of the main column TOP-aligns with
+          the first line of the rail. Enforced structurally, not by nudging: .hws-grid is
+          align-items:start, and BOTH columns open with a marker band (.hws-rail-head /
+          .hws-stage-head) that starts at its column's top edge with zero margin above it.
+          This is a top-edge rule BETWEEN the two columns; it is not a baseline rule. The rail
+          opens on the site-wide .section-num component and the main column on a folio counter —
+          two different type sizes — so their baselines sit ~1.3px apart by construction and only
+          their line tops are made to agree. Baselines are ruled INSIDE a row instead (§4a).
+
+       4. THE COUNTER BOX — every folio counter on the page (.hwp-slug, .hws-nav-num, .hws-slug) is
+          the same --g-slug x --g-slug-h rectangle, with the same 1px hairline, the same centring
+          and the same line-height (--g-slug-h — which is what makes §4a hold). Every rule that
+          hangs counters on a spine is drawn at the counter's exact centre line and runs from one
+          counter's centre to the next one's.
+
+       4a. THE ROW RULE — where a counter and a label share a row, the label's BASELINE sits on the
+          counter's; equal boxes are not enough, because two different type sizes put their
+          baselines in different places inside the same box. So:
+            · same type size on both sides (.hwp-slug/.hwp-when, .hws-slug/.hws-meta) — equal boxes
+              plus the shared --g-slug-h line-height already give an exact match;
+            · different type sizes (.hws-nav-num/.hws-nav-name) — the row is baseline-aligned
+              (align-items:baseline) and the spine is then drawn FROM the counter, not from the
+              row, so it still lands on the counter's centre wherever the baseline puts the box.
+          MEASURED before this rule existed, at 1280x800 and 1440x900: the nav label sat 3.71px
+          below its counter's baseline and the two same-size pairs 0.71px off (the counters were
+          inheriting the page's line-height instead of --g-slug-h).
+
+       5. THE SEAM — above the cycling breakpoint the two sections sit deliberately close
+          (--g-seam per side, ~half the page's --seam-major) so that the how-it-works pin engages
+          while the problem section's tail is still leaving the screen, instead of after a screen
+          of empty ground. Set from inside the two sections' own padding; the page-level rhythm
+          block above is not touched. BELOW 960px there is no pin at all, so a tight seam would be
+          a cost with nothing bought: it is gated to the cycling breakpoint, and narrower screens
+          keep the page's normal --seam-major chapter break like every other section boundary.
+       ============================================================================================== */
+    main {
+        /* --- the column grid --- */
+        --g-rail: clamp(248px, 30vw, 360px);   /* the rail: 360px at every viewport >= 1200 */
+        --g-gap: clamp(32px, 5vw, 72px);       /* THE gutter — the only one on either section */
+        --g-slug: 27px;                        /* every folio counter box, width  */
+        --g-slug-h: 20px;                      /*                          height */
+        --g-slug-gap: 12px;                    /* a mark -> the thing it annotates */
+        --g-row: 44px;                         /* one nav-rail row; the rail's whole rhythm */
+        --g-row-pad: calc((var(--g-row) - var(--g-slug-h)) / 2);  /* what centres the counter band
+                                                  in its row — see CONTRACT §4a: a baseline group
+                                                  is flush with the row's start edge, so the band
+                                                  is placed with this token instead of by centring */
+        /* --- the spacing scale --- */
+        --g-s0: 18px;                          /* part -> part of one component */
+        --g-s1: var(--space-md);               /* 16 */
+        --g-s2: var(--space-lg);               /* 32 */
+        --g-s3: clamp(36px, 4vw, 52px);
+        --g-s4: clamp(48px, 5.5vw, 76px);
+        /* --- the seam --- */
+        --g-seam: clamp(11px, 1.15vw, 16px);   /* per side; total seam 22-32px. Applied only at
+                                                  >= 960px — see CONTRACT §5 and the gate below */
+    }
+
+    /* CONTRACT §5. Specificity beats the page rhythm block's `main > section.section` (0,1,2):
+       the id selector is (1,0,2) and the class selector (0,2,2), and both blocks carry !important.
+       Only these two paddings are touched — the rest of the page keeps --seam-major untouched.
+
+       GATED TO THE CYCLING BREAKPOINT (R13 fix). The tight seam exists for one reason: to keep the
+       problem section's tail on screen at the frame the pin engages. Below 960px the script never
+       adds .hws--cycle, there is no pin and no runway, so a narrow screen was paying for a benefit
+       it could not receive. MEASURED at 390x844 with the ungated rule: 11px + 11px = a 22px break
+       between two MAJOR sections — tighter than the 32px between two beats INSIDE one section, and
+       under a quarter of every other section boundary on the page. Gated, 390px is back on the
+       page's own --seam-major rhythm. 960px is not a new number: it is MIN_W in the script below,
+       and the two must stay in step. */
+    @media (min-width: 960px) {
+        main > section#after-the-event { padding-bottom: var(--g-seam) !important; }
+        main > section.section.hws { padding-top: var(--g-seam) !important; }
+    }
+
     /* ===== PROBLEM: page-local, prefix .hwp- =========================================
        !important only where style.css's element-level !important rules collide
        (h2 color/line-height, img max-width/display). ============================== */
-    .hwp-title { font-size: clamp(1.65rem, 2.9vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 clamp(26px, 3.4vw, 44px); max-width: 28ch; text-wrap: balance; }
+    .hwp-title { font-size: clamp(1.65rem, 2.9vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 var(--g-s3); max-width: 28ch; text-wrap: balance; }
 
-    .hwp-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: clamp(28px, 4vw, 56px); align-items: stretch; }
+    /* CONTRACT §1. The body is no longer its own two-column split — the grid now lives on each
+       beat row, so the beats and the frame below them hang off the SAME rail/gutter/main columns
+       that #how-it-works uses. */
+    .hwp-body { display: block; }
 
     /* ---------- the lifecycle rail ---------- */
-    .hwp-life { list-style: none; margin: 0; padding: 0; position: relative; }
-    /* The rail is drawn as one segment BETWEEN each pair of counters rather than as a single
-       full-height line, so it terminates exactly on the Recap counter instead of trailing off
-       under it. It warms as the story descends: stone at the event, ember into Recap. */
-    .hwp-beat:not(:last-child)::before { content: ''; position: absolute; left: 13px; top: 21px; bottom: -3px; width: 1px; background: rgba(255, 255, 255, 0.16); }
+    /* CONTRACT §2: one row-gap token is the entire vertical rhythm between beats. */
+    .hwp-life { list-style: none; margin: 0; padding: 0; display: grid; row-gap: var(--g-s3); }
+
+    /* CONTRACT §1 — the beat row template, in grid tokens only:
+         1  the counter          --g-slug
+         2  the kicker column    the rest of the rail (fixed: rail minus the counter)
+         3  the gutter           --g-gap, expressed as a track so the seam is visible in the rule
+         4  the sentence         the main column — the same left edge as every hws stage line
+       column-gap is 0 because tracks 2 and 3 already carry the spacing. */
+    .hwp-beat {
+        position: relative;
+        display: grid;
+        grid-template-columns: var(--g-slug) calc(var(--g-rail) - var(--g-slug)) var(--g-gap) minmax(0, 1fr);
+        column-gap: 0;
+        align-items: start;
+    }
+
+    /* CONTRACT §4. One segment between each pair of counters, drawn on the counters' exact centre
+       line and running from this counter's centre to the next one's, so it terminates on the Recap
+       counter instead of trailing under it. It warms as the story descends. */
+    .hwp-beat:not(:last-child)::before {
+        content: ''; position: absolute; width: 1px;
+        left: calc((var(--g-slug) - 1px) / 2);
+        top: calc(var(--g-slug-h) / 2);
+        bottom: calc(-1 * (var(--g-s3) + var(--g-slug-h) / 2));
+        background: rgba(255, 255, 255, 0.16);
+    }
     .hwp-beat:nth-child(3)::before { background: linear-gradient(to bottom, rgba(255, 255, 255, 0.16), rgba(232, 89, 60, 0.85)); }
 
-    .hwp-beat { position: relative; display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 4px clamp(16px, 2.4vw, 32px); align-items: baseline; padding: 0 0 clamp(22px, 2.8vw, 34px) 46px; }
-    .hwp-beat:last-child { padding-bottom: 0; }
-
-    /* the folio slug: a rectangular counter on the rail, never a dot or a pill */
-    .hwp-slug { position: absolute; left: 0; top: 1px; z-index: 1; display: inline-flex; align-items: center; justify-content: center; min-width: 27px; height: 18px; padding: 0 5px; background: var(--color-onyx); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-stone); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; }
-    .hwp-when { font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-stone); padding-top: 3px; }
-    .hwp-line { font-family: var(--font-heading); font-size: clamp(1.1rem, 1.85vw, 1.45rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-warm-grey); margin: 0; text-wrap: pretty; }
+    /* the folio slug: a rectangular counter on the rail, never a dot or a pill. CONTRACT §4 —
+       the same box as .hws-nav-num and .hws-slug. z-index masks the rail line running behind it. */
+    .hwp-slug { grid-column: 1; position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: var(--g-slug); height: var(--g-slug-h); line-height: var(--g-slug-h); background: var(--color-onyx); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-stone); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; }
+    /* CONTRACT §4a, the same-size case. line-height = the counter's height on BOTH sides, so the
+       kicker's line box and the counter's line box are the same --g-slug-h band with the same
+       half-leading; same font, same size, same band => the baselines coincide.
+       The counter carries the shared line-height too (R13 fix): it used to inherit the page's,
+       which made its line box a different height from the kicker's inside the same 20px box and
+       put the two baselines 0.71px apart. The counter is flex-centred, so its line box is centred
+       in the 18px content box left by the two hairlines and lands back on the kicker's exactly. */
+    .hwp-when { grid-column: 2; padding-left: var(--g-slug-gap); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; line-height: var(--g-slug-h); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-stone); }
+    /* The sentence is a bigger type size, so its line box is taller than the counter band. This
+       pulls its box up by half the difference, which lands its first line's optical centre on the
+       counter's centre. Token-derived, no magic number: `1lh` IS this element's line box. Browsers
+       without `lh` drop the declaration and fall back to top alignment, which is still legible. */
+    .hwp-line { grid-column: 4; margin: calc((var(--g-slug-h) - 1lh) / 2) 0 0; font-family: var(--font-heading); font-size: clamp(1.1rem, 1.85vw, 1.45rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-warm-grey); text-wrap: pretty; }
 
     /* the turn: Recap is the fourth beat, and it is the answer */
     .hwp-beat--turn .hwp-slug { background: var(--color-ember); border-color: var(--color-ember); color: var(--color-white); }
@@ -531,29 +688,37 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hwp-beat--turn .hwp-line { color: var(--color-white); }
 
     /* ---------- the establishing frame ---------- */
-    .hwp-plate { margin: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
-    .hwp-frame { position: relative; overflow: hidden; min-height: 220px; background: var(--color-smoke); border-radius: 2px; }
+    /* CONTRACT §1. The frame sits in the main column, on the same left edge as the sentences above
+       it and as every stage frame in #how-it-works below it — the margin is the rail plus the
+       gutter, i.e. the grid itself, not a chosen number. Its ratio matches the stage frames. */
+    .hwp-plate { margin: var(--g-s3) 0 0 calc(var(--g-rail) + var(--g-gap)); }
+    /* 2px radius: a printed-corner softening, not a card. Bare px on purpose — it is a
+       rendering detail of the frame, not a grid measure, and it is the same 2px on every frame
+       in both sections. */
+    .hwp-frame { position: relative; overflow: hidden; aspect-ratio: 2.15 / 1; background: var(--color-smoke); border-radius: 2px; }
     /* height:100% !important — style.css sets img{max-width;display} with no height, so the HTML
        height attribute would win as a presentational hint and collapse the cover crop. */
     .hwp-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; object-position: center 45%; }
-    /* registration mark: a printer's corner, not a border */
+    /* registration mark: a printer's corner, not a border. The 24x24 / 2px are the MARK'S OWN
+       dimensions — a drawn object, like a glyph, not a spacing decision; the same object is drawn
+       on the stage frames below at the same size, mirrored to the other corner. */
     .hwp-frame::before { content: ''; position: absolute; z-index: 2; right: 0; top: 0; width: 24px; height: 24px; border-top: 2px solid var(--color-ember); border-right: 2px solid var(--color-ember); }
-    .hwp-credit { display: block; margin-top: 9px; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
+    .hwp-credit { display: block; margin-top: var(--g-slug-gap); font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
 
-    @media (max-width: 1024px) {
-        .hwp-body { grid-template-columns: minmax(0, 1fr) minmax(0, 280px); }
-    }
     /* One stacked mode. The plate leaves rather than shrinking to a stamp: on a phone the four
-       beats ARE the section. */
+       beats ARE the section. The row template collapses to counter + text, still on the same
+       counter column and the same --g-slug-gap, so the phone inherits the contract rather than
+       forking from it. */
     @media (max-width: 860px) {
         .hwp-title { font-size: 1.5rem; max-width: none; }
-        .hwp-body { grid-template-columns: 1fr; gap: 0; }
         .hwp-plate { display: none; }
-        .hwp-beat { grid-template-columns: 1fr; gap: 3px; padding-left: 40px; padding-bottom: 20px; }
-        .hwp-line { font-size: 1.08rem; line-height: 1.4; }
-        .hwp-when { padding-top: 2px; }
-        .hwp-beat:not(:last-child)::before { left: 11px; top: 19px; }
-        .hwp-slug { min-width: 23px; height: 16px; font-size: 0.62rem; }
+        .hwp-life { row-gap: var(--g-s2); }
+        /* row-gap 3px: the kicker and the sentence are stacked lines of ONE beat here, so the
+           gap is a leading correction between two lines of type, below the scale's smallest step. */
+        .hwp-beat { grid-template-columns: var(--g-slug) minmax(0, 1fr); column-gap: var(--g-slug-gap); row-gap: 3px; }
+        .hwp-when { grid-column: 2; padding-left: 0; }
+        .hwp-line { grid-column: 2; margin-top: 0; font-size: 1.08rem; line-height: 1.4; }
+        .hwp-beat:not(:last-child)::before { bottom: calc(-1 * (var(--g-s2) + var(--g-slug-h) / 2)); }
     }
 
     /* ===== R11.5: sequential emphasis ==============================================
@@ -753,32 +918,68 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* NO overflow rule on .hws — see the note above: it would break position:sticky. */
     .hws .container { position: relative; z-index: 1; }
 
-    .hws-grid { display: grid; grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+    /* CONTRACT §1 — the same two tracks and the same gutter as #after-the-event. */
+    .hws-grid { display: grid; grid-template-columns: var(--g-rail) minmax(0, 1fr); gap: var(--g-gap); align-items: start; }
 
     /* ---------- A. the sticky column ---------- */
     /* align-self:start is load-bearing: a stretched grid item is as tall as the track and has
        no room left to travel, so sticky would never engage. */
-    .hws-rail { position: -webkit-sticky; position: sticky; top: clamp(88px, 11vh, 116px); align-self: start; }
-    .hws-title { font-size: clamp(1.5rem, 2.5vw, 2.05rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 clamp(22px, 2.6vw, 32px); text-wrap: balance; }
+    .hws-rail { position: -webkit-sticky; position: sticky; top: var(--hws-top); align-self: start; }
+    /* CONTRACT §3 — the rail's marker band. Flex (not inline flow) so the chapter mark's box starts
+       at the column's exact top edge: as an inline-block in a normal line box it was pushed 7.0px
+       down by the parent's strut, which is the whole cross-column misalignment Max reported. */
+    .hws-rail-head { display: flex; flex-direction: column; align-items: flex-start; }
+    .hws-title { font-size: clamp(1.5rem, 2.5vw, 2.05rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 var(--g-s3); text-wrap: balance; }
 
     .hws-nav { position: relative; display: block; padding-left: 0; }
-    /* the spine the five counters hang on, and the ember fill that tracks how far you have read */
-    .hws-nav::before { content: ''; position: absolute; left: 13px; top: 9px; bottom: 19px; width: 1px; background: rgba(255, 255, 255, 0.13); }
-    .hws-nav-fill { position: absolute; left: 13px; top: 9px; width: 1px; height: 0; background: var(--color-ember); transition: height 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); pointer-events: none; }
-    /* MEASURED: five fixed 38px rows = 190px tall, so counter n's centre sits at 38n + 19.
-       The fill starts at 9px, and a percentage height resolves against the 190px nav, so the
-       fill for counter n is (38n + 10) / 190. Verified against the rendered rail, not computed
-       from the stylesheet in the abstract. */
-    .hws-nav[data-active="1"] .hws-nav-fill { height: 5.3%; }
-    .hws-nav[data-active="2"] .hws-nav-fill { height: 25.3%; }
-    .hws-nav[data-active="3"] .hws-nav-fill { height: 45.3%; }
-    .hws-nav[data-active="4"] .hws-nav-fill { height: 65.3%; }
-    .hws-nav[data-active="5"] .hws-nav-fill { height: 85.3%; }
 
-    .hws-nav-item { position: relative; display: grid; grid-template-columns: 27px minmax(0, 1fr); align-items: center; gap: 12px; height: 38px; padding: 0; color: inherit !important; text-decoration: none !important; }
-    .hws-nav-num { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; min-width: 27px; height: 18px; padding: 0 5px; background: var(--color-obsidian); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-stone); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease; }
-    .hws-nav-name { font-family: var(--font-heading); font-size: 1.02rem; font-weight: 500; letter-spacing: -0.01em; color: var(--color-stone); transition: color 0.25s ease; }
+    /* CONTRACT §4a — the row. The counter is 10.9px monospace and the label 16.3px heading type,
+       so equal 20px boxes do NOT put their baselines in the same place: MEASURED at 1280x800 and
+       1440x900, the label sat 3.71px low in every one of the five rows. The row is therefore
+       baseline-aligned. A baseline group sits flush with the row's start edge rather than centred,
+       which is what --g-row-pad is for. */
+    .hws-nav-item { position: relative; display: grid; grid-template-columns: var(--g-slug) minmax(0, 1fr); align-items: baseline; gap: var(--g-slug-gap); height: var(--g-row); padding: var(--g-row-pad) 0 0; color: inherit !important; text-decoration: none !important; }
+    .hws-nav-num { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: var(--g-slug); height: var(--g-slug-h); line-height: var(--g-slug-h); background: var(--color-obsidian); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-stone); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease; }
+    /* line-height = the counter's height, so the label's line box is the same --g-slug-h band as
+       the counter's, and §4a's baseline alignment then lands the two baselines on each other. */
+    .hws-nav-name { font-family: var(--font-heading); font-size: 1.02rem; line-height: var(--g-slug-h); font-weight: 500; letter-spacing: -0.01em; color: var(--color-stone); transition: color 0.25s ease; }
+
+    /* CONTRACT §4 — the spine, drawn FROM the counter instead of from the row. Under §4a the row no
+       longer centres its counter, so a nav-level bar at `top: var(--g-row)/2` would miss it; hung
+       off the counter itself, the segment starts at that counter's own centre (top:50%) and runs
+       exactly one row down, i.e. to the next counter's centre, whatever the baseline does. Five
+       counters, four segments — :not(:last-child) is what makes the spine terminate on counter 05
+       rather than trailing under it.
+         left: the pseudo-element is positioned against the counter's PADDING box, so the border-box
+         centre is (--g-slug / 2) - 1px in, and a 1px line starts half a pixel before that: the
+         calc below is that expression reduced. The two bare 1px values are the hairline itself and
+         the counter's own hairline border.
+         THE MASK: a centre-to-centre segment necessarily crosses the lower half of its own counter
+         and the upper half of the next one. Those two halves are masked out of the gradient — the
+         same result the old nav-level bar got for free from the counters' opaque backgrounds and
+         paint order, except stated rather than inherited, which also keeps the line out of the
+         ACTIVE counter's ember fill. --g-slug-h / 2 is exactly half a counter: no new number.
+         ::before is the grey rail and ::after the ember fill, in that order because same-z-index
+         children paint in tree order and the fill has to sit ON the rail. The fill is the read-so-
+         far indicator: an .is-done row (every row above the active one) grows its own segment, so
+         the ember line reaches exactly the active counter — the same result the old nav-level
+         growing bar produced, without a nav-level element that has to guess where the counter is. */
+    .hws-nav-item:not(:last-child) .hws-nav-num::before,
+    .hws-nav-item:not(:last-child) .hws-nav-num::after {
+        content: ''; position: absolute; width: 1px;
+        left: calc((var(--g-slug) - 1px) / 2 - 1px);
+        top: 50%;
+        background-image: linear-gradient(to bottom,
+            transparent 0 calc(var(--g-slug-h) / 2),
+            var(--hws-spine-ink) calc(var(--g-slug-h) / 2) calc(var(--g-row) - var(--g-slug-h) / 2),
+            transparent calc(var(--g-row) - var(--g-slug-h) / 2) 100%);
+    }
+    .hws-nav-item:not(:last-child) .hws-nav-num::before { height: var(--g-row); --hws-spine-ink: rgba(255, 255, 255, 0.13); }
+    .hws-nav-item:not(:last-child) .hws-nav-num::after { height: 0; --hws-spine-ink: var(--color-ember); transition: height 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .hws-nav-item.is-done:not(:last-child) .hws-nav-num::after { height: var(--g-row); }
     .hws-nav-item:hover .hws-nav-name { color: var(--color-warm-grey); }
+    /* The focus ring's 2px/3px are the ring itself (and match the page's other focus rings);
+       they are not layout and never move anything. */
     .hws-nav-item:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 3px; }
 
     .hws-nav-item.is-done .hws-nav-num { border-color: rgba(232, 89, 60, 0.45); color: var(--color-warm-grey); }
@@ -788,27 +989,39 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
     /* ---------- B. the stages (normal flow, the thing that scrolls) ---------- */
     .hws-stages { display: block; }
-    .hws-stage { position: relative; scroll-margin-top: clamp(84px, 11vh, 112px); }
-    .hws-stage + .hws-stage { margin-top: clamp(44px, 5.6vw, 76px); }
+    .hws-stage { position: relative; scroll-margin-top: var(--hws-top); }
+    .hws-stage + .hws-stage { margin-top: var(--g-s4); }
 
-    .hws-stage-head { display: flex; align-items: center; gap: 12px; margin: 0 0 11px; }
-    .hws-slug { display: inline-flex; align-items: center; justify-content: center; min-width: 27px; height: 18px; padding: 0 5px; background: var(--color-obsidian); border: 1px solid rgba(232, 89, 60, 0.55); color: var(--color-ember); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; }
-    .hws-meta { font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-stone); }
+    /* CONTRACT §3 — the main column's marker band. Same min-height as the counter box and zero
+       margin above it, so its top edge IS the column's top edge, matching .hws-rail-head. */
+    .hws-stage-head { display: flex; align-items: center; gap: var(--g-slug-gap); min-height: var(--g-slug-h); margin: 0 0 var(--g-s1); }
+    /* CONTRACT §4a, the same-size case again: line-height --g-slug-h on the counter AND on the
+       marker beside it, so the two baselines coincide without any alignment rule (R13 fix — the
+       counter was inheriting the page line-height and sat 0.70px off). */
+    .hws-slug { display: inline-flex; align-items: center; justify-content: center; width: var(--g-slug); height: var(--g-slug-h); line-height: var(--g-slug-h); background: var(--color-obsidian); border: 1px solid rgba(232, 89, 60, 0.55); color: var(--color-ember); font-family: 'Courier New', Courier, monospace; font-size: 0.68rem; letter-spacing: 0.04em; }
+    .hws-meta { font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; line-height: var(--g-slug-h); letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-stone); }
 
-    .hws-h { font-size: clamp(1.45rem, 2.4vw, 1.95rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1 !important; margin: 0 0 10px; }
+    .hws-h { font-size: clamp(1.45rem, 2.4vw, 1.95rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1 !important; margin: 0 0 var(--g-s1); }
     /* Stage 05 is a separate engagement, not part of the event-day scope: the marker is a
        claim-accuracy fix, restored from round 10 in its round-10 typographic form (a small
        caps tag beside the title, never a pill). The h3 carries style.css's !important
        font-family/colour; the span sets its own, which is more specific than inheritance. */
+    /* margin-left 6px / vertical-align 5px are TYPE nudges on a 9px small-caps tag riding beside
+       a 31px heading: they set where the tag sits against the word, the way tracking does, and
+       there is nothing else on the page they could be shared with. */
     .hws-opt { font-family: var(--font-body); font-size: 0.56rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-stone); margin-left: 6px; vertical-align: 5px; white-space: nowrap; }
-    .hws-say { font-size: clamp(0.95rem, 1.3vw, 1.03rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 16px; max-width: 46ch; }
+    .hws-say { font-size: clamp(0.95rem, 1.3vw, 1.03rem); line-height: 1.6; color: var(--color-warm-grey); margin: 0 0 var(--g-s2); max-width: 46ch; }
 
     /* YOUR PART: a ruled entry, not a tinted card */
-    .hws-part { display: inline-flex; align-items: baseline; gap: 12px; margin: 0 0 clamp(18px, 2.2vw, 26px); padding-top: 11px; border-top: 1px solid rgba(232, 89, 60, 0.55); min-width: 240px; }
+    /* min-width 240px is the component's own minimum, not a margin: the ember rule above YOUR
+       PART has to read as a rule rather than as an underline, so it never gets shorter than this
+       whatever the act line says. The rule is inline-flex, so without it it would shrink to text. */
+    .hws-part { display: inline-flex; align-items: baseline; gap: var(--g-slug-gap); margin: 0 0 var(--g-s2); padding-top: var(--g-slug-gap); border-top: 1px solid rgba(232, 89, 60, 0.55); min-width: 240px; }
     .hws-part-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-ember); white-space: nowrap; }
     .hws-part-act { font-family: var(--font-heading); font-size: clamp(1rem, 1.5vw, 1.14rem); font-weight: 600; line-height: 1.25; color: var(--color-white); }
 
     .hws-plate { margin: 0; }
+    /* border-radius 2px: the same frame-rendering detail as .hwp-frame above. */
     .hws-frame { position: relative; aspect-ratio: 2.15 / 1; overflow: hidden; background: var(--color-smoke); border-radius: 2px; }
     /* height:100% !important: see the note in the problem block above. */
     .hws-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
@@ -818,46 +1031,64 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hws-stage[data-stage="3"] .hws-frame img { object-position: 46% 40%; }
     .hws-stage[data-stage="4"] .hws-frame img { object-position: center 38%; }
     .hws-stage[data-stage="5"] .hws-frame img { object-position: 50% 45%; }
-    /* registration mark: a printer's corner, not a border */
+    /* registration mark: a printer's corner, not a border — the same 24x24 / 2px drawn object as
+       in the problem section, mirrored to the opposite corner. */
     .hws-frame::before { content: ''; position: absolute; z-index: 2; left: 0; top: 0; width: 24px; height: 24px; border-top: 2px solid var(--color-ember); border-left: 2px solid var(--color-ember); }
-    /* stage 05 is the one that leaves the room: a dashed rule runs off its lower edge */
+    /* stage 05 is the one that leaves the room: a dashed rule runs off its lower edge. 9px on /
+       9px off is the DASH PATTERN — the drawn object again, like the mark above. */
     .hws-stage[data-stage="5"] .hws-frame::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: repeating-linear-gradient(to right, var(--color-ember) 0 9px, transparent 9px 18px); }
 
-    .hws-cap { position: relative; margin: 10px 0 0; padding-left: 14px; }
+    /* The caption hangs off a hairline. 14px is the inset from that hairline to the text —
+       a rule-to-text distance, the hairline's own optical companion, and deliberately NOT
+       --g-slug-gap: this mark is vertical and 12px would read tighter than it does beside a
+       counter. The 3px top/bottom insets shorten the hairline off the caption's ascender and
+       descender so it reads as a rule beside the type rather than a box around it. */
+    .hws-cap { position: relative; margin: var(--g-slug-gap) 0 0; padding-left: 14px; }
     .hws-cap::before { content: ''; position: absolute; left: 0; top: 3px; bottom: 3px; width: 1px; background: rgba(255, 255, 255, 0.14); }
     .hws-cap span { display: block; font-size: 0.83rem; line-height: 1.45; color: var(--color-warm-grey); }
+    /* margin-top 3px: leading between two lines of the same caption, below the scale. */
     .hws-cap em { display: block; font-style: normal; margin-top: 3px; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
 
     /* ---------- C. the close: the dictated line, what comes out, the two ways in ---------- */
-    .hws-close { margin-top: clamp(40px, 5vw, 68px); }
-    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr) minmax(0, auto); align-items: center; gap: 18px; margin: 0 0 clamp(16px, 2vw, 22px); }
+    .hws-close { margin-top: var(--g-s4); }
+    /* CONTRACT §2 — --g-s0, the part-to-part step of one component: the line, its rule and its
+       label are one object. minmax(40px, 1fr) is the RULE's own minimum length, the same kind of
+       component minimum as .hws-part's min-width: below it the rule stops reading as a rule. */
+    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr) minmax(0, auto); align-items: center; gap: var(--g-s0); margin: 0 0 var(--g-s2); }
     .hws-turn-line { font-family: var(--font-heading) !important; font-size: clamp(1.15rem, 2vw, 1.55rem); font-weight: 600; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0; text-wrap: balance; }
     .hws-turn-rule { height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(232, 89, 60, 0.18)); }
     .hws-turn-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
 
     /* the outputs: ONE compact strip of ruled entries, not a second gallery */
-    .hws-outs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 34px); }
-    .hws-out { display: block; position: relative; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.14); color: inherit !important; text-decoration: none !important; }
+    .hws-outs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--g-s2); }
+    .hws-out { display: block; position: relative; padding-top: var(--g-slug-gap); border-top: 1px solid rgba(255, 255, 255, 0.14); color: inherit !important; text-decoration: none !important; }
+    /* the ember tick: 30px of the entry's own top hairline, redrawn in ember. A drawn mark's
+       length, like the registration corner — and top:-1px lands it ON the hairline, not under it. */
     .hws-out::before { content: ''; position: absolute; left: 0; top: -1px; width: 30px; height: 1px; background: var(--color-ember); }
-    .hws-out-name { display: block; font-family: var(--font-heading); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; color: var(--color-white) !important; margin-bottom: 5px; }
+    .hws-out-name { display: block; font-family: var(--font-heading); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; color: var(--color-white) !important; margin-bottom: 5px; }  /* 5px: leading between the name and its own line, inside one entry — below the scale */
     .hws-out-line { display: block; font-size: 0.82rem; line-height: 1.48; color: var(--color-warm-grey) !important; }
     /* affordances stay dormant until the service pages ship and the hrefs land */
     .hws-out[href] { cursor: pointer; }
     .hws-out[href]:hover .hws-out-name { color: var(--color-ember) !important; }
-    .hws-out[href]:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 4px; }
+    .hws-out[href]:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 4px; }  /* the ring itself, as above */
 
-    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: 18px clamp(24px, 3vw, 48px); align-items: center; margin-top: clamp(24px, 3vw, 38px); padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    /* CONTRACT §2 — --g-s0 again (the ask line and its buttons are one component). The column gap
+       is fluid because the two tracks reflow together at the 1080px step. */
+    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: var(--g-s2); padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
     .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; max-width: 42ch; }
-    .hws-cta { gap: 20px !important; }
+    .hws-cta { gap: var(--g-s0) !important; }   /* CONTRACT §2 — two ways into one ask */
     /* a second path, not a second button: no .btn (its shine sweep would make it one) */
+    /* 13px/22px is the button's OWN padding, matched to .btn's so the two CTAs are the same
+       height and read as a pair; it is the control's shape, not page layout. */
     .hws-ghost { padding: 13px 22px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: var(--radius-md); font-size: 0.93rem; transition: border-color 0.2s ease; }
     .hws-ghost:hover { border-color: var(--color-ember); }
 
-    /* ---------- responsive ---------- */
+    /* ---------- responsive ----------
+       No grid override here: --g-rail and --g-gap are already fluid, so the two columns narrow
+       together in both sections and the shared left edges hold all the way down. */
     @media (max-width: 1080px) {
-        .hws-grid { grid-template-columns: minmax(0, 0.31fr) minmax(0, 0.69fr); gap: 32px; }
         .hws-nav-name { font-size: 0.95rem; }
-        .hws-outs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+        .hws-outs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     /* ONE stacked mode. No sticky column on a phone (style.css also forces overflow-x:hidden on
@@ -865,82 +1096,185 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        The five stages become a numbered rail: every number, title, marker, line and YOUR PART is
        fully visible in flow. The stage-name nav is dropped rather than repeated: a list of five
        names directly above five blocks carrying the same five names is noise, and with no sticky
-       column there is nothing left for it to navigate. */
+       column there is nothing left for it to navigate.
+
+       ON BARE PIXELS IN THIS BLOCK (CONTRACT, "what is still bare pixels"). The phone keeps the
+       whole grid — --g-slug, --g-slug-gap, --g-row, --g-s1..--g-s4 all carry over untouched, and
+       every block-to-block distance below is a token. What it re-tunes is the DETAIL band under
+       the scale's smallest step: leading between two lines of one component (7px, 9px, 10px,
+       12px, 14px, 15px) and the two ends of the phone rail (8px, 26px). Those are bare pixels
+       because the type is a size smaller here and leading does not scale with a spacing token —
+       each is named at its rule. */
     @media (max-width: 768px) {
-        .hws-grid { grid-template-columns: 1fr; gap: 20px; }
+        .hws-grid { grid-template-columns: 1fr; gap: var(--g-s1); }
         .hws-rail { position: static; top: auto; }
         .hws-title { font-size: 1.5rem; margin-bottom: 0; }
         .hws-nav { display: none; }
 
-        .hws-stages { position: relative; padding-left: 30px; }
-        .hws-stages::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 26px; width: 1px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.6), rgba(232, 89, 60, 0.12)); }
-        .hws-stage + .hws-stage { margin-top: 30px; }
-        .hws-stage-head { margin-bottom: 8px; }
-        .hws-slug { position: absolute; left: -30px; top: 0; min-width: 21px; height: 16px; padding: 0 3px; font-size: 0.6rem; }
-        .hws-h { font-size: 1.2rem; margin-bottom: 7px; }
-        .hws-say { font-size: 0.92rem; line-height: 1.55; margin-bottom: 12px; max-width: none; }
-        .hws-part { display: flex; width: 100%; min-width: 0; gap: 10px; margin-bottom: 14px; padding-top: 9px; }
+        /* the phone rail: the counter column of the contract, hung outside the text column */
+        .hws-stages { position: relative; padding-left: calc(var(--g-slug) + var(--g-slug-gap)); }
+        /* top 8px / bottom 26px: where the phone rail's hairline starts and stops against the
+           FIRST and LAST counter — the same "terminate on the counter, do not trail past it"
+           intent as CONTRACT §4, measured off this block's own first and last stage head. */
+        .hws-stages::before { content: ''; position: absolute; left: calc((var(--g-slug) - 1px) / 2); top: 8px; bottom: 26px; width: 1px; background: linear-gradient(to bottom, rgba(232, 89, 60, 0.6), rgba(232, 89, 60, 0.12)); }
+        .hws-stage + .hws-stage { margin-top: var(--g-s3); }
+        .hws-stage-head { margin-bottom: var(--g-slug-gap); }
+        .hws-slug { position: absolute; left: calc(-1 * (var(--g-slug) + var(--g-slug-gap))); top: 0; }
+        .hws-h { font-size: 1.2rem; margin-bottom: 7px; }              /* title -> line leading */
+        .hws-say { font-size: 0.92rem; line-height: 1.55; margin-bottom: var(--g-s1); max-width: none; }
+        /* gap/padding: the label sits beside the act on one phone line and the ember rule sits
+           closer above it — both leading, both below the scale. */
+        .hws-part { display: flex; width: 100%; min-width: 0; gap: 10px; margin-bottom: var(--g-s1); padding-top: 9px; }
         .hws-part-act { font-size: 0.98rem; }
         .hws-frame { aspect-ratio: 3 / 2; }
         .hws-cap span { font-size: 0.8rem; }
 
-        .hws-close { margin-top: 30px; }
-        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-bottom: 16px; }
+        .hws-close { margin-top: var(--g-s3); }
+        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-bottom: var(--g-s1); }  /* stacked: --g-s0 becomes leading */
         .hws-turn-rule { display: none; }
-        .hws-outs { grid-template-columns: 1fr; gap: 14px; }
-        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: 20px; padding-top: 15px; }
+        .hws-outs { grid-template-columns: 1fr; gap: var(--g-s1); }
+        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: var(--g-s2); padding-top: 15px; }  /* stacked, off its hairline */
         .hws-ask-line { font-size: 0.88rem; max-width: none; }
-        .hws-cta { flex-direction: column; align-items: stretch !important; gap: 12px !important; }
+        .hws-cta { flex-direction: column; align-items: stretch !important; gap: 12px !important; }  /* two stacked full-width buttons */
         .hws-cta .btn { width: 100%; justify-content: center !important; }
         .hws-ghost { width: 100%; justify-content: center !important; }
     }
 
-    /* ===== R11.5: THE PINNED STAGE SCENE ===========================================
-       Max: "each stage should have room to breathe, and as the person scrolls, each stage
-       should cycle from one to the other. I don't want all the stages displayed at the same
-       time."
+    /* ===== R12: THE PINNED STAGE SCENE =============================================
+       Max (r11.5 review): "It doesn't work. It's just more centered in the dead space." On a
+       tall window the pinned block floated alone: MEASURED at 1794x1900, 65% of the viewport
+       was empty for the whole cycle, with one unbroken 778px void (41% of the screen). Three
+       causes, all fixed here.
+
+       1. THE SEGMENT WAS ELASTIC. --hws-seg was 88vh, so a 1900px window spent ~1672px of
+          scroll per stage — 8360px for five. Now capped in PIXELS at 720, so the cycling pace
+          is the same on every screen and the whole cycle is 3600px everywhere.
+
+       2. THE BLOCK WAS CENTRED IN ITS OWN SLACK. The r11.5 --hws-vp cap and the centering
+          `top: max(...)` are DELETED, not re-tuned: the sticky element is now its content's
+          own height, anchored at the nav offset, exactly as Max specified.
+
+       3. THE LOWER VIEWPORT HAD NOTHING IN IT. The close block now lives INSIDE .hws-scene, so
+          it is part of the scene rather than something waiting after it.
 
        HOW IT IS BUILT
-         .hws-scene   a tall wrapper: five segments of scroll room plus one viewport.
-         .hws-sticky  a position:sticky viewport inside it, holding the existing left nav and
-                      the stage deck. It is CSS sticky and nothing else: no JS pinning, no
-                      GSAP pin, no scrub, no scroll-jacking. Native scroll always wins, so
-                      entering and leaving the section cannot trap or rubber-band the page.
-         .hws-stage   all five stay in the DOM in source order and are stacked in one place;
-                      script marks exactly one .is-on and the rest crossfade out.
+         .hws-scene       the whole movement. Holds the pin and, after it, the shelf zone.
+         .hws-pin           the sticky element's container. Its height is the sticky block plus
+                            .hws-runway, so the pin releases exactly at the runway's end.
+         .hws-sticky          position:sticky, top = --hws-top, height AUTO (content).
+         .hws-runway          pure scroll room: five segments. Empty, aria-hidden.
+         .hws-shelfzone     the close block's containing block, and nothing else. See THE SHELF.
+         .hws-shelfpad        an empty spacer that puts the close block back at the pin's bottom.
+         .hws-close           the transition line, the four outputs and the two CTAs.
+
+       WHY .hws-pin EXISTS (and why the close block is not simply the sticky's next sibling):
+       a sticky element's last resting position is flush with the BOTTOM of its containing
+       block. If the close block were a sibling inside the same wrapper, the wrapper's bottom
+       would be the close block's bottom, so at release the panel would sit exactly on top of
+       the close block and stay there — the close block would never be readable again. Giving
+       the sticky its own container, which ends where the close block begins, is what makes
+       "the pin releases onto the close block" actually true. MEASURED, not reasoned about.
+
+       THE SHELF (why the close block is visible DURING the cycle). In pure flow the close block
+       sits 3600px below the panel, so it cannot be on screen while the cycle runs. It is
+       therefore sticky-BOTTOM, parked --hws-shelf above the viewport floor, which puts it in the
+       lower field beneath the pinned stages and lets it settle under the panel at the release.
+
+       R13 — WHY THE SHELF NEEDED A CONTAINING BLOCK OF ITS OWN. In r12 the close block's
+       containing block was .hws-scene, whose top is the top of the whole section. Sticky-bottom
+       engages the moment the element's natural position is below the parking line, which on a
+       tall window is true long BEFORE the pin engages — and with the scene as the containing
+       block there was nothing to stop the parked block climbing into the still-scrolling panel.
+       MEASURED on the live r12 at 1794x1900: the close block's top was above the panel's bottom
+       from scrollY 1544 to 2444 — 925px of scrolling, worst overlap 754px — while the pin did
+       not engage until 2804. "The day ends. The content keeps going." printed over "We run the
+       production.", and Photography/Film/Content/Distribution over the Brief..Run rail.
+
+       The fix is geometric, not a class toggle (a toggle would pop the block in from nowhere).
+       A sticky box may never rise above its containing block, so the containing block IS the
+       gate. .hws-shelfzone is pulled up by --hws-pad and pads the same amount back, which means:
+         · its BORDER top sits --hws-lead below the panel's bottom edge, so the parked close block
+           can never reach the panel — during the approach it is held --hws-lead below the panel
+           wherever the panel happens to be, which is off the bottom of the screen until the
+           section is nearly in position;
+         · its CONTENT top is still the pin's bottom, so the close block's flow position, the
+           scene's height and the release are all exactly what they were.
+       --hws-lead is the shelf gap itself (less the close block's own top margin), so the close
+       block trails the panel at its parked distance all the way in and is already ON the shelf
+       the frame the pin engages. It then holds there for the whole cycle and, from p≈0.9, rides
+       up the last --hws-shelf px so the pin releases flush onto it. Every transition is
+       continuous: nothing appears, disappears or jumps, at any scroll position.
+       MEASURED at 1794x1900 after the fix: panel/close overlap 0px at every one of 29 sampled
+       positions across the approach, the cycle and the exit; worst contiguous empty band 341px
+       (18.0% of the viewport) against a 930px (48.9%) worst band when the lead was a fixed two
+       segments and a 754px overlap in r12.
+
+       The shelf is only switched on (.hws--shelf, from script) when the viewport actually has
+       room for it — free space = viewport - offset - panel - close block. On a 1280x800 or
+       1440x900 window that space is negative, the class is not added, and the close block
+       behaves exactly as it did before: arriving at the release. The shelf is always SMALLER
+       than the free space, which is the second reason the parked block stays below the panel.
 
        EVERYTHING HERE IS INERT UNTIL SCRIPT ADDS .hws--cycle, and script only adds it at
-       >= 960 x 640. Without it (no JS, small viewport, phone) the section is exactly the r11
-       stacked flow: five stages top to bottom, nothing hidden, nothing to click. ========== */
+       >= 960 x 640. Without it (no JS, small viewport, phone) .hws-pin / .hws-sticky /
+       .hws-runway / .hws-shelfzone / .hws-shelfpad are five unstyled divs — no negative margin,
+       no spacer height, no sticky — and the section is exactly the r11 stacked flow: five stages
+       top to bottom, then the close block, nothing hidden, nothing to click. ================== */
+    /* The pin's offset from the top of the window. MEASURED: the site nav is fixed, 72px tall and
+       effectively opaque (rgba(20,18,24,.92) + blur), so anything above 72px is not on screen at
+       all. The offset is therefore set at nav + a real band, not at nav + a hairline: it is what
+       buys the ~30-48px of the problem section's tail that is still visible at the frame the pin
+       engages (CONTRACT §5). Floor 104px so a 640px-tall window still fits the whole stage. */
+    .hws { --hws-top: clamp(104px, 16.5vh, 140px); }   /* the rail's sticky offset in stacked mode too */
+
     @media (min-width: 960px) {
         .hws--cycle {
-            --hws-top: clamp(88px, 11vh, 116px);   /* matches the r11 rail's own sticky offset */
-            --hws-seg: 88vh;                       /* scroll room per stage */
-            /* Cap the pinned viewport at 880px: on very tall windows the stage content
-               (~700px) can't fill 100vh, and an uncapped block pools the slack below the
-               top-anchored stage as dead space (Max's 2026-08-20 report). Capped + centered
-               (see .hws-sticky top), tall viewports read cinematic instead of empty. */
-            --hws-vp: min(calc(100vh - var(--hws-top) - 26px), 880px);
+            --hws-seg: min(88vh, 720px);              /* MAX'S CAP: pace is viewport-independent */
+            --hws-shelf: 0px;              /* overridden by script only when .hws--shelf is on */
+            /* THE LEAD: how far below the panel the close block is held before the shelf may take
+               it. It is the shelf gap itself, less the close block's own top margin, so the block
+               trails the panel at exactly its parked distance the whole way in and is ALREADY at
+               the shelf the frame the pin engages — one continuous motion, nothing to pop in.
+               max(0px, ...) is the shelf-off case: --hws-shelf falls back to 0 and the lead must
+               not go negative (it would put the zone's ceiling above the panel's bottom edge). */
+            --hws-lead: max(0px, calc(var(--hws-shelf) - var(--g-s4)));
+            --hws-pad: calc(var(--hws-seg) * 5 - var(--hws-lead));
         }
 
-        .hws--cycle .hws-scene { height: calc(var(--hws-seg) * 5 + var(--hws-vp)); }
-        .hws--cycle .hws-sticky { position: -webkit-sticky; position: sticky; top: max(var(--hws-top), calc((100vh - var(--hws-vp)) / 2)); height: var(--hws-vp); }
-        .hws--cycle .hws-grid { height: 100%; align-items: center; }
+        .hws--cycle .hws-runway { height: calc(var(--hws-seg) * 5); }
+        .hws--cycle .hws-sticky { position: -webkit-sticky; position: sticky; top: var(--hws-top); }
 
-        /* the rail rides inside the pinned viewport, so it no longer needs to stick itself */
+        /* The shelf's containing block. Pulled up by --hws-pad and padded the same amount back
+           down: the border top becomes the ceiling the parked close block may not pass, the
+           content top leaves the close block's flow position untouched, and the two cancel so the
+           zone contributes exactly the close block's own height to the scene. Because the two
+           always cancel, the script may retune --hws-shelf on resize without moving anything.
+           pointer-events is not decoration: the zone's box now overlaps most of the runway, and an
+           empty div still swallows clicks — without this the stage nav under it would be dead. */
+        .hws--cycle .hws-shelfzone { margin-top: calc(-1 * var(--hws-pad)); pointer-events: none; }
+        .hws--cycle .hws-shelfpad { height: var(--hws-pad); }
+        .hws--cycle .hws-close { pointer-events: auto; }
+        .hws--cycle.hws--shelf .hws-close { position: -webkit-sticky; position: sticky; bottom: var(--hws-shelf); }
+
+        /* the rail rides inside the pinned block, so it no longer needs to stick itself */
         .hws--cycle .hws-rail { position: static; top: auto; }
 
         /* Deliberately opacity-only: no display:none, no visibility:hidden, no aria-hidden.
            A stage that is not on screen is still in the accessibility tree and still in the
            page text, so a screen reader and a crawler both get all five in source order. The
-           stages carry no focusable elements, so nothing hides in the tab order either. */
-        .hws--cycle .hws-stages { position: relative; height: 100%; }
-        /* Top-anchored (not self-centered): every stage's head lands on the same y, so
-           unequal stage heights can't jog the composition at a swap; matches the rail's
-           align-self:start. Fade is SEQUENCED, not simultaneous: outgoing drops fast,
-           incoming arrives after a beat — kills the double-exposure ghosting. */
+           stages carry no focusable elements, so nothing hides in the tab order either.
+
+           The five are stacked by putting them in ONE grid cell rather than by absolute
+           positioning. That keeps them in flow, so .hws-stages (and therefore .hws-sticky)
+           is exactly as tall as the TALLEST stage — which is what lets the sticky block be
+           content-height instead of a viewport-tall box with slack pooled under it. */
+        .hws--cycle .hws-stages { display: grid; grid-template-columns: minmax(0, 1fr); }
+        /* Top-anchored (align-self:start), so every stage's head lands on the same y and
+           unequal stage heights cannot jog the composition at a swap; matches the rail's
+           align-self:start and CONTRACT §3. Fade is SEQUENCED, not simultaneous: outgoing
+           drops fast, incoming arrives after a beat — kills the double-exposure ghosting. */
         .hws--cycle .hws-stage {
-            position: absolute; left: 0; right: 0; top: 0; transform: none;
+            grid-area: 1 / 1; align-self: start;
             margin-top: 0 !important;
             opacity: 0; pointer-events: none;
             transition: opacity 0.16s ease-out;
@@ -950,17 +1284,25 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             transition: opacity 0.28s ease 0.12s;
         }
 
-        /* room to breathe: the stage now owns a whole viewport instead of a 554px block.
-           The frame grows (2.15:1 -> 1.95:1) and is then capped twice: 42vh keeps it from
-           dominating a tall screen, and 100vh - 410px keeps the whole stage inside the pinned
-           viewport on a short one. MEASURED at 1280x640 / 700 / 800, 1024x800, 1440x900 and
-           1920x1080: the tallest stage clears the sticky height at every one. */
-        .hws--cycle .hws-stage-head { margin-bottom: 15px; }
-        .hws--cycle .hws-h { margin-bottom: 13px; }
-        .hws--cycle .hws-say { margin-bottom: 22px; }
-        .hws--cycle .hws-part { margin-bottom: clamp(24px, 3vw, 34px); padding-top: 13px; }
-        .hws--cycle .hws-frame { aspect-ratio: 1.95 / 1; max-height: min(42vh, calc(100vh - 410px)); }
-        .hws--cycle .hws-cap { margin-top: 13px; }
+        /* Room to breathe. The frame keeps its 1.95:1 ratio as the FLOOR and grows with the
+           window: min-height lets a tall screen give the picture the height that the ratio
+           alone would leave as void, capped at 540px so the crop never goes past ~1.3:1 — still
+           landscape, never a portrait crop of a landscape photograph. The cap only engages
+           above ~940px of viewport height; at 1280x800 and 1440x900 the frame is unchanged.
+           max-height keeps the whole stage inside a short window. MEASURED at 960x640,
+           1280x800, 1440x900 and 1794x1900: the panel clears the viewport at every one. */
+        .hws--cycle .hws-frame {
+            /* width:100% is load-bearing, not decoration. With width:auto the inline size is
+               indefinite, so a min-height that clamps the height transfers BACK through
+               aspect-ratio and widens the box: MEASURED at 1440x900 and 1794x1900, the frame
+               grew to 838px and 1053px inside a 704px column and bled off the right edge.
+               An explicit width makes the inline axis definite, so the clamp stays in the
+               block axis where it belongs and the frame keeps the main column's width. */
+            width: 100%;
+            aspect-ratio: 1.95 / 1;
+            min-height: min(calc(100vh - 470px), 540px);
+            max-height: calc(100vh - 440px);
+        }
     }
 
     /* Motion only. Nothing here changes what is visible or what is reachable. Under reduced
@@ -975,22 +1317,34 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 <section class="section section--lg section-dark hws" id="how-it-works">
     <div class="container">
 
-      <!-- R11.5: .hws-scene is the tall scroll room and .hws-sticky the pinned viewport.
-           Both are plain unstyled <div>s until script adds .hws--cycle, so with JS off they
-           collapse to nothing and .hws-grid lays out exactly as it did in r11. -->
+      <!-- R12/R13: .hws-scene holds the pin AND the close block, so the close block is part of the
+           scene instead of something waiting after it. .hws-pin is the sticky's own container
+           (see the CSS note: it is what makes the pin release ONTO the close block rather than
+           on top of it), .hws-runway is the scroll room, and .hws-shelfzone + .hws-shelfpad are
+           the close block's own containing block — the thing that stops the parked close block
+           climbing into the panel on the way in. All six are plain unstyled <div>s until script
+           adds .hws--cycle, so with JS off they collapse to nothing and the section reads
+           stacked: five stages top to bottom, then the close block. -->
       <div class="hws-scene">
+        <div class="hws-pin">
         <div class="hws-sticky">
 
         <div class="hws-grid">
 
             <!-- A. the sticky column -->
             <div class="hws-rail">
-                <span class="section-num">01</span>
-                <span class="overline overline--ruled">How it works</span>
+                <div class="hws-rail-head">
+                    <span class="section-num">01</span>
+                    <span class="overline overline--ruled">How it works</span>
+                </div>
                 <h2 class="hws-title">You run the event.<br>We run the production.</h2>
 
+                <!-- R13: the decorative <span class="hws-nav-fill"> that used to sit here is gone.
+                     Under CONTRACT §4a the spine and its ember fill are drawn from each counter
+                     (.hws-nav-num::before/::after), so a nav-level bar has nothing left to do. The
+                     nav keeps its data-active attribute: it is the section's read-so-far state, and
+                     the .is-done class the fill now reads is set alongside it. -->
                 <nav class="hws-nav" id="hws-nav" aria-label="The five stages">
-                    <span class="hws-nav-fill" aria-hidden="true"></span>
                     <a class="hws-nav-item" href="#hws-stage-1" data-nav="1"><span class="hws-nav-num">01</span><span class="hws-nav-name">Brief</span></a>
                     <a class="hws-nav-item" href="#hws-stage-2" data-nav="2"><span class="hws-nav-num">02</span><span class="hws-nav-name">Plan</span></a>
                     <a class="hws-nav-item" href="#hws-stage-3" data-nav="3"><span class="hws-nav-num">03</span><span class="hws-nav-name">Capture</span></a>
@@ -1096,9 +1450,14 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         </div>
 
         </div>
-      </div>
+        <div class="hws-runway" aria-hidden="true"></div>
+        </div>
 
-        <!-- C. the close -->
+        <!-- C. the close. INSIDE the scene, after the pin: it travels up into the lower field
+             while the stages cycle, and the pin releases straight onto it. The shelf zone around
+             it is layout only — it holds no content and changes no reading order. -->
+        <div class="hws-shelfzone">
+        <div class="hws-shelfpad" aria-hidden="true"></div>
         <div class="hws-close">
             <div class="hws-turn">
                 <h3 class="hws-turn-line">The day ends. The content keeps going.</h3>
@@ -1136,6 +1495,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 </div>
             </div>
         </div>
+        </div>
+      </div>
 
     </div>
 </section>
@@ -1162,9 +1523,10 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
     var items  = Array.prototype.slice.call(nav.querySelectorAll('[data-nav]'));
     var stages = Array.prototype.slice.call(sec.querySelectorAll('.hws-stage'));
-    var scene  = sec.querySelector('.hws-scene');
+    var pin    = sec.querySelector('.hws-pin');
     var sticky = sec.querySelector('.hws-sticky');
-    if (items.length !== stages.length || !stages.length || !scene || !sticky) return;
+    var close  = sec.querySelector('.hws-close');
+    if (items.length !== stages.length || !stages.length || !pin || !sticky || !close) return;
 
     var COUNT = stages.length;              /* 5 */
     var MIN_W = 960, MIN_H = 640;
@@ -1210,17 +1572,40 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
 
     /* ---------- pinned mode: scroll position -> stage index ----------
-       The scene's own rect is the clock. p = 0 the frame the sticky viewport locks, p = 1 the
-       frame it releases; the five segments divide that travel evenly. Reading the rect each
-       frame means no cached document offsets to go stale when images above finish loading. */
+       The PIN's own rect is the clock (r12: the pin, not the whole scene — the scene now also
+       contains the close block, which is not scroll room). p = 0 the frame the sticky block
+       locks, p = 1 the frame it releases; the five segments divide that travel evenly. Reading
+       the rect each frame means no cached document offsets to go stale when images above
+       finish loading.
+
+       remeasure() also sets the shelf. MEASURED, not assumed: the free space is the viewport
+       minus the sticky offset, the panel's own height and the close block's own height, all
+       read from the live layout. If there is real room the close block is parked in it, HALF
+       the free space up from the floor — which makes the band above the parked block and the
+       band below it the same size, and half the free space is the smallest either band can be
+       made; if there is not, the class comes off and the close block goes back to plain flow.
+       96px is the smallest gap worth parking into.
+       (R13 corrected this paragraph: it used to say 45%, while the line below has always said
+       0.5. The code was right and the comment was wrong.) */
     function remeasure() {
         topPx = parseFloat(getComputedStyle(sticky).top) || 0;
-        travel = Math.max(1, scene.offsetHeight - sticky.offsetHeight);
+        travel = Math.max(1, pin.offsetHeight - sticky.offsetHeight);
         seg = travel / COUNT;
+
+        var free = window.innerHeight - topPx - sticky.offsetHeight - close.offsetHeight;
+        if (cycling && free >= 96) {
+            /* half the free space: the band above the parked close block and the band below it
+               come out the same size, which is what minimises the largest single void. */
+            sec.style.setProperty('--hws-shelf', Math.round(free * 0.5) + 'px');
+            sec.classList.add('hws--shelf');
+        } else {
+            sec.classList.remove('hws--shelf');
+            sec.style.removeProperty('--hws-shelf');
+        }
     }
 
     function update() {
-        var p = (topPx - scene.getBoundingClientRect().top) / travel;
+        var p = (topPx - pin.getBoundingClientRect().top) / travel;
         if (p < 0) p = 0; else if (p > 1) p = 1;
         var raw = p * COUNT;                /* stage n owns raw in [n-1, n) */
         var n = current || 1;
@@ -1253,6 +1638,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         cycling = false;
         window.removeEventListener('scroll', onScroll);
         sec.classList.remove('hws--cycle');
+        sec.classList.remove('hws--shelf');
+        sec.style.removeProperty('--hws-shelf');
         stages.forEach(function (s) { s.classList.remove('is-on'); });
         /* We just stripped .is-on from every stage, so the DOM no longer matches `current`.
            Leaving it set made paint() short-circuit on its identity guard when the viewport
@@ -1299,7 +1686,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 e.preventDefault();
                 remeasure();
                 var y = Math.max(0, Math.round(
-                    window.pageYOffset + scene.getBoundingClientRect().top - topPx + seg * (n - 1) + seg * 0.4
+                    window.pageYOffset + pin.getBoundingClientRect().top - topPx + seg * (n - 1) + seg * 0.4
                 ));
                 if (driving) { L.scrollTo(y); } else { window.scrollTo(0, y); }
                 if (history.replaceState) history.replaceState(null, '', href);
