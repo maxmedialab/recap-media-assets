@@ -319,7 +319,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                      #how-it-works section's own padding, clamp(48px,6vw,88px), so that section
                      is the tuning reference the rest of the page is normalised to rather than
                      an exception to it.  Seam: 96px @390 · 154 @1280 · 173 @1440 · 176 @1728+
-       --seam-minor  within one chapter: "Selected work" and the "In action" day-video are one
+       --seam-minor  within one chapter: "Selected work" and the day-video ("The system") are one
                      proof beat, so they sit closer than a chapter break.
                      Seam: 56px @390 · 87 @1280 · 96 @1440+
 
@@ -347,7 +347,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         padding-bottom: var(--seam-major) !important;
     }
 
-    /* The one minor seam: "Selected work" and the "In action" video are a single proof beat.
+    /* The one minor seam: "Selected work" and the day-video are a single proof beat.
        Addressed by sibling selector rather than a new class so the markup stays untouched. */
     main > section.work-section {
         padding-bottom: var(--seam-minor) !important;
@@ -367,6 +367,82 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
 </style>
 
+<!-- ============================================================================================
+     MOBILE DETAIL (2026-08-21, round P4) — page-local, phone widths only. Gutter + H1 wrap.
+
+     WHY THIS LIVES INSIDE <main>
+     Same reason as the vertical-rhythm block above: the GHL deploy path pastes only <main>'s
+     contents into a Custom HTML block, so a <head> <style> would not travel with the page.
+
+     WHY PAGE-LOCAL AND NOT css/style.css
+     css/style.css is the SITE-WIDE stylesheet, pulled by EVERY page through a pinned CDN hash.
+     The rules overridden below are correct for the rest of the site:
+         style.css:858   @media (max-width:480px) .container      { padding: 0 var(--space-md) }
+         style.css:1006  @media (max-width:480px) .hero-stats-inner { padding: 24px var(--space-md) }
+         style.css:1010  @media (max-width:480px) .hero-inner      { padding: 0 var(--space-md) }
+     Only THIS page's phone gutter was judged too tight (Max, 2026-08-21). Editing style.css would
+     move every page on the live site and force a redeploy of the pinned hash, so the override is
+     made here, on this page, and nowhere else.
+
+     HOW IT BEATS style.css's !important
+     Each gutter rule is !important AND carries a `main > section` ancestor: specificity (0,2,1)
+     against style.css's (0,1,0), same author origin, and this block is later in document order
+     than the <head> stylesheet link. All three cascade tiebreakers point the same way, so nothing
+     here depends on source order alone.
+
+     A TOKEN, NOT A NUDGE
+     --gutter-mobile is a named measure on `main`, like --seam-major above and the --g-* tokens of
+     the R12 layout contract. Anything that must line up with the page edge on a phone reads the
+     token; nothing gets a hand-typed 20px.
+     ============================================================================================ -->
+<style>
+    main {
+        /* THE PHONE GUTTER. style.css's 16px (--space-md) is already inside the 16-20px band Max
+           asked for, but it read as pressed against the screen edge, so this takes the TOP of that
+           band. 20px is his number, not a derived one. Applies at <=480px only; >=481px is
+           untouched and keeps style.css's 32px (--space-lg). */
+        --gutter-mobile: 20px;
+    }
+
+    @media (max-width: 480px) {
+        /* Every inner wrapper on the page that defines the left/right page edge. Vertical padding
+           is deliberately not touched (.hero-stats-inner keeps its own 24px top/bottom). */
+        main > section .container,
+        main > section .hero-inner,
+        main > section .hero-stats-inner {
+            padding-left: var(--gutter-mobile) !important;
+            padding-right: var(--gutter-mobile) !important;
+        }
+    }
+
+    /* P4a — THE ORPHANED FULL STOP.
+       ROUND-7 (head <style>) gives the H1's gradient word `display: inline-block` so the "y"
+       descender gets a real paint box. A side effect: an inline-block creates a soft-wrap
+       opportunity AFTER it, so the "." that follows </em> is its own wrappable item. At 390px the
+       phrase "to disappear in a day" fitted the line and the period did not, so the period wrapped
+       alone onto line 4 (MEASURED: an 8.84px line box). It is a break opportunity, not a width
+       problem, which is why it reproduced at 390 but not at 375 or 414.
+       The fix removes the break opportunity rather than tuning the width: .h1-lock wraps
+       <em>in a day</em> plus its period in one nowrap run, so no width can separate them. The run
+       is ~137px at the mobile H1 size, far inside the narrowest line box on the page (280px of
+       text width at a 320px viewport), so it cannot overflow either. */
+    .hero .hero-heading .h1-lock { white-space: nowrap; }
+
+    @media (max-width: 480px) {
+        /* P4c — DELIBERATE HEADLINE WRAP.
+           The H1 is authored as two units (.line-wrap): "Your event is too valuable" and
+           "to disappear in a day." At the phone H1 size (38.4px, the clamp floor for every width
+           <=480) unit 1 needs ~445px and unit 2 ~363px, so both units must break on a phone. Left
+           greedy, unit 1 broke as "Your event is too / valuable", i.e. 288px against 146px: the
+           break landed wherever the last word happened to stop.
+           text-wrap: balance makes each unit split at its own balance point instead, so the wrap is
+           a property of the sentence, not of the viewport. Progressive enhancement: browsers
+           without it fall back to greedy wrapping, which after the .h1-lock fix above still never
+           strands a bare character. */
+        .hero .hero-heading .line { text-wrap: balance; }
+    }
+</style>
+
 <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
@@ -383,7 +459,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             <span class="overline overline--ruled hero-overline"><span class="hero-overline-full">Event photography, videography &amp; content production · Oslo</span><span class="hero-overline-short">Photo, video &amp; content production · Oslo</span></span>
             <h1 class="hero-heading">
                 <span class="line-wrap"><span class="line">Your event is too valuable</span></span>
-                <span class="line-wrap"><span class="line">to disappear <em>in a day</em>.</span></span>
+                <span class="line-wrap"><span class="line">to disappear <span class="h1-lock"><em>in a day</em>.</span></span></span>
             </h1>
             <p class="hero-sub">From one event to months of content.<br class="hero-sub-br"> Get the most out of your event.</p>
             <p class="hero-body">One crew handling photo and video.</p>
@@ -391,7 +467,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                 <a href="https://recapmedia.no/work" class="hero-secondary-link">View our work <span class="arrow">→</span></a>
             </div>
-            <p class="hero-trust">Trusted by conference organisers &amp; exhibitors &nbsp;·&nbsp; Serving Oslo, Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim &amp; Moss</p>
+            <!-- P4d (2026-08-21, Max authorised the copy change): the town list ("Serving Oslo,
+                 Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim & Moss") is CUT here only. It set
+                 12.48px type across 3 lines / 59.9px at 390px and read as an SEO tail; the long-tail
+                 geo terms belong to the /services/* sub-pages, which keep them unchanged. "Oslo and
+                 beyond" is the project's approved phrasing ("Greater Oslo" is banned site-wide).
+                 The geo phrase is glued with &nbsp; so the line always breaks at the middot, i.e.
+                 into its two meaning units, never mid-phrase. MEASURED: 2 lines / 39.94px at 320-414,
+                 1 line / 19.97px at 480. -->
+            <p class="hero-trust">Trusted by conference organisers &amp; exhibitors &nbsp;·&nbsp; Oslo&nbsp;and&nbsp;beyond</p>
         </div>
     </div>
     <!-- PROOF SLOTS (KRAFT H3): when the Flutter Vikings proof sheet ships, slots 2-3 become impact numbers -->
@@ -1939,12 +2023,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     </div>
 </section>
 
-<!-- Video: What It Looks Like on the Day -->
+<!-- Video: See the Production in Action (P8 2026-08-21: was "What It Looks Like on the Day".
+     Max: that heading pulled the reader back to the coverage-of-the-day model right after the page
+     argued for a longer content lifecycle. The video is now framed as evidence of the production
+     system. Player, script and controls untouched.) -->
 <section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
-            <span class="overline">In action</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">What It Looks Like on the Day</h2>
+            <span class="overline">The system</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">See the Production in Action</h2>
         </div>
         <div class="video-player-wrap gsap-fade">
             <video
