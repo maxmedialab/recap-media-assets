@@ -498,13 +498,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
          whole block rather than choreographed per beat. prefers-reduced-motion is handled by
          main-v2.js's own guard; nothing here transitions.
      ART DIRECTION
-     Same folio language as How It Works: rectangular monospace slugs on a hairline that warms
-     from stone to ember as it descends, monospace time markers in a fixed margin column, and a
-     single quiet establishing frame closing the section.
-     (R12 corrected this line: the frame used to sit in a right-hand column beside the beats, so
-     it was described as "holding the right edge". Since the two sections were put on one shared
-     grid it is a full-width plate in the MAIN column, under the four beats, on the same left
-     edge as every stage frame in How It Works — see CONTRACT §1 below.) -->
+     Same folio language as How It Works: rectangular monospace counters hung on a hairline
+     spine, monospace time markers, and no photograph.
+     (R14, 2026-08-21, replaces the r11/r12 wording. The establishing frame is GONE, not moved:
+     a full audit of the image library found nothing that can carry "content going dormant" —
+     every frame in it shows something happening, so a photograph beside "Is the footage from
+     your last event sitting on a drive?" argued against the headline. Mobile had already
+     shipped imageless since r11's `.hwp-plate { display: none }`; desktop now agrees with it.
+     The spine that used to warm downward into Recap warms rightward into the conclusion band's
+     rule instead — see CONTRACT §6 and §7 below.) -->
 <style>
     /* ==============================================================================================
        R12 LAYOUT CONTRACT (2026-08-20) — the shared grid for #after-the-event AND #how-it-works.
@@ -584,11 +586,78 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
           block above is not touched. BELOW 960px there is no pin at all, so a tight seam would be
           a cost with nothing bought: it is gated to the cycling breakpoint, and narrower screens
           keep the page's normal --seam-major chapter break like every other section boundary.
+
+       6. THE LIFECYCLE TRACK (R14, 2026-08-21) — #after-the-event's own layout, >= 960px only.
+          WHY. MEASURED at 1440x900 on the r13 build: the beats' time markers sat at x=179 and
+          their sentences at x=584, so every step was read across a 405px void with nothing in
+          it, and the section's one image sat at x=584 w=704 — the main column only — leaving the
+          lower left half of a 1024px-tall section empty. Max: "makes each step feel disconnected
+          ... leaving a large empty area on the lower left". The cause was structural: §1 put the
+          grid on each BEAT row, which is right for a rail of labels and wrong for a lifecycle.
+          THE FIX, in the tokens already here. The §1 split moves up one level, onto .hwp-body:
+          the rail carries the section's opening matter (its marker band and its H2, exactly as
+          .hws-rail carries the chapter mark, the promise and the stage names) and the main column
+          carries the lifecycle. Inside the main column the three conventional stages run
+          HORIZONTALLY, one --g-gap apart — the page's one gutter, reused, so the three stage
+          columns are cut by the same measure that cuts the rail from the main column. Each stage
+          stacks its own counter, its own time marker and its own sentence, so a marker is never
+          more than --g-slug-gap from the thing it annotates and the 405px void cannot exist:
+          MEASURED after, at both 1440x900 and 1280x800, marker x == sentence x in all three
+          stages, gap 0.0px.
+          The three stages are subgrids of .hwp-life's rows (counters / markers / sentences), so
+          the three columns share those three rows rather than each finding its own: a marker that
+          wraps to two lines moves all three sentences together instead of stepping one of them
+          down. Browsers without subgrid drop one declaration and get the same stack, unaligned.
+          The stage sentence is the one type size this block sets that is NOT shared with
+          #how-it-works: a 187px column at 1440 cannot hold the 23.2px full-measure size, so the
+          three stages step down to clamp(1rem, 1.25vw, 1.25rem) and the conclusion keeps the
+          full size — which is also the hierarchy §7 wants.
+          --g-rail-title is the one token R14 adds: the rail headline's size, shared by .hws-title
+          and .hwp-title so both sections open their rail in the same voice. Its value is
+          .hws-title's own, unchanged; .hwp-title's 2.4rem full-measure size stays below 960px,
+          where the H2 still spans the whole measure.
+
+       6a. THE SPINE, HORIZONTAL. §4 is unchanged in meaning and rotated 90deg: one segment per
+          pair of counters, drawn on the counters' exact centre line, running from this counter's
+          centre to the next one's. Vertically that was `top: --g-slug-h/2` + a negative bottom;
+          horizontally it is `left: --g-slug/2` + `right: -(--g-gap + --g-slug/2)`, the same
+          expression with the axes swapped. Only stages 01 and 02 carry one: stage 03 has no next
+          stage in the track (04 is not a fourth step — see §7), so its segment is removed rather
+          than left trailing off the right edge. The counters' opaque background still masks the
+          line where it crosses them, exactly as in the vertical case.
+
+       7. THE CONCLUSION BAND (R14) — beat 04 is the reframe, not a fourth step.
+          Max: "'Recap' is visually part of the timeline, but it should feel like the
+          conclusion/reframe." It therefore leaves the three-stage track: it spans the full main
+          column under it, one --g-s4 (movement -> movement, the scale's largest step) below the
+          track, opened by a full-measure hairline with --g-s3 between that rule and its counter.
+          A rule and two steps of the existing scale, not a box, a tint or a card. The rule
+          carries the warm-into-the-answer that the old vertical spine's stone->ember gradient
+          carried: it fades ember-to-faint left to right, the same rule idiom as .hws-turn-rule
+          further down the page. It is structure rather than emphasis, so it is exempted from the
+          sequential dim (R11.5) while everything else in the band still takes it.
+          MEASURED, 1440x900: section height 1024.39px before, 580.31px after, with no image and
+          no void. At 1280x800: 969.64px before, 521.28px after.
+
+       7a. WHAT R14 DID NOT REACH, stated rather than left to be discovered: between 861px and
+          959px neither block applies — the 860px stacked mode has ended and the 960px track has
+          not begun — so that 99px band still renders the r13 beat row, marker at the rail and
+          sentence in the main column, MEASURED 308.63px apart at 959px. It is the defect this
+          round fixed everywhere else. Closing it means raising the stacked mode's 860px to
+          959px, which changes a width the brief for this round froze; it is a decision, not an
+          oversight.
        ============================================================================================== */
     main {
         /* --- the column grid --- */
         --g-rail: clamp(248px, 30vw, 360px);   /* the rail: 360px at every viewport >= 1200 */
-        --g-gap: clamp(32px, 5vw, 72px);       /* THE gutter — the only one on either section */
+        --g-gap: clamp(32px, 5vw, 72px);       /* THE gutter — the only one on either section:
+                                                  it cuts the rail from the main column in BOTH
+                                                  sections and, since R14, also cuts the three
+                                                  lifecycle stages from each other (CONTRACT §6) */
+        --g-rail-title: clamp(1.5rem, 2.5vw, 2.05rem);  /* CONTRACT §6 — the rail headline's size,
+                                                  shared by .hws-title and .hwp-title. A type size
+                                                  rather than a grid measure, tokenised only
+                                                  because two rails have to open the same way. */
         --g-slug: 27px;                        /* every folio counter box, width  */
         --g-slug-h: 20px;                      /*                          height */
         --g-slug-gap: 12px;                    /* a mark -> the thing it annotates */
@@ -630,10 +699,14 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        (h2 color/line-height, img max-width/display). ============================== */
     .hwp-title { font-size: clamp(1.65rem, 2.9vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 var(--g-s3); max-width: 28ch; text-wrap: balance; }
 
-    /* CONTRACT §1. The body is no longer its own two-column split — the grid now lives on each
-       beat row, so the beats and the frame below them hang off the SAME rail/gutter/main columns
-       that #how-it-works uses. */
+    /* CONTRACT §1/§6. Below 960px the body is one column: the rail stacks above the lifecycle
+       and the section reads H2 -> 01 -> 02 -> 03 -> 04 top to bottom, which is exactly what it
+       did before R14. The two-column split is applied in the >= 960px block at the end. */
     .hwp-body { display: block; }
+    /* CONTRACT §3/§6. The rail's marker band exists only where there IS a rail: stacked, it would
+       be a second overline sitting above the H2 for no structural reason, and it would change the
+       phone layout that Max asked to keep untouched. */
+    .hwp-rail-head { display: none; }
 
     /* ---------- the lifecycle rail ---------- */
     /* CONTRACT §2: one row-gap token is the entire vertical rhythm between beats. */
@@ -687,31 +760,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hwp-beat--turn .hwp-when { color: var(--color-ember); }
     .hwp-beat--turn .hwp-line { color: var(--color-white); }
 
-    /* ---------- the establishing frame ---------- */
-    /* CONTRACT §1. The frame sits in the main column, on the same left edge as the sentences above
-       it and as every stage frame in #how-it-works below it — the margin is the rail plus the
-       gutter, i.e. the grid itself, not a chosen number. Its ratio matches the stage frames. */
-    .hwp-plate { margin: var(--g-s3) 0 0 calc(var(--g-rail) + var(--g-gap)); }
-    /* 2px radius: a printed-corner softening, not a card. Bare px on purpose — it is a
-       rendering detail of the frame, not a grid measure, and it is the same 2px on every frame
-       in both sections. */
-    .hwp-frame { position: relative; overflow: hidden; aspect-ratio: 2.15 / 1; background: var(--color-smoke); border-radius: 2px; }
-    /* height:100% !important — style.css sets img{max-width;display} with no height, so the HTML
-       height attribute would win as a presentational hint and collapse the cover crop. */
-    .hwp-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; object-position: center 45%; }
-    /* registration mark: a printer's corner, not a border. The 24x24 / 2px are the MARK'S OWN
-       dimensions — a drawn object, like a glyph, not a spacing decision; the same object is drawn
-       on the stage frames below at the same size, mirrored to the other corner. */
-    .hwp-frame::before { content: ''; position: absolute; z-index: 2; right: 0; top: 0; width: 24px; height: 24px; border-top: 2px solid var(--color-ember); border-right: 2px solid var(--color-ember); }
-    .hwp-credit { display: block; margin-top: var(--g-slug-gap); font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
+    /* R14: .hwp-plate / .hwp-frame / .hwp-credit and their markup are DELETED, not hidden. The
+       section has no photograph at any width — see the ART DIRECTION note above the contract for
+       why no image in the library can carry this headline. */
 
-    /* One stacked mode. The plate leaves rather than shrinking to a stamp: on a phone the four
-       beats ARE the section. The row template collapses to counter + text, still on the same
-       counter column and the same --g-slug-gap, so the phone inherits the contract rather than
-       forking from it. */
+    /* One stacked mode. On a phone the four beats ARE the section. The row template collapses to
+       counter + text, still on the same counter column and the same --g-slug-gap, so the phone
+       inherits the contract rather than forking from it. This is also the layout every width
+       below 960px gets: the horizontal track at the end of this block is desktop-only. */
     @media (max-width: 860px) {
         .hwp-title { font-size: 1.5rem; max-width: none; }
-        .hwp-plate { display: none; }
         .hwp-life { row-gap: var(--g-s2); }
         /* row-gap 3px: the kicker and the sentence are stacked lines of ONE beat here, so the
            gap is a leading correction between two lines of type, below the scale's smallest step. */
@@ -750,14 +808,116 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-slug { background: var(--color-onyx); border-color: rgba(255, 255, 255, 0.11); color: rgba(155, 151, 144, 0.62); }
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-when { color: var(--color-stone); }
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-line { color: var(--color-warm-grey); }
+
+    /* ===== R14 (2026-08-21): THE DESKTOP LIFECYCLE — CONTRACT §6, §6a, §7 ==============
+       Everything above this point is the layout every width below 960px renders, unchanged by
+       R14. 960px is not a new number: it is the script's MIN_W and the seam gate's breakpoint,
+       and the three must stay in step. ================================================== */
+    @media (min-width: 960px) {
+        /* CONTRACT §1 — the same two tracks and the same gutter as .hws-grid, one level up from
+           the beat row. This is what puts the two sections' rails on one x and their main columns
+           on another. align-items:start so the short rail does not stretch to the track. */
+        .hwp-body { display: grid; grid-template-columns: var(--g-rail) minmax(0, 1fr); gap: var(--g-gap); align-items: start; }
+
+        /* CONTRACT §3 — the rail's marker band, flex for the same reason .hws-rail-head is flex:
+           an inline-block in a normal line box is pushed down by the parent's strut, and the two
+           columns would then open on different edges. */
+        .hwp-rail-head { display: flex; flex-direction: column; align-items: flex-start; }
+        /* CONTRACT §6 — the shared rail-headline size. Nothing follows it inside the rail, so it
+           carries no bottom margin: the row's height comes from the main column. */
+        .hwp-title { font-size: var(--g-rail-title); margin: 0; }
+
+        /* CONTRACT §6 — the three-stage track. Four explicit rows: counters, time markers,
+           sentences, then the conclusion band. Stages are placed by column rather than left to
+           auto-flow so the reading order is stated, not inferred. */
+        .hwp-life {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: auto auto auto auto;
+            column-gap: var(--g-gap);
+            row-gap: 0;
+        }
+        /* grid-template-rows:subgrid — the three stages share .hwp-life's first three rows, so
+           their counters, markers and sentences sit on three shared lines. MEASURED with the
+           declaration forced off at 1440x900 (i.e. what a browser without subgrid renders): the
+           three stacks keep their order and their x, the section keeps its 580.31px height, and
+           only the marker/sentence y's go column-local (1128.9 / 1120.9 / 1104.8 instead of one
+           line). Degraded, not broken. */
+        .hwp-beat { grid-template-columns: minmax(0, 1fr); grid-template-rows: subgrid; grid-row: 1 / span 3; column-gap: 0; row-gap: 0; }
+        .hwp-beat:nth-child(1) { grid-column: 1; }
+        .hwp-beat:nth-child(2) { grid-column: 2; }
+        .hwp-beat:nth-child(3) { grid-column: 3; }
+
+        /* The stack inside a stage: counter, then its marker one --g-slug-gap under it (§2 — a
+           mark to the thing it annotates, the same 12px as beside it in the stacked layout), then
+           the sentence one --g-s1 under that (§2 — within a band). All three start on the stage
+           column's own left edge, which is the whole point: MEASURED 0.0px between a marker's x
+           and its own sentence's x, where r13 measured 405px. */
+        .hwp-slug { grid-row: 1; }
+        .hwp-when { grid-column: 1; grid-row: 2; padding-left: 0; margin-top: var(--g-slug-gap); }
+        .hwp-line { grid-column: 1; grid-row: 3; margin: var(--g-s1) 0 0; }
+        /* CONTRACT §6 — the stage sentence steps down; the conclusion keeps the full-measure size
+           (§7). At 1440 a stage column is 186.7px, which the 23.2px size cannot hold. */
+        .hwp-beat:not(.hwp-beat--turn) .hwp-line { font-size: clamp(1rem, 1.25vw, 1.25rem); }
+
+        /* CONTRACT §6a — the spine, rotated. Same rule as the vertical one with the axes swapped:
+           it starts at this counter's centre and ends at the next counter's centre, which is one
+           --g-gap plus half a counter past this column's right edge. Ink and masking are
+           inherited from the base rule; only the geometry is restated. */
+        .hwp-beat:nth-child(-n+2)::before {
+            width: auto;
+            height: 1px;
+            top: calc((var(--g-slug-h) - 1px) / 2);
+            bottom: auto;
+            left: calc(var(--g-slug) / 2);
+            right: calc(-1 * (var(--g-gap) + var(--g-slug) / 2));
+        }
+        /* stage 03 has no next stage: 04 is the conclusion, not a fourth step (§7). Its segment
+           (the stone->ember gradient of the vertical layout) is removed rather than left running
+           off the right edge. */
+        .hwp-beat:nth-child(3)::before { content: none; }
+
+        /* CONTRACT §7 — the conclusion band. Out of the track, across the whole main column, one
+           --g-s4 below it, opened by a hairline with --g-s3 between the rule and the counter. */
+        .hwp-beat--turn {
+            grid-column: 1 / -1;
+            grid-row: 4;
+            grid-template-rows: none;
+            margin-top: var(--g-s4);
+            padding-top: var(--g-s3);
+        }
+        /* The rule. Ember at the left, where the ember counter sits under it, fading out to the
+           right: the same gradient idiom as .hws-turn-rule below, and the same warm-into-the-
+           answer the vertical spine used to carry down into beat 04. */
+        .hwp-beat--turn::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: auto;
+            width: auto; height: 1px;
+            background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(255, 255, 255, 0.1));
+        }
+        /* R11.5 dims every un-lit beat's ::before to 0.38 because that pseudo-element is a spine
+           segment. Here it is the band's opening rule, i.e. structure, so it is exempt. The
+           extra .hwp-life in the selector is what wins over the seq rule above without moving
+           either block. */
+        .hwp--seq .hwp-life .hwp-beat--turn:not(.is-lit)::before { opacity: 1; }
+    }
 </style>
 
 <section class="section section--lg section-onyx" id="after-the-event">
     <div class="container">
         <div class="hwp gsap-fade">
-            <h2 class="hwp-title">Is the footage from your last event sitting on a drive?</h2>
-
+            <!-- R14: the rail carries the section's opening matter and the main column carries the
+                 lifecycle, the same two columns as #how-it-works (CONTRACT §6). Below 960px
+                 .hwp-body is a plain block and .hwp-rail-head is display:none, so the phone reads
+                 H2 -> 01 -> 02 -> 03 -> 04 exactly as it did before. -->
             <div class="hwp-body">
+                <div class="hwp-rail">
+                    <div class="hwp-rail-head">
+                        <span class="overline overline--ruled">The problem</span>
+                    </div>
+                    <h2 class="hwp-title">Is the footage from your last event sitting on a drive?</h2>
+                </div>
+
                 <ol class="hwp-life" role="list">
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">01</span>
@@ -774,21 +934,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                         <span class="hwp-when">Every week after</span>
                         <p class="hwp-line">Your team still has content, but nobody has time to make it useful.</p>
                     </li>
+                    <!-- CONTRACT §7: still the fourth <li> of the same list, and still the fourth
+                         beat the sequential-emphasis script lights. What changes at >= 960px is
+                         where the grid puts it: out of the three-stage track, under it. -->
                     <li class="hwp-beat hwp-beat--turn">
                         <span class="hwp-slug" aria-hidden="true">04</span>
                         <span class="hwp-when">Recap</span>
                         <p class="hwp-line">We turn event content into something that keeps working.</p>
                     </li>
                 </ol>
-
-                <figure class="hwp-plate">
-                    <div class="hwp-frame">
-                        <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp"
-                             alt="A full auditorium of conference attendees in Oslo during a session"
-                             width="1024" height="683" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption class="hwp-credit">Flutter Vikings 2022, Oslo</figcaption>
-                </figure>
             </div>
         </div>
     </div>
@@ -929,7 +1083,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        at the column's exact top edge: as an inline-block in a normal line box it was pushed 7.0px
        down by the parent's strut, which is the whole cross-column misalignment Max reported. */
     .hws-rail-head { display: flex; flex-direction: column; align-items: flex-start; }
-    .hws-title { font-size: clamp(1.5rem, 2.5vw, 2.05rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 var(--g-s3); text-wrap: balance; }
+    .hws-title { font-size: var(--g-rail-title); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12 !important; margin: 0 0 var(--g-s3); text-wrap: balance; }
 
     .hws-nav { position: relative; display: block; padding-left: 0; }
 
@@ -1021,7 +1175,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hws-part-act { font-family: var(--font-heading); font-size: clamp(1rem, 1.5vw, 1.14rem); font-weight: 600; line-height: 1.25; color: var(--color-white); }
 
     .hws-plate { margin: 0; }
-    /* border-radius 2px: the same frame-rendering detail as .hwp-frame above. */
+    /* border-radius 2px: a printed-corner softening, not a card. Bare px on purpose — it is a
+       rendering detail of the frame, not a grid measure, and it is the same 2px on every frame in
+       the section. (R14: it used to be shared with the problem section's frame, which is gone.) */
     .hws-frame { position: relative; aspect-ratio: 2.15 / 1; overflow: hidden; background: var(--color-smoke); border-radius: 2px; }
     /* height:100% !important: see the note in the problem block above. */
     .hws-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
@@ -1031,8 +1187,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hws-stage[data-stage="3"] .hws-frame img { object-position: 46% 40%; }
     .hws-stage[data-stage="4"] .hws-frame img { object-position: center 38%; }
     .hws-stage[data-stage="5"] .hws-frame img { object-position: 50% 45%; }
-    /* registration mark: a printer's corner, not a border — the same 24x24 / 2px drawn object as
-       in the problem section, mirrored to the opposite corner. */
+    /* registration mark: a printer's corner, not a border. The 24x24 / 2px are the MARK'S OWN
+       dimensions — a drawn object, like a glyph, not a spacing decision. (R14: it used to be
+       mirrored on the problem section's frame, which is gone; it is this section's mark now.) */
     .hws-frame::before { content: ''; position: absolute; z-index: 2; left: 0; top: 0; width: 24px; height: 24px; border-top: 2px solid var(--color-ember); border-left: 2px solid var(--color-ember); }
     /* stage 05 is the one that leaves the room: a dashed rule runs off its lower edge. 9px on /
        9px off is the DASH PATTERN — the drawn object again, like the mark above. */
