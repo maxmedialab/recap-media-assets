@@ -351,7 +351,13 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         padding-bottom: var(--seam-major) !important;
     }
 
-    /* THE ONE MINOR SEAM — now named on both sides, not inferred from position.
+    /* THE MINOR SEAM — now named on both sides, not inferred from position.
+       TWO PAIRS USE IT (P7, 2026-08-21 — it was one until then): work + client stories, and the
+       FAQ + the closing band at the foot of the page. Same rule, same reason: see "WHICH PAIR"
+       below for the first and the P7 comment above the closing band for the second. The classes
+       are per-section and additive by design, so a third pair costs two class names and no CSS. */
+
+    /* PAIR 1 — WORK + CLIENT STORIES.
        WHAT IT USED TO BE, and why that broke (P5a, 2026-08-21): the pair was written as
            main > section.work-section              { padding-bottom: --seam-minor }
            main > section.work-section + section.section { padding-top: --seam-minor }
@@ -375,8 +381,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        between #after-the-event (onyx) and #how-it-works (dark), across the same kind of edge. The
        colour edge separates the two sections; the short seam says they belong to one movement.
 
-       CASCADE. Both selectors are (0,1,2), identical to `main > section.section` above, and all
-       three carry !important — so these two win on source order, being later in this same block.
+       PAIR 2 — FAQ + THE CLOSING BAND (P7). Max: "Once objections have been answered, the next
+       visible action should be: Tell us about your event / Request a quote / Book a short call."
+       That "once ... then" is the same continuation inside one movement as the "then" above, so
+       the ask reads as the FAQ's second half rather than as a fresh chapter after it. The FAQ
+       carries .seam-minor-below, the closing band .seam-minor-above; the band keeps a full
+       --seam-major underneath, so the gap down to the footer is unchanged from before P7.
+
+       CASCADE. All three selectors are (0,1,2), identical to `main > section.section` above, and
+       all carry !important — so these two win on source order, being later in this same block.
        That is the same tiebreaker the superseded pair relied on; nothing got weaker. */
     main > section.seam-minor-below {
         padding-bottom: var(--seam-minor) !important;
@@ -759,6 +772,20 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
           round fixed everywhere else. Closing it means raising the stacked mode's 860px to
           959px, which changes a width the brief for this round froze; it is a decision, not an
           oversight.
+
+       8. THE SCALE OUTSIDE THE TWO SECTIONS (P7, 2026-08-21) — a scope note, not a new measure.
+          The tokens above are declared on `main`, so they were always inherited page-wide; until
+          P7 only #after-the-event and #how-it-works read them. The closing band at the foot of
+          the page (.p7-band, its own comment sits above it) reads exactly two of them and adds
+          none: --g-s0 for rule -> line and line -> button row (§2 defines --g-s0 as "a line and
+          its rule, a line and its button row", which is that component verbatim), and --g-gap as
+          the desktop column gap between the line and the actions, the same single gutter §1 and
+          §6 already reuse. It reads nothing else: it has no rail, no counter box and no row, so
+          §1's --g-rail, §4's --g-slug* and --g-row stay confined to the two sections that have
+          them. WHY WIDEN THE SCOPE AT ALL. The alternative was a third set of one-off pixel
+          margins at the bottom of the page, which is the exact thing this contract was written
+          to stop. A token being read by a third component is the contract working, not leaking;
+          what would break it is a fourth spacing scale.
        ============================================================================================== */
     main {
         /* --- the column grid --- */
@@ -2299,7 +2326,10 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     </div>
 </section>
 
-<section class="section section--lg section-dark" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+<!-- P7 (2026-08-21): .seam-minor-below added. The FAQ no longer ends the page — the closing band
+     below is its second half, so the two are bound by the page's minor seam instead of a chapter
+     break. Named class on the section itself, never `+ section`: see the vertical-rhythm block. -->
+<section class="section section--lg section-dark seam-minor-below" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">04</span>
@@ -2329,9 +2359,95 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 </section>
 
 <!-- ============================================================================================
+     P7 — THE CLOSING BAND (2026-08-21), page-local, prefix .p7-
+
+     WHY IT EXISTS. Max: "The page currently presents the main CTA, then a gallery, then a long
+     FAQ, and ends without another strong conversion prompt. Put a compact final CTA immediately
+     after the FAQ. Once objections have been answered, the next visible action should be: Tell us
+     about your event / Request a quote / Book a short call." MEASURED before this block, at
+     1440x900: the last 1118px of the page was the FAQ and the last CTA on it ended 1118px earlier,
+     inside .cta-section-v2. A reader who opened three accordions reached the footer with no ask
+     on screen.
+
+     WHY IT IS NOT A SECOND .cta-section-v2. That block is the page's ASK: two orbs, an overline,
+     a 3rem gradient H2, body copy, a centred button row, a note and a 7-image gallery, 1238.06px
+     tall at 1440x900. Repeating any of that at the foot of the page would read as the same block
+     twice. This one is the page's SIGN-OFF and is built from the page's editorial register only:
+     one hairline, one line, the two actions. No heading, no overline, no image, no orb, no card.
+     MEASURED: 201.14px at 1440x900, 16.2% of .cta-section-v2.
+
+     NO FOLIO COUNTER. The four .section-num marks (01 how it works, 02 selected work, 03 client
+     stories, 04 FAQ) mark the page's four CHAPTERS. This band is a coda bound to the FAQ by the
+     minor seam, not a fifth chapter, so it takes no counter and the 01-04 sequence is unchanged.
+
+     THE ACTIONS ARE THE PAGE'S EXISTING ONES, not new mechanics: data-cta="quote" is bound by
+     js/main-v2.js:219 (opens #modal, the quote form) and data-cta="call" by the booking-modal
+     script below (opens #hw-call-modal). Both bind by attribute over the whole document at init,
+     so this section needed no JS change; the /contact#calendar href stays as the same no-JS
+     fallback every other call CTA carries. VERIFIED by driving a click at 1440x900 and 390x844.
+
+     SPACING: no new measures. The band's internal rhythm is R12 CONTRACT §2's --g-s0 (18px,
+     "a line and its rule, a line and its button row" — literally this component) and its desktop
+     column gap is CONTRACT §1's --g-gap, the page's one gutter. See CONTRACT §8.
+     The section's own top/bottom padding is the page's seam scale, untouched: --seam-minor above
+     (paired with the FAQ, both halves named by class) and --seam-major below, so the gap down to
+     the footer is the same chapter break the FAQ used to give it.
+     ============================================================================================ -->
+<style>
+    /* ===== P7 CLOSING BAND: page-local, prefix .p7- ====================================
+       No !important anywhere: nothing in style.css targets these class names, and the two
+       reused components (.btn.btn-primary, .hero-cta-row/.hero-secondary-link) are left to
+       their own site-wide rules on purpose so the closing actions look and behave exactly
+       like every other CTA on the page.
+       .p7-end carries no rule of its own on purpose: it NAMES the section (the way
+       .work-section and .testimonials-section name theirs) so the seam classes and any future
+       rule have a stable handle. It is an identifier in the markup, not a dead CSS rule. */
+
+    /* CONTRACT §2/§8. One row-gap token is the whole vertical rhythm of the band: rule -> line
+       and line -> button row are the same part-to-part step, which is what --g-s0 names. */
+    .p7-band { display: grid; row-gap: var(--g-s0); }
+
+    /* The opening hairline. Ember at the left fading to faint at the right: the same rule idiom
+       as .hws-turn-rule and the R14 conclusion band's ::before, so the page's last rule reads as
+       a member of the same family rather than a new device. 1px is type detail, not grid (see
+       the CONTRACT's "what is still bare pixels" note). */
+    .p7-rule { display: block; height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(255, 255, 255, 0.1)); }
+
+    /* The sign-off line. Type, not layout: it reuses .hwp-line's size expression verbatim so the
+       page has ONE short-editorial-sentence size and not two, and takes the white that
+       .hwp-beat--turn gives its own conclusion line. */
+    .p7-line { margin: 0; font-family: var(--font-heading); font-size: clamp(1.1rem, 1.85vw, 1.45rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-white); text-wrap: pretty; }
+
+    /* >= 769px the line and the actions share one row under the rule, which is what keeps the
+       band a band. 769 is not a new breakpoint: it is style.css's own 768px mobile boundary + 1,
+       the same handoff the testimonials track uses. */
+    @media (min-width: 769px) {
+        .p7-band { grid-template-columns: minmax(0, 1fr) minmax(0, auto); column-gap: var(--g-gap); align-items: center; }
+        .p7-rule { grid-column: 1 / -1; }
+    }
+</style>
+
+<section class="section section-dark p7-end seam-minor-above">
+    <div class="container">
+        <div class="p7-band gsap-fade">
+            <span class="p7-rule" aria-hidden="true"></span>
+            <p class="p7-line">Questions answered. The rest we work out with you.</p>
+            <div class="hero-cta-row">
+                <a href="#" class="btn btn-primary" data-cta="quote">Tell us about your event</a>
+                <a href="https://recapmedia.no/contact#calendar"
+                   class="hero-secondary-link"
+                   data-cta="call">Book a short call <span class="arrow">&rarr;</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================================================
      BOOK-A-CALL MODAL (2026-08-19) — page-local, prefix .hw-cm-
-     Every [data-cta="call"] on this page (the #how-it-works close + the final CTA) opens this
-     instead of navigating to /contact#calendar. The href stays as the no-JS / init-failure
+     Every [data-cta="call"] on this page (the #how-it-works close, the final CTA and, since P7,
+     the closing band) opens this instead of navigating to /contact#calendar. The selector is
+     document-wide and runs at init, so a new call CTA in the static markup is picked up with no
+     change here — VERIFIED for the P7 band by driving a click at 1440x900 and 390x844. The href stays as the no-JS / init-failure
      fallback: preventDefault only runs AFTER the modal has actually opened, so any throw lets
      the browser navigate as before.
      The calendar is the SAME GHL booking widget the live /contact page embeds
