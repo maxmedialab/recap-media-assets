@@ -314,14 +314,18 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      A seam is the sum of two half-seams (the section above contributes its bottom padding, the
      section below its top). Two half-seam tokens = at most two seam sizes on the page:
 
-       --seam-major  chapter break (hero > problem > how it works > testimonials > selected work
-                     > closing ask > FAQ). Value is intentionally IDENTICAL to the just-rebuilt
-                     #how-it-works section's own padding, clamp(48px,6vw,88px), so that section
-                     is the tuning reference the rest of the page is normalised to rather than
-                     an exception to it.  Seam: 96px @390 · 154 @1280 · 173 @1440 · 176 @1728+
-       --seam-minor  within one chapter: "Selected work" and the day-video ("The system") are one
-                     proof beat, so they sit closer than a chapter break.
+       --seam-major  chapter break (hero > problem > how it works > selected work > client
+                     stories > the production video > closing ask > FAQ). Value is intentionally
+                     IDENTICAL to the just-rebuilt #how-it-works section's own padding,
+                     clamp(48px,6vw,88px), so that section is the tuning reference the rest of the
+                     page is normalised to rather than an exception to it.
+                     Seam: 96px @390 · 154 @1280 · 173 @1440 · 176 @1728+
+       --seam-minor  within one chapter: the two halves of the proof cluster, "Selected work" and
+                     "What our clients say", sit closer than a chapter break.
                      Seam: 56px @390 · 87 @1280 · 96 @1440+
+                     (P5a 2026-08-21 moved this pairing off work+day-video; see the reorder note
+                     on the work section for why, and for the class mechanism that replaced the
+                     sibling selector.)
 
      Ratio is ~0.55, so the two sizes read as clearly different intents, not as drift.
      SUPERSEDED BY THIS BLOCK (left in place, now inert — do not re-tune them, they no longer
@@ -347,12 +351,37 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         padding-bottom: var(--seam-major) !important;
     }
 
-    /* The one minor seam: "Selected work" and the day-video are a single proof beat.
-       Addressed by sibling selector rather than a new class so the markup stays untouched. */
-    main > section.work-section {
+    /* THE ONE MINOR SEAM — now named on both sides, not inferred from position.
+       WHAT IT USED TO BE, and why that broke (P5a, 2026-08-21): the pair was written as
+           main > section.work-section              { padding-bottom: --seam-minor }
+           main > section.work-section + section.section { padding-top: --seam-minor }
+       The second selector names no partner: it binds to whatever section happens to follow
+       "Selected work". When P5a moved the work section above the testimonials, that rule silently
+       re-pointed from the day-video to the testimonials without anything in the file changing.
+       A pairing that changes meaning when two unrelated blocks are reordered is a trap, so both
+       halves are now carried by the sections themselves and travel with them.
+
+       WHICH PAIR, AND WHY WORK + CLIENT STORIES. The seam says "one beat, two parts". Max's
+       sequence for the new order is process -> evidence that it works -> reassurance about
+       working with Recap, and his wording binds the middle two: "The case studies prove the
+       differentiated claim. Testimonials THEN provide confidence." That "then" is a continuation
+       inside one movement, which is exactly what --seam-minor is for. The production video, which
+       used to be work's partner, is now a separate beat (it re-opens the system claim rather than
+       continuing the proof), so it takes a full chapter break like every other section.
+
+       ON THE COLOUR EDGE. work is .section-onyx rgb(30,27,36) and the testimonials .section-dark
+       rgb(20,18,24), so unlike the old work+day-video pair this seam crosses a background change.
+       That is not an objection: the page already runs its tightest seam of all, the R12 --g-seam
+       between #after-the-event (onyx) and #how-it-works (dark), across the same kind of edge. The
+       colour edge separates the two sections; the short seam says they belong to one movement.
+
+       CASCADE. Both selectors are (0,1,2), identical to `main > section.section` above, and all
+       three carry !important — so these two win on source order, being later in this same block.
+       That is the same tiebreaker the superseded pair relied on; nothing got weaker. */
+    main > section.seam-minor-below {
         padding-bottom: var(--seam-minor) !important;
     }
-    main > section.work-section + section.section {
+    main > section.seam-minor-above {
         padding-top: var(--seam-minor) !important;
     }
 
@@ -1949,39 +1978,34 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 })();
 </script>
 
-<section class="section section--lg section-dark testimonials-section" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">02</span>
-            <span class="overline">Client stories</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
-        </div>
-        <div class="carousel-wrapper">
-            <div class="carousel-track">
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had the pleasure of working with Max on filming my interactive kids’ show in Oslo. We met well in advance, and he was truly dedicated to understanding the purpose of the video. He came thoroughly prepared with high-quality equipment and a clear plan. I’m also very happy with the post-production - the final video turned out just as I imagined. Worth every penny."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4D03AQH52fBfk2rzew/profile-displayphoto-shrink_800_800/B4DZaMuEdwGsAg-/0/1746117610017?e=1775088000&amp;v=beta&amp;t=QBKVP3FgwNQkgJISwOXxg5EfYASTF9Ehkc1NgP344ww" alt="Nagyová Anita Abigél" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=NA';"><div><div class="testimonial-name">Nagyová Anita Abigél</div><div class="testimonial-title">CEO, Kunst og Moro Underholdning</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
-                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- ============================================================================================
+     P5a — PROOF BEFORE REASSURANCE (2026-08-21). "Selected work" now sits BEFORE "What our
+     clients say". Page order: hero > the problem > how it works > selected work > client stories
+     > the production video > closing ask > FAQ.
 
-<section class="section section--lg section-onyx work-section" style="padding-bottom: clamp(40px, 5vw, 64px);">
+     THIS REVERSES THE ROUND-8 DECISION OF 2026-07-15, which deliberately put testimonials first.
+     Max's call, 2026-08-21: "Selected Work should come before testimonials. The case studies
+     prove the differentiated claim. Testimonials then provide confidence." The sequence he wants
+     is process -> evidence that it works -> reassurance about working with Recap. Do not re-swap
+     these two sections without a newer decision than this date.
+
+     WHAT MOVED WITH THE SWAP (all three were reorder traps, handled in the same commit):
+       · the folio counters .section-num are hardcoded text, so they were renumbered to ascend in
+         the NEW order: how-it-works 01, selected work 02, client stories 03, FAQ 04.
+       · the minor-seam pairing in the rhythm block above was written as
+         `main > section.work-section + section.section`, which silently re-targets whatever
+         section happens to follow. It is now two explicit classes, .seam-minor-below /
+         .seam-minor-above, carried by the two sections themselves — see that block.
+       · the two >=960px seam rules in the R12 contract below address #after-the-event and
+         .section.hws by id/class, not by sibling position, and neither section moved, so both
+         still bind exactly as before (MEASURED after the swap: 29.4px seam at 1280, 32.0px at
+         1440, unchanged; 96px at 390, still on --seam-major, unchanged).
+     ============================================================================================ -->
+<section class="section section--lg section-onyx work-section seam-minor-below" style="padding-bottom: clamp(40px, 5vw, 64px);">
     <div class="container">
         <div class="section-header-row gsap-fade">
             <div>
-                <span class="section-num">03</span>
+                <span class="section-num">02</span>
                 <span class="overline overline--ruled">Selected work</span>
                 <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">See Our Work in Action</h2>
             </div>
@@ -2019,6 +2043,118 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <span class="project-card-link">View case study</span>
                 </div>
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================================================
+     P6 — MOBILE TESTIMONIAL CARD HEIGHT (2026-08-21) — page-local, <= 768px only.
+
+     THE DEFECT. Max: "Every mobile testimonial card is fixed at approximately 544px, apparently
+     matching the longest quote. Short testimonials therefore leave several hundred pixels of empty
+     space before the author information. This looks broken rather than spacious."
+     MEASURED at 390x844 before this block: all nine cards 543.7px tall; on the shortest quote
+     (Lukasz Slawinski, 56 characters) the gap between the last line of the quote and the top of
+     the author row was 351.8px.
+
+     THE MECHANISM, which is not a fixed height. Nothing sets one. css/style.css:700 sets
+     `.carousel-track { align-items: stretch !important }`, and the track is ONE flex line holding
+     all nine cards, so every card is stretched to the tallest card's content height — including
+     the eight that are off-screen. css/style.css:707 then gives `.testimonial-quote { flex: 1 }`,
+     so the paragraph box absorbs all of that slack and the void opens INSIDE the paragraph, below
+     its last line and above the author row (which style.css:709 pins to the card bottom with
+     margin-top:auto). Hence "empty space before the author information", exactly as reported.
+
+     THE FIX: stop stretching, and only where stretching buys nothing.
+       align-items: flex-start  — each card is its own content height; card tops still align, which
+                                  is what a swipeable deck needs, and the quote/author pair closes up.
+       min-height: 0            — style.css's 300px floor would otherwise re-open a smaller version
+                                  of the same void inside the shortest card (free space to
+                                  distribute means flex:1 takes it again).
+       flex: 0 0 auto on quote  — makes the paragraph content-sized outright instead of relying on
+                                  flex-grow resolving to the content height in an auto-height column.
+
+     WHY <= 768px AND NOT WIDER. Above 768px the cards sit three-across in one visible row, where
+     ragged heights would look broken; there, stretch is correct and is left alone. 768px is not a
+     new number: it is the breakpoint at which css/style.css:841 already switches
+     `.testimonial-card` from 33.333% to 85%, i.e. the exact width where the carousel becomes
+     one-card-at-a-time and only one height is ever on screen.
+
+     WHAT THIS DOES NOT FIX, stated rather than left to be discovered. The TRACK is still one flex
+     line, so its height is still the tallest card's and short cards leave that slack as plain
+     section background between the card's bottom edge and the dots. MEASURED at 390x844 on the
+     shortest card: 336.0px of band below the card, 368.0px from its bottom edge to the controls.
+     The total empty space in the section is therefore roughly conserved; what changed is that it
+     is now OUTSIDE the card instead of a hole inside a bounded object, which is the part that read
+     as broken. That residual is structural: a
+     horizontal flex/grid scroller's height is always its tallest item, so removing it needs JS
+     that resizes the track to the snapped card. Deliberately not done — main-v2.js auto-advances
+     this carousel every 3s, so a height that tracked the active card would resize the section
+     every three seconds; Chrome and Firefox absorb that with scroll anchoring, Safari does not
+     implement it, and on iOS the page below would jump under the reader's eyes on a timer. A
+     static void is a smaller defect than periodic unrequested layout shift.
+     MEASURED after, at 390x844: every card 543.7px -> a range of 207.7px to 543.7px, one per
+     quote; and on the shortest card the distance from the last line of the quote to the author row
+     351.8px -> 15.8px, which is the card's own 12px flex gap plus 3.8px of line-box slack, i.e.
+     exactly the gap the TALLEST card already had. Excess space above the author row: 0 on all nine
+     cards, at every width <= 768px. Desktop is unchanged: 466.2px on all nine at 1440x900, as
+     before. The 85% card width, and so the peek of the next card that Max asked to keep, is
+     untouched (MEASURED at 390: 32.5px of card 2 showing at rest).
+
+     P5d TAIL — the two dots the desktop layout cannot reach. Nine dots is right at <= 768px, where
+     one card is on screen and there are nine scroll positions. Above 768px three cards are on
+     screen, so main-v2.js's own getMaxIdx() is 9 - 3 = 6 and positions 8 and 9 do not exist:
+     MEASURED at 1440x900 with nine dots, dots 8 and 9 both scroll to the same maxScroll as dot 7
+     and neither ever lights. They are hidden there rather than left inert. THE COUPLING, so it is
+     discoverable if it drifts: this rule assumes three-across above 768px, which is
+     css/style.css:703's `flex: 0 0 calc(33.333% - 14px)`. If that width changes, change the
+     nth-child number with it.
+     ============================================================================================ -->
+<style>
+    @media (max-width: 768px) {
+        .testimonials-section .carousel-track { align-items: flex-start !important; }
+        .testimonials-section .testimonial-card { min-height: 0 !important; }
+        .testimonials-section .testimonial-quote { flex: 0 0 auto !important; }
+    }
+
+    @media (min-width: 769px) {
+        .testimonials-section .carousel-dots .dot:nth-child(n+8) { display: none !important; }
+    }
+</style>
+
+<section class="section section--lg section-dark testimonials-section seam-minor-above" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">03</span>
+            <span class="overline">Client stories</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What Our Clients Say</h2>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had the pleasure of working with Max on filming my interactive kids’ show in Oslo. We met well in advance, and he was truly dedicated to understanding the purpose of the video. He came thoroughly prepared with high-quality equipment and a clear plan. I’m also very happy with the post-production - the final video turned out just as I imagined. Worth every penny."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4D03AQH52fBfk2rzew/profile-displayphoto-shrink_800_800/B4DZaMuEdwGsAg-/0/1746117610017?e=1775088000&amp;v=beta&amp;t=QBKVP3FgwNQkgJISwOXxg5EfYASTF9Ehkc1NgP344ww" alt="Nagyová Anita Abigél" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=NA';"><div><div class="testimonial-name">Nagyová Anita Abigél</div><div class="testimonial-title">CEO, Kunst og Moro Underholdning</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
+                <!-- P5d — ONE DOT PER CARD (2026-08-21). There are nine .testimonial-card
+                     children and there were five dots. js/main-v2.js binds dot i to card i
+                     (`dots.forEach((dot, i) => dot.addEventListener('click', () => goToIdx(i)))`)
+                     and lights `Math.min(idx, dots.length - 1)`, so with five dots MEASURED at
+                     390x844: clicking dot 5 landed on card 5 and cards 6-9 were unreachable by
+                     dot, while dot 5 stayed lit for cards 5, 6, 7, 8 and 9 alike.
+                     The count is the whole bug, so the fix is four more dots here. js/main-v2.js
+                     is NOT touched: it is served site-wide from a pinned CDN hash, and editing it
+                     would force a redeploy of every page on the site. -->
+                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
+            </div>
         </div>
     </div>
 </section>
