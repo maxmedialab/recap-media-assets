@@ -86,6 +86,34 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
     </script>
 
+    <!-- Schema: VideoObject (B1 2026-08-21) — PORTED from the LIVE homepage (index.html, added
+         2026-07-16 in 658c2d9), where this draft had dropped it: pasting the draft as-is would
+         have silently removed a third structured-data node. It marks up the click-to-play
+         content player further down the page; the hero background loop is deliberately NOT
+         marked up. Three corrections against the live node, all forced by this draft:
+           · `name` matched the heading P8 retired, so it now reads the section's current H2;
+           · the live `name` and `description` each carried an em dash (banned in this project's
+             copy) — replaced by a colon, which changes no meaning;
+           · `thumbnailUrl` followed the player's poster, so it moves with the B1 poster swap
+             below and points at the same frame the visitor actually sees.
+         VERIFIED: thumbnailUrl and contentUrl both return HTTP 200 from the pinned CDN hash;
+         there is no embedUrl on this node (the player is a bare <video>, not an embed);
+         uploadDate is valid ISO 8601 with a UTC offset, carried over unchanged; duration PT37S
+         matches the file, MEASURED with ffprobe at 37.246s. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "See the Production in Action: Recap Media conference coverage",
+      "description": "Montage of Recap Media covering corporate events and conferences in Oslo: photography and videography in action on the event day.",
+      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp",
+      "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4",
+      "uploadDate": "2026-04-01T12:00:00+02:00",
+      "duration": "PT37S",
+      "publisher": { "@type": "Organization", "name": "Recap Media", "url": "https://recapmedia.no" }
+    }
+    </script>
+
     <!-- Performance: early connections to CDN / asset / image / font origins.
          Local-preview-only here — for LIVE, mirror this block into GHL Header Tracking Code. -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -485,6 +513,47 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
 </style>
 
+<!-- ============================================================================================
+     HERO GRID LOCK (2026-08-21, round B1) — page-local, one declaration, every width.
+
+     THE DEFECT. `section.hero` is a COLUMN flex box and style.css sets `align-items: center` on
+     it (css/style.css:614), so its children are sized shrink-to-fit on the CROSS axis and then
+     centred in it. `.hero-stats-strip` escapes that with its own `width: 100%`
+     (css/style.css:951); `.hero-content-wrap` never had one. The hero's whole text block was
+     therefore as wide as its WIDEST CHILD and centred on whatever that width happened to be, so
+     its left edge was a property of the copy rather than of the page grid. MEASURED at 768px:
+     `p.hero-trust` sets 405.22px of max-content and `h1.hero-heading` 624.41px, and the wrap was
+     688.41px = the H1 plus the two 32px paddings.
+
+     MEASURED before this block, `.hero-inner`'s content-box left MINUS `.container`'s, both read
+     from the same page in the same run:
+       320 / 375 / 390 / 414 / 480 / 481 / 600: 0.00 (already full-width)
+       700: 5.80 · 768: 39.80 · 834: 73.88 · 900: 82.27 · 960: 89.88 · 1024: 98.00 ·
+       1100: 107.66 · 1200: 120.34 · 1280: 90.50 · 1440: 35.41 · 1728: 35.41
+     Two defects, one cause. The >= 834px drift is OLDER than P4d — the H1 is the widest child up
+     there whatever the trust line reads — and P4d's shorter trust line newly exposed the 700-768
+     band by promoting the H1 to widest child there too. Both close here, deliberately: fixing
+     only the band would have left the hero off-grid on every laptop.
+
+     THE FIX. Give `.hero-content-wrap` the width its sibling strip already has. The wrap then
+     fills the hero, and `.hero-inner` gets to use the max-width + `margin: 0 auto` + --space-lg
+     padding it already carries (css/style.css:938 — the same three values `.container` is built
+     from at css/style.css:598). The hero text block then lands on the page's left column by the
+     SAME arithmetic as every section below it, and no future copy edit can move it, because
+     nothing reads a child's width any more.
+     MEASURED after: 0.00px at 320, 375, 390, 414, 480, 481, 600, 700, 768, 834, 900, 960, 1024,
+     1100, 1200, 1280, 1440 and 1728, with no horizontal overflow at any of those widths.
+     ============================================================================================ -->
+<style>
+    /* The hero's text block is a page column, not a shrink-wrapped label. No new token and no new
+       measure: this is the same `width: 100%` style.css already gives .hero-stats-strip, so the
+       two halves of the hero are sized the same way and both defer to .hero-inner /
+       .hero-stats-inner for the actual grid. `main > section.hero` (0,2,1) beats style.css's
+       `.hero-content-wrap` (0,1,0) and sits later in document order; !important because the GHL
+       paste path drops this into a page whose theme CSS also sets widths. */
+    main > section.hero .hero-content-wrap { width: 100% !important; }
+</style>
+
 <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
@@ -513,7 +582,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                  Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim & Moss") is CUT here only. It set
                  12.48px type across 3 lines / 59.9px at 390px and read as an SEO tail; the long-tail
                  geo terms belong to the /services/* sub-pages, which keep them unchanged. "Oslo and
-                 beyond" is the project's approved phrasing ("Greater Oslo" is banned site-wide).
+                 beyond" is the project's approved phrasing; the banned metro-area variant of it
+                 is NOT spelled out here, because a comment that quotes a banned string defeats the
+                 grep guard that enforces the ban (B1 2026-08-21 correction).
                  The geo phrase is glued with &nbsp; so the line always breaks at the middot, i.e.
                  into its two meaning units, never mid-phrase. MEASURED: 2 lines / 39.94px at 320-414,
                  1 line / 19.97px at 480. -->
@@ -765,13 +836,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
           MEASURED, 1440x900: section height 1024.39px before, 580.31px after, with no image and
           no void. At 1280x800: 969.64px before, 521.28px after.
 
-       7a. WHAT R14 DID NOT REACH, stated rather than left to be discovered: between 861px and
-          959px neither block applies — the 860px stacked mode has ended and the 960px track has
-          not begun — so that 99px band still renders the r13 beat row, marker at the rail and
-          sentence in the main column, MEASURED 308.63px apart at 959px. It is the defect this
-          round fixed everywhere else. Closing it means raising the stacked mode's 860px to
-          959px, which changes a width the brief for this round froze; it is a decision, not an
-          oversight.
+       7a. THE 861-959px BAND (raised by B1, 2026-08-21). R14 left the stacked mode's ceiling at
+          860px, so between 861px and 959px NEITHER block applied and the band fell back to the
+          r13 beat row: marker at the rail, sentence in the main column. MEASURED at that build,
+          marker x minus sentence x: 274.34px at 861, 288.00px at 900, 298.50px at 930 and
+          308.63px at 959, with 0.00px at 860 and 0.00px at 960 either side of it. The ceiling is
+          now 959px, so the stacked mode owns every width up to the track's 960px and the section
+          has exactly two layouts at every viewport, not three. MEASURED after: 0.00px at 320,
+          375, 390, 414, 860, 861, 900, 930 and 959 (stacked) and 0.00px at 960 and 961 (track).
+          The phone widths are byte-identical to the 860px build; only 861-959 moved.
 
        8. THE SCALE OUTSIDE THE TWO SECTIONS (P7, 2026-08-21) — a scope note, not a new measure.
           The tokens above are declared on `main`, so they were always inherited page-wide; until
@@ -907,8 +980,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* One stacked mode. On a phone the four beats ARE the section. The row template collapses to
        counter + text, still on the same counter column and the same --g-slug-gap, so the phone
        inherits the contract rather than forking from it. This is also the layout every width
-       below 960px gets: the horizontal track at the end of this block is desktop-only. */
-    @media (max-width: 860px) {
+       below 960px gets: the horizontal track at the end of this block is desktop-only.
+
+       B1 (2026-08-21): the ceiling was 860px, which left 861-959px rendering NEITHER mode — the
+       r13 beat row, marker in the rail and sentence in the main column. MEASURED at HEAD, marker
+       x minus sentence x: 274.34px at 861, 288.00px at 900, 298.50px at 930, 308.63px at 959,
+       against 0.00px at 860 and 0.00px at 960. Raising the ceiling to 959px hands the whole band
+       to the stacked mode, which is what CONTRACT §7a said closing it would take. 959/960 is one
+       breakpoint, not two numbers: it is the same pair the seam gate and the script's MIN_W use,
+       written the way this file writes every other pair (768/769 below). */
+    @media (max-width: 959px) {
         .hwp-title { font-size: 1.5rem; max-width: none; }
         .hwp-life { row-gap: var(--g-s2); }
         /* row-gap 3px: the kicker and the sentence are stacked lines of ONE beat here, so the
@@ -951,8 +1032,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
     /* ===== R14 (2026-08-21): THE DESKTOP LIFECYCLE — CONTRACT §6, §6a, §7 ==============
        Everything above this point is the layout every width below 960px renders, unchanged by
-       R14. 960px is not a new number: it is the script's MIN_W and the seam gate's breakpoint,
-       and the three must stay in step. ================================================== */
+       R14 and, since B1, actually reaching all of it (CONTRACT §7a). 960px is not a new number:
+       it is the script's MIN_W and the seam gate's breakpoint, and the three must stay in
+       step. ============================================================================= */
     @media (min-width: 960px) {
         /* CONTRACT §1 — the same two tracks and the same gutter as .hws-grid, one level up from
            the beat row. This is what puts the two sections' rails on one x and their main columns
@@ -2189,7 +2271,21 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 <!-- Video: See the Production in Action (P8 2026-08-21: was "What It Looks Like on the Day".
      Max: that heading pulled the reader back to the coverage-of-the-day model right after the page
      argued for a longer content lifecycle. The video is now framed as evidence of the production
-     system. Player, script and controls untouched.) -->
+     system. Player, script and controls untouched.)
+
+     B1 2026-08-21 — POSTER SWAP. The poster was 69cccc9af2ec2d89a902d7a2, a CLIENT'S branded
+     title card: a lilac slide over a wall of twelve partner logos. Under a heading that promises
+     the production in action it showed no production, no action and no Recap, and it implied a
+     dozen brand associations that are the client's, not ours. It is replaced by
+     6a1ea69d7303598210434e1d, which the asset audit identifies as the only frame in the library
+     showing the crew at work. VERIFIED by opening the file rather than by reading its alt text
+     (the site's alts are known unreliable): a Recap operator kneeling on the auditorium steps
+     filming with a gimbal rig while suited delegates watch the stage. The `title` attribute
+     now describes that frame instead of the old generic one.
+     The file is 1497x1250 and the player is a 16:9 object-fit:cover box, so it is cropped to
+     1497x842 with 204px off the top and bottom; VERIFIED on that exact crop that the operator,
+     the gimbal rig and the seated rows all survive it. The VideoObject node in <head> carries
+     the same URL as its thumbnailUrl, so the poster and the structured data cannot drift. -->
 <section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
@@ -2200,11 +2296,11 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             <video
                 id="home-video"
                 src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4"
-                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69cccc9af2ec2d89a902d7a2.webp"
+                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp"
                 preload="none"
                 playsinline
                 webkit-playsinline
-                title="Conference coverage by Recap Media"
+                title="Recap Media filming a conference session from the auditorium steps"
             ></video>
             <div class="video-play-overlay" id="home-video-overlay">
                 <button class="video-play-btn" aria-label="Play video">
@@ -2303,7 +2399,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             <div class="cta-gallery">
                 <button class="cta-gallery-btn prev" aria-label="Previous image">&#10094;</button>
                 <div class="cta-gallery-track" id="ctaGalleryTrack">
-                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6178a81f772.webp" alt="Large audience of tech conference attendees filling an auditorium in Oslo" loading="lazy">
+                    <!-- B1 2026-08-21: was 691dabb888e1e6178a81f772, the SAME frame as the hero
+                         video poster and its <head> preload. Poster and preload stay paired (that
+                         frame is the LCP paint), so the gallery gives way instead: this slide is
+                         now 691dabb859e47b47aa3fc48d, a different real photograph, unused anywhere
+                         else on this page and not one of the banned ids. It keeps the slide's
+                         editorial job (the gallery's only wide establishing frame; slides 2-7 are
+                         all close and medium shots) and carries no third-party logo or slide
+                         graphic. Alt written from the pixels, not from the library's alt text. -->
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b47aa3fc48d.webp" alt="Conference audience applauding from tiered red seats in a packed Oslo auditorium" loading="lazy">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dc03e0f042cc417e7.webp" alt="Two professionals in conversation during a corporate reception, including the UK Ambassador to Norway" loading="lazy">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="Two conference attendees sharing a laugh in the exhibition hall at a tech event" loading="lazy">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting to an audience at a corporate conference in Oslo" loading="lazy">
