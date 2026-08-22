@@ -59,7 +59,16 @@
         <span>Recap Media</span>
     </a>
     <ul class="nav-links">
-        <!-- Services dropdown removed 2026-06-18 — service pages not yet updated; re-add when ready -->
+        <!-- [Claude] 2026-08-22: Services dropdown restored for the EN v2 launch. PASTE THIS GLOBAL SECTION ONLY AFTER /services/photography, /services/videography, /services/conference-coverage-oslo and /services are published (they 301 → /404 until then). -->
+        <li class="nav-dropdown">
+            <a href="#" class="nav-drop-trigger" aria-haspopup="true" aria-expanded="false">Services <span class="nav-drop-caret" aria-hidden="true">▾</span></a>
+            <ul class="nav-drop-menu">
+                <li><a href="https://recapmedia.no/services/photography">Event Photography</a></li>
+                <li><a href="https://recapmedia.no/services/videography">Event Videography</a></li>
+                <li><a href="https://recapmedia.no/services/conference-coverage-oslo">Conference Photo &amp; Video</a></li>
+                <li><a href="https://recapmedia.no/services">All services</a></li>
+            </ul>
+        </li>
         <li><a href="https://recapmedia.no/work">Work</a></li>
         <li><a href="https://recapmedia.no/about">About</a></li>
         <li><a href="https://recapmedia.no/packages">Packages</a></li>
@@ -73,7 +82,13 @@
 
 <!-- Mobile menu -->
 <div class="mobile-menu" aria-hidden="true">
-    <!-- Services block removed 2026-06-18 — service pages not yet updated; re-add when ready -->
+    <div class="mobile-menu-services">
+        <span class="mobile-menu-label">Services</span>
+        <a href="https://recapmedia.no/services/photography">Photography</a>
+        <a href="https://recapmedia.no/services/videography">Videography</a>
+        <a href="https://recapmedia.no/services/conference-coverage-oslo">Conference coverage</a>
+        <a href="https://recapmedia.no/services">All services</a>
+    </div>
     <a href="https://recapmedia.no/work">Work</a>
     <a href="https://recapmedia.no/about">About</a>
     <a href="https://recapmedia.no/packages">Packages</a>
