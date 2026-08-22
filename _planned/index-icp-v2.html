@@ -455,7 +455,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      made here, on this page, and nowhere else.
 
      HOW IT BEATS style.css's !important
-     Each gutter rule is !important AND carries a `main > section` ancestor: specificity (0,2,1)
+     Each gutter rule is !important AND carries a `main > section` ancestor: specificity (0,1,2)
      against style.css's (0,1,0), same author origin, and this block is later in document order
      than the <head> stylesheet link. All three cascade tiebreakers point the same way, so nothing
      here depends on source order alone.
@@ -502,7 +502,10 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         /* P4c — DELIBERATE HEADLINE WRAP.
            The H1 is authored as two units (.line-wrap): "Your event is too valuable" and
            "to disappear in a day." At the phone H1 size (38.4px, the clamp floor for every width
-           <=480) unit 1 needs ~445px and unit 2 ~363px, so both units must break on a phone. Left
+           <=480) unit 1 needs ~445px and unit 2 ~363px, so unit 1 must break at every phone width and
+           unit 2 must break at the narrow end. MEASURED 2026-08-22, unit 2: two lines at 320/375/390,
+           ONE line ("to disappear in a day.") at 414/430/480. An earlier version of this comment
+           said "both units must break on a phone", which is false above ~400px. Left
            greedy, unit 1 broke as "Your event is too / valuable", i.e. 288px against 146px: the
            break landed wherever the last word happened to stop.
            text-wrap: balance makes each unit split at its own balance point instead, so the wrap is
@@ -548,7 +551,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* The hero's text block is a page column, not a shrink-wrapped label. No new token and no new
        measure: this is the same `width: 100%` style.css already gives .hero-stats-strip, so the
        two halves of the hero are sized the same way and both defer to .hero-inner /
-       .hero-stats-inner for the actual grid. `main > section.hero` (0,2,1) beats style.css's
+       .hero-stats-inner for the actual grid. `main > section.hero .hero-content-wrap` (0,2,2) beats style.css's
        `.hero-content-wrap` (0,1,0) and sits later in document order; !important because the GHL
        paste path drops this into a page whose theme CSS also sets widths. */
     main > section.hero .hero-content-wrap { width: 100% !important; }
@@ -585,9 +588,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                  beyond" is the project's approved phrasing; the banned metro-area variant of it
                  is NOT spelled out here, because a comment that quotes a banned string defeats the
                  grep guard that enforces the ban (B1 2026-08-21 correction).
-                 The geo phrase is glued with &nbsp; so the line always breaks at the middot, i.e.
-                 into its two meaning units, never mid-phrase. MEASURED: 2 lines / 39.94px at 320-414,
-                 1 line / 19.97px at 480. -->
+                 The geo phrase is glued with &nbsp; so it can never break INTERNALLY.
+                 MEASURED 2026-08-22: the line breaks on the middot, into its two meaning units, at
+                 375/390/414/430; at 320 the left phrase is too long for one line and breaks after
+                 "organisers &", because only the right-hand phrase is nbsp-glued. An earlier version
+                 of this comment claimed the middot break was universal. Heights: 2 lines / 39.94px
+                 at 320-414, 1 line / 19.97px at 480. -->
             <p class="hero-trust">Trusted by conference organisers &amp; exhibitors &nbsp;·&nbsp; Oslo&nbsp;and&nbsp;beyond</p>
         </div>
     </div>
@@ -1023,7 +1029,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        x minus sentence x: 274.34px at 861, 288.00px at 900, 298.50px at 930, 308.63px at 959,
        against 0.00px at 860 and 0.00px at 960. Raising the ceiling to 959px hands the whole band
        to the stacked mode, which is what CONTRACT §7a said closing it would take. 959/960 is one
-       breakpoint, not two numbers: it is the same pair the seam gate and the script's MIN_W use,
+       breakpoint, not two numbers: it is the same pair the seam gate and the how-it-works script's MIN_W use,
        written the way this file writes every other pair (768/769 below). */
     @media (max-width: 959px) {
         .hwp-title { font-size: 1.5rem; max-width: none; }
@@ -1066,11 +1072,23 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-when { color: var(--color-stone); }
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-line { color: var(--color-warm-grey); }
 
+    /* ===== ROUND LABELS IN THIS FILE — read once ======================================
+       This file's R-numbers run ONE AHEAD of the project's r-numbers, because a late revision
+       pass inside project-r12 was labelled R13 here (see "R13 fix" at the seam gate, the counter
+       line-height, and the shelf's containing block, which says "In r12" in its own first line).
+       So:  file R13  =  project r12's late pass
+            file R14  =  project r13, Max's 2026-08-21 UX/layout revision brief (P1-P8)
+       History is deliberately NOT renumbered: the older R13 marks are load-bearing cross-references
+       between comments. New work in this round is labelled R14, or R14/P<n> for a specific
+       priority from the brief. =========================================================== */
+
     /* ===== R14 (2026-08-21): THE DESKTOP LIFECYCLE — CONTRACT §6, §6a, §7 ==============
        Everything above this point is the layout every width below 960px renders, unchanged by
        R14 and, since B1, actually reaching all of it (CONTRACT §7a). 960px is not a new number:
-       it is the script's MIN_W and the seam gate's breakpoint, and the three must stay in
-       step. ============================================================================= */
+       it is the HOW-IT-WORKS script's MIN_W and the seam gate's breakpoint, and the three must
+       stay in step. (Said plainly because an earlier version of this line read "the script's
+       MIN_W" inside the problem section's own block: THIS section's only script is the
+       sequential-emphasis IIFE, which has no width gate at all.) ============================================================================= */
     @media (min-width: 960px) {
         /* CONTRACT §1 — the same two tracks and the same gutter as .hws-grid, one level up from
            the beat row. This is what puts the two sections' rails on one x and their main columns
@@ -1428,7 +1446,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* min-width 240px is the component's own minimum, not a margin: the ember rule above YOUR
        PART has to read as a rule rather than as an underline, so it never gets shorter than this
        whatever the act line says. The rule is inline-flex, so without it it would shrink to text. */
-    /* r13/P3. Max listed "repeated 'Your part' formatting" as a density contributor but was
+    /* R14/P3. Max listed "repeated 'Your part' formatting" as a density contributor but was
        explicit that the CONTENT stays: "Keep 'Your part' — it usefully communicates that Recap
        reduces the client's workload — but make it visually lighter." So nothing is removed; the
        component stops shouting. The ember rule drops 0.55 -> 0.30 alpha, and the action loses a
@@ -1675,7 +1693,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
        1. THE SEGMENT WAS ELASTIC. --hws-seg was 88vh, so a 1900px window spent ~1672px of
           scroll per stage — 8360px for five. Now capped in PIXELS, so the cycling pace
-          is the same on every screen. r12 set that cap at 720 (cycle 3600); r13/P3 cut it to
+          is the same on every screen. r12 set that cap at 720 (cycle 3600); R14/P3 cut it to
           540 (cycle 2700) — see the declaration below for the measured before/after.
 
        2. THE BLOCK WAS CENTRED IN ITS OWN SLACK. The r11.5 --hws-vp cap and the centering
@@ -1704,7 +1722,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        "the pin releases onto the close block" actually true. MEASURED, not reasoned about.
 
        THE SHELF (why the close block is visible DURING the cycle). In pure flow the close block
-       sits a whole cycle below the panel (2700px since r13/P3, 3600px before it), so it cannot be
+       sits a whole cycle below the panel (2700px since R14/P3, 3600px before it), so it cannot be
        on screen while the cycle runs. It is
        therefore sticky-BOTTOM, parked --hws-shelf above the viewport floor, which puts it in the
        lower field beneath the pinned stages and lets it settle under the panel at the release.
@@ -1758,7 +1776,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
     @media (min-width: 960px) {
         .hws--cycle {
-            /* r13/P3: cap 720px -> 540px. Max: "Reduce the scroll distance by approximately
+            /* R14/P3: cap 720px -> 540px. Max: "Reduce the scroll distance by approximately
                20-25% and make transitions resolve more quickly. The visitor should have time to
                register each stage without feeling trapped inside the section."
                MEASURED at 1440x900: runway 3600 -> 2700 (-25.0%), section 4745.61 -> 3845.61
@@ -1818,7 +1836,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             grid-area: 1 / 1; align-self: start;
             margin-top: 0 !important;
             opacity: 0; pointer-events: none;
-            /* r13/P3: 0.16s -> 0.12s out, 0.28s/0.12s delay -> 0.20s/0.08s in. Whole swap
+            /* R14/P3: 0.16s -> 0.12s out, 0.28s/0.12s delay -> 0.20s/0.08s in. Whole swap
                400ms -> 280ms. The SEQUENCING is deliberately kept (out finishes before in
                starts: 120 out vs 80 delay) because simultaneous fades double-expose the two
                stages; only the durations moved. */
@@ -2757,7 +2775,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      tall at 1440x900. Repeating any of that at the foot of the page would read as the same block
      twice. This one is the page's SIGN-OFF and is built from the page's editorial register only:
      one hairline, one line, the two actions. No heading, no overline, no image, no orb, no card.
-     MEASURED: 201.14px at 1440x900, 16.2% of .cta-section-v2.
+     MEASURED 2026-08-22 (after P2/P3): 205.70px at 1440x900 = 16.61% of .cta-section-v2's
+     1238.06px; 191.63px / 15.98% at 1280x900; 259.48px / 36.83% at 390. An earlier version of this
+     line asserted 201.14px / 16.2%, which reproduces at no width.
 
      NO FOLIO COUNTER. The four .section-num marks (01 how it works, 02 selected work, 03 client
      stories, 04 FAQ) mark the page's four CHAPTERS. This band is a coda bound to the FAQ by the
