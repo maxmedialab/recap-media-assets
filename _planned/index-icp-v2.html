@@ -1428,9 +1428,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* min-width 240px is the component's own minimum, not a margin: the ember rule above YOUR
        PART has to read as a rule rather than as an underline, so it never gets shorter than this
        whatever the act line says. The rule is inline-flex, so without it it would shrink to text. */
-    .hws-part { display: inline-flex; align-items: baseline; gap: var(--g-slug-gap); margin: 0 0 var(--g-s2); padding-top: var(--g-slug-gap); border-top: 1px solid rgba(232, 89, 60, 0.55); min-width: 240px; }
+    /* r13/P3. Max listed "repeated 'Your part' formatting" as a density contributor but was
+       explicit that the CONTENT stays: "Keep 'Your part' — it usefully communicates that Recap
+       reduces the client's workload — but make it visually lighter." So nothing is removed; the
+       component stops shouting. The ember rule drops 0.55 -> 0.30 alpha, and the action loses a
+       weight step and a type step and moves off pure white, so the block reads as a quiet aside
+       under the stage sentence instead of a second headline repeated five times. */
+    .hws-part { display: inline-flex; align-items: baseline; gap: var(--g-slug-gap); margin: 0 0 var(--g-s2); padding-top: var(--g-slug-gap); border-top: 1px solid rgba(232, 89, 60, 0.30); min-width: 240px; }
     .hws-part-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-ember); white-space: nowrap; }
-    .hws-part-act { font-family: var(--font-heading); font-size: clamp(1rem, 1.5vw, 1.14rem); font-weight: 600; line-height: 1.25; color: var(--color-white); }
+    .hws-part-act { font-family: var(--font-heading); font-size: clamp(0.94rem, 1.2vw, 1.02rem); font-weight: 500; line-height: 1.3; color: var(--color-warm-grey); }
 
     .hws-plate { margin: 0; }
     /* border-radius 2px: a printed-corner softening, not a card. Bare px on purpose — it is a
@@ -1668,8 +1674,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        causes, all fixed here.
 
        1. THE SEGMENT WAS ELASTIC. --hws-seg was 88vh, so a 1900px window spent ~1672px of
-          scroll per stage — 8360px for five. Now capped in PIXELS at 720, so the cycling pace
-          is the same on every screen and the whole cycle is 3600px everywhere.
+          scroll per stage — 8360px for five. Now capped in PIXELS, so the cycling pace
+          is the same on every screen. r12 set that cap at 720 (cycle 3600); r13/P3 cut it to
+          540 (cycle 2700) — see the declaration below for the measured before/after.
 
        2. THE BLOCK WAS CENTRED IN ITS OWN SLACK. The r11.5 --hws-vp cap and the centering
           `top: max(...)` are DELETED, not re-tuned: the sticky element is now its content's
@@ -1697,7 +1704,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        "the pin releases onto the close block" actually true. MEASURED, not reasoned about.
 
        THE SHELF (why the close block is visible DURING the cycle). In pure flow the close block
-       sits 3600px below the panel, so it cannot be on screen while the cycle runs. It is
+       sits a whole cycle below the panel (2700px since r13/P3, 3600px before it), so it cannot be
+       on screen while the cycle runs. It is
        therefore sticky-BOTTOM, parked --hws-shelf above the viewport floor, which puts it in the
        lower field beneath the pinned stages and lets it settle under the panel at the release.
 
@@ -1750,7 +1758,19 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
     @media (min-width: 960px) {
         .hws--cycle {
-            --hws-seg: min(88vh, 720px);              /* MAX'S CAP: pace is viewport-independent */
+            /* r13/P3: cap 720px -> 540px. Max: "Reduce the scroll distance by approximately
+               20-25% and make transitions resolve more quickly. The visitor should have time to
+               register each stage without feeling trapped inside the section."
+               MEASURED at 1440x900: runway 3600 -> 2700 (-25.0%), section 4745.61 -> 3845.61
+               (-19.0%). At 1280x800: 3520 -> 2700 (-23.3%), section 4578.59 -> 3758.59 (-17.9%).
+               SIDE EFFECT WORTH THE NAME: at 540 the cap binds at every viewport height the pin
+               can run at (the script's MIN_H is 640, and 88vh only falls under 540 below ~614px),
+               so the pace is NOW genuinely viewport-independent. At 720 it was not: 88vh won on
+               any window under ~818px tall, which is why 1280x800 was paying 704px per stage and
+               1440x900 was paying 720px. The 88vh term is kept as the floor for the sub-614px
+               case rather than deleted, so a short window can never be given more scroll room
+               than it has screen. */
+            --hws-seg: min(88vh, 540px);              /* MAX'S CAP: pace is viewport-independent */
             --hws-shelf: 0px;              /* overridden by script only when .hws--shelf is on */
             /* THE LEAD: how far below the panel the close block is held before the shelf may take
                it. It is the shelf gap itself, less the close block's own top margin, so the block
@@ -1798,11 +1818,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             grid-area: 1 / 1; align-self: start;
             margin-top: 0 !important;
             opacity: 0; pointer-events: none;
-            transition: opacity 0.16s ease-out;
+            /* r13/P3: 0.16s -> 0.12s out, 0.28s/0.12s delay -> 0.20s/0.08s in. Whole swap
+               400ms -> 280ms. The SEQUENCING is deliberately kept (out finishes before in
+               starts: 120 out vs 80 delay) because simultaneous fades double-expose the two
+               stages; only the durations moved. */
+            transition: opacity 0.12s ease-out;
         }
         .hws--cycle .hws-stage.is-on {
             opacity: 1; pointer-events: auto;
-            transition: opacity 0.28s ease 0.12s;
+            transition: opacity 0.2s ease 0.08s;
         }
 
         /* Room to breathe. The frame keeps its 1.95:1 ratio as the FLOOR and grows with the
