@@ -988,7 +988,13 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        breakpoint, not two numbers: it is the same pair the seam gate and the how-it-works script's MIN_W use,
        written the way this file writes every other pair (768/769 below). */
     @media (max-width: 959px) {
-        .hwp-title { font-size: 1.5rem; max-width: none; }
+        /* One sentence per line, smaller, per Max: at 1.5rem the second sentence alone needs
+           more width than a 350px phone column has, so it wrapped raggedly across the break.
+           FLUID rather than a flat 1.25rem, because a flat one still gave THREE lines at 320px:
+           the longer sentence is 34 characters and needs ~272px at 16px, against the ~280px a
+           320px screen leaves after the gutter. The floor is the size at which it still fits. */
+        .hwp-title { font-size: clamp(1rem, 4.4vw, 1.25rem); max-width: none; }
+        .hwp-title-br { display: inline; }
         .hwp-life { row-gap: var(--g-s2); }
         /* row-gap 3px: the kicker and the sentence are stacked lines of ONE beat here, so the
            gap is a leading correction between two lines of type, below the scale's smallest step. */
@@ -1061,7 +1067,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            of the beat size: a column that holds a short sentence on one line and the long third
            beat on three, which is the shape this chronology actually has. It is deliberately not
            the container width; the container still sets the page gutter. */
-        .hwp-body { display: block; max-width: 980px; margin-inline: auto; }
+        .hwp-body { display: block; }
 
         /* The opening: overline over headline, both centred on the measure the beats occupy, so
            the header's optical centre and the track's are the same x. */
@@ -1074,12 +1080,25 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            headline is the section's opening statement and takes the page's section-headline size.
            max-width stays in ch: the measure that keeps a headline readable is a character count,
            not a fraction of the container. */
-        .hwp-title { font-size: clamp(1.9rem, 3.2vw, 2.9rem); margin: 0 auto; }
+        /* 2.55rem, not 2.9rem, and MEASURED not chosen: the string needs 1258px on one line at
+           2.88rem against a 1136px container, which is exactly why it broke as "The event is
+           captured. Most / of its value never gets used." At 2.55rem it needs 1114px and fits,
+           from 960px up (at 960 the container is 896 and the string needs 839).
+           max-width:none for the same reason — the 28ch cap was a second constraint doing the
+           same damage. .hwp-title-br is the small-screen break and is display:none here. */
+        .hwp-title { font-size: clamp(1.9rem, 3.2vw, 2.55rem); max-width: none; margin: 0 auto; }
+        .hwp-title-br { display: none; }
 
         /* CONTRACT §6 — the three-stage track. Four explicit rows: counters, time markers,
            sentences, then the conclusion band. Stages are placed by column rather than left to
            auto-flow so the reading order is stated, not inferred. */
+        /* THE EDITORIAL MEASURE LIVES HERE, not on .hwp-body. Both need a measure and they are
+           not the same one: the opening statement is a headline and reads better wide, the three
+           beats are short sentences and read worse wide. Putting 980px on the body capped both,
+           which is what forced the H2 to two lines. Now the track (and the conclusion inside it)
+           take 980px and the opening takes the container. */
         .hwp-life {
+            max-width: 980px; margin-inline: auto;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             grid-template-rows: auto auto auto auto;
             column-gap: var(--g-gap);
@@ -1101,9 +1120,17 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            the sentence one --g-s1 under that (§2 — within a band). All three start on the stage
            column's own left edge, which is the whole point: MEASURED 0.0px between a marker's x
            and its own sentence's x, where r13 measured 405px. */
+        /* CENTRED COLUMNS (2026-08-22, Max). The counter and its marker used to sit on the
+           column's left edge with the sentence under them; centring all three over the sentence
+           is what makes the three beats read as one centred composition with the opening and the
+           conclusion, instead of three left-aligned stacks inside a centred section.
+           justify-items:center shrinks each item to max-content, which is right for the counter
+           and the marker and wrong for the sentence — that has to keep the column's width or it
+           stops wrapping where the column ends, hence the explicit stretch on .hwp-line. */
+        .hwp-beat { justify-items: center; text-align: center; }
         .hwp-slug { grid-row: 1; }
         .hwp-when { grid-column: 1; grid-row: 2; padding-left: 0; margin-top: var(--g-slug-gap); }
-        .hwp-line { grid-column: 1; grid-row: 3; margin: var(--g-s1) 0 0; }
+        .hwp-line { grid-column: 1; grid-row: 3; justify-self: stretch; margin: var(--g-s1) 0 0; }
         /* CONTRACT §6 — the stage sentence steps down; the conclusion keeps the full-measure size
            (§7). At 1440 a stage column is 186.7px, which the 23.2px size cannot hold. */
         .hwp-beat:not(.hwp-beat--turn) .hwp-line { font-size: clamp(1rem, 1.25vw, 1.25rem); }
@@ -1117,8 +1144,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             height: 1px;
             top: calc((var(--g-slug-h) - 1px) / 2);
             bottom: auto;
-            left: calc(var(--g-slug) / 2);
-            right: calc(-1 * (var(--g-gap) + var(--g-slug) / 2));
+            /* Counter centres are now the COLUMN centres, so the segment runs 50% -> 150%+gap of
+               its own column: left edge at 0.5W, right edge at W - (-0.5W - gap) = 1.5W + gap,
+               i.e. exactly the next counter's centre. It used to start half a counter in from the
+               column's left edge, which is where the counters used to be. */
+            left: 50%;
+            right: calc(-50% - var(--g-gap));
         }
         /* stage 03 has no next stage: 04 is the conclusion, not a fourth step (§7). Its segment
            (the stone->ember gradient of the vertical layout) is removed rather than left running
@@ -1148,7 +1179,11 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            two lines is judged on how evenly the two read, and `pretty` only protects the last line
            from a single-word orphan — it left "We turn that unused footage into content that keeps
            the / event working." Balance splits it on sense instead. */
-        .hwp-beat--turn .hwp-line { grid-column: 1; text-align: center; text-wrap: balance; max-width: 46ch; margin-left: auto; margin-right: auto; }
+        /* max-width:none, and balance goes with it: this is ONE sentence and it belongs on one
+           line here. MEASURED 786px needed against the track's 980px. The 46ch cap (655px) was
+           what split it as "...that keeps the / event working." Below 960 it keeps the wrapped,
+           smaller treatment, which is the right shape for a phone. */
+        .hwp-beat--turn .hwp-line { grid-column: 1; text-align: center; text-wrap: initial; max-width: none; margin-left: auto; margin-right: auto; }
         /* The rule. Ember at the left, where the ember counter sits under it, fading out to the
            right: the same gradient idiom as .hws-turn-rule below, and the same warm-into-the-
            answer the vertical spine used to carry down into beat 04. */
@@ -1188,7 +1223,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <div class="hwp-rail-head">
                         <span class="overline overline--ruled">The problem</span>
                     </div>
-                    <h2 class="hwp-title">The event is captured. Most of its value never gets used.</h2>
+                    <h2 class="hwp-title">The event is captured.<br class="hwp-title-br"> Most of its value never gets used.</h2>
                 </div>
 
                 <ol class="hwp-life" role="list">
@@ -1205,7 +1240,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">03</span>
                         <span class="hwp-when">After that</span>
-                        <p class="hwp-line">The rest waits for editing, approvals and scheduling time your team does not have.</p>
+                        <p class="hwp-line">The rest sits on a drive, waiting for time nobody has.</p>
                     </li>
                     <!-- CONTRACT §7: still the fourth <li> of the same list, and still the fourth
                          beat the sequential-emphasis script lights. What changes at >= 960px is
@@ -1574,8 +1609,13 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* CONTRACT §2 — --g-s0 again (the ask line and its buttons are one component). The column gap
        is fluid because the two tracks reflow together at the 1080px step. */
     .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: var(--g-s2); padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
-    /* balance: at 42ch this line broke as "...get more from / it.", a one-word last line. */
-    .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; max-width: 42ch; text-wrap: balance; }
+    /* NO max-width, and no balance. The 42ch cap was the entire defect and it failed by TWO
+       pixels: MEASURED, the line needs 405px and 42ch resolved to 403px, so it wrapped and
+       balance then split it mid-sentence as "...We'll / help you get more from it." Uncapped it
+       fits on one line at every width from 768 up (the grid cell is 427px at 960 and 648-657px
+       above that). Below 768 it wraps at the sentence, via .hws-ask-br. */
+    .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
+    .hws-ask-br { display: none; }
     .hws-cta { gap: var(--g-s0) !important; }   /* CONTRACT §2 — two ways into one ask */
     /* a second path, not a second button: no .btn (its shine sweep would make it one) */
     /* 13px/22px is the button's OWN padding, matched to .btn's so the two CTAs are the same
@@ -1640,7 +1680,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hws-turn-rule { display: none; }
         .hws-outs { grid-template-columns: 1fr; gap: var(--g-s1); }
         .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: var(--g-s2); padding-top: 15px; }  /* stacked, off its hairline */
-        .hws-ask-line { font-size: 0.88rem; max-width: none; }
+        .hws-ask-line { font-size: 0.88rem; }
+        .hws-ask-br { display: inline; }
         /* R14/2026-08-22: was two stacked FULL-WIDTH blocks (MEASURED 350px each at 390px), which
            made the actions the heaviest thing in the close and put them ahead of the outcome copy
            they are supposed to follow. Now a centred stack at intrinsic width, with the call
@@ -1799,7 +1840,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            script decides the floor is big enough to need bounding, so it costs nothing on a laptop
            and never appears in stacked mode (there is no shelf there, and ordinary document flow
            already proves more content follows). */
-        .hws--cycle.hws--shelf.hws--cue .hws-cue {
+        /* :not(.hws--cue-off) — the cue's whole job is to say "there is more below". The moment
+           the next section is actually on screen that is no longer true, and worse, the close
+           block's CTA row has by then scrolled down onto the cue's parked line: Max's screenshot
+           caught the rule running straight through the two buttons. It leaves when Selected Work
+           arrives, which is also the earliest moment it could possibly collide. */
+        .hws--cycle.hws--shelf.hws--cue:not(.hws--cue-off) .hws-cue {
             display: flex; align-items: center; gap: var(--g-slug-gap);
             position: -webkit-sticky; position: sticky; bottom: var(--g-s1);
         }
@@ -2132,7 +2178,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             </div>
 
             <div class="hws-ask">
-                <p class="hws-ask-line">Tell us about your event. We'll help you get more from it.</p>
+                <p class="hws-ask-line">Tell us about your event.<br class="hws-ask-br"> We'll help you get more from it.</p>
                 <div class="hero-cta-row hws-cta">
                     <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                     <a href="https://recapmedia.no/contact#calendar"
@@ -2190,6 +2236,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     var sticky = sec.querySelector('.hws-sticky');
     var close  = sec.querySelector('.hws-close');
     var cue    = sec.querySelector('.hws-cue-label');
+    /* Resolved LAZILY, not here. This script is inline INSIDE its own section, so at the moment
+       it runs the Selected Work section further down the document does not exist yet and a
+       querySelector for it returns null — which is exactly what happened: the cue-off guard below
+       held a null forever and silently never fired. Cached on the first update that finds it, so
+       the lookup costs one call per frame only until the parser has got there. */
+    var nextSec = null;
+    function nextSection() {
+        if (!nextSec) { nextSec = document.querySelector('.work-section'); }
+        return nextSec;
+    }
     if (items.length !== stages.length || !stages.length || !pin || !sticky || !close) return;
 
     var COUNT = stages.length;              /* 5 */
@@ -2301,6 +2357,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
 
     function update() {
+        /* The cue is switched off by the arrival of the next section, read from the rect this
+           function is already taking every frame — no second listener, no observer. */
+        var nx = nextSection();
+        if (nx) {
+            sec.classList.toggle('hws--cue-off', nx.getBoundingClientRect().top < window.innerHeight);
+        }
         var p = (topPx - pin.getBoundingClientRect().top) / travel;
         if (p < 0) p = 0; else if (p > 1) p = 1;
         var raw = p * COUNT;                /* stage n owns raw in [n-1, n) */
