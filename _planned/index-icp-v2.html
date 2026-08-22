@@ -1144,7 +1144,11 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         }
         /* the conclusion reads centred under the centred opening: the composition closes where
            it started. Its measure is a character count for the same reason the headline's is. */
-        .hwp-beat--turn .hwp-line { grid-column: 1; text-align: center; max-width: 46ch; margin-left: auto; margin-right: auto; }
+        /* text-wrap:balance, not the .hwp-line base's `pretty`. A CENTRED sentence that runs to
+           two lines is judged on how evenly the two read, and `pretty` only protects the last line
+           from a single-word orphan — it left "We turn that unused footage into content that keeps
+           the / event working." Balance splits it on sense instead. */
+        .hwp-beat--turn .hwp-line { grid-column: 1; text-align: center; text-wrap: balance; max-width: 46ch; margin-left: auto; margin-right: auto; }
         /* The rule. Ember at the left, where the ember counter sits under it, fading out to the
            right: the same gradient idiom as .hws-turn-rule below, and the same warm-into-the-
            answer the vertical spine used to carry down into beat 04. */
@@ -1535,6 +1539,14 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .work-all { text-align: center; margin: var(--g-s3) 0 0; }
 
     .hws-close { margin-top: var(--g-s4); }
+
+    /* The continuation cue is hidden EVERYWHERE by default and turned on by exactly one selector,
+       in the >=960px cycle block. Two earlier placements were wrong and both are worth naming:
+       `.hws--cycle .hws-cue` only hid it where cycling was already on, so stacked mode rendered
+       the div as an ordinary block; and putting that base rule inside the >=960px media query
+       left 390px with no rule at all. MEASURED visible at 390x844 both times. It belongs here,
+       unscoped, with the rest of the section's base rules. */
+    .hws-cue { display: none; }
     /* CONTRACT §2 — --g-s0, the part-to-part step of one component: the line, its rule and its
        label are one object. minmax(40px, 1fr) is the RULE's own minimum length, the same kind of
        component minimum as .hws-part's min-width: below it the rule stops reading as a rule. */
@@ -1562,7 +1574,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* CONTRACT §2 — --g-s0 again (the ask line and its buttons are one component). The column gap
        is fluid because the two tracks reflow together at the 1080px step. */
     .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: var(--g-s2); padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
-    .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; max-width: 42ch; }
+    /* balance: at 42ch this line broke as "...get more from / it.", a one-word last line. */
+    .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; max-width: 42ch; text-wrap: balance; }
     .hws-cta { gap: var(--g-s0) !important; }   /* CONTRACT §2 — two ways into one ask */
     /* a second path, not a second button: no .btn (its shine sweep would make it one) */
     /* 13px/22px is the button's OWN padding, matched to .btn's so the two CTAs are the same
@@ -1779,6 +1792,23 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hws--cycle .hws-shelfpad { height: var(--hws-pad); }
         .hws--cycle .hws-close { pointer-events: auto; }
         .hws--cycle.hws--shelf .hws-close { position: -webkit-sticky; position: sticky; bottom: var(--hws-shelf); }
+
+        /* The cue parks at the viewport floor while the close block parks --hws-shelf above it, so
+           the two sticky-bottom siblings frame the empty field instead of stacking. It sits AFTER
+           the close block in flow, which is what lets it park lower. It is display:none until the
+           script decides the floor is big enough to need bounding, so it costs nothing on a laptop
+           and never appears in stacked mode (there is no shelf there, and ordinary document flow
+           already proves more content follows). */
+        .hws--cycle.hws--shelf.hws--cue .hws-cue {
+            display: flex; align-items: center; gap: var(--g-slug-gap);
+            position: -webkit-sticky; position: sticky; bottom: var(--g-s1);
+        }
+        .hws-cue-rule { flex: 1 1 auto; height: 1px; background: linear-gradient(to right, rgba(255, 255, 255, 0.14), rgba(232, 89, 60, 0.45)); }
+        /* the page's micro-label register: same size, weight and tracking as .hws-turn-label */
+        .hws-cue-label { flex: 0 0 auto; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
+        .hws--cycle.hws--shelf.hws--cue .hws-cue-arrow { flex: 0 0 auto; color: var(--color-ember); }
+        /* on Run the cue names the next chapter rather than the gesture */
+        .hws-cue[data-at-end] .hws-cue-label { color: var(--color-warm-grey); }
 
         /* the rail rides inside the pinned block, so it no longer needs to stick itself */
         .hws--cycle .hws-rail { position: static; top: auto; }
@@ -2111,6 +2141,23 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 </div>
             </div>
         </div>
+        <!-- THE CONTINUATION CUE (2026-08-22). Only ever visible in shelf mode on a screen tall
+             enough that the floor under the close block passes a quarter of the viewport.
+             WHY IT EXISTS: capping the gap ABOVE the close block (r14) moved every surplus pixel
+             of a tall window BELOW it. MEASURED: 251px of floor at 1024x1366 (18%), 489 at
+             1600x1600 (31%), 639 at 1646x1750 (36%), 735 at 1794x1900 (39%). The r14 comment
+             assumed that read as page margin. Max's screenshot of a 1646x1750 window shows it
+             does not: past roughly a third of the screen it reads as missing content.
+             WHAT IT IS AND IS NOT: a rule and a line of type at the lower edge, so the empty
+             field is BOUNDED and reads as composition rather than as the page running out. It is
+             not a button, not a scroll hint that bounces, and not a preview of the next section.
+             aria-hidden because the five-stage nav already states the sequence and this adds no
+             information a screen reader needs — it is a purely visual edge. -->
+        <div class="hws-cue" aria-hidden="true">
+            <span class="hws-cue-rule"></span>
+            <span class="hws-cue-label" data-cue>Scroll to continue</span>
+            <svg class="hws-cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </div>
         </div>
       </div>
 
@@ -2142,6 +2189,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     var pin    = sec.querySelector('.hws-pin');
     var sticky = sec.querySelector('.hws-sticky');
     var close  = sec.querySelector('.hws-close');
+    var cue    = sec.querySelector('.hws-cue-label');
     if (items.length !== stages.length || !stages.length || !pin || !sticky || !close) return;
 
     var COUNT = stages.length;              /* 5 */
@@ -2164,6 +2212,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             else { a.removeAttribute('aria-current'); }
         });
         stages.forEach(function (s, i) { s.classList.toggle('is-on', (i + 1) === n); });
+        /* The cue rides the stage state that is already being painted — no second scroll listener,
+           no observer of its own. Through Brief..Build it says what to do; on Run it says what is
+           next, so the last stage hands over instead of just ending. */
+        if (cue) {
+            var atEnd = (n === COUNT);
+            cue.textContent = atEnd ? 'Next \u00b7 Selected work' : 'Scroll to continue';
+            if (atEnd) { cue.parentNode.setAttribute('data-at-end', ''); }
+            else { cue.parentNode.removeAttribute('data-at-end'); }
+        }
     }
 
     /* ---------- stacked mode: the r11 observer, unchanged ----------
@@ -2226,11 +2283,18 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                old value still wins, and under 96px of free space the shelf stays off entirely. */
             var flowGap = parseFloat(getComputedStyle(close).marginTop) || 0;
             var gap = Math.min(free * 0.5, flowGap);
+            var shelf = Math.round(free - gap);
             sec.style.setProperty('--hws-gap', Math.round(gap) + 'px');
-            sec.style.setProperty('--hws-shelf', Math.round(free - gap) + 'px');
+            sec.style.setProperty('--hws-shelf', shelf + 'px');
             sec.classList.add('hws--shelf');
+            /* --hws-shelf IS the floor under the close block, so no second measurement is needed.
+               A quarter of the viewport is the threshold: below it the floor still reads as the
+               bottom margin of a composition (MEASURED 18% at 1024x1366 and it reads fine), above
+               it as the page running out. */
+            sec.classList.toggle('hws--cue', shelf > window.innerHeight * 0.25);
         } else {
             sec.classList.remove('hws--shelf');
+            sec.classList.remove('hws--cue');
             sec.style.removeProperty('--hws-shelf');
             sec.style.removeProperty('--hws-gap');
         }
