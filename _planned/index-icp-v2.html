@@ -1847,7 +1847,18 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            arrives, which is also the earliest moment it could possibly collide. */
         .hws--cycle.hws--shelf.hws--cue:not(.hws--cue-off) .hws-cue {
             display: flex; align-items: center; gap: var(--g-slug-gap);
-            position: -webkit-sticky; position: sticky; bottom: var(--g-s1);
+            position: -webkit-sticky; position: sticky;
+            /* IT RIDES UNDER THE CLOSE BLOCK, not at the viewport floor (2026-08-22, Max: "it
+               should come kinda from under the bottom of the last element on the section, the
+               CTA part"). --hws-shelf IS the close block's parked offset off the floor, so
+               subtracting one scale step from it lands this element's bottom exactly one step
+               below the close block's bottom, and the two then move as one object.
+               WHAT THIS FIXES BEYOND THE LOOK: parked at the floor, the cue's position had
+               nothing to do with the close block's, so while the block was still rising into its
+               parked position the cue was already sitting at the bottom of the screen — over the
+               outputs row, which is what Max screenshotted. A fixed offset below it cannot
+               collide, at any scroll position, by construction rather than by a guard. */
+            bottom: calc(var(--hws-shelf) - var(--g-s3));
         }
         .hws-cue-rule { flex: 1 1 auto; height: 1px; background: linear-gradient(to right, rgba(255, 255, 255, 0.14), rgba(232, 89, 60, 0.45)); }
         /* the page's micro-label register: same size, weight and tracking as .hws-turn-label */
@@ -2359,12 +2370,21 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     function update() {
         /* The cue is switched off by the arrival of the next section, read from the rect this
            function is already taking every frame — no second listener, no observer. */
+        var rawP = (topPx - pin.getBoundingClientRect().top) / travel;
+        var p = rawP < 0 ? 0 : (rawP > 1 ? 1 : rawP);
+        /* THE CUE IS OFF UNLESS THE SCENE IS LOCKED AND THERE IS STILL SOMETHING BELOW.
+           Two conditions, and each fixes a defect Max screenshotted:
+             rawP <= 0  — the pin has not engaged yet. Scrolling IN, the close block is still
+                          rising into its parked position while the cue, parked off --hws-shelf,
+                          is already where it will end up. MEASURED at 1646x1750: the cue sat
+                          343px INSIDE the close block at 25% before the pin, and 93px at 10%.
+                          Gating on engagement is also what makes it "come from under" the CTA
+                          row rather than being there waiting.
+             next section on screen — the cue says "there is more below"; once Selected Work is
+                          visible that is no longer true. */
         var nx = nextSection();
-        if (nx) {
-            sec.classList.toggle('hws--cue-off', nx.getBoundingClientRect().top < window.innerHeight);
-        }
-        var p = (topPx - pin.getBoundingClientRect().top) / travel;
-        if (p < 0) p = 0; else if (p > 1) p = 1;
+        var nextIsUp = nx ? nx.getBoundingClientRect().top < window.innerHeight : false;
+        sec.classList.toggle('hws--cue-off', rawP <= 0 || nextIsUp);
         var raw = p * COUNT;                /* stage n owns raw in [n-1, n) */
         var n = current || 1;
         /* hysteresis in both directions, so a stage never flickers at a boundary, and a while
@@ -2681,10 +2701,6 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* THE TRANSPORT BAR — page-local, prefix .hv-. Sits on the player's bottom edge over a scrim
        so the type stays legible on any frame. It does NOT hide on mouse-out the way the existing
        mute/fullscreen cluster does: a position readout you cannot see is the defect this fixes. */
-    /* the player's visible credit, in the page's own micro-credit register (same family and
-       tracking as .hws-cap em, which does the same job under the stage plates) */
-    .video-credit { max-width: 900px; margin: 12px auto 0; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
-
     .hv-bar {
         position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
         display: flex; align-items: center; gap: 12px;
@@ -2796,14 +2812,6 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 <span class="hv-time hv-time--dur" id="home-video-dur">0:00</span>
             </div>
         </div>
-        <!-- The visible credit. Max chose this poster; the concern raised against it is that a
-             client's title card over a wall of twelve partner logos, sitting under a heading about
-             Recap's production, can read as though those brands are Recap's. The `title` attribute
-             and VideoObject.name already say whose card it is, but neither is visible to a sighted
-             reader. This line is. It is also careful about what it claims: the reel is a montage
-             across several events, so the card is credited as ONE of them rather than as the
-             subject of the whole video. -->
-        <p class="video-credit">Opening card: Dustin IT Inspiration Day, one of the events in this reel.</p>
         <script>
         (function() {
             var vid = document.getElementById('home-video');
