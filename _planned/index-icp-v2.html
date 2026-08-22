@@ -104,9 +104,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     {
       "@context": "https://schema.org",
       "@type": "VideoObject",
-      "name": "See the Production in Action: Recap Media conference coverage",
+      "name": "Inside a Recap Production: conference coverage in Oslo",
       "description": "Montage of Recap Media covering corporate events and conferences in Oslo: photography and videography in action on the event day.",
-      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b22fd3fc499.webp",
+      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/69cccc9af2ec2d89a902d7a2.webp",
       "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/video/69cf9010a7dcb4cff052a257.mp4",
       "uploadDate": "2026-04-01T12:00:00+02:00",
       "duration": "PT37S",
@@ -889,10 +889,18 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        under a quarter of every other section boundary on the page. Gated, 390px is back on the
        page's own --seam-major rhythm. 960px is not a new number: it is MIN_W in the script below,
        and the two must stay in step. */
-    @media (min-width: 960px) {
-        main > section#after-the-event { padding-bottom: var(--g-seam) !important; }
-        main > section.section.hws { padding-top: var(--g-seam) !important; }
-    }
+    /* THE 960px SEAM OVERRIDE IS GONE (2026-08-22, Max's review).
+       It set both halves of the problem -> how-it-works break to --g-seam (11-16px per side) at
+       exactly the width where the cycling interaction switches on, so ONE pixel of window width
+       changed the chapter break from 115.08px to 22.08px. MEASURED at 959 and 960 on the rendered
+       page; the same break is 96px on a phone. The stated reason was that the problem tail should
+       still be on screen when the pin engages — Max has now looked at the result and rejected it,
+       and the pinned scene has its own top air anyway (--hws-top, 104-140px).
+       The break is now --seam-major on both sides like every other chapter break on this page, at
+       every width, so it no longer moves when the interaction does. THE GENERAL RULE this restores:
+       a chapter seam is a reading decision and must not be coupled to whether a script is running.
+       --g-seam itself stays defined; nothing else uses it, but it is the token this override was
+       built from and deleting it would strand the contract note that names it. */
 
     /* ===== PROBLEM: page-local, prefix .hwp- =========================================
        !important only where style.css's element-level !important rules collide
@@ -903,10 +911,13 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        and the section reads H2 -> 01 -> 02 -> 03 -> 04 top to bottom, which is exactly what it
        did before R14. The two-column split is applied in the >= 960px block at the end. */
     .hwp-body { display: block; }
-    /* CONTRACT §3/§6. The rail's marker band exists only where there IS a rail: stacked, it would
-       be a second overline sitting above the H2 for no structural reason, and it would change the
-       phone layout that Max asked to keep untouched. */
-    .hwp-rail-head { display: none; }
+    /* The chapter overline. It used to be display:none below 960px, which was right while this
+       was a RAIL's marker band — stacked, it would have been a floating second overline. Since the
+       2026-08-22 recomposition it is the section's chapter opener, and every other section on the
+       page carries one at every width, so hiding it on a phone broke the page's own grammar
+       (Codex, 2026-08-22). It is now shown at all widths, left-aligned below 960 with the rest of
+       the stacked column and centred above it. */
+    .hwp-rail-head { display: block; margin-bottom: var(--g-s1); }
 
     /* ---------- the lifecycle rail ---------- */
     /* CONTRACT §2: one row-gap token is the entire vertical rhythm between beats. */
@@ -1041,7 +1052,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
            of the sentences it introduces, with nothing under it for two thirds of the section's
            height. Max read that as "not centred" and he is right. #how-it-works keeps §1 in full;
            it has a rail that does something (the five-stage nav travels in it). */
-        .hwp-body { display: block; }
+        /* THE EDITORIAL MEASURE (2026-08-22). The three beats were stretched across the whole
+           1136px container, which with a one-line beat 01 and a one-line beat 02 read as an
+           unfinished stat strip rather than a causal sequence. Narrowing the WHOLE body — opening,
+           track and conclusion together — keeps the single optical centre the last pass
+           established while giving the sentences a density they can carry.
+           980px is the measure at which the three columns come out ~290px, i.e. ~32 characters
+           of the beat size: a column that holds a short sentence on one line and the long third
+           beat on three, which is the shape this chronology actually has. It is deliberately not
+           the container width; the container still sets the page gutter. */
+        .hwp-body { display: block; max-width: 980px; margin-inline: auto; }
 
         /* The opening: overline over headline, both centred on the measure the beats occupy, so
            the header's optical centre and the track's are the same x. */
@@ -1112,16 +1132,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             grid-row: 4;
             grid-template-columns: minmax(0, 1fr);
             grid-template-rows: none;
-            margin-top: var(--g-s4);
+            margin-top: var(--g-s3);
             padding-top: var(--g-s3);
-            /* THE BOTTOM HALF OF MAX'S SPACING NOTE (2026-08-22). MEASURED at 1440/1920/2770:
-               173px of padding above this section's first ink against 16px below its last, a
-               10:1 asymmetry, and the conclusion sentence sat 16px off a background change.
-               The 16px is --g-seam and it is deliberate — the problem tail has to be on screen
-               when the pin engages — so the seam is NOT widened. The room is added INSIDE the
-               section instead, at a scale step rather than as a one-off margin, which is why
-               this is --g-s3 and not a number. */
-            padding-bottom: var(--g-s3);
+            /* NO padding-bottom. It had one — --g-s3, added earlier the same day to lift the
+               conclusion off a background change that was only 16px away. That 16px was the
+               --g-seam override, and the override is gone: the break below this section is now a
+               full --seam-major like every other chapter break, so the padding was compensating
+               for a condition that no longer exists and simply double-counted (MEASURED 139px
+               under the conclusion against 86px above the section). Removed rather than retuned,
+               which is the whole reason it was written as a token and commented at the time. */
         }
         /* the conclusion reads centred under the centred opening: the composition closes where
            it started. Its measure is a character count for the same reason the headline's is. */
@@ -1165,30 +1184,30 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <div class="hwp-rail-head">
                         <span class="overline overline--ruled">The problem</span>
                     </div>
-                    <h2 class="hwp-title">What happens to the footage after the first highlight?</h2>
+                    <h2 class="hwp-title">The event is captured. Most of its value never gets used.</h2>
                 </div>
 
                 <ol class="hwp-life" role="list">
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">01</span>
                         <span class="hwp-when">The event</span>
-                        <p class="hwp-line">You invest in capturing the day.</p>
+                        <p class="hwp-line">The day is documented.</p>
                     </li>
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">02</span>
                         <span class="hwp-when">The week after</span>
-                        <p class="hwp-line">One highlight goes out.</p>
+                        <p class="hwp-line">One highlight gets published.</p>
                     </li>
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">03</span>
                         <span class="hwp-when">After that</span>
-                        <p class="hwp-line">The rest waits for time your team does not have.</p>
+                        <p class="hwp-line">The rest waits for editing, approvals and scheduling time your team does not have.</p>
                     </li>
                     <!-- CONTRACT §7: still the fourth <li> of the same list, and still the fourth
                          beat the sequential-emphasis script lights. What changes at >= 960px is
                          where the grid puts it: out of the three-stage track, under it. -->
                     <li class="hwp-beat hwp-beat--turn">
-                        <p class="hwp-line">We turn the same event into content your team can keep using.</p>
+                        <p class="hwp-line">We turn that unused footage into content that keeps the event working.</p>
                     </li>
                 </ol>
             </div>
@@ -1489,6 +1508,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        --g-slug-gap: this mark is vertical and 12px would read tighter than it does beside a
        counter. The 3px top/bottom insets shorten the hairline off the caption's ascender and
        descender so it reads as a rule beside the type rather than a box around it. */
+    /* Since 2026-08-22 most captions are a CREDIT ONLY — one monospace line, no sentence above
+       it. The layers each have one job now: stage body = the buyer outcome, "Your part" = the
+       client's effort, the image = the explanation, the caption = the source. Before this, Brief
+       said "one conversation" in the body, in "Your part", in the caption AND in the picture.
+       The hairline and the 14px inset are unchanged; they read the same beside one line as beside
+       two. Alt text stays full — a removed visible caption must not remove the described image. */
     .hws-cap { position: relative; margin: var(--g-slug-gap) 0 0; padding-left: 14px; }
     .hws-cap::before { content: ''; position: absolute; left: 0; top: 3px; bottom: 3px; width: 1px; background: rgba(255, 255, 255, 0.14); }
     .hws-cap span { display: block; font-size: 0.83rem; line-height: 1.45; color: var(--color-warm-grey); }
@@ -1878,7 +1903,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                         <span class="hws-meta">Stage 01 / 05 &middot; Before booking</span>
                     </div>
                     <h3 class="hws-h">Brief</h3>
-                    <p class="hws-say">We start with your event, your audience, and what the content needs to achieve.</p>
+                    <p class="hws-say">What the content has to achieve is settled here. Everything after it follows from that.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">One conversation.</span></p>
                     <!-- ILLUSTRATION (2026-08-22, Max's supplied artwork; replaces the r13 typeset plate,
                          which in turn replaced 691dabb8300f0695bc767185, two people at a stand).
@@ -1902,7 +1927,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: four taped index cards headed Event, Audience, Objective and Outcomes, ruled and left blank on a studio board"
                                      width="1600" height="822" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>It starts with one conversation about what the content has to do.</span><em>Illustration &middot; what the first conversation covers</em></figcaption>
+                            <figcaption class="hws-cap"><em>Illustration &middot; discovery brief</em></figcaption>
                         </figure>
                 </article>
 
@@ -1934,7 +1959,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: a coverage plan laid out in bands for time, moments, rooms, crew and deliverables across a multi-room event"
                                      width="1600" height="822" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>Every room and every day is mapped before the doors open.</span><em>Illustration &middot; Recap Media coverage plan</em></figcaption>
+                            <figcaption class="hws-cap"><em>Illustration &middot; coverage plan</em></figcaption>
                         </figure>
                 </article>
 
@@ -1967,7 +1992,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                  alt="A Recap Media operator kneeling on the auditorium steps, filming a conference session with a gimbal-mounted camera while delegates watch the stage"
                                  width="1497" height="1250" loading="lazy" decoding="async">
                         </div>
-                        <figcaption class="hws-cap"><span>The crew works to the plan while you stay with your guests.</span><em>Recap Media crew on the day</em></figcaption>
+                        <figcaption class="hws-cap"><em>Recap Media crew on the day</em></figcaption>
                     </figure>
                 </article>
 
@@ -1977,7 +2002,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                         <span class="hws-meta">Stage 04 / 05 &middot; After the day</span>
                     </div>
                     <h3 class="hws-h">Build</h3>
-                    <p class="hws-say">Raw moments become content your team can actually use.</p>
+                    <p class="hws-say">Your team gets finished pieces, not a folder of raw files.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Pick your favourites.</span></p>
                     <!-- ILLUSTRATION (2026-08-22, Max's artwork; replaces the r13 eight-frame proof sheet,
                          which replaced a wide auditorium photograph).
@@ -2000,7 +2025,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: source components — footage, audio, transcript and formats — above the finished deliverables they become: a master film, short cuts, photo selects and a newsletter article"
                                      width="1600" height="823" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>One event becomes a set of finished pieces.</span><em>Illustration &middot; source components to deliverables</em></figcaption>
+                            <figcaption class="hws-cap"><em>Illustration &middot; components to deliverables</em></figcaption>
                         </figure>
                 </article>
 
@@ -2010,7 +2035,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                         <span class="hws-meta">Stage 05 / 05 &middot; Months after</span>
                     </div>
                     <h3 class="hws-h">Run <span class="hws-opt">Optional</span></h3>
-                    <p class="hws-say">The event continues working after the room is empty.</p>
+                    <p class="hws-say">The pieces go out in a planned order over the weeks and months that follow.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve each batch.</span></p>
                     <!-- ILLUSTRATION (2026-08-22, Max's artwork; replaces the r13 release axis, which
                          replaced 691dc06dc03e0f2905c417e9, a NECCUS photograph).
@@ -2034,7 +2059,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: a four-step release sequence — open with the master film, explain with a short cut, prove with photo selects, follow up with a promo for the next event"
                                      width="1600" height="826" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>Selected pieces, released with a purpose across the weeks that follow.</span><em>Illustration &middot; Recap Media release sequence</em></figcaption>
+                            <figcaption class="hws-cap"><em>Illustration &middot; release sequence</em></figcaption>
                         </figure>
                 </article>
 
@@ -2077,7 +2102,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             </div>
 
             <div class="hws-ask">
-                <p class="hws-ask-line">Tell us about your event. We will shape the right plan around it.</p>
+                <p class="hws-ask-line">Tell us about your event. We'll help you get more from it.</p>
                 <div class="hero-cta-row hws-cta">
                     <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                     <a href="https://recapmedia.no/contact#calendar"
@@ -2505,30 +2530,35 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      argued for a longer content lifecycle. The video is now framed as evidence of the production
      system. Player, script and controls untouched.)
 
-     B1 2026-08-21 — POSTER SWAP. The poster was 69cccc9af2ec2d89a902d7a2, a CLIENT'S branded
-     title card: a lilac slide over a wall of twelve partner logos. Under a heading that promises
-     the production in action it showed no production, no action and no Recap, and it implied a
-     dozen brand associations that are the client's, not ours. B1 replaced it with
-     6a1ea69d7303598210434e1d, the only frame in the library showing the crew at work.
-
-     P2 2026-08-22 — that frame LEFT this slot. It is now stage 03 of the how-it-works deck, whose
-     line is "Your team runs the event. We run the production" and whose job this round is to stop
-     the deck looking like five event photographs; the deck cannot borrow a frame that also sits
-     here, because one frame in two places on one page is the exact repetition P2 exists to remove.
-     A poster is also the shortest-lived image on the page: it is replaced by the video itself the
-     moment anyone presses play. The slot now carries 691dabb859e47b22fd3fc499, unused anywhere
-     else on this page and not one of the banned ids. VERIFIED by opening the file rather than by
-     reading any alt text: a full tiered auditorium in session, red seats, with a camera on a
-     tripod covering the room from the back — a still that shows a conference being covered, which
-     is what the heading above it promises. The file is 1024x683 and the player is a 16:9
-     object-fit:cover box, so it is cropped to 1024x576 with 53.5px off the top and bottom;
-     VERIFIED on the rendered player at 1440x900 (a 900x506 box) that the tripod camera survives. B1's invariant is kept: the
-     VideoObject node in <head> carries the same URL as its thumbnailUrl, so the poster and the
-     structured data still cannot drift, and the `title` attribute describes the new frame. -->
+     POSTER — MAX'S CALL, 2026-08-22. FINAL unless he says otherwise; the two passes below are
+     kept because between them they are the reason this line exists.
+     NOW: 69cccc9af2ec2d89a902d7a2, the opening title card from Dustin IT Inspiration Day, an
+     event Recap covered. Max asked for it back and confirmed it directly when asked.
+     WHAT THE TWO EARLIER PASSES ARGUED, so nobody re-litigates it from half the story:
+       · B1 (2026-08-21) removed this card because under a heading promising the production it
+         showed no production and no Recap, and because it carries a wall of twelve partner logos
+         that are the CLIENT'S associations, not ours. That objection is real and does not go
+         away; it is handled in the text rather than by changing the image. The `title` attribute
+         and the VideoObject `name` now say whose card it is, so nothing on the page or in the
+         structured data implies those twelve brands are Recap's.
+       · P2 (2026-08-22) then moved B1's replacement (the crew-at-work frame) into how-it-works
+         stage 03, and this slot took 691dabb859e47b22fd3fc499, a dark auditorium. That frame is
+         what Max rejected: MEASURED unreadable behind the play control at phone size.
+     A poster is also the shortest-lived image on the page — the video replaces it the moment
+     anyone presses play.
+     THE INVARIANT, unchanged through all three passes: the VideoObject node in <head> carries the
+     same URL as the player's poster, so the structured data and the visible frame cannot drift.
+     Both now sit on the same media pin as well; they had drifted onto two (the earlier bump
+     matched /images/ inside <main> only, and the schema lives in <head>).
+-->
 <style>
     /* THE TRANSPORT BAR — page-local, prefix .hv-. Sits on the player's bottom edge over a scrim
        so the type stays legible on any frame. It does NOT hide on mouse-out the way the existing
        mute/fullscreen cluster does: a position readout you cannot see is the defect this fixes. */
+    /* the player's visible credit, in the page's own micro-credit register (same family and
+       tracking as .hws-cap em, which does the same job under the stage plates) */
+    .video-credit { max-width: 900px; margin: 12px auto 0; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
+
     .hv-bar {
         position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
         display: flex; align-items: center; gap: 12px;
@@ -2589,17 +2619,17 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
             <span class="overline">The system</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">See the Production in Action</h2>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; margin-top: 8px;">Inside a Recap Production</h2>
         </div>
         <div class="video-player-wrap gsap-fade">
             <video
                 id="home-video"
                 src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/video/69cf9010a7dcb4cff052a257.mp4"
-                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb859e47b22fd3fc499.webp"
+                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/69cccc9af2ec2d89a902d7a2.webp"
                 preload="none"
                 playsinline
                 webkit-playsinline
-                title="A full conference auditorium in Oslo during a session, covered from the back of the room"
+                title="The opening title card from Dustin IT Inspiration Day, an event Recap Media covered in Oslo"
             ></video>
             <div class="video-play-overlay" id="home-video-overlay">
                 <button class="video-play-btn" aria-label="Play video">
@@ -2640,6 +2670,14 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 <span class="hv-time hv-time--dur" id="home-video-dur">0:00</span>
             </div>
         </div>
+        <!-- The visible credit. Max chose this poster; the concern raised against it is that a
+             client's title card over a wall of twelve partner logos, sitting under a heading about
+             Recap's production, can read as though those brands are Recap's. The `title` attribute
+             and VideoObject.name already say whose card it is, but neither is visible to a sighted
+             reader. This line is. It is also careful about what it claims: the reel is a montage
+             across several events, so the card is credited as ONE of them rather than as the
+             subject of the whole video. -->
+        <p class="video-credit">Opening card: Dustin IT Inspiration Day, one of the events in this reel.</p>
         <script>
         (function() {
             var vid = document.getElementById('home-video');
@@ -2900,7 +2938,13 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     /* The sign-off line. Type, not layout: it reuses .hwp-line's size expression verbatim so the
        page has ONE short-editorial-sentence size and not two, and takes the white that
        .hwp-beat--turn gives its own conclusion line. */
-    .p7-line { margin: 0; font-family: var(--font-heading); font-size: clamp(1.1rem, 1.85vw, 1.45rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-white); text-wrap: pretty; }
+    /* Its own scale, not the problem conclusion's. It used to share that expression "for
+       consistency", but the two do not share a job or a measure: the conclusion is a section's
+       closing statement across the full column, this one sits in a row beside two buttons in
+       roughly 675px. MEASURED at the display size: 23.2px at 1440 wrapping with an orphan, and
+       three lines at 320px. Body-plus, so it reads as a reassurance under the ask rather than as
+       a second headline competing with it. */
+    .p7-line { margin: 0; font-family: var(--font-heading); font-size: clamp(1rem, 1.1vw, 1.2rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-white); text-wrap: pretty; }
 
     /* >= 769px the line and the actions share one row under the rule, which is what keeps the
        band a band. 769 is not a new breakpoint: it is style.css's own 768px mobile boundary + 1,
@@ -2915,7 +2959,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     <div class="container">
         <div class="p7-band gsap-fade">
             <span class="p7-rule" aria-hidden="true"></span>
-            <p class="p7-line">Not sure what you need yet? That is what the first conversation is for.</p>
+            <p class="p7-line">You don't need the whole brief figured out before we talk.</p>
             <div class="hero-cta-row">
                 <a href="#" class="btn btn-primary" data-cta="quote">Tell us about your event</a>
                 <a href="https://recapmedia.no/contact#calendar"
