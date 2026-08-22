@@ -1558,7 +1558,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        bleeding out of the box (MEASURED now: a tile is 88.47x35.80 at 769x900 and 113.55x59.27 at
        900x900). Where height is not the binding constraint the tiles keep the source files' exact
        ratio: MEASURED 1.500 at 960, 1024, 1200, 1280, 1440 and 390. */
-    .hws-sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--g-tile-gap); width: 100%; aspect-ratio: 3 / 1; max-height: 100%; min-height: 0; list-style: none; margin: 0; padding: 0; }
+    /* R14/P3: sheet ratio 3/1 -> 2.6/1. At 4-across-by-2 the SHEET's ratio sets the TILE's:
+       3/1 gave tiles their sources' own 3:2 and left the plate under-filled once the frame grows
+       with the window (MEASURED 76px of void in a 288px body at 1440x900, 186px in a 398px body
+       at 1920x1080 and 1440x1200). 2.6/1 puts the tiles at 1.3:1, which is exactly the crop floor
+       this file already declares for the frame ("never past ~1.3:1 - still landscape, never a
+       portrait crop of a landscape photograph"), so it is the most height available without
+       breaking that rule. What void remains at a tall window is CENTRED by .hws-doc-body, so it
+       reads as the sheet's margin rather than as a hole under it. */
+    .hws-sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--g-tile-gap); width: 100%; aspect-ratio: 2.6 / 1; max-height: 100%; min-height: 0; list-style: none; margin: 0; padding: 0; }
     .hws-tile { position: relative; margin: 0; min-height: 0; }
     /* height:100% (not auto) is load-bearing twice over: every tile carries width/height
        ATTRIBUTES for CLS, which map to a definite presentational height and would otherwise
@@ -1581,9 +1589,32 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        reaches the frame's edge and the last stretch of it is dashed. The sequence leaving the page
        is the whole argument of this stage, and it is the same gesture as the dashed rule already
        drawn along this frame's bottom edge. */
-    .hws-axis-thumbs, .hws-axis-nums { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--g-tile-gap); list-style: none; margin: 0; padding: 0; }
-    .hws-axis-thumbs li { position: relative; }
-    .hws-axis-thumbs img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: var(--color-obsidian); }
+    /* R14/P3 FILL FIX. The axis was ONE row of six. MEASURED at 1440x900: 97px of ink in a
+       288px body, so 66% of the plate stood empty and the stage read as unfinished next to the
+       proof sheet beside it. A single row cannot fill it: at the sources' 3:2 a thumb tall enough
+       for the body would have to be wider than the plate, and this file already forbids
+       portrait-cropping a landscape photograph. So the sequence WRAPS, the way a line of type
+       wraps - two bands of three, each its own axis with its own rule, ticks and numbers, the
+       second band's rule running off the plate edge exactly as the first one did. Vertical
+       position deliberately encodes NOTHING: a staggered stair was tried first and rejected,
+       because a descending sequence reads as decline, which is the opposite of this stage's
+       argument. Both bands sit level. */
+    .hws-axis { justify-content: space-between; gap: var(--g-tile-gap); }
+    /* Each band takes an equal share of whatever the body has and the THUMB ROW absorbs the
+       slack, so the plate is filled exactly rather than by a fixed image ratio: at 3-across the
+       sources' own 3:2 would need 337px in a 288px body and overflow it. The tiles therefore
+       size from the height available and crop with object-fit, staying landscape at every width
+       measured (200x106 at 1440x900, ~1.9:1). */
+    .hws-axis-band { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+    .hws-axis-thumbs, .hws-axis-nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--g-tile-gap); list-style: none; margin: 0; padding: 0; }
+    /* aspect-ratio 6/1 on the ROW, not the tile: at 3-across plus two gaps that resolves to a
+       ~1.9:1 crop per tile, which is the flattest this file lets a landscape photograph go before
+       it stops being a photograph. max-height lets flex squeeze it on a short window (measured
+       2.7:1 at 1280x800) rather than overflow; below --hws-axis-wrap the two bands go side by
+       side instead, because squeezing two stacked rows into a 118px body produced an 8:1 sliver. */
+    .hws-axis-thumbs { flex: 0 1 auto; aspect-ratio: 6 / 1; max-height: 100%; min-height: 0; }
+    .hws-axis-thumbs li { position: relative; min-height: 0; }
+    .hws-axis-thumbs img { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--color-obsidian); }
     /* the tick: 1px x 7px, dropped from each frame onto the axis. Drawn object again. */
     .hws-axis-thumbs li::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 1px; height: 7px; background: var(--color-ember); }
     /* Solid for the rule's first (100% - --g-plate-pad), which is exactly the six frames' own
@@ -1593,6 +1624,12 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         linear-gradient(to right, rgba(232, 89, 60, 0.65) 0 calc(100% - var(--g-plate-pad)), transparent 0),
         repeating-linear-gradient(to right, rgba(232, 89, 60, 0.65) 0 5px, transparent 5px 10px); }
     .hws-axis-nums li { text-align: center; color: var(--color-stone); letter-spacing: 0.1em; }
+    /* THE WRAP THRESHOLD. Two stacked bands need ~274px of body; the body is roughly the viewport
+       height less the panel's fixed furniture, so under ~780px tall there is not enough for two
+       and the sequence lays out as it originally did, one row of six, two rules running on. */
+    @media (max-height: 780px) {
+        .hws-axis { flex-direction: row; align-items: stretch; }
+    }
 
     /* ---------- C. the close: the dictated line, what comes out, the two ways in ---------- */
     .hws-close { margin-top: var(--g-s4); }
@@ -2090,23 +2127,32 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                             <div class="hws-doc">
                                 <p class="hws-doc-head"><span class="hws-doc-title">Release sequence</span><span class="hws-doc-tag">Flutter Vikings 2022</span></p>
                                 <div class="hws-doc-body hws-axis">
-                                    <ul class="hws-axis-thumbs" aria-hidden="true">
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bf71d3fc492.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6225781f774.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
-                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b47aa3fc48d.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
-                                    </ul>
-                                    <div class="hws-axis-rule" aria-hidden="true"></div>
-                                    <ul class="hws-axis-nums" aria-hidden="true">
-                                <li>01</li>
-                                <li>02</li>
-                                <li>03</li>
-                                <li>04</li>
-                                <li>05</li>
-                                <li>06</li>
-                                    </ul>
+                                    <div class="hws-axis-band">
+                                        <ul class="hws-axis-thumbs" aria-hidden="true">
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bf71d3fc492.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                        </ul>
+                                        <div class="hws-axis-rule" aria-hidden="true"></div>
+                                        <ul class="hws-axis-nums" aria-hidden="true">
+                                            <li>01</li>
+                                            <li>02</li>
+                                            <li>03</li>
+                                        </ul>
+                                    </div>
+                                    <div class="hws-axis-band">
+                                        <ul class="hws-axis-thumbs" aria-hidden="true">
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6225781f774.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b47aa3fc48d.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                        </ul>
+                                        <div class="hws-axis-rule" aria-hidden="true"></div>
+                                        <ul class="hws-axis-nums" aria-hidden="true">
+                                            <li>04</li>
+                                            <li>05</li>
+                                            <li>06</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <p class="hws-doc-foot"><span>The event</span><span>Next batch</span></p>
                             </div>
