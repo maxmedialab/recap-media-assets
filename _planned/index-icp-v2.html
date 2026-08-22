@@ -106,7 +106,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
       "@type": "VideoObject",
       "name": "See the Production in Action: Recap Media conference coverage",
       "description": "Montage of Recap Media covering corporate events and conferences in Oslo: photography and videography in action on the event day.",
-      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp",
+      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b22fd3fc499.webp",
       "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4",
       "uploadDate": "2026-04-01T12:00:00+02:00",
       "duration": "PT37S",
@@ -846,7 +846,33 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
           375, 390, 414, 860, 861, 900, 930 and 959 (stacked) and 0.00px at 960 and 961 (track).
           The phone widths are byte-identical to the 860px build; only 861-959 moved.
 
-       8. THE SCALE OUTSIDE THE TWO SECTIONS (P7, 2026-08-21) — a scope note, not a new measure.
+       9. THE ARTIFACT PLATES (P2, 2026-08-22) — a second kind of thing inside .hws-frame.
+          WHY. All five how-it-works stages were illustrated with an event photograph, so Build
+          and Run looked exactly like Capture: the lifecycle argued in words and repeated itself
+          in pictures. Max: "the visual sequence should make the input become the output."
+          The library has no post-production imagery of any kind (no timeline, no selects grid,
+          no scheduler, no analytics), and inventing one would be fabricated proof, so stages 01,
+          02, 04 and 05 are TYPESET instead: a brief form, a coverage plan, a proof sheet of real
+          frames, and a release axis carrying the same frames.
+          WHAT IS UNCHANGED. .hws-frame keeps its own box, ratio, radius, overflow, background and
+          registration corner; .hws-cap keeps its hairline and its two lines. A plate replaces only
+          what is INSIDE the frame. .hws-doc is inset:0 inside it, under the corner mark's z-index.
+          THE THREE NEW TOKENS, and why each is a token rather than a margin:
+            --g-plate-pad   the plate's paper margin. Its FLOOR is set by the drawn object it has
+                            to clear: the registration corner is 24px, so no plate may open closer
+                            than that to the frame's top-left. 26px is that mark plus a hairline's
+                            breathing room, which is why the clamp's minimum is not free to move.
+            --g-plate-type  the plates' ONE monospace size. Four documents in the same voice is
+                            the whole point of the register; four sizes would be four documents.
+            --g-tile-gap    the proof sheet's gutter, i.e. the physical gap between frames on a
+                            contact sheet. Shared by the sheet and the release axis, which is what
+                            makes stage 05 read as the same frames as stage 04, respaced.
+          Everything else in the plates is either an existing token (--g-slug-gap for mark ->
+          annotated thing, between a plate's head/body/foot bands) or a drawn object commented at
+          its rule (the registration cross in a plan cell, the axis tick, the dash pattern) — the
+          same "what is still bare pixels" band this contract already names.
+
+      10. THE SCALE OUTSIDE THE TWO SECTIONS (P7, 2026-08-21) — a scope note, not a new measure.
           The tokens above are declared on `main`, so they were always inherited page-wide; until
           P7 only #after-the-event and #how-it-works read them. The closing band at the foot of
           the page (.p7-band, its own comment sits above it) reads exactly two of them and adds
@@ -888,6 +914,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         /* --- the seam --- */
         --g-seam: clamp(11px, 1.15vw, 16px);   /* per side; total seam 22-32px. Applied only at
                                                   >= 960px — see CONTRACT §5 and the gate below */
+        /* --- the artifact plates (CONTRACT §9) --- */
+        --g-plate-pad: clamp(26px, 2.6vw, 34px);   /* a typeset plate's paper margin. The 26px
+                                                  floor is the frame's 24px registration corner
+                                                  plus clearance, not a taste value */
+        --g-plate-type: clamp(0.56rem, 0.9vw, 0.7rem);  /* the plates' one monospace size.
+                                                  MEASURED: 8.96px at 390 and 960, 9.22px at 1024,
+                                                  10.8px at 1200, 11.2px at 1280 and 1440 */
+        --g-tile-gap: clamp(4px, 0.55vw, 8px);     /* the proof sheet's gutter — the gap between
+                                                  two frames on a contact sheet. Shared by the
+                                                  sheet (stage 04) and the axis (stage 05) */
     }
 
     /* CONTRACT §5. Specificity beats the page rhythm block's `main > section.section` (0,1,2):
@@ -1401,14 +1437,20 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        rendering detail of the frame, not a grid measure, and it is the same 2px on every frame in
        the section. (R14: it used to be shared with the problem section's frame, which is gone.) */
     .hws-frame { position: relative; aspect-ratio: 2.15 / 1; overflow: hidden; background: var(--color-smoke); border-radius: 2px; }
-    /* height:100% !important: see the note in the problem block above. */
-    .hws-frame img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
-    /* deliberately varied crops: each stage reads a different part of the room */
-    .hws-stage[data-stage="1"] .hws-frame img { object-position: center 42%; }
-    .hws-stage[data-stage="2"] .hws-frame img { object-position: 62% 50%; }
-    .hws-stage[data-stage="3"] .hws-frame img { object-position: 46% 40%; }
-    .hws-stage[data-stage="4"] .hws-frame img { object-position: center 38%; }
-    .hws-stage[data-stage="5"] .hws-frame img { object-position: 50% 45%; }
+    /* height:100% !important: see the note in the problem block above.
+       SCOPED TO `> img` (P2): since the artifact plates landed, a .hws-frame can also contain
+       thumbnails (the proof sheet's tiles, the axis's markers), and those are laid out by their
+       own grid. The descendant selector plus height:100%!important would have stretched every
+       one of them over the whole frame. `>` keeps this rule on the one thing it was written for:
+       the single photograph that fills a photographic plate. */
+    .hws-frame > img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: cover; }
+    /* Stage 03 is the deck's only photographic plate now, and 54% biases its crop DOWN the frame.
+       WHY IT NEEDS BIASING: MEASURED, the frame is 704x430 (1.64:1) at 1440x900 and 712x360
+       (1.98:1) at 1280x800, while this source is the one portrait-ish file in play, 1497x1250
+       (1.20:1) — so a cover crop throws a band away top and bottom, and the operator this stage
+       exists to show is low and right in the file. VERIFIED on rendered screenshots at both
+       1440x900 and 1280x800 that the operator, the gimbal rig and the seated rows all survive. */
+    .hws-stage[data-stage="3"] .hws-frame > img { object-position: center 54%; }
     /* registration mark: a printer's corner, not a border. The 24x24 / 2px are the MARK'S OWN
        dimensions — a drawn object, like a glyph, not a spacing decision. (R14: it used to be
        mirrored on the problem section's frame, which is gone; it is this section's mark now.) */
@@ -1427,6 +1469,106 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hws-cap span { display: block; font-size: 0.83rem; line-height: 1.45; color: var(--color-warm-grey); }
     /* margin-top 3px: leading between two lines of the same caption, below the scale. */
     .hws-cap em { display: block; font-style: normal; margin-top: 3px; font-family: 'Courier New', Courier, monospace; font-size: 0.66rem; letter-spacing: 0.05em; color: var(--color-stone); }
+
+    /* ---------- B2. the artifact plates (CONTRACT §9) ----------
+       Four of the five stages are typeset documents rather than photographs. They share one
+       chassis: a head band, a body, a foot band, in the plate's one monospace size. What differs
+       between them is the BODY, because the point of the deck is that a brief, a plan, a proof
+       sheet and a release axis are four different KINDS of document, not one document restyled. */
+    .hws-doc {
+        position: absolute; inset: 0; z-index: 1;
+        display: flex; flex-direction: column;
+        padding: var(--g-plate-pad);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: var(--g-plate-type);
+        line-height: 1.5; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--color-warm-grey);
+    }
+    /* 7px: rule -> type inside the plate. The same sub-scale band as .hws-cap's 14px inset and
+       for the same reason: it is a hairline's optical companion, not a spacing step. */
+    .hws-doc-head, .hws-doc-foot { flex: 0 0 auto; display: flex; align-items: baseline; justify-content: space-between; gap: var(--g-slug-gap); margin: 0; }
+    .hws-doc-head { padding-bottom: 7px; border-bottom: 1px solid rgba(255, 255, 255, 0.20); }
+    .hws-doc-foot { padding-top: 7px; border-top: 1px solid rgba(255, 255, 255, 0.12); color: var(--color-stone); }
+    .hws-doc-title { color: var(--color-white); letter-spacing: 0.18em; }
+    .hws-doc-tag { color: var(--color-stone); }
+    /* CONTRACT §2 — --g-slug-gap, mark -> the thing it annotates: the head band labels the body. */
+    .hws-doc-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; margin: var(--g-slug-gap) 0; }
+
+    /* stage 01 — the brief form. Deliberately BLANK: the fields are the four things Recap asks
+       for, and filling them in would mean inventing a client. */
+    .hws-fields { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--g-slug-gap); align-content: space-between; }
+    .hws-field { display: contents; }
+    .hws-fk { color: var(--color-stone); }
+    /* the fill-in rule. A hairline under a blank, which is what a form line is. */
+    .hws-fv { border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
+    /* the cadence strip: Recap's real order of business before a booking exists. The middot is a
+       separator drawn by CSS so it never lands in the accessibility tree as a word. */
+    .hws-cadence { justify-content: flex-start; gap: 0; flex-wrap: wrap; }
+    .hws-cadence span + span::before { content: '\00B7'; margin: 0 0.55em; color: rgba(255, 255, 255, 0.28); }
+    .hws-cadence .is-now { color: var(--color-ember); }
+
+    /* stage 02 — the coverage plan. Ruled rows and ruled columns, not cells: a running order is
+       a ruled document. grid-template-rows auto/1fr/1fr makes the two day rows share whatever
+       height the frame has, so the plan breathes on a tall window instead of pooling slack. */
+    .hws-plan { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr 1fr; }
+    .hws-pl-h, .hws-pl-r { color: var(--color-stone); }
+    .hws-pl-h { padding: 0 0 7px var(--g-slug-gap); }
+    .hws-pl-h:first-child { padding-left: 0; }
+    .hws-pl-r { display: flex; align-items: center; padding-right: var(--g-slug-gap); }
+    .hws-pl-c { position: relative; border-top: 1px solid rgba(255, 255, 255, 0.16); border-left: 1px solid rgba(255, 255, 255, 0.10); }
+    /* the coverage mark: a printer's registration cross, 9px on 1px — a drawn object, the same
+       class as the frame's corner mark and the axis tick, and deliberately not an icon. */
+    .hws-pl-c::before, .hws-pl-c::after { content: ''; position: absolute; left: 50%; top: 50%; background: var(--color-ember); }
+    .hws-pl-c::before { width: 9px; height: 1px; transform: translate(-50%, -50%); }
+    .hws-pl-c::after { width: 1px; height: 9px; transform: translate(-50%, -50%); }
+
+    /* stage 04 — the proof sheet. Eight real frames from one event, four across, at the source
+       files' own 3:2. Square corners, no fill, no shadow: a contact sheet, not a card grid.
+       THE SHEET IS SIZED BY ITS OWN PROPORTION, not by its content: four 3:2 frames across by two
+       down is 3:1, so `width:100% + aspect-ratio:3/1` makes the block as tall as it needs to be
+       and no taller, and every row is 1fr of that. Sizing it from the tiles instead (aspect-ratio
+       on each img) let the sheet outgrow the plate on a short frame: MEASURED with that build, at
+       900x900 the two tile rows came to 75.69px each inside a 123.47px body, and at 769x900 to
+       58.97px each inside a 75.83px body. max-height:100% is what holds those two cases now:
+       between 769 and 959px the plate is 2.15:1, so the sheet letterboxes its crop instead of
+       bleeding out of the box (MEASURED now: a tile is 88.47x35.80 at 769x900 and 113.55x59.27 at
+       900x900). Where height is not the binding constraint the tiles keep the source files' exact
+       ratio: MEASURED 1.500 at 960, 1024, 1200, 1280, 1440 and 390. */
+    .hws-sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--g-tile-gap); width: 100%; aspect-ratio: 3 / 1; max-height: 100%; min-height: 0; list-style: none; margin: 0; padding: 0; }
+    .hws-tile { position: relative; margin: 0; min-height: 0; }
+    /* height:100% (not auto) is load-bearing twice over: every tile carries width/height
+       ATTRIBUTES for CLS, which map to a definite presentational height and would otherwise
+       render each thumb at its intrinsic 534px; and the tile's height belongs to the sheet's row,
+       not to the file's own ratio. */
+    .hws-tile img { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--color-obsidian); }
+    /* The frame number, burned into the frame's corner the way a proof sheet carries it. It is an
+       OVERLAY, not a line under the tile, because a line under the tile is layout and the sheet
+       has no height to spare (see the measurements above). 2px/4px are the slug's own padding.
+       It is decorative furniture, hence aria-hidden and hence a bare span: the tile's alt text is
+       what carries the meaning, and eight figcaptions reading "01".."08" would be noise in a
+       screen reader. Shown only in cycle mode. MEASURED there, it sets at 7.71px on a 123.05px
+       tile at 960x900 and 9.63px on a 153.06px tile at 1440x900 — small, which is what a burned-in
+       frame number is. Below cycle mode it is dropped: at 390x844 the tile is 61.75px wide. */
+    .hws-tile span { display: none; position: absolute; left: 0; bottom: 0; padding: 2px 4px; background: rgba(12, 10, 16, 0.66); color: var(--color-warm-grey); font-size: 0.86em; letter-spacing: 0.1em; line-height: 1; }
+    .hws--cycle .hws-tile span { display: block; }
+
+    /* stage 05 — the release axis. Six columns, one per released piece, and the axis itself runs
+       PAST them: its right margin is negative by exactly the plate's own paper margin, so the rule
+       reaches the frame's edge and the last stretch of it is dashed. The sequence leaving the page
+       is the whole argument of this stage, and it is the same gesture as the dashed rule already
+       drawn along this frame's bottom edge. */
+    .hws-axis-thumbs, .hws-axis-nums { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--g-tile-gap); list-style: none; margin: 0; padding: 0; }
+    .hws-axis-thumbs li { position: relative; }
+    .hws-axis-thumbs img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: var(--color-obsidian); }
+    /* the tick: 1px x 7px, dropped from each frame onto the axis. Drawn object again. */
+    .hws-axis-thumbs li::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 1px; height: 7px; background: var(--color-ember); }
+    /* Solid for the rule's first (100% - --g-plate-pad), which is exactly the six frames' own
+       width, then dashed for the negative margin that carries it into the plate's paper margin.
+       5px on / 5px off is the dash pattern, the same drawn pattern as this frame's bottom rule. */
+    .hws-axis-rule { height: 1px; margin: 7px calc(-1 * var(--g-plate-pad)) 6px 0; background:
+        linear-gradient(to right, rgba(232, 89, 60, 0.65) 0 calc(100% - var(--g-plate-pad)), transparent 0),
+        repeating-linear-gradient(to right, rgba(232, 89, 60, 0.65) 0 5px, transparent 5px 10px); }
+    .hws-axis-nums li { text-align: center; color: var(--color-stone); letter-spacing: 0.1em; }
 
     /* ---------- C. the close: the dictated line, what comes out, the two ways in ---------- */
     .hws-close { margin-top: var(--g-s4); }
@@ -1743,13 +1885,26 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <h3 class="hws-h">Brief</h3>
                     <p class="hws-say">We start with your event, your audience, and what the content needs to achieve.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">One conversation.</span></p>
+                    <!-- P2 (2026-08-22): was 691dabb8300f0695bc767185, two people talking at a
+                         stand. A photograph of a conversation is not a brief, and the deck's whole
+                         problem was that all five stages were photographs. This is a typeset brief
+                         form: the four things Recap actually asks for, left BLANK, because filling
+                         them in would mean inventing a client, an event and an objective. The foot
+                         strip is Recap's real order of business before a booking exists. -->
                     <figure class="hws-plate">
                         <div class="hws-frame">
-                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0695bc767185.webp"
-                                 alt="Two attendees in conversation at a stand during Flutter Vikings 2022 in Oslo"
-                                 width="1024" height="683" loading="lazy" decoding="async">
+                            <div class="hws-doc">
+                                <p class="hws-doc-head"><span class="hws-doc-title">Discovery brief</span><span class="hws-doc-tag">Template</span></p>
+                                <div class="hws-doc-body hws-fields">
+                                    <p class="hws-field"><span class="hws-fk">Event</span><span class="hws-fv"></span></p>
+                                    <p class="hws-field"><span class="hws-fk">Audience</span><span class="hws-fv"></span></p>
+                                    <p class="hws-field"><span class="hws-fk">Objective</span><span class="hws-fv"></span></p>
+                                    <p class="hws-field"><span class="hws-fk">Deliverables</span><span class="hws-fv"></span></p>
+                                </div>
+                                <p class="hws-doc-foot hws-cadence"><span class="is-now">Discovery</span><span>Strategy</span><span>Agreement</span><span>Kick-off</span></p>
+                            </div>
                         </div>
-                        <figcaption class="hws-cap"><span>It starts with one conversation about what the content has to do.</span><em>Flutter Vikings 2022, Oslo</em></figcaption>
+                        <figcaption class="hws-cap"><span>It starts with one conversation about what the content has to do.</span><em>Recap Media discovery brief</em></figcaption>
                     </figure>
                 </article>
 
@@ -1761,13 +1916,29 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <h3 class="hws-h">Plan</h3>
                     <p class="hws-say">We decide what moments matter before cameras are switched on.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve the plan.</span></p>
+                    <!-- P2 (2026-08-22): was 691dabb8300f0639bb767199, a row of seated attendees
+                         (that frame is now one of the eight on stage 04's proof sheet). The plan
+                         stage now shows a plan. Its structure is the ONLY structure on the page
+                         that can be stated as fact: Flutter Vikings 2022 was 3 rooms over 2 days
+                         with 46 speakers, all three on the claims whitelist. Nothing else is
+                         asserted: the cells carry a registration cross, not a session, a time or
+                         a camera count, because none of those are known. -->
                     <figure class="hws-plate">
                         <div class="hws-frame">
-                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0639bb767199.webp"
-                                 alt="A row of attendees seated under the Felix Konferansesenter wordmark, Oslo"
-                                 width="1024" height="683" loading="lazy" decoding="async">
+                            <div class="hws-doc">
+                                <p class="hws-doc-head"><span class="hws-doc-title">Coverage plan</span><span class="hws-doc-tag">Flutter Vikings 2022</span></p>
+                                <div class="hws-doc-body hws-plan">
+                                    <span class="hws-pl-h"></span>
+                                    <span class="hws-pl-h">Room 01</span><span class="hws-pl-h">Room 02</span><span class="hws-pl-h">Room 03</span>
+                                    <span class="hws-pl-r">Day 01</span>
+                                    <span class="hws-pl-c"></span><span class="hws-pl-c"></span><span class="hws-pl-c"></span>
+                                    <span class="hws-pl-r">Day 02</span>
+                                    <span class="hws-pl-c"></span><span class="hws-pl-c"></span><span class="hws-pl-c"></span>
+                                </div>
+                                <p class="hws-doc-foot"><span>46 speakers</span><span>3 rooms</span><span>2 days</span></p>
+                            </div>
                         </div>
-                        <figcaption class="hws-cap"><span>A full room, running to a plan agreed long before it filled.</span><em>Felix Konferansesenter, Oslo</em></figcaption>
+                        <figcaption class="hws-cap"><span>Every room and every day is mapped before the doors open.</span><em>Flutter Vikings 2022, Oslo</em></figcaption>
                     </figure>
                 </article>
 
@@ -1779,13 +1950,28 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <h3 class="hws-h">Capture</h3>
                     <p class="hws-say">Your team runs the event. We run the production.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Host your event.</span></p>
+                    <!-- P2 (2026-08-22): was 691dabb8300f064072767184, a speaker in a yellow
+                         t-shirt. That frame proves the client's half of this stage's line ("your
+                         team runs the event") and nothing of ours; it is now the high-chroma tile
+                         on stage 04's proof sheet, where it belongs.
+                         This stage now carries 6a1ea69d7303598210434e1d, which the asset audit
+                         identifies as the ONLY frame in the library showing the crew at work: an
+                         operator kneeling on the auditorium steps with a gimbal rig while the
+                         delegates watch the stage. VERIFIED by opening the file, not by reading
+                         its alt text. It was B1's video poster; one frame in two places on one
+                         page is the repetition this round exists to remove, so it moved here and
+                         the player took a different frame. WHY HERE RATHER THAN THERE: this stage's
+                         sentence is "Your team runs the event. We run the production", which is
+                         what the frame shows almost word for word, and the deck is the one place
+                         on the page that has to argue Recap is not an event photographer. A video
+                         poster is replaced by the video the moment anyone presses play. -->
                     <figure class="hws-plate">
                         <div class="hws-frame">
-                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp"
-                                 alt="A speaker presenting on stage at Flutter Vikings 2022 in Oslo"
-                                 width="800" height="534" loading="lazy" decoding="async">
+                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp"
+                                 alt="A Recap Media operator kneeling on the auditorium steps, filming a conference session with a gimbal-mounted camera while delegates watch the stage"
+                                 width="1497" height="1250" loading="lazy" decoding="async">
                         </div>
-                        <figcaption class="hws-cap"><span>The crew works to the plan while you stay with your guests.</span><em>Flutter Vikings 2022, Oslo</em></figcaption>
+                        <figcaption class="hws-cap"><span>The crew works to the plan while you stay with your guests.</span><em>Recap Media crew on the day</em></figcaption>
                     </figure>
                 </article>
 
@@ -1797,13 +1983,38 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <h3 class="hws-h">Build</h3>
                     <p class="hws-say">Raw moments become content your team can actually use.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Pick your favourites.</span></p>
+                    <!-- P2 (2026-08-22): was one wide auditorium photograph, i.e. the same kind
+                         of picture as Capture, so the stage that has to prove the OUTPUT looked
+                         like the stage that shows the input. It is now a proof sheet of eight real
+                         frames from ONE event. The eight are not eight views of one room: a wide
+                         establishing frame, a stage portrait, a sponsor booth, a posed organiser
+                         group, a second track's breakout room, a candid, an audience reaction and
+                         a venue detail. That spread is the point — it is what a delivered package
+                         is made of, and it is the only honest way to show "many finished pieces"
+                         from a library that contains no edit timeline, no selects grid and no
+                         delivery gallery. Every alt below was written by opening the file.
+                         "43 published videos" moved from the caption into the sheet's foot so the
+                         page states it exactly once (stage 05 no longer repeats it). -->
                     <figure class="hws-plate">
                         <div class="hws-frame">
-                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773.webp"
-                                 alt="Wide view of the Flutter Vikings 2022 auditorium in Oslo with the session running on the main screen"
-                                 width="1024" height="683" loading="lazy" decoding="async">
+                            <div class="hws-doc">
+                                <p class="hws-doc-head"><span class="hws-doc-title">Selects</span><span class="hws-doc-tag">Flutter Vikings 2022</span></p>
+                                <div class="hws-doc-body">
+                                    <ol class="hws-sheet">
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp" alt="Wide view of a packed Flutter Vikings 2022 auditorium in Oslo with the event name spelled in large white letters across the floor" width="800" height="534" loading="lazy" decoding="async"><span aria-hidden="true">01</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="Speaker in a yellow t-shirt presenting on stage beside the Felix lectern at Flutter Vikings 2022" width="800" height="534" loading="lazy" decoding="async"><span aria-hidden="true">02</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bf71d3fc492.webp" alt="Delegates gathered around the Sentry sponsor booth at Flutter Vikings 2022 in Oslo" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">03</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6225781f774.webp" alt="Flutter Vikings 2022 organiser team in red jackets posing with the event's letter props and mascot" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">04</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b614f3fc48c.webp" alt="Delegates standing in discussion beside a flipchart in a Flutter Vikings 2022 breakout room" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">05</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="Two lanyard-wearing delegates laughing together in the Flutter Vikings 2022 exhibition hall" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">06</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b47aa3fc48d.webp" alt="Conference audience applauding from tiered red seats in a packed Oslo auditorium" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">07</span></li>
+                                        <li class="hws-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f0639bb767199.webp" alt="Row of delegates seated beneath the Felix Konferansesenter wordmark in Oslo" width="1024" height="683" loading="lazy" decoding="async"><span aria-hidden="true">08</span></li>
+                                    </ol>
+                                </div>
+                                <p class="hws-doc-foot"><span>One event</span><span>43 published videos</span></p>
+                            </div>
                         </div>
-                        <figcaption class="hws-cap"><span>One day of coverage becomes a set of finished pieces.</span><em>Flutter Vikings 2022: 43 published videos</em></figcaption>
+                        <figcaption class="hws-cap"><span>One event becomes a set of finished pieces.</span><em>Flutter Vikings 2022, Oslo</em></figcaption>
                     </figure>
                 </article>
 
@@ -1815,13 +2026,50 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <h3 class="hws-h">Run <span class="hws-opt">Optional</span></h3>
                     <p class="hws-say">The event continues working after the room is empty.</p>
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve each batch.</span></p>
+                    <!-- P2 (2026-08-22): TWO defects fixed here.
+                         (i) The frame was 691dc06dc03e0f2905c417e9, a NECCUS photograph, while the
+                             stage before it cited Flutter Vikings numbers. The picture and the
+                             numbers came from different clients. The whole deck is now one event.
+                         (ii) The caption asserted "still going out as content months later". The
+                             asset audit found nothing supporting "months later" — no publication
+                             dates, no schedule, no analytics — so the claim is gone. The new
+                             caption says what Run actually is, in the present tense, and asserts
+                             no interval. The stage meta still reads "Months after" because that is
+                             when this OPTIONAL engagement runs, which is an offer description, not
+                             a claim about a past client's results.
+                         The plate is a release axis: the SAME frames as stage 04's proof sheet,
+                         respaced along a rule instead of packed into a sheet. Nothing new is shown
+                         and nothing is counted; the only thing that moves between stage 04 and
+                         stage 05 is time. The thumbnails carry alt="" because they are the same
+                         six photographs already described one stage above, and repeating six
+                         descriptions would be noise in a screen reader, not information. -->
                     <figure class="hws-plate">
                         <div class="hws-frame">
-                            <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dc06dc03e0f2905c417e9.webp"
-                                 alt="Three professionals in discussion during a networking break at a corporate conference in Oslo"
-                                 width="900" height="600" loading="lazy" decoding="async">
+                            <div class="hws-doc">
+                                <p class="hws-doc-head"><span class="hws-doc-title">Release sequence</span><span class="hws-doc-tag">Flutter Vikings 2022</span></p>
+                                <div class="hws-doc-body hws-axis">
+                                    <ul class="hws-axis-thumbs" aria-hidden="true">
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6c6bd81f773-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb8300f064072767184-800.webp" alt="" width="800" height="534" loading="lazy" decoding="async"></li>
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bf71d3fc492.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb888e1e6225781f774.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb85e13ec92cdf916a1.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b47aa3fc48d.webp" alt="" width="1024" height="683" loading="lazy" decoding="async"></li>
+                                    </ul>
+                                    <div class="hws-axis-rule" aria-hidden="true"></div>
+                                    <ul class="hws-axis-nums" aria-hidden="true">
+                                <li>01</li>
+                                <li>02</li>
+                                <li>03</li>
+                                <li>04</li>
+                                <li>05</li>
+                                <li>06</li>
+                                    </ul>
+                                </div>
+                                <p class="hws-doc-foot"><span>The event</span><span>Next batch</span></p>
+                            </div>
                         </div>
-                        <figcaption class="hws-cap"><span>One afternoon in the room, still going out as content months later.</span><em>Corporate conference, Oslo</em></figcaption>
+                        <figcaption class="hws-cap"><span>The same pieces, going out on a schedule instead of all at once.</span><em>Flutter Vikings 2022 selects</em></figcaption>
                     </figure>
                 </article>
 
@@ -2276,16 +2524,23 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      B1 2026-08-21 — POSTER SWAP. The poster was 69cccc9af2ec2d89a902d7a2, a CLIENT'S branded
      title card: a lilac slide over a wall of twelve partner logos. Under a heading that promises
      the production in action it showed no production, no action and no Recap, and it implied a
-     dozen brand associations that are the client's, not ours. It is replaced by
-     6a1ea69d7303598210434e1d, which the asset audit identifies as the only frame in the library
-     showing the crew at work. VERIFIED by opening the file rather than by reading its alt text
-     (the site's alts are known unreliable): a Recap operator kneeling on the auditorium steps
-     filming with a gimbal rig while suited delegates watch the stage. The `title` attribute
-     now describes that frame instead of the old generic one.
-     The file is 1497x1250 and the player is a 16:9 object-fit:cover box, so it is cropped to
-     1497x842 with 204px off the top and bottom; VERIFIED on that exact crop that the operator,
-     the gimbal rig and the seated rows all survive it. The VideoObject node in <head> carries
-     the same URL as its thumbnailUrl, so the poster and the structured data cannot drift. -->
+     dozen brand associations that are the client's, not ours. B1 replaced it with
+     6a1ea69d7303598210434e1d, the only frame in the library showing the crew at work.
+
+     P2 2026-08-22 — that frame LEFT this slot. It is now stage 03 of the how-it-works deck, whose
+     line is "Your team runs the event. We run the production" and whose job this round is to stop
+     the deck looking like five event photographs; the deck cannot borrow a frame that also sits
+     here, because one frame in two places on one page is the exact repetition P2 exists to remove.
+     A poster is also the shortest-lived image on the page: it is replaced by the video itself the
+     moment anyone presses play. The slot now carries 691dabb859e47b22fd3fc499, unused anywhere
+     else on this page and not one of the banned ids. VERIFIED by opening the file rather than by
+     reading any alt text: a full tiered auditorium in session, red seats, with a camera on a
+     tripod covering the room from the back — a still that shows a conference being covered, which
+     is what the heading above it promises. The file is 1024x683 and the player is a 16:9
+     object-fit:cover box, so it is cropped to 1024x576 with 53.5px off the top and bottom;
+     VERIFIED on the rendered player at 1440x900 (a 900x506 box) that the tripod camera survives. B1's invariant is kept: the
+     VideoObject node in <head> carries the same URL as its thumbnailUrl, so the poster and the
+     structured data still cannot drift, and the `title` attribute describes the new frame. -->
 <section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
@@ -2296,11 +2551,11 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             <video
                 id="home-video"
                 src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4"
-                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/6a1ea69d7303598210434e1d.webp"
+                poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b22fd3fc499.webp"
                 preload="none"
                 playsinline
                 webkit-playsinline
-                title="Recap Media filming a conference session from the auditorium steps"
+                title="A full conference auditorium in Oslo during a session, covered from the back of the room"
             ></video>
             <div class="video-play-overlay" id="home-video-overlay">
                 <button class="video-play-btn" aria-label="Play video">
