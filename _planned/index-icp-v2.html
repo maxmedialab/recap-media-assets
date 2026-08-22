@@ -107,7 +107,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
       "name": "See the Production in Action: Recap Media conference coverage",
       "description": "Montage of Recap Media covering corporate events and conferences in Oslo: photography and videography in action on the event day.",
       "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47b22fd3fc499.webp",
-      "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4",
+      "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/video/69cf9010a7dcb4cff052a257.mp4",
       "uploadDate": "2026-04-01T12:00:00+02:00",
       "duration": "PT37S",
       "publisher": { "@type": "Organization", "name": "Recap Media", "url": "https://recapmedia.no" }
@@ -385,13 +385,19 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     }
 
     /* The hero is outside the system (full-viewport bleed, no bottom padding) and its last ink is
-       the stat strip, which sits flush on its bottom edge. It therefore contributes no half-seam,
-       so the section after it carries the whole major seam and the hero > problem break measures
-       the same as every other chapter break instead of half of one.
+       the stat strip, which sits flush on its bottom edge.
+       IT USED TO CARRY `--seam-major * 2` on the arithmetic that a flush hero contributes no
+       half-seam, so this section owed the whole 176px to match every other chapter break.
+       CHANGED 2026-08-22 on Max's review: the arithmetic was right and the result was wrong. A
+       flush dark strip is a hard edge, closer to a rule than to an open section end, so it does
+       not need a compensating half-seam the way an airy section end does — and doubling it put
+       176px of nothing between a dense band and the first word of the section. One major seam
+       above, and the conclusion's own --g-s3 below (plus the --g-seam gate), now bracket this
+       section almost evenly: MEASURED 88px above and 84px below at 1440.
        (Addressed by id, not by `.hero + section`: a script block sits between the two sections,
        so the adjacent-sibling selector does not match.) */
     main > section#after-the-event {
-        padding-top: calc(var(--seam-major) * 2) !important;
+        padding-top: var(--seam-major) !important;
     }
 </style>
 
@@ -522,7 +528,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
          background video stops driving LCP; the poster paints instead. Poster = existing CDN event photo via
          the LeadConnector resize proxy. To swap in a true first-frame poster later, upload one to GHL media
          and replace the poster URL here + the matching preload href in <head>. -->
-    <video data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/6a346bf6162c3e3e34194cca.mp4" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb888e1e6178a81f772.webp" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true"></video>
+    <video data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/video/6a346bf6162c3e3e34194cca.mp4" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb888e1e6178a81f772.webp" title="Event coverage video background" autoplay loop muted playsinline webkit-playsinline preload="none" class="hero-video hero-bg" aria-hidden="true"></video>
     <div class="hero-content-wrap">
         <div class="hero-inner">
             <!-- ROUND-4 (2026-07-15, Max's direction): UVP promoted to the H1 (keyword search traffic
@@ -949,9 +955,9 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        without `lh` drop the declaration and fall back to top alignment, which is still legible. */
     .hwp-line { grid-column: 4; margin: calc((var(--g-slug-h) - 1lh) / 2) 0 0; font-family: var(--font-heading); font-size: clamp(1.1rem, 1.85vw, 1.45rem); font-weight: 600; line-height: 1.34; letter-spacing: -0.012em; color: var(--color-warm-grey); text-wrap: pretty; }
 
-    /* the turn: Recap is the fourth beat, and it is the answer */
-    .hwp-beat--turn .hwp-slug { background: var(--color-ember); border-color: var(--color-ember); color: var(--color-white); }
-    .hwp-beat--turn .hwp-when { color: var(--color-ember); }
+    /* the turn: the conclusion, and it is the answer. Its counter and marker rules were
+       deleted 2026-08-22 with the counter and marker themselves — an unnumbered conclusion has
+       neither, and rules with no targets are drift. */
     .hwp-beat--turn .hwp-line { color: var(--color-white); }
 
     /* R14: .hwp-plate / .hwp-frame / .hwp-credit and their markup are DELETED, not hidden. The
@@ -1005,10 +1011,8 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     .hwp--seq .hwp-beat:not(.is-lit) .hwp-slug { border-color: rgba(255, 255, 255, 0.11); color: rgba(155, 151, 144, 0.62); }
     .hwp--seq .hwp-beat:not(.is-lit)::before { opacity: 0.38; }
 
-    /* beat 04 is the turn: before it is reached it reads as stone like the rest, and it
-       arrives at exactly the ember treatment it already had */
-    .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-slug { background: var(--color-onyx); border-color: rgba(255, 255, 255, 0.11); color: rgba(155, 151, 144, 0.62); }
-    .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-when { color: var(--color-stone); }
+    /* the conclusion: before it is reached its sentence reads as warm grey like the rest, and
+       it arrives at white. (Its counter/marker dim rules went with the counter and marker.) */
     .hwp--seq .hwp-beat--turn:not(.is-lit) .hwp-line { color: var(--color-warm-grey); }
 
     /* ===== ROUND LABELS IN THIS FILE — read once ======================================
@@ -1029,18 +1033,28 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        MIN_W" inside the problem section's own block: THIS section's only script is the
        sequential-emphasis IIFE, which has no width gate at all.) ============================================================================= */
     @media (min-width: 960px) {
-        /* CONTRACT §1 — the same two tracks and the same gutter as .hws-grid, one level up from
-           the beat row. This is what puts the two sections' rails on one x and their main columns
-           on another. align-items:start so the short rail does not stretch to the track. */
-        .hwp-body { display: grid; grid-template-columns: var(--g-rail) minmax(0, 1fr); gap: var(--g-gap); align-items: start; }
+        /* CENTRED COMPOSITION (2026-08-22). The body is one column at the container's full
+           measure, not rail + track. WHY THIS SUPERSEDES CONTRACT §1 HERE: §1 exists so this
+           section and #how-it-works open on the same two x's, which is a real argument when both
+           sections are a rail annotating a main column. This one is not: its rail held only an
+           overline and an H2, so the effect on screen was a headline stranded 432px to the left
+           of the sentences it introduces, with nothing under it for two thirds of the section's
+           height. Max read that as "not centred" and he is right. #how-it-works keeps §1 in full;
+           it has a rail that does something (the five-stage nav travels in it). */
+        .hwp-body { display: block; }
 
-        /* CONTRACT §3 — the rail's marker band, flex for the same reason .hws-rail-head is flex:
-           an inline-block in a normal line box is pushed down by the parent's strut, and the two
-           columns would then open on different edges. */
-        .hwp-rail-head { display: flex; flex-direction: column; align-items: flex-start; }
-        /* CONTRACT §6 — the shared rail-headline size. Nothing follows it inside the rail, so it
-           carries no bottom margin: the row's height comes from the main column. */
-        .hwp-title { font-size: var(--g-rail-title); margin: 0; }
+        /* The opening: overline over headline, both centred on the measure the beats occupy, so
+           the header's optical centre and the track's are the same x. */
+        /* --g-s3, not --g-s4: "a big wide margin above the boxes" was Max's other half of the
+           spacing note. One scale step down opens the track closer under its own headline while
+           staying on the scale. */
+        .hwp-rail { text-align: center; margin-bottom: var(--g-s3); }
+        .hwp-rail-head { display: flex; flex-direction: column; align-items: center; }
+        /* --g-rail-title was the size a 360px rail could hold. Centred over the full measure the
+           headline is the section's opening statement and takes the page's section-headline size.
+           max-width stays in ch: the measure that keeps a headline readable is a character count,
+           not a fraction of the container. */
+        .hwp-title { font-size: clamp(1.9rem, 3.2vw, 2.9rem); margin: 0 auto; }
 
         /* CONTRACT §6 — the three-stage track. Four explicit rows: counters, time markers,
            sentences, then the conclusion band. Stages are placed by column rather than left to
@@ -1096,10 +1110,22 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hwp-beat--turn {
             grid-column: 1 / -1;
             grid-row: 4;
+            grid-template-columns: minmax(0, 1fr);
             grid-template-rows: none;
             margin-top: var(--g-s4);
             padding-top: var(--g-s3);
+            /* THE BOTTOM HALF OF MAX'S SPACING NOTE (2026-08-22). MEASURED at 1440/1920/2770:
+               173px of padding above this section's first ink against 16px below its last, a
+               10:1 asymmetry, and the conclusion sentence sat 16px off a background change.
+               The 16px is --g-seam and it is deliberate — the problem tail has to be on screen
+               when the pin engages — so the seam is NOT widened. The room is added INSIDE the
+               section instead, at a scale step rather than as a one-off margin, which is why
+               this is --g-s3 and not a number. */
+            padding-bottom: var(--g-s3);
         }
+        /* the conclusion reads centred under the centred opening: the composition closes where
+           it started. Its measure is a character count for the same reason the headline's is. */
+        .hwp-beat--turn .hwp-line { grid-column: 1; text-align: center; max-width: 46ch; margin-left: auto; margin-right: auto; }
         /* The rule. Ember at the left, where the ember counter sits under it, fading out to the
            right: the same gradient idiom as .hws-turn-rule below, and the same warm-into-the-
            answer the vertical spine used to carry down into beat 04. */
@@ -1122,40 +1148,47 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     <div class="container">
         <div class="hwp gsap-fade">
             <!-- R14: the rail carries the section's opening matter and the main column carries the
-                 lifecycle, the same two columns as #how-it-works (CONTRACT §6). Below 960px
-                 .hwp-body is a plain block and .hwp-rail-head is display:none, so the phone reads
-                 H2 -> 01 -> 02 -> 03 -> 04 exactly as it did before. -->
+                 CENTRED RECOMPOSITION (2026-08-22, Max's review). This section no longer
+                 shares #how-it-works' left rail. The opening now sits centred OVER the full
+                 content measure and the three beats run as a centred three-column sequence
+                 beneath it, so the whole reading path has one optical centre instead of a
+                 360px rail arguing with a 704px track. SUPERSEDES the r13 P1 lock recorded in
+                 STATE.md; the rail-sharing contract survives for #how-it-works alone.
+                 The Recap sentence is an UNNUMBERED conclusion, not a fourth problem step: it
+                 keeps its <li> and its .hwp-beat class (the sequential-emphasis script still
+                 lights four things) but has lost its counter and its marker, because a numbered
+                 04 in a problem timeline reads as a fourth thing going wrong.
+                 Below 960px .hwp-body is a plain block and .hwp-rail-head is display:none, so the
+                 phone still reads H2 -> 01 -> 02 -> 03 -> conclusion exactly as it did. -->
             <div class="hwp-body">
                 <div class="hwp-rail">
                     <div class="hwp-rail-head">
                         <span class="overline overline--ruled">The problem</span>
                     </div>
-                    <h2 class="hwp-title">Is the footage from your last event sitting on a drive?</h2>
+                    <h2 class="hwp-title">What happens to the footage after the first highlight?</h2>
                 </div>
 
                 <ol class="hwp-life" role="list">
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">01</span>
                         <span class="hwp-when">The event</span>
-                        <p class="hwp-line">You invest in the day.</p>
+                        <p class="hwp-line">You invest in capturing the day.</p>
                     </li>
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">02</span>
                         <span class="hwp-when">The week after</span>
-                        <p class="hwp-line">You publish one highlight.</p>
+                        <p class="hwp-line">One highlight goes out.</p>
                     </li>
                     <li class="hwp-beat">
                         <span class="hwp-slug" aria-hidden="true">03</span>
-                        <span class="hwp-when">Every week after</span>
-                        <p class="hwp-line">Your team still has content, but nobody has time to make it useful.</p>
+                        <span class="hwp-when">After that</span>
+                        <p class="hwp-line">The rest waits for time your team does not have.</p>
                     </li>
                     <!-- CONTRACT §7: still the fourth <li> of the same list, and still the fourth
                          beat the sequential-emphasis script lights. What changes at >= 960px is
                          where the grid puts it: out of the three-stage track, under it. -->
                     <li class="hwp-beat hwp-beat--turn">
-                        <span class="hwp-slug" aria-hidden="true">04</span>
-                        <span class="hwp-when">Recap</span>
-                        <p class="hwp-line">We turn event content into something that keeps working.</p>
+                        <p class="hwp-line">We turn the same event into content your team can keep using.</p>
                     </li>
                 </ol>
             </div>
@@ -1472,11 +1505,18 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
        is the .hws-frame--art rule set above. */
 
     /* ---------- C. the close: the dictated line, what comes out, the two ways in ---------- */
+    /* the centred Selected Work action, page-local. --g-s3 off the grid it refers to: the same
+       "between bands inside one section" step the rest of the page uses, not a new number. */
+    .work-all { text-align: center; margin: var(--g-s3) 0 0; }
+
     .hws-close { margin-top: var(--g-s4); }
     /* CONTRACT §2 — --g-s0, the part-to-part step of one component: the line, its rule and its
        label are one object. minmax(40px, 1fr) is the RULE's own minimum length, the same kind of
        component minimum as .hws-part's min-width: below it the rule stops reading as a rule. */
-    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr) minmax(0, auto); align-items: center; gap: var(--g-s0); margin: 0 0 var(--g-s2); }
+    /* Two tracks since 2026-08-22, not three: the trailing "What comes out of the day" label is
+       gone (the main line already announces the transition and the four names below make the
+       strip's job obvious), so the rule simply runs out to the column's right edge. */
+    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr); align-items: center; gap: var(--g-s0); margin: 0 0 var(--g-s2); }
     .hws-turn-line { font-family: var(--font-heading) !important; font-size: clamp(1.15rem, 2vw, 1.55rem); font-weight: 600; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0; text-wrap: balance; }
     .hws-turn-rule { height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(232, 89, 60, 0.18)); }
     .hws-turn-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
@@ -1563,9 +1603,15 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         .hws-outs { grid-template-columns: 1fr; gap: var(--g-s1); }
         .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: var(--g-s2); padding-top: 15px; }  /* stacked, off its hairline */
         .hws-ask-line { font-size: 0.88rem; max-width: none; }
-        .hws-cta { flex-direction: column; align-items: stretch !important; gap: 12px !important; }  /* two stacked full-width buttons */
-        .hws-cta .btn { width: 100%; justify-content: center !important; }
-        .hws-ghost { width: 100%; justify-content: center !important; }
+        /* R14/2026-08-22: was two stacked FULL-WIDTH blocks (MEASURED 350px each at 390px), which
+           made the actions the heaviest thing in the close and put them ahead of the outcome copy
+           they are supposed to follow. Now a centred stack at intrinsic width, with the call
+           action as a text link rather than a second outlined block, so the hierarchy reads
+           primary -> secondary instead of block -> block. min-height 44px keeps both tap targets
+           at the accessible floor now that neither is stretched. Desktop is untouched. */
+        .hws-cta { flex-direction: column; align-items: center !important; gap: 14px !important; }
+        .hws-cta .btn { width: auto; min-height: 44px; display: inline-flex; align-items: center; justify-content: center !important; }
+        .hws-ghost { width: auto; min-height: 44px; padding: 0; border: 0; display: inline-flex; align-items: center; justify-content: center !important; }
     }
 
     /* ===== R12: THE PINNED STAGE SCENE =============================================
@@ -1673,13 +1719,24 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                than it has screen. */
             --hws-seg: min(88vh, 540px);              /* MAX'S CAP: pace is viewport-independent */
             --hws-shelf: 0px;              /* overridden by script only when .hws--shelf is on */
+            /* --hws-gap: how far below the panel the parked close block sits. SPLIT OUT FROM
+               --hws-shelf 2026-08-22. The two used to be the same number, because the old shelf
+               was exactly half the free space and so the band above the block and the distance it
+               was parked off the floor came out equal. Capping the gap broke that identity, and
+               the lead below is derived from the TRAILING distance, not from the floor offset —
+               deriving it from --hws-shelf after the cap desynced the block's flow position from
+               its parked one and the sticky ran out of containing block: MEASURED at 1600x1600,
+               a 76px target rendering as 300px. Two names for two different distances. */
+            --hws-gap: 0px;                /* overridden by script alongside --hws-shelf */
             /* THE LEAD: how far below the panel the close block is held before the shelf may take
-               it. It is the shelf gap itself, less the close block's own top margin, so the block
+               it. It is the parked gap, less the close block's own top margin, so the block
                trails the panel at exactly its parked distance the whole way in and is ALREADY at
                the shelf the frame the pin engages — one continuous motion, nothing to pop in.
-               max(0px, ...) is the shelf-off case: --hws-shelf falls back to 0 and the lead must
-               not go negative (it would put the zone's ceiling above the panel's bottom edge). */
-            --hws-lead: max(0px, calc(var(--hws-shelf) - var(--g-s4)));
+               max(0px, ...) is the shelf-off case, and now also the capped case: once the gap is
+               capped AT the close block's own margin the lead is 0, i.e. the block simply sits
+               where flow already put it. It must not go negative (that would put the zone's
+               ceiling above the panel's bottom edge). */
+            --hws-lead: max(0px, calc(var(--hws-gap) - var(--g-s4)));
             --hws-pad: calc(var(--hws-seg) * 5 - var(--hws-lead));
         }
 
@@ -1845,7 +1902,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: four taped index cards headed Event, Audience, Objective and Outcomes, ruled and left blank on a studio board"
                                      width="1600" height="822" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>It starts with one conversation about what the content has to do.</span><em>Illustration &middot; Recap Media discovery brief</em></figcaption>
+                            <figcaption class="hws-cap"><span>It starts with one conversation about what the content has to do.</span><em>Illustration &middot; what the first conversation covers</em></figcaption>
                         </figure>
                 </article>
 
@@ -1977,7 +2034,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                                      alt="Illustration: a four-step release sequence — open with the master film, explain with a short cut, prove with photo selects, follow up with a promo for the next event"
                                      width="1600" height="826" loading="lazy" decoding="async">
                             </div>
-                            <figcaption class="hws-cap"><span>The same pieces, going out on a schedule instead of all at once.</span><em>Illustration &middot; Recap Media release sequence</em></figcaption>
+                            <figcaption class="hws-cap"><span>Selected pieces, released with a purpose across the weeks that follow.</span><em>Illustration &middot; Recap Media release sequence</em></figcaption>
                         </figure>
                 </article>
 
@@ -1997,31 +2054,30 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             <div class="hws-turn">
                 <h3 class="hws-turn-line">The day ends. The content keeps going.</h3>
                 <span class="hws-turn-rule" aria-hidden="true"></span>
-                <span class="hws-turn-label">What comes out of the day</span>
             </div>
 
             <!-- href-less on purpose: the service pages claim these later, data-service is the key -->
             <div class="hws-outs">
                 <a class="hws-out" data-service="photography">
                     <span class="hws-out-name">Photography</span>
-                    <span class="hws-out-line">Frames you can put straight into press, decks and your channels.</span>
+                    <span class="hws-out-line">Be ready for press, partner updates and the next campaign while the event is still fresh.</span>
                 </a>
                 <a class="hws-out" data-service="film">
                     <span class="hws-out-name">Film</span>
-                    <span class="hws-out-line">Video that carries the room to everyone who could not be there.</span>
+                    <span class="hws-out-line">Let people who missed the room experience the ideas, energy and speakers.</span>
                 </a>
                 <a class="hws-out" data-service="content">
                     <span class="hws-out-name">Content</span>
-                    <span class="hws-out-line">Short pieces cut from the same day, shaped for where you post.</span>
+                    <span class="hws-out-line">Give your team ready-to-use pieces without creating another editing workload.</span>
                 </a>
                 <a class="hws-out" data-service="distribution">
                     <span class="hws-out-name">Distribution</span>
-                    <span class="hws-out-line">Your content keeps going out on a schedule for months after the day.</span>
+                    <span class="hws-out-line">Stay visible after the event without adding another recurring task to your team.</span>
                 </a>
             </div>
 
             <div class="hws-ask">
-                <p class="hws-ask-line">Tell us what you are planning and we will map it onto these five stages.</p>
+                <p class="hws-ask-line">Tell us about your event. We will shape the right plan around it.</p>
                 <div class="hero-cta-row hws-cta">
                     <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
                     <a href="https://recapmedia.no/contact#calendar"
@@ -2129,13 +2185,29 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
 
         var free = window.innerHeight - topPx - sticky.offsetHeight - close.offsetHeight;
         if (cycling && free >= 96) {
-            /* half the free space: the band above the parked close block and the band below it
-               come out the same size, which is what minimises the largest single void. */
-            sec.style.setProperty('--hws-shelf', Math.round(free * 0.5) + 'px');
+            /* THE GAP ABOVE THE CLOSE BLOCK IS CAPPED (2026-08-22, Max: "too much space above it
+               until I scroll through all the How It Works elements").
+               It used to be `free * 0.5` on the argument that equal bands above and below minimise
+               the largest single void. The arithmetic is right and the result was wrong: `free`
+               grows with the window while the panel does not, so the gap between a stage's caption
+               and the conclusion it belongs to grew without bound. MEASURED before this change:
+               71px at 1440x1200, 171px at 1900x1400, 271px at 1600x1600 — a hole opening inside
+               one composition, and the taller the screen the worse it read.
+               The cap is the close block's OWN flow margin, read from the live layout rather than
+               written here: on the shelf the block now trails the panel at exactly the distance it
+               would sit at in normal flow, and every extra pixel of a tall window falls BELOW it,
+               at the viewport floor, where it reads as page margin and is where the pin releases
+               anyway. Short-window behaviour is unchanged: while free*0.5 is under the margin the
+               old value still wins, and under 96px of free space the shelf stays off entirely. */
+            var flowGap = parseFloat(getComputedStyle(close).marginTop) || 0;
+            var gap = Math.min(free * 0.5, flowGap);
+            sec.style.setProperty('--hws-gap', Math.round(gap) + 'px');
+            sec.style.setProperty('--hws-shelf', Math.round(free - gap) + 'px');
             sec.classList.add('hws--shelf');
         } else {
             sec.classList.remove('hws--shelf');
             sec.style.removeProperty('--hws-shelf');
+            sec.style.removeProperty('--hws-gap');
         }
     }
 
@@ -2268,13 +2340,16 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      ============================================================================================ -->
 <section class="section section--lg section-onyx work-section seam-minor-below" style="padding-bottom: clamp(40px, 5vw, 64px);">
     <div class="container">
-        <div class="section-header-row gsap-fade">
-            <div>
-                <span class="section-num">02</span>
-                <span class="overline overline--ruled">Selected work</span>
-                <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">See Our Work in Action</h2>
-            </div>
-            <a href="https://recapmedia.no/work" class="section-header-link">View all work →</a>
+        <!-- CENTRED (2026-08-22). The grid was already centred to the pixel; the HEADER was not:
+             a split row put the folio/overline/H2 hard left and "View all work" hard right, so the
+             section had three optical centres. It now opens exactly like Client Stories directly
+             below it (centred stack, same sizes, .overline without the rule since a centred
+             overline's leading dash reads as a stray mark), and the action moved out of the header
+             to a centred link under the grid, where it follows the cards it refers to. -->
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">02</span>
+            <span class="overline">Selected work</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">See Our Work in Action</h2>
         </div>
         <!-- PROOF SLOTS (KRAFT H2/#1): when the Flutter Vikings proof sheet ships (recap-own-content),
              the reconciled numbers land HERE (Flutter Vikings card / a stat line above this grid)
@@ -2309,6 +2384,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 </div>
             </a>
         </div>
+        <p class="work-all gsap-fade"><a href="https://recapmedia.no/work" class="section-header-link">View all work &rarr;</a></p>
     </div>
 </section>
 
@@ -2449,6 +2525,66 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
      VERIFIED on the rendered player at 1440x900 (a 900x506 box) that the tripod camera survives. B1's invariant is kept: the
      VideoObject node in <head> carries the same URL as its thumbnailUrl, so the poster and the
      structured data still cannot drift, and the `title` attribute describes the new frame. -->
+<style>
+    /* THE TRANSPORT BAR — page-local, prefix .hv-. Sits on the player's bottom edge over a scrim
+       so the type stays legible on any frame. It does NOT hide on mouse-out the way the existing
+       mute/fullscreen cluster does: a position readout you cannot see is the defect this fixes. */
+    .hv-bar {
+        position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+        display: flex; align-items: center; gap: 12px;
+        padding: 10px 14px 12px;
+        background: linear-gradient(to top, rgba(12, 10, 16, 0.85), rgba(12, 10, 16, 0));
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .hv-bar[hidden] { display: none; }
+    .hv-btn {
+        flex: 0 0 auto; width: 32px; height: 32px; padding: 0;
+        display: inline-flex; align-items: center; justify-content: center;
+        background: none; border: 0; border-radius: 2px; cursor: pointer;
+        color: var(--color-white); transition: color 0.2s ease;
+    }
+    .hv-btn:hover { color: var(--color-ember); }
+    .hv-btn:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 2px; }
+    /* tabular-nums so the readout does not shove the track left and right once per second */
+    .hv-time { flex: 0 0 auto; font-size: 0.7rem; letter-spacing: 0.04em; color: var(--color-warm-grey); font-variant-numeric: tabular-nums; }
+    .hv-time--dur { color: var(--color-stone); }
+
+    /* The track. Appearance is reset on all three engines and rebuilt, because a default range
+       control is the one piece of chrome on this page that would look like someone else's UI.
+       --hv-p is written by the script and paints the played portion, so the fill tracks the thumb
+       without needing a second element behind it. */
+    .hv-seek {
+        flex: 1 1 auto; min-width: 0; height: 20px; margin: 0; padding: 0;
+        -webkit-appearance: none; appearance: none; background: none; cursor: pointer;
+    }
+    .hv-seek:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 3px; border-radius: 2px; }
+    .hv-seek::-webkit-slider-runnable-track {
+        height: 3px;
+        background: linear-gradient(to right, var(--color-ember) 0 var(--hv-p, 0%), rgba(255, 255, 255, 0.28) var(--hv-p, 0%) 100%);
+    }
+    .hv-seek::-moz-range-track { height: 3px; background: rgba(255, 255, 255, 0.28); }
+    .hv-seek::-moz-range-progress { height: 3px; background: var(--color-ember); }
+    /* margin-top: half the thumb minus half the track, so the thumb rides the track's centre */
+    .hv-seek::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none;
+        width: 11px; height: 11px; margin-top: -4px; border: 0; border-radius: 50%;
+        background: var(--color-ember);
+    }
+    .hv-seek::-moz-range-thumb { width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--color-ember); }
+
+    @media (max-width: 768px) {
+        /* 44px tap targets, and the duration readout goes so the track keeps a usable width on a
+           390px screen: the elapsed time is the number you actually read while scrubbing. */
+        .hv-bar { gap: 10px; padding: 8px 10px 10px; }
+        .hv-btn { width: 44px; height: 44px; }
+        .hv-seek { height: 44px; }
+        .hv-time--dur { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .hv-btn { transition: none; }
+    }
+</style>
+
 <section class="section section-onyx" style="padding-top: 20px; padding-bottom: 40px;">
     <div class="container">
         <div class="gsap-fade" style="text-align: center; margin-bottom: 20px;">
@@ -2458,7 +2594,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
         <div class="video-player-wrap gsap-fade">
             <video
                 id="home-video"
-                src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/video/69cf9010a7dcb4cff052a257.mp4"
+                src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/video/69cf9010a7dcb4cff052a257.mp4"
                 poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb859e47b22fd3fc499.webp"
                 preload="none"
                 playsinline
@@ -2482,6 +2618,27 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
                 </button>
             </div>
+            <!-- THE TRANSPORT BAR (2026-08-22). The player had mute and fullscreen and no way to
+                 see where you were or to move: the only way to scrub was to click, which toggled
+                 play/pause instead. Page-local, prefixed .hv-, everything inside <main> because
+                 the GHL paste takes only <main>'s contents — css/style.css and js/main-v2.js are
+                 untouched, so this needs no CDN bump.
+                 The track is a real <input type="range">: arrow keys, Home/End, touch drag and
+                 screen-reader announcement all come from the platform rather than from hand-rolled
+                 key handlers, and aria-valuetext gives it a spoken position in minutes and seconds
+                 instead of "437". Native controls stay OFF; there is exactly one control surface.
+                 It is hidden until metadata exists (the video is preload="none", so duration is
+                 unknown until the first play) rather than showing a bar that reads 0:00 / 0:00. -->
+            <div class="hv-bar" id="home-video-bar" hidden>
+                <button class="hv-btn" id="home-video-play" type="button" aria-label="Pause">
+                    <svg class="hv-i-pause" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+                    <svg class="hv-i-play" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <span class="hv-time" id="home-video-cur">0:00</span>
+                <input class="hv-seek" id="home-video-seek" type="range" min="0" max="1000" step="1" value="0"
+                       aria-label="Seek through the video" aria-valuetext="0:00 of 0:00">
+                <span class="hv-time hv-time--dur" id="home-video-dur">0:00</span>
+            </div>
         </div>
         <script>
         (function() {
@@ -2490,9 +2647,67 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
             var controls = document.getElementById('home-video-controls');
             var muteBtn = document.getElementById('home-video-mute');
             var fsBtn = document.getElementById('home-video-fs');
+            /* the transport bar (2026-08-22) */
+            var bar     = document.getElementById('home-video-bar');
+            var playBtn = document.getElementById('home-video-play');
+            var seek    = document.getElementById('home-video-seek');
+            var curEl   = document.getElementById('home-video-cur');
+            var durEl   = document.getElementById('home-video-dur');
+            var scrubbing = false;
             if (!vid || !overlay) return;
             function hide() { overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none'; if (controls) controls.style.opacity = '1'; }
             function show() { overlay.style.opacity = '1'; overlay.style.pointerEvents = ''; if (controls) controls.style.opacity = '0'; }
+
+            /* ---- transport ----
+               Everything below reads state off the media element rather than tracking its own,
+               so a seek from any source (the range, a keyboard arrow, fullscreen's own UI) lands
+               back here through the same events. */
+            function fmt(t) {
+                if (!isFinite(t) || t < 0) t = 0;
+                var m = Math.floor(t / 60), sc = Math.floor(t % 60);
+                return m + ':' + (sc < 10 ? '0' : '') + sc;
+            }
+            function paintSeek() {
+                var d = vid.duration;
+                if (!isFinite(d) || d <= 0) return;
+                var frac = vid.currentTime / d;
+                if (!scrubbing) seek.value = String(Math.round(frac * 1000));
+                seek.style.setProperty('--hv-p', (frac * 100).toFixed(2) + '%');
+                curEl.textContent = fmt(vid.currentTime);
+                /* spoken position: "0:12 of 0:37", not "324" */
+                seek.setAttribute('aria-valuetext', fmt(vid.currentTime) + ' of ' + fmt(d));
+            }
+            function setPlayIcon(paused) {
+                playBtn.querySelector('.hv-i-play').style.display = paused ? '' : 'none';
+                playBtn.querySelector('.hv-i-pause').style.display = paused ? 'none' : '';
+                playBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+            }
+            /* preload="none": duration does not exist until the first play, so the bar stays
+               hidden rather than showing 0:00 / 0:00. */
+            vid.addEventListener('loadedmetadata', function () {
+                bar.hidden = false;
+                durEl.textContent = fmt(vid.duration);
+                paintSeek();
+            });
+            vid.addEventListener('timeupdate', paintSeek);
+            vid.addEventListener('seeked', paintSeek);
+            vid.addEventListener('play', function () { setPlayIcon(false); });
+            vid.addEventListener('pause', function () { setPlayIcon(true); });
+            seek.addEventListener('pointerdown', function () { scrubbing = true; });
+            /* pointerup can land outside the thumb, so it is caught on the window */
+            window.addEventListener('pointerup', function () { scrubbing = false; });
+            seek.addEventListener('input', function () {
+                var d = vid.duration;
+                if (!isFinite(d) || d <= 0) return;
+                vid.currentTime = (Number(seek.value) / 1000) * d;
+                paintSeek();
+            });
+            /* the bar sits over the video, whose own click handler toggles play/pause */
+            bar.addEventListener('click', function (e) { e.stopPropagation(); });
+            playBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (vid.paused) { vid.play(); hide(); } else { vid.pause(); }
+            });
             overlay.addEventListener('click', function() {
                 vid.muted = true;
                 var p = vid.play();
@@ -2516,7 +2731,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
                 }
             });
             vid.addEventListener('pause', show);
-            vid.addEventListener('ended', show);
+            vid.addEventListener('ended', function () { show(); setPlayIcon(true); paintSeek(); });
             if (muteBtn) {
                 muteBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -2700,7 +2915,7 @@ Do not paste into GHL until Max approves (copy doc: projects/recap-website-clean
     <div class="container">
         <div class="p7-band gsap-fade">
             <span class="p7-rule" aria-hidden="true"></span>
-            <p class="p7-line">Questions answered. The rest we work out with you.</p>
+            <p class="p7-line">Not sure what you need yet? That is what the first conversation is for.</p>
             <div class="hero-cta-row">
                 <a href="#" class="btn btn-primary" data-cta="quote">Tell us about your event</a>
                 <a href="https://recapmedia.no/contact#calendar"
