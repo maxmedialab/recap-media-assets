@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Videography &amp; Aftermovies Oslo | Recap Media</title>
-    <meta name="description" content="Conference and event videography in Oslo. Aftermovies, highlight reels, social clips and full recordings. One booking for photo and video.">
+    <title>Event Video Production Oslo | Recap Media</title>
+    <meta name="description" content="Event video production in Oslo for conferences and corporate events. Highlight films, session recordings and social clips in up to 14 business days.">
     <link rel="canonical" href="https://recapmedia.no/services/event-video-oslo">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://recapmedia.no/services/event-video-oslo">
-    <meta property="og:title" content="Event Videography & Aftermovies Oslo | Recap Media">
-    <meta property="og:description" content="Conference and event videography in Oslo. Aftermovies, highlight reels, social clips and full recordings. One booking for photo and video.">
+    <meta property="og:title" content="Event Video Production Oslo | Recap Media">
+    <meta property="og:description" content="Event video production in Oslo for conferences and corporate events. Highlight films, session recordings and social clips in up to 14 business days.">
     <meta property="og:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
     <meta property="og:site_name" content="Recap Media">
     <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Event Videography & Aftermovies Oslo | Recap Media">
-    <meta name="twitter:description" content="Conference and event videography in Oslo. Aftermovies, highlight reels, social clips and full recordings. One booking for photo and video.">
+    <meta name="twitter:title" content="Event Video Production Oslo | Recap Media">
+    <meta name="twitter:description" content="Event video production in Oslo for conferences and corporate events. Highlight films, session recordings and social clips in up to 14 business days.">
     <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
 
     <!-- Schema: BreadcrumbList -->
@@ -29,51 +29,66 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://recapmedia.no/" },
-        { "@type": "ListItem", "position": 2, "name": "Event Videography", "item": "https://recapmedia.no/services/event-video-oslo" }
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://recapmedia.no/services" },
+        { "@type": "ListItem", "position": 3, "name": "Event Video Production", "item": "https://recapmedia.no/services/event-video-oslo" }
       ]
     }
     </script>
 
-    <!-- Schema: Service -->
+    <!-- Schema: Service (+ the shared founder Person node).
+         Entity-graph rule: the company is referenced by its canonical @id, never re-declared
+         with contact details here; the Person node is the one stable Maks ID used site-wide. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Event Videography & Aftermovies Oslo",
-      "serviceType": "Event Videography",
-      "description": "Conference and event videography across Oslo and beyond: aftermovies, highlight reels, vertical social clips, full session recordings and testimonial videos, with full commercial usage rights and one booking covering photo and video.",
-      "url": "https://recapmedia.no/services/event-video-oslo",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Recap Media",
-        "url": "https://recapmedia.no",
-        "email": "booking@recapmedia.no",
-        "telephone": "+4796689356",
-        "address": { "@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO" },
-        "knowsLanguage": ["English", "Norwegian"],
-        "founder": { "@type": "Person", "name": "Maks Strzepka", "alternateName": "Maksymilian Strzepka" }
-      },
-      "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
-      "audience": { "@type": "BusinessAudience", "name": "Conference organisers, marketing teams and event agencies" }
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://recapmedia.no/services/event-video-oslo#service",
+          "name": "Event Video Production Oslo",
+          "serviceType": "Event video production",
+          "description": "Founder-led event video production in Oslo for B2B conferences and corporate events: highlight films and recap films, full session recordings, vertical social clips, vox pops and testimonials, delivered in up to 14 business days with full commercial usage rights.",
+          "url": "https://recapmedia.no/services/event-video-oslo",
+          "provider": {
+            "@type": "LocalBusiness",
+            "@id": "https://recapmedia.no/#business",
+            "name": "Recap Media",
+            "url": "https://recapmedia.no",
+            "founder": { "@id": "https://recapmedia.no/#maks" }
+          },
+          "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
+          "audience": { "@type": "BusinessAudience", "name": "Conference organisers, marketing teams and event agencies" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://recapmedia.no/#maks",
+          "name": "Maks Strzepka",
+          "alternateName": "Maksymilian Strzepka"
+        }
+      ]
     }
     </script>
 
-    <!-- Schema: FAQPage -->
+    <!-- Schema: FAQPage (text must stay byte-identical to the visible FAQ) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "What's the difference between an aftermovie and a highlight reel?", "acceptedAnswer": { "@type": "Answer", "text": "An aftermovie is a 2–4 minute branded narrative film made for future marketing; a highlight reel is a 30–90 second faster cut for social feeds. For LinkedIn, 60–180 seconds tends to hold attention best. Lengths are agreed in the brief." } },
+        { "@type": "Question", "name": "What is the difference between a recap film and a highlight reel?", "acceptedAnswer": { "@type": "Answer", "text": "A recap film is a branded narrative edit of the whole event, typically around 2 minutes, depending on the event type, length and what the film needs to show. A highlight reel is a shorter 30–90 second cut built for social feeds. Lengths are agreed in the brief." } },
         { "@type": "Question", "name": "Do you produce vertical clips for Instagram and LinkedIn?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We film so the same session yields a 16:9 master edit and 9:16 vertical clips for Instagram, LinkedIn and TikTok, with no awkward crops." } },
-        { "@type": "Question", "name": "Who owns the footage, and can we reuse it?", "acceptedAnswer": { "@type": "Answer", "text": "You get full commercial usage rights to all delivered video: web, social, internal and marketing use, with no licensing fees. Raw footage isn't included by default." } },
-        { "@type": "Question", "name": "How long does an aftermovie take to deliver?", "acceptedAnswer": { "@type": "Answer", "text": "Standard delivery is up to 14 business days. Faster turnarounds, including same-day highlight cuts, can be arranged in advance in the brief." } },
-        { "@type": "Question", "name": "What types of events do you film in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Conferences, seminars, AGMs, product launches, trade fairs, kickoffs and corporate gatherings, at venues across Oslo and beyond." } },
+        { "@type": "Question", "name": "Who owns the footage, and can we reuse it?", "acceptedAnswer": { "@type": "Answer", "text": "You get full commercial usage rights to all delivered video: web, social, internal and marketing use, with no licensing fees." } },
+        { "@type": "Question", "name": "How long does event video editing take?", "acceptedAnswer": { "@type": "Answer", "text": "Delivery is up to 14 business days from the event. If a specific deadline matters, tell us in the brief and we will tell you what is realistic before you book." } },
+        { "@type": "Question", "name": "How many rounds of revisions are included?", "acceptedAnswer": { "@type": "Answer", "text": "Two revision rounds on video edits are included. The details are set out in the agreement." } },
+        { "@type": "Question", "name": "Can we get the raw footage or a B-roll library?", "acceptedAnswer": { "@type": "Answer", "text": "Raw footage is not part of the standard delivery. It can be purchased separately, and it is best discussed in advance so the shoot and the handover can be planned around it." } },
+        { "@type": "Question", "name": "What types of events do you film in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Conferences, seminars, AGMs, product launches, trade fairs, kickoffs and corporate gatherings. We work with B2B organisers, marketing teams and event agencies." } },
+        { "@type": "Question", "name": "Do you cover events outside Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work across the Oslo region, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss. Travel further afield is arranged on request." } },
         { "@type": "Question", "name": "Can you live stream our event?", "acceptedAnswer": { "@type": "Answer", "text": "We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so ask us and we'll give you a concrete answer." } },
         { "@type": "Question", "name": "What format are the videos delivered in?", "acceptedAnswer": { "@type": "Answer", "text": "High-resolution MP4 (H.264/H.265) via private link. Aspect ratios, resolutions and platform-specific formats are agreed in the brief." } },
-        { "@type": "Question", "name": "Can you film interviews and testimonials at our event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Vox pops and planned testimonial setups are standard additions, recorded between sessions with a simple interview setup." } },
+        { "@type": "Question", "name": "Can you film interviews and testimonials at our event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Vox pops and planned speaker or sponsor testimonials are standard additions, recorded between sessions with a simple on-site interview setup." } },
         { "@type": "Question", "name": "Can the videos carry our branding?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Logos, lower-thirds, brand colours and subtitles in Norwegian or English are part of the edit." } },
-        { "@type": "Question", "name": "Can we get the raw footage or a B-roll library?", "acceptedAnswer": { "@type": "Answer", "text": "As an optional add-on. Many marketing teams add the B-roll library for internal use; the standard delivery is edited video with full commercial rights." } }
+        { "@type": "Question", "name": "How much does event video production cost in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on how long the event runs, how many rooms run in parallel and what you need delivered afterwards. Tell us the date and the programme and you get a quote built around that, not a template price." } },
+        { "@type": "Question", "name": "Do you film weddings?", "acceptedAnswer": { "@type": "Answer", "text": "No. We work with B2B events only: conferences, corporate gatherings, launches and public programmes." } }
       ]
     }
     </script>
@@ -135,7 +150,7 @@
         <span class="mobile-menu-label">Services</span>
         <a href="https://recapmedia.no/services/event-photography-oslo">Photography</a>
         <a href="https://recapmedia.no/services/event-video-oslo">Videography</a>
-        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference coverage</a>
+        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference Photo &amp; Video</a>
         <a href="https://recapmedia.no/services">All services</a>
     </div>
     <a href="https://recapmedia.no/work">Work</a>
@@ -169,9 +184,9 @@
 <!-- Hero Banner -->
 <section class="hero-banner">
     <div class="container" style="text-align: center; max-width: 820px;">
-        <span class="overline">Services &middot; Videography</span>
-        <h1>Event Videography &amp; Aftermovies Oslo</h1>
-        <p style="max-width: 640px; margin: 16px auto 0;">Aftermovies, highlight reels, vertical social clips and full session recordings, filmed and edited by Recap, built for what your marketing calendar actually needs.</p>
+        <span class="overline">Services &middot; Event Video</span>
+        <h1>Event Video Production for Conferences &amp; Corporate Events in Oslo</h1>
+        <p style="max-width: 640px; margin: 16px auto 0;">Founder-led event video production in Oslo for B2B conferences and corporate events. Reliable coverage on the day, and months of usable content afterwards.</p>
         <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
             <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">View our work</a>
@@ -185,24 +200,24 @@
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">01</span>
             <span class="overline">What we produce</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Event Video Your Team Will Actually Publish</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">Conference video production for B2B events across Oslo and beyond, from a single highlight reel to a full content package.</p>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Event Video That Keeps Working After the Day</h2>
+            <p style="max-width: 620px; margin: 16px auto 0;">One crew, one brief, and a set of edits sized for the places your team actually publishes: the website, LinkedIn, the newsletter and the internal archive.</p>
         </div>
         <div class="steps-grid steps-grid--2 gsap-stagger">
             <div class="step-card">
-                <h3>Aftermovies &amp; brand films</h3>
-                <p>A 2–4 minute branded film that captures what the event was actually about, including a promo cut that sells next year's tickets before the programme is even announced.</p>
+                <h3>From live coverage to long-form sessions</h3>
+                <p>Keynotes, panels and presentations recorded in full and delivered ready to publish or share internally, alongside the atmosphere footage the recap edit is built from.</p>
             </div>
             <div class="step-card">
-                <h3>Highlight reels for social</h3>
-                <p>30–90 second faster cuts for LinkedIn, Instagram and internal channels. Built to be posted, not archived.</p>
+                <h3>Recap films, aftermovies and highlight reels</h3>
+                <p>A branded narrative edit of the event, typically around 2 minutes, depending on the event type, length and what the film needs to show. Shorter highlight cuts of 30–90 seconds come from the same material.</p>
             </div>
             <div class="step-card">
-                <h3>Full event recordings</h3>
-                <p>Complete session recordings: keynotes, panels and presentations, delivered ready to publish or share internally.</p>
+                <h3>Social clips and vertical edits from one event</h3>
+                <p>Speaker moments cut for LinkedIn and Instagram in both 16:9 and 9:16, subtitled, and sized so your social team can schedule them for weeks rather than post once.</p>
             </div>
             <div class="step-card">
-                <h3>Vox pops &amp; testimonials</h3>
+                <h3>Vox pops and speaker testimonials</h3>
                 <p>Attendee vox pops and planned speaker or sponsor testimonials, recorded between sessions with a simple on-site interview setup.</p>
             </div>
         </div>
@@ -219,110 +234,77 @@
                 <h2>One Filming Day,<br>Every Format</h2>
                 <h3 style="margin-top: 28px; font-size: 1.05rem;">Vertical clips for LinkedIn, Instagram and TikTok</h3>
                 <p>Every filming day produces a 16:9 master edit and 9:16 vertical clips from the same material. Your social team gets platform-ready video, with no awkward crops and no separate shoot.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">Same-day edits</h3>
-                <p>Need a clip published while the event is still running? Same-day edits are available when arranged in the brief.</p>
+                <h3 style="margin-top: 24px; font-size: 1.05rem;">Session recordings and full presentations</h3>
+                <p>The same day also produces the long-form archive: complete talks your members, sponsors and internal teams can watch later, and the source material every shorter cut is pulled from.</p>
                 <p style="margin-top: 24px;">A typical eight-hour filming day yields the main edit, a set of vertical teasers, and cutdowns sized for email and web: one shoot, weeks of publishing.</p>
             </div>
             <div class="col-image gsap-fade">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69cccc9af2ec2d89a902d7a2.webp" alt="Conference filming by Recap Media at a corporate event in Oslo" width="640" height="480" class="parallax-img" loading="lazy">
+                <!-- Alt corrected 2026-08-24: the previous alt described a generic conference filming
+                     scene, which is not what this frame shows. Image swap is Max's open call. -->
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69cccc9af2ec2d89a902d7a2.webp" alt="Opening title card from a corporate event film produced by Recap Media, showing the client's event branding and a wall of partner logos on a dark background" width="640" height="480" class="parallax-img" loading="lazy">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Content that keeps working -->
+<!-- Example coverage options (D6: examples, never a fixed menu; no prices, no Offer schema) -->
 <section class="section section--lg section-warm">
-    <div class="container" style="max-width: 880px;">
-        <div class="gsap-fade" style="text-align: center;">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">03</span>
-            <span class="overline">After the event</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Content That Keeps Working After the Event</h2>
-            <p style="margin-top: 16px;">Most event footage gets delivered, posted once, and abandoned. We plan the edit around what your team will actually publish in the weeks and months after the day itself:</p>
+            <span class="overline">Shaping the coverage</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Example Coverage Options for Oslo Events</h2>
+            <p style="max-width: 620px; margin: 16px auto 0;">Examples of how event video coverage is usually put together, not a fixed menu. What you actually get is agreed in the brief.</p>
         </div>
-        <ul class="check-list gsap-stagger-items" style="max-width: 620px; margin: 32px auto 0;">
-            <li>Speaker and session clips your marketing team can schedule for weeks</li>
-            <li>A 60–90 second promo film for next year's ticket and sponsor sales</li>
-            <li>Cutdowns sized for LinkedIn, email and your website</li>
-        </ul>
+        <div class="steps-grid steps-grid--2 gsap-stagger">
+            <div class="step-card">
+                <h3>Conference video coverage over a full day</h3>
+                <p>One filming day across a single-track programme: the sessions recorded in full, plus a recap film and a set of social cuts from the same material.</p>
+            </div>
+            <div class="step-card">
+                <h3>Multi-day and multi-room event video</h3>
+                <p>Parallel rooms and several days, planned room by room against your programme so nothing important runs unattended and the edit still arrives as one coherent set.</p>
+            </div>
+            <div class="step-card">
+                <h3>Add-on options: vox pops, B-roll and branded assets</h3>
+                <p>Attendee vox pops, a B-roll library for your own future edits, sponsor-facing cuts, and versions carrying your logos, lower-thirds and subtitles.</p>
+            </div>
+            <div class="step-card">
+                <h3>Photo and video under one booking</h3>
+                <p>The same day covered for both, with one contact and one brief instead of two suppliers negotiating for the same floor space.</p>
+            </div>
+        </div>
+        <div class="gsap-fade" style="text-align: center; margin-top: 36px;">
+            <p style="max-width: 620px; margin: 0 auto;">The final quote is tailored after the brief, once we know the programme, the number of rooms and what you need delivered afterwards.</p>
+            <div style="margin-top: 24px;">
+                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options →</a>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- How it works -->
+<!-- What we cover on the day (absorbs the venues block; D7 filtered: the six real venues are
+     stated as experience, everything else strictly as capability wording, per D7) -->
 <section class="section section--lg section-light">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">04</span>
-            <span class="overline">How it works</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">From Brief to Delivery</h2>
+            <span class="overline">What we cover</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What We Cover on the Day</h2>
         </div>
-        <div class="steps-grid steps-grid--4 gsap-stagger">
+        <div class="steps-grid steps-grid--2 gsap-stagger">
             <div class="step-card">
-                <div class="step-number">Step 1</div>
-                <h3>Brief</h3>
-                <p>We agree deliverables, key moments, formats and deadlines before the day. You get one contact from start to finish.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">Step 2</div>
-                <h3>Filming</h3>
-                <p>We film discreetly around your programme (sessions, atmosphere, interviews) without staging the event.</p>
+                <h3>Conferences, developer events and trade shows</h3>
+                <p>Single-track and multi-track programmes, seminars, AGMs and exhibition floors, from 20-person gatherings to 500-attendee conferences.</p>
             </div>
             <div class="step-card">
-                <div class="step-number">Step 3</div>
-                <h3>Edit</h3>
-                <p>Editing, colour and sound, plus your branding: logos, lower-thirds and subtitles in Norwegian or English.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number">Step 4</div>
-                <h3>Delivery</h3>
-                <p>High-resolution MP4s via private link. Highlight reels typically within a week; aftermovies in up to 14 business days.</p>
+                <h3>Corporate gatherings, launches and public programmes</h3>
+                <p>Product launches, kickoffs, partner days, trade missions and public-facing programmes where the film has to work for several audiences at once.</p>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Proof: Flutter Vikings 2022. The page's ONE proof element (it had zero before; the five
-     "testimonial" hits on this page are the service being sold, not a client quote) and the link
-     that satisfies the internal-link contract. Every number is on the claims whitelist:
-     46 speakers / 3 rooms / 2 days / ~20h of footage / 43 published videos. -->
-<section class="section section--lg section-warm">
-    <div class="container" style="max-width: 880px;">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 32px;">
-            <span class="overline">Proof</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Twenty Hours In, Forty-Three Videos Out</h2>
-        </div>
-        <div class="gsap-fade" style="text-align: center;">
-            <p style="max-width: 680px; margin: 0 auto; color: var(--color-charcoal);">Flutter Vikings 2022 in Oslo ran 46 speakers across three parallel rooms over two days. Roughly 20 hours of footage came back from it, and 43 finished videos went out: session recordings, highlight cuts and social pieces, all from one booking.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the Flutter Vikings case study →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- One booking cross-links -->
-<section class="section section-onyx">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="overline">More than video</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">One Booking for Photo and Video</h2>
-            <p style="margin-top: 16px;">No coordinating a photographer and a video crew separately. We cover both under one booking and one brief: consistent look, single point of contact.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/services/event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event photography →</a>
-                <a href="https://recapmedia.no/services/conference-photography-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Conference photography and video →</a>
-                <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="text-decoration: none;">Ask about live streaming →</a>
-                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See coverage options →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Venues -->
-<section class="section section-light">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="overline">Venues we work at</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">Filming Across Oslo and Surrounding Venues</h2>
-            <p style="margin-top: 16px;">We have filmed at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center, plus hotels and meeting spaces across the region. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. We scout the space, plan camera positions around your programme, and coordinate with your venue contact before the day.</p>
+        <div class="gsap-fade" style="max-width: 880px; margin: 40px auto 0; text-align: center;">
+            <h3>Venues across Oslo and beyond</h3>
+            <p style="margin-top: 12px;">We have worked at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center, plus hotels and meeting spaces across the region. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. We scout the space, plan camera positions around your programme, and coordinate with your venue contact before the day.</p>
             <div class="service-tags" style="justify-content: center;">
                 <span class="service-tag">Sommerro</span>
                 <span class="service-tag">Oslo Event Hub</span>
@@ -335,24 +317,138 @@
     </div>
 </section>
 
+<!-- Proof: Flutter Vikings 2022. The page's ONE proof element (it had zero before; the five
+     "testimonial" hits on this page are the service being sold, not a client quote) and the link
+     that satisfies the internal-link contract. Every number is on the claims whitelist:
+     46 speakers / 3 rooms / 2 days / ~20h of footage / 43 published videos. -->
+<section class="section section--lg section-warm">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 32px;">
+            <span class="section-num">05</span>
+            <span class="overline">Proof</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Proof from Real Conferences</h2>
+        </div>
+        <div class="steps-grid steps-grid--2 gsap-stagger">
+            <div class="step-card">
+                <h3>Flutter Vikings: multi-room, long-form event video</h3>
+                <p>Flutter Vikings 2022 in Oslo ran 46 speakers across three parallel rooms over two days. Roughly 20 hours of footage came back from it, and 43 finished videos went out: session recordings, highlight cuts and social pieces, all from one booking.</p>
+            </div>
+            <div class="step-card">
+                <h3>Trade missions and corporate events in Oslo</h3>
+                <p>For the Scotland to Norway decarbonisation trade mission, press-ready images were in the organisers' hands within 24 hours, while the event was still the story.</p>
+            </div>
+        </div>
+        <div class="gsap-fade" style="text-align: center; margin-top: 36px;">
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the Flutter Vikings case study →</a>
+                <a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the trade mission case study →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How we plan your event video -->
+<section class="section section--lg section-light">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">06</span>
+            <span class="overline">How it works</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Plan Your Event Video</h2>
+        </div>
+        <div class="steps-grid steps-grid--4 gsap-stagger">
+            <div class="step-card">
+                <div class="step-number">Step 1</div>
+                <h3>Pre-event brief and shot list</h3>
+                <p>We agree deliverables, key moments, formats and deadlines before the day, and turn your programme into a shot list. You get one contact from start to finish.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 2</div>
+                <h3>Founder-led crew on site</h3>
+                <p>Maks Strzepka is on the floor, not a subcontractor you have not met. We film discreetly around your programme (sessions, atmosphere, interviews) without staging the event.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 3</div>
+                <h3>Editing and revisions</h3>
+                <p>Editing, colour and sound, plus your branding: logos, lower-thirds and subtitles in Norwegian or English. Two revision rounds on video edits are included, with the details set out in the agreement.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">Step 4</div>
+                <h3>Delivery timelines</h3>
+                <p>High-resolution MP4s via private link, in up to 14 business days from the event. If a specific deadline matters, say so in the brief and you get a straight answer on what is realistic.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deliverables and usage rights -->
+<section class="section section--lg section-onyx">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">07</span>
+            <span class="overline">What you get</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Deliverables and Usage Rights</h2>
+        </div>
+        <div class="steps-grid steps-grid--2 gsap-stagger">
+            <div class="step-card">
+                <h3>Recap films and highlight cuts</h3>
+                <p>The branded narrative edit, typically around 2 minutes, depending on the event type, length and what the film needs to show, plus shorter cuts for feeds and for next year's promotion.</p>
+            </div>
+            <div class="step-card">
+                <h3>Full presentations and session archives</h3>
+                <p>Complete talks and panels as separate files, named and ordered so they can go straight onto your site, your member portal or your internal drive.</p>
+            </div>
+            <div class="step-card">
+                <h3>Social clips, captions and subtitles</h3>
+                <p>Vertical and square versions, with subtitles in Norwegian or English so the clips still land when they play without sound.</p>
+            </div>
+            <div class="step-card">
+                <h3>Commercial rights and raw footage</h3>
+                <p>Full commercial usage rights to every delivered video: web, social, internal and marketing use, with no licensing fees. Raw footage is not part of the standard delivery; it can be purchased separately and is best discussed in advance.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- One booking cross-links -->
+<section class="section section-warm">
+    <div class="container" style="max-width: 880px; text-align: center;">
+        <div class="gsap-fade">
+            <span class="section-num">08</span>
+            <span class="overline">More than video</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">One Booking for Photo and Video</h2>
+            <p style="margin-top: 16px;">No coordinating a photographer and a video crew separately. We cover both under one booking and one brief: consistent look, single point of contact.</p>
+            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://recapmedia.no/services/event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event photography in Oslo →</a>
+                <a href="https://recapmedia.no/services/conference-photography-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Conference photography and video →</a>
+                <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="text-decoration: none;">Ask about live streaming →</a>
+                <a href="https://recapmedia.no/services" class="btn btn-outline-ember" style="text-decoration: none;">All Recap Media services →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FAQ -->
 <section class="section section--lg section-dark">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Event Videography Questions, Answered</h2>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Event Video Questions, Answered</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">What's the difference between an aftermovie and a highlight reel? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">An aftermovie is a 2–4 minute branded narrative film made for future marketing; a highlight reel is a 30–90 second faster cut for social feeds. For LinkedIn, 60–180 seconds tends to hold attention best. Lengths are agreed in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you produce vertical clips for Instagram and LinkedIn? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We film so the same session yields a 16:9 master edit and 9:16 vertical clips for Instagram, LinkedIn and TikTok, with no awkward crops.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Who owns the footage, and can we reuse it? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You get full commercial usage rights to all delivered video: web, social, internal and marketing use, with no licensing fees. Raw footage isn't included by default.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How long does an aftermovie take to deliver? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Standard delivery is up to 14 business days. Faster turnarounds, including same-day highlight cuts, can be arranged in advance in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What types of events do you film in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Conferences, seminars, AGMs, product launches, trade fairs, kickoffs and corporate gatherings, at venues across Oslo and beyond.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you live stream our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What format are the videos delivered in? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">High-resolution MP4 (H.264/H.265) via private link. Aspect ratios, resolutions and platform-specific formats are agreed in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you film interviews and testimonials at our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Vox pops and planned testimonial setups are standard additions, recorded between sessions with a simple interview setup.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can the videos carry our branding? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Logos, lower-thirds, brand colours and subtitles in Norwegian or English are part of the edit.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can we get the raw footage or a B-roll library? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">As an optional add-on. Many marketing teams add the B-roll library for internal use; the standard delivery is edited video with full commercial rights.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q1" aria-expanded="false" aria-controls="faq-video-a1">What is the difference between a recap film and a highlight reel? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a1"><div class="faq-answer-inner">A recap film is a branded narrative edit of the whole event, typically around 2 minutes, depending on the event type, length and what the film needs to show. A highlight reel is a shorter 30–90 second cut built for social feeds. Lengths are agreed in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q2" aria-expanded="false" aria-controls="faq-video-a2">Do you produce vertical clips for Instagram and LinkedIn? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a2"><div class="faq-answer-inner">Yes. We film so the same session yields a 16:9 master edit and 9:16 vertical clips for Instagram, LinkedIn and TikTok, with no awkward crops.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q3" aria-expanded="false" aria-controls="faq-video-a3">Who owns the footage, and can we reuse it? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a3"><div class="faq-answer-inner">You get full commercial usage rights to all delivered video: web, social, internal and marketing use, with no licensing fees.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q4" aria-expanded="false" aria-controls="faq-video-a4">How long does event video editing take? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a4"><div class="faq-answer-inner">Delivery is up to 14 business days from the event. If a specific deadline matters, tell us in the brief and we will tell you what is realistic before you book.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q5" aria-expanded="false" aria-controls="faq-video-a5">How many rounds of revisions are included? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a5"><div class="faq-answer-inner">Two revision rounds on video edits are included. The details are set out in the agreement.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q6" aria-expanded="false" aria-controls="faq-video-a6">Can we get the raw footage or a B-roll library? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a6"><div class="faq-answer-inner">Raw footage is not part of the standard delivery. It can be purchased separately, and it is best discussed in advance so the shoot and the handover can be planned around it.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q7" aria-expanded="false" aria-controls="faq-video-a7">What types of events do you film in Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a7"><div class="faq-answer-inner">Conferences, seminars, AGMs, product launches, trade fairs, kickoffs and corporate gatherings. We work with B2B organisers, marketing teams and event agencies.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q8" aria-expanded="false" aria-controls="faq-video-a8">Do you cover events outside Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a8"><div class="faq-answer-inner">Yes. We work across the Oslo region, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss. Travel further afield is arranged on request.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q9" aria-expanded="false" aria-controls="faq-video-a9">Can you live stream our event? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a9"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q10" aria-expanded="false" aria-controls="faq-video-a10">What format are the videos delivered in? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a10"><div class="faq-answer-inner">High-resolution MP4 (H.264/H.265) via private link. Aspect ratios, resolutions and platform-specific formats are agreed in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q11" aria-expanded="false" aria-controls="faq-video-a11">Can you film interviews and testimonials at our event? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a11"><div class="faq-answer-inner">Yes. Vox pops and planned speaker or sponsor testimonials are standard additions, recorded between sessions with a simple on-site interview setup.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q12" aria-expanded="false" aria-controls="faq-video-a12">Can the videos carry our branding? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a12"><div class="faq-answer-inner">Yes. Logos, lower-thirds, brand colours and subtitles in Norwegian or English are part of the edit.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q13" aria-expanded="false" aria-controls="faq-video-a13">How much does event video production cost in Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a13"><div class="faq-answer-inner">It depends on how long the event runs, how many rooms run in parallel and what you need delivered afterwards. Tell us the date and the programme and you get a quote built around that, not a template price.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-video-q14" aria-expanded="false" aria-controls="faq-video-a14">Do you film weddings? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-video-a14"><div class="faq-answer-inner">No. We work with B2B events only: conferences, corporate gatherings, launches and public programmes.</div></div></div>
         </div>
         <div class="faq-footer">
             <p>Planning an event? Tell us the date and what you need. We'll reply within one business day.</p>
@@ -369,7 +465,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>

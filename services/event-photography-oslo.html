@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event &amp; Conference Photographer Oslo | Recap Media</title>
-    <meta name="description" content="Corporate and conference photography in Oslo. Fast turnaround, full commercial rights. One booking for photo and video.">
+    <title>Corporate Event Photographer Oslo | Recap Media</title>
+    <meta name="description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
     <link rel="canonical" href="https://recapmedia.no/services/event-photography-oslo">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://recapmedia.no/services/event-photography-oslo">
-    <meta property="og:title" content="Event & Conference Photographer Oslo | Recap Media">
-    <meta property="og:description" content="Corporate and conference photography in Oslo. Fast turnaround, full commercial rights. One booking for photo and video.">
+    <meta property="og:title" content="Corporate Event Photographer Oslo | Recap Media">
+    <meta property="og:description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
     <meta property="og:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
     <meta property="og:site_name" content="Recap Media">
     <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Event & Conference Photographer Oslo | Recap Media">
-    <meta name="twitter:description" content="Corporate and conference photography in Oslo. Fast turnaround, full commercial rights. One booking for photo and video.">
+    <meta name="twitter:title" content="Corporate Event Photographer Oslo | Recap Media">
+    <meta name="twitter:description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
     <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
 
     <!-- Schema: BreadcrumbList -->
@@ -29,52 +29,64 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://recapmedia.no/" },
-        { "@type": "ListItem", "position": 2, "name": "Event Photography", "item": "https://recapmedia.no/services/event-photography-oslo" }
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://recapmedia.no/services" },
+        { "@type": "ListItem", "position": 3, "name": "Event Photography Oslo", "item": "https://recapmedia.no/services/event-photography-oslo" }
       ]
     }
     </script>
 
-    <!-- Schema: Service -->
+    <!-- Schema: Service (entity graph per launch rule 4.12: one canonical business node,
+         one stable Person node, provider referenced by @id, never re-declared anonymously) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Event & Conference Photography Oslo",
-      "serviceType": "Event Photography",
-      "description": "Corporate event, conference and trade fair photography across Oslo and beyond. Edited galleries delivered in up to 7 business days, full commercial usage rights, on-site headshots and team portraits, and one booking covering photo and video.",
-      "url": "https://recapmedia.no/services/event-photography-oslo",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Recap Media",
-        "url": "https://recapmedia.no",
-        "email": "booking@recapmedia.no",
-        "telephone": "+4796689356",
-        "address": { "@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO" },
-        "knowsLanguage": ["English", "Norwegian"],
-        "founder": { "@type": "Person", "name": "Maks Strzepka", "alternateName": "Maksymilian Strzepka" }
-      },
-      "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
-      "audience": { "@type": "BusinessAudience", "name": "Conference organisers, marketing teams and event agencies" }
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://recapmedia.no/services/event-photography-oslo#service",
+          "name": "Corporate Event Photography Oslo",
+          "serviceType": "Corporate event photography",
+          "description": "Founder-led corporate event, conference and trade show photography in Oslo and beyond. Edited galleries in up to 7 business days, same-day or 24-hour press selects arranged in advance, and full commercial usage rights on every delivered image.",
+          "url": "https://recapmedia.no/services/event-photography-oslo",
+          "provider": { "@id": "https://recapmedia.no/#business" },
+          "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
+          "audience": { "@type": "BusinessAudience", "name": "Conference organisers, marketing and communications teams, and event agencies" }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://recapmedia.no/#business",
+          "name": "Recap Media",
+          "url": "https://recapmedia.no",
+          "founder": { "@id": "https://recapmedia.no/#maks" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://recapmedia.no/#maks",
+          "name": "Maks Strzepka",
+          "alternateName": "Maksymilian Strzepka"
+        }
+      ]
     }
     </script>
 
-    <!-- Schema: FAQPage -->
+    <!-- Schema: FAQPage (exact parity with the visible FAQ below) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "What types of events do you photograph in Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Conferences, seminars, product launches, trade fairs, exhibitions, AGMs, kickoffs and corporate parties, at venues across Oslo and beyond." } },
-        { "@type": "Question", "name": "How quickly will I receive the photos?", "acceptedAnswer": { "@type": "Answer", "text": "The edited gallery is delivered in up to 7 business days. Same-day press selects are available on request. Flag it in the brief." } },
-        { "@type": "Question", "name": "Do we get the raw (unedited) files?", "acceptedAnswer": { "@type": "Answer", "text": "You receive professionally edited high-resolution images; raw files aren't included by default. The licence covers full commercial use: distribution, marketing and social." } },
-        { "@type": "Question", "name": "Can you cover photo and video as one booking?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. One booking, one contact, one brief, and a consistent look across everything delivered." } },
-        { "@type": "Question", "name": "What's the difference between conference photography and corporate portraits?", "acceptedAnswer": { "@type": "Answer", "text": "Conference photography documents speakers, sessions and the audience in context. Portraits are controlled headshots, shot on-site between sessions as a field-studio service." } },
-        { "@type": "Question", "name": "Which Oslo venues do you work at?", "acceptedAnswer": { "@type": "Answer", "text": "We work at any venue in Oslo and beyond, including Clarion Hotel The Hub, Oslo Kongressenter, Fornebu venues and NOVA Spektrum in Lillestrøm. Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. For a venue that is new to us we coordinate access and scout before the event." } },
-        { "@type": "Question", "name": "How many photographers will attend our event?", "acceptedAnswer": { "@type": "Answer", "text": "Recap is founder-led: Maks shoots your event and is your single point of contact. For large multi-track conferences, additional crew is arranged under the same booking." } },
-        { "@type": "Question", "name": "What format are the images delivered in?", "acceptedAnswer": { "@type": "Answer", "text": "High-resolution JPEGs via an online gallery. Format and delivery can be adjusted to your asset-management setup." } },
-        { "@type": "Question", "name": "How do you handle GDPR and photo consent at events?", "acceptedAnswer": { "@type": "Answer", "text": "We coordinate with you on signage and registration notices, respect opt-outs, and get written consent for close-up portraits. Standard practice for public conferences in Norway." } },
-        { "@type": "Question", "name": "Can you photograph without disturbing the sessions?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We shoot discreetly, so keynotes and panel discussions aren't interrupted. Discretion is part of the brief for board sessions and private summits." } },
-        { "@type": "Question", "name": "Do you charge travel fees within Oslo and beyond?", "acceptedAnswer": { "@type": "Answer", "text": "Coverage across Oslo and beyond, including Lillestrøm and Fornebu, is included. Events beyond the area are quoted with travel as a separate line item." } }
+        { "@type": "Question", "name": "What does corporate event photography in Oslo cover?", "acceptedAnswer": { "@type": "Answer", "text": "A full programme: registration and arrivals, keynotes, panels, breakout sessions, the sponsor and exhibition floor, networking, and the press or VIP moments you need on record. The point is a library your marketing, PR and internal comms teams can use all year, not a folder of nice pictures." } },
+        { "@type": "Question", "name": "How quickly will we receive the photos?", "acceptedAnswer": { "@type": "Answer", "text": "The edited gallery is delivered in up to 7 business days. If your programme runs across several days, we agree the delivery points in the brief so the first day's images do not wait for the last." } },
+        { "@type": "Question", "name": "Can we get press-ready images on the day of the event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, when it is arranged in advance. Same-day selects and 24-hour press delivery are planned into the brief rather than improvised on site. We delivered press-ready images within 24 hours for the Scotland–Norway Decarbonisation Trade Mission in Oslo." } },
+        { "@type": "Question", "name": "Do we get full commercial usage rights?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every delivered image carries full commercial usage rights: marketing, social, PR, internal comms, sponsor reporting and next year's event promotion. There are no per-channel licensing fees." } },
+        { "@type": "Question", "name": "Do we get the raw files?", "acceptedAnswer": { "@type": "Answer", "text": "Not by default. You receive professionally edited high-resolution images. Raw files can be purchased separately, and it is best discussed in advance so we can plan for it." } },
+        { "@type": "Question", "name": "How many photographers attend, and how do you cover parallel tracks?", "acceptedAnswer": { "@type": "Answer", "text": "Recap is founder-led: Maks Strzepka shoots your event and stays your single point of contact. For multi-track programmes we plan the rotation against the run-of-show and arrange additional crew under the same booking. At Flutter Vikings 2022 we covered 46 speakers across three parallel rooms over two days." } },
+        { "@type": "Question", "name": "How do you handle photo consent and GDPR at our event?", "acceptedAnswer": { "@type": "Answer", "text": "You own the consent process for your event and we work inside it. Tell us how attendees are informed, through registration notices, signage or badge markers, and how someone signals that they do not want to be photographed. We shoot to that, anyone who asks to be left out is left out, and images can be removed from the gallery after delivery if someone raises it with you." } },
+        { "@type": "Question", "name": "Which Oslo venues do you work at?", "acceptedAnswer": { "@type": "Answer", "text": "Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. For a venue that is new to us we coordinate access and scout before the event." } },
+        { "@type": "Question", "name": "Can one booking cover both photography and video?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Photo and video run under one booking, one brief and one point of contact, with a consistent look across everything delivered. Flutter Vikings 2022 was covered that way: roughly 20 hours of footage became 43 published videos alongside the photo library." } },
+        { "@type": "Question", "name": "Do you offer live streaming?", "acceptedAnswer": { "@type": "Answer", "text": "We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so ask us and we'll give you a concrete answer." } },
+        { "@type": "Question", "name": "Can you shoot headshots or speaker portraits at the event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We set up a small field studio between sessions, so speakers and staff get updated portraits without booking a separate studio day. It works best when a slot for it is blocked in the run-of-show." } },
+        { "@type": "Question", "name": "Do you charge travel outside Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Coverage across Oslo and the surrounding area, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further out are quoted with travel as a separate line." } }
       ]
     }
     </script>
@@ -136,7 +148,7 @@
         <span class="mobile-menu-label">Services</span>
         <a href="https://recapmedia.no/services/event-photography-oslo">Photography</a>
         <a href="https://recapmedia.no/services/event-video-oslo">Videography</a>
-        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference coverage</a>
+        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference Photo &amp; Video</a>
         <a href="https://recapmedia.no/services">All services</a>
     </div>
     <a href="https://recapmedia.no/work">Work</a>
@@ -171,59 +183,144 @@
 <section class="hero-banner">
     <div class="container" style="text-align: center; max-width: 820px;">
         <span class="overline">Services &middot; Photography</span>
-        <h1>Event &amp; Conference Photography Oslo</h1>
-        <p style="max-width: 640px; margin: 16px auto 0;">Conference, trade fair and corporate event photography across Oslo and beyond. Edited gallery in up to 7 business days, full commercial rights, one point of contact.</p>
+        <h1>Corporate Event &amp; Conference Photography in Oslo</h1>
+        <p style="max-width: 660px; margin: 16px auto 0;">If you are organising a conference, trade mission, kickoff or corporate event in Oslo, you need images your team can actually use: for press, for sponsors, for internal comms and for next year's marketing. Recap Media is founder-led, so you get one point of contact, a shot list agreed before the day, and full commercial rights on every delivered image.</p>
         <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">View our work</a>
+            <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">See event photography we have delivered</a>
         </div>
     </div>
 </section>
 
-<!-- What we photograph -->
+<!-- 01 Who this is for -->
 <section class="section section--lg section-light">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">01</span>
-            <span class="overline">What we photograph</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">B2B Events Across Oslo and Beyond</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">From 20-person seminars to multi-track conferences. If it has a programme, speakers, or a stand, we photograph it.</p>
+            <span class="overline">Who this is for</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Built for B2B and Public-Sector Organisers</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">Recap works with organisations, not consumers. The brief is usually the same one: document the whole programme, build a library the rest of the organisation can reuse, and keep the coordination overhead low on an already busy day.</p>
         </div>
         <div class="steps-grid steps-grid--2 gsap-stagger">
             <div class="step-card">
-                <h3>Conferences &amp; seminars</h3>
-                <p>Keynotes, panels, breakout sessions, audience reactions. We work discreetly (no interrupted talks, no blocked sightlines) and cover speakers in a way their own teams want to repost.</p>
+                <h3>Conference and summit organisers</h3>
+                <p>Multi-track programmes where keynotes, breakouts and the sponsor floor all have to be covered inside one running schedule, without anything being missed because two things happened at once.</p>
             </div>
             <div class="step-card">
-                <h3>Trade fairs &amp; exhibitions</h3>
-                <p>Stand photography for exhibitors at trade fairs and exhibitions across Oslo and beyond. Staff at work, visitor traffic, product details: material your sales team can use all year.</p>
+                <h3>Marketing and communications teams</h3>
+                <p>In-house teams who need press images, social content and internal comms assets out of a single event, shot with the end use in mind rather than handed over as an archive folder.</p>
             </div>
             <div class="step-card">
-                <h3>Corporate events &amp; kickoffs</h3>
-                <p>Kickoffs, company Christmas parties, vendor days, internal conferences. Professional coverage that respects the room, including events where discretion matters more than volume.</p>
+                <h3>Event agencies and production partners</h3>
+                <p>Agencies who need a local Oslo crew that reads a run-of-show, works alongside AV, venue and PR, and does not need supervising while you run the event.</p>
             </div>
             <div class="step-card">
-                <h3>Product launches &amp; press events</h3>
-                <p>Launch moments, press walls, speaker arrivals. Same-day press selects available on request, so your announcement doesn't wait for the full gallery.</p>
+                <h3>Public, cultural and diplomatic programmes</h3>
+                <p>Trade missions, receptions, public art projects and cultural programmes where discretion, protocol and fast press delivery matter more than volume.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Your deliverables -->
+<!-- 02 What we cover -->
+<section class="section section--lg section-onyx">
+    <div class="container" style="max-width: 880px; text-align: center;">
+        <div class="gsap-fade">
+            <span class="section-num">02</span>
+            <span class="overline">Scope of coverage</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What We Cover at Your Event</h2>
+            <p style="max-width: 660px; margin: 16px auto 0;">From 20-person seminars to multi-track programmes with several hundred attendees. If it has a schedule, speakers or a stand, it can be covered.</p>
+            <ul class="check-list" style="max-width: 620px; margin: 28px auto 0; text-align: left;">
+                <li>Conferences and summits: keynotes, panels, breakout sessions, audience and stage detail across the full running order.</li>
+                <li>Trade shows and exhibitions: stand photography for exhibitors, staff at work, visitor traffic and product detail your sales team can use all year.</li>
+                <li>Corporate kickoffs and product launches: launch moments, press walls, speaker arrivals, and the internal-culture images HR and comms ask for later.</li>
+                <li>Press and diplomatic events: receptions, signings and delegation programmes where the press images are needed before the news cycle moves on.</li>
+                <li>Public and cultural programmes: openings, installations and city-facing events documented for both press and archive use.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 03 How we plan -->
+<section class="section section--lg section-light">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">03</span>
+            <span class="overline">Before the day</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Plan Your Coverage</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">Most of the risk in event photography is settled before anyone picks up a camera. Four steps, none of which need much of your time.</p>
+        </div>
+        <div class="steps-grid steps-grid--4 gsap-stagger">
+            <div class="step-card">
+                <span class="step-number">Step 01</span>
+                <h3>Discovery call</h3>
+                <p>Twenty minutes on the event: format, audience, what the images are for and which moments cannot be missed.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">Step 02</span>
+                <h3>Pre-event brief</h3>
+                <p>A short written brief covering deliverables, delivery timing, usage and the people who need to be recognised on the day.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">Step 03</span>
+                <h3>Run-of-show and shot list</h3>
+                <p>We work from your run-of-show and turn it into a shot list, so parallel sessions and set-piece moments are planned rather than chased.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">Step 04</span>
+                <h3>AV and venue coordination</h3>
+                <p>Access, lighting, stage positions and any restrictions are agreed with your AV and venue contacts before the doors open.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 04 On the day -->
+<section class="section section--lg section-warm">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">04</span>
+            <span class="overline">On the day</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Founder-Led Coverage, One Crew</h2>
+        </div>
+        <div class="values-grid gsap-stagger">
+            <div class="value-card" style="background: var(--color-white);">
+                <span class="value-icon">📍</span>
+                <h3 style="color: var(--color-obsidian);">One point of contact</h3>
+                <p style="color: var(--color-charcoal);">Maks Strzepka shoots your event and is the person you brief, message and chase. Nothing is handed to a freelancer who never read the brief.</p>
+            </div>
+            <div class="value-card" style="background: var(--color-white);">
+                <span class="value-icon">🗂️</span>
+                <h3 style="color: var(--color-obsidian);">Working across multiple tracks</h3>
+                <p style="color: var(--color-charcoal);">Parallel rooms are covered on a planned rotation built from the run-of-show. For larger programmes, additional crew is arranged under the same booking.</p>
+            </div>
+            <div class="value-card" style="background: var(--color-white);">
+                <span class="value-icon">🤫</span>
+                <h3 style="color: var(--color-obsidian);">Unobtrusive, AV-aware shooting</h3>
+                <p style="color: var(--color-charcoal);">Quiet movement, no blocked sightlines, no walking through a camera line. Keynotes and board sessions run as if nobody were photographing them.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 05 Deliverables, turnaround and rights -->
 <section class="section section--lg section-onyx">
     <div class="container">
         <div class="two-col">
             <div class="col-text gsap-fade">
-                <span class="section-num">02</span>
-                <span class="overline overline--ruled">Your deliverables</span>
-                <h2>What You Get,<br>and When</h2>
+                <span class="section-num">05</span>
+                <span class="overline overline--ruled">Deliverables</span>
+                <h2>What You Get,<br>When You Get It,<br>and What You May Do With It</h2>
                 <h3 style="margin-top: 28px; font-size: 1.05rem;">Edited gallery in up to 7 business days</h3>
-                <p>A professionally edited, high-resolution gallery in up to 7 business days. Need a handful of images for press or LinkedIn on the day itself? Ask for same-day selects in the brief.</p>
+                <p>A professionally edited, high-resolution gallery delivered in up to 7 business days. For multi-day programmes we agree the delivery points in the brief, so the first day does not wait for the last.</p>
+                <h3 style="margin-top: 24px; font-size: 1.05rem;">Same-day and 24-hour selects, arranged in advance</h3>
+                <p>Need images for press or LinkedIn while the event is still running? Same-day selects and 24-hour press delivery can be arranged in advance and planned into the brief.</p>
                 <h3 style="margin-top: 24px; font-size: 1.05rem;">Full commercial usage rights</h3>
-                <p>Every delivered image is licensed for commercial use: marketing, social, PR, internal comms, sponsor reports. No per-channel licensing fees.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">On-site headshots &amp; environmental portraits</h3>
-                <p>A field-studio setup between sessions: employee headshots and environmental portraits shot on location, so your team gets updated profile photos without booking a studio.</p>
+                <p>Every delivered image is licensed for commercial use: marketing, social, PR, internal comms and sponsor reporting. No per-channel licensing fees.</p>
+                <h3 style="margin-top: 24px; font-size: 1.05rem;">Raw files if you need them</h3>
+                <p>You receive edited images by default. Raw files are not included, but they can be purchased separately, and it is best discussed in advance so we can plan for it.</p>
+                <h3 style="margin-top: 24px; font-size: 1.05rem;">On-site headshots and portraits</h3>
+                <p>A small field studio between sessions: speaker and staff portraits shot on location, so your team gets updated profile photos without a separate studio day.</p>
             </div>
             <div class="col-image gsap-fade">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting to an audience at a corporate conference in Oslo, photographed by Recap Media" width="640" height="480" class="parallax-img" loading="lazy">
@@ -232,51 +329,50 @@
     </div>
 </section>
 
-<!-- Why Recap Media -->
-<section class="section section--lg section-warm">
+<!-- 06 Consent process support, operational only. No legal interpretation, no
+     "when consent is required" framing: the organiser owns the process, Recap works inside it. -->
+<section class="section section--lg section-light">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">03</span>
-            <span class="overline">Why Recap Media</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">One Booking, Not Separate Vendors</h2>
+            <span class="section-num">06</span>
+            <span class="overline">Consent and privacy</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Support Your Event's Consent Process</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">You own the consent process for your event. Our job is to work inside it and make it easy to honour on a busy day.</p>
         </div>
-        <div class="values-grid gsap-stagger">
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">📋</span>
-                <h3 style="color: var(--color-obsidian);">One booking, one brief</h3>
-                <p style="color: var(--color-charcoal);">Photography and video under a single booking. One contact, one brief, no juggling separate vendors on the day.</p>
+        <div class="steps-grid gsap-stagger" style="max-width: 1000px; margin: 0 auto;">
+            <div class="step-card">
+                <h3>We follow your documented process</h3>
+                <p>Before the event you tell us how attendees are informed: registration notices, signage, badge markers or a line in the programme. We shoot to that, and we ask rather than assume when something is unclear.</p>
             </div>
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">📣</span>
-                <h3 style="color: var(--color-obsidian);">Built for your marketing team</h3>
-                <p style="color: var(--color-charcoal);">We shoot with the end use in mind (LinkedIn, PR, sponsor reports, next year's event promotion), not just an archive folder.</p>
+            <div class="step-card">
+                <h3>No-photo signals are honoured on the spot</h3>
+                <p>If your event marks people who do not want to be photographed, with wristbands, lanyard colours or stickers, brief us and we watch for them. Anyone who asks to be left out is left out, no discussion needed.</p>
             </div>
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">📍</span>
-                <h3 style="color: var(--color-obsidian);">Oslo-based, founder-led</h3>
-                <p style="color: var(--color-charcoal);">Maks attends every event as lead photographer and your single point of contact. Additional crew is arranged under the same booking for large multi-track events.</p>
+            <div class="step-card">
+                <h3>You control what gets used</h3>
+                <p>Delivery goes to you first, through a private gallery. If someone raises a concern after the event, tell us and the images come out of the gallery.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Proof: Flutter Vikings 2022. The page's ONE proof element (it had zero before) and
-     the link that satisfies the internal-link contract. Every number here is on the claims
-     whitelist: 46 speakers / 3 rooms / 2 days / ~20h / 43 published videos. Nothing else is
-     asserted, and the photographic categories named are the ones the FV library actually
-     contains (verified against the asset catalogue by media ID, not by alt text). -->
+<!-- Proof. Every number here is on the claims whitelist: 20+ events / 5-star Google /
+     Flutter Vikings 2022: 46 speakers, 3 rooms, 2 days, ~20h footage, 43 published videos.
+     Trade mission 24h press-ready is confirmed by the case study. -->
 <section class="section section--lg section-onyx">
-    <div class="container" style="max-width: 880px;">
+    <div class="container" style="max-width: 900px;">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 32px;">
-            <span class="section-num">04</span>
             <span class="overline">Proof</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Three Rooms, Two Days, 46 Speakers</h2>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Conferences and Corporate Events We Have Photographed in Oslo</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">More than 20 events covered, with a 5-star rating on Google. Two of them show what the harder end looks like.</p>
         </div>
-        <div class="gsap-fade" style="text-align: center;">
-            <p style="max-width: 680px; margin: 0 auto;">Flutter Vikings 2022 in Oslo ran 46 speakers across three parallel rooms over two days. We photographed all of it: keynotes and panels, the sponsor booths, the breakout rooms, and the conversations in between. The same booking covered the video, and roughly 20 hours of footage became 43 published videos.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the Flutter Vikings case study →</a>
-            </div>
+        <div class="gsap-fade" style="max-width: 700px; margin: 0 auto;">
+            <h3>Flutter Vikings 2022, Felix Conference Center</h3>
+            <p>A developer conference with 46 speakers across three parallel rooms over two days, photographed end to end: keynotes and panels, the sponsor booths, the breakout rooms and the conversations in between. The same booking covered the video, and roughly 20 hours of footage became 43 published videos.</p>
+            <p style="margin-top: 12px;"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo">Read the Flutter Vikings 2022 conference coverage case study →</a></p>
+            <h3 style="margin-top: 32px;">Scotland–Norway Decarbonisation Trade Mission, Oslo Event Hub</h3>
+            <p>A two-venue diplomatic and industry programme photographed at Oslo Event Hub and the UK Ambassador's residence, with press-ready images delivered within 24 hours for the post-event press and stakeholder communications.</p>
+            <p style="margin-top: 12px;"><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo">Read the trade mission event photography case study →</a></p>
         </div>
     </div>
 </section>
@@ -285,7 +381,7 @@
 <section class="section section-light">
     <div class="container" style="max-width: 880px; text-align: center;">
         <div class="gsap-fade">
-            <span class="overline">Venues we work at</span>
+            <span class="overline">Venues</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">At Home in Oslo's Conference Venues</h2>
             <p style="margin-top: 16px;">We have shot at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center, plus hotels and meeting spaces across the region. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. New venue? We arrive early, scout the light, and coordinate with your venue contact before the day.</p>
             <div class="service-tags" style="justify-content: center;">
@@ -300,18 +396,32 @@
     </div>
 </section>
 
+<!-- Example coverage options (D6: no fixed menu, no prices, no "pricing" heading) -->
+<section class="section section--lg section-warm">
+    <div class="container" style="max-width: 880px; text-align: center;">
+        <div class="gsap-fade">
+            <span class="overline">Budgeting</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">How Event Photography Fits Your Budget</h2>
+            <p style="margin-top: 16px;">There is no fixed menu. Coverage is quoted from your programme after the brief: how long the event runs, how many rooms need covering, how fast you need the images, and whether video is part of it. To give you a feel for scale before that conversation, we keep example coverage options on the packages page, from a few hours of focused coverage through to multi-day conference programmes.</p>
+            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options →</a>
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote for your event</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- One booking cross-links -->
 <section class="section section-onyx">
     <div class="container" style="max-width: 880px; text-align: center;">
         <div class="gsap-fade">
             <span class="overline">More than photography</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">One Booking for Photo and Video</h2>
-            <p style="margin-top: 16px;">Most agencies make you coordinate a photographer and a video crew separately. We cover both under one booking and one brief: consistent look, single point of contact.</p>
+            <p style="margin-top: 16px;">Most organisers end up coordinating a photographer and a video crew separately. We cover both under one booking and one brief: consistent look, single point of contact, one invoice.</p>
             <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/services/event-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event videography →</a>
-                <a href="https://recapmedia.no/services/conference-photography-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Conference photography and video →</a>
-                <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="text-decoration: none;">Ask about live streaming →</a>
-                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See coverage options →</a>
+                <a href="https://recapmedia.no/services/event-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event video production in Oslo →</a>
+                <a href="https://recapmedia.no/services/conference-photography-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Conference photography and video in Oslo →</a>
+                <a href="https://recapmedia.no/about" class="btn btn-outline-ember" style="text-decoration: none;">Meet the founder behind Recap Media →</a>
             </div>
         </div>
     </div>
@@ -322,20 +432,21 @@
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Event Photography Questions, Answered</h2>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Corporate Event Photography Questions, Answered</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">What types of events do you photograph in Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Conferences, seminars, product launches, trade fairs, exhibitions, AGMs, kickoffs and corporate parties, at venues across Oslo and beyond.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How quickly will I receive the photos? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The edited gallery is delivered in up to 7 business days. Same-day press selects are available on request. Flag it in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do we get the raw (unedited) files? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">You receive professionally edited high-resolution images; raw files aren't included by default. The licence covers full commercial use: distribution, marketing and social.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you cover photo and video as one booking? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. One booking, one contact, one brief, and a consistent look across everything delivered.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What's the difference between conference photography and corporate portraits? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Conference photography documents speakers, sessions and the audience in context. Portraits are controlled headshots, shot on-site between sessions as a field-studio service.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Which Oslo venues do you work at? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We work at any venue in Oslo and beyond, including Clarion Hotel The Hub, Oslo Kongressenter, Fornebu venues and NOVA Spektrum in Lillestrøm. Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. For a venue that is new to us we coordinate access and scout before the event.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How many photographers will attend our event? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Recap is founder-led: Maks shoots your event and is your single point of contact. For large multi-track conferences, additional crew is arranged under the same booking.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What format are the images delivered in? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">High-resolution JPEGs via an online gallery. Format and delivery can be adjusted to your asset-management setup.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How do you handle GDPR and photo consent at events? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We coordinate with you on signage and registration notices, respect opt-outs, and get written consent for close-up portraits. Standard practice for public conferences in Norway.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Can you photograph without disturbing the sessions? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We shoot discreetly, so keynotes and panel discussions aren't interrupted. Discretion is part of the brief for board sessions and private summits.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you charge travel fees within Oslo and beyond? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">Coverage across Oslo and beyond, including Lillestrøm and Fornebu, is included. Events beyond the area are quoted with travel as a separate line item.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q1" aria-expanded="false" aria-controls="faq-photo-a1">What does corporate event photography in Oslo cover? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a1"><div class="faq-answer-inner">A full programme: registration and arrivals, keynotes, panels, breakout sessions, the sponsor and exhibition floor, networking, and the press or VIP moments you need on record. The point is a library your marketing, PR and internal comms teams can use all year, not a folder of nice pictures.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q2" aria-expanded="false" aria-controls="faq-photo-a2">How quickly will we receive the photos? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a2"><div class="faq-answer-inner">The edited gallery is delivered in up to 7 business days. If your programme runs across several days, we agree the delivery points in the brief so the first day's images do not wait for the last.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q3" aria-expanded="false" aria-controls="faq-photo-a3">Can we get press-ready images on the day of the event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a3"><div class="faq-answer-inner">Yes, when it is arranged in advance. Same-day selects and 24-hour press delivery are planned into the brief rather than improvised on site. We delivered press-ready images within 24 hours for the Scotland&ndash;Norway Decarbonisation Trade Mission in Oslo.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q4" aria-expanded="false" aria-controls="faq-photo-a4">Do we get full commercial usage rights? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a4"><div class="faq-answer-inner">Yes. Every delivered image carries full commercial usage rights: marketing, social, PR, internal comms, sponsor reporting and next year's event promotion. There are no per-channel licensing fees.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q5" aria-expanded="false" aria-controls="faq-photo-a5">Do we get the raw files? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a5"><div class="faq-answer-inner">Not by default. You receive professionally edited high-resolution images. Raw files can be purchased separately, and it is best discussed in advance so we can plan for it.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q6" aria-expanded="false" aria-controls="faq-photo-a6">How many photographers attend, and how do you cover parallel tracks? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a6"><div class="faq-answer-inner">Recap is founder-led: Maks Strzepka shoots your event and stays your single point of contact. For multi-track programmes we plan the rotation against the run-of-show and arrange additional crew under the same booking. At Flutter Vikings 2022 we covered 46 speakers across three parallel rooms over two days.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q7" aria-expanded="false" aria-controls="faq-photo-a7">How do you handle photo consent and GDPR at our event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a7"><div class="faq-answer-inner">You own the consent process for your event and we work inside it. Tell us how attendees are informed, through registration notices, signage or badge markers, and how someone signals that they do not want to be photographed. We shoot to that, anyone who asks to be left out is left out, and images can be removed from the gallery after delivery if someone raises it with you.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q8" aria-expanded="false" aria-controls="faq-photo-a8">Which Oslo venues do you work at? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a8"><div class="faq-answer-inner">Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. For a venue that is new to us we coordinate access and scout before the event.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q9" aria-expanded="false" aria-controls="faq-photo-a9">Can one booking cover both photography and video? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a9"><div class="faq-answer-inner">Yes. Photo and video run under one booking, one brief and one point of contact, with a consistent look across everything delivered. Flutter Vikings 2022 was covered that way: roughly 20 hours of footage became 43 published videos alongside the photo library.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q10" aria-expanded="false" aria-controls="faq-photo-a10">Do you offer live streaming? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a10"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q11" aria-expanded="false" aria-controls="faq-photo-a11">Can you shoot headshots or speaker portraits at the event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a11"><div class="faq-answer-inner">Yes. We set up a small field studio between sessions, so speakers and staff get updated portraits without booking a separate studio day. It works best when a slot for it is blocked in the run-of-show.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q12" aria-expanded="false" aria-controls="faq-photo-a12">Do you charge travel outside Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a12"><div class="faq-answer-inner">Coverage across Oslo and the surrounding area, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further out are quoted with travel as a separate line.</div></div></div>
         </div>
         <div class="faq-footer">
             <p>Planning an event? Tell us the date and what you need. We'll reply within one business day.</p>
@@ -352,7 +463,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>

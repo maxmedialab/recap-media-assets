@@ -29,7 +29,8 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://recapmedia.no/" },
-        { "@type": "ListItem", "position": 2, "name": "Conference Coverage", "item": "https://recapmedia.no/services/conference-photography-video-oslo" }
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://recapmedia.no/services" },
+        { "@type": "ListItem", "position": 3, "name": "Conference Photography and Video in Oslo", "item": "https://recapmedia.no/services/conference-photography-video-oslo" }
       ]
     }
     </script>
@@ -39,19 +40,22 @@
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Conference Photography & Video Coverage Oslo",
+      "@id": "https://recapmedia.no/services/conference-photography-video-oslo#service",
+      "name": "Conference Photography and Video in Oslo",
       "serviceType": "Event Photography & Videography",
-      "description": "Conference photography and videography in Oslo and beyond: multi-track session coverage, speaker documentation, networking moments, aftermovies and social clips. One booking covering photo and video, with the edited gallery in up to 7 business days, video in up to 14 business days, and full commercial usage rights.",
+      "description": "Conference photography and video in Oslo and beyond from one crew: parallel-track sessions, speaker documentation, networking moments, highlight films, session recordings and social clips. One booking for photo and video, with the edited gallery in up to 7 business days, video in up to 14 business days, and full commercial usage rights.",
       "url": "https://recapmedia.no/services/conference-photography-video-oslo",
       "provider": {
         "@type": "LocalBusiness",
+        "@id": "https://recapmedia.no/#business",
         "name": "Recap Media",
         "url": "https://recapmedia.no",
-        "email": "booking@recapmedia.no",
-        "telephone": "+4796689356",
-        "address": { "@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO" },
-        "knowsLanguage": ["English", "Norwegian"],
-        "founder": { "@type": "Person", "name": "Maks Strzepka", "alternateName": "Maksymilian Strzepka" }
+        "founder": {
+          "@type": "Person",
+          "@id": "https://recapmedia.no/#maks",
+          "name": "Maks Strzepka",
+          "alternateName": "Maksymilian Strzepka"
+        }
       },
       "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
       "audience": { "@type": "BusinessAudience", "name": "Conference organisers, event agencies and marketing teams" }
@@ -64,11 +68,13 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Can you cover all sessions when there are multiple tracks running at the same time?", "acceptedAnswer": { "@type": "Answer", "text": "For multi-track conferences we plan which sessions to prioritise in advance, based on what the content needs to do afterwards. Where tracks run at the same time, additional crew is arranged under the same booking and the same brief, so the coverage keeps one consistent visual language." } },
-        { "@type": "Question", "name": "How quickly do we get the photos and the video?", "acceptedAnswer": { "@type": "Answer", "text": "The edited photo gallery is delivered in up to 7 business days and video in up to 14 business days. Same-day press selects and faster highlight cuts can be arranged in advance. Flag it in the brief." } },
-        { "@type": "Question", "name": "What's the difference between booking you and booking photo and video vendors separately?", "acceptedAnswer": { "@type": "Answer", "text": "One booking means one contact and one brief. You avoid juggling separate vendors, coordinating separate coverage plans and waiting on separate delivery timelines. The photography and video share a look because they are shot and edited to the same brief." } },
-        { "@type": "Question", "name": "Do we get the raw files?", "acceptedAnswer": { "@type": "Answer", "text": "We deliver professionally edited images and video in high resolution. Raw files aren't included by default, but the licence covers full commercial use: marketing, social media, press and internal channels are all permitted." } },
+        { "@type": "Question", "name": "Can you cover all sessions when there are multiple tracks running at the same time?", "acceptedAnswer": { "@type": "Answer", "text": "For multi-track conferences we plan which sessions to prioritise in advance, based on what the content needs to do afterwards. Where tracks run at the same time, additional crew is arranged under the same booking and the same brief, so the whole conference is photographed and filmed in one consistent visual language." } },
+        { "@type": "Question", "name": "How quickly do we get the photos and the video?", "acceptedAnswer": { "@type": "Answer", "text": "The edited photo gallery is delivered in up to 7 business days and video in up to 14 business days. Press-ready selects on the same day or within 24 hours, and faster highlight cuts, can be arranged in advance. Flag it in the brief." } },
+        { "@type": "Question", "name": "Can one provider deliver both a highlight film and full session recordings?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both come out of the same shoot and the same booking. The highlight film is typically around 2 minutes, depending on the event, and full recordings are produced for the sessions you select, alongside vertical clips for social channels." } },
+        { "@type": "Question", "name": "What's the difference between booking you and booking photo and video vendors separately?", "acceptedAnswer": { "@type": "Answer", "text": "One booking means one contact and one brief. You avoid juggling separate vendors, coordinating separate shot lists and waiting on separate delivery timelines. The photography and video share a look because they are shot and edited to the same brief." } },
+        { "@type": "Question", "name": "Do we get the raw files?", "acceptedAnswer": { "@type": "Answer", "text": "We deliver professionally edited images and video in high resolution. Raw files aren't included by default and are best discussed in advance if you need them; they can be purchased separately. The licence on delivered material covers full commercial use: marketing, social media, press and internal channels are all permitted." } },
         { "@type": "Question", "name": "How do we brief you on what we need from photos and video?", "acceptedAnswer": { "@type": "Answer", "text": "We send a brief template after booking. You tell us the conference structure, key speakers or moments, sponsor visibility needs, and what matters most for marketing afterwards. We build a shot list and confirm before the day." } },
+        { "@type": "Question", "name": "Can we book you if our organising team is based outside Norway?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Plenty of conferences in Oslo are run by teams based elsewhere. Briefing, planning calls, approvals and delivery all run remotely in English, and we handle the venue and on-the-day coordination in Oslo. Nobody from your side needs to be here before the event." } },
         { "@type": "Question", "name": "Do you work at Oslo conference venues like Clarion Hotel The Hub?", "acceptedAnswer": { "@type": "Answer", "text": "We work at any conference venue in Oslo and beyond, Clarion Hotel The Hub, Oslo Kongressenter, Fornebu venues and NOVA Spektrum in Lillestrøm included. Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the former Felix Conference Center. For a venue that is new to us we coordinate access and scout before the event." } }
       ]
     }
@@ -130,11 +136,12 @@
         <span class="mobile-menu-label">Services</span>
         <a href="https://recapmedia.no/services/event-photography-oslo">Photography</a>
         <a href="https://recapmedia.no/services/event-video-oslo">Videography</a>
-        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference coverage</a>
+        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference Photo &amp; Video</a>
         <a href="https://recapmedia.no/services">All services</a>
     </div>
     <a href="https://recapmedia.no/work">Work</a>
     <a href="https://recapmedia.no/about">About</a>
+    <a href="https://recapmedia.no/packages">Packages</a>
     <a href="https://recapmedia.no/contact">Contact</a>
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
@@ -164,7 +171,7 @@
     <div class="container" style="text-align: center; max-width: 820px;">
         <span class="overline">Services &middot; Photography &amp; Video</span>
         <h1>Conference Photography and Video in Oslo</h1>
-        <p style="max-width: 640px; margin: 16px auto 0;">Multi-track conference coverage with one booking and one point of contact. Edited gallery in up to 7 business days, video in up to 14, full commercial rights.</p>
+        <p style="max-width: 640px; margin: 16px auto 0;">Conference photography and video in Oslo from one crew, with one booking and one point of contact. Edited gallery in up to 7 business days, video in up to 14, full commercial rights.</p>
         <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
             <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">View our work</a>
@@ -172,14 +179,14 @@
     </div>
 </section>
 
-<!-- Conference Coverage -->
+<!-- Photography & Video / multi-track -->
 <section class="section section--lg section-light">
     <div class="container">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">01</span>
-            <span class="overline">Conference Coverage</span>
+            <span class="overline">Photography &amp; Video</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What We Photograph &amp; Film</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">Multi-track conferences are complex. We cover all of it, consistently and discreetly: the content and the atmosphere both.</p>
+            <p style="max-width: 620px; margin: 16px auto 0;">One crew photographs and films the whole programme, parallel tracks included. Priority sessions are agreed in the brief and the crew is sized to the number of rooms, so a multi-track conference does not need separate photo and video vendors working alongside each other.</p>
         </div>
         <div class="steps-grid steps-grid--2 gsap-stagger">
             <div class="step-card">
@@ -211,9 +218,9 @@
                 <span class="overline overline--ruled">Your deliverables</span>
                 <h2>What You Get,<br>and When</h2>
                 <h3 style="margin-top: 28px; font-size: 1.05rem;">Edited photo gallery in up to 7 business days</h3>
-                <p>High-resolution, professionally edited images in up to 7 business days, licensed for full commercial use with no per-channel licensing fees. Need a handful of images for press or LinkedIn on the day itself? Ask for same-day selects in the brief.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">Video in up to 14 business days</h3>
-                <p>Vertical 9:16 clips for LinkedIn, Instagram and TikTok, plus the highlight reel and the aftermovie. Standard delivery is up to 14 business days. Faster turnarounds, including same-day highlight cuts, can be arranged in advance in the brief.</p>
+                <p>High-resolution, professionally edited images in up to 7 business days, licensed for full commercial use with no per-channel licensing fees. Press-ready photos on the day itself, or within 24 hours, can be arranged in advance when a press office, sponsor or newsroom deadline needs them. The full gallery follows within the standard window.</p>
+                <h3 style="margin-top: 24px; font-size: 1.05rem;">Highlight film, session recordings and social clips</h3>
+                <p>One provider delivers both the highlight film and the full session recordings, cut from the same shoot. The highlight film is typically around 2 minutes, depending on the event, session recordings cover the talks you select, and vertical 9:16 clips are cut for LinkedIn, Instagram and TikTok. Standard video delivery is up to 14 business days, and faster highlight cuts can be arranged in advance in the brief.</p>
                 <h3 style="margin-top: 24px; font-size: 1.05rem;">One consistent look across everything</h3>
                 <p>Photography and video shot to a single brief and edited together. Consistent tone, framing and visual language. No mismatched deliverables, no gaps.</p>
             </div>
@@ -236,7 +243,7 @@
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">📋</span>
                 <h3 style="color: var(--color-obsidian);">One brief</h3>
-                <p style="color: var(--color-charcoal);">You tell us the conference structure, key speakers, sponsor needs, and what matters for marketing afterwards. We build a shot list from your priorities.</p>
+                <p style="color: var(--color-charcoal);">You tell us the conference structure, key speakers, sponsor needs, and what matters for marketing afterwards. We build a shot list from your priorities. Organisers based outside Norway brief us the same way, over email and video calls.</p>
             </div>
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">🎥</span>
@@ -258,6 +265,7 @@
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="overline">One booking</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">Why Booking Photo &amp; Video Together Matters</h2>
+            <p style="max-width: 620px; margin: 16px auto 0;">One crew can handle both photography and video at a conference. Recap Media shoots and edits both to a single brief, so you book conference photography and video in Oslo once rather than hiring a photographer and a video team who have never worked the same room.</p>
         </div>
         <div class="steps-grid gsap-stagger" style="max-width: 1000px; margin: 0 auto;">
             <div class="step-card">
@@ -324,19 +332,20 @@
         <div class="gsap-fade">
             <span class="overline">Learn more</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">More on Photography &amp; Video</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">This page covers the combined booking. Both service pages go deeper on deliverables and process.</p>
+            <p style="max-width: 620px; margin: 16px auto 0;">This page is the combined booking. If you need one discipline only, both service pages go deeper on deliverables and process.</p>
             <div style="margin-top: 32px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
                 <div style="flex: 1 1 260px; max-width: 340px;">
                     <p style="margin-bottom: 14px;"><strong style="color: var(--color-white);">For photography specifics</strong><br>Galleries, turnaround, on-site portraits.</p>
-                    <a href="https://recapmedia.no/services/event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event Photography →</a>
+                    <a href="https://recapmedia.no/services/event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Corporate event photography in Oslo →</a>
                 </div>
                 <div style="flex: 1 1 260px; max-width: 340px;">
                     <p style="margin-bottom: 14px;"><strong style="color: var(--color-white);">For video specifics</strong><br>Films, editing and post-event content.</p>
-                    <a href="https://recapmedia.no/services/event-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event Videography →</a>
+                    <a href="https://recapmedia.no/services/event-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event video production in Oslo →</a>
                 </div>
             </div>
             <div style="margin-top: 28px;">
-                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See coverage options →</a>
+                <p style="max-width: 620px; margin: 0 auto 14px;">Want to see what a booking includes? The conference package page sets out example options for conference photography and video in Oslo.</p>
+                <a href="https://recapmedia.no/packages/conference-package" class="btn btn-outline-ember" style="text-decoration: none;">See the conference package →</a>
             </div>
         </div>
     </div>
@@ -350,12 +359,14 @@
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Conference Photography &amp; Video Questions, Answered</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item"><button class="faq-question">Can you cover all sessions when there are multiple tracks running at the same time? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">For multi-track conferences we plan which sessions to prioritise in advance, based on what the content needs to do afterwards. Where tracks run at the same time, additional crew is arranged under the same booking and the same brief, so the coverage keeps one consistent visual language.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How quickly do we get the photos and the video? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">The edited photo gallery is delivered in up to 7 business days and video in up to 14 business days. Same-day press selects and faster highlight cuts can be arranged in advance. Flag it in the brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">What's the difference between booking you and booking photo and video vendors separately? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">One booking means one contact and one brief. You avoid juggling separate vendors, coordinating separate coverage plans and waiting on separate delivery timelines. The photography and video share a look because they are shot and edited to the same brief.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do we get the raw files? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We deliver professionally edited images and video in high resolution. Raw files aren't included by default, but the licence covers full commercial use: marketing, social media, press and internal channels are all permitted.</div></div></div>
-            <div class="faq-item"><button class="faq-question">How do we brief you on what we need from photos and video? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We send a brief template after booking. You tell us the conference structure, key speakers or moments, sponsor visibility needs, and what matters most for marketing afterwards. We build a shot list and confirm before the day.</div></div></div>
-            <div class="faq-item"><button class="faq-question">Do you work at Oslo conference venues like Clarion Hotel The Hub? <span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">We work at any conference venue in Oslo and beyond, Clarion Hotel The Hub, Oslo Kongressenter, Fornebu venues and NOVA Spektrum in Lillestrøm included. Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the former Felix Conference Center. For a venue that is new to us we coordinate access and scout before the event.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-1" aria-expanded="false" aria-controls="faq-conf-1-panel">Can you cover all sessions when there are multiple tracks running at the same time? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-1-panel"><div class="faq-answer-inner">For multi-track conferences we plan which sessions to prioritise in advance, based on what the content needs to do afterwards. Where tracks run at the same time, additional crew is arranged under the same booking and the same brief, so the whole conference is photographed and filmed in one consistent visual language.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-2" aria-expanded="false" aria-controls="faq-conf-2-panel">How quickly do we get the photos and the video? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-2-panel"><div class="faq-answer-inner">The edited photo gallery is delivered in up to 7 business days and video in up to 14 business days. Press-ready selects on the same day or within 24 hours, and faster highlight cuts, can be arranged in advance. Flag it in the brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-3" aria-expanded="false" aria-controls="faq-conf-3-panel">Can one provider deliver both a highlight film and full session recordings? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-3-panel"><div class="faq-answer-inner">Yes. Both come out of the same shoot and the same booking. The highlight film is typically around 2 minutes, depending on the event, and full recordings are produced for the sessions you select, alongside vertical clips for social channels.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-4" aria-expanded="false" aria-controls="faq-conf-4-panel">What's the difference between booking you and booking photo and video vendors separately? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-4-panel"><div class="faq-answer-inner">One booking means one contact and one brief. You avoid juggling separate vendors, coordinating separate shot lists and waiting on separate delivery timelines. The photography and video share a look because they are shot and edited to the same brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-5" aria-expanded="false" aria-controls="faq-conf-5-panel">Do we get the raw files? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-5-panel"><div class="faq-answer-inner">We deliver professionally edited images and video in high resolution. Raw files aren't included by default and are best discussed in advance if you need them; they can be purchased separately. The licence on delivered material covers full commercial use: marketing, social media, press and internal channels are all permitted.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-6" aria-expanded="false" aria-controls="faq-conf-6-panel">How do we brief you on what we need from photos and video? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-6-panel"><div class="faq-answer-inner">We send a brief template after booking. You tell us the conference structure, key speakers or moments, sponsor visibility needs, and what matters most for marketing afterwards. We build a shot list and confirm before the day.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-7" aria-expanded="false" aria-controls="faq-conf-7-panel">Can we book you if our organising team is based outside Norway? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-7-panel"><div class="faq-answer-inner">Yes. Plenty of conferences in Oslo are run by teams based elsewhere. Briefing, planning calls, approvals and delivery all run remotely in English, and we handle the venue and on-the-day coordination in Oslo. Nobody from your side needs to be here before the event.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-8" aria-expanded="false" aria-controls="faq-conf-8-panel">Do you work at Oslo conference venues like Clarion Hotel The Hub? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-8-panel"><div class="faq-answer-inner">We work at any conference venue in Oslo and beyond, Clarion Hotel The Hub, Oslo Kongressenter, Fornebu venues and NOVA Spektrum in Lillestrøm included. Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the former Felix Conference Center. For a venue that is new to us we coordinate access and scout before the event.</div></div></div>
         </div>
         <div class="faq-footer">
             <p>Planning a conference? Tell us the dates and what you need. We'll reply within one business day.</p>
@@ -372,7 +383,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>

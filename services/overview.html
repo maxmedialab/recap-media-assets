@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Photo &amp; Video Services in Oslo | Recap Media</title>
-    <meta name="description" content="Event photography and video in Oslo and beyond. Founder-led coverage by Maks Strzepka, photo and video under one booking with one point of contact.">
+    <title>Recap Media Services | Event Media in Oslo</title>
+    <meta name="description" content="All Recap Media services in one place: event photography, event video production and combined conference coverage for B2B events in Oslo and beyond.">
     <link rel="canonical" href="https://recapmedia.no/services">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://recapmedia.no/services">
-    <meta property="og:title" content="Event Photo & Video Services in Oslo | Recap Media">
-    <meta property="og:description" content="Event photography and video in Oslo and beyond. Founder-led coverage by Maks Strzepka, photo and video under one booking with one point of contact.">
+    <meta property="og:title" content="Recap Media Services | Event Media in Oslo">
+    <meta property="og:description" content="All Recap Media services in one place: event photography, event video production and combined conference coverage for B2B events in Oslo and beyond.">
     <meta property="og:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
     <meta property="og:site_name" content="Recap Media">
     <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Event Photo & Video Services in Oslo | Recap Media">
-    <meta name="twitter:description" content="Event photography and video in Oslo and beyond. Founder-led coverage by Maks Strzepka, photo and video under one booking with one point of contact.">
+    <meta name="twitter:title" content="Recap Media Services | Event Media in Oslo">
+    <meta name="twitter:description" content="All Recap Media services in one place: event photography, event video production and combined conference coverage for B2B events in Oslo and beyond.">
     <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
 
     <!-- Schema: BreadcrumbList -->
@@ -34,16 +34,75 @@
     }
     </script>
 
-    <!-- Schema: ItemList of the published service pages -->
+    <!-- Schema: ItemList referencing the three Service entities declared on the spoke pages -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Recap Media services",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Event Photography", "url": "https://recapmedia.no/services/event-photography-oslo" },
-        { "@type": "ListItem", "position": 2, "name": "Event Videography", "url": "https://recapmedia.no/services/event-video-oslo" },
-        { "@type": "ListItem", "position": 3, "name": "Conference Photography and Video", "url": "https://recapmedia.no/services/conference-photography-video-oslo" }
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://recapmedia.no/#business",
+          "name": "Recap Media",
+          "url": "https://recapmedia.no"
+        },
+        {
+          "@type": "ItemList",
+          "name": "Recap Media services",
+          "itemListOrder": "https://schema.org/ItemListOrderAscending",
+          "numberOfItems": 3,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "Service",
+                "@id": "https://recapmedia.no/services/event-photography-oslo#service",
+                "name": "Corporate Event Photography Oslo",
+                "url": "https://recapmedia.no/services/event-photography-oslo",
+                "provider": { "@id": "https://recapmedia.no/#business" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "Service",
+                "@id": "https://recapmedia.no/services/event-video-oslo#service",
+                "name": "Event Video Production Oslo",
+                "url": "https://recapmedia.no/services/event-video-oslo",
+                "provider": { "@id": "https://recapmedia.no/#business" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Service",
+                "@id": "https://recapmedia.no/services/conference-photography-video-oslo#service",
+                "name": "Conference Photography and Video in Oslo",
+                "url": "https://recapmedia.no/services/conference-photography-video-oslo",
+                "provider": { "@id": "https://recapmedia.no/#business" }
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema: FAQPage (exact parity with the visible FAQ block) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "publisher": { "@id": "https://recapmedia.no/#business" },
+      "mainEntity": [
+        { "@type": "Question", "name": "What services does Recap Media offer?", "acceptedAnswer": { "@type": "Answer", "text": "Three at the moment: event photography, event videography with session recording, and combined conference coverage for multi-track events. Each one is founder-led, and they can be booked on their own or together under a single brief." } },
+        { "@type": "Question", "name": "How do the three services fit together?", "acceptedAnswer": { "@type": "Answer", "text": "They share one planning process, one point of contact and one visual approach. Photo and video can run on the same booking, and conference coverage is the version built for parallel rooms where both have to happen at once." } },
+        { "@type": "Question", "name": "Which service do we need for our event?", "acceptedAnswer": { "@type": "Answer", "text": "If you need publishable images for reporting and marketing, start with event photography. If the event has to keep earning attention afterwards, start with event video. If you are running parallel tracks across one or more days and need both, start with conference coverage. Send us the format and we will say what actually fits." } },
+        { "@type": "Question", "name": "Do you plan and produce events as well?", "acceptedAnswer": { "@type": "Answer", "text": "No. Recap Media is an event media provider, not an event agency (eventbyrå). We capture what happens at your event and turn it into material you can use afterwards. We do not plan, stage or technically produce the event itself, and we work alongside the agency or in-house team that does." } },
+        { "@type": "Question", "name": "Do you cover events outside Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Coverage across Oslo and beyond, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further afield are quoted with travel as a separate line item, and all communication and deliverables are in English." } },
+        { "@type": "Question", "name": "Do you offer livestreaming?", "acceptedAnswer": { "@type": "Answer", "text": "We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so ask us and we'll give you a concrete answer." } }
       ]
     }
     </script>
@@ -105,7 +164,7 @@
         <span class="mobile-menu-label">Services</span>
         <a href="https://recapmedia.no/services/event-photography-oslo">Photography</a>
         <a href="https://recapmedia.no/services/event-video-oslo">Videography</a>
-        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference coverage</a>
+        <a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference Photo &amp; Video</a>
         <a href="https://recapmedia.no/services">All services</a>
     </div>
     <a href="https://recapmedia.no/work">Work</a>
@@ -140,11 +199,11 @@
 <section class="hero-banner">
     <div class="container" style="text-align: center; max-width: 820px;">
         <span class="overline">Services</span>
-        <h1>Event Photography and Video in Oslo</h1>
-        <p style="max-width: 660px; margin: 16px auto 0;">Recap Media covers B2B events across Oslo and beyond. Maks Strzepka leads every shoot with a vetted crew sized to the event, so photo and video sit under one booking with one point of contact. Everything is shot with the end use in mind, so the material keeps working long after the doors close.</p>
+        <h1>Event Media Services for B2B Events in Oslo</h1>
+        <p style="max-width: 660px; margin: 16px auto 0;">This is the map of everything Recap Media does. Three services, each with its own page: photography, video, and the combined coverage built for conferences with parallel rooms. Maks Strzepka leads every project, so whichever one you land on, you are dealing with the same person from the first email to the final delivery.</p>
         <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">View our work</a>
+            <a href="https://recapmedia.no/contact" class="btn btn-primary" style="text-decoration: none;">Tell us about your event</a>
+            <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options</a>
         </div>
     </div>
 </section>
@@ -155,47 +214,111 @@
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
             <span class="section-num">01</span>
             <span class="overline">What we do</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Three Ways We Cover an Event</h2>
-            <p style="max-width: 620px; margin: 16px auto 0;">Book one of them, or all of them under the same brief. The scope is set after we understand the event, never before.</p>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Three Services, One Way of Working</h2>
+            <p style="max-width: 620px; margin: 16px auto 0;">Book one of them, or all of them under the same brief. Scope is set after we understand the event, never before.</p>
         </div>
         <div class="values-grid gsap-stagger">
 
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">📷</span>
-                <h3 style="color: var(--color-obsidian);">Event photography</h3>
-                <p style="color: var(--color-charcoal);">For conferences, seminars, trade fairs and corporate days that need publishable images fast. Suits marketing teams reporting on the event the same week.</p>
-                <ul class="check-list">
-                    <li>Edited gallery in up to 7 business days</li>
-                    <li>Full commercial usage rights</li>
-                    <li>On-site headshots between sessions</li>
-                </ul>
-                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/event-photography-oslo">Event photography in Oslo →</a></p>
+                <h3 style="color: var(--color-obsidian);">Event Photography</h3>
+                <p style="color: var(--color-charcoal);">Stills coverage for conferences, seminars, trade fairs and corporate days: speakers on stage, the room reacting, the sponsor moments your marketing team will actually publish. The edited gallery lands in up to 7 business days with full commercial usage rights, and on-site headshots can run between sessions on the same day.</p>
+                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/event-photography-oslo">See how event photography works</a></p>
             </div>
 
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">🎬</span>
-                <h3 style="color: var(--color-obsidian);">Event videography</h3>
-                <p style="color: var(--color-charcoal);">For teams who need the event to keep earning attention afterwards. Suits anyone promoting next year's edition or reporting back to sponsors.</p>
-                <ul class="check-list">
-                    <li>Aftermovie and highlight edit</li>
-                    <li>Speaker and session recordings</li>
-                    <li>Short vertical cuts for social</li>
-                </ul>
-                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/event-video-oslo">Event videography and aftermovies →</a></p>
+                <h3 style="color: var(--color-obsidian);">Event Videography and Session Recording</h3>
+                <p style="color: var(--color-charcoal);">Moving-image coverage for teams who need the event to keep working after the doors close: a recap film of typically around 2 minutes depending on the event, full session and speaker recordings, and short vertical cuts for social. Edits are delivered in up to 14 business days, and everything is shot with the end use decided in advance.</p>
+                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/event-video-oslo">See how event video production works</a></p>
             </div>
 
             <div class="value-card" style="background: var(--color-white);">
                 <span class="value-icon">🎤</span>
-                <h3 style="color: var(--color-obsidian);">Conference photo and video</h3>
-                <p style="color: var(--color-charcoal);">For multi-track conferences where both have to happen at once. Suits organisers running parallel rooms across one or more days.</p>
-                <ul class="check-list">
-                    <li>Photo and video on one brief</li>
-                    <li>Parallel-room coverage planned in advance</li>
-                    <li>One point of contact through the day</li>
-                </ul>
-                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/conference-photography-video-oslo">Conference photography and video →</a></p>
+                <h3 style="color: var(--color-obsidian);">Conference and Multi-Track Coverage</h3>
+                <p style="color: var(--color-charcoal);">The combined version, for conferences where photo and video have to happen in several rooms at once. Room priorities, session timings and handover points are planned before the day, crew is sized to the track count, and you still brief one person rather than coordinating two suppliers on site.</p>
+                <p style="margin-top: 20px;"><a href="https://recapmedia.no/services/conference-photography-video-oslo">See how conference coverage works</a></p>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- How we work across services -->
+<section class="section section--lg section-light">
+    <div class="container" style="max-width: 900px;">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 36px;">
+            <span class="section-num">02</span>
+            <span class="overline">How it runs</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Work Across Services</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">The service you pick changes what gets delivered. It does not change how the job is run.</p>
+        </div>
+        <div class="values-grid gsap-stagger">
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">Founder-Led, One Contact</h3>
+                <p style="color: var(--color-charcoal);">Maks Strzepka runs the project and is on site. When an event needs more hands, additional crew is arranged under the same booking, and you still brief and chase one person.</p>
+            </div>
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">Planning Before the Day</h3>
+                <p style="color: var(--color-charcoal);">We go through the runsheet, the rooms and the moments that matter before anyone picks up a camera. That conversation is what stops the coverage from being generic.</p>
+            </div>
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">Turnaround You Can Plan Around</h3>
+                <p style="color: var(--color-charcoal);">Edited photo galleries in up to 7 business days, video edits in up to 14. Same-day selects or 24-hour press-ready material can be arranged in advance when the event needs it.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Guided selection -->
+<section class="section section--lg section-warm">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">03</span>
+            <span class="overline">Routing</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Which Service Do You Need?</h2>
+            <p style="max-width: 640px; margin: 16px auto 0;">Three ways to narrow it down. Pick whichever one matches how you are already thinking about the event.</p>
+        </div>
+        <div class="values-grid gsap-stagger">
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">By Event Type</h3>
+                <ul class="check-list">
+                    <li>Seminar, kickoff or corporate day: <a href="https://recapmedia.no/services/event-photography-oslo">event photography in Oslo</a></li>
+                    <li>Product launch or brand event: <a href="https://recapmedia.no/services/event-video-oslo">event video production in Oslo</a></li>
+                    <li>Multi-track conference over one or more days: <a href="https://recapmedia.no/services/conference-photography-video-oslo">conference photography and video in Oslo</a></li>
+                </ul>
+            </div>
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">By Deliverable</h3>
+                <ul class="check-list">
+                    <li>Edited gallery, speaker and audience stills: <a href="https://recapmedia.no/services/event-photography-oslo">event photography in Oslo</a></li>
+                    <li>Recap film, session recordings, social cuts: <a href="https://recapmedia.no/services/event-video-oslo">event video production in Oslo</a></li>
+                    <li>Photo and video from the same event: <a href="https://recapmedia.no/services/conference-photography-video-oslo">conference photography and video in Oslo</a></li>
+                </ul>
+            </div>
+
+            <div class="value-card" style="background: var(--color-white);">
+                <h3 style="color: var(--color-obsidian);">By Outcome</h3>
+                <ul class="check-list">
+                    <li>Report on the event the same week: <a href="https://recapmedia.no/services/event-photography-oslo">event photography in Oslo</a></li>
+                    <li>Promote the next edition or report to sponsors: <a href="https://recapmedia.no/services/event-video-oslo">event video production in Oslo</a></li>
+                    <li>Cover every room without gaps: <a href="https://recapmedia.no/services/conference-photography-video-oslo">conference photography and video in Oslo</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="gsap-fade" style="max-width: 760px; margin: 40px auto 0; text-align: center;">
+            <p>One thing worth saying plainly, because it decides whether we are the right call: Recap Media is an event media provider, not an event agency (eventbyrå). We capture what happens at your event and turn it into material you can use afterwards. We do not plan the programme, book the venue or run the technical production, and we are used to working alongside the agency or in-house team that does.</p>
+            <div style="margin-top: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options</a>
+                <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="text-decoration: none;">Ask us which one fits</a>
+            </div>
         </div>
     </div>
 </section>
@@ -204,30 +327,56 @@
 <section class="section section--lg section-onyx">
     <div class="container" style="max-width: 880px;">
         <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 32px;">
-            <span class="section-num">02</span>
+            <span class="section-num">04</span>
             <span class="overline">Proof</span>
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Three Rooms, Two Days, 46 Speakers</h2>
         </div>
         <div class="gsap-fade" style="text-align: center;">
-            <p style="max-width: 680px; margin: 0 auto;">Flutter Vikings 2022 in Oslo ran 46 speakers across three parallel rooms over two days. Photo and video were covered on a single booking, and roughly 20 hours of footage became 43 published videos.</p>
+            <p style="max-width: 700px; margin: 0 auto;">Flutter Vikings 2022 in Oslo ran 46 speakers across three parallel rooms over two days. Photo and video sat on a single booking, and roughly 20 hours of footage became 43 published videos. It is the clearest example of all three services running as one job, and it is why the conference page exists as its own service rather than a bigger photography order.</p>
+            <p style="max-width: 700px; margin: 20px auto 0;">Recap Media holds a 5 star rating on Google. The case studies below are the full write-ups, including what was planned in advance and what actually got delivered.</p>
             <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the Flutter Vikings case study →</a>
+                <a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the Flutter Vikings case study</a>
+                <a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Read the trade mission case study</a>
             </div>
+            <p style="margin-top: 24px;"><a href="https://recapmedia.no/work/ocean-rise-public-art-documentation-oslo">Read the Ocean Rise documentation case study</a> or <a href="https://recapmedia.no/work">browse all of our work</a>.</p>
         </div>
     </div>
 </section>
 
-<!-- Not sure which -->
+<!-- Geographic coverage -->
 <section class="section section-light">
     <div class="container" style="max-width: 880px; text-align: center;">
+        <div class="section-header gsap-fade" style="margin-bottom: 24px;">
+            <span class="section-num">05</span>
+            <span class="overline">Coverage</span>
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em;">Where We Work</h2>
+        </div>
         <div class="gsap-fade">
-            <span class="overline">Still deciding</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">Not Sure Which You Need?</h2>
-            <p style="margin-top: 16px;">Tell us the date, the venue and what you want to do with the material afterwards. We will say what coverage actually fits and what is not worth paying for. If you would rather see the shape of a typical booking first, the coverage options page lays out example scopes.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options →</a>
-                <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="text-decoration: none;">Talk to us →</a>
-            </div>
+            <p style="max-width: 720px; margin: 0 auto;">All three services cover Oslo and beyond, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss. Travel inside that area is included; events further out are quoted with travel as a separate line item.</p>
+            <p style="max-width: 720px; margin: 16px auto 0;">We work at any venue, and we scout and coordinate access ahead of time when a venue is new to us. For international teams organising an event in Norway, hiring locally removes the crew travel and logistics, and all communication and deliverables are in English.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--lg section-dark">
+    <div class="container">
+        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
+            <span class="section-num">06</span>
+            <span class="overline">FAQ</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Questions About Our Services</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-question" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">What services does Recap Media offer? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-1"><div class="faq-answer-inner">Three at the moment: event photography, event videography with session recording, and combined conference coverage for multi-track events. Each one is founder-led, and they can be booked on their own or together under a single brief.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">How do the three services fit together? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-2"><div class="faq-answer-inner">They share one planning process, one point of contact and one visual approach. Photo and video can run on the same booking, and conference coverage is the version built for parallel rooms where both have to happen at once.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">Which service do we need for our event? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-3"><div class="faq-answer-inner">If you need publishable images for reporting and marketing, start with event photography. If the event has to keep earning attention afterwards, start with event video. If you are running parallel tracks across one or more days and need both, start with conference coverage. Send us the format and we will say what actually fits.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">Do you plan and produce events as well? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-4"><div class="faq-answer-inner">No. Recap Media is an event media provider, not an event agency (eventbyrå). We capture what happens at your event and turn it into material you can use afterwards. We do not plan, stage or technically produce the event itself, and we work alongside the agency or in-house team that does.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">Do you cover events outside Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-5"><div class="faq-answer-inner">Yes. Coverage across Oslo and beyond, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further afield are quoted with travel as a separate line item, and all communication and deliverables are in English.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">Do you offer livestreaming? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-a-6"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
+        </div>
+        <div class="faq-footer">
+            <p>Still not sure which service the event needs? Send the date and the format and we'll reply within one business day.</p>
+            <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="flex-shrink: 0;">Get in touch</a>
         </div>
     </div>
 </section>
@@ -239,7 +388,7 @@
         <span class="overline">Let's get started</span>
         <h2>Tell Us About Your Event</h2>
         <p class="body">Send the date, the venue and roughly what you have in mind. We reply within one business day with what we would cover and what it would take.</p>
-        <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+        <a href="https://recapmedia.no/contact" class="btn btn-primary" style="text-decoration: none;">Tell us about your event</a>
     </div>
 </section>
 
@@ -251,7 +400,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>
