@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- NOT served publicly - GHL generates the live sitemap. Kept as repo reference. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://recapmedia.no/</loc>
     <lastmod>2026-04-02</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/services/photography</loc>
+    <loc>https://recapmedia.no/services/event-photography-oslo</loc>
     <lastmod>2026-06-11</lastmod>
   </url>
   <url>
-    <loc>https://recapmedia.no/services/videography</loc>
+    <loc>https://recapmedia.no/services/event-video-oslo</loc>
     <lastmod>2026-06-11</lastmod>
   </url>
   <url>

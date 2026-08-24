@@ -6,7 +6,7 @@
 | File | Target URL | Lang | Status | hreflang pair | Notes |
 |---|---|---|---|---|---|
 | `index-icp-v2.html` | `/` (replaces live homepage) | EN | needs-Max-review (**reworked live through round 8, 2026-07-15** — 8-section funnel: UVP hero, empathy problem section, workload-ledger "how it works", testimonials above Selected work, mobile overline fix; supersedes the round-3 11-section state. Current state + preview/verify recipe: `STATE.md`. Screenshots: preview-shots/icp-v2-r8-*.png) | — (NO deferred) | Copy doc: `projects/recap-website-cleanup/icp-homepage-copy-v2.md`; non-profit A+B + "Oslo and beyond" applied |
-| `services/conference-coverage-oslo.html` | `/services/conference-coverage-oslo` | EN | needs-Max-review | — | Plan P4 |
+| `services/conference-photography-video-oslo.html` | `/services/conference-photography-video-oslo` | EN | needs-Max-review | — | Plan P4 |
 | `services/corporate-video-oslo.html` | `/services/corporate-video-oslo` | EN | needs-Max-review | — | Plan P5 |
 | `services/headshots-oslo.html` | `/services/headshots-oslo` | EN | needs-Max-review | — | Plan P6 |
 | `preview-index.html` | (never deployed) | — | built | — | One-tab morning review |
