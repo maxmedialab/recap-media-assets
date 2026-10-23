@@ -1,95 +1,202 @@
+<!--
+================================================================
+  SERVICE PAGE: recapmedia.no/services/event-photography-oslo
+================================================================
+  HOW TO PUBLISH THIS PAGE: four parts, all on this page in GHL.
+  The page does not exist in GHL yet (the URL 301s to /404), so
+  create it first with the slug services/event-photography-oslo.
+  Each part sits between a "COPY BELOW THIS LINE" mark and a
+  "STOP COPYING ABOVE THIS LINE" mark. Copy only what is between them.
+
+    PART 1  SEO title        (in <head>)  -> page SEO settings: Title
+    PART 2  SEO description  (in <head>)  -> page SEO settings: Description
+    PART 3  Schema           (in <head>)  -> "SEO & AI search optimization"
+                                             panel: replace everything in it
+    PART 4  Page body        (in <body>)  -> the Custom HTML block:
+                                             replace everything in it
+
+  Paste all four, then Preview, then Publish. Leave alone: Header/Body
+  Tracking Code, Global Header, Global Footer. Social title/description
+  follow the SEO fields automatically. No CSS/JS pin bump for this page.
+  Copy to the clipboard as UTF-8 (LC_ALL=en_US.UTF-8 pbcopy).
+
+  Build notes are kept out of the four parts so they never get published.
+  Brief and decisions: ../../briefs/services-event-photography-oslo.md
+  Launch state + per-page checklist: ../../launch-manifest.md
+================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Event Photographer Oslo | Recap Media</title>
-    <meta name="description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
+    <!-- ▼▼▼ PART 1 of 4: SEO TITLE -> page SEO settings: Title. COPY BELOW THIS LINE ▼▼▼
+Event Photographer Oslo | Recap Media
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
+    <title>Event Photographer Oslo | Recap Media</title>
+    <!-- ▼▼▼ PART 2 of 4: SEO DESCRIPTION -> page SEO settings: Description. COPY BELOW THIS LINE ▼▼▼
+Event photography in Oslo for conferences and corporate events. Live selects and 24-hour press sets on request, full gallery in up to 7 business days.
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
+    <meta name="description" content="Event photography in Oslo for conferences and corporate events. Live selects and 24-hour press sets on request, full gallery in up to 7 business days.">
     <link rel="canonical" href="https://recapmedia.no/services/event-photography-oslo">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://recapmedia.no/services/event-photography-oslo">
-    <meta property="og:title" content="Corporate Event Photographer Oslo | Recap Media">
-    <meta property="og:description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
+    <meta property="og:title" content="Event Photographer Oslo | Recap Media">
+    <meta property="og:description" content="Event photography in Oslo for conferences and corporate events. Live selects and 24-hour press sets on request, full gallery in up to 7 business days.">
     <meta property="og:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
     <meta property="og:site_name" content="Recap Media">
     <meta property="og:locale" content="en_GB">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Corporate Event Photographer Oslo | Recap Media">
-    <meta name="twitter:description" content="Founder-led corporate event photography in Oslo. Same-day selects arranged in advance, galleries in up to 7 business days, full commercial usage rights.">
+    <meta name="twitter:title" content="Event Photographer Oslo | Recap Media">
+    <meta name="twitter:description" content="Event photography in Oslo for conferences and corporate events. Live selects and 24-hour press sets on request, full gallery in up to 7 business days.">
     <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
 
-    <!-- Schema: BreadcrumbList -->
-    <script type="application/ld+json">
+    <!-- ▼▼▼ PART 3 of 4: SCHEMA -> "SEO & AI search optimization" panel. Select everything
+         in the panel's schema box and replace it. COPY BELOW THIS LINE ▼▼▼ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://recapmedia.no/" },
-        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://recapmedia.no/services" },
-        { "@type": "ListItem", "position": 3, "name": "Event Photography Oslo", "item": "https://recapmedia.no/services/event-photography-oslo" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://recapmedia.no/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://recapmedia.no/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Event Photography Oslo",
+          "item": "https://recapmedia.no/services/event-photography-oslo"
+        }
       ]
-    }
-    </script>
-
-    <!-- Schema: Service (entity graph per launch rule 4.12: one canonical business node,
-         one stable Person node, provider referenced by @id, never re-declared anonymously) -->
-    <script type="application/ld+json">
+    },
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Service",
+      "@id": "https://recapmedia.no/services/event-photography-oslo#service",
+      "name": "Event Photography Oslo",
+      "serviceType": "Event photography",
+      "description": "Event photography in Oslo and beyond for conferences, trade fairs, corporate and public-sector events. Full edited gallery in up to 7 business days, optional live selects and 24-hour press sets agreed before the event, and full commercial usage rights on every delivered image.",
+      "url": "https://recapmedia.no/services/event-photography-oslo",
+      "provider": {
+        "@id": "https://recapmedia.no/#business"
+      },
+      "areaServed": [
+        "Oslo",
+        "Lillestrøm",
+        "Sandvika",
+        "Fornebu",
+        "Drammen",
+        "Jessheim",
+        "Holmestrand",
+        "Moss"
+      ],
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "Conference organisers, marketing and communications teams, and event agencies"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://recapmedia.no/#business",
+      "name": "Recap Media",
+      "url": "https://recapmedia.no",
+      "founder": {
+        "@id": "https://recapmedia.no/#maks"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://recapmedia.no/#maks",
+      "name": "Maks Strzepka",
+      "alternateName": "Maksymilian Strzepka"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "Service",
-          "@id": "https://recapmedia.no/services/event-photography-oslo#service",
-          "name": "Corporate Event Photography Oslo",
-          "serviceType": "Corporate event photography",
-          "description": "Founder-led corporate event, conference and trade show photography in Oslo and beyond. Edited galleries in up to 7 business days, same-day or 24-hour press selects arranged in advance, and full commercial usage rights on every delivered image.",
-          "url": "https://recapmedia.no/services/event-photography-oslo",
-          "provider": { "@id": "https://recapmedia.no/#business" },
-          "areaServed": ["Oslo", "Lillestrøm", "Sandvika", "Fornebu", "Drammen", "Jessheim", "Holmestrand", "Moss"],
-          "audience": { "@type": "BusinessAudience", "name": "Conference organisers, marketing and communications teams, and event agencies" }
+          "@type": "Question",
+          "name": "How quickly will we receive the photos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The full edited gallery arrives in up to 7 business days. If you need images sooner, live selects during the event or a press-ready set within 24 hours can be added when it is agreed before the day. For multi-day programmes we agree delivery points in the brief, so the first day's photos do not wait for the last."
+          }
         },
         {
-          "@type": "LocalBusiness",
-          "@id": "https://recapmedia.no/#business",
-          "name": "Recap Media",
-          "url": "https://recapmedia.no",
-          "founder": { "@id": "https://recapmedia.no/#maks" }
+          "@type": "Question",
+          "name": "Can you cover parallel rooms or several days?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The crew is sized to what we agree: every room covered, or priority sessions agreed in the brief. At Flutter Vikings 2022 that meant 46 speakers across three parallel rooms over two days."
+          }
         },
         {
-          "@type": "Person",
-          "@id": "https://recapmedia.no/#maks",
-          "name": "Maks Strzepka",
-          "alternateName": "Maksymilian Strzepka"
+          "@type": "Question",
+          "name": "Who may use the photos, and do we get the raw files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every delivered image carries full commercial usage rights: marketing, social media, PR, internal comms and sponsor reports, with no per-channel fees. Raw files are not included by default; they can be purchased separately, and it is best to agree that in advance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does event photography cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the event, so there is no fixed menu. After the discovery call you get coverage options built around your programme. For a feel of scale, see our example coverage options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you only work in Oslo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our primary service area is Oslo and surroundings, including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which venues have you worked at?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We have photographed events at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the former Felix Conference Center. We work at any venue in Oslo and beyond, including Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can one booking cover both photography and video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Photo and video run under one booking and one brief, with one point of contact. Flutter Vikings 2022 was covered that way: about 20 hours of footage became 43 published videos alongside the photo library. See event video production and conference photography and video."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you photograph weddings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We work with B2B events only: conferences, corporate gatherings, launches and public programmes."
+          }
         }
       ]
     }
-    </script>
-
-    <!-- Schema: FAQPage (exact parity with the visible FAQ below) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "What does corporate event photography in Oslo cover?", "acceptedAnswer": { "@type": "Answer", "text": "A full programme: registration and arrivals, keynotes, panels, breakout sessions, the sponsor and exhibition floor, networking, and the press or VIP moments you need on record. The point is a library your marketing, PR and internal comms teams can use all year, not a folder of nice pictures." } },
-        { "@type": "Question", "name": "How quickly will we receive the photos?", "acceptedAnswer": { "@type": "Answer", "text": "The edited gallery is delivered in up to 7 business days. If your programme runs across several days, we agree the delivery points in the brief so the first day's images do not wait for the last." } },
-        { "@type": "Question", "name": "Can we get press-ready images on the day of the event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, when it is arranged in advance. Same-day selects and 24-hour press delivery are planned into the brief rather than improvised on site. We delivered press-ready images within 24 hours for the Scotland–Norway Decarbonisation Trade Mission in Oslo." } },
-        { "@type": "Question", "name": "Do we get full commercial usage rights?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every delivered image carries full commercial usage rights: marketing, social, PR, internal comms, sponsor reporting and next year's event promotion. There are no per-channel licensing fees." } },
-        { "@type": "Question", "name": "Do we get the raw files?", "acceptedAnswer": { "@type": "Answer", "text": "Not by default. You receive professionally edited high-resolution images. Raw files can be purchased separately, and it is best discussed in advance so we can plan for it." } },
-        { "@type": "Question", "name": "How many photographers attend, and how do you cover parallel tracks?", "acceptedAnswer": { "@type": "Answer", "text": "Recap is founder-led: Maks Strzepka shoots your event and stays your single point of contact. For multi-track programmes we plan the rotation against the run-of-show and arrange additional crew under the same booking. At Flutter Vikings 2022 we covered 46 speakers across three parallel rooms over two days." } },
-        { "@type": "Question", "name": "How do you handle photo consent and GDPR at our event?", "acceptedAnswer": { "@type": "Answer", "text": "You own the consent process for your event and we work inside it. Tell us how attendees are informed, through registration notices, signage or badge markers, and how someone signals that they do not want to be photographed. We shoot to that, anyone who asks to be left out is left out, and images can be removed from the gallery after delivery if someone raises it with you." } },
-        { "@type": "Question", "name": "Which Oslo venues do you work at?", "acceptedAnswer": { "@type": "Answer", "text": "Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. For a venue that is new to us we coordinate access and scout before the event." } },
-        { "@type": "Question", "name": "Can one booking cover both photography and video?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Photo and video run under one booking, one brief and one point of contact, with a consistent look across everything delivered. Flutter Vikings 2022 was covered that way: roughly 20 hours of footage became 43 published videos alongside the photo library." } },
-        { "@type": "Question", "name": "Do you offer live streaming?", "acceptedAnswer": { "@type": "Answer", "text": "We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so ask us and we'll give you a concrete answer." } },
-        { "@type": "Question", "name": "Can you shoot headshots or speaker portraits at the event?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We set up a small field studio between sessions, so speakers and staff get updated portraits without booking a separate studio day. It works best when a slot for it is blocked in the run-of-show." } },
-        { "@type": "Question", "name": "Do you charge travel outside Oslo?", "acceptedAnswer": { "@type": "Answer", "text": "Coverage across Oslo and the surrounding area, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further out are quoted with travel as a separate line." } }
-      ]
-    }
-    </script>
+  ]
+}
+</script>
+    <!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,305 +265,456 @@
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
-<!--
-================================================================
-  GHL DEPLOYMENT — SERVICE PAGE (recapmedia.no/services/event-photography-oslo)
-================================================================
-  SITE SETTINGS > HEADER TRACKING CODE:
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
-    [GTM head snippet]
-  SITE SETTINGS > BODY TRACKING CODE:
-    [GTM noscript snippet]
-    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
-  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
-  ▼▼▼ PASTE ONLY THE <main>...</main> BLOCK INTO GHL > PAGE > CUSTOM HTML ▼▼▼
-================================================================
--->
-
+<!-- ▼▼▼ PART 4 of 4: PAGE BODY -> the Custom HTML block (replace everything in it).
+     Starts with <main>, ends with </main>. COPY BELOW THIS LINE ▼▼▼ -->
 <main>
 
-<!-- Hero Banner -->
-<section class="hero-banner">
-    <div class="container" style="text-align: center; max-width: 820px;">
-        <span class="overline">Services &middot; Photography</span>
-        <h1>Corporate Event &amp; Conference Photography in Oslo</h1>
-        <p style="max-width: 660px; margin: 16px auto 0;">If you are organising a conference, trade mission, kickoff or corporate event in Oslo, you need images your team can actually use: for press, for sponsors, for internal comms and for next year's marketing. Recap Media is founder-led, so you get one point of contact, a shot list agreed before the day, and full commercial rights on every delivered image.</p>
-        <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/work" class="btn btn-outline-ember" style="text-decoration: none;">See event photography we have delivered</a>
-        </div>
-    </div>
-</section>
+<style>
+.nav:not(.scrolled){background-color:rgba(20,18,24,.92) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important}
+.svc{font-family:var(--font-body) !important;color:var(--color-charcoal);font-size:17px;line-height:1.6}
+.svc p{margin:0;text-wrap:pretty}
+.svc ul,.svc ol{list-style:none;margin:0;padding:0}
+.svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-dark .svc-eyebrow{color:var(--color-warm-grey) !important}
+.svc-h1{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(40px,5vw,64px) !important;line-height:1.03 !important;letter-spacing:-.03em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(30px,3.4vw,44px) !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2--sm{font-size:clamp(28px,2.8vw,36px) !important}
+.svc-h3{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:21px !important;line-height:1.2 !important;color:var(--color-obsidian) !important}
+.svc-dark .svc-h2,.svc-dark .svc-h3{color:var(--color-cream) !important}
+.svc-lead{margin-top:24px !important;max-width:560px;font-size:19px;line-height:1.55}
+.svc-intro{margin-top:16px !important;max-width:680px}
+.svc-label{margin:28px 0 10px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-link{color:var(--color-obsidian) !important;font-weight:600 !important;text-decoration:underline !important;text-decoration-color:var(--color-ember) !important;text-decoration-thickness:2px !important;text-underline-offset:5px !important}
+.svc-link:hover{color:var(--color-ember-deep) !important}
+.svc-dark .svc-link{color:var(--color-cream) !important}
+.svc-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
+.svc-cta .btn{white-space:nowrap}
+.svc-todo{margin:0 !important;border:1px dashed var(--color-stone);border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;box-sizing:border-box;font-size:13px;color:var(--color-stone-dark) !important}
+.svc-stars{display:inline-flex;gap:2px}
+.svc-hero{padding:clamp(112px,11vw,152px) 0 72px;background:var(--color-cream)}
+.svc-hero-grid{display:grid;grid-template-columns:6fr 5fr;gap:72px;align-items:center}
+.svc-chips{display:flex;flex-wrap:wrap;gap:6px;max-width:600px}
+.svc-chips li{border:1px solid var(--color-warm-grey);border-radius:999px;padding:4px 12px;background:var(--color-warm-white);font-size:14px;line-height:1.4;color:var(--color-obsidian) !important}
+.svc-area{display:flex;align-items:flex-start;gap:8px;margin-top:24px !important;font-size:14px}
+.svc-area svg{flex-shrink:0;margin-top:3px}
+.svc-show{position:relative;height:600px}
+.svc-pause-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.svc-slides{position:relative;height:100%;border-radius:24px;overflow:hidden;background:var(--color-onyx)}
+.svc-slides img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:svc-fade 24s infinite both}
+.svc-slides img:nth-of-type(1){animation-delay:-1s}
+.svc-slides img:nth-of-type(2){animation-delay:5s}
+.svc-slides img:nth-of-type(3){animation-delay:11s}
+.svc-slides img:nth-of-type(4){animation-delay:17s}
+@keyframes svc-fade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+.svc-ctrl{position:absolute;right:16px;top:16px;z-index:2;display:flex;align-items:center;gap:10px;background:rgba(20,18,24,.66);border-radius:999px;padding:4px 12px 4px 4px}
+.svc-pause{width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-ico-play{display:none}
+.svc-pause-input:checked~.svc-ctrl .svc-ico-pause{display:none}
+.svc-pause-input:checked~.svc-ctrl .svc-ico-play{display:block}
+.svc-pause-input:focus-visible~.svc-ctrl .svc-pause{outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-dots{display:flex;gap:6px}
+.svc-dot{width:8px;height:8px;border-radius:999px;background:rgba(245,243,239,.4);animation:svc-dot 24s infinite both}
+.svc-dot:nth-child(1){animation-delay:-1s}
+.svc-dot:nth-child(2){animation-delay:5s}
+.svc-dot:nth-child(3){animation-delay:11s}
+.svc-dot:nth-child(4){animation-delay:17s}
+@keyframes svc-dot{0%{background:rgba(245,243,239,.4)}4%{background:#F5F3EF}25%{background:#F5F3EF}29%{background:rgba(245,243,239,.4)}100%{background:rgba(245,243,239,.4)}}
+.svc-pause-input:checked~.svc-slides img,.svc-pause-input:checked~.svc-ctrl .svc-dot{animation-play-state:paused}
+.svc-badge{position:absolute;left:-40px;bottom:32px;z-index:2;width:320px;box-sizing:border-box;background:var(--color-warm-white);border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(20,18,24,.12),0 6px 14px rgba(20,18,24,.08)}
+.svc-badge-title{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-badge-sub{margin-top:6px !important;font-size:14px}
+.svc-badge-link{margin-top:10px !important;font-size:14px}
+.svc-trust{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-trust-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:32px 0 !important}
+.svc-trust-list li{padding:0 24px;border-left:1px solid #E4E0D8}
+.svc-trust-list li:first-child{padding-left:0;border-left:0}
+.svc-trust-t{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-family:var(--font-heading) !important;font-weight:600;font-size:20px;line-height:1.3;color:var(--color-obsidian) !important}
+.svc-trust-s{margin-top:4px !important;font-size:15px}
+.svc-logos{display:flex;align-items:center;gap:24px;padding:24px 0;border-top:1px solid #E4E0D8}
+.svc-logos .svc-label{margin:0 !important;white-space:nowrap}
+.svc-logos-grid{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.svc-logos-grid .svc-todo{height:52px}
+.svc-gallery{padding:80px 0 72px}
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px 40px}
+.svc-head-links{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
+.svc-tile{position:relative;margin:0;aspect-ratio:3/2;border-radius:14px;overflow:hidden;background:var(--color-onyx)}
+.svc-tile img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover}
+.svc-tile img+img{opacity:0;animation:svc-swap 72s infinite both}
+@keyframes svc-swap{0%{opacity:0}47%{opacity:0}50%{opacity:1}97%{opacity:1}100%{opacity:0}}
+.svc-grid .g-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.svc-grid .g-wide{grid-column:span 2}
+.svc-grid .g-feature.g-more{grid-column:3/span 2;grid-row:4/span 2}
+.svc-gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.svc-gallery-bar p{font-size:14px;color:var(--color-stone-dark) !important}
+.svc-swap-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.svc-swap-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
+.svc-swap-input:focus-visible~.svc-gallery-bar .svc-swap-btn{outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-swap-input:checked~.svc-grid .svc-tile img{animation-play-state:paused}
+.svc-swap-play{display:none}
+.svc-swap-input:checked~.svc-gallery-bar .svc-swap-pause{display:none}
+.svc-swap-input:checked~.svc-gallery-bar .svc-swap-play{display:inline}
+.svc-speed{background:var(--color-obsidian);padding:96px 0}
+.svc-speed p{color:var(--color-warm-grey)}
+.svc-speed-wrap{position:relative;margin-top:64px}
+.svc-line{position:absolute;left:8px;right:0;top:7px;height:2px;background:var(--color-smoke)}
+.svc-speeds{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.svc-speeds li{display:flex;flex-direction:column}
+.svc-node{width:16px;height:16px;border-radius:999px;background:var(--color-ember)}
+.svc-node--open{width:12px;height:12px;border:2px solid var(--color-cream);background:var(--color-obsidian)}
+.svc-when{margin-top:24px !important;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--color-amber) !important}
+.svc-speeds .svc-h3{margin-top:8px !important;font-size:26px !important}
+.svc-speed-text{margin-top:10px !important;font-size:16px;flex-grow:1}
+.svc-tag{margin-top:20px !important;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--color-charcoal);border-radius:999px;padding:4px 12px;color:var(--color-cream) !important}
+.svc-tag--std{background:var(--color-cream);border-color:var(--color-cream);color:var(--color-obsidian) !important}
+.svc-reviews .svc-head{margin-bottom:40px}
+.svc-reviews .testimonial-mark{display:none !important}
+.svc-reviews .svc-rating{font-size:15px;font-weight:600;color:var(--color-obsidian) !important}
+.svc-addon{padding:88px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-addon-grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+.svc-portraits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc-portraits .svc-todo{height:300px;border-radius:14px}
+.svc-portraits img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;border-radius:14px}
+.svc-portraits-note{margin-top:12px !important;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-cover{padding:96px 0}
+.svc-cover-head{display:grid;grid-template-columns:1fr auto;gap:24px 72px;align-items:end}
+.svc-cover-head .svc-cta{margin-top:0}
+.svc-cover-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px;margin-top:48px !important}
+.svc-cover-list img{width:100%;height:240px;object-fit:cover;border-radius:14px}
+.svc-cover-list .svc-h3{margin-top:16px !important}
+.svc-cover-list p{margin-top:6px !important;font-size:16px}
+.svc-process{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-process-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:28px;margin-top:56px !important}
+.svc-process-list li{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;border-top:2px solid var(--color-obsidian);padding-top:20px}
+.svc-num{font-family:var(--font-heading) !important;font-weight:600;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-process-list .svc-h3{margin-top:6px !important}
+.svc-step{margin-top:10px !important;font-size:15px}
+.svc-yours{margin-top:20px !important;padding-top:12px;border-top:1px solid var(--color-warm-grey);font-size:14px}
+.svc-yours strong{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-obsidian)}
+.svc-split{display:grid;grid-template-columns:5fr 7fr;gap:72px}
+.svc-consent{padding:88px 0}
+.svc-rows li{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--color-warm-grey)}
+.svc-rows li:first-child{padding-top:0}
+.svc-rows li:last-child{border-bottom:0;padding-bottom:0}
+.svc-rows .svc-h3{font-size:19px !important}
+.svc-rows p{font-size:16px}
+.svc-faq{padding:88px 0;border-top:1px solid #E4E0D8}
+.svc-faq .faq-list{max-width:none !important;margin:0 !important}
+.svc-more{padding:56px 0;border-top:1px solid #E4E0D8}
+.svc-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px !important}
+.svc-more-grid a{display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;padding:22px 24px;border:1px solid var(--color-warm-grey);border-radius:14px;background:var(--color-warm-white);color:var(--color-charcoal) !important;transition:border-color .2s ease,transform .2s ease}
+.svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
+.svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-more-s{font-size:15px;line-height:1.5}
+.svc-close{background:var(--color-warm-white);border-top:1px solid #E4E0D8;padding:96px 0}
+.svc-close-grid{display:grid;grid-template-columns:7fr 5fr;gap:40px 72px;align-items:center}
+.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-obsidian) !important}
+.svc-close-text{margin-top:16px !important;max-width:680px}
+.svc-close-text span{display:block}
+.svc-close .svc-cta{margin-top:0}
+@media (max-width:900px){
+.svc-hero-grid,.svc-addon-grid,.svc-split,.svc-close-grid,.svc-cover-head{grid-template-columns:1fr;gap:32px}
+.svc-more-grid{grid-template-columns:1fr;gap:10px}
+.svc-show{height:auto}
+.svc-slides{height:320px;border-radius:20px}
+.svc-badge{position:relative;left:auto;bottom:auto;width:auto;margin:-40px 16px 0}
+.svc-trust-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+.svc-trust-list li{padding:0;border-left:0}
+.svc-trust-t{font-size:17px}
+.svc-trust-s{font-size:13px}
+.svc-logos{flex-direction:column;align-items:stretch}
+.svc-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
+.svc-grid .g-more{display:none}
+.svc-line{display:none}
+.svc-speeds{grid-template-columns:1fr;gap:36px;padding-left:28px;border-left:2px solid var(--color-smoke)}
+.svc-speeds li{position:relative}
+.svc-node{position:absolute;left:-37px;top:4px}
+.svc-node--open{left:-35px}
+.svc-when{margin-top:0 !important}
+.svc-speeds .svc-h3{font-size:22px !important}
+.svc-portraits .svc-todo{height:140px}
+.svc-cover-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+.svc-cover-list img{height:113px;border-radius:10px}
+.svc-cover-list .svc-h3{font-size:16px !important;margin-top:10px !important}
+.svc-cover-list p{font-size:14px;line-height:1.5}
+.svc-process-list{display:flex;flex-direction:column;gap:28px}
+.svc-process-list li{display:block}
+.svc-rows li{grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:600px){
+.svc-cta{flex-direction:column;align-items:stretch;text-align:center}
+.svc-cta .btn{justify-content:center !important}
+}
+@media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}}
+</style>
 
-<!-- 01 Who this is for -->
-<section class="section section--lg section-light">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">01</span>
-            <span class="overline">Who this is for</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Built for B2B and Public-Sector Organisers</h2>
-            <p style="max-width: 640px; margin: 16px auto 0;">Recap works with organisations, not consumers. The brief is usually the same one: document the whole programme, build a library the rest of the organisation can reuse, and keep the coordination overhead low on an already busy day.</p>
-        </div>
-        <div class="steps-grid steps-grid--2 gsap-stagger">
-            <div class="step-card">
-                <h3>Conference and summit organisers</h3>
-                <p>Multi-track programmes where keynotes, breakouts and the sponsor floor all have to be covered inside one running schedule, without anything being missed because two things happened at once.</p>
-            </div>
-            <div class="step-card">
-                <h3>Marketing and communications teams</h3>
-                <p>In-house teams who need press images, social content and internal comms assets out of a single event, shot with the end use in mind rather than handed over as an archive folder.</p>
-            </div>
-            <div class="step-card">
-                <h3>Event agencies and production partners</h3>
-                <p>Agencies who need a local Oslo crew that reads a run-of-show, works alongside AV, venue and PR, and does not need supervising while you run the event.</p>
-            </div>
-            <div class="step-card">
-                <h3>Public, cultural and diplomatic programmes</h3>
-                <p>Trade missions, receptions, public art projects and cultural programmes where discretion, protocol and fast press delivery matter more than volume.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 02 What we cover -->
-<section class="section section--lg section-onyx">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="section-num">02</span>
-            <span class="overline">Scope of coverage</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">What We Cover at Your Event</h2>
-            <p style="max-width: 660px; margin: 16px auto 0;">From 20-person seminars to multi-track programmes with several hundred attendees. If it has a schedule, speakers or a stand, it can be covered.</p>
-            <ul class="check-list" style="max-width: 620px; margin: 28px auto 0; text-align: left;">
-                <li>Conferences and summits: keynotes, panels, breakout sessions, audience and stage detail across the full running order.</li>
-                <li>Trade shows and exhibitions: stand photography for exhibitors, staff at work, visitor traffic and product detail your sales team can use all year.</li>
-                <li>Corporate kickoffs and product launches: launch moments, press walls, speaker arrivals, and the internal-culture images HR and comms ask for later.</li>
-                <li>Press and diplomatic events: receptions, signings and delegation programmes where the press images are needed before the news cycle moves on.</li>
-                <li>Public and cultural programmes: openings, installations and city-facing events documented for both press and archive use.</li>
+<section class="svc svc-hero">
+    <div class="svc-wrap svc-hero-grid">
+        <div>
+            <p class="svc-eyebrow">Business event photographer</p>
+            <h1 class="svc-h1">Event Photography in Oslo</h1>
+            <p class="svc-lead">Your team gets photos for press, social media and sponsor reports, planned around your programme and the moments that matter most.</p>
+            <p class="svc-label">Built for</p>
+            <ul class="svc-chips">
+                <li>Conferences</li>
+                <li>Seminars</li>
+                <li>Trade fairs</li>
+                <li>Product launches</li>
+                <li>Kickoffs</li>
+                <li>Award ceremonies</li>
+                <li>Gala dinners</li>
+                <li>Networking events</li>
+                <li>Press conferences</li>
+                <li>Receptions</li>
+                <li>Company parties</li>
+                <li>Public-sector events</li>
             </ul>
+            <div class="svc-cta">
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+            </div>
+            <p class="svc-area"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Oslo, Fornebu, Sandvika, Lillestrøm, Drammen, Jessheim and beyond</p>
         </div>
-    </div>
-</section>
-
-<!-- 03 How we plan -->
-<section class="section section--lg section-light">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">03</span>
-            <span class="overline">Before the day</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Plan Your Coverage</h2>
-            <p style="max-width: 640px; margin: 16px auto 0;">Most of the risk in event photography is settled before anyone picks up a camera. Four steps, none of which need much of your time.</p>
-        </div>
-        <div class="steps-grid steps-grid--4 gsap-stagger">
-            <div class="step-card">
-                <span class="step-number">Step 01</span>
-                <h3>Discovery call</h3>
-                <p>Twenty minutes on the event: format, audience, what the images are for and which moments cannot be missed.</p>
+        <div class="svc-show">
+            <input type="checkbox" id="svc-pause" class="svc-pause-input">
+            <div class="svc-slides">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06de171b8cce23083d2.webp" alt="Speaker talking into a microphone on stage at a business conference" width="1280" height="853" fetchpriority="high">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e840ed163472d7461.webp" alt="Speaker at a lectern beside a presentation screen, with guests seated at round tables" width="1280" height="853" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691de9b9840ed1840d329278.webp" alt="Three guests standing together on the front steps of a white residence" width="1600" height="1067" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dd4f9b3e5d762ddcd.webp" alt="Delegates smiling and talking during a networking break" width="1280" height="853" loading="lazy">
             </div>
-            <div class="step-card">
-                <span class="step-number">Step 02</span>
-                <h3>Pre-event brief</h3>
-                <p>A short written brief covering deliverables, delivery timing, usage and the people who need to be recognised on the day.</p>
+            <div class="svc-ctrl">
+                <label for="svc-pause" class="svc-pause" title="Pause or play the photos"><span class="svc-ico-pause"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the photo slideshow</span></label>
+                <span class="svc-dots" aria-hidden="true"><span class="svc-dot"></span><span class="svc-dot"></span><span class="svc-dot"></span><span class="svc-dot"></span></span>
             </div>
-            <div class="step-card">
-                <span class="step-number">Step 03</span>
-                <h3>Run-of-show and shot list</h3>
-                <p>We work from your run-of-show and turn it into a shot list, so parallel sessions and set-piece moments are planned rather than chased.</p>
-            </div>
-            <div class="step-card">
-                <span class="step-number">Step 04</span>
-                <h3>AV and venue coordination</h3>
-                <p>Access, lighting, stage positions and any restrictions are agreed with your AV and venue contacts before the doors open.</p>
+            <div class="svc-badge">
+                <p class="svc-badge-title">Press-ready images within 24 hours</p>
+                <p class="svc-badge-sub">Scotland–Norway trade mission, Oslo</p>
+                <p class="svc-badge-link"><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="svc-link">Read the case study →</a></p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 04 On the day -->
-<section class="section section--lg section-warm">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">04</span>
-            <span class="overline">On the day</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Founder-Led Coverage, One Crew</h2>
-        </div>
-        <div class="values-grid gsap-stagger">
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">📍</span>
-                <h3 style="color: var(--color-obsidian);">One point of contact</h3>
-                <p style="color: var(--color-charcoal);">Maks Strzepka shoots your event and is the person you brief, message and chase. Nothing is handed to a freelancer who never read the brief.</p>
-            </div>
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">🗂️</span>
-                <h3 style="color: var(--color-obsidian);">Working across multiple tracks</h3>
-                <p style="color: var(--color-charcoal);">Parallel rooms are covered on a planned rotation built from the run-of-show. For larger programmes, additional crew is arranged under the same booking.</p>
-            </div>
-            <div class="value-card" style="background: var(--color-white);">
-                <span class="value-icon">🤫</span>
-                <h3 style="color: var(--color-obsidian);">Unobtrusive, AV-aware shooting</h3>
-                <p style="color: var(--color-charcoal);">Quiet movement, no blocked sightlines, no walking through a camera line. Keynotes and board sessions run as if nobody were photographing them.</p>
+<section class="svc svc-trust" aria-label="Why organisers book us">
+    <div class="svc-wrap">
+        <ul class="svc-trust-list">
+            <li><p class="svc-trust-t"><span class="svc-stars" role="img" aria-label="5 out of 5 stars"><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></span>5★ on Google</p><p class="svc-trust-s">Rated by our clients</p></li>
+            <li><p class="svc-trust-t">20+ events covered</p><p class="svc-trust-s">From 20-person seminars to several hundred attendees</p></li>
+            <li><p class="svc-trust-t">Full usage rights</p><p class="svc-trust-s">On every delivered image, no per-channel fees</p></li>
+            <li><p class="svc-trust-t">One point of contact</p><p class="svc-trust-s">Before, during and after the event</p></li>
+        </ul>
+        <div class="svc-logos">
+            <p class="svc-label">Clients include</p>
+            <div class="svc-logos-grid">
+                <p class="svc-todo">[Client logo]</p>
+                <p class="svc-todo">[Client logo]</p>
+                <p class="svc-todo">[Client logo]</p>
+                <p class="svc-todo">[Client logo]</p>
+                <p class="svc-todo">[Client logo]</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 05 Deliverables, turnaround and rights -->
-<section class="section section--lg section-onyx">
-    <div class="container">
-        <div class="two-col">
-            <div class="col-text gsap-fade">
-                <span class="section-num">05</span>
-                <span class="overline overline--ruled">Deliverables</span>
-                <h2>What You Get,<br>When You Get It,<br>and What You May Do With It</h2>
-                <h3 style="margin-top: 28px; font-size: 1.05rem;">Edited gallery in up to 7 business days</h3>
-                <p>A professionally edited, high-resolution gallery delivered in up to 7 business days. For multi-day programmes we agree the delivery points in the brief, so the first day does not wait for the last.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">Same-day and 24-hour selects, arranged in advance</h3>
-                <p>Need images for press or LinkedIn while the event is still running? Same-day selects and 24-hour press delivery can be arranged in advance and planned into the brief.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">Full commercial usage rights</h3>
-                <p>Every delivered image is licensed for commercial use: marketing, social, PR, internal comms and sponsor reporting. No per-channel licensing fees.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">Raw files if you need them</h3>
-                <p>You receive edited images by default. Raw files are not included, but they can be purchased separately, and it is best discussed in advance so we can plan for it.</p>
-                <h3 style="margin-top: 24px; font-size: 1.05rem;">On-site headshots and portraits</h3>
-                <p>A small field studio between sessions: speaker and staff portraits shot on location, so your team gets updated profile photos without a separate studio day.</p>
+<section class="svc svc-gallery" aria-labelledby="svc-gallery-h">
+    <div class="svc-wrap">
+        <div class="svc-head">
+        <div>
+            <h2 class="svc-h2" id="svc-gallery-h">Selected event photography</h2>
+            <p class="svc-intro">Real photos from client events, as delivered to the organisers.</p>
+        </div>
+        <p class="svc-head-links"><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="svc-link">Trade mission case study →</a><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings 2022 case study →</a></p>
+        </div>
+        <input type="checkbox" id="svc-swap" class="svc-swap-input">
+        <div class="svc-grid">
+            <figure class="svc-tile g-feature"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings 2022, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1SEVX3ByqFZWKcQBjr_503XadzuU7RR4Q.webp" alt="Tour group in hard hats and high-visibility jackets posing for a group photo in front of a tanker truck at an industrial site" width="1200" height="800" loading="lazy" style="animation-delay:-0s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d300f06289e78d3ed.webp" alt="Two guests in conversation with wine glasses at an evening reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-16UNxCUPFJm-2NrK3Dee84fZumXQxvh5Y.webp" alt="Business travellers in discussion around a table on a train" width="1200" height="800" loading="lazy" style="animation-delay:-3s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f064072767184.webp" alt="Speaker in a yellow t-shirt presenting on stage at Flutter Vikings 2022" width="1024" height="683" loading="lazy" style="animation-delay:-6s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at a sponsor booth at Flutter Vikings 2022" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1faDY8aw4rIN2U4aeX1K90xWXgGW_5m0g.webp" alt="Guide in a hard hat and high-visibility jacket talking to visitors on a site tour" width="1200" height="800" loading="lazy" style="animation-delay:-9s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06ec03e0f815dc417fe.webp" alt="Two delegates smiling during a conversation at a garden reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f0695bc767185.webp" alt="Attendees talking in the exhibition area at Flutter Vikings 2022" width="1024" height="683" loading="lazy" style="animation-delay:-12s"></figure>
+            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb85e13ec92cdf916a1.webp" alt="Two conference attendees laughing together in the exhibition hall" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1c0H4vjn3wuZMKMoUsoHabnQvA3y471-t.webp" alt="Visitors in hard hats and high-visibility jackets walking through an industrial facility" width="1200" height="800" loading="lazy" style="animation-delay:-15s"></figure>
+            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view of a full conference room facing the stage at Flutter Vikings 2022" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e5e13ecf376fb6ef2.webp" alt="Delegates networking in a garden during an evening reception" width="1280" height="853" loading="lazy" style="animation-delay:-18s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dd4f9b3699b62ddd1.webp" alt="Guests with drinks talking during a reception" width="900" height="600" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bfe713fc48b.webp" alt="Speaker in a mustard jacket presenting to a seated audience" width="1024" height="683" loading="lazy" style="animation-delay:-21s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1Oux9E-W8O8MNjs03DCaxFL7-LFydH_wi.webp" alt="Guide explaining a project in front of an outdoor display board" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d88e1e6716884465d.webp" alt="Delegates seated at round tables during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-24s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f06c8b5767198.webp" alt="Speaker at a lectern on stage at Flutter Vikings 2022, Felix Conference Center" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dc03e0f2eb2c417e1.webp" alt="Three guests in conversation at a reception" width="1280" height="853" loading="lazy" style="animation-delay:-27s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06ec03e0f6186c417ff.webp" alt="Guests standing and listening during a reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1zFHAR89lQEg8Agbbh9x3zdGOsvCoO8FJ.webp" alt="Visitors with umbrellas gathered outdoors under a rainbow" width="1200" height="800" loading="lazy" style="animation-delay:-30s"></figure>
+            <figure class="svc-tile g-feature g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1thJ6TFDnR9uqDWE-UgZUEnPIZ80cNIAg.webp" alt="Presenter speaking to a group in a meeting room with screens" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d840ed121322d7442.webp" alt="Delegate speaking into a handheld microphone from the audience during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-33s"></figure>
+        </div>
+        <div class="svc-gallery-bar">
+            <p>From conferences, receptions, a trade mission and an industry site tour.</p>
+            <label for="svc-swap" class="svc-swap-btn"><span class="svc-swap-pause">Pause the photos</span><span class="svc-swap-play">Play the photos</span></label>
+        </div>
+    </div>
+</section>
+
+<section class="svc svc-dark svc-speed" aria-labelledby="svc-speed-h">
+    <div class="svc-wrap">
+        <h2 class="svc-h2" id="svc-speed-h">Your photos, as fast as you need them</h2>
+        <p class="svc-intro">Two optional fast tracks, agreed before the event, and the full gallery as standard.</p>
+        <div class="svc-speed-wrap">
+            <div class="svc-line" aria-hidden="true"></div>
+            <ol class="svc-speeds">
+                <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">During the event</p><h3 class="svc-h3">Live selects</h3><p class="svc-speed-text">A few selected photos while the event is running, or within hours of it. Ready for LinkedIn, press or your live channels.</p><p class="svc-tag">Optional</p></li>
+                <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Within 24 hours</p><h3 class="svc-h3">Press-ready set</h3><p class="svc-speed-text">A press-ready selection the next day, for post-event press and stakeholder updates.</p><p class="svc-tag">Optional</p></li>
+                <li><span class="svc-node svc-node--open" aria-hidden="true"></span><p class="svc-when">Up to 7 business days</p><h3 class="svc-h3">Full gallery</h3><p class="svc-speed-text">The full edited, high-resolution gallery, with full commercial usage rights.</p><p class="svc-tag svc-tag--std">Standard</p></li>
+            </ol>
+        </div>
+        <div class="svc-cta" style="margin-top:56px;">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+        </div>
+    </div>
+</section>
+
+<section class="svc section section-light svc-reviews" aria-labelledby="svc-reviews-h">
+    <div class="svc-wrap">
+        <div class="svc-head">
+            <div>
+                <p class="svc-eyebrow">Client stories</p>
+                <h2 class="svc-h2" id="svc-reviews-h">What clients say</h2>
             </div>
-            <div class="col-image gsap-fade">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting to an audience at a corporate conference in Oslo, photographed by Recap Media" width="640" height="480" class="parallax-img" loading="lazy">
+            <p class="svc-rating">5★ on Google</p>
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression on me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Great specialist, great personality and great service!"</p><div class="testimonial-author"><img src="https://lh3.googleusercontent.com/a-/ALV-UjWvukWmgJAEScSMTpRumNV7_TMwj3rnOUrZayw2BB0MGKirdhkARg=w144-h144-p-rp-mo-br100" alt="Lukasz Slawinski" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=LS';"><div><div class="testimonial-name">Lukasz Slawinski</div><div class="testimonial-title">CEO, Rbl Films</div></div></div></div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" aria-label="Previous testimonial">&#8592;</button>
+                <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                <button class="carousel-btn next" aria-label="Next testimonial">&#8594;</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 06 Consent process support, operational only. No legal interpretation, no
-     "when consent is required" framing: the organiser owns the process, Recap works inside it. -->
-<section class="section section--lg section-light">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-num">06</span>
-            <span class="overline">Consent and privacy</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">How We Support Your Event's Consent Process</h2>
-            <p style="max-width: 640px; margin: 16px auto 0;">You own the consent process for your event. Our job is to work inside it and make it easy to honour on a busy day.</p>
+<section class="svc svc-addon" aria-labelledby="svc-addon-h">
+    <div class="svc-wrap svc-addon-grid">
+        <div>
+            <p class="svc-eyebrow">Add-on</p>
+            <h2 class="svc-h2 svc-h2--sm" id="svc-addon-h">Portrait station at your event</h2>
+            <p class="svc-intro">Your team and speakers each get a fresh portrait to post on LinkedIn, and every post carries your event further. Shot on site between sessions, so there is no separate studio day to organise.</p>
+            <p style="margin-top:20px;font-size:15px;"><a href="https://recapmedia.no/services" class="svc-link">See all our services →</a></p>
         </div>
-        <div class="steps-grid gsap-stagger" style="max-width: 1000px; margin: 0 auto;">
-            <div class="step-card">
-                <h3>We follow your documented process</h3>
-                <p>Before the event you tell us how attendees are informed: registration notices, signage, badge markers or a line in the programme. We shoot to that, and we ask rather than assume when something is unclear.</p>
+        <div>
+            <div class="svc-portraits">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/niras-1e4eGsrzUHtUyZqd1OIKO1RifZhz2N2Po.webp" alt="Portrait of a smiling NIRAS employee with arms crossed, in a pale yellow t-shirt against a grey backdrop" width="800" height="1200" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/niras-1pOF91NLnj7vg-4dLG-JeuJEnrrb3TD-N.webp" alt="Portrait of a smiling NIRAS employee with glasses and a beard, in a striped shirt against a grey backdrop" width="800" height="1200" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/niras-1oJsHktae2pxU1wdS4WrCMKbmnHetaZt-.webp" alt="Portrait of a NIRAS employee with arms crossed, in a blue t-shirt against a grey backdrop" width="800" height="1200" loading="lazy">
             </div>
-            <div class="step-card">
-                <h3>No-photo signals are honoured on the spot</h3>
-                <p>If your event marks people who do not want to be photographed, with wristbands, lanyard colours or stickers, brief us and we watch for them. Anyone who asks to be left out is left out, no discussion needed.</p>
-            </div>
-            <div class="step-card">
-                <h3>You control what gets used</h3>
-                <p>Delivery goes to you first, through a private gallery. If someone raises a concern after the event, tell us and the images come out of the gallery.</p>
-            </div>
+            <p class="svc-portraits-note">Team portraits shot on site for NIRAS in Oslo.</p>
         </div>
     </div>
 </section>
 
-<!-- Proof. Every number here is on the claims whitelist: 20+ events / 5-star Google /
-     Flutter Vikings 2022: 46 speakers, 3 rooms, 2 days, ~20h footage, 43 published videos.
-     Trade mission 24h press-ready is confirmed by the case study. -->
-<section class="section section--lg section-onyx">
-    <div class="container" style="max-width: 900px;">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 32px;">
-            <span class="overline">Proof</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Conferences and Corporate Events We Have Photographed in Oslo</h2>
-            <p style="max-width: 640px; margin: 16px auto 0;">More than 20 events covered, with a 5-star rating on Google. Two of them show what the harder end looks like.</p>
-        </div>
-        <div class="gsap-fade" style="max-width: 700px; margin: 0 auto;">
-            <h3>Flutter Vikings 2022, Felix Conference Center</h3>
-            <p>A developer conference with 46 speakers across three parallel rooms over two days, photographed end to end: keynotes and panels, the sponsor booths, the breakout rooms and the conversations in between. The same booking covered the video, and roughly 20 hours of footage became 43 published videos.</p>
-            <p style="margin-top: 12px;"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo">Read the Flutter Vikings 2022 conference coverage case study →</a></p>
-            <h3 style="margin-top: 32px;">Scotland–Norway Decarbonisation Trade Mission, Oslo Event Hub</h3>
-            <p>A two-venue diplomatic and industry programme photographed at Oslo Event Hub and the UK Ambassador's residence, with press-ready images delivered within 24 hours for the post-event press and stakeholder communications.</p>
-            <p style="margin-top: 12px;"><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo">Read the trade mission event photography case study →</a></p>
-        </div>
-    </div>
-</section>
-
-<!-- Venues -->
-<section class="section section-light">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="overline">Venues</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">At Home in Oslo's Conference Venues</h2>
-            <p style="margin-top: 16px;">We have shot at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center, plus hotels and meeting spaces across the region. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. New venue? We arrive early, scout the light, and coordinate with your venue contact before the day.</p>
-            <div class="service-tags" style="justify-content: center;">
-                <span class="service-tag">Sommerro</span>
-                <span class="service-tag">Oslo Event Hub</span>
-                <span class="service-tag">Ullevaal Stadion</span>
-                <span class="service-tag">Construction City</span>
-                <span class="service-tag">Cosmopolite Scene</span>
-                <span class="service-tag">Felix Conference Center</span>
+<section class="svc svc-cover" aria-labelledby="svc-cover-h">
+    <div class="svc-wrap">
+        <div class="svc-cover-head">
+            <div>
+                <h2 class="svc-h2" id="svc-cover-h">What we cover at your event</h2>
+                <p class="svc-intro">From 20-person seminars to programmes with several hundred attendees. Anything with a schedule, speakers or a stand can be covered.</p>
+            </div>
+            <div class="svc-cta">
+                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
             </div>
         </div>
+        <ul class="svc-cover-list">
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dc03e0f2b1cc417e6.webp" alt="Speaker with a handheld microphone addressing the room at the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><h3 class="svc-h3">Speakers and stage</h3><p>Keynotes, panels and breakout sessions across the running order.</p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings 2022, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><h3 class="svc-h3">The room</h3><p>Full-house wides, audience reactions and the moments people talk about afterwards.</p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dd4f9b3e5d762ddcd.webp" alt="Delegates smiling and talking during a networking break" width="1280" height="853" loading="lazy"><h3 class="svc-h3">Networking and receptions</h3><p>Arrivals, conversations in the breaks and the evening programme.</p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at a sponsor booth at Flutter Vikings 2022" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Sponsors and exhibitors</h3><p>Stands, staff at work and visitor traffic your partners can use all year.</p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691de9b9840ed1840d329278.webp" alt="Three guests standing together on the front steps of a white residence" width="1600" height="1067" loading="lazy"><h3 class="svc-h3">Press and VIP moments</h3><p>Signings, delegations and the images the press needs first.</p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6225781f774.webp" alt="Flutter Vikings 2022 organising team posing together behind large event letters" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Group photos and portraits</h3><p>Team and speaker group shots on the day, portraits on request.</p></li>
+        </ul>
     </div>
 </section>
 
-<!-- Example coverage options (D6: no fixed menu, no prices, no "pricing" heading) -->
-<section class="section section--lg section-warm">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="overline">Budgeting</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">How Event Photography Fits Your Budget</h2>
-            <p style="margin-top: 16px;">There is no fixed menu. Coverage is quoted from your programme after the brief: how long the event runs, how many rooms need covering, how fast you need the images, and whether video is part of it. To give you a feel for scale before that conversation, we keep example coverage options on the packages page, from a few hours of focused coverage through to multi-day conference programmes.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/packages" class="btn btn-outline-ember" style="text-decoration: none;">See example coverage options →</a>
-                <a href="#" class="btn btn-primary" data-cta="quote">Request a quote for your event</a>
-            </div>
+<section class="svc svc-process" aria-labelledby="svc-process-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow">How a booking works</p>
+        <h2 class="svc-h2" id="svc-process-h">From the first call to the final gallery</h2>
+        <p class="svc-intro">Simple to book, planned around your goals, and you always know what happens next.</p>
+        <ol class="svc-process-list">
+            <li><div><p class="svc-num">01</p><h3 class="svc-h3">Discovery call</h3></div><p class="svc-step">We start with what the photos need to achieve: who they are for, where they will be used and what success looks like for you.</p><p class="svc-yours"><strong>Your part</strong>Tell us about the event.</p></li>
+            <li><div><p class="svc-num">02</p><h3 class="svc-h3">Options on a strategy call</h3></div><p class="svc-step">You get two or three coverage options built around those goals, explained on a strategy call, so you choose with the full picture.</p><p class="svc-yours"><strong>Your part</strong>Bring whoever decides and pick what fits.</p></li>
+            <li><div><p class="svc-num">03</p><h3 class="svc-h3">Agreement and kickoff</h3></div><p class="svc-step">What we cover, what you get and when is written down. At kickoff we go through key people, names and the moments you cannot miss.</p><p class="svc-yours"><strong>Your part</strong>Sign and share your programme.</p></li>
+            <li><div><p class="svc-num">04</p><h3 class="svc-h3">Planning to the day</h3></div><p class="svc-step">We turn your programme into a shot list, keep it current as plans change and check the venue and AV, so the key moments are planned, not chased.</p><p class="svc-yours"><strong>Your part</strong>Tell us when plans change.</p></li>
+            <li><div><p class="svc-num">05</p><h3 class="svc-h3">Event day and delivery</h3></div><p class="svc-step">One contact on site and a crew sized to what we agreed. The full gallery arrives in up to 7 business days, sooner if you added a fast track.</p><p class="svc-yours"><strong>Your part</strong>Host your event.</p></li>
+        </ol>
+    </div>
+</section>
+
+<section class="svc svc-consent" aria-labelledby="svc-consent-h">
+    <div class="svc-wrap svc-split">
+        <div>
+            <p class="svc-eyebrow">Consent and privacy</p>
+            <h2 class="svc-h2 svc-h2--sm" id="svc-consent-h">How we support your event's consent process</h2>
         </div>
+        <ul class="svc-rows">
+            <li><h3 class="svc-h3">Your process, followed</h3><p>Tell us how attendees are informed, and we shoot to that.</p></li>
+            <li><h3 class="svc-h3">No-photo signals honoured</h3><p>Wristbands, lanyards or stickers: brief us and we watch for them. Anyone who asks to be left out is left out.</p></li>
+            <li><h3 class="svc-h3">You control what gets used</h3><p>Delivery goes to you first, in a private gallery, and images come out if someone raises a concern.</p></li>
+        </ul>
     </div>
 </section>
 
-<!-- One booking cross-links -->
-<section class="section section-onyx">
-    <div class="container" style="max-width: 880px; text-align: center;">
-        <div class="gsap-fade">
-            <span class="overline">More than photography</span>
-            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-top: 8px;">One Booking for Photo and Video</h2>
-            <p style="margin-top: 16px;">Most organisers end up coordinating a photographer and a video crew separately. We cover both under one booking and one brief: consistent look, single point of contact, one invoice.</p>
-            <div style="margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://recapmedia.no/services/event-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Event video production in Oslo →</a>
-                <a href="https://recapmedia.no/services/conference-photography-video-oslo" class="btn btn-outline-ember" style="text-decoration: none;">Conference photography and video in Oslo →</a>
-                <a href="https://recapmedia.no/about" class="btn btn-outline-ember" style="text-decoration: none;">Meet the founder behind Recap Media →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="section section--lg section-dark">
-    <div class="container">
-        <div class="section-header gsap-fade" style="text-align: center; margin-bottom: 40px;">
-            <span class="overline">FAQ</span>
-            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em;">Corporate Event Photography Questions, Answered</h2>
+<section class="svc section-light svc-faq" aria-labelledby="svc-faq-h">
+    <div class="svc-wrap svc-split">
+        <div>
+            <p class="svc-eyebrow">FAQ</p>
+            <h2 class="svc-h2 svc-h2--sm" id="svc-faq-h">Event photography questions</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q1" aria-expanded="false" aria-controls="faq-photo-a1">What does corporate event photography in Oslo cover? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a1"><div class="faq-answer-inner">A full programme: registration and arrivals, keynotes, panels, breakout sessions, the sponsor and exhibition floor, networking, and the press or VIP moments you need on record. The point is a library your marketing, PR and internal comms teams can use all year, not a folder of nice pictures.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q2" aria-expanded="false" aria-controls="faq-photo-a2">How quickly will we receive the photos? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a2"><div class="faq-answer-inner">The edited gallery is delivered in up to 7 business days. If your programme runs across several days, we agree the delivery points in the brief so the first day's images do not wait for the last.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q3" aria-expanded="false" aria-controls="faq-photo-a3">Can we get press-ready images on the day of the event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a3"><div class="faq-answer-inner">Yes, when it is arranged in advance. Same-day selects and 24-hour press delivery are planned into the brief rather than improvised on site. We delivered press-ready images within 24 hours for the Scotland&ndash;Norway Decarbonisation Trade Mission in Oslo.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q4" aria-expanded="false" aria-controls="faq-photo-a4">Do we get full commercial usage rights? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a4"><div class="faq-answer-inner">Yes. Every delivered image carries full commercial usage rights: marketing, social, PR, internal comms, sponsor reporting and next year's event promotion. There are no per-channel licensing fees.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q5" aria-expanded="false" aria-controls="faq-photo-a5">Do we get the raw files? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a5"><div class="faq-answer-inner">Not by default. You receive professionally edited high-resolution images. Raw files can be purchased separately, and it is best discussed in advance so we can plan for it.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q6" aria-expanded="false" aria-controls="faq-photo-a6">How many photographers attend, and how do you cover parallel tracks? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a6"><div class="faq-answer-inner">Recap is founder-led: Maks Strzepka shoots your event and stays your single point of contact. For multi-track programmes we plan the rotation against the run-of-show and arrange additional crew under the same booking. At Flutter Vikings 2022 we covered 46 speakers across three parallel rooms over two days.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q7" aria-expanded="false" aria-controls="faq-photo-a7">How do you handle photo consent and GDPR at our event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a7"><div class="faq-answer-inner">You own the consent process for your event and we work inside it. Tell us how attendees are informed, through registration notices, signage or badge markers, and how someone signals that they do not want to be photographed. We shoot to that, anyone who asks to be left out is left out, and images can be removed from the gallery after delivery if someone raises it with you.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q8" aria-expanded="false" aria-controls="faq-photo-a8">Which Oslo venues do you work at? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a8"><div class="faq-answer-inner">Venues we have shot at include Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the Felix Conference Center. We work at any venue in Oslo and beyond, Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum in Lillestrøm included. For a venue that is new to us we coordinate access and scout before the event.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q9" aria-expanded="false" aria-controls="faq-photo-a9">Can one booking cover both photography and video? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a9"><div class="faq-answer-inner">Yes. Photo and video run under one booking, one brief and one point of contact, with a consistent look across everything delivered. Flutter Vikings 2022 was covered that way: roughly 20 hours of footage became 43 published videos alongside the photo library.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q10" aria-expanded="false" aria-controls="faq-photo-a10">Do you offer live streaming? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a10"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q11" aria-expanded="false" aria-controls="faq-photo-a11">Can you shoot headshots or speaker portraits at the event? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a11"><div class="faq-answer-inner">Yes. We set up a small field studio between sessions, so speakers and staff get updated portraits without booking a separate studio day. It works best when a slot for it is blocked in the run-of-show.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-photo-q12" aria-expanded="false" aria-controls="faq-photo-a12">Do you charge travel outside Oslo? <span class="faq-chevron">▾</span></button><div class="faq-answer" id="faq-photo-a12"><div class="faq-answer-inner">Coverage across Oslo and the surrounding area, including Lillestrøm, Sandvika, Fornebu, Drammen, Jessheim, Holmestrand and Moss, is included. Events further out are quoted with travel as a separate line.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q1" aria-expanded="false" aria-controls="faq-photo-a1">How quickly will we receive the photos? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a1"><div class="faq-answer-inner">The full edited gallery arrives in up to 7 business days. If you need images sooner, live selects during the event or a press-ready set within 24 hours can be added when it is agreed before the day. For multi-day programmes we agree delivery points in the brief, so the first day's photos do not wait for the last.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q2" aria-expanded="false" aria-controls="faq-photo-a2">Can you cover parallel rooms or several days? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a2"><div class="faq-answer-inner">Yes. The crew is sized to what we agree: every room covered, or priority sessions agreed in the brief. At Flutter Vikings 2022 that meant 46 speakers across three parallel rooms over two days.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q3" aria-expanded="false" aria-controls="faq-photo-a3">Who may use the photos, and do we get the raw files? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a3"><div class="faq-answer-inner">Every delivered image carries full commercial usage rights: marketing, social media, PR, internal comms and sponsor reports, with no per-channel fees. Raw files are not included by default; they can be purchased separately, and it is best to agree that in advance.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q4" aria-expanded="false" aria-controls="faq-photo-a4">What does event photography cost? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a4"><div class="faq-answer-inner">It depends on the event, so there is no fixed menu. After the discovery call you get coverage options built around your programme. For a feel of scale, see our <a href="https://recapmedia.no/packages">example coverage options</a>.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q5" aria-expanded="false" aria-controls="faq-photo-a5">Do you only work in Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a5"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings, including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q6" aria-expanded="false" aria-controls="faq-photo-a6">Which venues have you worked at? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a6"><div class="faq-answer-inner">We have photographed events at Sommerro, Oslo Event Hub, Ullevaal Stadion, Construction City, Cosmopolite Scene and the former Felix Conference Center. We work at any venue in Oslo and beyond, including Oslo Kongressenter, Clarion Hotel The Hub and NOVA Spektrum.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q7" aria-expanded="false" aria-controls="faq-photo-a7">Can one booking cover both photography and video? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a7"><div class="faq-answer-inner">Yes. Photo and video run under one booking and one brief, with one point of contact. Flutter Vikings 2022 was covered that way: about 20 hours of footage became 43 published videos alongside the photo library. See <a href="https://recapmedia.no/services/event-video-oslo">event video production</a> and <a href="https://recapmedia.no/services/conference-photography-video-oslo">conference photography and video</a>.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-photo-q8" aria-expanded="false" aria-controls="faq-photo-a8">Do you photograph weddings? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-photo-a8"><div class="faq-answer-inner">No. We work with B2B events only: conferences, corporate gatherings, launches and public programmes.</div></div></div>
         </div>
-        <div class="faq-footer">
-            <p>Planning an event? Tell us the date and what you need. We'll reply within one business day.</p>
-            <a href="https://recapmedia.no/contact" class="btn btn-outline-ember" style="flex-shrink: 0;">Get in touch →</a>
+    </div>
+</section>
+
+<section class="svc svc-more" aria-labelledby="svc-more-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
+        <div class="svc-more-grid">
+            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video in Oslo →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
+            <a href="https://recapmedia.no/services/conference-photography-video-oslo"><span class="svc-more-t">Conference photography and video →</span><span class="svc-more-s">Photo and video together for multi-room and multi-day conferences.</span></a>
+            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options →</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="svc svc-close" aria-labelledby="svc-close-h">
+    <div class="svc-wrap svc-close-grid">
+        <div>
+            <h2 class="svc-close-title" id="svc-close-h">Tell us about your event</h2>
+            <p class="svc-close-text"><span>Send a quote request and we book a short discovery call.</span> <span>You then get coverage options for your event, explained on a strategy call.</span> <span>Once you have chosen, we plan the day together.</span></p>
+        </div>
+        <div class="svc-cta">
+            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
         </div>
     </div>
 </section>
 
 </main>
-<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
+<!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
 <footer class="footer">
     <div class="container">
