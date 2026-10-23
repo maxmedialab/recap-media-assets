@@ -412,7 +412,44 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-close-text{margin-top:16px !important;max-width:680px}
 .svc-close-text span{display:block}
 .svc-close .svc-cta{margin-top:0}
+.svc-process-list--6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.svc-stats{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-stats-grid{display:grid;grid-template-columns:300px repeat(5,minmax(0,1fr));gap:24px;align-items:start;padding:36px 0 !important}
+.svc-stats-grid>li+li{padding-left:20px;border-left:1px solid #E4E0D8}
+.svc-stat-n{font-family:var(--font-heading) !important;font-weight:600;font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--color-obsidian) !important}
+.svc-stat-l{margin-top:8px !important;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-charcoal) !important}
+.svc-scope{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-scope-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px;align-items:start}
+.svc-intro span{display:block}
+.svc-rows--stack li{grid-template-columns:1fr;gap:4px}
+.svc-scope .svc-rows{margin-top:32px !important}
+.svc-photo{position:relative}
+.svc-photo>img{width:100%;height:520px;object-fit:cover;border-radius:24px}
+.svc-tracks{margin-top:56px;display:flex;flex-direction:column;gap:56px}
+.svc-track{display:grid;grid-template-columns:200px 1fr;gap:32px}
+.svc-lane .svc-h3{font-size:24px !important}
+.svc-lane p{margin-top:6px !important;font-size:14px}
+.svc-track .svc-speed-wrap{margin-top:0}
+.svc .svc-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;margin-top:56px !important;padding-top:32px;border-top:1px solid var(--color-smoke)}
+.svc-terms li{font-size:15px;color:var(--color-warm-grey)}
+.svc-terms strong{display:block;margin-bottom:4px;font-family:var(--font-heading) !important;font-weight:600;font-size:18px;color:var(--color-cream)}
+.svc-places{padding:88px 0}
+.svc-places-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px}
+.svc-places .svc-intro{font-size:16px}
+.svc-venues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+.svc-venues li{padding:10px 0;border-bottom:1px solid var(--color-warm-grey);font-size:15px;color:var(--color-obsidian) !important}
+.svc-bg-cream .svc-more-grid a{background:var(--color-warm-white)}
+.svc.svc-bg-cream{background:var(--color-cream) !important;border-top:0;border-bottom:0}
+.svc.svc-bg-warm{background:var(--color-warm-white) !important;border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
 @media (max-width:900px){
+.svc-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px}
+.svc-stats-grid>li:first-child{grid-column:1/-1}
+.svc-stats-grid>li+li{padding-left:0;border-left:0}
+.svc-stat-n{font-size:36px}
+.svc-scope-grid,.svc-places-grid,.svc-track{grid-template-columns:1fr;gap:32px}
+.svc-photo>img{height:300px;border-radius:20px}
+.svc-terms{grid-template-columns:1fr}
+.svc-tracks{gap:40px}
 .svc-hero-grid,.svc-addon-grid,.svc-split,.svc-close-grid,.svc-cover-head{grid-template-columns:1fr;gap:32px}
 .svc-more-grid{grid-template-columns:1fr;gap:10px}
 .svc-show{height:auto}
@@ -428,7 +465,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
 .svc-grid .g-more{display:none}
 .svc-line{display:none}
-.svc-speeds{grid-template-columns:1fr;gap:36px;padding-left:28px;border-left:2px solid var(--color-smoke)}
+.svc .svc-speeds{grid-template-columns:1fr;gap:36px;padding-left:28px;border-left:2px solid var(--color-smoke)}
 .svc-speeds li{position:relative}
 .svc-node{position:absolute;left:-37px;top:4px}
 .svc-node--open{left:-35px}
@@ -447,7 +484,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-cta{flex-direction:column;align-items:stretch;text-align:center}
 .svc-cta .btn{justify-content:center !important}
 }
-@media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
+@media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
 @media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}}
 </style>
 
@@ -580,7 +617,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
         <div class="carousel-wrapper">
             <div class="carousel-track">
                 <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 FIlms &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 Films &amp; Media</div></div></div></div>
                 <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
                 <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
                 <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
@@ -703,7 +740,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
     <div class="svc-wrap">
         <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
         <div class="svc-more-grid">
-            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video in Oslo →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
+            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
             <a href="https://recapmedia.no/services/conference-photography-video-oslo"><span class="svc-more-t">Conference photography and video →</span><span class="svc-more-s">Photo and video together for multi-room and multi-day conferences.</span></a>
             <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options →</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
         </div>
