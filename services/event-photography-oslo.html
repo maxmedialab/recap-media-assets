@@ -299,7 +299,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-area{display:flex;align-items:flex-start;gap:8px;margin-top:24px !important;font-size:14px}
 .svc-area svg{flex-shrink:0;margin-top:3px}
 .svc-show{position:relative;height:600px}
-.svc-pause-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.svc-pause-input,.svc-swap-input{position:absolute;left:0;top:0;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
 .svc-slides{position:relative;height:100%;border-radius:24px;overflow:hidden;background:var(--color-onyx)}
 .svc-slides img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:svc-fade 24s infinite both}
 .svc-slides img:nth-of-type(1){animation-delay:-1s}
@@ -308,11 +308,11 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-slides img:nth-of-type(4){animation-delay:17s}
 @keyframes svc-fade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
 .svc-ctrl{position:absolute;right:16px;top:16px;z-index:2;display:flex;align-items:center;gap:10px;background:rgba(20,18,24,.66);border-radius:999px;padding:4px 12px 4px 4px}
-.svc-pause{width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-pause{position:relative;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .svc-ico-play{display:none}
-.svc-pause-input:checked~.svc-ctrl .svc-ico-pause{display:none}
-.svc-pause-input:checked~.svc-ctrl .svc-ico-play{display:block}
-.svc-pause-input:focus-visible~.svc-ctrl .svc-pause{outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-pause-input:checked~.svc-ico-pause{display:none}
+.svc-pause-input:checked~.svc-ico-play{display:block}
+.svc-pause:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
 .svc-dots{display:flex;gap:6px}
 .svc-dot{width:8px;height:8px;border-radius:999px;background:rgba(245,243,239,.4);animation:svc-dot 24s infinite both}
 .svc-dot:nth-child(1){animation-delay:-1s}
@@ -320,7 +320,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-dot:nth-child(3){animation-delay:11s}
 .svc-dot:nth-child(4){animation-delay:17s}
 @keyframes svc-dot{0%{background:rgba(245,243,239,.4)}4%{background:#F5F3EF}25%{background:#F5F3EF}29%{background:rgba(245,243,239,.4)}100%{background:rgba(245,243,239,.4)}}
-.svc-pause-input:checked~.svc-slides img,.svc-pause-input:checked~.svc-ctrl .svc-dot{animation-play-state:paused}
+.svc-show:has(.svc-pause-input:checked) .svc-slides img,.svc-show:has(.svc-pause-input:checked) .svc-dot{animation-play-state:paused}
 .svc-badge{position:absolute;left:-40px;bottom:32px;z-index:2;width:320px;box-sizing:border-box;background:var(--color-warm-white);border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(20,18,24,.12),0 6px 14px rgba(20,18,24,.08)}
 .svc-badge-title{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
 .svc-badge-sub{margin-top:6px !important;font-size:14px}
@@ -348,13 +348,12 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-grid .g-feature.g-more{grid-column:3/span 2;grid-row:4/span 2}
 .svc-gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
 .svc-gallery-bar p{font-size:14px;color:var(--color-stone-dark) !important}
-.svc-swap-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-.svc-swap-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
-.svc-swap-input:focus-visible~.svc-gallery-bar .svc-swap-btn{outline:2px solid var(--color-ember);outline-offset:2px}
-.svc-swap-input:checked~.svc-grid .svc-tile img{animation-play-state:paused}
+.svc-swap-btn{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
+.svc-swap-btn:has(.svc-swap-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-gallery:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
 .svc-swap-play{display:none}
-.svc-swap-input:checked~.svc-gallery-bar .svc-swap-pause{display:none}
-.svc-swap-input:checked~.svc-gallery-bar .svc-swap-play{display:inline}
+.svc-swap-input:checked~.svc-swap-pause{display:none}
+.svc-swap-input:checked~.svc-swap-play{display:inline}
 .svc-speed{background:var(--color-obsidian);padding:96px 0}
 .svc-speed p{color:var(--color-warm-grey)}
 .svc-speed-wrap{position:relative;margin-top:64px}
@@ -399,15 +398,15 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-rows li:last-child{border-bottom:0;padding-bottom:0}
 .svc-rows .svc-h3{font-size:19px !important}
 .svc-rows p{font-size:16px}
-.svc-faq{padding:88px 0;border-top:1px solid #E4E0D8}
+.svc.svc-faq{padding:88px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white) !important}
 .svc-faq .faq-list{max-width:none !important;margin:0 !important}
-.svc-more{padding:56px 0;border-top:1px solid #E4E0D8}
+.svc-more{padding:56px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white)}
 .svc-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px !important}
-.svc-more-grid a{display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;padding:22px 24px;border:1px solid var(--color-warm-grey);border-radius:14px;background:var(--color-warm-white);color:var(--color-charcoal) !important;transition:border-color .2s ease,transform .2s ease}
+.svc-more-grid a{display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;padding:22px 24px;border:1px solid var(--color-warm-grey);border-radius:14px;background:var(--color-cream);color:var(--color-charcoal) !important;transition:border-color .2s ease,transform .2s ease}
 .svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
 .svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
 .svc-more-s{font-size:15px;line-height:1.5}
-.svc-close{background:var(--color-warm-white);border-top:1px solid #E4E0D8;padding:96px 0}
+.svc-close{background:var(--color-cream);border-top:1px solid #E4E0D8;padding:96px 0}
 .svc-close-grid{display:grid;grid-template-columns:7fr 5fr;gap:40px 72px;align-items:center}
 .svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-obsidian) !important}
 .svc-close-text{margin-top:16px !important;max-width:680px}
@@ -480,7 +479,6 @@ Event photography in Oslo for conferences and corporate events. Live selects and
             <p class="svc-area"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Oslo, Fornebu, Sandvika, Lillestrøm, Drammen, Jessheim and beyond</p>
         </div>
         <div class="svc-show">
-            <input type="checkbox" id="svc-pause" class="svc-pause-input">
             <div class="svc-slides">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06de171b8cce23083d2.webp" alt="Speaker talking into a microphone on stage at a business conference" width="1280" height="853" fetchpriority="high">
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e840ed163472d7461.webp" alt="Speaker at a lectern beside a presentation screen, with guests seated at round tables" width="1280" height="853" loading="lazy">
@@ -488,7 +486,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
                 <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dd4f9b3e5d762ddcd.webp" alt="Delegates smiling and talking during a networking break" width="1280" height="853" loading="lazy">
             </div>
             <div class="svc-ctrl">
-                <label for="svc-pause" class="svc-pause" title="Pause or play the photos"><span class="svc-ico-pause"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the photo slideshow</span></label>
+                <label class="svc-pause" title="Pause or play the photos"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the photo slideshow</span></label>
                 <span class="svc-dots" aria-hidden="true"><span class="svc-dot"></span><span class="svc-dot"></span><span class="svc-dot"></span><span class="svc-dot"></span></span>
             </div>
             <div class="svc-badge">
@@ -530,7 +528,6 @@ Event photography in Oslo for conferences and corporate events. Live selects and
         </div>
         <p class="svc-head-links"><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="svc-link">Trade mission case study →</a><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings 2022 case study →</a></p>
         </div>
-        <input type="checkbox" id="svc-swap" class="svc-swap-input">
         <div class="svc-grid">
             <figure class="svc-tile g-feature"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings 2022, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1SEVX3ByqFZWKcQBjr_503XadzuU7RR4Q.webp" alt="Tour group in hard hats and high-visibility jackets posing for a group photo in front of a tanker truck at an industrial site" width="1200" height="800" loading="lazy" style="animation-delay:-0s"></figure>
             <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d300f06289e78d3ed.webp" alt="Two guests in conversation with wine glasses at an evening reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-16UNxCUPFJm-2NrK3Dee84fZumXQxvh5Y.webp" alt="Business travellers in discussion around a table on a train" width="1200" height="800" loading="lazy" style="animation-delay:-3s"></figure>
@@ -547,7 +544,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
         </div>
         <div class="svc-gallery-bar">
             <p>From conferences, receptions, a trade mission and an industry site tour.</p>
-            <label for="svc-swap" class="svc-swap-btn"><span class="svc-swap-pause">Pause the photos</span><span class="svc-swap-play">Play the photos</span></label>
+            <label class="svc-swap-btn"><input type="checkbox" class="svc-swap-input"><span class="svc-swap-pause">Pause the photos</span><span class="svc-swap-play">Play the photos</span></label>
         </div>
     </div>
 </section>
@@ -689,17 +686,6 @@ Event photography in Oslo for conferences and corporate events. Live selects and
     </div>
 </section>
 
-<section class="svc svc-more" aria-labelledby="svc-more-h">
-    <div class="svc-wrap">
-        <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
-        <div class="svc-more-grid">
-            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video in Oslo →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
-            <a href="https://recapmedia.no/services/conference-photography-video-oslo"><span class="svc-more-t">Conference photography and video →</span><span class="svc-more-s">Photo and video together for multi-room and multi-day conferences.</span></a>
-            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options →</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
-        </div>
-    </div>
-</section>
-
 <section class="svc svc-close" aria-labelledby="svc-close-h">
     <div class="svc-wrap svc-close-grid">
         <div>
@@ -709,6 +695,17 @@ Event photography in Oslo for conferences and corporate events. Live selects and
         <div class="svc-cta">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
             <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+        </div>
+    </div>
+</section>
+
+<section class="svc svc-more" aria-labelledby="svc-more-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
+        <div class="svc-more-grid">
+            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video in Oslo →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
+            <a href="https://recapmedia.no/services/conference-photography-video-oslo"><span class="svc-more-t">Conference photography and video →</span><span class="svc-more-s">Photo and video together for multi-room and multi-day conferences.</span></a>
+            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options →</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
         </div>
     </div>
 </section>
