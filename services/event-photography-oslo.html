@@ -335,6 +335,17 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-logos .svc-label{margin:0 !important;white-space:nowrap}
 .svc-logos-grid{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
 .svc-logos-grid .svc-todo{height:52px}
+.svc-band-row{flex:1;min-width:0;display:flex;align-items:center;gap:16px}
+.svc-band{flex:1;min-width:0;padding:8px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.svc-band-track{display:flex;width:max-content;animation:svc-band 40s linear infinite}
+.svc .svc-band-set{display:flex;align-items:center;gap:64px;padding-right:64px}
+.svc-band-set li{flex-shrink:0}
+.svc-band img{width:auto;height:var(--h);opacity:.8;transform:translateY(var(--dy,0))}
+.svc-band .svc-todo{width:128px;height:40px}
+@keyframes svc-band{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.svc-band-row:hover .svc-band-track,.svc-band-row:has(.svc-pause-input:checked) .svc-band-track{animation-play-state:paused}
+.svc-band-btn{position:relative;flex-shrink:0;width:32px;height:32px;box-sizing:border-box;border:1px solid var(--color-warm-grey);border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-band-btn:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
 .svc-gallery{padding:80px 0 72px}
 .svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px 40px}
 .svc-head-links{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px}
@@ -406,12 +417,13 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
 .svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
 .svc-more-s{font-size:15px;line-height:1.5}
-.svc-close{background:var(--color-cream);border-top:1px solid #E4E0D8;padding:96px 0}
-.svc-close-grid{display:grid;grid-template-columns:7fr 5fr;gap:40px 72px;align-items:center}
-.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-obsidian) !important}
-.svc-close-text{margin-top:16px !important;max-width:680px}
+.svc-close{background:var(--color-obsidian);padding:96px 0}
+.svc-close-grid{display:grid;grid-template-columns:1fr auto;gap:40px 72px;align-items:center}
+.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-cream) !important}
+.svc-close-text{margin-top:16px !important;max-width:680px;color:var(--color-warm-grey)}
 .svc-close-text span{display:block}
 .svc-close .svc-cta{margin-top:0}
+.svc-close .svc-link{color:var(--color-cream) !important}
 .svc-process-list--6{grid-template-columns:repeat(6,minmax(0,1fr))}
 .svc-stats{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
 .svc-stats-grid{display:grid;grid-template-columns:300px repeat(5,minmax(0,1fr));gap:24px;align-items:start;padding:36px 0 !important}
@@ -461,6 +473,9 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-trust-s{font-size:13px}
 .svc-logos{flex-direction:column;align-items:stretch}
 .svc-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc .svc-band-set{gap:28px;padding-right:28px}
+.svc-band img{height:var(--hp)}
+.svc-band .svc-todo{width:96px;height:32px}
 .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
 .svc-grid .g-more{display:none}
@@ -485,7 +500,7 @@ Event photography in Oslo for conferences and corporate events. Live selects and
 .svc-cta .btn{justify-content:center !important}
 }
 @media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
-@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px}.svc-band{-webkit-mask-image:none;mask-image:none}}
 </style>
 
 <section class="svc svc-hero">
@@ -545,12 +560,15 @@ Event photography in Oslo for conferences and corporate events. Live selects and
         </ul>
         <div class="svc-logos">
             <p class="svc-label">Clients include</p>
-            <div class="svc-logos-grid">
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
+            <div class="svc-band-row">
+                <div class="svc-band">
+                    <div class="svc-band-track">
+                        <ul class="svc-band-set"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="NIRAS" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="Patch" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="Tibnor" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                    </div>
+                </div>
+                <label class="svc-band-btn" title="Pause or play the logos"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the moving logos</span></label>
             </div>
         </div>
     </div>
