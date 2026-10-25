@@ -20,6 +20,9 @@
   follow the SEO fields automatically. No CSS/JS pin bump for this page.
   Copy to the clipboard as UTF-8 (LC_ALL=en_US.UTF-8 pbcopy).
 
+  HOLD: the Tibnor logo in the client row must not go live before
+  Thu 29 Oct 2026 (the Tibnor job). Do not paste Part 4 before then.
+
   Build notes are kept out of the four parts so they never get published.
   Brief and decisions: ../../briefs/services-conference-photography-video-oslo.md
   Launch state + per-page checklist: ../../launch-manifest.md
@@ -335,6 +338,17 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-logos .svc-label{margin:0 !important;white-space:nowrap}
 .svc-logos-grid{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
 .svc-logos-grid .svc-todo{height:52px}
+.svc-band-row{flex:1;min-width:0;display:flex;align-items:center;gap:16px}
+.svc-band{flex:1;min-width:0;padding:8px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.svc-band-track{display:flex;width:max-content;animation:svc-band 40s linear infinite}
+.svc .svc-band-set{display:flex;align-items:center;gap:64px;padding-right:64px}
+.svc-band-set li{flex-shrink:0}
+.svc-band img{width:auto;height:var(--h);opacity:.8;transform:translateY(var(--dy,0))}
+.svc-band .svc-todo{width:128px;height:40px}
+@keyframes svc-band{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.svc-band-row:hover .svc-band-track,.svc-band-row:has(.svc-pause-input:checked) .svc-band-track{animation-play-state:paused}
+.svc-band-btn{position:relative;flex-shrink:0;width:32px;height:32px;box-sizing:border-box;border:1px solid var(--color-warm-grey);border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-band-btn:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
 .svc-gallery{padding:80px 0 72px}
 .svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px 40px}
 .svc-head-links{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px}
@@ -406,12 +420,13 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
 .svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
 .svc-more-s{font-size:15px;line-height:1.5}
-.svc-close{background:var(--color-cream);border-top:1px solid #E4E0D8;padding:96px 0}
+.svc-close{background:var(--color-obsidian);padding:96px 0}
 .svc-close-grid{display:grid;grid-template-columns:7fr 5fr;gap:40px 72px;align-items:center}
-.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-obsidian) !important}
-.svc-close-text{margin-top:16px !important;max-width:680px}
+.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-cream) !important}
+.svc-close-text{margin-top:16px !important;max-width:680px;color:var(--color-warm-grey)}
 .svc-close-text span{display:block}
 .svc-close .svc-cta{margin-top:0}
+.svc-close .svc-link{color:var(--color-cream) !important}
 .svc-process-list--6{grid-template-columns:repeat(6,minmax(0,1fr))}
 .svc-stats{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
 .svc-stats-grid{display:grid;grid-template-columns:300px repeat(5,minmax(0,1fr));gap:24px;align-items:start;padding:36px 0 !important}
@@ -461,6 +476,9 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-trust-s{font-size:13px}
 .svc-logos{flex-direction:column;align-items:stretch}
 .svc-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc .svc-band-set{gap:28px;padding-right:28px}
+.svc-band img{height:var(--hp)}
+.svc-band .svc-todo{width:96px;height:32px}
 .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
 .svc-grid .g-more{display:none}
@@ -485,7 +503,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-cta .btn{justify-content:center !important}
 }
 @media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
-@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px}.svc-band{-webkit-mask-image:none;mask-image:none}}
 </style>
 
 <style>
@@ -497,6 +515,31 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc .svc-terms{margin-top:48px !important;padding-top:24px}
 .svc .svc-terms li{font-size:14px;text-wrap:pretty}
 .svc .svc-terms strong{margin-bottom:2px;font-size:15px}
+.svc-photo>img{object-position:50% 30%}
+.svc-badge-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-charcoal) !important}
+.svc-badge-label+.svc-badge-title{margin-top:6px !important;font-size:20px;line-height:1.3}
+@media (min-width:901px){.svc-photo .svc-badge{left:24px;right:24px;bottom:24px;width:auto}}
+.svc-speed--run .svc-node{box-sizing:border-box;border:2px solid var(--color-ember);background:var(--color-ember)}
+.svc-speed--run.is-ready .svc-node{background:var(--color-obsidian);border-color:var(--color-cream)}
+.svc-runner{position:absolute;left:0;top:0;z-index:1;width:16px;height:16px;border-radius:999px;background:var(--color-ember);box-shadow:0 0 0 6px rgba(232,89,60,.22);opacity:0;pointer-events:none;transform:translate(var(--x1,0),var(--y1,0))}
+.svc-track.is-on .svc-runner{animation:svc-run 6.4s ease-in-out forwards}
+.svc-track.is-on .svc-node{animation:svc-lit .3s ease forwards}
+.svc-track.is-on li:nth-child(1) .svc-node{animation-delay:.4s}
+.svc-track.is-on li:nth-child(2) .svc-node{animation-delay:3.05s}
+.svc-track.is-on li:nth-child(3) .svc-node{animation-delay:6.05s}
+.svc-track+.svc-track.is-on .svc-runner{animation-delay:.5s}
+.svc-track+.svc-track.is-on li:nth-child(1) .svc-node{animation-delay:.9s}
+.svc-track+.svc-track.is-on li:nth-child(2) .svc-node{animation-delay:3.55s}
+.svc-track+.svc-track.is-on li:nth-child(3) .svc-node{animation-delay:6.55s}
+@keyframes svc-lit{to{background:var(--color-ember);border-color:var(--color-ember)}}
+@keyframes svc-run{0%{opacity:0;transform:translate(var(--x1),var(--y1))}6%,15%{opacity:1;transform:translate(var(--x1),var(--y1))}50%,62%{transform:translate(var(--x2),var(--y2))}97%,100%{opacity:1;transform:translate(var(--x3),var(--y3))}}
+.svc-vid{position:relative}
+.svc-vid video{display:block;width:100%;height:240px;object-fit:cover;border-radius:14px;background:var(--color-onyx)}
+.svc-vid-tag{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:5px;padding:5px 11px 5px 9px;border-radius:999px;background:rgba(20,18,24,.72);color:var(--color-cream) !important;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.2}
+.svc-vid-bar{display:flex;justify-content:flex-end;margin-top:28px}
+@media (max-width:900px){.svc-vid video{height:113px;border-radius:10px}.svc-vid-tag{left:8px;top:8px;padding:3px 8px 3px 6px;font-size:10px}}
+@media (prefers-reduced-motion:reduce){.svc-runner,.svc-vid-bar{display:none}}
+@media (max-width:600px){.svc-badge-label{font-size:11px}.svc-badge-label+.svc-badge-title{font-size:17px}}
 @media (max-width:600px){.svc-cap-l{display:none}.svc-cap-s{display:inline}.svc-venues{grid-template-columns:1fr}}
 @media (max-width:480px){.svc-hero .svc-eyebrow{font-size:12px !important}.svc-chips li:nth-child(5){order:6}.svc-chips li:nth-child(6){order:9}.svc-chips li:nth-child(7){order:5}.svc-chips li:nth-child(8){order:7}.svc-chips li:nth-child(9){order:8}.svc-chips li:nth-child(n+10){order:10}}
 </style>
@@ -530,10 +573,10 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </div>
         <div class="svc-show">
             <div class="svc-slides">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats applauding a talk at Flutter Vikings, Oslo" width="1024" height="683" fetchpriority="high">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f064072767184.webp" alt="Speaker in a yellow t-shirt on stage beside a large slide at Flutter Vikings" width="1024" height="683" loading="lazy">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view from the back of the main hall towards the stage and the Flutter Vikings letters" width="1024" height="683" loading="lazy">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f06c8b5767198.webp" alt="Speaker with a headset microphone presenting from a Felix lectern at Flutter Vikings" width="1024" height="683" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats applauding a talk at Flutter Vikings, Oslo" width="1024" height="683" fetchpriority="high">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f064072767184.webp" alt="Speaker in a yellow t-shirt on stage beside a large slide at Flutter Vikings" width="1024" height="683" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view from the back of the main hall towards the stage and the Flutter Vikings letters" width="1024" height="683" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f06c8b5767198.webp" alt="Speaker with a headset microphone presenting from a Felix lectern at Flutter Vikings" width="1024" height="683" loading="lazy">
             </div>
             <div class="svc-ctrl">
                 <label class="svc-pause" title="Pause or play the photos"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the photo slideshow</span></label>
@@ -560,12 +603,15 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </ul>
         <div class="svc-logos">
             <p class="svc-label">Clients include</p>
-            <div class="svc-logos-grid">
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
-                <p class="svc-todo">[Client logo]</p>
+            <div class="svc-band-row">
+                <div class="svc-band">
+                    <div class="svc-band-track">
+                        <ul class="svc-band-set"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="NIRAS" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="Patch" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="Tibnor" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                    </div>
+                </div>
+                <label class="svc-band-btn" title="Pause or play the logos"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the moving logos</span></label>
             </div>
         </div>
     </div>
@@ -581,18 +627,18 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         <p class="svc-head-links"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings case study →</a><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo#sessions" class="svc-link">Watch the session recordings →</a></p>
         </div>
         <div class="svc-grid">
-            <figure class="svc-tile g-feature"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1SEVX3ByqFZWKcQBjr_503XadzuU7RR4Q.webp" alt="Tour group in hard hats and high-visibility jackets posing for a group photo in front of a tanker truck at an industrial site" width="1200" height="800" loading="lazy" style="animation-delay:-0s"></figure>
-            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d300f06289e78d3ed.webp" alt="Two guests in conversation with wine glasses at an evening reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-16UNxCUPFJm-2NrK3Dee84fZumXQxvh5Y.webp" alt="Business travellers in discussion around a table on a train" width="1200" height="800" loading="lazy" style="animation-delay:-3s"></figure>
-            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f064072767184.webp" alt="Speaker in a yellow t-shirt presenting on stage at Flutter Vikings" width="1024" height="683" loading="lazy" style="animation-delay:-6s"></figure>
-            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at a sponsor booth at Flutter Vikings" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1faDY8aw4rIN2U4aeX1K90xWXgGW_5m0g.webp" alt="Guide in a hard hat and high-visibility jacket talking to visitors on a site tour" width="1200" height="800" loading="lazy" style="animation-delay:-9s"></figure>
-            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06ec03e0f815dc417fe.webp" alt="Two delegates smiling during a conversation at a garden reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f0695bc767185.webp" alt="Attendees talking in the exhibition area at Flutter Vikings" width="1024" height="683" loading="lazy" style="animation-delay:-12s"></figure>
-            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb85e13ec92cdf916a1.webp" alt="Two conference attendees laughing together in the exhibition hall" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1c0H4vjn3wuZMKMoUsoHabnQvA3y471-t.webp" alt="Visitors in hard hats and high-visibility jackets walking through an industrial facility" width="1200" height="800" loading="lazy" style="animation-delay:-15s"></figure>
-            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view of a full conference room facing the stage at Flutter Vikings" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06e5e13ecf376fb6ef2.webp" alt="Delegates networking in a garden during an evening reception" width="1280" height="853" loading="lazy" style="animation-delay:-18s"></figure>
-            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dd4f9b3699b62ddd1.webp" alt="Guests with drinks talking during a reception" width="900" height="600" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bfe713fc48b.webp" alt="Speaker in a mustard jacket presenting to a seated audience" width="1024" height="683" loading="lazy" style="animation-delay:-21s"></figure>
-            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1Oux9E-W8O8MNjs03DCaxFL7-LFydH_wi.webp" alt="Guide explaining a project in front of an outdoor display board" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d88e1e6716884465d.webp" alt="Delegates seated at round tables during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-24s"></figure>
-            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f06c8b5767198.webp" alt="Speaker at a lectern on stage at Flutter Vikings, Felix Conference Center" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06dc03e0f2eb2c417e1.webp" alt="Three guests in conversation at a reception" width="1280" height="853" loading="lazy" style="animation-delay:-27s"></figure>
-            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06ec03e0f6186c417ff.webp" alt="Guests standing and listening during a reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1zFHAR89lQEg8Agbbh9x3zdGOsvCoO8FJ.webp" alt="Visitors with umbrellas gathered outdoors under a rainbow" width="1200" height="800" loading="lazy" style="animation-delay:-30s"></figure>
-            <figure class="svc-tile g-feature g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/patch-1thJ6TFDnR9uqDWE-UgZUEnPIZ80cNIAg.webp" alt="Presenter speaking to a group in a meeting room with screens" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dc06d840ed121322d7442.webp" alt="Delegate speaking into a handheld microphone from the audience during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-33s"></figure>
+            <figure class="svc-tile g-feature"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1SEVX3ByqFZWKcQBjr_503XadzuU7RR4Q.webp" alt="Tour group in hard hats and high-visibility jackets posing for a group photo in front of a tanker truck at an industrial site" width="1200" height="800" loading="lazy" style="animation-delay:-0s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06d300f06289e78d3ed.webp" alt="Two guests in conversation with wine glasses at an evening reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-16UNxCUPFJm-2NrK3Dee84fZumXQxvh5Y.webp" alt="Business travellers in discussion around a table on a train" width="1200" height="800" loading="lazy" style="animation-delay:-3s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f064072767184.webp" alt="Speaker in a yellow t-shirt presenting on stage at Flutter Vikings" width="1024" height="683" loading="lazy" style="animation-delay:-6s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at a sponsor booth at Flutter Vikings" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1faDY8aw4rIN2U4aeX1K90xWXgGW_5m0g.webp" alt="Guide in a hard hat and high-visibility jacket talking to visitors on a site tour" width="1200" height="800" loading="lazy" style="animation-delay:-9s"></figure>
+            <figure class="svc-tile"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06ec03e0f815dc417fe.webp" alt="Two delegates smiling during a conversation at a garden reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f0695bc767185.webp" alt="Attendees talking in the exhibition area at Flutter Vikings" width="1024" height="683" loading="lazy" style="animation-delay:-12s"></figure>
+            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb85e13ec92cdf916a1.webp" alt="Two conference attendees laughing together in the exhibition hall" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1c0H4vjn3wuZMKMoUsoHabnQvA3y471-t.webp" alt="Visitors in hard hats and high-visibility jackets walking through an industrial facility" width="1200" height="800" loading="lazy" style="animation-delay:-15s"></figure>
+            <figure class="svc-tile g-wide"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view of a full conference room facing the stage at Flutter Vikings" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06e5e13ecf376fb6ef2.webp" alt="Delegates networking in a garden during an evening reception" width="1280" height="853" loading="lazy" style="animation-delay:-18s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06dd4f9b3699b62ddd1.webp" alt="Guests with drinks talking during a reception" width="900" height="600" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47bfe713fc48b.webp" alt="Speaker in a mustard jacket presenting to a seated audience" width="1024" height="683" loading="lazy" style="animation-delay:-21s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1Oux9E-W8O8MNjs03DCaxFL7-LFydH_wi.webp" alt="Guide explaining a project in front of an outdoor display board" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06d88e1e6716884465d.webp" alt="Delegates seated at round tables during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-24s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f06c8b5767198.webp" alt="Speaker at a lectern on stage at Flutter Vikings, Felix Conference Center" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06dc03e0f2eb2c417e1.webp" alt="Three guests in conversation at a reception" width="1280" height="853" loading="lazy" style="animation-delay:-27s"></figure>
+            <figure class="svc-tile g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06ec03e0f6186c417ff.webp" alt="Guests standing and listening during a reception" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1zFHAR89lQEg8Agbbh9x3zdGOsvCoO8FJ.webp" alt="Visitors with umbrellas gathered outdoors under a rainbow" width="1200" height="800" loading="lazy" style="animation-delay:-30s"></figure>
+            <figure class="svc-tile g-feature g-more"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1thJ6TFDnR9uqDWE-UgZUEnPIZ80cNIAg.webp" alt="Presenter speaking to a group in a meeting room with screens" width="1200" height="800" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dc06d840ed121322d7442.webp" alt="Delegate speaking into a handheld microphone from the audience during a conference session" width="1280" height="853" loading="lazy" style="animation-delay:-33s"></figure>
         </div>
         <div class="svc-gallery-bar">
             <p>From conferences, receptions, a trade mission and an industry site tour.</p>
@@ -615,10 +661,10 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
                 </ul>
             </div>
             <div class="svc-photo">
-                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47b614f3fc48c.webp" alt="Attendees standing and talking between the tables of a breakout room after a session at Flutter Vikings" width="1024" height="683" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47b614f3fc48c.webp" alt="Attendees standing and talking between the tables of a breakout room after a session at Flutter Vikings" width="1024" height="683" loading="lazy">
                 <div class="svc-badge">
-                    <p class="svc-badge-title">How Flutter Vikings was scoped</p>
-                    <p class="svc-badge-sub">Every room covered over two days, with full session recordings of the talks.</p>
+                    <p class="svc-badge-label">How we covered Flutter Vikings</p>
+                    <p class="svc-badge-title">Three parallel rooms over two days: photos across the whole venue and full session recordings of the talks.</p>
                     <p class="svc-badge-link"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study →</a></p>
                 </div>
             </div>
@@ -626,7 +672,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
     </div>
 </section>
 
-<section class="svc svc-dark svc-speed" aria-labelledby="svc-speed-h">
+<section class="svc svc-dark svc-speed svc-speed--run" aria-labelledby="svc-speed-h">
     <div class="svc-wrap">
         <h2 class="svc-h2" id="svc-speed-h">When your conference photos and video arrive</h2>
         <p class="svc-intro">Photos and video each run on their own track. Fast options are agreed before the event.</p>
@@ -638,8 +684,9 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
                     <ol class="svc-speeds">
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">During the event</p><h4 class="svc-h3">Live selects</h4><p class="svc-speed-text">A few selected photos while the event is running, or within hours of it.</p><p class="svc-tag">Optional</p></li>
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Within 24 hours</p><h4 class="svc-h3">Press-ready set</h4><p class="svc-speed-text">A press-ready selection the next day, for press, sponsor and stakeholder updates.</p><p class="svc-tag">Optional</p></li>
-                        <li><span class="svc-node svc-node--open" aria-hidden="true"></span><p class="svc-when">Up to 7 business days</p><h4 class="svc-h3">Full gallery</h4><p class="svc-speed-text">The full edited gallery from every session and room in your scope.</p><p class="svc-tag svc-tag--std">Standard</p></li>
+                        <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Up to 7 business days</p><h4 class="svc-h3">Full gallery</h4><p class="svc-speed-text">The full edited gallery from every session and room in your scope.</p><p class="svc-tag svc-tag--std">Standard</p></li>
                     </ol>
+                    <span class="svc-runner" aria-hidden="true"></span>
                 </div>
             </div>
             <div class="svc-track">
@@ -648,9 +695,10 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
                     <div class="svc-line" aria-hidden="true"></div>
                     <ol class="svc-speeds">
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Agreed in the brief</p><h4 class="svc-h3">Faster highlight cut</h4><p class="svc-speed-text">A short cut ahead of the hero film, when your comms plan needs one sooner.</p><p class="svc-tag">Optional</p></li>
-                        <li><span class="svc-node svc-node--open" aria-hidden="true"></span><p class="svc-when">Up to 14 business days</p><h4 class="svc-h3">Hero film</h4><p class="svc-speed-text">Your main highlight film, typically around 2 minutes, depending on the event.</p><p class="svc-tag svc-tag--std">Standard</p></li>
+                        <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Up to 14 business days</p><h4 class="svc-h3">Hero film</h4><p class="svc-speed-text">Your main highlight film, typically around 2 minutes, depending on the event.</p><p class="svc-tag svc-tag--std">Standard</p></li>
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">With the hero film</p><h4 class="svc-h3">Content package</h4><p class="svc-speed-text">Content clips cut from the same footage, plus session recordings if they are in your scope.</p><p class="svc-tag">Optional</p></li>
                     </ol>
+                    <span class="svc-runner" aria-hidden="true"></span>
                 </div>
             </div>
         </div>
@@ -703,13 +751,16 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             </div>
         </div>
         <ul class="svc-cover-list">
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6c6bd81f773.webp" alt="Wide view from the back of the main hall towards the stage at Flutter Vikings" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Keynotes and the main stage</h3><p><span class="svc-cap-l">Keynotes, panels and the moments the whole room reacts to.</span><span class="svc-cap-s">Keynotes, panels and the moments the room reacts to.</span></p></li>
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting from a lectern in a smaller session room at Flutter Vikings" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Parallel rooms and workshops</h3><p><span class="svc-cap-l">Talks and workshops in the smaller rooms, covered as agreed in the brief.</span><span class="svc-cap-s">The smaller rooms, as agreed in the brief.</span></p></li>
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f0639bb767199.webp" alt="Attendees listening in tiered seats under the Felix Konferansesenter sign" width="1024" height="683" loading="lazy"><h3 class="svc-h3">The audience</h3><p><span class="svc-cap-l">Full rooms, attentive faces and the reactions people remember.</span><span class="svc-cap-s">Full rooms and the reactions people remember.</span></p></li>
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at the Sentry sponsor booth at Flutter Vikings" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Sponsors and the expo floor</h3><p><span class="svc-cap-l">Stands, demos and visitor traffic your sponsors can use all year.</span><span class="svc-cap-s">Stands, demos and visitor traffic.</span></p></li>
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb8300f0695bc767185.webp" alt="Two attendees in conversation on the expo floor between sessions" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Networking and breaks</h3><p><span class="svc-cap-l">Arrivals, conversations between sessions and the evening programme.</span><span class="svc-cap-s">Arrivals, breaks and the evening programme.</span></p></li>
-            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2f5d2c0/images/691dabb888e1e6225781f774.webp" alt="Flutter Vikings organising team posing together behind large event letters" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Team and speaker photos</h3><p>Group shots on the day, portraits on request.</p></li>
+            <li><div class="svc-vid"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/cover-keynotes-poster.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/video/cover-keynotes.mp4" aria-label="Video clip: speakers presenting on a conference main stage to a full hall"></video><span class="svc-vid-tag" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4v16l13-8z"></path></svg>Video</span></div><h3 class="svc-h3">Keynotes and the main stage</h3><p><span class="svc-cap-l">Keynotes, panels and the moments the whole room reacts to.</span><span class="svc-cap-s">Keynotes, panels and the moments the room reacts to.</span></p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47bfe713fc48b.webp" alt="Speaker presenting from a lectern in a smaller session room at Flutter Vikings" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Parallel rooms and workshops</h3><p><span class="svc-cap-l">Talks and workshops in the smaller rooms, covered as agreed in the brief.</span><span class="svc-cap-s">The smaller rooms, as agreed in the brief.</span></p></li>
+            <li><div class="svc-vid"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/cover-audience-poster.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/video/cover-audience.mp4" aria-label="Video clip: conference attendees laughing and applauding in their seats"></video><span class="svc-vid-tag" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4v16l13-8z"></path></svg>Video</span></div><h3 class="svc-h3">The audience</h3><p><span class="svc-cap-l">Full rooms, attentive faces and the reactions people remember.</span><span class="svc-cap-s">Full rooms and the reactions people remember.</span></p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47bf71d3fc492.webp" alt="Attendees talking with staff at the Sentry sponsor booth at Flutter Vikings" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Sponsors and the expo floor</h3><p><span class="svc-cap-l">Stands, demos and visitor traffic your sponsors can use all year.</span><span class="svc-cap-s">Stands, demos and visitor traffic.</span></p></li>
+            <li><div class="svc-vid"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/cover-networking-poster.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/video/cover-networking.mp4" aria-label="Video clip: attendees talking in the hall and at a sponsor stand between sessions"></video><span class="svc-vid-tag" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="#F5F3EF" aria-hidden="true"><path d="M7 4v16l13-8z"></path></svg>Video</span></div><h3 class="svc-h3">Networking and breaks</h3><p><span class="svc-cap-l">Arrivals, conversations between sessions and the evening programme.</span><span class="svc-cap-s">Arrivals, breaks and the evening programme.</span></p></li>
+            <li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb888e1e6225781f774.webp" alt="Flutter Vikings organising team posing together behind large event letters" width="1024" height="683" loading="lazy"><h3 class="svc-h3">Team and speaker photos</h3><p>Group shots on the day, portraits on request.</p></li>
         </ul>
+        <div class="svc-vid-bar">
+            <label class="svc-swap-btn"><input type="checkbox" class="svc-swap-input"><span class="svc-swap-pause">Pause the videos</span><span class="svc-swap-play">Play the videos</span></label>
+        </div>
     </div>
 </section>
 
@@ -777,7 +828,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
     </div>
 </section>
 
-<section class="svc svc-close svc-bg-warm" aria-labelledby="svc-close-h">
+<section class="svc svc-close" aria-labelledby="svc-close-h">
     <div class="svc-wrap svc-close-grid">
         <div>
             <h2 class="svc-close-title" id="svc-close-h">Tell us about your event</h2>
@@ -790,7 +841,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
     </div>
 </section>
 
-<section class="svc svc-more svc-bg-cream" aria-labelledby="svc-more-h">
+<section class="svc svc-more" aria-labelledby="svc-more-h">
     <div class="svc-wrap">
         <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
         <div class="svc-more-grid">
@@ -800,6 +851,74 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </div>
     </div>
 </section>
+
+<script>
+(function () {
+    'use strict';
+    var band = document.querySelector('.svc-speed--run');
+    if (!band || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var tracks = Array.prototype.slice.call(band.querySelectorAll('.svc-track'));
+    function place() {
+        tracks.forEach(function (track) {
+            var wrap = track.querySelector('.svc-speed-wrap');
+            var dot = track.querySelector('.svc-runner');
+            if (!wrap || !dot) return;
+            var box = wrap.getBoundingClientRect();
+            Array.prototype.slice.call(wrap.querySelectorAll('.svc-node')).forEach(function (node, i) {
+                var r = node.getBoundingClientRect();
+                dot.style.setProperty('--x' + (i + 1), Math.round(r.left - box.left) + 'px');
+                dot.style.setProperty('--y' + (i + 1), Math.round(r.top - box.top) + 'px');
+            });
+        });
+    }
+    place();
+    band.classList.add('is-ready');
+    window.addEventListener('resize', place);
+    window.addEventListener('load', place);
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            place();
+            e.target.classList.add('is-on');
+            io.unobserve(e.target);
+        });
+    }, { threshold: 0.4 });
+    tracks.forEach(function (track) { io.observe(track); });
+})();
+</script>
+
+<script>
+(function () {
+    'use strict';
+    var sec = document.querySelector('.svc-cover');
+    if (!sec || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var vids = Array.prototype.slice.call(sec.querySelectorAll('video[data-src]'));
+    var toggle = sec.querySelector('.svc-vid-bar .svc-swap-input');
+    function stopped() { return toggle && toggle.checked; }
+    function start(v) {
+        if (!v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src'));
+        v.muted = true;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+    }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            e.target.inView = e.isIntersecting;
+            if (e.isIntersecting && !stopped()) start(e.target);
+            else e.target.pause();
+        });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+    if (toggle) toggle.addEventListener('change', function () {
+        vids.forEach(function (v) {
+            if (stopped()) v.pause();
+            else if (v.inView) start(v);
+        });
+    });
+})();
+</script>
 
 </main>
 <!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
