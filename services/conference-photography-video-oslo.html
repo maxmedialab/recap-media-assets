@@ -276,6 +276,8 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .nav:not(.scrolled){background-color:rgba(20,18,24,.92) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important}
 .svc{font-family:var(--font-body) !important;color:var(--color-charcoal);font-size:17px;line-height:1.6}
 .svc p{margin:0;text-wrap:pretty}
+.svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead{text-wrap:balance}
+.svc .svc-nw{white-space:nowrap !important}
 .svc ul,.svc ol{list-style:none;margin:0;padding:0}
 .svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
 .svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
@@ -286,7 +288,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-h3{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:21px !important;line-height:1.2 !important;color:var(--color-obsidian) !important}
 .svc-dark .svc-h2,.svc-dark .svc-h3{color:var(--color-cream) !important}
 .svc-lead{margin-top:24px !important;max-width:560px;font-size:19px;line-height:1.55}
-.svc-intro{margin-top:16px !important;max-width:680px}
+.svc-intro{margin-top:16px !important;max-width:720px}
 .svc-label{margin:28px 0 10px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
 .svc-link{color:var(--color-obsidian) !important;font-weight:600 !important;text-decoration:underline !important;text-decoration-color:var(--color-ember) !important;text-decoration-thickness:2px !important;text-underline-offset:5px !important}
 .svc-link:hover{color:var(--color-ember-deep) !important}
@@ -362,7 +364,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-grid .g-feature.g-more{grid-column:3/span 2;grid-row:4/span 2}
 .svc-gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
 .svc-gallery-bar p{font-size:14px;color:var(--color-stone-dark) !important}
-.svc-swap-btn{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
+.svc-swap-btn{position:relative;display:inline-flex;flex-shrink:0;white-space:nowrap;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
 .svc-swap-btn:has(.svc-swap-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
 .svc-gallery:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
 .svc-swap-play{display:none}
@@ -526,6 +528,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 .svc-rows li{grid-template-columns:1fr;gap:4px}
 }
 @media (max-width:600px){
+.svc-gallery-bar{flex-wrap:wrap}
 .svc-cta{flex-direction:column;align-items:stretch;text-align:center}
 .svc-cta .btn{justify-content:center !important}
 }
@@ -563,6 +566,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 @media (max-width:600px){.svc-badge-label{font-size:11px}.svc-badge-label+.svc-badge-title{font-size:17px}}
 @media (max-width:600px){.svc-cap-l{display:none}.svc-cap-s{display:inline}}
 @media (max-width:480px){.svc-hero .svc-eyebrow{font-size:12px !important}.svc-chips li:nth-child(5){order:6}.svc-chips li:nth-child(6){order:9}.svc-chips li:nth-child(7){order:5}.svc-chips li:nth-child(8){order:7}.svc-chips li:nth-child(9){order:8}.svc-chips li:nth-child(n+10){order:10}}
+@media (min-width:1200px){.svc-stats-grid{grid-template-columns:minmax(0,1fr) repeat(5,max-content)}.svc-stat-l{white-space:nowrap}}
 </style>
 
 <section class="svc svc-hero">
@@ -573,8 +577,8 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             <p class="svc-lead">Your team gets photos and video across parallel rooms and several days, planned around your programme and the sessions that matter most.</p>
             <p class="svc-label">Built for</p>
             <ul class="svc-chips">
-                <li>Multi-track conferences</li>
-                <li>Multi-day summits</li>
+                <li><span class="svc-nw">Multi-track</span> conferences</li>
+                <li><span class="svc-nw">Multi-day</span> summits</li>
                 <li>Trade fairs</li>
                 <li>Gala dinners</li>
                 <li>Seminars</li>
@@ -588,7 +592,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             </ul>
             <div class="svc-cta">
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free <span class="svc-nw">20-minute</span> call</a>
             </div>
             <p class="svc-area"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Oslo, Fornebu, Sandvika, Lillestrøm, Drammen, Jessheim and beyond</p>
         </div>
@@ -606,7 +610,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             <div class="svc-badge">
                 <p class="svc-badge-title">Three parallel rooms, photographed and filmed</p>
                 <p class="svc-badge-sub">Flutter Vikings, Oslo</p>
-                <p class="svc-badge-link"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study →</a></p>
+                <p class="svc-badge-link"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study&nbsp;→</a></p>
             </div>
         </div>
     </div>
@@ -615,7 +619,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 <section class="svc svc-stats" aria-label="Flutter Vikings in numbers">
     <div class="svc-wrap">
         <ul class="svc-stats-grid">
-            <li><p class="svc-trust-t">Flutter Vikings</p><p class="svc-trust-s">Photographed and filmed at the former Felix Conference Center, Oslo</p><p style="margin-top:8px;font-size:14px;"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study →</a></p></li>
+            <li><p class="svc-trust-t">Flutter Vikings</p><p class="svc-trust-s">Photographed and filmed at the former Felix Conference Center, Oslo</p><p style="margin-top:8px;font-size:14px;"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study&nbsp;→</a></p></li>
             <li><p class="svc-stat-n">3</p><p class="svc-stat-l">Parallel rooms</p></li>
             <li><p class="svc-stat-n">46</p><p class="svc-stat-l">Speakers</p></li>
             <li><p class="svc-stat-n">2</p><p class="svc-stat-l">Days</p></li>
@@ -645,7 +649,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             <h2 class="svc-h2" id="svc-gallery-h">Selected event photography</h2>
             <p class="svc-intro">Real photos from client events, as delivered to the organisers.</p>
         </div>
-        <p class="svc-head-links"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings case study →</a><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo#sessions" class="svc-link">Watch the session recordings →</a></p>
+        <p class="svc-head-links"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings case study&nbsp;→</a><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo#sessions" class="svc-link">Watch the session recordings&nbsp;→</a></p>
         </div>
         <div class="svc-grid">
             <figure class="svc-tile g-feature"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb859e47b47aa3fc48d.webp" alt="Full auditorium with red seats at Flutter Vikings, Felix Conference Center, Oslo" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/patch-1SEVX3ByqFZWKcQBjr_503XadzuU7RR4Q.webp" alt="Tour group in hard hats and high-visibility jackets posing for a group photo in front of a tanker truck at an industrial site" width="1200" height="800" loading="lazy" style="animation-delay:-0s"></figure>
@@ -670,7 +674,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
 
 <section class="svc svc-scope" aria-labelledby="svc-scope-h">
     <div class="svc-wrap">
-        <p class="svc-eyebrow">Multi-track conferences</p>
+        <p class="svc-eyebrow"><span class="svc-nw">Multi-track</span> conferences</p>
         <div class="svc-scope-grid">
             <div>
                 <h2 class="svc-h2" id="svc-scope-h">Every parallel room, or just the sessions that matter most</h2>
@@ -686,7 +690,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
                 <div class="svc-badge">
                     <p class="svc-badge-label">How we covered Flutter Vikings</p>
                     <p class="svc-badge-title">Three parallel rooms over two days: photos across the whole venue and full session recordings of the talks.</p>
-                    <p class="svc-badge-link"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study →</a></p>
+                    <p class="svc-badge-link"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Read the case study&nbsp;→</a></p>
                 </div>
             </div>
         </div>
@@ -699,12 +703,12 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         <p class="svc-intro">Photos and video each run on their own track. Fast options are agreed before the event.</p>
         <div class="svc-tracks">
             <div class="svc-track">
-                <div class="svc-lane"><h3 class="svc-h3">Photos</h3><p>Edited, high-resolution</p></div>
+                <div class="svc-lane"><h3 class="svc-h3">Photos</h3><p>Edited, <span class="svc-nw">high-resolution</span></p></div>
                 <div class="svc-speed-wrap">
                     <div class="svc-line" aria-hidden="true"></div>
                     <ol class="svc-speeds">
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">During the event</p><h4 class="svc-h3">Live selects</h4><p class="svc-speed-text">A few selected photos while the event is running, or within hours of it.</p><p class="svc-tag">Optional</p></li>
-                        <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Within 24 hours</p><h4 class="svc-h3">Press-ready set</h4><p class="svc-speed-text">A press-ready selection the next day, for press, sponsor and stakeholder updates.</p><p class="svc-tag">Optional</p></li>
+                        <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Within 24 hours</p><h4 class="svc-h3"><span class="svc-nw">Press-ready</span> set</h4><p class="svc-speed-text">A <span class="svc-nw">press-ready</span> selection the next day, for press, sponsor and stakeholder updates.</p><p class="svc-tag">Optional</p></li>
                         <li><span class="svc-node" aria-hidden="true"></span><p class="svc-when">Up to 7 business days</p><h4 class="svc-h3">Full gallery</h4><p class="svc-speed-text">The full edited gallery from every session and room in your scope.</p><p class="svc-tag svc-tag--std">Standard</p></li>
                     </ol>
                     <span class="svc-runner" aria-hidden="true"></span>
@@ -724,12 +728,12 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             </div>
         </div>
         <ul class="svc-terms">
-            <li><strong>Full commercial usage rights</strong>On every photo and video delivered, with no per-channel fees.</li>
+            <li><strong>Full commercial usage rights</strong>On every photo and video delivered, with no <span class="svc-nw">per-channel</span> fees.</li>
             <li><strong>Raw files on request</strong>Not included by default. They can be purchased separately, best agreed in advance.</li>
         </ul>
         <div class="svc-cta" style="margin-top:48px;">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free <span class="svc-nw">20-minute</span> call</a>
         </div>
     </div>
 </section>
@@ -745,11 +749,11 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </div>
         <div class="carousel-wrapper">
             <div class="carousel-track">
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly recommend them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 Films &amp; Media</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what was agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable and professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
-                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are high-quality, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a <span class="svc-nw">USA-based</span> company and worked with them on a <span class="svc-nw">multi-day</span> shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly&nbsp;recommend&nbsp;them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 Films &amp; Media</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in <span class="svc-nw">post-event</span> press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage&nbsp;them&nbsp;again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what&nbsp;was&nbsp;agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable&nbsp;and&nbsp;professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is a professional through and through. From preparation, meeting with us, and determining the purpose of our content, to editing, feedback, and the final result, which exceeded our expectations. The videos are <span class="svc-nw">high-quality</span>, meticulously created, and you can feel his passion for his work. Max is excellent at providing excellent advice and showing new possibilities. He's worth trusting! His professionalism is worth every penny. I know I'll be using him&nbsp;again!"</p><div class="testimonial-author"><img src="https://impro.usercontent.one/appid/oneComWsb/domain/artandshow.no/media/artandshow.no/onewebmedia/_DSC8578.JPG?etag=undefined&amp;sourceContentType=image%2Fjpeg&amp;ignoreAspectRatio&amp;resize=854%2B1518&amp;extract=6%2B166%2B848%2B1112&amp;quality=85" alt="Aneta Paleczka" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AP';"><div><div class="testimonial-name">Aneta Paleczka</div><div class="testimonial-title">CEO, Flora Art&amp;Show</div></div></div></div>
                 <div class="testimonial-card"><span class="testimonial-mark">"</span><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we stand for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
             </div>
             <div class="carousel-controls">
@@ -768,7 +772,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
             <p class="svc-intro">The main stage, the parallel rooms, the expo floor and the breaks, in photos, video or both.</p>
             <div class="svc-cta">
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+                <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free <span class="svc-nw">20-minute</span> call</a>
             </div>
         </div>
         <ul class="svc-cover-list">
@@ -793,9 +797,9 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         <ol class="svc-process-list svc-process-list--6">
             <li><div><p class="svc-num">01</p><h3 class="svc-h3">Discovery call</h3></div><p class="svc-step">We find out what the photos and video are for, and what success looks like for you.</p><p class="svc-yours"><strong>Your part</strong>Tell us about the event.</p></li>
             <li><div><p class="svc-num">02</p><h3 class="svc-h3">Options on a strategy call</h3></div><p class="svc-step">You get two or three coverage options, explained on a strategy call.</p><p class="svc-yours"><strong>Your part</strong>Bring whoever decides and pick what fits.</p></li>
-            <li><div><p class="svc-num">03</p><h3 class="svc-h3">Agreement and kickoff</h3></div><p class="svc-step">One booking covers photos and video, with everything agreed in writing. At kickoff we go through speakers, rooms and key moments.</p><p class="svc-yours"><strong>Your part</strong>Sign and share your programme.</p></li>
+            <li><div><p class="svc-num">03</p><h3 class="svc-h3">Agreement and kickoff</h3></div><p class="svc-step">One booking covers photos and video, all agreed in writing. At kickoff we go through speakers, rooms and key moments.</p><p class="svc-yours"><strong>Your part</strong>Sign and share your programme.</p></li>
             <li><div><p class="svc-num">04</p><h3 class="svc-h3">Planning to the day</h3></div><p class="svc-step">We make a shot list for each room we cover and check the venue before the day.</p><p class="svc-yours"><strong>Your part</strong>Tell us when plans change.</p></li>
-            <li><div><p class="svc-num">05</p><h3 class="svc-h3">The conference days</h3></div><p class="svc-step">One contact on site, and a crew sized to what we agreed.</p><p class="svc-yours"><strong>Your part</strong>Host your event.</p></li>
+            <li><div><p class="svc-num">05</p><h3 class="svc-h3">Event days</h3></div><p class="svc-step">One contact on site, and a crew sized to what we agreed.</p><p class="svc-yours"><strong>Your part</strong>Host your event.</p></li>
             <li><div><p class="svc-num">06</p><h3 class="svc-h3">Delivery and review</h3></div><p class="svc-step">Photos in up to 7 business days. Video in up to 14 business days, with two revision rounds.</p><p class="svc-yours"><strong>Your part</strong>Name one person to collect feedback.</p></li>
         </ol>
     </div>
@@ -832,7 +836,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         <img class="svc-consent-img" src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@8e56abf/images/691dabb8300f0639bb767199.webp" alt="Attendees listening in tiered seats under the Felix Konferansesenter sign" width="1024" height="683" style="--pos:40% 50%" loading="lazy">
         <ul class="svc-icon-rows">
             <li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg></span><div><h3 class="svc-h3">Your process, followed</h3><p>Tell us how your attendees are informed about photos and filming, and the crew follows your process on the day.</p></div></li>
-            <li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M15 8h2"></path><path d="M15 12h2"></path><path d="M7 16h10"></path></svg></span><div><h3 class="svc-h3">Opt-out signals honoured</h3><p>Wristbands, lanyards or stickers: brief us and the whole crew watches for them. Anyone who asks to be left out is left out.</p></div></li>
+            <li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M15 8h2"></path><path d="M15 12h2"></path><path d="M7 16h10"></path></svg></span><div><h3 class="svc-h3"><span class="svc-nw">Opt-out</span> signals honoured</h3><p>Wristbands, lanyards or stickers: brief us and the whole crew watches for them. Anyone who asks to be left out is left out.</p></div></li>
             <li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span><div><h3 class="svc-h3">You control what gets used</h3><p>Delivery goes to you first, privately, and material comes out if someone raises a concern.</p></div></li>
         </ul>
     </div>
@@ -846,12 +850,12 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </div>
         <div class="faq-list">
             <div class="faq-item"><button class="faq-question" id="faq-conf-q1" aria-expanded="false" aria-controls="faq-conf-a1">Can you cover parallel rooms and several days? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a1"><div class="faq-answer-inner">Yes. The crew is sized to what we agree: every room covered, or priority sessions agreed in the brief. Full session recordings are a separate scope item.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-conf-q2" aria-expanded="false" aria-controls="faq-conf-a2">How quickly do we get the photos and the video? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a2"><div class="faq-answer-inner">The full photo gallery arrives in up to 7 business days, and the video in up to 14 business days, with two revision rounds. Live photo selects, a press-ready set within 24 hours or a faster highlight cut can be added when agreed before the event.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-q2" aria-expanded="false" aria-controls="faq-conf-a2">How quickly do we get the photos and the video? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a2"><div class="faq-answer-inner">The full photo gallery arrives in up to 7 business days, and the video in up to 14 business days, with two revision rounds. Live photo selects, a <span class="svc-nw">press-ready</span> set within 24 hours or a faster highlight cut can be added when agreed before the event.</div></div></div>
             <div class="faq-item"><button class="faq-question" id="faq-conf-q3" aria-expanded="false" aria-controls="faq-conf-a3">Can we get full session recordings as well as a highlight film? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a3"><div class="faq-answer-inner">Yes, from the same shoot. The highlight film is typically around 2 minutes, depending on the event. Full session recordings are scoped separately, for the talks you choose.</div></div></div>
             <div class="faq-item"><button class="faq-question" id="faq-conf-q4" aria-expanded="false" aria-controls="faq-conf-a4">What does conference photography and video cost? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a4"><div class="faq-answer-inner">It depends on the rooms, days and outputs, so there is no fixed menu. You get coverage options built around your programme after the discovery call.</div></div></div>
             <div class="faq-item"><button class="faq-question" id="faq-conf-q5" aria-expanded="false" aria-controls="faq-conf-a5">Who may use the photos and video, and do we get the raw files? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a5"><div class="faq-answer-inner">Everything delivered carries full commercial usage rights. Raw files and footage are not included by default; they can be purchased separately, best agreed in advance.</div></div></div>
             <div class="faq-item"><button class="faq-question" id="faq-conf-q6" aria-expanded="false" aria-controls="faq-conf-a6">Can you livestream the sessions? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a6"><div class="faq-answer-inner">We livestreamed three parallel rooms over two days at Flutter Vikings 2022. Whether it fits your event depends on the scope, so <a href="https://recapmedia.no/contact">ask us</a> and we'll give you a concrete answer.</div></div></div>
-            <div class="faq-item"><button class="faq-question" id="faq-conf-q7" aria-expanded="false" aria-controls="faq-conf-a7">Can our team brief you from outside Norway? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a7"><div class="faq-answer-inner">Yes. Briefing, planning calls and delivery all run remotely in English, and we handle the venue and on-the-day coordination in Oslo.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-conf-q7" aria-expanded="false" aria-controls="faq-conf-a7">Can our team brief you from outside Norway? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a7"><div class="faq-answer-inner">Yes. Briefing, planning calls and delivery all run remotely in English, and we handle the venue and <span class="svc-nw">on-the-day</span> coordination in Oslo.</div></div></div>
             <div class="faq-item"><button class="faq-question" id="faq-conf-q8" aria-expanded="false" aria-controls="faq-conf-a8">Do you work outside Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-conf-a8"><div class="faq-answer-inner">Yes. Travel costs are agreed upfront and included in the quote.</div></div></div>
         </div>
     </div>
@@ -865,7 +869,7 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
         </div>
         <div class="svc-cta">
             <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free 20-minute call</a>
+            <a href="https://recapmedia.no/contact#calendar" class="svc-link">Book a free <span class="svc-nw">20-minute</span> call</a>
         </div>
     </div>
 </section>
@@ -874,9 +878,9 @@ Conference photography and video in Oslo. Multi-track coverage, photos in up to 
     <div class="svc-wrap">
         <p class="svc-eyebrow" id="svc-more-h">Also from Recap Media</p>
         <div class="svc-more-grid">
-            <a href="https://recapmedia.no/services/event-photography-oslo"><span class="svc-more-t">Event photography →</span><span class="svc-more-s">Photos for press, social media and sponsor reports from your event.</span></a>
-            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video →</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
-            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options →</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
+            <a href="https://recapmedia.no/services/event-photography-oslo"><span class="svc-more-t">Event photography&nbsp;→</span><span class="svc-more-s">Photos for press, social media and sponsor reports from your event.</span></a>
+            <a href="https://recapmedia.no/services/event-video-oslo"><span class="svc-more-t">Event video&nbsp;→</span><span class="svc-more-s">Highlight films, session recordings and social clips from your event.</span></a>
+            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options&nbsp;→</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
         </div>
     </div>
 </section>
