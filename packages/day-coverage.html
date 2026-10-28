@@ -556,7 +556,14 @@ Half-day event photography in Oslo. What a day-coverage booking typically includ
 .svc .pk-add-portraits img{position:static !important;width:100%;height:100%;object-fit:cover;object-position:50% 20%;opacity:1 !important;animation:none !important}
 .pk-add-vbg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(14px) brightness(.55)}
 .pk-add-phone{position:absolute;top:10%;bottom:10%;left:50%;transform:translateX(-50%);aspect-ratio:9/16;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.svc .pk-add-phone img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:1 !important;animation:none !important}
+.pk-add-phone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pk-add .svc-tile img+img{animation-duration:12s}
+@media (hover:hover) and (pointer:fine){.pk-add .svc-tile img+img{animation:none;opacity:0;transition:opacity .6s ease}.pk-add:hover .svc-tile img+img{opacity:1}}
+.pk-adds:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
+.pk-adds-bar{display:none;justify-content:flex-end;margin-top:24px}
+.pk-adds.is-touch .pk-adds-bar{display:flex}
+.pk-adds .svc-swap-btn{color:var(--color-cream);border-color:var(--color-charcoal)}
+@media (prefers-reduced-motion:reduce){.pk-add .svc-tile img+img{transition:none}.pk-adds-bar{display:none !important}}
 .pk-add--todo{background:transparent}
 .svc .pk-add--todo .svc-todo{position:absolute;inset:0;border-radius:14px;border-color:var(--color-charcoal);color:var(--color-warm-grey) !important}
 .svc .pk-adds-more{margin-top:40px !important;padding-top:20px;border-top:1px solid var(--color-smoke);font-size:15px;text-wrap:balance}
