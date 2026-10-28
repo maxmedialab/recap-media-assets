@@ -330,13 +330,17 @@
         //   4. Show branded confirmation message
         // ────────────────────────────────────────────────────────────────
 
+        // Copy owned by briefs/quote-form.md (Max, 2026-10-28). No confirmation-email
+        // line: GHL sends none. "Book a call" goes to the calendar on /contact.
         var SUCCESS_HTML =
-            '<div class="form-success">' +
-                '<span class="form-success-icon" aria-hidden="true">\uD83D\uDCEC</span>' +
-                '<h3 class="form-success-heading">Message received.</h3>' +
-                '<p class="form-success-body">We\u2019ll get back to you within one business day \u2014 or we owe you a coffee.</p>' +
-                '<p class="form-success-check">Before you close this, check your inbox for a confirmation email. If nothing arrives within 2\u00A0minutes, reach out directly at <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a>.</p>' +
-                '<button type="button" class="btn btn-outline-ember form-success-close">Got it</button>' +
+            '<div class="form-success" role="status">' +
+                '<h3 class="form-success-heading">Thanks, we\u2019ve got your request.</h3>' +
+                '<p class="form-success-body">You\u2019ll get a reply within one business day.</p>' +
+                '<p class="form-success-check">Want to talk sooner? Book a free <span class="svc-nw">20-minute</span> call now.</p>' +
+                '<div class="form-success-actions">' +
+                    '<a href="https://recapmedia.no/contact#calendar" class="btn btn-primary">Book a call</a>' +
+                    '<button type="button" class="btn btn-outline-ember form-success-close">Done</button>' +
+                '</div>' +
             '</div>';
 
         var ERROR_HTML =
@@ -494,7 +498,7 @@
 
                     // Re-enable button
                     var btn = formEl ? formEl.querySelector('[type="submit"]') : null;
-                    if (btn) { btn.disabled = false; btn.textContent = 'Request quote'; }
+                    if (btn) { btn.disabled = false; btn.textContent = 'Request a quote'; }
 
                     // Close modal if applicable
                     if (isModal) {
