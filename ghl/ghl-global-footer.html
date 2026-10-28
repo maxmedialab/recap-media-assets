@@ -67,70 +67,68 @@
     </div>
 </footer>
 
-<!-- Quote modal (opened by any button/link with data-cta="quote") -->
-<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
-    <div class="modal-container">
-        <button class="modal-close" aria-label="Close modal">✕</button>
-        <h2>Request a Quote</h2>
-        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
-        <form class="quote-form" novalidate>
+<!-- quote-form:start  Quote form, modal version. Canonical copy: ghl/ghl-global-footer.html (brief: briefs/quote-form.md). Opened by any data-cta="quote" link. -->
+<style>
+.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:32px !important;max-width:560px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
+.qf-card h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;margin:0 0 6px !important;padding-right:40px}
+.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
+.qf-card .modal-close{width:44px !important;height:44px !important;top:14px !important;right:14px !important;font-size:1rem !important;background:rgba(20,18,24,.06) !important;color:var(--color-charcoal) !important}
+.qf-card .modal-close:hover{background:rgba(20,18,24,.12) !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .form-row{gap:0 12px !important}
+.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:14px !important}
+.quote-form.qf-form .form-group label{font-size:14px !important;font-weight:500 !important;letter-spacing:0 !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .qf-opt{font-weight:400;color:var(--color-stone-dark,#6F6B64)}
+.quote-form.qf-form .qf-hint{font-size:13px;line-height:1.4;color:var(--color-stone-dark,#6F6B64);margin:-2px 0 2px}
+.quote-form.qf-form .qf-hint-after{margin:0}
+.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:44px;padding:10px 14px !important}
+.quote-form.qf-form .form-control::placeholder{color:var(--color-stone-dark,#6F6B64) !important;font-size:16px !important}
+.quote-form.qf-form .form-control:focus{border-color:var(--color-ember) !important;box-shadow:0 0 0 3px rgba(232,89,60,.15) !important}
+.quote-form.qf-form input[type=date].form-control{text-align:left}
+.quote-form.qf-form input[type=date]::-webkit-date-and-time-value{text-align:left}
+.quote-form.qf-form textarea.form-control{min-height:88px !important}
+.quote-form.qf-form .form-error{font-size:13px !important;line-height:1.4;color:#B3261E !important;margin:0}
+.quote-form.qf-form .form-group.has-error .form-control{border-color:#B3261E !important}
+.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:48px;margin-top:2px}
+.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:10px 0 0 !important}
+.quote-form.qf-form .form-consent-text a{color:var(--color-obsidian) !important}
+.qf-card .svc-nw,.qf-form .svc-nw,.form-success .svc-nw{white-space:nowrap}
+.qf-card .form-success-heading{color:var(--color-obsidian) !important}
+.qf-card .form-success-body{color:var(--color-charcoal) !important}
+.qf-card .form-success-check{color:var(--color-stone-dark,#6F6B64) !important}
+.qf-card .form-error .form-success-heading{color:#c47e15 !important}
+.form-success-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.form-success-actions .form-success-close{margin:0 !important}
+.qf-card .form-success{padding:24px 0 8px !important}
+@media (max-width:540px){.quote-form.qf-form .form-row.qf-names{grid-template-columns:1fr 1fr !important}}
+@media (max-width:480px){.modal-container.qf-card{padding:24px 18px 20px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
+</style>
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="qf-title">
+    <div class="modal-container qf-card">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <h2 id="qf-title">Request a quote</h2>
+        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
+        <form class="quote-form qf-form" novalidate>
             <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="visible-first-name">First Name *</label>
-                    <input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name">
-                </div>
-                <div class="form-group">
-                    <label for="visible-last-name">Last Name *</label>
-                    <input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name">
-                </div>
+            <div class="form-row qf-names">
+                <div class="form-group"><label for="qf-first">First name</label><input type="text" id="qf-first" class="form-control" data-ghl="first_name" name="first_name" required autocomplete="given-name" aria-describedby="qf-first-err"><p class="form-error" id="qf-first-err">Enter your first name</p></div>
+                <div class="form-group"><label for="qf-last">Last name</label><input type="text" id="qf-last" class="form-control" data-ghl="last_name" name="last_name" required autocomplete="family-name" aria-describedby="qf-last-err"><p class="form-error" id="qf-last-err">Enter your last name</p></div>
             </div>
             <div class="form-row">
-                <div class="form-group">
-                    <label for="visible-email">Email *</label>
-                    <input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email">
-                </div>
-                <div class="form-group">
-                    <label for="visible-phone">Phone</label>
-                    <input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel">
-                </div>
+                <div class="form-group"><label for="qf-email">Email</label><input type="email" id="qf-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-email-err"><p class="form-error" id="qf-email-err">Enter an email address like name@company.no</p></div>
+                <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
             </div>
-            <div class="form-group">
-                <label for="visible-org">Organisation Name *</label>
-                <input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization">
+            <div class="form-row">
+                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"><p class="qf-hint qf-hint-after" id="qf-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
             </div>
-            <div class="form-group">
-                <label for="visible-source">How did you find us? *</label>
-                <select id="visible-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required>
-                    <option value="">Select an option</option>
-                    <option value="google_search">Google search</option>
-                    <option value="recommendation">Recommendation</option>
-                    <option value="linkedin">LinkedIn</option>
-                    <option value="networking_event">Networking event</option>
-                    <option value="youtube">YouTube</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="facebook">Facebook</option>
-                    <option value="social_media_ad">Social media ad</option>
-                    <option value="1881">1881.no</option>
-                    <option value="gulesider">gulesider.no</option>
-                    <option value="180">180.no</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="visible-message">Tell us more about your event</label>
-                <textarea id="visible-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most."></textarea>
-            </div>
-            <div class="form-group">
-                <label for="visible-event-date">Event date *</label>
-                <input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
-            <p class="form-consent-text">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+            <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
+            <button type="submit" class="btn btn-primary">Request a quote</button>
+            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
         </form>
-        <!-- GHL native form — placed via GHL page builder with custom class "ghl-form-hidden" on its section -->
-        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
+        <div class="ghl-form-hidden"></div>
     </div>
 </div>
+<!-- quote-form:end -->
 
 <!-- Lightbox (for gallery image pop-ups) -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
