@@ -22,6 +22,9 @@
 
   HOLD: the Tibnor logo in the client band must not go live before
   Thu 29 Oct 2026 (the Tibnor job). Do not paste Part 4 before then.
+  HOLD: the Flutter Vikings, Tier and Memory logos in the client band use
+  ../images/ until they are pushed to the asset repo; switch them to that
+  pin before pasting Part 4.
 
   Build notes are kept out of the four parts so they never get published.
   Brief and decisions: ../../briefs/services-event-video-oslo.md
@@ -292,8 +295,9 @@ Event video production in Oslo for conferences and business events: highlight fi
 .nav:not(.scrolled){background-color:rgba(20,18,24,.92) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important}
 .svc{font-family:var(--font-body) !important;color:var(--color-charcoal);font-size:17px;line-height:1.6}
 .svc p{margin:0;text-wrap:pretty}
-.svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead{text-wrap:balance}
+.svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead,.svc .svc-close-title{text-wrap:balance}
 .svc .svc-nw{white-space:nowrap !important}
+.svc-intro .svc-nw,.svc-close-text .svc-nw{display:inline}
 .svc ul,.svc ol{list-style:none;margin:0;padding:0}
 .svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
 .svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
@@ -549,7 +553,7 @@ Event video production in Oslo for conferences and business events: highlight fi
 .svc-cta .btn{justify-content:center !important}
 }
 @media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
-@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px}.svc-band{-webkit-mask-image:none;mask-image:none}.svc-runner{display:none}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none;width:auto}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px;column-gap:40px;padding-right:0}.svc-band{-webkit-mask-image:none;mask-image:none}.svc-runner{display:none}}
 </style>
 
 <style>
@@ -685,9 +689,9 @@ Event video production in Oslo for conferences and business events: highlight fi
             <div class="svc-band-row">
                 <div class="svc-band">
                     <div class="svc-band-track">
-                        <ul class="svc-band-set"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="NIRAS" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="Patch" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="Tibnor" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
-                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
-                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><p class="svc-todo">[Client logo]</p></li><li><p class="svc-todo">[Client logo]</p></li></ul>
+                        <ul class="svc-band-set"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="NIRAS" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="Patch" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="Tibnor" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><img src="../images/logo-flutter-vikings-ink.png" alt="Flutter Vikings" width="1136" height="144" style="--h:26px;--hp:21px"></li><li><img src="../images/logo-tier-ink.svg" alt="Tier" width="143" height="26" style="--h:18px;--hp:15px"></li><li><img src="../images/logo-memory-ink.svg" alt="Memory" width="206" height="53" style="--h:28px;--hp:22px;--dy:6%"></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><img src="../images/logo-flutter-vikings-ink.png" alt="" width="1136" height="144" style="--h:26px;--hp:21px"></li><li><img src="../images/logo-tier-ink.svg" alt="" width="143" height="26" style="--h:18px;--hp:15px"></li><li><img src="../images/logo-memory-ink.svg" alt="" width="206" height="53" style="--h:28px;--hp:22px;--dy:6%"></li></ul>
+                        <ul class="svc-band-set" aria-hidden="true"><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-niras-ink.png" alt="" width="316" height="98" style="--h:34px;--hp:28px;--dy:-22%"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-patch-black.svg" alt="" width="1000" height="216" style="--h:26px;--hp:21px"></li><li><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/logo-tibnor-ink.png" alt="" width="1006" height="176" style="--h:20px;--hp:16px"></li><li><img src="../images/logo-flutter-vikings-ink.png" alt="" width="1136" height="144" style="--h:26px;--hp:21px"></li><li><img src="../images/logo-tier-ink.svg" alt="" width="143" height="26" style="--h:18px;--hp:15px"></li><li><img src="../images/logo-memory-ink.svg" alt="" width="206" height="53" style="--h:28px;--hp:22px;--dy:6%"></li></ul>
                     </div>
                 </div>
                 <label class="svc-band-btn" title="Pause or play the logos"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the moving logos</span></label>
@@ -706,7 +710,7 @@ Event video production in Oslo for conferences and business events: highlight fi
                 <figcaption><p class="svc-film-t">Patch Norway CO₂ Buyer Tour</p><p class="svc-film-s"><span class="svc-br">Patch, a US carbon removal marketplace, took carbon removal buyers on a <span class="svc-nw">two-day</span> tour by train from Oslo to Bergen in October 2026, to see CO₂ captured and stored.</span> <span class="svc-br">We provided photo and video coverage of the event.</span></p></figcaption>
             </figure>
             <figure class="svc-film">
-                <div class="svc-player"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-stage.webp" alt="Speaker on a wide stage in front of a large screen, audience in silhouette" width="1280" height="720" loading="lazy"><video preload="none" playsinline width="1280" height="720" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/69cf9010a7dcb4cff052a257.mp4" title="Event film from Dustin IT Inspiration Day, Oslo"></video><button type="button" class="svc-play" aria-label="Play the Dustin IT Inspiration Day film"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button><p class="svc-todo svc-player-todo">[<span class="svc-nw">Stand-in</span>: the full Dustin film goes here]</p></div>
+                <div class="svc-player"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-stage.webp" alt="Speaker on a wide stage in front of a large screen, audience in silhouette" width="1280" height="720" loading="lazy"><video preload="none" playsinline width="1280" height="720" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/69cf9010a7dcb4cff052a257.mp4" title="Event film from Dustin IT Inspiration Day, Oslo"></video><button type="button" class="svc-play" aria-label="Play the Dustin IT Inspiration Day film"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button><p class="svc-todo svc-player-todo">[Stand-in: the full Dustin film goes here]</p></div>
                 <figcaption><p class="svc-film-t">Dustin IT Inspiration Day</p><p class="svc-film-s"><span class="svc-br">Dustin, an IT partner for businesses in the Nordics and Benelux, hosted a <span class="svc-nw">one-day</span> IT conference for business <span class="svc-nw">decision-makers</span> at Sentralen, Oslo, in December 2025.</span> <span class="svc-br">We provided photo and video coverage of the event.</span></p></figcaption>
             </figure>
         </div>
@@ -823,7 +827,7 @@ Event video production in Oslo for conferences and business events: highlight fi
         <p class="svc-intro">Simple to book, planned around your goals, and you always know what happens next.</p>
         <ol class="svc-process-list svc-process-list--6">
             <li><div><p class="svc-num">01</p><h3 class="svc-h3">Discovery call</h3></div><p class="svc-step">We find out what the videos are for, and what success looks like for you.</p><p class="svc-yours"><strong>Your part</strong>Tell us about the event.</p></li>
-            <li><div><p class="svc-num">02</p><h3 class="svc-h3">Options on a strategy call</h3></div><p class="svc-step">You get two or three coverage options, explained on a strategy call.</p><p class="svc-yours"><strong>Your part</strong>Bring whoever decides and pick what fits.</p></li>
+            <li><div><p class="svc-num">02</p><h3 class="svc-h3">Options on a strategy call</h3></div><p class="svc-step">You get three coverage options, explained on a strategy call.</p><p class="svc-yours"><strong>Your part</strong>Bring whoever decides and pick what fits.</p></li>
             <li><div><p class="svc-num">03</p><h3 class="svc-h3">Agreement and kickoff</h3></div><p class="svc-step">Everything is agreed in writing. At kickoff we go through speakers, interviews and key moments.</p><p class="svc-yours"><strong>Your part</strong>Sign and share your programme.</p></li>
             <li><div><p class="svc-num">04</p><h3 class="svc-h3">Planning to the day</h3></div><p class="svc-step">We build a shot list from your programme and check the venue before the day.</p><p class="svc-yours"><strong>Your part</strong>Tell us when plans change.</p></li>
             <li><div><p class="svc-num">05</p><h3 class="svc-h3">Event day</h3></div><p class="svc-step">One contact on site, and a crew sized to what we agreed.</p><p class="svc-yours"><strong>Your part</strong>Host your event.</p></li>
@@ -1039,31 +1043,68 @@ Event video production in Oslo for conferences and business events: highlight fi
     </div>
 </footer>
 
-<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
-    <div class="modal-container">
-        <button class="modal-close" aria-label="Close modal">✕</button>
-        <h2>Request a Quote</h2>
-        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
-        <form class="quote-form" novalidate>
-            <input type="text" name="website" class="hp-field" aria-hidden="true" aria-label="Leave this field empty" tabindex="-1" autocomplete="off">
-            <div class="form-row">
-                <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name"></div>
-                <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name"></div>
+<!-- quote-form:start  Quote form, modal version. Canonical copy: ghl/ghl-global-footer.html (brief: briefs/quote-form.md). Opened by any data-cta="quote" link. -->
+<style>
+.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:32px !important;max-width:560px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
+.qf-card h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;margin:0 0 6px !important;padding-right:40px}
+.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
+.qf-card .modal-close{width:44px !important;height:44px !important;top:14px !important;right:14px !important;font-size:1rem !important;background:rgba(20,18,24,.06) !important;color:var(--color-charcoal) !important}
+.qf-card .modal-close:hover{background:rgba(20,18,24,.12) !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .form-row{gap:0 12px !important}
+.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:14px !important}
+.quote-form.qf-form .form-group label{font-size:14px !important;font-weight:500 !important;letter-spacing:0 !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .qf-opt{font-weight:400;color:var(--color-stone-dark,#6F6B64)}
+.quote-form.qf-form .qf-hint{font-size:13px;line-height:1.4;color:var(--color-stone-dark,#6F6B64);margin:-2px 0 2px}
+.quote-form.qf-form .qf-hint-after{margin:0}
+.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:44px;padding:10px 14px !important}
+.quote-form.qf-form .form-control::placeholder{color:var(--color-stone-dark,#6F6B64) !important;font-size:16px !important}
+.quote-form.qf-form .form-control:focus{border-color:var(--color-ember) !important;box-shadow:0 0 0 3px rgba(232,89,60,.15) !important}
+.quote-form.qf-form input[type=date].form-control{text-align:left}
+.quote-form.qf-form input[type=date]::-webkit-date-and-time-value{text-align:left}
+.quote-form.qf-form textarea.form-control{min-height:88px !important}
+.quote-form.qf-form .form-error{font-size:13px !important;line-height:1.4;color:#B3261E !important;margin:0}
+.quote-form.qf-form .form-group.has-error .form-control{border-color:#B3261E !important}
+.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:48px;margin-top:2px}
+.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:10px 0 0 !important}
+.quote-form.qf-form .form-consent-text a{color:var(--color-obsidian) !important}
+.qf-card .svc-nw,.qf-form .svc-nw,.form-success .svc-nw{white-space:nowrap}
+.qf-card .form-success-heading{color:var(--color-obsidian) !important}
+.qf-card .form-success-body{color:var(--color-charcoal) !important}
+.qf-card .form-success-check{color:var(--color-stone-dark,#6F6B64) !important}
+.qf-card .form-error .form-success-heading{color:#c47e15 !important}
+.form-success-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.form-success-actions .form-success-close{margin:0 !important}
+.qf-card .form-success{padding:24px 0 8px !important}
+@media (max-width:540px){.quote-form.qf-form .form-row.qf-names{grid-template-columns:1fr 1fr !important}}
+@media (max-width:480px){.modal-container.qf-card{padding:24px 18px 20px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
+</style>
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="qf-title">
+    <div class="modal-container qf-card">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <h2 id="qf-title">Request a quote</h2>
+        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
+        <form class="quote-form qf-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
+            <div class="form-row qf-names">
+                <div class="form-group"><label for="qf-first">First name</label><input type="text" id="qf-first" class="form-control" data-ghl="first_name" name="first_name" required autocomplete="given-name" aria-describedby="qf-first-err"><p class="form-error" id="qf-first-err">Enter your first name</p></div>
+                <div class="form-group"><label for="qf-last">Last name</label><input type="text" id="qf-last" class="form-control" data-ghl="last_name" name="last_name" required autocomplete="family-name" aria-describedby="qf-last-err"><p class="form-error" id="qf-last-err">Enter your last name</p></div>
             </div>
             <div class="form-row">
-                <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
-                <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-email">Email</label><input type="email" id="qf-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-email-err"><p class="form-error" id="qf-email-err">Enter an email address like name@company.no</p></div>
+                <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
             </div>
-            <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
-            <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
-            <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
-            <div class="form-group"><label for="visible-event-date">Event date *</label><input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required></div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
-            <p class="form-consent-text">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+            <div class="form-row">
+                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"><p class="qf-hint qf-hint-after" id="qf-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
+            </div>
+            <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
+            <button type="submit" class="btn btn-primary">Request a quote</button>
+            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
         </form>
-        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
+        <div class="ghl-form-hidden"></div>
     </div>
 </div>
+<!-- quote-form:end -->
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" aria-label="Close image viewer">✕</button>
