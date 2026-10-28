@@ -128,6 +128,21 @@ Event video production in Oslo for conferences and business events: highlight fi
       "alternateName": "Maksymilian Strzepka"
     },
     {
+      "@type": "VideoObject",
+      "@id": "https://recapmedia.no/services/event-video-oslo#film-dustin",
+      "name": "Dustin IT Inspiration Day",
+      "description": "Event film from Dustin IT Inspiration Day, a one-day IT conference for business decision-makers at Sentralen, Oslo, in December 2025. Filmed and edited by Recap Media.",
+      "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-stage.webp",
+      "contentUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/69cf9010a7dcb4cff052a257.mp4",
+      "uploadDate": "2026-04-01T12:00:00+02:00",
+      "duration": "PT37S",
+      "width": 1280,
+      "height": 720,
+      "publisher": {
+        "@id": "https://recapmedia.no/#business"
+      }
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -571,6 +586,9 @@ Event video production in Oslo for conferences and business events: highlight fi
 .svc-film-t{margin-top:16px !important;font-family:var(--font-heading) !important;font-weight:600;font-size:20px;line-height:1.3;color:var(--color-obsidian) !important}
 .svc-film-s{margin-top:4px !important;font-size:16px}
 .svc-film-s span+span{margin-top:4px}
+.svc-films-grid--one{grid-template-columns:minmax(0,1fr)}
+.svc-films-grid--one .svc-film{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:40px;align-items:center}
+.svc-films-grid--one .svc-film-t{margin-top:0 !important}
 .svc-formats{padding:88px 0 80px}
 .svc .svc-fmt-list{display:grid;grid-template-columns:1fr .3164fr 1fr;gap:24px;align-items:start;margin-top:40px}
 .svc-fmt-media{position:relative}
@@ -605,6 +623,8 @@ Event video production in Oslo for conferences and business events: highlight fi
 .svc-cover.is-hover .svc-hv-mark{display:flex}
 @media (max-width:900px){
 .svc-films-grid{grid-template-columns:1fr;gap:32px}
+.svc-films-grid--one .svc-film{display:block}
+.svc-films-grid--one .svc-film-t{margin-top:16px !important}
 .svc .svc-fmt-list{display:flex;flex-direction:column;gap:28px;margin-top:24px}
 .svc-fmt--tall{display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center}
 .svc-fmt--tall .svc-h3{margin-top:0 !important}
@@ -701,31 +721,11 @@ Event video production in Oslo for conferences and business events: highlight fi
     <div class="svc-wrap">
         <h2 class="svc-h2" id="svc-films-h">Selected event films</h2>
         <p class="svc-intro">Films we planned, shot and edited, as delivered to the organisers.</p>
-        <div class="svc-films-grid">
+        <div class="svc-films-grid svc-films-grid--one">
             <figure class="svc-film">
-                <div class="svc-player svc-player--todo"><p class="svc-todo">[Patch film: final file after delivery on 28 Oct]</p><span class="svc-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span></div>
-                <figcaption><p class="svc-film-t">Patch Norway CO₂ Buyer Tour</p><p class="svc-film-s"><span class="svc-br">Patch, a US carbon removal marketplace, took carbon removal buyers on a <span class="svc-nw">two-day</span> tour by train from Oslo to Bergen in October 2026, to see CO₂ captured and stored.</span> <span class="svc-br">We provided photo and video coverage of the event.</span></p></figcaption>
-            </figure>
-            <figure class="svc-film">
-                <div class="svc-player"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-stage.webp" alt="Speaker on a wide stage in front of a large screen, audience in silhouette" width="1280" height="720" loading="lazy"><video preload="none" playsinline width="1280" height="720" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/69cf9010a7dcb4cff052a257.mp4" title="Event film from Dustin IT Inspiration Day, Oslo"></video><button type="button" class="svc-play" aria-label="Play the Dustin IT Inspiration Day film"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button><p class="svc-todo svc-player-todo">[Stand-in: the full Dustin film goes here]</p></div>
+                <div class="svc-player"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-stage.webp" alt="Speaker on a wide stage in front of a large screen, audience in silhouette" width="1280" height="720" loading="lazy"><video preload="none" playsinline width="1280" height="720" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/69cf9010a7dcb4cff052a257.mp4" title="Event film from Dustin IT Inspiration Day, Oslo"></video><button type="button" class="svc-play" aria-label="Play the Dustin IT Inspiration Day film"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button></div>
                 <figcaption><p class="svc-film-t">Dustin IT Inspiration Day</p><p class="svc-film-s"><span class="svc-br">Dustin, an IT partner for businesses in the Nordics and Benelux, hosted a <span class="svc-nw">one-day</span> IT conference for business <span class="svc-nw">decision-makers</span> at Sentralen, Oslo, in December 2025.</span> <span class="svc-br">We provided photo and video coverage of the event.</span></p></figcaption>
             </figure>
-        </div>
-    </div>
-</section>
-
-<section class="svc svc-formats svc-bg-warm" aria-labelledby="svc-formats-h">
-    <div class="svc-wrap">
-        <h2 class="svc-h2" id="svc-formats-h">One event, cut for every channel</h2>
-        <p class="svc-intro" style="max-width:640px">These formats can all come from the same filming day. Which ones, and how many, is agreed before the event.</p>
-        <ul class="svc-fmt-list">
-            <li class="svc-fmt"><div class="svc-fmt-media"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-hero-film.webp" alt="Audience in rows laughing during a session at a business conference" width="1280" height="720" loading="lazy"><p class="svc-fmt-tag">16:9</p><span class="svc-fmt-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><p class="svc-todo">[Hero film: Dustin]</p></div><div><h3 class="svc-h3">Hero film</h3><p>The story of your event in one film, typically around 2 minutes, depending on the event. For your website, newsletter and next year's promotion.</p></div></li>
-            <li class="svc-fmt svc-fmt--tall"><div class="svc-fmt-media"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-social.webp" alt="Speaker presenting on a stage lit in purple" width="1280" height="720" loading="lazy"><p class="svc-fmt-tag">9:16</p><span class="svc-fmt-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><p class="svc-todo">[Example clip: to be cut]</p></div><div><h3 class="svc-h3">Social clips</h3><p>Speaker moments, cut vertical and subtitled.</p></div></li>
-            <li class="svc-fmt"><div class="svc-fmt-media"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-session.webp" alt="Panel of five speakers on stools at Flutter Vikings, one talking into a microphone" width="1280" height="720" loading="lazy"><p class="svc-fmt-tag">Full length</p><span class="svc-fmt-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><p class="svc-todo">[Session: Flutter Vikings, your pick]</p></div><div><h3 class="svc-h3">Session recordings</h3><p>Keynotes and panels recorded in full, for members, sponsors or your archive. A separate item in the scope.</p></div></li>
-        </ul>
-        <div class="svc-proofline">
-            <p><strong class="svc-br">One conference, 43 videos.</strong> <span class="svc-br">About 20 hours of footage from Flutter Vikings became 43 published videos.</span></p>
-            <p class="svc-head-links"><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="svc-link">Flutter Vikings case study&nbsp;→</a><a href="https://recapmedia.no/packages" class="svc-link">Example coverage options&nbsp;→</a></p>
         </div>
     </div>
 </section>
