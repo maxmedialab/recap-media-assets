@@ -352,6 +352,19 @@
                 '<button type="button" class="btn btn-outline-ember form-success-close">Got it</button>' +
             '</div>';
 
+        // ── Which hidden GHL form is the quote form's ──────────────────
+        // A page can carry a second native form (the /packages scoping quiz),
+        // and every GHL form renders as section#form-builder. The quote form is
+        // "01 - Recap Media Contact": its field wrappers carry its form id.
+        var QUOTE_FORM_ID = 'DefzD8Urt68TpVkbgLwx';
+        function quoteGHLForm() {
+            var all = document.querySelectorAll('#form-builder');
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].querySelector('[id^="el_' + QUOTE_FORM_ID + '_"]')) return all[i];
+            }
+            return document.getElementById('form-builder');
+        }
+
         // ── Vue-compatible value setter ────────────────────────────────
         // GHL forms are Vue/Nuxt — setting .value directly won't trigger
         // reactivity. We use the native HTMLInputElement setter + events.
@@ -420,7 +433,7 @@
         };
 
         function bridgeToGHL(customForm) {
-            var ghl = document.getElementById('form-builder');
+            var ghl = quoteGHLForm();
             if (!ghl) return false;
 
             // Copy text/email/tel/textarea fields
@@ -513,7 +526,7 @@
         // IMPORTANT: Only hide the form itself or its .ghl-form-hidden wrapper.
         // Do NOT climb to .c-row — in GHL that row wraps the entire Global Footer
         // section (footer, modal, AND the hidden form), hiding everything.
-        var ghlSection = document.getElementById('form-builder');
+        var ghlSection = quoteGHLForm();
         if (ghlSection) {
             var ghlWrapper = ghlSection.closest('.ghl-form-hidden') || ghlSection.closest('.c-form');
             var target = ghlWrapper || ghlSection;
