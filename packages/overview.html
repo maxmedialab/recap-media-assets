@@ -550,7 +550,14 @@ Three example coverage scopes for B2B events in Oslo: what each one includes, wh
 .svc .pk-add-portraits img{position:static !important;width:100%;height:100%;object-fit:cover;object-position:50% 20%;opacity:1 !important;animation:none !important}
 .pk-add-vbg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(14px) brightness(.55)}
 .pk-add-phone{position:absolute;top:10%;bottom:10%;left:50%;transform:translateX(-50%);aspect-ratio:9/16;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.svc .pk-add-phone img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:1 !important;animation:none !important}
+.pk-add-phone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pk-add .svc-tile img+img{animation-duration:12s}
+@media (hover:hover) and (pointer:fine){.pk-add .svc-tile img+img{animation:none;opacity:0;transition:opacity .6s ease}.pk-add:hover .svc-tile img+img{opacity:1}}
+.pk-adds:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
+.pk-adds-bar{display:none;justify-content:flex-end;margin-top:24px}
+.pk-adds.is-touch .pk-adds-bar{display:flex}
+.pk-adds .svc-swap-btn{color:var(--color-cream);border-color:var(--color-charcoal)}
+@media (prefers-reduced-motion:reduce){.pk-add .svc-tile img+img{transition:none}.pk-adds-bar{display:none !important}}
 .pk-add--todo{background:transparent}
 .svc .pk-add--todo .svc-todo{position:absolute;inset:0;border-radius:14px;border-color:var(--color-charcoal);color:var(--color-warm-grey) !important}
 .svc .pk-adds-more{margin-top:40px !important;padding-top:20px;border-top:1px solid var(--color-smoke);font-size:15px;text-wrap:balance}
@@ -615,7 +622,7 @@ Three example coverage scopes for B2B events in Oslo: what each one includes, wh
     <div class="svc-wrap">
         <ul class="svc-trust-list">
             <li><p class="svc-trust-t"><span class="svc-stars" role="img" aria-label="5 out of 5 stars"><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#E8593C" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></span>5★ on Google</p><p class="svc-trust-s">Rated by our clients</p></li>
-            <li><p class="svc-trust-t">20+ events covered</p><p class="svc-trust-s">From <span class="svc-nw">20-person</span> seminars to several hundred attendees</p></li>
+            <li><p class="svc-trust-t">20+ events covered</p><p class="svc-trust-s">20 to 500 attendees</p></li>
             <li><p class="svc-trust-t">Full usage rights</p><p class="svc-trust-s">On every photo and video, no <span class="svc-nw"><span class="svc-nw">per-channel</span></span> fees</p></li>
             <li><p class="svc-trust-t">One point of contact</p><p class="svc-trust-s">Before, during and after the event</p></li>
         </ul>
@@ -664,15 +671,18 @@ Three example coverage scopes for B2B events in Oslo: what each one includes, wh
         <p class="svc-intro">Any of these can be added to the scopes above. Each one is agreed before the event.</p>
         <ul class="pk-adds-list">
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--swap"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb859e47b614f3fc48c.webp" alt="Attendees talking with a speaker after his session at Flutter Vikings" width="1024" height="683" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06dd4f9b3e5d762ddcd.webp" alt="Delegates smiling and talking during a networking break" width="1280" height="853" loading="lazy"><span class="pk-add-tag">Photo</span></div><h3 class="svc-h3">Live selects</h3><p class="pk-t">A few selected photos while the event is running, or within hours of it.</p></li>
-            <li class="pk-add"><div class="svc-tile pk-add-media pk-add--photo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><span class="pk-add-tag">Photo</span></div><h3 class="svc-h3"><span class="svc-nw">Press-ready</span> set</h3><p class="pk-t">A <span class="svc-nw">press-ready</span> selection within 24 hours, for press, sponsor and stakeholder updates.</p></li>
+            <li class="pk-add"><div class="svc-tile pk-add-media pk-add--swap"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06dc03e0f2b1cc417e6.webp" alt="Speaker with a handheld microphone addressing the room at the Scotland–Norway trade mission" width="1280" height="853" loading="lazy"><span class="pk-add-tag">Photo</span></div><h3 class="svc-h3"><span class="svc-nw">Press-ready</span> set</h3><p class="pk-t">A <span class="svc-nw">press-ready</span> selection within 24 hours, for press, sponsor and stakeholder updates.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--portraits"><span class="pk-add-portraits"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/niras-1e4eGsrzUHtUyZqd1OIKO1RifZhz2N2Po.webp" alt="Portrait of a smiling NIRAS employee with arms crossed, in a pale yellow t-shirt against a grey backdrop" width="800" height="1200" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/niras-1pOF91NLnj7vg-4dLG-JeuJEnrrb3TD-N.webp" alt="Portrait of a smiling NIRAS employee with glasses and a beard, in a striped shirt against a grey backdrop" width="800" height="1200" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/niras-1oJsHktae2pxU1wdS4WrCMKbmnHetaZt-.webp" alt="Portrait of a NIRAS employee with arms crossed, in a blue t-shirt against a grey backdrop" width="800" height="1200" loading="lazy"></span><span class="pk-add-tag">Photo</span></div><h3 class="svc-h3">Portrait station</h3><p class="pk-t">Portraits for your team and speakers, shot on site between sessions.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--video"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/cover-audience-poster.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/cover-audience.mp4" aria-label="Video clip: Conference attendees laughing and applauding in their seats"></video><span class="pk-add-tag"><span class="pk-add-play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F3EF"><path d="M8 5v14l11-7z"></path></svg></span>Video</span></div><h3 class="svc-h3">Faster highlight cut</h3><p class="pk-t">A short cut ahead of the hero film, when your comms plan needs one sooner.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--video"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-panels.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/hover-panels.mp4" aria-label="Video clip: Panel of four in armchairs on a stage, a moderator on the left"></video><span class="pk-add-tag"><span class="pk-add-play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F3EF"><path d="M8 5v14l11-7z"></path></svg></span>Video</span></div><h3 class="svc-h3">Session recordings</h3><p class="pk-t">Keynotes and panels recorded in full, for members, sponsors or your archive.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--video"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-sponsors.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/hover-sponsors.mp4" aria-label="Video clip: Two men laughing in conversation at an exhibitor stand"></video><span class="pk-add-tag"><span class="pk-add-play" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F5F3EF"><path d="M8 5v14l11-7z"></path></svg></span>Video</span></div><h3 class="svc-h3">Sponsor clips</h3><p class="pk-t">Short clips for each sponsor or exhibitor, to add to what you offer them.</p></li>
-            <li class="pk-add"><div class="svc-tile pk-add-media pk-add--vertical"><span class="pk-add-vbg" style="background-image:url(https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-social.webp)"></span><span class="pk-add-phone"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/video-frame-social.webp" alt="Speaker presenting on a stage lit in purple" width="1280" height="720" loading="lazy"></span><span class="pk-add-tag">Content</span></div><h3 class="svc-h3">Social clips</h3><p class="pk-t">Speaker moments, cut vertical and subtitled.</p></li>
+            <li class="pk-add"><div class="svc-tile pk-add-media pk-add--vertical"><span class="pk-add-vbg" style="background-image:url(https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/cover-keynotes-poster.webp)"></span><span class="pk-add-phone"><video muted loop playsinline preload="none" width="854" height="480" poster="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/cover-keynotes-poster.webp" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/video/cover-keynotes.mp4" aria-label="Video clip: Speakers presenting on a conference main stage to a full hall"></video></span><span class="pk-add-tag">Content</span></div><h3 class="svc-h3">Social clips</h3><p class="pk-t">Speaker moments, cut vertical and subtitled.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--todo"><p class="svc-todo">[Quote card example: Max]</p><span class="pk-add-tag">Content</span></div><h3 class="svc-h3">Quote cards</h3><p class="pk-t">A speaker's line set on a photo from your event, ready to post.</p></li>
             <li class="pk-add"><div class="svc-tile pk-add-media pk-add--todo"><p class="svc-todo">[Carousel example: Max]</p><span class="pk-add-tag">Content</span></div><h3 class="svc-h3">Carousels</h3><p class="pk-t"><span class="svc-nw">Multi-image</span> posts for LinkedIn and Instagram, built from your event photos.</p></li>
         </ul>
+        <div class="pk-adds-bar">
+            <label class="svc-swap-btn"><input type="checkbox" class="svc-swap-input"><span class="svc-swap-pause">Pause the videos and photos</span><span class="svc-swap-play">Play the videos and photos</span></label>
+        </div>
         <p class="pk-adds-more">Also on request: extra crew for parallel rooms, extra days or hours, <span class="svc-nw">on-site</span> interviews, and raw files (purchased separately).</p>
         <div class="svc-cta" style="margin-top:40px;">
                 <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
@@ -680,6 +690,62 @@ Three example coverage scopes for B2B events in Oslo: what each one includes, wh
             </div>
     </div>
 </section>
+
+<script>
+(function () {
+    'use strict';
+    var sec = document.querySelector('.pk-adds');
+    if (!sec || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var vids = Array.prototype.slice.call(sec.querySelectorAll('video[data-src]'));
+    var toggle = sec.querySelector('.pk-adds-bar .svc-swap-input');
+    function stopped() { return toggle && toggle.checked; }
+    function load(v) {
+        if (!v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src'));
+    }
+    function start(v) {
+        load(v);
+        v.muted = true;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+    }
+    if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        var near = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.setAttribute('preload', 'auto');
+                load(e.target);
+                near.unobserve(e.target);
+            });
+        }, { rootMargin: '300px 0px' });
+        vids.forEach(function (v) {
+            var tile = v.closest('li') || v;
+            near.observe(v);
+            tile.addEventListener('mouseenter', function () { start(v); });
+            tile.addEventListener('mouseleave', function () {
+                v.pause();
+                if (v.readyState > 0) v.currentTime = 0;
+            });
+        });
+        return;
+    }
+    sec.classList.add('is-touch');
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            e.target.inView = e.isIntersecting;
+            if (e.isIntersecting && !stopped()) start(e.target);
+            else e.target.pause();
+        });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+    if (toggle) toggle.addEventListener('change', function () {
+        vids.forEach(function (v) {
+            if (stopped()) v.pause();
+            else if (v.inView) start(v);
+        });
+    });
+})();
+</script>
 
 <section class="svc svc-process" aria-labelledby="svc-process-h">
     <div class="svc-wrap">
