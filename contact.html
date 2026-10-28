@@ -1,9 +1,44 @@
+<!--
+================================================================
+  CONTACT PAGE: recapmedia.no/contact
+================================================================
+  HOW TO PUBLISH THIS PAGE: four parts, all on this page in GHL.
+  The page is already live in GHL: each part replaces what is
+  there now. Each part sits between a "COPY BELOW THIS LINE" mark
+  and a "STOP COPYING ABOVE THIS LINE" mark. Copy only what is
+  between them.
+
+    PART 1  SEO title        (in <head>)  -> page SEO settings: Title
+    PART 2  SEO description  (in <head>)  -> page SEO settings: Description
+    PART 3  Schema           (in <head>)  -> "SEO & AI search optimization"
+                                             panel: replace everything in it
+    PART 4  Page body        (in <body>)  -> the Custom HTML block:
+                                             replace everything in it
+
+  Paste all four, then Preview, then Publish. Leave alone: Header/Body
+  Tracking Code, Global Header, Global Footer (the quote modal and the
+  hidden GHL form live there), and the GHL form on this page. Social
+  title/description follow the SEO fields automatically. No CSS/JS pin
+  bump for this page. Copy to the clipboard as UTF-8
+  (LC_ALL=en_US.UTF-8 pbcopy).
+
+  Build notes are kept out of the four parts so they never get published.
+  Brief and decisions: ../briefs/contact.md
+  Launch state + per-page checklist: ../launch-manifest.md
+================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ▼▼▼ PART 1 of 4: SEO TITLE -> page SEO settings: Title. COPY BELOW THIS LINE ▼▼▼
+Contact Recap Media | Event Photo & Video Services Oslo
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
     <title>Contact Recap Media | Event Photo &amp; Video Services Oslo</title>
+    <!-- ▼▼▼ PART 2 of 4: SEO DESCRIPTION -> page SEO settings: Description. COPY BELOW THIS LINE ▼▼▼
+Planning a conference, trade show, or corporate event? Tell us what you need and we'll put together a tailored proposal. Based in Oslo.
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
     <meta name="description" content="Planning a conference, trade show, or corporate event? Tell us what you need and we'll put together a tailored proposal. Based in Oslo.">
     <link rel="canonical" href="https://recapmedia.no/contact">
 
@@ -22,34 +57,28 @@
     <meta name="twitter:description" content="Planning a conference, trade show, or corporate event? Tell us what you need and we'll put together a tailored proposal. Based in Oslo.">
     <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
 
-    <!-- Schema: BreadcrumbList -->
-    <script type="application/ld+json">
+    <!-- ▼▼▼ PART 3 of 4: SCHEMA -> "SEO & AI search optimization" panel. Select everything
+         in the panel's schema box and replace it. COPY BELOW THIS LINE ▼▼▼ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://recapmedia.no/" },
         { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://recapmedia.no/contact" }
       ]
-    }
-    </script>
-
-    <!-- Schema: Review REMOVED 2026-07-04 — self-published reviews of your own business
-         are ineligible for review rich results (Google review-snippet guidelines:
-         "self-serving") and read as spammy markup. Keep testimonials in visible copy only. -->
-
-    <!-- Schema: FAQPage -->
-    <script type="application/ld+json">
+    },
     {
-      "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How quickly do you respond?",
+          "name": "How quickly do you reply?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every enquiry receives a real response within one business day, usually faster. If you send a message on Friday afternoon, you'll hear from us by Monday morning at the latest."
+            "text": "Every enquiry gets a real reply within one business day, usually faster. A message sent on Friday afternoon gets its reply on Monday at the latest."
           }
         },
         {
@@ -57,7 +86,7 @@
           "name": "Do you cover events outside Oslo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our primary service area is Oslo and surroundings: Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote."
+            "text": "Our primary service area is Oslo and surroundings, including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote."
           }
         },
         {
@@ -65,20 +94,23 @@
           "name": "What information should I have ready?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Helpful to know: the event date and location, approximate number of attendees, the type of event (conference, launch, trade show), what deliverables you need (photos, video, both), and any key moments you want captured. Don't worry if you don't have all of this; we'll ask the right questions in our briefing call."
+            "text": "Helpful to know: the event date and location, approximate number of attendees, the type of event (conference, launch, trade show), what deliverables you need (photos, video, both), and any key moments you want captured. Don't worry if you don't have all of this; we'll ask the right questions on the discovery call."
           }
         },
         {
           "@type": "Question",
-          "name": "What does a typical package cost?",
+          "name": "What does it cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Pricing depends on event duration, scope of coverage, and deliverables. We provide a detailed quote after a short briefing call. See our <a href=\"https://recapmedia.no/packages\" style=\"color: var(--color-ember);\">Packages page</a> for what each option includes."
+            "text": "It depends on the event, so there is no fixed menu. After the discovery call you get coverage options built around your programme. For a feel of scale, see our example coverage options."
           }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
+    <!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,175 +179,467 @@
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
-<!--
-================================================================
-  GHL DEPLOYMENT — CONTACT PAGE (recapmedia.no/contact)
-================================================================
-  SITE SETTINGS > HEADER TRACKING CODE:
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
-    [GTM head snippet]
-  SITE SETTINGS > BODY TRACKING CODE:
-    [GTM noscript snippet]
-    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
-  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
-  ▼▼▼ PASTE ONLY THE <main>...</main> BLOCK INTO GHL > PAGE > CUSTOM HTML ▼▼▼
-================================================================
--->
-
+<!-- ▼▼▼ PART 4 of 4: PAGE BODY -> the Custom HTML block (replace everything in it).
+     Starts with <main>, ends with </main>. COPY BELOW THIS LINE ▼▼▼ -->
 <main>
 
-<!-- Hero Banner -->
-<section class="hero-banner">
-    <div class="container" style="text-align: center; max-width: 780px;">
-        <span class="overline">Get in touch</span>
-        <h1>Contact Recap Media: Event Photo &amp; Video Services in Oslo</h1>
-        <p style="max-width: 600px; margin: 16px auto 0;">Planning a conference, trade show, or corporate event? Tell us what you need and we'll put together a tailored proposal. New here? Browse <a href="https://recapmedia.no/services">what we cover</a> and <a href="https://recapmedia.no/work">recent work</a> first.</p>
-        <div style="margin-top: 28px;">
-            <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+<style>
+.nav:not(.scrolled){background-color:rgba(20,18,24,.92) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important}
+.svc{font-family:var(--font-body) !important;color:var(--color-charcoal);font-size:17px;line-height:1.6}
+.svc p{margin:0;text-wrap:pretty}
+.svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead,.svc .svc-close-title{text-wrap:balance}
+.svc .svc-nw{white-space:nowrap !important}
+.svc-intro .svc-nw,.svc-close-text .svc-nw{display:inline}
+.svc ul,.svc ol{list-style:none;margin:0;padding:0}
+.svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-dark .svc-eyebrow{color:var(--color-warm-grey) !important}
+.svc-h1{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(40px,5vw,64px) !important;line-height:1.03 !important;letter-spacing:-.03em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(30px,3.4vw,44px) !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2--sm{font-size:clamp(28px,2.8vw,36px) !important}
+.svc-h3{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:21px !important;line-height:1.2 !important;color:var(--color-obsidian) !important}
+.svc-dark .svc-h2,.svc-dark .svc-h3{color:var(--color-cream) !important}
+.svc-lead{margin-top:24px !important;max-width:560px;font-size:19px;line-height:1.55}
+.svc-intro{margin-top:16px !important;max-width:720px}
+.svc-label{margin:28px 0 10px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-link{color:var(--color-obsidian) !important;font-weight:600 !important;text-decoration:underline !important;text-decoration-color:var(--color-ember) !important;text-decoration-thickness:2px !important;text-underline-offset:5px !important}
+.svc-link:hover{color:var(--color-ember-deep) !important}
+.svc-dark .svc-link{color:var(--color-cream) !important}
+.svc-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
+.svc-cta .btn{white-space:nowrap}
+.svc-todo{margin:0 !important;border:1px dashed var(--color-stone);border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;box-sizing:border-box;font-size:13px;color:var(--color-stone-dark) !important}
+.svc-stars{display:inline-flex;gap:2px}
+.svc-hero{padding:clamp(112px,11vw,152px) 0 72px;background:var(--color-cream)}
+.svc-hero-grid{display:grid;grid-template-columns:6fr 5fr;gap:72px;align-items:center}
+.svc-chips{display:flex;flex-wrap:wrap;gap:6px;max-width:600px}
+.svc-chips li{border:1px solid var(--color-warm-grey);border-radius:999px;padding:4px 12px;background:var(--color-warm-white);font-size:14px;line-height:1.4;color:var(--color-obsidian) !important}
+.svc-area{display:flex;align-items:flex-start;gap:8px;margin-top:24px !important;font-size:14px}
+.svc-area svg{flex-shrink:0;margin-top:3px}
+.svc-show{position:relative;height:600px}
+.svc-pause-input,.svc-swap-input{position:absolute;left:0;top:0;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.svc-slides{position:relative;height:100%;border-radius:24px;overflow:hidden;background:var(--color-onyx)}
+.svc-slides img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:svc-fade 24s infinite both}
+.svc-slides img:nth-of-type(1){animation-delay:-1s}
+.svc-slides img:nth-of-type(2){animation-delay:5s}
+.svc-slides img:nth-of-type(3){animation-delay:11s}
+.svc-slides img:nth-of-type(4){animation-delay:17s}
+@keyframes svc-fade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+.svc-ctrl{position:absolute;right:16px;top:16px;z-index:2;display:flex;align-items:center;gap:10px;background:rgba(20,18,24,.66);border-radius:999px;padding:4px 12px 4px 4px}
+.svc-pause{position:relative;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-ico-play{display:none}
+.svc-pause-input:checked~.svc-ico-pause{display:none}
+.svc-pause-input:checked~.svc-ico-play{display:block}
+.svc-pause:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-dots{display:flex;gap:6px}
+.svc-dot{width:8px;height:8px;border-radius:999px;background:rgba(245,243,239,.4);animation:svc-dot 24s infinite both}
+.svc-dot:nth-child(1){animation-delay:-1s}
+.svc-dot:nth-child(2){animation-delay:5s}
+.svc-dot:nth-child(3){animation-delay:11s}
+.svc-dot:nth-child(4){animation-delay:17s}
+@keyframes svc-dot{0%{background:rgba(245,243,239,.4)}4%{background:#F5F3EF}25%{background:#F5F3EF}29%{background:rgba(245,243,239,.4)}100%{background:rgba(245,243,239,.4)}}
+.svc-show:has(.svc-pause-input:checked) .svc-slides img,.svc-show:has(.svc-pause-input:checked) .svc-dot{animation-play-state:paused}
+.svc-badge{position:absolute;left:-40px;bottom:32px;z-index:2;width:320px;box-sizing:border-box;background:var(--color-warm-white);border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(20,18,24,.12),0 6px 14px rgba(20,18,24,.08)}
+.svc-badge-title{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-badge-sub{margin-top:6px !important;font-size:14px}
+.svc-badge-link{margin-top:10px !important;font-size:14px}
+.svc-trust{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-trust-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:32px 0 !important}
+.svc-trust-list li{padding:0 24px;border-left:1px solid #E4E0D8}
+.svc-trust-list li:first-child{padding-left:0;border-left:0}
+.svc-trust-t{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-family:var(--font-heading) !important;font-weight:600;font-size:20px;line-height:1.3;color:var(--color-obsidian) !important}
+.svc-trust-s{margin-top:4px !important;font-size:15px}
+.svc-logos{display:flex;align-items:center;gap:24px;padding:24px 0;border-top:1px solid #E4E0D8}
+.svc-logos .svc-label{margin:0 !important;white-space:nowrap}
+.svc-logos-grid{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.svc-logos-grid .svc-todo{height:52px}
+.svc-band-row{flex:1;min-width:0;display:flex;align-items:center;gap:16px}
+.svc-band{flex:1;min-width:0;padding:8px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.svc-band-track{display:flex;width:max-content;animation:svc-band 40s linear infinite}
+.svc .svc-band-set{display:flex;align-items:center;gap:64px;padding-right:64px}
+.svc-band-set li{flex-shrink:0}
+.svc-band img{width:auto;height:var(--h);opacity:.8;transform:translateY(var(--dy,0))}
+.svc-band .svc-todo{width:128px;height:40px}
+@keyframes svc-band{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.svc-band-row:hover .svc-band-track,.svc-band-row:has(.svc-pause-input:checked) .svc-band-track{animation-play-state:paused}
+.svc-band-btn{position:relative;flex-shrink:0;width:32px;height:32px;box-sizing:border-box;border:1px solid var(--color-warm-grey);border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-band-btn:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-gallery{padding:80px 0 72px}
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px 40px}
+.svc-head-links{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
+.svc-tile{position:relative;margin:0;aspect-ratio:3/2;border-radius:14px;overflow:hidden;background:var(--color-onyx)}
+.svc-tile img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover}
+.svc-tile img+img{opacity:0;animation:svc-swap 72s infinite both}
+@keyframes svc-swap{0%{opacity:0}47%{opacity:0}50%{opacity:1}97%{opacity:1}100%{opacity:0}}
+.svc-grid .g-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.svc-grid .g-wide{grid-column:span 2}
+.svc-grid .g-feature.g-more{grid-column:3/span 2;grid-row:4/span 2}
+.svc-gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.svc-gallery-bar p{font-size:14px;color:var(--color-stone-dark) !important}
+.svc-swap-btn{position:relative;display:inline-flex;flex-shrink:0;white-space:nowrap;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
+.svc-swap-btn:has(.svc-swap-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-gallery:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
+.svc-swap-play{display:none}
+.svc-swap-input:checked~.svc-swap-pause{display:none}
+.svc-swap-input:checked~.svc-swap-play{display:inline}
+.svc-speed{background:var(--color-obsidian);padding:96px 0}
+.svc-speed p{color:var(--color-warm-grey)}
+.svc-speed-wrap{position:relative;margin-top:64px}
+.svc-line{position:absolute;left:8px;right:0;top:7px;height:2px;background:var(--color-smoke)}
+.svc-speeds{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.svc-speeds li{display:flex;flex-direction:column}
+.svc-node{width:16px;height:16px;border-radius:999px;background:var(--color-ember)}
+.svc-node--open{width:12px;height:12px;border:2px solid var(--color-cream);background:var(--color-obsidian)}
+.svc-when{margin-top:24px !important;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--color-amber) !important}
+.svc-speeds .svc-h3{margin-top:8px !important;font-size:26px !important}
+.svc-speed-text{margin-top:10px !important;font-size:16px;flex-grow:1}
+.svc-speed--run .svc-node{box-sizing:border-box;border:2px solid var(--color-ember);background:var(--color-ember)}
+.svc-speed--run.is-ready .svc-node{background:var(--color-obsidian);border-color:var(--color-cream)}
+.svc-runner{position:absolute;left:0;top:0;z-index:1;width:16px;height:16px;border-radius:999px;background:var(--color-ember);box-shadow:0 0 0 6px rgba(232,89,60,.22);opacity:0;pointer-events:none;transform:translate(var(--x1,0),var(--y1,0))}
+.svc-speed-wrap.is-on .svc-runner{animation:svc-run 6.4s ease-in-out var(--d,0s) forwards}
+.svc-speed-wrap.is-on .svc-node{animation:svc-lit .3s ease forwards}
+.svc-speed-wrap.is-on li:nth-child(1) .svc-node{animation-delay:calc(var(--d,0s) + .4s)}
+.svc-speed-wrap.is-on li:nth-child(2) .svc-node{animation-delay:calc(var(--d,0s) + 3.05s)}
+.svc-speed-wrap.is-on li:nth-child(3) .svc-node{animation-delay:calc(var(--d,0s) + 6.05s)}
+.svc-track+.svc-track .svc-speed-wrap{--d:.5s}
+@keyframes svc-lit{to{background:var(--color-ember);border-color:var(--color-ember)}}
+@keyframes svc-run{0%{opacity:0;transform:translate(var(--x1),var(--y1))}6%,15%{opacity:1;transform:translate(var(--x1),var(--y1))}50%,62%{transform:translate(var(--x2),var(--y2))}97%,100%{opacity:1;transform:translate(var(--x3),var(--y3))}}
+.svc-tag{margin-top:20px !important;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--color-charcoal);border-radius:999px;padding:4px 12px;color:var(--color-cream) !important}
+.svc-tag--std{background:var(--color-cream);border-color:var(--color-cream);color:var(--color-obsidian) !important}
+.svc-reviews .svc-head{margin-bottom:40px}
+.svc-reviews .testimonial-mark{display:none !important}
+.svc-reviews .svc-rating{font-size:15px;font-weight:600;color:var(--color-obsidian) !important}
+.svc-addon{padding:88px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-addon-grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+.svc-portraits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc-portraits .svc-todo{height:300px;border-radius:14px}
+.svc-portraits img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;border-radius:14px}
+.svc-portraits-note{margin-top:12px !important;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-cover{padding:96px 0}
+.svc-cover-head{display:grid;grid-template-columns:1fr auto;gap:24px 72px;align-items:end}
+.svc-cover-head .svc-cta{margin-top:0}
+.svc-cover-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px;margin-top:48px !important}
+.svc-cover-list img{width:100%;height:240px;object-fit:cover;border-radius:14px}
+.svc-cover-list .svc-h3{margin-top:16px !important}
+.svc-cover-list p{margin-top:6px !important;font-size:16px}
+.svc-process{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-process-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:28px;margin-top:56px !important}
+.svc-process-list li{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;border-top:2px solid var(--color-obsidian);padding-top:20px}
+.svc-num{font-family:var(--font-heading) !important;font-weight:600;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-process-list .svc-h3{margin-top:6px !important}
+.svc-step{margin-top:10px !important;font-size:15px}
+.svc-yours{margin-top:20px !important;padding-top:12px;border-top:1px solid var(--color-warm-grey);font-size:14px}
+.svc-yours strong{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-obsidian)}
+.svc-split{display:grid;grid-template-columns:5fr 7fr;gap:72px}
+.svc-consent{padding:88px 0}
+.svc-rows li{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--color-warm-grey)}
+.svc-rows li:first-child{padding-top:0}
+.svc-rows li:last-child{border-bottom:0;padding-bottom:0}
+.svc-rows .svc-h3{font-size:19px !important}
+.svc-rows p{font-size:16px}
+.svc-consent-grid{display:grid;grid-template-columns:5fr 7fr;grid-template-rows:1fr auto auto 1fr;grid-template-areas:"img ." "img head" "img rows" "img .";column-gap:72px}
+.svc-consent-head{grid-area:head}
+.svc-consent-img{grid-area:img;display:block;width:100%;height:480px;object-fit:cover;object-position:var(--pos,50% 50%);border-radius:18px}
+.svc .svc-icon-rows{grid-area:rows;display:flex;flex-direction:column;gap:24px;margin-top:32px}
+.svc-icon-rows li{display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start}
+.svc-icon{width:52px;height:52px;box-sizing:border-box;border-radius:999px;background:var(--color-warm-white);border:1px solid #E4E0D8;display:flex;align-items:center;justify-content:center}
+.svc-icon svg{width:24px;height:24px}
+.svc-icon-rows .svc-h3{font-size:19px !important}
+.svc-icon-rows p{margin-top:4px !important;font-size:16px}
+.svc.svc-faq{padding:88px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white) !important}
+.svc-faq .faq-list{max-width:none !important;margin:0 !important}
+.svc-more{padding:56px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white)}
+.svc-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px !important}
+.svc-more-grid a{display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;padding:22px 24px;border:1px solid var(--color-warm-grey);border-radius:14px;background:var(--color-cream);color:var(--color-charcoal) !important;transition:border-color .2s ease,transform .2s ease}
+.svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
+.svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-more-s{font-size:15px;line-height:1.5}
+.svc-close{background:var(--color-obsidian);padding:96px 0}
+.svc-close-grid{display:grid;grid-template-columns:1fr auto;gap:40px 72px;align-items:center}
+.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-cream) !important}
+.svc-close-text{margin-top:16px !important;max-width:680px;color:var(--color-warm-grey)}
+.svc-close-text span{display:block}
+.svc-close .svc-cta{margin-top:0}
+.svc-close .svc-link{color:var(--color-cream) !important}
+.svc-process-list--6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.svc-stats{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-stats-grid{display:grid;grid-template-columns:300px repeat(5,minmax(0,1fr));gap:24px;align-items:start;padding:36px 0 !important}
+.svc-stats-grid>li+li{padding-left:20px;border-left:1px solid #E4E0D8}
+.svc-stat-n{font-family:var(--font-heading) !important;font-weight:600;font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--color-obsidian) !important}
+.svc-stat-l{margin-top:8px !important;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-charcoal) !important}
+.svc-scope{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-scope-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px;align-items:start}
+.svc-intro span{display:block}
+.svc-rows--stack li{grid-template-columns:1fr;gap:4px}
+.svc-scope .svc-rows{margin-top:32px !important}
+.svc-photo{position:relative}
+.svc-photo>img{width:100%;height:520px;object-fit:cover;border-radius:24px}
+.svc-tracks{margin-top:56px;display:flex;flex-direction:column;gap:56px}
+.svc-track{display:grid;grid-template-columns:200px 1fr;gap:32px}
+.svc-lane .svc-h3{font-size:24px !important}
+.svc-lane p{margin-top:6px !important;font-size:14px}
+.svc-track .svc-speed-wrap{margin-top:0}
+.svc .svc-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;margin-top:56px !important;padding-top:32px;border-top:1px solid var(--color-smoke)}
+.svc-terms li{font-size:15px;color:var(--color-warm-grey)}
+.svc-terms strong{display:block;margin-bottom:4px;font-family:var(--font-heading) !important;font-weight:600;font-size:18px;color:var(--color-cream)}
+.svc-places{padding:88px 0}
+.svc-places-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px}
+.svc-places .svc-intro{font-size:16px}
+.svc-venues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+.svc-venues li{padding:10px 0;border-bottom:1px solid var(--color-warm-grey);font-size:15px;color:var(--color-obsidian) !important}
+.svc-bg-cream .svc-more-grid a{background:var(--color-warm-white)}
+.svc.svc-bg-cream{background:var(--color-cream) !important;border-top:0;border-bottom:0}
+.svc.svc-bg-warm{background:var(--color-warm-white) !important;border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+@media (max-width:900px){
+.svc-consent-grid{grid-template-columns:1fr;grid-template-rows:auto;grid-template-areas:"head" "img" "rows"}
+.svc-consent-img{height:auto;aspect-ratio:3/2;border-radius:14px;margin-top:24px}
+.svc .svc-icon-rows{margin-top:28px;gap:22px}
+.svc-icon-rows li{grid-template-columns:44px 1fr;gap:16px}
+.svc-icon{width:44px;height:44px}
+.svc-icon-rows .svc-h3{font-size:18px !important}
+.svc-icon-rows p{font-size:15px}
+.svc-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px}
+.svc-stats-grid>li:first-child{grid-column:1/-1}
+.svc-stats-grid>li+li{padding-left:0;border-left:0}
+.svc-stat-n{font-size:36px}
+.svc-scope-grid,.svc-places-grid,.svc-track{grid-template-columns:1fr;gap:32px}
+.svc-photo>img{height:300px;border-radius:20px}
+.svc-terms{grid-template-columns:1fr}
+.svc-tracks{gap:40px}
+.svc-hero-grid,.svc-addon-grid,.svc-split,.svc-close-grid,.svc-cover-head{grid-template-columns:1fr;gap:32px}
+.svc-more-grid{grid-template-columns:1fr;gap:10px}
+.svc-show{height:auto}
+.svc-slides{height:320px;border-radius:20px}
+.svc-badge{position:relative;left:auto;bottom:auto;width:auto;margin:-40px 16px 0}
+.svc-trust-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+.svc-trust-list li{padding:0;border-left:0}
+.svc-trust-t{font-size:17px}
+.svc-trust-s{font-size:13px}
+.svc-logos{flex-direction:column;align-items:stretch}
+.svc-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc .svc-band-set{gap:28px;padding-right:28px}
+.svc-band img{height:var(--hp)}
+.svc-band .svc-todo{width:96px;height:32px}
+.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
+.svc-grid .g-more{display:none}
+.svc-line{display:none}
+.svc .svc-speeds{grid-template-columns:1fr;gap:36px;padding-left:28px;border-left:2px solid var(--color-smoke)}
+.svc-speeds li{position:relative}
+.svc-node{position:absolute;left:-37px;top:4px}
+.svc-node--open{left:-35px}
+.svc-when{margin-top:0 !important}
+.svc-speeds .svc-h3{font-size:22px !important}
+.svc-portraits .svc-todo{height:140px}
+.svc-cover-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+.svc-cover-list img{height:113px;border-radius:10px}
+.svc-cover-list .svc-h3{font-size:16px !important;margin-top:10px !important}
+.svc-cover-list p{font-size:14px;line-height:1.5}
+.svc-process-list{display:flex;flex-direction:column;gap:28px}
+.svc-process-list li{display:block}
+.svc-rows li{grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:600px){
+.svc-gallery-bar{flex-wrap:wrap}
+.svc-cta{flex-direction:column;align-items:stretch;text-align:center}
+.svc-cta .btn{justify-content:center !important}
+}
+@media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none;width:auto}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px;column-gap:40px;padding-right:0}.svc-band{-webkit-mask-image:none;mask-image:none}.svc-runner{display:none}}
+</style>
+
+<style>
+.svc .ct-step,.svc .ct-note{text-wrap:balance}
+.svc.ct-hero{padding-top:clamp(104px,7.5vw,112px);padding-bottom:96px}
+.ct-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"intro form" "next form" "rev rev";grid-template-rows:auto 1fr auto;column-gap:56px}
+.ct-intro{grid-area:intro}
+.ct-intro .svc-h1{font-size:clamp(40px,3.5vw,50px) !important}
+.ct-intro .svc-lead>span{display:block}
+.ct-next{grid-area:next;padding-top:8px}
+.ct-form{grid-area:form;align-self:start;scroll-margin-top:96px}
+.ct-steps li{display:grid;grid-template-columns:44px 1fr;column-gap:8px;padding:16px 0;border-top:1px solid var(--color-warm-grey)}
+.ct-steps li:last-child{border-bottom:1px solid var(--color-warm-grey)}
+.ct-steps .svc-num{padding-top:4px}
+.ct-steps .svc-h3{font-size:19px !important}
+.ct-step{margin-top:4px !important;font-size:16px}
+.svc .ct-direct{display:flex;flex-wrap:wrap;gap:10px 28px}
+.ct-direct li{display:flex;align-items:center;gap:8px;font-size:16px}
+.ct-direct svg{width:18px;height:18px;flex-shrink:0}
+.ct-note{margin-top:12px !important;font-size:15px}
+.ct-form .contact-form-wrap{background:var(--color-warm-white) !important;border:1px solid #E4E0D8;border-radius:18px !important;padding:32px !important;box-shadow:0 18px 40px rgba(20,18,24,.08),0 6px 14px rgba(20,18,24,.05) !important}
+.ct-form .contact-form-wrap h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;margin:0 0 6px !important}
+.ct-form .contact-form-wrap .form-subtitle{font-size:15px !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
+.ct-form .form-consent-text{color:var(--color-stone-dark) !important}
+.ct-form .form-subtitle,.ct-form .form-consent-text{text-wrap:balance}
+.ct-form .form-consent-text a{color:var(--color-obsidian) !important}
+.ct-revs{grid-area:rev;margin-top:64px}
+.ct-revs-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.ct-revs-head .svc-label{margin:0 !important}
+.ct-revs-tools{display:flex;align-items:center;gap:12px}
+.ct-rating{font-size:15px;font-weight:600;color:var(--color-obsidian) !important}
+.ct-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ct-slot{display:grid}
+.ct-slot .testimonial-card{grid-area:1/1;min-height:0 !important;flex:none !important;background:var(--color-white) !important;box-shadow:0 4px 20px rgba(20,18,24,.06) !important;opacity:0;animation:ct-rev 24s infinite both}
+.ct-slot .testimonial-card:first-child{opacity:1}
+.ct-slot .testimonial-quote{color:var(--color-charcoal) !important}
+.ct-slot .testimonial-author{border-top-color:rgba(20,18,24,.08) !important}
+.ct-slot .testimonial-name{color:var(--color-obsidian) !important}
+.ct-slot .testimonial-card:nth-child(1){animation-delay:-1s}
+.ct-slot .testimonial-card:nth-child(2){animation-delay:7s}
+.ct-slot .testimonial-card:nth-child(3){animation-delay:15s}
+.ct-slot+.ct-slot .testimonial-card:nth-child(1){animation-delay:-5s}
+.ct-slot+.ct-slot .testimonial-card:nth-child(2){animation-delay:3s}
+.ct-slot+.ct-slot .testimonial-card:nth-child(3){animation-delay:11s}
+@keyframes ct-rev{0%{opacity:0}3%{opacity:1}33.3%{opacity:1}36.3%{opacity:0}100%{opacity:0}}
+.ct-revs:has(.svc-pause-input:checked) .testimonial-card{animation-play-state:paused}
+.ct-case{display:block;color:var(--color-charcoal) !important;text-decoration:none !important}
+.ct-case:hover .svc-h3{color:var(--color-ember-deep) !important}
+.svc .ct-case-more{margin-top:12px !important;font-size:15px}
+.ct-work .svc-cta{margin-top:48px}
+.ct-cal{background:var(--color-obsidian);padding:96px 0;scroll-margin-top:72px}
+.ct-cal p{color:var(--color-warm-grey)}
+.ct-cal-box{margin-top:16px}
+@media (min-width:901px){.svc .testimonial-quote{text-wrap:balance}}
+@media (max-width:900px){
+.ct-grid{grid-template-columns:1fr;grid-template-areas:"intro" "form" "rev" "next";grid-template-rows:auto;row-gap:40px}
+.ct-next{padding-top:0}
+.ct-revs{margin-top:0}
+.ct-slots{grid-template-columns:1fr}
+.ct-cal-box{margin-top:32px}
+.ct-work .svc-cover-list{grid-template-columns:1fr;gap:28px}
+.ct-work .svc-cover-list img{height:200px;border-radius:14px}
+.ct-work .svc-cover-list .svc-h3{font-size:19px !important}
+.ct-work .svc-cover-list p{font-size:15px}
+}
+@media (max-width:600px){.ct-intro .svc-h1{font-size:8.4vw !important}.ct-intro .svc-lead{font-size:18px;text-wrap:pretty}.ct-intro .svc-lead>span{display:inline}.ct-form .contact-form-wrap .form-subtitle{font-size:14px !important}.ct-form .qf-hint{text-wrap:balance}.ct-form .contact-form-wrap h2{font-size:26px !important}}
+@media (max-width:480px){.ct-cal,.svc.ct-hero{padding-bottom:56px}.ct-cal{padding-top:56px}.ct-form .contact-form-wrap{padding:22px 16px !important;border-radius:14px !important}}
+@media (prefers-reduced-motion:reduce){.ct-slot .testimonial-card{animation:none;opacity:0}.ct-slot .testimonial-card:first-child{opacity:1}.ct-revs .svc-band-btn{display:none}}
+</style>
+
+<section class="svc svc-hero ct-hero" aria-labelledby="ct-h1">
+    <div class="svc-wrap ct-grid">
+        <div class="ct-intro">
+            <p class="svc-eyebrow">Contact Recap Media</p>
+            <h1 class="svc-h1" id="ct-h1">Tell us <span class="svc-nw">about your event</span></h1>
+            <p class="svc-lead"><span>Send a quote request with a few details.</span> <span>If you'd rather talk, <a href="#calendar" class="svc-link">book a free <span class="svc-nw">20-minute</span> call</a>.</span></p>
         </div>
-    </div>
-</section>
-
-<!-- Contact Layout: Form + Sidebar -->
-<section class="section section-light">
-    <div class="container">
-        <div class="contact-layout gsap-fade">
-
-            <!-- Inline Form -->
+        <div class="ct-next">
+            <p class="svc-label">What happens next</p>
+            <ol class="ct-steps">
+                <li><p class="svc-num">01</p><div><h3 class="svc-h3">Discovery call</h3><p class="ct-step">We reply within one business day and book a short call.</p></div></li>
+                <li><p class="svc-num">02</p><div><h3 class="svc-h3">Options on a strategy call</h3><p class="ct-step">You get three coverage options, explained on a strategy call.</p></div></li>
+                <li><p class="svc-num">03</p><div><h3 class="svc-h3">Agreement and kickoff</h3><p class="ct-step">Once you have chosen, everything is agreed in writing and we plan the day together.</p></div></li>
+            </ol>
+            <p class="svc-label">Reach us directly</p>
+            <ul class="ct-direct">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg><a href="mailto:booking@recapmedia.no" class="svc-link">booking@recapmedia.no</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+4796689356" class="svc-link">+47 966 89 356</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><a href="https://wa.me/4796689356" target="_blank" rel="noopener" class="svc-link">WhatsApp</a></li>
+            </ul>
+            <p class="ct-note">For anything time-sensitive, call or text.</p>
+            <p class="svc-area"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Oslo, Fornebu, Sandvika, Lillestrøm, Drammen, Jessheim and beyond</p>
+        </div>
+        <div class="ct-form" id="quote">
             <div class="contact-form-wrap">
-                <h2>Send us a message</h2>
-                <p class="form-subtitle">We respond to every enquiry within one business day.</p>
-                <form class="quote-form form-light" novalidate>
-                    <input type="text" name="website" class="hp-field" aria-hidden="true" aria-label="Leave this field empty" tabindex="-1" autocomplete="off">
-                    <div class="form-row">
-                        <div class="form-group"><label for="visible-first-name">First Name *</label><input type="text" id="visible-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name"></div>
-                        <div class="form-group"><label for="visible-last-name">Last Name *</label><input type="text" id="visible-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name"></div>
+                <h2>Request a quote</h2>
+                <p class="form-subtitle">You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
+                <form class="quote-form form-light qf-form" novalidate>
+                    <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
+                    <div class="form-row qf-names">
+                        <div class="form-group"><label for="qf-in-first">First name</label><input type="text" id="qf-in-first" class="form-control" data-ghl="first_name" name="first_name" required autocomplete="given-name" aria-describedby="qf-in-first-err"><p class="form-error" id="qf-in-first-err">Enter your first name</p></div>
+                        <div class="form-group"><label for="qf-in-last">Last name</label><input type="text" id="qf-in-last" class="form-control" data-ghl="last_name" name="last_name" required autocomplete="family-name" aria-describedby="qf-in-last-err"><p class="form-error" id="qf-in-last-err">Enter your last name</p></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="visible-email">Email *</label><input type="email" id="visible-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
-                        <div class="form-group"><label for="visible-phone">Phone</label><input type="tel" id="visible-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+                        <div class="form-group"><label for="qf-in-email">Email</label><input type="email" id="qf-in-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-in-email-err"><p class="form-error" id="qf-in-email-err">Enter an email address like name@company.no</p></div>
+                        <div class="form-group"><label for="qf-in-org">Company or organisation</label><input type="text" id="qf-in-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-in-org-err"><p class="form-error" id="qf-in-org-err">Enter your company or organisation</p></div>
                     </div>
-                    <div class="form-group"><label for="visible-org">Organisation Name *</label><input type="text" id="visible-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
-                    <div class="form-group"><label for="visible-message">Tell us more about your event</label><textarea id="visible-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most." style="min-height: 120px;"></textarea></div>
                     <div class="form-row">
-                        <div class="form-group"><label for="visible-event-date">Event date *</label><input type="date" id="visible-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required></div>
-                        <div class="form-group"><label for="visible-source">How did you find us? *</label><select id="visible-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
+                        <div class="form-group"><label for="qf-in-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-in-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                        <div class="form-group"><label for="qf-in-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-in-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-in-date-hint"><p class="qf-hint qf-hint-after" id="qf-in-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
-                    <p class="form-consent-text" style="color: var(--color-warm-grey);">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+                    <div class="form-group"><label for="qf-in-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-in-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-in-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-in-msg-hint"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Request a quote</button>
+                    <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
                 </form>
-                <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
+                <div class="ghl-form-hidden"></div>
             </div>
-
-            <!-- Sidebar -->
-            <div>
-                <!-- Call booking CTA -->
-                <div class="call-cta-box">
-                    <p>Prefer to talk it through first? Book a free 20-minute call directly.</p>
-                    <a href="#calendar" class="btn btn-primary" style="width: 100%; justify-content: center; text-decoration: none;">
-                        Book a call →
-                    </a>
-                </div>
-
-                <!-- Contact details -->
-                <div class="contact-info">
-                    <div class="contact-info-item">
-                        <span class="contact-info-label">Email</span>
-                        <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="contact-info-label">Phone</span>
-                        <a href="tel:+4796689356">+47 966 89 356</a>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="contact-info-label">Based in</span>
-                        <span style="color: var(--color-charcoal);">Oslo, Norway</span>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="contact-info-label">Service area</span>
-                        <span style="color: var(--color-charcoal);">Oslo and surroundings: Oslo, Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. Travel for larger conferences.</span>
-                    </div>
-                </div>
-
-                <!-- Mini testimonials -->
-                <div style="margin-top: 8px;">
-                    <p style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-stone); margin-bottom: 12px;">What clients say</p>
-                    <div style="background: var(--color-warm-white); border-radius: var(--radius-md); padding: 20px; border-left: 3px solid var(--color-ember); margin-bottom: 16px;">
-                        <div class="stars" style="margin-bottom: 8px;">
-                            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                        </div>
-                        <p style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin-bottom: 12px;">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We'll be using the photos in other campaigns going forward and we will not hesitate to engage them again."</p>
-                        <p style="font-size: 0.78rem; font-weight: 600; color: var(--color-obsidian);">Christopher Graham</p>
-                        <p style="font-size: 0.75rem; color: var(--color-stone);">CEO, The Marketing Department</p>
-                    </div>
-                    <div style="background: var(--color-warm-white); border-radius: var(--radius-md); padding: 20px; border-left: 3px solid var(--color-ember);">
-                        <div class="stars" style="margin-bottom: 8px;">
-                            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-                        </div>
-                        <p style="font-size: 0.85rem; color: var(--color-charcoal); line-height: 1.6; margin-bottom: 12px;">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. They made the entire production easy and a joy."</p>
-                        <p style="font-size: 0.78rem; font-weight: 600; color: var(--color-obsidian);">Sam Shank</p>
-                        <p style="font-size: 0.75rem; color: var(--color-stone);">Creative Director, 5:00 Films &amp; Media</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
-
-        <p class="text-center" style="font-size: 0.85rem; color: var(--color-charcoal); margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(20,18,24,0.08);">
-            For time-sensitive inquiries, call or text us directly at <a href="tel:+4796689356">+47 966 89 356</a> or message on <a href="https://wa.me/4796689356" target="_blank" rel="noopener">WhatsApp</a>.
-        </p>
+        <div class="ct-revs">
+            <div class="ct-revs-head">
+                <p class="svc-label">What clients say</p>
+                <div class="ct-revs-tools"><p class="ct-rating">5★ on Google</p><label class="svc-band-btn" title="Pause or play the reviews"><input type="checkbox" class="svc-pause-input"><span class="svc-ico-pause"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg></span><span class="svc-ico-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#141218" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Pause the reviews</span></label></div>
+            </div>
+            <div class="ct-slots">
+                <div class="ct-slot">
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage&nbsp;them&nbsp;again."</p><div class="testimonial-author"><img src="https://media.licdn.com/dms/image/v2/D4E03AQFutzgjPMVZDQ/profile-displayphoto-shrink_800_800/B4EZeYPXf4GcAc-/0/1750605855276?e=1776297600&amp;v=beta&amp;t=SBQTOxENVb6Acg9x-Z_sNqyrEsjl7rq1XAsZIJCOx-0" alt="Christopher Graham" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=CG';"><div><div class="testimonial-name">Christopher Graham</div><div class="testimonial-title">CEO, The Marketing Department</div></div></div></div>
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"This guy seriously knows what he’s doing! He knew exactly how to capture the event and show our customers what we&nbsp;stand&nbsp;for."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfhjAYjvlDX4lman2s1feY454Mj5z2eDltg&amp;s" alt="Emmanuel Davies" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=ED';"><div><div class="testimonial-name">Emmanuel Davies</div><div class="testimonial-title">CEO, Rising Ballers Norge</div></div></div></div>
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max is very organized. Always on time. Very practical in his work ethics, very engaging, dependable&nbsp;and&nbsp;professional."</p><div class="testimonial-author"><img src="https://static.wixstatic.com/media/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg/v1/fill/w_510,h_502,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/66604f_b3991de46d5e46bb937020d3820aea4b~mv2.jpg" alt="Porsha Morgan" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=PM';"><div><div class="testimonial-name">Porsha Morgan</div><div class="testimonial-title">CEO, PT Hub Oslo</div></div></div></div>
+                </div>
+                <div class="ct-slot">
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"Max and his team are fantastic. They are incredibly talented, creative visionaries who are also absolute professionals. We are a USA-based company and worked with them on a multi-day shoot in Oslo. Having never worked in Norway before, Max and his team helped us tremendously with creative expertise, logistics, and scheduling. They made the entire production easy and a joy. I highly&nbsp;recommend&nbsp;them!"</p><div class="testimonial-author"><img src="https://samshank.com/img/self.jpg" alt="Sam Shank" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=SS';"><div><div class="testimonial-name">Sam Shank</div><div class="testimonial-title">Creative Director, 5:00 Films &amp; Media</div></div></div></div>
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I had a great experience working with them on my recent production in Oslo. Highly professional with clear communication and delivered exactly what&nbsp;was&nbsp;agreed!"</p><div class="testimonial-author"><img src="https://instagram.fosl5-1.fna.fbcdn.net/v/t51.82787-19/539255732_18397353403186059_215343045020800543_n.jpg" alt="Ayomide Oladeji" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=AO';"><div><div class="testimonial-name">Ayomide Oladeji</div><div class="testimonial-title">Producer, Newton Studios Nigeria</div></div></div></div>
+                    <div class="testimonial-card"><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testimonial-quote">"I wholeheartedly recommend them! Great collaboration, professional approach, and an amazing end result. Excellent communication and a lot of positive energy during the work made a truly great impression&nbsp;on&nbsp;me."</p><div class="testimonial-author"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8U2EYo8PKtlmtXepZ7cPTSMH_CVy86N1UQ&amp;s" alt="Wioleta Straus" class="testimonial-avatar" width="44" height="44" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/44x44/2A2730/E8593C?text=WS';"><div><div class="testimonial-name">Wioleta Straus</div><div class="testimonial-title">CEO, Straus Massasje</div></div></div></div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Calendar Booking Widget -->
-<section class="section section-onyx" id="calendar">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="overline">Book a call</span>
-            <h2>Choose a Time That Works for You</h2>
-            <p>Please choose a time when you have 20 minutes to speak and are in a quiet, undisturbed area.</p>
-        </div>
-        <div class="gsap-fade">
+<section class="svc svc-dark ct-cal" id="calendar" aria-labelledby="ct-cal-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow">Prefer to talk first</p>
+        <h2 class="svc-h2 svc-h2--sm" id="ct-cal-h">Book a free <span class="svc-nw">20-minute</span> call</h2>
+        <div class="ct-cal-box">
             <iframe src="https://link.vidlead.com/widget/booking/qrGyKgqUP1OAMeLAGtoX" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="qrGyKgqUP1OAMeLAGtoX_1774894514296"></iframe>
             <script src="https://link.vidlead.com/js/form_embed.js" type="text/javascript"></script>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section class="section section-dark">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="overline">FAQ</span>
-            <h2>Frequently Asked Questions</h2>
+<section class="svc svc-cover svc-bg-cream ct-work" aria-labelledby="ct-work-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow">Selected work</p>
+        <h2 class="svc-h2" id="ct-work-h">Case studies from events in Oslo</h2>
+        <ul class="svc-cover-list">
+            <li><a href="https://recapmedia.no/work/flutter-vikings-2022-media-coverage-oslo" class="ct-case"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb888e1e6c6bd81f773-800.webp" alt="Full auditorium with red seats watching a speaker on stage at Flutter Vikings in Oslo" width="800" height="534" loading="lazy"><h3 class="svc-h3">Flutter Vikings Conference</h3><p>At Flutter Vikings we livestreamed three rooms and 46 speakers over two days. Around 20 hours of footage became 43 published videos, with thousands of views since.</p><p class="ct-case-more"><span class="svc-link">Read the case study&nbsp;→</span></p></a></li>
+            <li><a href="https://recapmedia.no/work/scotland-norway-decarbonisation-trade-mission-event-photography-oslo" class="ct-case"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dc06d840ed121322d7442-800.webp" alt="Delegate with glasses asking a question into a microphone during a trade mission session" width="800" height="534" loading="lazy"><h3 class="svc-h3">NECCUS Trade Mission</h3><p>Documented the Scotland–Norway decarbonisation trade mission at Oslo Event Hub and the UK Ambassador's residence, delivering <span class="svc-nw">press-ready</span> photos within 24 hours.</p><p class="ct-case-more"><span class="svc-link">Read the case study&nbsp;→</span></p></a></li>
+            <li><a href="https://recapmedia.no/work/ocean-rise-public-art-documentation-oslo" class="ct-case"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/6939791beeed04d17a9c3cc3-800.webp" alt="Woman standing beside tall blue and gold art panels on a grassy hill in Oslo" width="800" height="534" loading="lazy"><h3 class="svc-h3">Ocean Rise Art Project</h3><p>Documented performances and workshops at a <span class="svc-nw">multi-day</span> public arts project, providing artists and organizers with a rich portfolio of images and video highlights.</p><p class="ct-case-more"><span class="svc-link">Read the case study&nbsp;→</span></p></a></li>
+        </ul>
+        <div class="svc-cta">
+            <a href="#quote" class="btn btn-primary">Request a quote</a>
+            <a href="https://recapmedia.no/work" class="svc-link">See all our work&nbsp;→</a>
+        </div>
+    </div>
+</section>
+
+<section class="svc section-light svc-faq" aria-labelledby="svc-faq-h">
+    <div class="svc-wrap svc-split">
+        <div>
+            <p class="svc-eyebrow">FAQ</p>
+            <h2 class="svc-h2 svc-h2--sm" id="svc-faq-h">Before you get in touch</h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item">
-                <button class="faq-question">How quickly do you respond? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Every enquiry receives a real response within one business day, usually faster. If you send a message on Friday afternoon, you'll hear from us by Monday morning at the latest.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Do you cover events outside Oslo? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings: Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">What information should I have ready? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Helpful to know: the event date and location, approximate number of attendees, the type of event (conference, launch, trade show), what deliverables you need (photos, video, both), and any key moments you want captured. Don't worry if you don't have all of this; we'll ask the right questions in our briefing call.</div></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">What does a typical package cost? <span class="faq-chevron">▾</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Pricing depends on event duration, scope of coverage, and deliverables. We provide a detailed quote after a short briefing call. See our <a href="https://recapmedia.no/packages" style="color: var(--color-ember);">Packages page</a> for what each option includes.</div></div>
-            </div>
+            <div class="faq-item"><button class="faq-question" id="faq-contact-q1" aria-expanded="false" aria-controls="faq-contact-a1">How quickly do you reply? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-contact-a1"><div class="faq-answer-inner">Every enquiry gets a real reply within one business day, usually faster. A message sent on Friday afternoon gets its reply on Monday at the latest.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-contact-q2" aria-expanded="false" aria-controls="faq-contact-a2">Do you cover events outside Oslo? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-contact-a2"><div class="faq-answer-inner">Our primary service area is Oslo and surroundings, including Sandvika, Fornebu, Drammen, Lillestrøm, Jessheim, Holmestrand, and Moss. We also travel for larger conferences across Norway and internationally. Travel costs are agreed upfront and included in the quote.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-contact-q3" aria-expanded="false" aria-controls="faq-contact-a3">What information should I have ready? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-contact-a3"><div class="faq-answer-inner">Helpful to know: the event date and location, approximate number of attendees, the type of event (conference, launch, trade show), what deliverables you need (photos, video, both), and any key moments you want captured. Don't worry if you don't have all of this; we'll ask the right questions on the discovery call.</div></div></div>
+            <div class="faq-item"><button class="faq-question" id="faq-contact-q4" aria-expanded="false" aria-controls="faq-contact-a4">What does it cost? <span class="faq-chevron" aria-hidden="true">▾</span></button><div class="faq-answer" id="faq-contact-a4"><div class="faq-answer-inner">It depends on the event, so there is no fixed menu. After the discovery call you get coverage options built around your programme. For a feel of scale, see our <a href="https://recapmedia.no/packages">example coverage options</a>.</div></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="svc svc-more svc-bg-cream" aria-labelledby="svc-more-h">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow" id="svc-more-h">Still deciding?</p>
+        <div class="svc-more-grid">
+            <a href="https://recapmedia.no/services"><span class="svc-more-t">All our services&nbsp;→</span><span class="svc-more-s">Photo and video for business events in Oslo and beyond.</span></a>
+            <a href="https://recapmedia.no/work"><span class="svc-more-t">Selected work&nbsp;→</span><span class="svc-more-s">Case studies from our client work.</span></a>
+            <a href="https://recapmedia.no/packages"><span class="svc-more-t">Example coverage options&nbsp;→</span><span class="svc-more-s">What a typical booking includes, before you ask for a quote.</span></a>
         </div>
     </div>
 </section>
 
 </main>
-<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
+<!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
 <footer class="footer">
     <div class="container">
@@ -360,33 +684,81 @@
     </div>
 </footer>
 
-<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Request a quote">
-    <div class="modal-container">
-        <button class="modal-close" aria-label="Close modal">✕</button>
-        <h2>Request a Quote</h2>
-        <p class="modal-subtitle">Tell us about your event and we'll get back to you within one business day.</p>
-        <form class="quote-form" novalidate>
-            <input type="text" name="website" class="hp-field" aria-hidden="true" aria-label="Leave this field empty" tabindex="-1" autocomplete="off">
-            <div class="form-row">
-                <div class="form-group"><label for="modal-first-name">First Name *</label><input type="text" id="modal-first-name" class="form-control" data-ghl="first_name" name="first_name" placeholder="First name" required autocomplete="given-name"></div>
-                <div class="form-group"><label for="modal-last-name">Last Name *</label><input type="text" id="modal-last-name" class="form-control" data-ghl="last_name" name="last_name" placeholder="Last name" required autocomplete="family-name"></div>
+<!-- quote-form:start  Quote form, modal version. Canonical copy: ghl/ghl-global-footer.html (brief: briefs/quote-form.md). Opened by any data-cta="quote" link. -->
+<style>
+.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:32px !important;max-width:560px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
+.qf-card h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;margin:0 0 6px !important;padding-right:40px}
+.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
+.qf-card .modal-close{width:44px !important;height:44px !important;top:14px !important;right:14px !important;font-size:1rem !important;background:rgba(20,18,24,.06) !important;color:var(--color-charcoal) !important}
+.qf-card .modal-close:hover{background:rgba(20,18,24,.12) !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .form-row{gap:0 12px !important}
+.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:14px !important}
+.quote-form.qf-form .form-group label{font-size:14px !important;font-weight:500 !important;letter-spacing:0 !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .qf-opt{font-weight:400;color:var(--color-stone-dark,#6F6B64)}
+.quote-form.qf-form .qf-hint{font-size:13px;line-height:1.4;color:var(--color-stone-dark,#6F6B64);margin:-2px 0 2px}
+.quote-form.qf-form .qf-hint-after{margin:0}
+.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:44px;padding:10px 14px !important}
+.quote-form.qf-form .form-control::placeholder{color:var(--color-stone-dark,#6F6B64) !important;font-size:16px !important}
+.quote-form.qf-form .form-control:focus{border-color:var(--color-ember) !important;box-shadow:0 0 0 3px rgba(232,89,60,.15) !important}
+.quote-form.qf-form input[type=date].form-control{text-align:left}
+.quote-form.qf-form input[type=date]::-webkit-date-and-time-value{text-align:left}
+.quote-form.qf-form textarea.form-control{min-height:88px !important}
+.quote-form.qf-form .form-error{font-size:13px !important;line-height:1.4;color:#B3261E !important;margin:0}
+.quote-form.qf-form .form-group.has-error .form-control{border-color:#B3261E !important}
+.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:48px;margin-top:2px}
+.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:10px 0 0 !important}
+.quote-form.qf-form .form-consent-text a{color:var(--color-obsidian) !important}
+.qf-card .svc-nw,.qf-form .svc-nw,.form-success .svc-nw{white-space:nowrap}
+.qf-card .form-success-heading{color:var(--color-obsidian) !important}
+.qf-card .form-success-body{color:var(--color-charcoal) !important}
+.qf-card .form-success-check{color:var(--color-stone-dark,#6F6B64) !important}
+.qf-card .form-error .form-success-heading{color:#c47e15 !important}
+.form-success-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.form-success-actions .form-success-close{margin:0 !important}
+.qf-card .form-success{padding:24px 0 8px !important}
+@media (max-width:540px){.quote-form.qf-form .form-row.qf-names{grid-template-columns:1fr 1fr !important}}
+@media (max-width:480px){.modal-container.qf-card{padding:24px 18px 20px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
+</style>
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="qf-title">
+    <div class="modal-container qf-card">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <h2 id="qf-title">Request a quote</h2>
+        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
+        <form class="quote-form qf-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
+            <div class="form-row qf-names">
+                <div class="form-group"><label for="qf-first">First name</label><input type="text" id="qf-first" class="form-control" data-ghl="first_name" name="first_name" required autocomplete="given-name" aria-describedby="qf-first-err"><p class="form-error" id="qf-first-err">Enter your first name</p></div>
+                <div class="form-group"><label for="qf-last">Last name</label><input type="text" id="qf-last" class="form-control" data-ghl="last_name" name="last_name" required autocomplete="family-name" aria-describedby="qf-last-err"><p class="form-error" id="qf-last-err">Enter your last name</p></div>
             </div>
             <div class="form-row">
-                <div class="form-group"><label for="modal-email">Email *</label><input type="email" id="modal-email" class="form-control" data-ghl="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
-                <div class="form-group"><label for="modal-phone">Phone</label><input type="tel" id="modal-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47 xxx xx xxx" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-email">Email</label><input type="email" id="qf-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-email-err"><p class="form-error" id="qf-email-err">Enter an email address like name@company.no</p></div>
+                <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
             </div>
-            <div class="form-group"><label for="modal-org">Organisation Name *</label><input type="text" id="modal-org" class="form-control" data-ghl="organization" name="organization" placeholder="Your company or organisation" required autocomplete="organization"></div>
-            <div class="form-group"><label for="modal-source">How did you find us? *</label><select id="modal-source" class="form-control" data-ghl="origin" name="iL6SbBvHdRGke1TaZlNM" required><option value="">Select an option</option><option value="google_search">Google search</option><option value="recommendation">Recommendation</option><option value="linkedin">LinkedIn</option><option value="networking_event">Networking event</option><option value="youtube">YouTube</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="social_media_ad">Social media ad</option><option value="1881">1881.no</option><option value="gulesider">gulesider.no</option><option value="180">180.no</option></select></div>
-            <div class="form-group"><label for="modal-message">Tell us more about your event</label><textarea id="modal-message" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" placeholder="Share the details: guest count, goals, and what matters most."></textarea></div>
-            <div class="form-group"><label for="modal-event-date">Event date *</label><input type="date" id="modal-event-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" required></div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request quote</button>
-            <p class="form-consent-text">By clicking "Request quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+            <div class="form-row">
+                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"><p class="qf-hint qf-hint-after" id="qf-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
+            </div>
+            <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
+            <button type="submit" class="btn btn-primary">Request a quote</button>
+            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
         </form>
-        <div class="ghl-form-hidden"><!-- GHL native form goes here (added in GHL builder, not as iframe) --></div>
+        <div class="ghl-form-hidden"></div>
     </div>
 </div>
+<!-- quote-form:end -->
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><button class="lightbox-close" aria-label="Close">✕</button><img src="" alt="" class="lightbox-img"></div><script src="js/main-v2.js?v=2"></script>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- CDN Libraries (Body Tracking Code in GHL; here for the local preview) -->
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+
+<script src="js/main-v2.js?v=2"></script>
 <script>
     (function() {
         function dismissSplash() {
