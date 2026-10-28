@@ -240,6 +240,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .svc p{margin:0;text-wrap:pretty}
 .svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead,.svc .svc-close-title{text-wrap:balance}
 .svc .svc-nw{white-space:nowrap !important}
+.svc-intro .svc-nw,.svc-close-text .svc-nw{display:inline}
 .svc ul,.svc ol{list-style:none;margin:0;padding:0}
 .svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
 .svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
@@ -506,11 +507,16 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .cs-hero-top{display:grid;grid-template-columns:1fr auto;gap:24px 72px;align-items:end}
 .cs-hero-top .svc-chips{justify-content:flex-end}
 .cs-hero-film{margin-top:48px}
-.cs-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:32px 0}
+.cs-facts{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;margin:0;padding:40px 0}
 .cs-facts>div{padding:0 24px;border-left:1px solid #E4E0D8}
+.cs-facts>div:last-child{padding-right:0}
 .cs-facts>div:first-child{padding-left:0;border-left:0}
-.cs-facts dt{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-charcoal)}
-.cs-facts dd{margin:6px 0 0;font-family:var(--font-heading);font-weight:600;font-size:18px;line-height:1.35;color:var(--color-obsidian);text-wrap:balance}
+.cs-facts dt{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--color-charcoal)}
+.cs-facts dd{margin:12px 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.cs-fact-v{font-family:var(--font-heading);font-weight:600;font-size:18px;line-height:1.35;color:var(--color-obsidian);text-wrap:balance}
+.cs-fact-sub{font-size:14px;line-height:1.45;color:var(--color-charcoal);text-wrap:balance}
+.cs-fact-logo{display:block;height:24px;width:auto}
+@media (max-width:1180px){.cs-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px}.cs-facts>div{padding:0;border-left:0}}
 .cs-about,.cs-role{padding:96px 0}
 .cs-about .svc-intro{margin-top:20px !important}
 .cs-about .svc-intro+.svc-intro{margin-top:16px !important}
@@ -521,6 +527,8 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .cs-role .svc-icon-rows p{margin-top:0 !important}
 .cs-role .svc-icon-rows .svc-todo{display:inline-flex;margin-top:8px !important}
 .cs-role-more{margin-top:32px !important;padding-top:20px;border-top:1px solid var(--color-warm-grey);font-size:16px}
+.cs-role-more span{display:block;text-wrap:balance}
+.cs-role-more a{white-space:nowrap}
 .cs-timeline .svc-speeds{grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:32px}
 .cs-timeline .svc-speeds .svc-h3{font-size:20px !important;line-height:1.3 !important;text-wrap:balance}
 .cs-timeline .svc-todo{margin-top:16px !important;align-self:flex-start;border-color:var(--color-charcoal);color:var(--color-warm-grey) !important}
@@ -533,10 +541,11 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .cs-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .cs-quotes--1{grid-template-columns:minmax(0,880px)}
 .cs-quote{margin:0;display:flex;flex-direction:column;padding:36px 40px;border-radius:18px;background:var(--color-white);border-top:3px solid var(--color-ember);box-shadow:0 4px 20px rgba(20,18,24,.06)}
-.cs-quote blockquote{margin:0;font-size:20px;line-height:1.55;color:var(--color-obsidian)}
+.cs-quote blockquote{margin:0;font-size:20px;line-height:1.55;color:var(--color-obsidian);text-wrap:balance}
 .cs-quote figcaption{margin-top:28px;padding-top:20px;border-top:1px solid rgba(20,18,24,.08);font-size:15px}
 .cs-quote-name{display:block;font-weight:600;color:var(--color-obsidian)}
 .cs-quote>.svc-todo{flex:1;min-height:200px}
+.cs-quote>.svc-todo.cs-ask{flex:none;min-height:0;margin-top:16px}
 .svc-player{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:var(--color-onyx)}
 .svc-player video,.svc-player>img,.svc-player iframe{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;border:0}
 .svc-player video{opacity:0}
@@ -562,7 +571,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .cs-hero-film{margin-top:28px}
 .cs-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;padding:24px 0}
 .cs-facts>div{padding:0;border-left:0}
-.cs-facts dd{font-size:16px}
+.cs-fact-v{font-size:16px}
 .cs-role .svc-consent-img{height:auto;min-height:0}
 .cs-timeline .svc-speeds{grid-template-columns:1fr;gap:28px}
 .cs-quotes{grid-template-columns:1fr;gap:16px}
@@ -572,7 +581,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .cs-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .svc-player{border-radius:14px}
 }
-@media (max-width:600px){.cs-facts{grid-template-columns:1fr;gap:14px}.cs-about .svc-intro span{display:inline;text-wrap:pretty}}
+@media (max-width:600px){.cs-facts{grid-template-columns:1fr;gap:20px}.cs-about .svc-intro span{display:inline;text-wrap:pretty}}
 @media (max-width:480px){.cs-about,.cs-role,.cs-reviews,.cs-gallery{padding:56px 0}.svc-play{width:64px;height:64px}}
 .cs-hero-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:var(--pos,50% 50%);border-radius:18px}
 @media (max-width:900px){.cs-hero-photo img{border-radius:14px}}
@@ -592,7 +601,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 
 <section class="svc svc-trust" aria-label="Project facts">
     <div class="svc-wrap">
-        <dl class="cs-facts"><div><dt>Client</dt><dd>The Marketing Department, for NECCUS</dd></div><div><dt>Event</dt><dd>Trade mission, 2023</dd></div><div><dt>Location</dt><dd>Oslo Event Hub and the UK Ambassador&#x27;s residence</dd></div><div><dt>Delivered</dt><dd>Press-ready photos within 24 hours, the full gallery within a week</dd></div></dl>
+        <dl class="cs-facts"><div><dt>Client</dt><dd><span class="cs-fact-v">The Marketing Department</span><span class="cs-fact-sub">For NECCUS</span></dd></div><div><dt>Event</dt><dd><span class="cs-fact-v">Decarbonisation trade mission</span><span class="cs-fact-sub">Scotland–Norway, 2023</span></dd></div><div><dt>Location</dt><dd><span class="cs-fact-v">Oslo Event Hub</span><span class="cs-fact-sub">and the UK Ambassador&#x27;s residence</span></dd></div><div><dt>Delivered</dt><dd><span class="cs-fact-v">Press-ready photos</span><span class="cs-fact-sub">Within 24 hours, the full gallery within a week</span></dd></div></dl>
     </div>
 </section>
 
@@ -616,7 +625,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
         <img class="svc-consent-img" src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06d840ed1175f2d7444.webp" alt="Delegates with lanyards seated in a session, smiling at the speaker" width="900" height="600" loading="lazy">
         <div class="cs-role-rows">
             <ul class="svc-icon-rows"><li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span><div><p>We joined The Marketing Department's production team as the local photographer in Oslo, so they did not need to fly one in from Scotland.</p></div></li><li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></span><div><p>At Oslo Event Hub we photographed the keynotes, the panel sessions, the audience and the room.</p></div></li><li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><div><p>At the UK Ambassador's residence we photographed the reception: conversations, group photos and the formal moments.</p></div></li><li><span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m9 15 2 2 4-4"></path></svg></span><div><p>We also photographed the event branding, the signage and the partner organisations.</p></div></li></ul>
-            <p class="cs-role-more">This project is our <a href="https://recapmedia.no/services/event-photography-oslo" class="svc-link">event photography</a> service in practice. More projects on our <a href="https://recapmedia.no/work" class="svc-link">work page</a>.</p>
+            <p class="cs-role-more"><span>This project is our <a href="https://recapmedia.no/services/event-photography-oslo" class="svc-link">event photography</a> service in practice.</span> <span>More projects on our <a href="https://recapmedia.no/work" class="svc-link">work page</a>.</span></p>
         </div>
     </div>
 </section>
@@ -635,7 +644,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 
 <section class="svc cs-reviews" aria-label="Client review">
     <div class="svc-wrap">
-        <div class="cs-quotes cs-quotes--1"><figure class="cs-quote"><blockquote>“Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to engage them again.”</blockquote><figcaption><span class="cs-quote-name">Christopher Graham</span>CEO, The Marketing Department</figcaption></figure></div>
+        <div class="cs-quotes cs-quotes--1"><figure class="cs-quote"><blockquote>“Professional, very diligent and produced some spectacular images that we used in post-event press and comms to stakeholders. We’ll be using the photos in other campaigns going forward and we will not hesitate to&nbsp;engage them again.”</blockquote><figcaption><span class="cs-quote-name">Christopher Graham</span>CEO, The Marketing Department</figcaption></figure></div>
     </div>
 </section>
 
@@ -770,28 +779,29 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 
 <!-- quote-form:start  Quote form, modal version. Canonical copy: ghl/ghl-global-footer.html (brief: briefs/quote-form.md). Opened by any data-cta="quote" link. -->
 <style>
-/* --color-stone-dark is newer than the live style.css pin, hence the fallback. */
-.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:36px !important;max-width:540px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
+.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:32px !important;max-width:560px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
 .qf-card h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;margin:0 0 6px !important;padding-right:40px}
-.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 24px !important}
+.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
 .qf-card .modal-close{width:44px !important;height:44px !important;top:14px !important;right:14px !important;font-size:1rem !important;background:rgba(20,18,24,.06) !important;color:var(--color-charcoal) !important}
 .qf-card .modal-close:hover{background:rgba(20,18,24,.12) !important;color:var(--color-obsidian) !important}
-.quote-form.qf-form .form-row{gap:12px !important}
-.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:16px !important}
+.quote-form.qf-form .form-row{gap:0 12px !important}
+.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:14px !important}
 .quote-form.qf-form .form-group label{font-size:14px !important;font-weight:500 !important;letter-spacing:0 !important;color:var(--color-obsidian) !important}
 .quote-form.qf-form .qf-opt{font-weight:400;color:var(--color-stone-dark,#6F6B64)}
 .quote-form.qf-form .qf-hint{font-size:13px;line-height:1.4;color:var(--color-stone-dark,#6F6B64);margin:-2px 0 2px}
-.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:48px;padding:12px 14px !important}
+.quote-form.qf-form .qf-hint-after{margin:0}
+.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:44px;padding:10px 14px !important}
 .quote-form.qf-form .form-control::placeholder{color:var(--color-stone-dark,#6F6B64) !important;font-size:16px !important}
 .quote-form.qf-form .form-control:focus{border-color:var(--color-ember) !important;box-shadow:0 0 0 3px rgba(232,89,60,.15) !important}
 .quote-form.qf-form input[type=date].form-control{text-align:left}
 .quote-form.qf-form input[type=date]::-webkit-date-and-time-value{text-align:left}
-.quote-form.qf-form textarea.form-control{min-height:112px !important}
+.quote-form.qf-form textarea.form-control{min-height:88px !important}
 .quote-form.qf-form .form-error{font-size:13px !important;line-height:1.4;color:#B3261E !important;margin:0}
 .quote-form.qf-form .form-group.has-error .form-control{border-color:#B3261E !important}
-.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:52px;margin-top:4px}
-.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:12px 0 0 !important}
+.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:48px;margin-top:2px}
+.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:10px 0 0 !important}
 .quote-form.qf-form .form-consent-text a{color:var(--color-obsidian) !important}
+.qf-card .svc-nw,.qf-form .svc-nw,.form-success .svc-nw{white-space:nowrap}
 .qf-card .form-success-heading{color:var(--color-obsidian) !important}
 .qf-card .form-success-body{color:var(--color-charcoal) !important}
 .qf-card .form-success-check{color:var(--color-stone-dark,#6F6B64) !important}
@@ -800,13 +810,13 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 .form-success-actions .form-success-close{margin:0 !important}
 .qf-card .form-success{padding:24px 0 8px !important}
 @media (max-width:540px){.quote-form.qf-form .form-row.qf-names{grid-template-columns:1fr 1fr !important}}
-@media (max-width:480px){.modal-container.qf-card{padding:28px 20px 24px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
+@media (max-width:480px){.modal-container.qf-card{padding:24px 18px 20px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
 </style>
 <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="qf-title">
     <div class="modal-container qf-card">
         <button class="modal-close" aria-label="Close">✕</button>
         <h2 id="qf-title">Request a quote</h2>
-        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free 20-minute call.</p>
+        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
         <form class="quote-form qf-form" novalidate>
             <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
             <div class="form-row qf-names">
@@ -815,10 +825,12 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
             </div>
             <div class="form-row">
                 <div class="form-group"><label for="qf-email">Email</label><input type="email" id="qf-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-email-err"><p class="form-error" id="qf-email-err">Enter an email address like name@company.no</p></div>
-                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
             </div>
-            <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
-            <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-date-hint">A rough date is fine. For a multi-day event, pick the first day.</p><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"></div>
+            <div class="form-row">
+                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"><p class="qf-hint qf-hint-after" id="qf-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
+            </div>
             <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
             <button type="submit" class="btn btn-primary">Request a quote</button>
             <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
