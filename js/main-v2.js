@@ -214,9 +214,14 @@
         // Gallery photos (case-study and service-page tiles; .gallery-item is the
         // old markup) open larger. A tile that cross-fades two photos opens the
         // one showing.
+        // Later photos stack on top of earlier ones, and the bottom one stays fully
+        // opaque underneath, so the photo showing is the topmost mostly-opaque one.
         function shown(item) {
             const imgs = Array.from(item.querySelectorAll('img'));
-            return imgs.reduce((a, b) => parseFloat(getComputedStyle(b).opacity) > parseFloat(getComputedStyle(a).opacity) ? b : a, imgs[0]);
+            for (let i = imgs.length - 1; i > 0; i--) {
+                if (parseFloat(getComputedStyle(imgs[i]).opacity) > 0.5) return imgs[i];
+            }
+            return imgs[0];
         }
         document.querySelectorAll('.gallery-item, .cs-gallery-grid .svc-tile, .svc-gallery .svc-tile').forEach(item => {
             if (item.closest('a') || !item.querySelector('img')) return;
