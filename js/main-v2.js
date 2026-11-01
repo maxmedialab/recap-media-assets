@@ -196,10 +196,36 @@
         if (!lightbox) return;
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const closeBtn = lightbox.querySelector('.lightbox-close');
-        function open(src, alt) { lightboxImg.src = src; lightboxImg.alt = alt || ''; lightbox.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function close() { lightbox.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => { lightboxImg.src = ''; }, 300); }
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => { const img = item.querySelector('img'); if (img) open(img.src, img.alt); });
+        let opener = null;
+        // Lenis must not scroll the page behind the open viewer.
+        lightbox.setAttribute('data-lenis-prevent', '');
+        function open(src, alt) {
+            opener = document.activeElement;
+            lightboxImg.src = src; lightboxImg.alt = alt || '';
+            lightbox.classList.add('open'); document.body.style.overflow = 'hidden';
+            if (closeBtn) closeBtn.focus({ preventScroll: true });
+        }
+        function close() {
+            if (!lightbox.classList.contains('open')) return;
+            lightbox.classList.remove('open'); document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+            if (opener && opener.focus) opener.focus({ preventScroll: true });
+        }
+        // Gallery photos (case-study and service-page tiles; .gallery-item is the
+        // old markup) open larger. A tile that cross-fades two photos opens the
+        // one showing.
+        function shown(item) {
+            const imgs = Array.from(item.querySelectorAll('img'));
+            return imgs.reduce((a, b) => parseFloat(getComputedStyle(b).opacity) > parseFloat(getComputedStyle(a).opacity) ? b : a, imgs[0]);
+        }
+        document.querySelectorAll('.gallery-item, .cs-gallery-grid .svc-tile, .svc-gallery .svc-tile').forEach(item => {
+            if (item.closest('a') || !item.querySelector('img')) return;
+            const show = () => { const img = shown(item); open(img.currentSrc || img.src, img.alt); };
+            item.style.cursor = 'zoom-in';
+            item.setAttribute('role', 'button');
+            item.setAttribute('tabindex', '0');
+            item.addEventListener('click', show);
+            item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
         });
         if (closeBtn) closeBtn.addEventListener('click', close);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
@@ -829,6 +855,10 @@
         });
     }
 
+    function _pinchZoomed() {
+        return !!(window.visualViewport && window.visualViewport.scale > 1.01);
+    }
+
     function _runGSAP() {
 
     // Reduced motion: no smooth-scroll hijack, no hide-then-reveal anywhere —
@@ -849,12 +879,33 @@
             // when cursor is over horizontal scroll containers
             return false;
         },
+        // Pinch-zoomed: the browser scrolls, so the zoomed view pans where the
+        // visitor puts it instead of Lenis dragging the page under it.
+        virtualScroll: function () { return !_pinchZoomed(); },
     });
     var lenis = window.__lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
     gsap.registerPlugin(ScrollTrigger);
+
+    // ScrollTrigger re-measures on resize by jumping the page to the top and
+    // back. iOS reports pinch-zoom as a resize, so a zoomed-in visitor was thrown
+    // to the left edge and the page jumped. Re-measure only for real layout
+    // changes: never while zoomed, and on touch screens only when the width
+    // changes (the address bar only changes the height).
+    ScrollTrigger.config({ autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load' });
+    var _layoutW = document.documentElement.clientWidth, _layoutH = window.innerHeight, _resizeT;
+    window.addEventListener('resize', function () {
+        clearTimeout(_resizeT);
+        _resizeT = setTimeout(function () {
+            if (_pinchZoomed()) return;
+            var w = document.documentElement.clientWidth, h = window.innerHeight;
+            if (w === _layoutW && (ScrollTrigger.isTouch === 1 || h === _layoutH)) return;
+            _layoutW = w; _layoutH = h;
+            ScrollTrigger.refresh();
+        }, 200);
+    });
 
     // No hero entrance: the hero stays exactly as CSS painted it. Re-hiding it to
     // replay it made the page load twice (Max, 2026-07-16).
