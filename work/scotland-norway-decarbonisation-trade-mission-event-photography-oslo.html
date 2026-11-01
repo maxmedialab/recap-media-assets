@@ -590,6 +590,9 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
 @media (max-width:480px){.cs-about,.cs-role,.cs-reviews,.cs-gallery{padding:56px 0}.svc-play{width:64px;height:64px}}
 .cs-hero-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:var(--pos,50% 50%);border-radius:18px}
 @media (max-width:900px){.cs-hero-photo img{border-radius:14px}}
+.cs-hero-top{grid-template-areas:"eye tags" "h1 h1" "lead lead"}
+.cs-hero-top>.cs-lead{grid-area:lead;margin:0 !important;max-width:880px;text-wrap:balance}
+@media (max-width:600px){.cs-hero-top{grid-template-areas:"eye" "h1" "lead" "tags"}.cs-lead{font-size:17px}}
 .cs-gallery+.svc-faq{background:var(--color-cream) !important}
 </style>
 
@@ -598,6 +601,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
         <div class="cs-hero-top">
             <p class="svc-eyebrow">Case study</p>
             <h1 class="svc-h1 cs-h1" id="cs-h1">Scotland–Norway Decarbonisation Trade Mission: Event Photography in Oslo</h1>
+            <p class="svc-lead cs-lead">Recap Media photographed the decarbonisation trade mission between Scotland and Norway at Oslo Event Hub and the UK Ambassador&#x27;s residence. Press-ready photos were delivered within 24 hours.</p>
             <ul class="svc-chips cs-tags" aria-label="Services on this project"><li><a href="https://recapmedia.no/services/event-photography-oslo">Event photography</a></li></ul>
         </div>
         <div class="cs-hero-film cs-hero-photo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404.webp" alt="Panel of four speakers at a table in front of the audience during the Scotland–Norway trade mission" width="1280" height="853" fetchpriority="high"></div>
@@ -838,7 +842,7 @@ Corporate event photography for the Scotland–Norway Decarbonisation Trade Miss
             </div>
             <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
             <button type="submit" class="btn btn-primary">Request a quote</button>
-            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+            <p class="form-consent-text">By clicking "Request a quote", you agree that we contact you about your request. Our <a href="https://recapmedia.no/privacy">privacy policy</a> explains how we handle your details.</p>
         </form>
         <div class="ghl-form-hidden"></div>
     </div>

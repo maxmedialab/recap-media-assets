@@ -591,6 +591,9 @@ Event video and photography for Patch's Norway buyer tour: two days by train fro
 }
 @media (max-width:600px){.cs-hero-top{grid-template-columns:1fr;grid-template-areas:"eye" "h1" "tags";gap:16px}.cs-hero-top>.svc-chips{justify-content:flex-start}.cs-facts{grid-template-columns:1fr;gap:20px}.cs-about .svc-intro span{display:inline;text-wrap:pretty}}
 @media (max-width:480px){.cs-about,.cs-role,.cs-reviews,.cs-gallery{padding:56px 0}.svc-play{width:64px;height:64px}}
+.cs-hero-top{grid-template-areas:"eye tags" "h1 h1" "lead lead"}
+.cs-hero-top>.cs-lead{grid-area:lead;margin:0 !important;max-width:880px;text-wrap:balance}
+@media (max-width:600px){.cs-hero-top{grid-template-areas:"eye" "h1" "lead" "tags"}.cs-lead{font-size:17px}}
 .cs-videos{padding:88px 0}
 .cs-videos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;margin:32px 0 0 !important;padding:0 !important;list-style:none}
 .cs-videos-grid>li{margin:0;padding:0}
@@ -651,6 +654,7 @@ Event video and photography for Patch's Norway buyer tour: two days by train fro
         <div class="cs-hero-top">
             <p class="svc-eyebrow">Case study</p>
             <h1 class="svc-h1 cs-h1" id="cs-h1">Patch Norway Buyer Tour: Event Video and Photography from Oslo to Bergen</h1>
+            <p class="svc-lead cs-lead">Recap Media filmed Patch&#x27;s Norway CO₂ removal tour, two days by train from Oslo to Bergen, and delivered a hero film and 15 edited photos.</p>
             <ul class="svc-chips cs-tags" aria-label="Services on this project"><li><a href="https://recapmedia.no/services/event-video-oslo">Event video</a></li><li><a href="https://recapmedia.no/services/event-photography-oslo">Event photography</a></li></ul>
         </div>
         <div class="cs-hero-film" id="film"><div class="svc-player"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@a7b3bda/images/patch-film-poster-truck.webp" alt="A CO₂ truck in Inherit livery at the Northern Lights terminal" width="1920" height="1080" fetchpriority="high"><video preload="none" playsinline width="1920" height="1080" data-src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@a7b3bda/video/patch-norway-co2-tour-film-720p.mp4" title="Patch Norway buyer tour: event film"></video><button type="button" class="svc-play" aria-label="Watch the film"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button><p class="cs-dur">2 min 22 s</p></div></div>
@@ -986,7 +990,7 @@ Event video and photography for Patch's Norway buyer tour: two days by train fro
             </div>
             <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
             <button type="submit" class="btn btn-primary">Request a quote</button>
-            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+            <p class="form-consent-text">By clicking "Request a quote", you agree that we contact you about your request. Our <a href="https://recapmedia.no/privacy">privacy policy</a> explains how we handle your details.</p>
         </form>
         <div class="ghl-form-hidden"></div>
     </div>
