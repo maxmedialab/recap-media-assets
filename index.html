@@ -859,6 +859,9 @@ From one event to months of content. One crew for photo and video, founder-led e
     .hws-frame--art { background: var(--color-void); }
     .hws-frame--art > img { object-fit: contain; }
     .hws-frame--art::before { display: none; }
+    .hws-frame--doc { background: var(--hws-paper, var(--color-void)); outline: 1px solid rgba(255, 255, 255, 0.12); }
+    .hws-frame--doc > picture > img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: contain; }
+    main .hws-frame.hws-frame--doc img { filter: none !important; }
 
     .hws-cap { position: relative; margin: var(--g-slug-gap) 0 0; padding-left: 14px; }
     .hws-cap::before { content: ''; position: absolute; left: 0; top: 3px; bottom: 3px; width: 1px; background: rgba(255, 255, 255, 0.14); }
@@ -1099,14 +1102,17 @@ From one event to months of content. One crew for photo and video, founder-led e
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">One conversation.</span></p>
 
                     <figure class="hws-plate">
-                            <div class="hws-frame hws-frame--art">
-                                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-brief.webp"
-                                     srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-brief-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-brief.webp 1600w"
-                                     sizes="(max-width: 768px) 92vw, 704px"
-                                     alt="Illustration: four taped index cards headed Event, Audience, Objective and Outcomes, ruled and left blank on a studio board"
-                                     width="1600" height="822" loading="lazy" decoding="async">
+                            <div class="hws-frame hws-frame--art hws-frame--doc" style="--hws-paper: var(--color-obsidian);">
+                                <picture>
+                                    <source media="(max-width: 540px)" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-brief-doc-phone.webp">
+                                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-brief-doc.webp"
+                                         srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-brief-doc-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-brief-doc.webp 1600w"
+                                         sizes="(max-width: 768px) 92vw, 704px"
+                                         alt="Cover of a Recap Media proposal titled Proposal prepared for you, beside a photo of delegates at a conference session"
+                                         width="1600" height="822" loading="lazy" decoding="async">
+                                </picture>
                             </div>
-                            <figcaption class="hws-cap"><em>Illustration &middot; discovery brief</em></figcaption>
+                            <figcaption class="hws-cap"><em>Proposal cover &middot; anonymised</em></figcaption>
                         </figure>
                 </article>
 
@@ -1120,14 +1126,17 @@ From one event to months of content. One crew for photo and video, founder-led e
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve the plan.</span></p>
 
                     <figure class="hws-plate">
-                            <div class="hws-frame hws-frame--art">
-                                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-plan.webp"
-                                     srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-plan-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-plan.webp 1600w"
-                                     sizes="(max-width: 768px) 92vw, 704px"
-                                     alt="Illustration: a coverage plan laid out in bands for time, moments, rooms, crew and deliverables across a multi-room event"
-                                     width="1600" height="822" loading="lazy" decoding="async">
+                            <div class="hws-frame hws-frame--art hws-frame--doc" style="--hws-paper: var(--color-white);">
+                                <picture>
+                                    <source media="(max-width: 540px)" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-plan-doc-phone.webp">
+                                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-plan-doc.webp"
+                                         srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-plan-doc-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-plan-doc.webp 1600w"
+                                         sizes="(max-width: 768px) 92vw, 704px"
+                                         alt="The top of a Recap Media production plan from a kickoff call: what we agreed, and a table of the people to capture with their roles and times"
+                                         width="1600" height="822" loading="lazy" decoding="async">
+                                </picture>
                             </div>
-                            <figcaption class="hws-cap"><em>Illustration &middot; coverage plan</em></figcaption>
+                            <figcaption class="hws-cap"><em>Production plan &middot; anonymised</em></figcaption>
                         </figure>
                 </article>
 
@@ -1160,14 +1169,17 @@ From one event to months of content. One crew for photo and video, founder-led e
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Pick your favourites.</span></p>
 
                     <figure class="hws-plate">
-                            <div class="hws-frame hws-frame--art">
-                                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-build.webp"
-                                     srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-build-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-build.webp 1600w"
-                                     sizes="(max-width: 768px) 92vw, 704px"
-                                     alt="Illustration: footage, audio, transcript and formats above what they become: a master film, short cuts, photo selects and a newsletter article"
-                                     width="1600" height="823" loading="lazy" decoding="async">
+                            <div class="hws-frame hws-frame--art hws-frame--doc" style="--hws-paper: var(--color-cream);">
+                                <picture>
+                                    <source media="(max-width: 540px)" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-build-doc-phone.webp">
+                                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-build-doc.webp"
+                                         srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-build-doc-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-build-doc.webp 1600w"
+                                         sizes="(max-width: 768px) 92vw, 704px"
+                                         alt="A page from a Recap Media delivery guide titled One event, many pieces: a highlight film, photos, interview films, short clips, quote cards and carousels"
+                                         width="1600" height="822" loading="lazy" decoding="async">
+                                </picture>
                             </div>
-                            <figcaption class="hws-cap"><em>Illustration &middot; components to deliverables</em></figcaption>
+                            <figcaption class="hws-cap"><em>Delivery guide &middot; anonymised</em></figcaption>
                         </figure>
                 </article>
 
@@ -1181,14 +1193,17 @@ From one event to months of content. One crew for photo and video, founder-led e
                     <p class="hws-part"><span class="hws-part-label">Your part</span><span class="hws-part-act">Approve each batch.</span></p>
 
                     <figure class="hws-plate">
-                            <div class="hws-frame hws-frame--art">
-                                <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-run.webp"
-                                     srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-run-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/hiw-run.webp 1600w"
-                                     sizes="(max-width: 768px) 92vw, 704px"
-                                     alt="Illustration: a four-step release sequence, from the master film to a short cut, photo selects and a promo for the next event"
-                                     width="1600" height="826" loading="lazy" decoding="async">
+                            <div class="hws-frame hws-frame--art hws-frame--doc" style="--hws-paper: var(--color-white);">
+                                <picture>
+                                    <source media="(max-width: 540px)" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-run-doc-b-phone.webp">
+                                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-run-doc-b.webp"
+                                         srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-run-doc-b-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@2425af1/images/hiw-run-doc-b.webp 1600w"
+                                         sizes="(max-width: 768px) 92vw, 704px"
+                                         alt="A Recap Media release plan: a table of what goes out each week, where it goes and which batch you approve"
+                                         width="1600" height="822" loading="lazy" decoding="async">
+                                </picture>
                             </div>
-                            <figcaption class="hws-cap"><em>Illustration &middot; release sequence</em></figcaption>
+                            <figcaption class="hws-cap"><em>Release plan &middot; anonymised</em></figcaption>
                         </figure>
                 </article>
 
