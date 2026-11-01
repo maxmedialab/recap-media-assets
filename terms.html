@@ -1,11 +1,103 @@
+<!--
+================================================================
+  TERMS OF SERVICE: recapmedia.no/terms
+================================================================
+  HOW TO PUBLISH THIS PAGE: four parts, all on this page in GHL.
+  The page is already live in GHL: each part replaces what is
+  there now. Each part sits between a "COPY BELOW THIS LINE" mark
+  and a "STOP COPYING ABOVE THIS LINE" mark. Copy only what is
+  between them.
+
+    PART 1  SEO title        (in <head>)  -> page SEO settings: Title
+    PART 2  SEO description  (in <head>)  -> page SEO settings: Description
+    PART 3  Schema           (in <head>)  -> "SEO & AI search optimization"
+                                             panel: replace everything in it
+    PART 4  Page body        (in <body>)  -> the Custom HTML block:
+                                             replace everything in it
+
+  Paste all four, then Preview, then Publish. Leave alone: Header/Body
+  Tracking Code, Global Header, Global Footer. Social title/description
+  follow the SEO fields automatically. No CSS/JS pin bump and no images
+  on this page. If the publish date moves, change the "Last updated"
+  line in Part 4 and dateModified in Part 3 to the publish date.
+  Copy to the clipboard as UTF-8 (LC_ALL=en_US.UTF-8 pbcopy).
+
+  Build notes are kept out of the four parts so they never get published.
+  Claim review and Max's open decisions (2026-11-01): legal-pages
+  session report to the hub chat.
+  Launch state + per-page checklist: ../launch-manifest.md
+================================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service — Recap Media</title>
-    <meta name="description" content="Terms of Service for Recap Media (MAXFILMS STRZEPKA). Service agreement, payment terms, cancellation policy, and usage rights.">
+    <!-- ▼▼▼ PART 1 of 4: SEO TITLE -> page SEO settings: Title. COPY BELOW THIS LINE ▼▼▼
+Terms of Service | Recap Media
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
+    <title>Terms of Service | Recap Media</title>
+    <!-- ▼▼▼ PART 2 of 4: SEO DESCRIPTION -> page SEO settings: Description. COPY BELOW THIS LINE ▼▼▼
+Terms of service for Recap Media (MAXFILMS STRZEPKA): booking, payment, cancellation, usage rights and delivery for event photo and video.
+    ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
+    <meta name="description" content="Terms of service for Recap Media (MAXFILMS STRZEPKA): booking, payment, cancellation, usage rights and delivery for event photo and video.">
     <link rel="canonical" href="https://recapmedia.no/terms">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://recapmedia.no/terms">
+    <meta property="og:title" content="Terms of Service | Recap Media">
+    <meta property="og:description" content="Terms of service for Recap Media (MAXFILMS STRZEPKA): booking, payment, cancellation, usage rights and delivery for event photo and video.">
+    <meta property="og:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
+    <meta property="og:site_name" content="Recap Media">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terms of Service | Recap Media">
+    <meta name="twitter:description" content="Terms of service for Recap Media (MAXFILMS STRZEPKA): booking, payment, cancellation, usage rights and delivery for event photo and video.">
+    <meta name="twitter:image" content="https://assets.cdn.filesafe.space/K9u6cepBq4hbudcnIkVw/media/69e9d72fa48992f689d4f7db.png">
+
+    <!-- ▼▼▼ PART 3 of 4: SCHEMA -> "SEO & AI search optimization" panel. Select everything
+         in the panel's schema box and replace it. COPY BELOW THIS LINE ▼▼▼ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://recapmedia.no/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Terms of Service",
+          "item": "https://recapmedia.no/terms"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://recapmedia.no/terms#webpage",
+      "url": "https://recapmedia.no/terms",
+      "name": "Terms of Service | Recap Media",
+      "description": "Terms of service for Recap Media (MAXFILMS STRZEPKA): booking, payment, cancellation, usage rights and delivery for event photo and video.",
+      "inLanguage": "en",
+      "dateModified": "2026-11-01",
+      "publisher": {
+        "@id": "https://recapmedia.no/#business"
+      }
+    }
+  ]
+}
+</script>
+    <!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,6 +115,17 @@
 
 <!-- Splash screen -->
 <div id="rm-splash"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Loading Recap Media"></div>
+
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true">
+    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
 
 <nav class="nav" id="nav">
     <a href="https://recapmedia.no/" class="nav-logo"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@cd2b6b166a42da65e00c1d8aaa771d744db97501/images/69e9d70ea1636a6c65695174.webp" alt="Recap Media Logo"><span>Recap Media</span></a>
@@ -62,122 +165,447 @@
     <a href="#" data-cta="quote" style="color: var(--color-ember);">Request a quote</a>
 </div>
 
-<!--
-================================================================
-  GHL DEPLOYMENT — TERMS OF SERVICE (recapmedia.no/terms)
-================================================================
-  SITE SETTINGS > HEADER TRACKING CODE:
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/css/style.css">
-    [GTM head snippet]
-  SITE SETTINGS > BODY TRACKING CODE:
-    [GTM noscript snippet]
-    <script src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets/js/main-v2.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-  GLOBAL SECTIONS > HEADER: paste contents of ghl-global-header.html
-  GLOBAL SECTIONS > FOOTER: paste contents of ghl-global-footer.html
-  ▼▼▼ PASTE ONLY THE <main>...</main> BLOCK INTO GHL > PAGE > CUSTOM HTML ▼▼▼
-================================================================
--->
-
+<!-- ▼▼▼ PART 4 of 4: PAGE BODY -> the Custom HTML block (replace everything in it).
+     Starts with <main>, ends with </main>. COPY BELOW THIS LINE ▼▼▼ -->
 <main>
 
-<section class="hero-banner">
-    <div class="container">
-        <h1>Terms of Service</h1>
-        <p>Our service agreement, payment terms, cancellation policy, and usage rights.</p>
+<style>
+.nav:not(.scrolled){background-color:rgba(20,18,24,.92) !important;backdrop-filter:blur(12px) !important;-webkit-backdrop-filter:blur(12px) !important}
+.svc{font-family:var(--font-body) !important;color:var(--color-charcoal);font-size:17px;line-height:1.6}
+.svc p{margin:0;text-wrap:pretty}
+.svc .svc-h3,.svc .svc-stat-l,.svc .svc-trust-t,.svc .svc-trust-s,.svc .svc-badge-title,.svc .svc-speed-text,.svc .svc-step,.svc .svc-yours,.svc .svc-terms strong,.svc .svc-icon-rows p,.svc .svc-close-text span,.svc .svc-lane p,.svc .svc-gallery-bar p,.svc .svc-intro,.svc .svc-todo,.svc .svc-more-t,.svc .svc-more-s,.svc .svc-rows p,.svc .svc-cover-list p,.svc .svc-lead,.svc .svc-close-title{text-wrap:balance}
+.svc .svc-nw{white-space:nowrap !important}
+.svc-intro .svc-nw,.svc-close-text .svc-nw{display:inline}
+.svc ul,.svc ol{list-style:none;margin:0;padding:0}
+.svc-wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.svc-eyebrow{margin:0 0 16px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-dark .svc-eyebrow{color:var(--color-warm-grey) !important}
+.svc-h1{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(40px,5vw,64px) !important;line-height:1.03 !important;letter-spacing:-.03em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:clamp(30px,3.4vw,44px) !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.svc-h2--sm{font-size:clamp(28px,2.8vw,36px) !important}
+.svc-h3{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:21px !important;line-height:1.2 !important;color:var(--color-obsidian) !important}
+.svc-dark .svc-h2,.svc-dark .svc-h3{color:var(--color-cream) !important}
+.svc-lead{margin-top:24px !important;max-width:560px;font-size:19px;line-height:1.55}
+.svc-intro{margin-top:16px !important;max-width:720px}
+.svc-label{margin:28px 0 10px !important;font-size:13px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.svc-link{color:var(--color-obsidian) !important;font-weight:600 !important;text-decoration:underline !important;text-decoration-color:var(--color-ember) !important;text-decoration-thickness:2px !important;text-underline-offset:5px !important}
+.svc-link:hover{color:var(--color-ember-deep) !important}
+.svc-dark .svc-link{color:var(--color-cream) !important}
+.svc-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
+.svc-cta .btn{white-space:nowrap}
+.svc-todo{margin:0 !important;border:1px dashed var(--color-stone);border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;box-sizing:border-box;font-size:13px;color:var(--color-stone-dark) !important}
+.svc-stars{display:inline-flex;gap:2px}
+.svc-hero{padding:clamp(112px,11vw,152px) 0 72px;background:var(--color-cream)}
+.svc-hero-grid{display:grid;grid-template-columns:6fr 5fr;gap:72px;align-items:center}
+.svc-chips{display:flex;flex-wrap:wrap;gap:6px;max-width:600px}
+.svc-chips li{border:1px solid var(--color-warm-grey);border-radius:999px;padding:4px 12px;background:var(--color-warm-white);font-size:14px;line-height:1.4;color:var(--color-obsidian) !important}
+.svc-area{display:flex;align-items:flex-start;gap:8px;margin-top:24px !important;font-size:14px}
+.svc-area svg{flex-shrink:0;margin-top:3px}
+.svc-show{position:relative;height:600px}
+.svc-pause-input,.svc-swap-input{position:absolute;left:0;top:0;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.svc-slides{position:relative;height:100%;border-radius:24px;overflow:hidden;background:var(--color-onyx)}
+.svc-slides img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:svc-fade 24s infinite both}
+.svc-slides img:nth-of-type(1){animation-delay:-1s}
+.svc-slides img:nth-of-type(2){animation-delay:5s}
+.svc-slides img:nth-of-type(3){animation-delay:11s}
+.svc-slides img:nth-of-type(4){animation-delay:17s}
+@keyframes svc-fade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+.svc-ctrl{position:absolute;right:16px;top:16px;z-index:2;display:flex;align-items:center;gap:10px;background:rgba(20,18,24,.66);border-radius:999px;padding:4px 12px 4px 4px}
+.svc-pause{position:relative;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-ico-play{display:none}
+.svc-pause-input:checked~.svc-ico-pause{display:none}
+.svc-pause-input:checked~.svc-ico-play{display:block}
+.svc-pause:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-dots{display:flex;gap:6px}
+.svc-dot{width:8px;height:8px;border-radius:999px;background:rgba(245,243,239,.4);animation:svc-dot 24s infinite both}
+.svc-dot:nth-child(1){animation-delay:-1s}
+.svc-dot:nth-child(2){animation-delay:5s}
+.svc-dot:nth-child(3){animation-delay:11s}
+.svc-dot:nth-child(4){animation-delay:17s}
+@keyframes svc-dot{0%{background:rgba(245,243,239,.4)}4%{background:#F5F3EF}25%{background:#F5F3EF}29%{background:rgba(245,243,239,.4)}100%{background:rgba(245,243,239,.4)}}
+.svc-show:has(.svc-pause-input:checked) .svc-slides img,.svc-show:has(.svc-pause-input:checked) .svc-dot{animation-play-state:paused}
+.svc-badge{position:absolute;left:-40px;bottom:32px;z-index:2;width:320px;box-sizing:border-box;background:var(--color-warm-white);border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(20,18,24,.12),0 6px 14px rgba(20,18,24,.08)}
+.svc-badge-title{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-badge-sub{margin-top:6px !important;font-size:14px}
+.svc-badge-link{margin-top:10px !important;font-size:14px}
+.svc-trust{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-trust-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:32px 0 !important}
+.svc-trust-list li{padding:0 24px;border-left:1px solid #E4E0D8}
+.svc-trust-list li:first-child{padding-left:0;border-left:0}
+.svc-trust-t{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-family:var(--font-heading) !important;font-weight:600;font-size:20px;line-height:1.3;color:var(--color-obsidian) !important}
+.svc-trust-s{margin-top:4px !important;font-size:15px}
+.svc-logos{display:flex;align-items:center;gap:24px;padding:24px 0;border-top:1px solid #E4E0D8}
+.svc-logos .svc-label{margin:0 !important;white-space:nowrap}
+.svc-logos-grid{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.svc-logos-grid .svc-todo{height:52px}
+.svc-band-row{flex:1;min-width:0;display:flex;align-items:center;gap:16px}
+.svc-band{flex:1;min-width:0;padding:8px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.svc-band-track{display:flex;width:max-content;animation:svc-band 40s linear infinite}
+.svc .svc-band-set{display:flex;align-items:center;gap:64px;padding-right:64px}
+.svc-band-set li{flex-shrink:0}
+.svc-band img{width:auto;height:var(--h);opacity:.8;transform:translateY(var(--dy,0))}
+.svc-band .svc-todo{width:128px;height:40px}
+@keyframes svc-band{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.svc-band-row:hover .svc-band-track,.svc-band-row:has(.svc-pause-input:checked) .svc-band-track{animation-play-state:paused}
+.svc-band-btn{position:relative;flex-shrink:0;width:32px;height:32px;box-sizing:border-box;border:1px solid var(--color-warm-grey);border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.svc-band-btn:has(.svc-pause-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-gallery{padding:80px 0 72px}
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px 40px}
+.svc-head-links{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
+.svc-tile{position:relative;margin:0;aspect-ratio:3/2;border-radius:14px;overflow:hidden;background:var(--color-onyx)}
+.svc-tile img{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover}
+.svc-tile img+img{opacity:0;animation:svc-swap 72s infinite both}
+@keyframes svc-swap{0%{opacity:0}47%{opacity:0}50%{opacity:1}97%{opacity:1}100%{opacity:0}}
+.svc-grid .g-feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.svc-grid .g-wide{grid-column:span 2}
+.svc-grid .g-feature.g-more{grid-column:3/span 2;grid-row:4/span 2}
+.svc-gallery-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px}
+.svc-gallery-bar p{font-size:14px;color:var(--color-stone-dark) !important}
+.svc-swap-btn{position:relative;display:inline-flex;flex-shrink:0;white-space:nowrap;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--color-obsidian);border:1px solid var(--color-warm-grey);border-radius:999px;padding:6px 14px}
+.svc-swap-btn:has(.svc-swap-input:focus-visible){outline:2px solid var(--color-ember);outline-offset:2px}
+.svc-gallery:has(.svc-swap-input:checked) .svc-tile img{animation-play-state:paused}
+.svc-swap-play{display:none}
+.svc-swap-input:checked~.svc-swap-pause{display:none}
+.svc-swap-input:checked~.svc-swap-play{display:inline}
+.svc-speed{background:var(--color-obsidian);padding:96px 0}
+.svc-speed p{color:var(--color-warm-grey)}
+.svc-speed-wrap{position:relative;margin-top:64px}
+.svc-line{position:absolute;left:8px;right:0;top:7px;height:2px;background:var(--color-smoke)}
+.svc-speeds{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.svc-speeds li{display:flex;flex-direction:column}
+.svc-node{width:16px;height:16px;border-radius:999px;background:var(--color-ember)}
+.svc-node--open{width:12px;height:12px;border:2px solid var(--color-cream);background:var(--color-obsidian)}
+.svc-when{margin-top:24px !important;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--color-amber) !important}
+.svc-speeds .svc-h3{margin-top:8px !important;font-size:26px !important}
+.svc-speed-text{margin-top:10px !important;font-size:16px;flex-grow:1}
+.svc-speed--run .svc-node{box-sizing:border-box;border:2px solid var(--color-ember);background:var(--color-ember)}
+.svc-speed--run.is-ready .svc-node{background:var(--color-obsidian);border-color:var(--color-cream)}
+.svc-runner{position:absolute;left:0;top:0;z-index:1;width:16px;height:16px;border-radius:999px;background:var(--color-ember);box-shadow:0 0 0 6px rgba(232,89,60,.22);opacity:0;pointer-events:none;transform:translate(var(--x1,0),var(--y1,0))}
+.svc-speed-wrap.is-on .svc-runner{animation:svc-run 6.4s ease-in-out var(--d,0s) forwards}
+.svc-speed-wrap.is-on .svc-node{animation:svc-lit .3s ease forwards}
+.svc-speed-wrap.is-on li:nth-child(1) .svc-node{animation-delay:calc(var(--d,0s) + .4s)}
+.svc-speed-wrap.is-on li:nth-child(2) .svc-node{animation-delay:calc(var(--d,0s) + 3.05s)}
+.svc-speed-wrap.is-on li:nth-child(3) .svc-node{animation-delay:calc(var(--d,0s) + 6.05s)}
+.svc-track+.svc-track .svc-speed-wrap{--d:.5s}
+@keyframes svc-lit{to{background:var(--color-ember);border-color:var(--color-ember)}}
+@keyframes svc-run{0%{opacity:0;transform:translate(var(--x1),var(--y1))}6%,15%{opacity:1;transform:translate(var(--x1),var(--y1))}50%,62%{transform:translate(var(--x2),var(--y2))}97%,100%{opacity:1;transform:translate(var(--x3),var(--y3))}}
+.svc-tag{margin-top:20px !important;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--color-charcoal);border-radius:999px;padding:4px 12px;color:var(--color-cream) !important}
+.svc-tag--std{background:var(--color-cream);border-color:var(--color-cream);color:var(--color-obsidian) !important}
+.svc-reviews .svc-head{margin-bottom:40px}
+.svc-reviews .testimonial-mark{display:none !important}
+.svc-reviews .svc-rating{font-size:15px;font-weight:600;color:var(--color-obsidian) !important}
+.svc-addon{padding:88px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-addon-grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+.svc-portraits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc-portraits .svc-todo{height:300px;border-radius:14px}
+.svc-portraits img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;border-radius:14px}
+.svc-portraits-note{margin-top:12px !important;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-cover{padding:96px 0}
+.svc-cover-head{display:grid;grid-template-columns:1fr auto;gap:24px 72px;align-items:end}
+.svc-cover-head .svc-cta{margin-top:0}
+.svc-cover-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px;margin-top:48px !important}
+.svc-cover-list img{width:100%;height:240px;object-fit:cover;border-radius:14px}
+.svc-cover-list .svc-h3{margin-top:16px !important}
+.svc-cover-list p{margin-top:6px !important;font-size:16px}
+.svc-process{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-process-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:28px;margin-top:56px !important}
+.svc-process-list li{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;border-top:2px solid var(--color-obsidian);padding-top:20px}
+.svc-num{font-family:var(--font-heading) !important;font-weight:600;font-size:14px;color:var(--color-stone-dark) !important}
+.svc-process-list .svc-h3{margin-top:6px !important}
+.svc-step{margin-top:10px !important;font-size:15px}
+.svc-yours{margin-top:20px !important;padding-top:12px;border-top:1px solid var(--color-warm-grey);font-size:14px}
+.svc-yours strong{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-obsidian)}
+.svc-split{display:grid;grid-template-columns:5fr 7fr;gap:72px}
+.svc-consent{padding:88px 0}
+.svc-rows li{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--color-warm-grey)}
+.svc-rows li:first-child{padding-top:0}
+.svc-rows li:last-child{border-bottom:0;padding-bottom:0}
+.svc-rows .svc-h3{font-size:19px !important}
+.svc-rows p{font-size:16px}
+.svc-consent-grid{display:grid;grid-template-columns:5fr 7fr;grid-template-rows:1fr auto auto 1fr;grid-template-areas:"img ." "img head" "img rows" "img .";column-gap:72px}
+.svc-consent-head{grid-area:head}
+.svc-consent-img{grid-area:img;display:block;width:100%;height:480px;object-fit:cover;object-position:var(--pos,50% 50%);border-radius:18px}
+.svc .svc-icon-rows{grid-area:rows;display:flex;flex-direction:column;gap:24px;margin-top:32px}
+.svc-icon-rows li{display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start}
+.svc-icon{width:52px;height:52px;box-sizing:border-box;border-radius:999px;background:var(--color-warm-white);border:1px solid #E4E0D8;display:flex;align-items:center;justify-content:center}
+.svc-icon svg{width:24px;height:24px}
+.svc-icon-rows .svc-h3{font-size:19px !important}
+.svc-icon-rows p{margin-top:4px !important;font-size:16px}
+.svc.svc-faq{padding:88px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white) !important}
+.svc-faq .faq-list{max-width:none !important;margin:0 !important}
+.svc-more{padding:56px 0;border-top:1px solid #E4E0D8;background:var(--color-warm-white)}
+.svc-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px !important}
+.svc-more-grid a{display:flex;flex-direction:column;gap:6px;height:100%;box-sizing:border-box;padding:22px 24px;border:1px solid var(--color-warm-grey);border-radius:14px;background:var(--color-cream);color:var(--color-charcoal) !important;transition:border-color .2s ease,transform .2s ease}
+.svc-more-grid a:hover{border-color:var(--color-ember);transform:translateY(-2px)}
+.svc-more-t{font-family:var(--font-heading) !important;font-weight:600;font-size:19px;line-height:1.25;color:var(--color-obsidian) !important}
+.svc-more-s{font-size:15px;line-height:1.5}
+.svc-close{background:var(--color-obsidian);padding:96px 0}
+.svc-close-grid{display:grid;grid-template-columns:1fr auto;gap:40px 72px;align-items:center}
+.svc-close-title{font-family:var(--font-heading) !important;font-weight:600;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.02em;color:var(--color-cream) !important}
+.svc-close-text{margin-top:16px !important;max-width:680px;color:var(--color-warm-grey)}
+.svc-close-text span{display:block}
+.svc-close .svc-cta{margin-top:0}
+.svc-close .svc-link{color:var(--color-cream) !important}
+.svc-process-list--6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.svc-stats{background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-stats-grid{display:grid;grid-template-columns:300px repeat(5,minmax(0,1fr));gap:24px;align-items:start;padding:36px 0 !important}
+.svc-stats-grid>li+li{padding-left:20px;border-left:1px solid #E4E0D8}
+.svc-stat-n{font-family:var(--font-heading) !important;font-weight:600;font-size:44px;line-height:1;letter-spacing:-.03em;color:var(--color-obsidian) !important}
+.svc-stat-l{margin-top:8px !important;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-charcoal) !important}
+.svc-scope{padding:96px 0;background:var(--color-warm-white);border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+.svc-scope-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px;align-items:start}
+.svc-intro span{display:block}
+.svc-rows--stack li{grid-template-columns:1fr;gap:4px}
+.svc-scope .svc-rows{margin-top:32px !important}
+.svc-photo{position:relative}
+.svc-photo>img{width:100%;height:520px;object-fit:cover;border-radius:24px}
+.svc-tracks{margin-top:56px;display:flex;flex-direction:column;gap:56px}
+.svc-track{display:grid;grid-template-columns:200px 1fr;gap:32px}
+.svc-lane .svc-h3{font-size:24px !important}
+.svc-lane p{margin-top:6px !important;font-size:14px}
+.svc-track .svc-speed-wrap{margin-top:0}
+.svc .svc-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;margin-top:56px !important;padding-top:32px;border-top:1px solid var(--color-smoke)}
+.svc-terms li{font-size:15px;color:var(--color-warm-grey)}
+.svc-terms strong{display:block;margin-bottom:4px;font-family:var(--font-heading) !important;font-weight:600;font-size:18px;color:var(--color-cream)}
+.svc-places{padding:88px 0}
+.svc-places-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px}
+.svc-places .svc-intro{font-size:16px}
+.svc-venues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+.svc-venues li{padding:10px 0;border-bottom:1px solid var(--color-warm-grey);font-size:15px;color:var(--color-obsidian) !important}
+.svc-bg-cream .svc-more-grid a{background:var(--color-warm-white)}
+.svc.svc-bg-cream{background:var(--color-cream) !important;border-top:0;border-bottom:0}
+.svc.svc-bg-warm{background:var(--color-warm-white) !important;border-top:1px solid #E4E0D8;border-bottom:1px solid #E4E0D8}
+@media (max-width:900px){
+.svc-consent-grid{grid-template-columns:1fr;grid-template-rows:auto;grid-template-areas:"head" "img" "rows"}
+.svc-consent-img{height:auto;aspect-ratio:3/2;border-radius:14px;margin-top:24px}
+.svc .svc-icon-rows{margin-top:28px;gap:22px}
+.svc-icon-rows li{grid-template-columns:44px 1fr;gap:16px}
+.svc-icon{width:44px;height:44px}
+.svc-icon-rows .svc-h3{font-size:18px !important}
+.svc-icon-rows p{font-size:15px}
+.svc-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px}
+.svc-stats-grid>li:first-child{grid-column:1/-1}
+.svc-stats-grid>li+li{padding-left:0;border-left:0}
+.svc-stat-n{font-size:36px}
+.svc-scope-grid,.svc-places-grid,.svc-track{grid-template-columns:1fr;gap:32px}
+.svc-photo>img{height:300px;border-radius:20px}
+.svc-terms{grid-template-columns:1fr}
+.svc-tracks{gap:40px}
+.svc-hero-grid,.svc-addon-grid,.svc-split,.svc-close-grid,.svc-cover-head{grid-template-columns:1fr;gap:32px}
+.svc-more-grid{grid-template-columns:1fr;gap:10px}
+.svc-show{height:auto}
+.svc-slides{height:320px;border-radius:20px}
+.svc-badge{position:relative;left:auto;bottom:auto;width:auto;margin:-40px 16px 0}
+.svc-trust-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+.svc-trust-list li{padding:0;border-left:0}
+.svc-trust-t{font-size:17px}
+.svc-trust-s{font-size:13px}
+.svc-logos{flex-direction:column;align-items:stretch}
+.svc-logos-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc .svc-band-set{gap:28px;padding-right:28px}
+.svc-band img{height:var(--hp)}
+.svc-band .svc-todo{width:96px;height:32px}
+.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.svc-grid .g-feature{grid-row:span 1;aspect-ratio:3/2}
+.svc-grid .g-more{display:none}
+.svc-line{display:none}
+.svc .svc-speeds{grid-template-columns:1fr;gap:36px;padding-left:28px;border-left:2px solid var(--color-smoke)}
+.svc-speeds li{position:relative}
+.svc-node{position:absolute;left:-37px;top:4px}
+.svc-node--open{left:-35px}
+.svc-when{margin-top:0 !important}
+.svc-speeds .svc-h3{font-size:22px !important}
+.svc-portraits .svc-todo{height:140px}
+.svc-cover-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+.svc-cover-list img{height:113px;border-radius:10px}
+.svc-cover-list .svc-h3{font-size:16px !important;margin-top:10px !important}
+.svc-cover-list p{font-size:14px;line-height:1.5}
+.svc-process-list{display:flex;flex-direction:column;gap:28px}
+.svc-process-list li{display:block}
+.svc-rows li{grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:600px){
+.svc-gallery-bar{flex-wrap:wrap}
+.svc-cta{flex-direction:column;align-items:stretch;text-align:center}
+.svc-cta .btn{justify-content:center !important}
+}
+@media (max-width:480px){.svc-wrap{padding:0 20px}.svc-chips{gap:5px}.svc-chips li{font-size:13px;padding:3px 10px}.svc-hero{padding-top:104px}.svc-speed,.svc-cover,.svc-process,.svc-close,.svc-addon,.svc-scope,.svc-places{padding:56px 0}.svc-more{padding:40px 0}.svc-consent,.svc-faq{padding:56px 0}.svc-gallery{padding:48px 0}}
+@media (prefers-reduced-motion:reduce){.svc-slides img{animation:none;opacity:0}.svc-slides img:first-of-type{opacity:1}.svc-ctrl{display:none}.svc-tile img+img{animation:none;opacity:0}.svc-swap-btn{display:none}.svc-band-track{animation:none;transform:none;width:auto}.svc-band-set+.svc-band-set,.svc-band-btn{display:none}.svc .svc-band-set{flex-wrap:wrap;row-gap:16px;column-gap:40px;padding-right:0}.svc-band{-webkit-mask-image:none;mask-image:none}.svc-runner{display:none}}
+</style>
+
+<style>
+.svc .lg-meta,.svc .lg-toc a,.svc .lg-ask-text span{text-wrap:balance}
+.svc.lg-hero{padding-bottom:64px}
+.lg-hero .svc-lead{max-width:640px}
+.svc .lg-meta{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:28px !important;font-size:14px;color:var(--color-stone-dark)}
+.lg-meta li strong{color:var(--color-obsidian);font-weight:600}
+.lg-body{padding:72px 0 96px;background:var(--color-warm-white);border-top:1px solid #E4E0D8}
+.lg-grid{display:grid;grid-template-columns:260px minmax(0,700px);gap:80px;justify-content:start}
+.lg-toc{position:sticky;top:104px;align-self:start}
+.lg-toc .svc-label{margin:0 0 12px !important}
+.lg-toc li a{display:grid;grid-template-columns:34px 1fr;padding:8px 0;border-top:1px solid #E4E0D8;font-size:15px;line-height:1.4;color:var(--color-charcoal) !important;text-decoration:none !important}
+.lg-toc li:last-child a{border-bottom:1px solid #E4E0D8}
+.lg-toc li a:hover{color:var(--color-ember-deep) !important}
+.lg-toc .svc-num{font-size:13px}
+.lg-sec{scroll-margin-top:96px;padding:40px 0;border-top:1px solid #E4E0D8}
+.lg-sec:first-child{padding-top:0;border-top:0}
+.lg-sec:last-child{padding-bottom:0}
+.svc .lg-h2{display:flex;align-items:baseline;gap:14px;margin:0 0 16px !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:26px !important;line-height:1.2 !important;letter-spacing:-.01em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.lg-h2 .svc-num{flex-shrink:0;font-size:15px;color:var(--color-ember-deep) !important}
+.svc .lg-h3{margin:28px 0 8px !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:19px !important;line-height:1.3 !important;color:var(--color-obsidian) !important}
+.lg-sec p+p,.lg-sec p+ul,.lg-sec ul+p{margin-top:14px !important}
+.lg-sec li{position:relative;margin-top:10px;padding-left:22px;text-wrap:pretty}
+.lg-sec li::before{content:"";position:absolute;left:3px;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--color-ember)}
+.lg-sec strong{color:var(--color-obsidian);font-weight:600}
+.lg-ask{padding:80px 0;background:var(--color-cream)}
+.lg-ask .svc-more-grid{margin-top:40px !important}
+.svc .lg-ask-text{margin-top:16px !important}
+.lg-ask-text span{display:block}
+.svc .lg-entity{margin-top:20px !important;font-size:14px;color:var(--color-stone-dark)}
+.svc .ct-direct{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px !important}
+.ct-direct li{display:flex;align-items:center;gap:8px;font-size:16px}
+.ct-direct svg{width:18px;height:18px;flex-shrink:0}
+@media (max-width:1100px){.lg-grid{grid-template-columns:220px minmax(0,1fr);gap:48px}}
+@media (max-width:900px){
+.lg-grid{grid-template-columns:1fr;gap:40px}
+.lg-toc{position:static;padding:20px 20px 12px;border:1px solid #E4E0D8;border-radius:14px;background:var(--color-cream)}
+.lg-toc li:last-child a{border-bottom:0}
+.lg-body{padding:48px 0 64px}
+.lg-ask{padding:56px 0}
+}
+@media (max-width:600px){.svc .lg-h2{font-size:22px !important;gap:12px}.svc .lg-h3{font-size:18px !important}.svc .lg-meta{flex-direction:column}.lg-hero .svc-lead{font-size:18px}.lg-ask-text span{display:inline}}
+</style>
+
+<section class="svc svc-hero lg-hero" aria-labelledby="lg-h1">
+    <div class="svc-wrap">
+        <p class="svc-eyebrow">Legal</p>
+        <h1 class="svc-h1" id="lg-h1">Terms of service</h1>
+        <p class="svc-lead">When you book Recap Media, these terms set out how booking, payment, cancellation, usage rights and delivery work.</p>
+        <ul class="lg-meta"><li><strong>Last updated 1 November 2026</strong></li><li>MAXFILMS STRZEPKA, trading as Recap Media</li><li>Org. no. 928 325 261</li></ul>
     </div>
 </section>
 
-<section class="section section-light">
-    <div class="container">
-        <div class="legal-content">
-            <p class="legal-last-updated">Last updated: February 25, 2026</p>
+<section class="svc lg-body" aria-label="Terms of Service">
+    <div class="svc-wrap lg-grid">
+        <nav class="lg-toc" aria-label="On this page">
+            <p class="svc-label">On this page</p>
+            <ol>
+                <li><a href="#introduction"><span class="svc-num">01</span><span>Introduction</span></a></li>
+                <li><a href="#booking"><span class="svc-num">02</span><span>Booking and contract formation</span></a></li>
+                <li><a href="#services"><span class="svc-num">03</span><span>Services</span></a></li>
+                <li><a href="#payment"><span class="svc-num">04</span><span>Payment terms</span></a></li>
+                <li><a href="#cancellation"><span class="svc-num">05</span><span>Cancellation policy</span></a></li>
+                <li><a href="#usage-rights"><span class="svc-num">06</span><span>Intellectual property and usage rights</span></a></li>
+                <li><a href="#delivery"><span class="svc-num">07</span><span>Deliverables and delivery times</span></a></li>
+                <li><a href="#client-responsibilities"><span class="svc-num">08</span><span>Client responsibilities</span></a></li>
+                <li><a href="#liability"><span class="svc-num">09</span><span>Limitation of liability</span></a></li>
+                <li><a href="#governing-law"><span class="svc-num">10</span><span>Governing law</span></a></li>
+            </ol>
+        </nav>
+        <div class="lg-doc">
+            <section class="lg-sec" id="introduction" aria-labelledby="introduction-h">
+                <h2 class="lg-h2" id="introduction-h"><span class="svc-num">01</span> Introduction</h2>
+                <p>These terms govern the relationship between MAXFILMS STRZEPKA, a sole proprietorship (enkeltpersonforetak) registered in Norway and trading as Recap Media (org. no. 928 325 261, "we", "us" or "the Company"), and clients who book our event photography and&nbsp;video&nbsp;services.</p>
+                <p>By accepting our proposal in writing or paying our deposit invoice, you agree to these terms, unless your booking has its own agreement (see section&nbsp;2). Please read them carefully before&nbsp;you&nbsp;book.</p>
+            </section>
+            <section class="lg-sec" id="booking" aria-labelledby="booking-h">
+                <h2 class="lg-h2" id="booking-h"><span class="svc-num">02</span> Booking and contract formation</h2>
+                <p>A binding agreement is formed when you accept our proposal in writing (email is enough), sign our agreement, or pay the deposit invoice, whichever comes first. The paid deposit confirms your date (see section&nbsp;4); until it is paid, we can't guarantee&nbsp;availability.</p>
+                <p>All booking details, including event date, location, services, deliverables and fees, are set out in the proposal. Any changes to the agreed scope must be confirmed in writing by both parties (an email or message is&nbsp;enough).</p>
+                <p>If your booking has its own agreement, signed or accepted by paying its deposit invoice, that agreement applies in place of these&nbsp;terms.</p>
+            </section>
+            <section class="lg-sec" id="services" aria-labelledby="services-h">
+                <h2 class="lg-h2" id="services-h"><span class="svc-num">03</span> Services</h2>
+                <p>We provide event photography and video as described in the agreed proposal. Depending on what you book, services&nbsp;may&nbsp;include:</p>
+                <ul>
+                <li>Photography and video&nbsp;on&nbsp;site</li>
+                <li>Edited photos and videos, ready&nbsp;to&nbsp;use</li>
+                <li>Highlight films, social media clips and&nbsp;session&nbsp;recordings</li>
+                <li>Interviews and documentary&nbsp;footage</li>
+                <li>Corporate&nbsp;headshots</li>
+                <li>Livestreaming, only where your agreement&nbsp;includes&nbsp;it</li>
+                </ul>
+                <p>We will make all reasonable efforts to deliver the agreed services. If force majeure or illness affects the coverage, or equipment fails, we will notify you promptly and propose solutions, including substitute crew&nbsp;or&nbsp;rescheduling.</p>
+            </section>
+            <section class="lg-sec" id="payment" aria-labelledby="payment-h">
+                <h2 class="lg-h2" id="payment-h"><span class="svc-num">04</span> Payment terms</h2>
+                <p><strong>Deposit:</strong> A deposit of 50% of the total project fee is invoiced when you accept the proposal, or together with our agreement if your booking has one, and is due within 14 days of the invoice date. The paid deposit confirms&nbsp;the&nbsp;date.</p>
+                <p><strong>Balance:</strong> The remaining 50% is invoiced before delivery and is due within 14 days of the invoice date. The final files are released once it has&nbsp;been&nbsp;paid.</p>
+                <p><strong>Late payment:</strong> Overdue invoices may incur interest charges in accordance with the Norwegian Act on Interest on Overdue Payments (Forsinkelsesrenteloven). We reserve the right to withhold delivery of materials until full payment&nbsp;is&nbsp;received.</p>
+            </section>
+            <section class="lg-sec" id="cancellation" aria-labelledby="cancellation-h">
+                <h2 class="lg-h2" id="cancellation-h"><span class="svc-num">05</span> Cancellation policy</h2>
+                <p>Cancellations must be made in writing (email&nbsp;is&nbsp;sufficient).</p>
+                <p>If you cancel more than 30 days before the first production date, half of the deposit is refunded. If you cancel within 30 days, the deposit is not refunded and you cover any costs we have already incurred that can't&nbsp;be&nbsp;recovered.</p>
+                <p>If we cancel, everything you have paid is refunded in full. If the event can't go ahead because of force majeure, the deposit is refunded&nbsp;in&nbsp;full.</p>
+                <p>If you don't pay our invoices, or otherwise breach these terms, we may end the agreement, and the deposit is not&nbsp;refunded.</p>
+            </section>
+            <section class="lg-sec" id="usage-rights" aria-labelledby="usage-rights-h">
+                <h2 class="lg-h2" id="usage-rights-h"><span class="svc-num">06</span> Intellectual property and usage rights</h2>
+                <p><strong>Ownership:</strong> Once all invoices are paid in full, the client owns the delivered material and may use it for its own business, with no limits on channel or time. Until then, the material belongs to&nbsp;MAXFILMS&nbsp;STRZEPKA.</p>
+                <p><strong>Portfolio use:</strong> We may use delivered material in our own portfolio and marketing, unless you ask us in writing not to. If you, or anyone who appears in the material, asks us to leave out a person, photo or part of a video, we leave it out. For corporate headshots, we only use portraits in our portfolio with the client's&nbsp;permission.</p>
+                <p><strong>Third-party content:</strong> If any <span class="svc-nw">third-party</span> materials (music, logos, branded content) are incorporated at the client's request, the client is responsible for obtaining the necessary rights&nbsp;and&nbsp;licences.</p>
+            </section>
+            <section class="lg-sec" id="delivery" aria-labelledby="delivery-h">
+                <h2 class="lg-h2" id="delivery-h"><span class="svc-num">07</span> Deliverables and delivery times</h2>
+                <p>Deliverables and delivery times are as agreed in the proposal. Event photos are ready in up to 7 business days; for corporate headshots, the edited portraits follow within 7 business days of the picks. For video, we agree the timeline before the event, usually within 14 business days. Faster delivery, such as <span class="svc-nw">same-day</span> photo selects or a video cut within 24 hours, must be agreed before the event and is set out in the proposal. Final files are released once the balance is paid (see section&nbsp;4).</p>
+                <p>The revision rounds included for video are set out in&nbsp;the&nbsp;proposal.</p>
+                <p>Delivered materials are provided via digital gallery or file transfer. We keep the raw files for at least 6 months&nbsp;after&nbsp;delivery.</p>
+            </section>
+            <section class="lg-sec" id="client-responsibilities" aria-labelledby="client-responsibilities-h">
+                <h2 class="lg-h2" id="client-responsibilities-h"><span class="svc-num">08</span> Client responsibilities</h2>
+                <p>To enable us to deliver the agreed services, the client&nbsp;agrees&nbsp;to:</p>
+                <ul>
+                <li>Provide accurate event details (date, time, location, schedule)&nbsp;in&nbsp;advance</li>
+                <li>Ensure we have appropriate access to the venue and any restricted areas needed&nbsp;for&nbsp;coverage</li>
+                <li>Notify us of any relevant restrictions (photography restrictions, confidentiality requirements, dress&nbsp;codes)</li>
+                <li>Let attendees and speakers know before the event that it will be photographed or filmed, and that the material may be used in your marketing after&nbsp;the&nbsp;event</li>
+                <li>Obtain any consent your use of the material needs: we photograph, film and edit, and clearing image, likeness and usage rights is the client's&nbsp;responsibility</li>
+                <li>Respond to <span class="svc-nw">pre-event</span> briefing questions in a&nbsp;timely&nbsp;manner</li>
+                </ul>
+            </section>
+            <section class="lg-sec" id="liability" aria-labelledby="liability-h">
+                <h2 class="lg-h2" id="liability-h"><span class="svc-num">09</span> Limitation of liability</h2>
+                <p>Our total liability to you in connection with any project shall not exceed the total fees paid by you for&nbsp;that&nbsp;project.</p>
+                <p>We are not liable for losses arising from: circumstances beyond our reasonable control; failure to capture specific moments due to access restrictions or timing; technical issues with <span class="svc-nw">third-party</span> platforms (streaming services, social media); or <span class="svc-nw">client-provided</span> content that infringes <span class="svc-nw">third-party</span>&nbsp;rights.</p>
+            </section>
+            <section class="lg-sec" id="governing-law" aria-labelledby="governing-law-h">
+                <h2 class="lg-h2" id="governing-law-h"><span class="svc-num">10</span> Governing law</h2>
+                <p>These terms are governed by Norwegian law. Any disputes arising from or in connection with these terms will be subject to the jurisdiction of the Oslo District Court (Oslo tingrett), unless agreed&nbsp;otherwise.</p>
+            </section>
+        </div>
+    </div>
+</section>
 
-            <h2>1. Introduction</h2>
-            <p>These Terms of Service govern the relationship between MAXFILMS STRZEPKA, trading as Recap Media (org. nr. 928 325 261, "we", "us", or "the Company"), and clients who engage our event photography, videography, and livestreaming services.</p>
-            <p>By booking our services — whether through written confirmation, invoice acceptance, or deposit payment — you agree to these terms. Please read them carefully before engaging our services.</p>
-
-            <h2>2. Booking and Contract Formation</h2>
-            <p>A binding agreement is formed when:</p>
-            <ul>
-                <li>You accept a written quote or proposal from us in writing (email confirmation is sufficient), and</li>
-                <li>You pay the agreed deposit (see Section 4)</li>
+<section class="svc lg-ask" aria-labelledby="lg-ask-h">
+    <div class="svc-wrap">
+        <div>
+            <h2 class="svc-h2 svc-h2--sm" id="lg-ask-h">Questions about these terms?</h2>
+            <p class="lg-ask-text"><span>Email or call us before you book,</span> <span>and we'll explain anything that's unclear.</span></p>
+            <ul class="ct-direct">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg><a href="mailto:booking@recapmedia.no" class="svc-link">booking@recapmedia.no</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="#141218" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+4796689356" class="svc-link">+47 966 89 356</a></li>
             </ul>
-            <p>Until both conditions are met, we cannot guarantee availability on your event date. We recommend confirming your booking as early as possible.</p>
-            <p>All booking details — including event date, location, services, deliverables, and fees — are set out in the proposal. Any changes to the agreed scope must be confirmed in writing by both parties.</p>
-
-            <h2>3. Services</h2>
-            <p>We provide event photography, videography, and livestreaming services as described in the agreed proposal. Services may include:</p>
-            <ul>
-                <li>On-site photography and/or videography</li>
-                <li>Multi-camera livestreaming</li>
-                <li>Edited photo and video deliverables</li>
-                <li>Social media content (vertical clips, short-form video)</li>
-                <li>Artist interviews and documentary-style footage</li>
-            </ul>
-            <p>We will make all reasonable efforts to deliver the agreed services. In the event of circumstances beyond our control (force majeure, illness, equipment failure), we will notify you promptly and propose solutions — including substitute crew or rescheduling.</p>
-
-            <h2>4. Payment Terms</h2>
-            <p><strong>Deposit:</strong> A non-refundable deposit of 30% of the total project fee is required to confirm the booking and secure the date. The deposit is payable within 5 business days of accepting the proposal.</p>
-            <p><strong>Balance:</strong> The remaining balance is invoiced upon delivery of the final deliverables and is due within 14 days of the invoice date.</p>
-            <p><strong>Late payment:</strong> Overdue invoices may incur interest charges in accordance with the Norwegian Act on Interest on Overdue Payments (Forsinkelsesrenteloven). We reserve the right to withhold delivery of materials until full payment is received.</p>
-
-            <h2>5. Cancellation Policy</h2>
-            <p>Cancellations must be made in writing (email is sufficient). The following cancellation fees apply:</p>
-            <ul>
-                <li><strong>More than 30 days before the event:</strong> Deposit forfeited; no further charge</li>
-                <li><strong>15–30 days before the event:</strong> 50% of the total project fee</li>
-                <li><strong>Less than 15 days before the event:</strong> 100% of the total project fee</li>
-            </ul>
-            <p>If we are required to cancel due to circumstances within our control, we will provide a full refund of all payments received, including the deposit. This is the limit of our liability in such cases.</p>
-
-            <h2>6. Intellectual Property and Usage Rights</h2>
-            <p><strong>Copyright:</strong> MAXFILMS STRZEPKA retains copyright ownership of all photographs and video content produced under this agreement.</p>
-            <p><strong>Usage licence:</strong> Upon receipt of full payment, the client is granted a non-exclusive, non-transferable licence to use the delivered materials for the purposes agreed in the proposal (typically: digital publication, social media, website, internal use, press). The scope of the licence is described in the proposal.</p>
-            <p><strong>Portfolio use:</strong> We reserve the right to use delivered materials in our own portfolio, website, and promotional materials, unless otherwise agreed in writing prior to the event.</p>
-            <p><strong>Third-party content:</strong> If any third-party materials (music, logos, branded content) are incorporated at the client's request, the client is responsible for obtaining the necessary rights and licences.</p>
-
-            <h2>7. Deliverables and Turnaround</h2>
-            <p>Deliverables and turnaround times are as agreed in the proposal. Standard turnaround is up to 7 business days for photos and up to 14 business days for video. Expedited turnaround (24-hour, same-day) is available at additional cost and must be agreed before the event.</p>
-            <p>Delivered materials are provided via digital gallery or file transfer. We are not responsible for storing raw files beyond 60 days after delivery.</p>
-
-            <h2>8. Client Responsibilities</h2>
-            <p>To enable us to deliver the agreed services, the client agrees to:</p>
-            <ul>
-                <li>Provide accurate event details (date, time, location, schedule) in advance</li>
-                <li>Ensure we have appropriate access to the venue and any restricted areas needed for coverage</li>
-                <li>Notify us of any relevant restrictions (photography restrictions, confidentiality requirements, dress codes)</li>
-                <li>Respond to pre-event briefing questions in a timely manner</li>
-            </ul>
-
-            <h2>9. Limitation of Liability</h2>
-            <p>Our total liability to you in connection with any project shall not exceed the total fees paid by you for that project.</p>
-            <p>We are not liable for losses arising from: circumstances beyond our reasonable control; failure to capture specific moments due to access restrictions or timing; technical issues with third-party platforms (streaming services, social media); or client-provided content that infringes third-party rights.</p>
-
-            <h2>10. Governing Law</h2>
-            <p>These Terms of Service are governed by Norwegian law. Any disputes arising from or in connection with these terms will be subject to the jurisdiction of the Oslo District Court (Oslo tingrett), unless agreed otherwise.</p>
-
-            <h2>Contact</h2>
-            <p>MAXFILMS STRZEPKA (Recap Media)<br>
-            Org. nr. 928 325 261<br>
-            Oslo, Norway<br>
-            Email: <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a><br>
-            Phone: <a href="tel:+4796689356">+47 966 89 356</a></p>
+            <p class="lg-entity">MAXFILMS STRZEPKA, trading as Recap Media · Org. no. 928 325 261 · Oslo, Norway</p>
+        </div>
+        <div class="svc-more-grid">
+            <a href="https://recapmedia.no/privacy"><span class="svc-more-t">Privacy policy&nbsp;→</span><span class="svc-more-s">How we handle personal data from the site and our client work.</span></a>
+            <a href="https://recapmedia.no/contact"><span class="svc-more-t">Contact&nbsp;→</span><span class="svc-more-s">Request a quote or book a free <span class="svc-nw">20-minute</span> call.</span></a>
+            <a href="https://recapmedia.no/services"><span class="svc-more-t">All our services&nbsp;→</span><span class="svc-more-s">Photo and video for business events in Oslo and beyond.</span></a>
         </div>
     </div>
 </section>
 
 </main>
-<!-- ▲▲▲ END OF GHL PAGE PASTE — do not paste beyond this line ▲▲▲ -->
+<!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Recap Media</h3>
-                <p>Event photography and videography in Oslo. One crew handling photo, video and livestream — strategy-led coverage, reliably delivered.</p>
+                <p>Event photography and videography in Oslo and beyond. Photo and video under one booking, with one point of contact. Reliably delivered.</p>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>
@@ -201,6 +629,11 @@
                     <li><a href="https://recapmedia.no/privacy">Privacy Policy</a></li>
                     <li><a href="https://recapmedia.no/terms">Terms of Service</a></li>
                 </ul>
+                <h4 style="margin-top: 20px;">Contact</h4>
+                <ul>
+                    <li><a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a></li>
+                    <li><a href="tel:+4796689356">+47 966 89 356</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -208,7 +641,83 @@
             <div><a href="https://recapmedia.no/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://recapmedia.no/terms">Terms of Service</a></div>
         </div>
     </div>
-</footer><script src="js/main-v2.js?v=2"></script>
+</footer>
+
+<!-- quote-form:start  Quote form, modal version. Canonical copy: ghl/ghl-global-footer.html (brief: briefs/quote-form.md). Opened by any data-cta="quote" link. -->
+<style>
+.modal-container.qf-card{background:var(--color-warm-white) !important;border:1px solid #E4E0D8 !important;border-radius:18px !important;padding:32px !important;max-width:560px !important;max-height:90dvh !important;box-shadow:0 24px 60px rgba(12,10,16,.35) !important}
+.qf-card h2{font-family:var(--font-heading) !important;font-weight:600 !important;font-size:28px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;margin:0 0 6px !important;padding-right:40px}
+.qf-card .modal-subtitle{font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important;margin:0 0 20px !important}
+.qf-card .modal-close{width:44px !important;height:44px !important;top:14px !important;right:14px !important;font-size:1rem !important;background:rgba(20,18,24,.06) !important;color:var(--color-charcoal) !important}
+.qf-card .modal-close:hover{background:rgba(20,18,24,.12) !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .form-row{gap:0 12px !important}
+.quote-form.qf-form .form-group{gap:6px !important;margin-bottom:14px !important}
+.quote-form.qf-form .form-group label{font-size:14px !important;font-weight:500 !important;letter-spacing:0 !important;color:var(--color-obsidian) !important}
+.quote-form.qf-form .qf-opt{font-weight:400;color:var(--color-stone-dark,#6F6B64)}
+.quote-form.qf-form .qf-hint{font-size:13px;line-height:1.4;color:var(--color-stone-dark,#6F6B64);margin:-2px 0 2px}
+.quote-form.qf-form .qf-hint-after{margin:0}
+.quote-form.qf-form .form-control{background:#fff !important;border:1px solid rgba(20,18,24,.16) !important;border-radius:10px !important;color:var(--color-obsidian) !important;font-size:16px !important;min-height:44px;padding:10px 14px !important}
+.quote-form.qf-form .form-control::placeholder{color:var(--color-stone-dark,#6F6B64) !important;font-size:16px !important}
+.quote-form.qf-form .form-control:focus{border-color:var(--color-ember) !important;box-shadow:0 0 0 3px rgba(232,89,60,.15) !important}
+.quote-form.qf-form input[type=date].form-control{text-align:left}
+.quote-form.qf-form input[type=date]::-webkit-date-and-time-value{text-align:left}
+.quote-form.qf-form textarea.form-control{min-height:88px !important}
+.quote-form.qf-form .form-error{font-size:13px !important;line-height:1.4;color:#B3261E !important;margin:0}
+.quote-form.qf-form .form-group.has-error .form-control{border-color:#B3261E !important}
+.quote-form.qf-form .btn-primary{width:100%;justify-content:center !important;min-height:48px;margin-top:2px}
+.quote-form.qf-form .form-consent-text{font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark,#6F6B64) !important;text-align:center !important;margin:10px 0 0 !important}
+.quote-form.qf-form .form-consent-text a{color:var(--color-obsidian) !important}
+.qf-card .svc-nw,.qf-form .svc-nw,.form-success .svc-nw{white-space:nowrap}
+.qf-card .form-success-heading{color:var(--color-obsidian) !important}
+.qf-card .form-success-body{color:var(--color-charcoal) !important}
+.qf-card .form-success-check{color:var(--color-stone-dark,#6F6B64) !important}
+.qf-card .form-error .form-success-heading{color:#c47e15 !important}
+.form-success-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.form-success-actions .form-success-close{margin:0 !important}
+.qf-card .form-success{padding:24px 0 8px !important}
+@media (max-width:540px){.quote-form.qf-form .form-row.qf-names{grid-template-columns:1fr 1fr !important}}
+@media (max-width:480px){.modal-container.qf-card{padding:24px 18px 20px !important}.qf-card h2{font-size:24px !important}.modal-overlay{padding:12px !important}}
+</style>
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="qf-title">
+    <div class="modal-container qf-card">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <h2 id="qf-title">Request a quote</h2>
+        <p class="modal-subtitle">Tell us about your event. You'll get a reply within one business day, usually with an invite to a free <span class="svc-nw">20-minute</span> call.</p>
+        <form class="quote-form qf-form" novalidate>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
+            <div class="form-row qf-names">
+                <div class="form-group"><label for="qf-first">First name</label><input type="text" id="qf-first" class="form-control" data-ghl="first_name" name="first_name" required autocomplete="given-name" aria-describedby="qf-first-err"><p class="form-error" id="qf-first-err">Enter your first name</p></div>
+                <div class="form-group"><label for="qf-last">Last name</label><input type="text" id="qf-last" class="form-control" data-ghl="last_name" name="last_name" required autocomplete="family-name" aria-describedby="qf-last-err"><p class="form-error" id="qf-last-err">Enter your last name</p></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label for="qf-email">Email</label><input type="email" id="qf-email" class="form-control" data-ghl="email" name="email" required autocomplete="email" aria-describedby="qf-email-err"><p class="form-error" id="qf-email-err">Enter an email address like name@company.no</p></div>
+                <div class="form-group"><label for="qf-org">Company or organisation</label><input type="text" id="qf-org" class="form-control" data-ghl="organization" name="organization" required autocomplete="organization" aria-describedby="qf-org-err"><p class="form-error" id="qf-org-err">Enter your company or organisation</p></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label for="qf-phone">Phone <span class="qf-opt">(optional)</span></label><input type="tel" id="qf-phone" class="form-control" data-ghl="phone" name="phone" placeholder="+47" autocomplete="tel"></div>
+                <div class="form-group"><label for="qf-date">Event date <span class="qf-opt">(optional)</span></label><input type="date" id="qf-date" class="form-control" data-ghl="date_picker_5uqo" name="iLYg2CdXbkVDtYQFCYPD" aria-describedby="qf-date-hint"><p class="qf-hint qf-hint-after" id="qf-date-hint">A rough date is fine. For a <span class="svc-nw">multi-day</span> event, pick the first day.</p></div>
+            </div>
+            <div class="form-group"><label for="qf-msg">About your event <span class="qf-opt">(optional)</span></label><p class="qf-hint" id="qf-msg-hint">What kind of event, roughly how many people, and photo, video or both?</p><textarea id="qf-msg" class="form-control" data-ghl="describe_your_event" name="rqpVmIVY0MSM5Tk6jUZU" aria-describedby="qf-msg-hint"></textarea></div>
+            <button type="submit" class="btn btn-primary">Request a quote</button>
+            <p class="form-consent-text">By clicking "Request a quote", you agree to our <a href="https://recapmedia.no/terms">terms and conditions</a> and consent to being contacted using the information you have provided.</p>
+        </form>
+        <div class="ghl-form-hidden"></div>
+    </div>
+</div>
+<!-- quote-form:end -->
+
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image viewer">✕</button>
+    <img src="" alt="" class="lightbox-img">
+</div>
+
+<!-- CDN Libraries (Body Tracking Code in GHL; here for the local preview) -->
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+
+<script src="js/main-v2.js?v=2"></script>
 <script>
     (function() {
         function dismissSplash() {
@@ -224,5 +733,6 @@
         }
     })();
 </script>
+<script src="https://link.vidlead.com/js/external-tracking.js" data-tracking-id="tk_f3f18d3c6413432c85cc0e3957cb61c8" data-debug="true"></script>
 </body>
 </html>
