@@ -1,4 +1,7 @@
 // === main-v2.js ===
+// Runs once per page. The Global Footer loads this file before DOMContentLoaded;
+// while the Body Tracking Code still loads a second copy (late), that copy stands down.
+(function (run) { if (!window.__rmMainV2) { window.__rmMainV2 = true; run(); } })(function () {
 /* =============================================
    main.js (inlined)
    ============================================= */
@@ -794,10 +797,11 @@
 (function () {
     'use strict';
 
-    // main-v2.js loads via GHL tracking code (early), but Lenis/GSAP/ScrollTrigger
-    // are loaded from the Global Footer HTML (late). Poll until all three are ready.
-    // Capped: past the deadline they aren't coming — nothing is pre-hidden without
-    // GSAP, so a missing lib means a static (but fully readable) page.
+    // The Global Footer loads Lenis/GSAP/ScrollTrigger just before this file, so they
+    // are normally ready at once; poll in case one arrives late (or this copy came
+    // from the tracking code). Capped: past the deadline they aren't coming —
+    // nothing is pre-hidden without GSAP, so a missing lib means a static (but
+    // fully readable) page.
     var _pollDeadline = performance.now() + 12000;
     function initGSAP() {
         if (typeof window.Lenis === 'undefined' || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
@@ -852,44 +856,29 @@
     gsap.ticker.lagSmoothing(0);
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance is a progressive enhancement with a freshness window.
-    // The hero paints VISIBLE at first paint (CSS never pre-hides it); the
-    // intro re-hides it and replays it. When the lib chain arrives late (slow
-    // network — and every throttled Lighthouse/PSI run), re-hiding an already-
-    // painted hero (a) pins lab LCP to the end of the reveal instead of first
-    // paint (the documented 9s+ lab LCP and the run-to-run score swings) and
-    // (b) makes slow-connection visitors watch the page load twice. Past the
-    // window: skip the intro, keep everything else. The splash covers the
-    // fast-path hide→reveal, so users never see a flash either way.
-    if (performance.now() < 2500) {
-        var heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 }, delay: 0.15 });
-        gsap.set('.hero-heading .line', { y: '105%' });
-        gsap.set('.hero-overline, .hero-sub, .hero-body, .hero-cta-row, .hero-trust', { opacity: 0, y: 24 });
-        gsap.set('.hero-stat', { opacity: 0, y: 20 });
-        heroTl
-            .to('.hero-overline', { opacity: 1, y: 0, duration: 0.7 })
-            .to('.hero-heading .line', { y: '0%', duration: 1, stagger: 0.1, ease: 'power3.out' }, '-=0.35')
-            .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.55')
-            .to('.hero-body', { opacity: 1, y: 0, duration: 0.7 }, '-=0.45')
-            .to('.hero-cta-row', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
-            .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
-            .to('.hero-stat', { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, '-=0.3');
-    }
+    // No hero entrance: the hero stays exactly as CSS painted it. Re-hiding it to
+    // replay it made the page load twice (Max, 2026-07-16).
 
     gsap.to('.hero-bg', { y: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-    gsap.set('.gsap-fade', { opacity: 0, y: 36 });
-    gsap.utils.toArray('.gsap-fade').forEach(function (el) {
+    // Reveals are only for content the visitor hasn't reached yet. On slow phones
+    // this file arrives seconds after the styled page, so anything already on
+    // screen or scrolled past stays as painted instead of vanishing and fading
+    // back in.
+    var notReached = function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.88; };
+
+    gsap.utils.toArray('.gsap-fade').filter(notReached).forEach(function (el) {
+        gsap.set(el, { opacity: 0, y: 36 });
         gsap.to(el, { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
 
-    gsap.utils.toArray('.gsap-stagger').forEach(function (group) {
+    gsap.utils.toArray('.gsap-stagger').filter(notReached).forEach(function (group) {
         var items = group.children;
         gsap.set(items, { opacity: 0, y: 30 });
         gsap.to(items, { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: group, start: 'top 88%', once: true } });
     });
 
-    gsap.utils.toArray('.gsap-stagger-items').forEach(function (list) {
+    gsap.utils.toArray('.gsap-stagger-items').filter(notReached).forEach(function (list) {
         var items = list.children;
         gsap.set(items, { opacity: 0, x: -16 });
         gsap.to(items, { opacity: 1, x: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: list, start: 'top 88%', once: true } });
@@ -952,3 +941,4 @@
         initNavDropdown();
     }
 })();
+}); // end run-once guard
