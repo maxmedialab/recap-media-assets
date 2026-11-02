@@ -2022,6 +2022,65 @@ From one event to months of content. One crew for photo and video, founder-led e
 })();
 </script>
 
+<style>
+@media (min-width: 769px) {
+    .hws-nav { display: flex; align-items: center; gap: 0; margin-top: 4px; }
+    .hws-nav-item { display: block; height: auto; padding: 0; margin-right: 40px; }
+    .hws-nav-item:last-child { margin-right: 0; }
+    .hws-nav-name { display: none; }
+    .hws-nav-item:not(:last-child) .hws-nav-num::before,
+    .hws-nav-item:not(:last-child) .hws-nav-num::after { left: calc(100% + 6px); top: 50%; height: 1px !important; background-image: none; }
+    .hws-nav-item:not(:last-child) .hws-nav-num::before { width: 28px; background: rgba(255, 255, 255, 0.18); }
+    .hws-nav-item:not(:last-child) .hws-nav-num::after { width: 0; background: var(--color-ember); transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .hws-nav-item.is-done:not(:last-child) .hws-nav-num::after { width: 28px; }
+    .hws-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "plate" "part"; align-content: start; }
+    .hws-stage > .hws-plate { grid-area: plate; margin: 0 0 18px; }
+    .hws-stage > .hws-plate .hws-cap, .hws-stage > .hws-stage-head { display: none; }
+    .hws-stage > .hws-part { grid-area: part; margin: 0; }
+    .hws-stage > .hws-h, .hws-stage > .hws-say { position: absolute; left: var(--mk-left, -400px); width: var(--g-rail); margin: 0; }
+    .hws-stage > .hws-h { top: calc(var(--mk-top, 200px) + 36px); font-size: clamp(2.2rem, 3.2vw, 3rem); line-height: 1; }
+    .hws-stage > .hws-say { top: calc(var(--mk-top, 200px) + 36px + clamp(2.2rem, 3.2vw, 3rem) + 22px); max-width: none; font-size: 1.05rem; }
+    .hws--cycle .hws-frame { max-height: calc(100vh - 300px); }
+}
+@media (min-width: 769px) { .hws-title { display: none; } }
+@media (min-width: 769px) {
+    .hws-stage > .hws-say { font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.45; color: var(--color-warm-grey); }
+    .hws-nav { margin-top: 18px; }
+    .hws-stage > .hws-h { top: calc(var(--mk-top, 200px) + 52px); }
+    .hws-stage > .hws-say { top: calc(var(--mk-top, 200px) + 52px + clamp(2.2rem, 3.2vw, 3rem) + 24px); }
+}
+@media (min-width: 769px) {
+    .hws-stage { grid-template-areas: "plate"; }
+    .hws-stage > .hws-plate { margin: 0; }
+    .hws-stage > .hws-part { position: absolute; left: var(--mk-left, -400px); width: var(--g-rail); top: var(--mk-part-top, 400px); margin: 0; }
+}</style>
+<script>
+(function () {
+    var sec = document.querySelector('.hws');
+    var nav = document.getElementById('hws-nav');
+    var stages = document.querySelector('.hws-stages');
+    var rail = document.querySelector('.hws-rail');
+    if (!sec || !nav || !stages || !rail) return;
+    function place() {
+        var z = parseFloat(getComputedStyle(sec).zoom) || 1;
+        var a = nav.getBoundingClientRect(), b = stages.getBoundingClientRect(), c = rail.getBoundingClientRect();
+        sec.style.setProperty('--mk-top', Math.round((a.bottom - b.top) / z) + 'px');
+        sec.style.setProperty('--mk-left', Math.round((c.left - b.left) / z) + 'px');
+        window.requestAnimationFrame(function () {
+            document.querySelectorAll('.hws-stage').forEach(function (st) {
+                var say = st.querySelector('.hws-say');
+                if (say) st.style.setProperty('--mk-part-top', (say.offsetTop + say.offsetHeight + 28) + 'px');
+            });
+        });
+    }
+    function soon() { window.requestAnimationFrame(place); }
+    window.addEventListener('load', soon);
+    window.addEventListener('resize', function () { window.setTimeout(place, 50); });
+    if (window.ResizeObserver) { new ResizeObserver(soon).observe(rail); }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(soon); }
+    soon();
+})();
+</script>
 </main>
 <!-- ▲▲▲ STOP COPYING ABOVE THIS LINE ▲▲▲ -->
 
