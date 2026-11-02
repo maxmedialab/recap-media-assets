@@ -679,6 +679,579 @@ What a typical photo and video booking includes, from half-day photography to mu
     </div>
 </section>
 
+<style>
+.sq{padding:96px 0}
+.sq [hidden]{display:none !important}
+.sq .sq-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px 48px}
+.sq .sq-intro{margin:16px 0 0 !important;max-width:640px;font-size:18px !important;line-height:1.55 !important;color:var(--color-charcoal) !important;text-wrap:balance}
+.sq .sq-time{margin:0 !important;font-size:15px !important;color:var(--color-stone-dark) !important}
+.sq-panel{display:grid;grid-template-columns:7fr 4fr;margin-top:40px;background:var(--color-white);border:1px solid #E4E0D8;border-radius:18px;overflow:hidden}
+.sq-main{padding:44px 48px 40px;min-width:0}
+.sq-prog{display:flex;align-items:center;gap:16px}
+.sq .sq-count{font-size:14px !important;font-weight:600 !important;color:var(--color-charcoal) !important;white-space:nowrap}
+.sq-bar{flex:1;height:4px;background:#EEEAE3;border-radius:2px;overflow:hidden}
+.sq-bar span{display:block;height:100%;width:0;background:var(--color-ember);transition:width .3s ease}
+.sq-step{margin:28px 0 0;padding:0;border:0;min-width:0}
+.sq .sq-q{display:block;padding:0;margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:30px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.sq .sq-q:focus{outline:none}
+.sq .sq-help{margin:8px 0 0 !important;font-size:16px !important;line-height:1.5 !important;color:var(--color-stone-dark) !important;text-wrap:balance}
+.sq-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.sq-opts--one{grid-template-columns:1fr}
+.sq-opt{position:relative;display:flex;align-items:center;gap:14px;min-height:60px;padding:10px 18px;box-sizing:border-box;border:1px solid #E4E0D8;border-radius:10px;background:var(--color-white);font-family:var(--font-body);font-size:16px;line-height:1.35;color:var(--color-obsidian);cursor:pointer;transition:border-color .15s ease,background-color .15s ease}
+.sq-opt:hover{border-color:var(--color-warm-grey)}
+.sq-opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.sq-mark{flex-shrink:0;width:22px;height:22px;box-sizing:border-box;border:1.5px solid var(--color-stone);border-radius:50%;background:var(--color-white)}
+.sq-opt input[type=checkbox]+.sq-mark{border-radius:5px}
+.sq-opt:has(input:checked){border-color:var(--color-ember);box-shadow:inset 0 0 0 1px var(--color-ember);background:#FFF6F3}
+.sq-opt input[type=radio]:checked+.sq-mark{border:6px solid var(--color-ember)}
+.sq-opt input[type=checkbox]:checked+.sq-mark{border:0;background:var(--color-ember) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/64% no-repeat}
+.sq-opt:has(input:focus-visible){outline:2px solid var(--color-obsidian);outline-offset:2px}
+.sq-sub{margin:22px 0 8px !important;font-size:14px !important;font-weight:600 !important;color:var(--color-obsidian) !important}
+.sq-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.sq-field label,.sq .sq-label{font-family:var(--font-body);font-size:14px !important;font-weight:500 !important;color:var(--color-obsidian) !important}
+.sq-optl{font-weight:400;color:var(--color-stone-dark)}
+.sq .sq-hint{margin:-2px 0 2px !important;font-size:13px !important;line-height:1.4 !important;color:var(--color-stone-dark) !important}
+.sq-input{width:100%;box-sizing:border-box;min-height:48px;padding:12px 14px;border:1px solid rgba(20,18,24,.16);border-radius:10px;background:var(--color-white);font:400 16px/1.4 var(--font-body);color:var(--color-obsidian)}
+.sq-input:focus{outline:none;border-color:var(--color-ember);box-shadow:0 0 0 3px rgba(232,89,60,.15)}
+textarea.sq-input{min-height:96px;resize:vertical}
+.sq-date{max-width:260px}
+.sq-check{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:6px;font-size:15px;color:var(--color-charcoal);cursor:pointer}
+.sq-check input{width:20px;height:20px;margin:0;accent-color:var(--color-ember)}
+.sq-names{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sq .sq-err{margin:12px 0 0 !important;font-size:14px !important;color:#B3261E !important}
+.sq-field .sq-err{margin:0 !important;font-size:13px !important}
+.sq-field.has-err .sq-input{border-color:#B3261E}
+.sq-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:36px}
+.sq-nav .btn{min-height:52px;justify-content:center}
+.sq-back{padding:8px 0;border:0;background:none;font:600 16px var(--font-body);color:var(--color-obsidian);text-decoration:underline;text-decoration-color:var(--color-ember);text-decoration-thickness:2px;text-underline-offset:5px;cursor:pointer}
+.sq-back[hidden]+.btn{margin-left:auto}
+.sq .sq-consent{margin:14px 0 0 !important;font-size:13px !important;line-height:1.5 !important;color:var(--color-stone-dark) !important}
+.sq-consent a{color:var(--color-obsidian) !important}
+.c-form:has(#riZKUrUp18jslHKSyDpx){position:absolute !important;left:-9999px !important;height:0 !important;overflow:hidden !important;opacity:0 !important;pointer-events:none !important}
+.sq-hp{position:absolute !important;left:-9999px !important;width:1px;height:1px;opacity:0}
+.sq-side{padding:44px 36px 40px;background:var(--color-cream);border-left:1px solid #E4E0D8}
+.sq-toggle{display:none}
+.sq .sq-label-up{margin:0 !important;font-size:12px !important;font-weight:600 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.sq-rows{margin:18px 0 0;border-bottom:1px solid #E4E0D8}
+.sq-rows div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 0;border-top:1px solid #E4E0D8;font-size:15px;line-height:1.4}
+.sq-rows dt{color:var(--color-stone-dark)}
+.sq-rows dd{margin:0;color:var(--color-obsidian);text-wrap:balance}
+.sq-rows dd:empty::before{content:"…";color:var(--color-stone)}
+.sq-near{margin-top:24px;padding:18px 20px;background:var(--color-white);border-radius:12px}
+.sq .sq-near p{margin:0 !important;font-size:13px !important;color:var(--color-stone-dark) !important}
+.sq .sq-near .sq-near-name{margin-top:4px !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:20px !important;color:var(--color-obsidian) !important}
+.sq .sq-near .sq-near-plus{margin-top:6px !important;font-size:14px !important;color:var(--color-charcoal) !important}
+.sq .sq-alt{margin:20px 0 0 !important;font-size:15px !important;color:var(--color-charcoal) !important;text-align:center}
+.sq-done{display:grid;grid-template-columns:6fr 5fr;gap:56px;align-items:start;margin-top:40px}
+.sq .sq-done-h{margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:36px !important;line-height:1.12 !important;letter-spacing:-.02em !important;color:var(--color-obsidian) !important;text-wrap:balance}
+.sq-done-h:focus{outline:none}
+.sq .sq-done-t{margin:16px 0 0 !important;font-size:18px !important;line-height:1.55 !important;color:var(--color-charcoal) !important;text-wrap:balance}
+.sq .sq-note{margin:24px 0 0 !important;padding:18px 20px;background:var(--color-cream);border:1px solid #E4E0D8;border-radius:14px;font-size:15px !important;line-height:1.55 !important;color:var(--color-charcoal) !important}
+.sq-note strong{display:block;margin-bottom:4px;font-family:var(--font-heading);font-size:18px;color:var(--color-obsidian)}
+.sq .sq-fail{color:#B3261E !important}
+.sq-done .sq-rows{margin-top:28px}
+.sq-scope{margin-top:28px;padding:28px;background:var(--color-white);border-radius:18px;box-shadow:0 4px 24px rgba(20,18,24,.07)}
+.sq .sq-scope-tag{margin:0 !important;font-size:12px !important;font-weight:600 !important;letter-spacing:.1em !important;text-transform:uppercase !important;color:var(--color-charcoal) !important}
+.sq .sq-scope-name{margin:6px 0 0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:24px !important;color:var(--color-obsidian) !important}
+.sq-checks{margin:14px 0 0;padding:0;list-style:none}
+.sq-checks li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid #EEEAE3;font-size:15px;line-height:1.45;color:var(--color-charcoal);text-wrap:balance}
+.sq-checks li::before{content:"";flex-shrink:0;width:18px;height:18px;margin-top:1px;border-radius:50%;background:var(--color-ember) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat}
+.sq .sq-extras-t{margin:16px 0 8px !important;font-size:14px !important;color:var(--color-stone-dark) !important}
+.sq-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.sq-tags li{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid #E4E0D8;border-radius:6px;background:var(--color-cream);font-size:14px;color:var(--color-obsidian)}
+.sq .sq-scope-link{margin:20px 0 0 !important;font-size:15px !important}
+.sq-book{padding:32px;background:var(--color-white);border:1px solid #E4E0D8;border-radius:18px}
+.sq .sq-book-h{text-wrap:balance;margin:0 !important;font-family:var(--font-heading) !important;font-weight:600 !important;font-size:24px !important;line-height:1.2 !important;color:var(--color-obsidian) !important}
+.sq .sq-book-t{margin:8px 0 0 !important;font-size:15px !important;line-height:1.5 !important;color:var(--color-charcoal) !important}
+.sq-cal{margin-top:20px;min-height:640px}
+.sq-cal iframe{display:block;width:100%;min-height:640px;border:0;overflow:hidden}
+.sq .sq-book-f{margin:16px 0 0 !important;font-size:14px !important;line-height:1.5 !important;color:var(--color-stone-dark) !important}
+@media (max-width:900px){
+.sq .sq-head{grid-template-columns:1fr}
+.sq-panel{grid-template-columns:1fr}
+.sq-main{padding:24px 18px}
+.sq-side{order:-1;padding:0;border-left:0;border-bottom:1px solid #E4E0D8}
+.sq-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;padding:12px 18px;border:0;background:var(--color-cream);font:500 14px var(--font-body);color:var(--color-obsidian);text-align:left;cursor:pointer}
+.sq-toggle-r{font-size:13px;color:var(--color-charcoal);white-space:nowrap}
+.sq-side-body{padding:0 18px 20px}
+.sq-side:not(.is-open) .sq-side-body{display:none}
+.sq-side .sq-label-up{display:none}
+.sq .sq-q{font-size:24px !important;line-height:1.2 !important}
+.sq .sq-help{font-size:15px !important}
+.sq-opts{grid-template-columns:1fr;gap:10px;margin-top:18px}
+.sq-opt{min-height:56px;padding:10px 16px}
+.sq-nav{flex-direction:column-reverse;align-items:stretch;margin-top:24px}
+.sq-nav .btn{width:100%}
+.sq-back{align-self:center}
+.sq-alt a{display:inline-block}
+.sq-done{grid-template-columns:1fr;gap:24px;margin-top:28px}
+.sq-book{order:-1;padding:22px 16px}
+.sq-done-main{display:contents}
+.sq-done-top{order:-2}
+}
+@media (max-width:480px){.sq{padding:56px 0}.sq .sq-intro{font-size:16px !important}.sq-alt a{display:block;margin-top:4px}.sq .sq-done-h{font-size:30px !important}.sq-scope{padding:22px 18px}.sq-date{max-width:none}}
+@media (prefers-reduced-motion:reduce){.sq-bar span,.sq-opt{transition:none}}
+</style>
+
+<section class="svc sq svc-bg-warm" id="plan" aria-labelledby="sq-h">
+    <div class="svc-wrap">
+        <div class="sq-head">
+            <div>
+                <p class="svc-eyebrow">Plan your coverage</p>
+                <h2 class="svc-h2" id="sq-h">Get three tailored options for your event</h2>
+                <p class="sq-intro">Answer ten short questions about your event. You see which example is closest, and we build your options from your answers.</p>
+            </div>
+            <p class="sq-time">About two minutes</p>
+        </div>
+
+        <div class="sq-panel" id="sq-panel">
+            <div class="sq-main">
+                <div class="sq-prog" aria-hidden="true"><span class="sq-count" id="sq-count">Question 1 of 9</span><span class="sq-bar"><span id="sq-bar"></span></span></div>
+
+                <fieldset class="sq-step" data-q="type" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">What kind of event is it?</legend>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Conference or summit"><span class="sq-mark"></span>Conference or summit</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Seminar or workshop"><span class="sq-mark"></span>Seminar or workshop</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Product launch"><span class="sq-mark"></span>Product launch</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Kickoff or internal event"><span class="sq-mark"></span>Kickoff or internal event</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Awards, gala or reception"><span class="sq-mark"></span>Awards, gala or reception</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Trade fair or expo"><span class="sq-mark"></span>Trade fair or expo</label>
+                        <label class="sq-opt"><input type="radio" name="sq-type" value="Something else"><span class="sq-mark"></span>Something else</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="length" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">How long does it run?</legend>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="radio" name="sq-length" value="Half a day or less"><span class="sq-mark"></span>Half a day or less</label>
+                        <label class="sq-opt"><input type="radio" name="sq-length" value="One full day"><span class="sq-mark"></span>One full day</label>
+                        <label class="sq-opt"><input type="radio" name="sq-length" value="Two days"><span class="sq-mark"></span>Two days</label>
+                        <label class="sq-opt"><input type="radio" name="sq-length" value="Three days or more"><span class="sq-mark"></span>Three days or more</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="rooms" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">Do sessions run in parallel rooms?</legend>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="radio" name="sq-rooms" value="One stage or room"><span class="sq-mark"></span>One stage or room</label>
+                        <label class="sq-opt"><input type="radio" name="sq-rooms" value="Two rooms at once"><span class="sq-mark"></span>Two rooms at once</label>
+                        <label class="sq-opt"><input type="radio" name="sq-rooms" value="Three or more rooms"><span class="sq-mark"></span>Three or more rooms</label>
+                        <label class="sq-opt"><input type="radio" name="sq-rooms" value="Not sure yet"><span class="sq-mark"></span>Not sure yet</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="guests" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">Roughly how many guests?</legend>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="radio" name="sq-guests" value="Up to 50"><span class="sq-mark"></span>Up to 50</label>
+                        <label class="sq-opt"><input type="radio" name="sq-guests" value="50 to 150"><span class="sq-mark"></span>50 to 150</label>
+                        <label class="sq-opt"><input type="radio" name="sq-guests" value="150 to 300"><span class="sq-mark"></span>150 to 300</label>
+                        <label class="sq-opt"><input type="radio" name="sq-guests" value="300 to 500"><span class="sq-mark"></span>300 to 500</label>
+                        <label class="sq-opt"><input type="radio" name="sq-guests" value="More than 500"><span class="sq-mark"></span>More than 500</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="coverage" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">Photos, video or both?</legend>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="radio" name="sq-coverage" value="Photos"><span class="sq-mark"></span>Photos</label>
+                        <label class="sq-opt"><input type="radio" name="sq-coverage" value="Video"><span class="sq-mark"></span>Video</label>
+                        <label class="sq-opt"><input type="radio" name="sq-coverage" value="Photos and video"><span class="sq-mark"></span>Photos and video</label>
+                        <label class="sq-opt"><input type="radio" name="sq-coverage" value="Not sure yet"><span class="sq-mark"></span>Not sure yet</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="uses" data-kind="multi">
+                    <legend class="sq-q" tabindex="-1">What will you use the photos and video for?</legend>
+                    <p class="sq-help">Pick all that apply.</p>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="checkbox" name="sq-uses" value="Press and media"><span class="sq-mark"></span>Press and media</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-uses" value="Social media during the event"><span class="sq-mark"></span>Social media during the event</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-uses" value="Promoting next year's event"><span class="sq-mark"></span>Promoting next year's event</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-uses" value="Sponsor reports"><span class="sq-mark"></span>Sponsor reports</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-uses" value="Internal communication"><span class="sq-mark"></span>Internal communication</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="extras" data-kind="multi">
+                    <legend class="sq-q" tabindex="-1">Anything you'd like on top?</legend>
+                    <p class="sq-help">Pick all that apply. Each one is agreed before the event.</p>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Interviews with speakers or guests" data-addon="Interviews"><span class="sq-mark"></span>Interviews with speakers or guests</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Full recordings of talks" data-addon="Session recordings"><span class="sq-mark"></span>Full recordings of talks</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Live social media coverage" data-addon="Live social media coverage"><span class="sq-mark"></span>Live social media coverage</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="On-site podcast episodes" data-addon="Podcast episodes"><span class="sq-mark"></span>On-site podcast episodes</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Sponsor clips" data-addon="Sponsor clips"><span class="sq-mark"></span>Sponsor clips</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Portraits for your team and speakers" data-addon="Portrait station"><span class="sq-mark"></span>Portraits for your team and speakers</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="A promo film for next year's event" data-addon="Promo film for next year"><span class="sq-mark"></span>A promo film for next year's event</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Ready-made social posts (clips, quote cards, carousels)" data-addon="Social content package"><span class="sq-mark"></span>Ready-made social posts (clips, quote cards, carousels)</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-extras" value="Nothing extra for now" data-only><span class="sq-mark"></span>Nothing extra for now</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="speed" data-kind="multi">
+                    <legend class="sq-q" tabindex="-1">Do you need anything fast?</legend>
+                    <p class="sq-help">Standard is photos in up to 7 business days and video usually within 14. Need it faster? A fast cut can be ready within 24 hours when agreed before the event.</p>
+                    <div class="sq-opts">
+                        <label class="sq-opt"><input type="checkbox" name="sq-speed" value="Standard delivery is fine" data-only><span class="sq-mark"></span>Standard delivery is fine</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-speed" value="A few photos while it runs" data-addon="Live selects"><span class="sq-mark"></span>A few photos while it runs</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-speed" value="Press-ready photos within 24 hours" data-addon="Press-ready set"><span class="sq-mark"></span>Press-ready photos within 24 hours</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-speed" value="A faster highlight cut" data-addon="Faster highlight cut"><span class="sq-mark"></span>A faster highlight cut</label>
+                        <label class="sq-opt"><input type="checkbox" name="sq-speed" value="Not sure yet" data-only><span class="sq-mark"></span>Not sure yet</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="when" data-kind="when">
+                    <legend class="sq-q" tabindex="-1">When and where is it?</legend>
+                    <p class="sq-help">A rough date is fine. For a multi-day event, pick the first day.</p>
+                    <div class="sq-field" style="margin-top:22px">
+                        <label for="sq-date">First day</label>
+                        <input class="sq-input sq-date" id="sq-date" type="date">
+                        <label class="sq-check"><input type="checkbox" id="sq-nodate"> The date isn't fixed yet</label>
+                    </div>
+                    <p class="sq-sub" id="sq-where-l">Where</p>
+                    <div class="sq-opts" role="radiogroup" aria-labelledby="sq-where-l">
+                        <label class="sq-opt"><input type="radio" name="sq-where" value="Oslo and nearby"><span class="sq-mark"></span>Oslo and nearby</label>
+                        <label class="sq-opt"><input type="radio" name="sq-where" value="Elsewhere in Norway"><span class="sq-mark"></span>Elsewhere in Norway</label>
+                        <label class="sq-opt"><input type="radio" name="sq-where" value="Outside Norway"><span class="sq-mark"></span>Outside Norway</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sq-step" data-q="budget" data-kind="single">
+                    <legend class="sq-q" tabindex="-1">What budget are you working with?</legend>
+                    <p class="sq-help">It helps us build options that fit. You still get three to choose from.</p>
+                    <div class="sq-opts sq-opts--one">
+                        <label class="sq-opt"><input type="radio" name="sq-budget" value="Under 20,000 NOK (~€2,000)" data-low><span class="sq-mark"></span>Under 20,000 NOK (~€2,000)</label>
+                        <label class="sq-opt"><input type="radio" name="sq-budget" value="20,000 to 50,000 NOK (~€2,000 to €5,000)"><span class="sq-mark"></span>20,000 to 50,000 NOK (~€2,000 to €5,000)</label>
+                        <label class="sq-opt"><input type="radio" name="sq-budget" value="50,000 to 100,000 NOK (~€5,000 to €10,000)"><span class="sq-mark"></span>50,000 to 100,000 NOK (~€5,000 to €10,000)</label>
+                        <label class="sq-opt"><input type="radio" name="sq-budget" value="Over 100,000 NOK (~€10,000)"><span class="sq-mark"></span>Over 100,000 NOK (~€10,000)</label>
+                        <label class="sq-opt"><input type="radio" name="sq-budget" value="Not set yet"><span class="sq-mark"></span>Not set yet</label>
+                    </div>
+                </fieldset>
+
+                <form class="sq-step sq-contact" data-q="contact" data-kind="contact" novalidate>
+                    <h3 class="sq-q" tabindex="-1">Where should we send your options?</h3>
+                    <p class="sq-help">Next you see your summary and can book a call straight away.</p>
+                    <input type="text" name="website" class="sq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="sq-names" style="margin-top:22px">
+                        <div class="sq-field"><label for="sq-first">First name</label><input class="sq-input" id="sq-first" name="first_name" type="text" autocomplete="given-name" required><p class="sq-err" hidden>Enter your first name</p></div>
+                        <div class="sq-field"><label for="sq-last">Last name</label><input class="sq-input" id="sq-last" name="last_name" type="text" autocomplete="family-name" required><p class="sq-err" hidden>Enter your last name</p></div>
+                    </div>
+                    <div class="sq-field"><label for="sq-email">Email</label><input class="sq-input" id="sq-email" name="email" type="email" autocomplete="email" required><p class="sq-err" hidden>Enter an email address like name@company.no</p></div>
+                    <div class="sq-field"><label for="sq-org">Company or organisation</label><input class="sq-input" id="sq-org" name="organization" type="text" autocomplete="organization" required><p class="sq-err" hidden>Enter your company or organisation</p></div>
+                    <div class="sq-field"><label for="sq-phone">Phone <span class="sq-optl">(optional)</span></label><p class="sq-hint" id="sq-phone-h">Leave a number if you'd like Maks to call you.</p><input class="sq-input" id="sq-phone" name="phone" type="tel" autocomplete="tel" placeholder="+47" aria-describedby="sq-phone-h"></div>
+                    <div class="sq-field"><label for="sq-notes">Anything else <span class="sq-optl">(optional)</span></label><textarea class="sq-input" id="sq-notes"></textarea></div>
+                    <input type="hidden" name="iLYg2CdXbkVDtYQFCYPD" id="sq-gdate">
+                </form>
+
+                <p class="sq-err" id="sq-err" role="alert" hidden></p>
+                <div class="sq-nav">
+                    <button type="button" class="sq-back" id="sq-back" hidden>&larr; Back</button>
+                    <button type="button" class="btn btn-primary" id="sq-next">Next question</button>
+                </div>
+                <p class="sq-consent" id="sq-consent" hidden>By clicking "See your summary", you agree that we contact you about your request. Our <a href="https://recapmedia.no/privacy" target="_blank" rel="noopener">privacy policy</a> explains how we handle your details.</p>
+            </div>
+
+            <aside class="sq-side" id="sq-side" aria-label="Your answers so far">
+                <button type="button" class="sq-toggle" id="sq-toggle" aria-expanded="false" aria-controls="sq-side-body"><span id="sq-toggle-l">Your answers so far</span><span class="sq-toggle-r">Show &#9662;</span></button>
+                <div class="sq-side-body" id="sq-side-body">
+                    <p class="sq-label-up">Your event so far</p>
+                    <dl class="sq-rows" data-rows></dl>
+                    <div class="sq-near" id="sq-near" hidden>
+                        <p>Closest example so far</p>
+                        <p class="sq-near-name" id="sq-near-name"></p>
+                        <p class="sq-near-plus" id="sq-near-plus" hidden></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="sq-done" id="sq-done" hidden>
+            <div class="sq-done-main">
+                <div class="sq-done-top">
+                    <p class="svc-eyebrow">Your summary</p>
+                    <h3 class="sq-done-h" id="sq-done-h" tabindex="-1">Thanks. We have what we need to start.</h3>
+                    <p class="sq-done-t">Book a <span class="svc-nw">20-minute</span> call with Maks to settle the last details. After the call, you get three options built around your event.</p>
+                    <p class="sq-note" id="sq-low" hidden><strong>About your budget</strong><span id="sq-low-t"></span></p>
+                    <p class="sq-note sq-fail" id="sq-fail" role="alert" hidden>Your answers couldn't be sent just now. Book a call below, or email them to <a href="mailto:booking@recapmedia.no">booking@recapmedia.no</a>.</p>
+                </div>
+                <div>
+                    <dl class="sq-rows" data-rows></dl>
+                    <div class="sq-scope">
+                        <p class="sq-scope-tag">Closest example</p>
+                        <p class="sq-scope-name" id="sq-scope-name"></p>
+                        <ul class="sq-checks" id="sq-scope-list"></ul>
+                        <p class="sq-extras-t" id="sq-extras-t" hidden>From your answers, your options would also cover</p>
+                        <ul class="sq-tags" id="sq-extras" hidden></ul>
+                        <p class="sq-scope-link"><a class="svc-link" id="sq-scope-link" href="https://recapmedia.no/packages"></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="sq-book">
+                <h3 class="sq-book-h">Book your free <span class="svc-nw">20-minute</span> call</h3>
+                <p class="sq-book-t">Pick a time with Maks. You get the invite by email.</p>
+                <div class="sq-cal" id="sq-cal"></div>
+                <p class="sq-book-f">No time that suits? Maks replies by email within one business day, or calls you if you left a number.</p>
+            </div>
+        </div>
+
+        <p class="sq-alt" id="sq-alt">Rather talk it through? <a class="svc-link" href="https://recapmedia.no/contact#calendar">Book a free <span class="svc-nw">20-minute</span> call</a></p>
+    </div>
+</section>
+
+<script>
+(function () {
+    'use strict';
+    var root = document.getElementById('plan');
+    if (!root || root.getAttribute('data-sq-ready')) return;
+    root.setAttribute('data-sq-ready', '1');
+
+    var CAL_ID = 'qrGyKgqUP1OAMeLAGtoX';
+    var CAL_URL = 'https://link.vidlead.com/widget/booking/' + CAL_ID;
+    var GHL_QUIZ_FIELDS = { summary: '#fBNWEfaWkJ7aE7e92CPU', budget: '#BWc37DYnnOtUOiYeP0Th', scope: '#riZKUrUp18jslHKSyDpx' };
+
+    var SCOPES = {
+        day: { name: 'Day coverage', link: 'https://recapmedia.no/packages/day-coverage', linkText: 'See day coverage',
+            items: ['About four hours on site', 'An edited, high-resolution gallery', 'Video on request', 'Gallery in up to 7 business days'] },
+        conf: { name: 'Conference coverage', link: 'https://recapmedia.no/packages/conference-package', linkText: 'See conference coverage',
+            items: ['A full day on site', 'An edited photo set', 'A hero film and social clips', 'Photos in up to 7 business days, video usually within 14'] },
+        full: { name: 'Full production', link: 'https://recapmedia.no/packages/full-production', linkText: 'See full production',
+            items: ['Every event day, with a crew sized to what we agree', 'The full gallery, plus press-ready photos after each day', 'A hero film, a faster cut and social clips', 'Photos in up to 7 business days, video usually within 14'] }
+    };
+    var ROWS = [['type', 'Event'], ['length', 'Length'], ['rooms', 'Rooms'], ['guests', 'Guests'], ['coverage', 'Coverage'],
+        ['uses', 'Used for'], ['extras', 'Extras'], ['speed', 'Speed'], ['when', 'When, where'], ['budget', 'Budget']];
+
+    var panel = document.getElementById('sq-panel');
+    var steps = [].slice.call(panel.querySelectorAll('.sq-step'));
+    var QCOUNT = steps.length - 1;
+    var nextBtn = document.getElementById('sq-next');
+    var backBtn = document.getElementById('sq-back');
+    var errEl = document.getElementById('sq-err');
+    var side = document.getElementById('sq-side');
+    var form = panel.querySelector('.sq-contact');
+    var cur = 0, sent = false, loadedAt = Date.now();
+
+    function $(id) { return document.getElementById(id); }
+    function txt(el, s) { el.textContent = s; return el; }
+    function el(tag, s) { var e = document.createElement(tag); if (s != null) e.textContent = s; return e; }
+    function checked(name) { return [].slice.call(root.querySelectorAll('input[name="sq-' + name + '"]:checked')); }
+    function one(name) { var c = checked(name)[0]; return c ? c.value : ''; }
+    function many(name) { return checked(name).map(function (i, n) { return n ? i.value.charAt(0).toLowerCase() + i.value.slice(1) : i.value; }); }
+
+    function prettyDate(iso) {
+        if (!iso) return '';
+        var d = new Date(iso + 'T12:00:00');
+        return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+    function answers() {
+        var nodate = $('sq-nodate').checked, date = nodate ? '' : $('sq-date').value;
+        var when = [nodate ? 'Date not fixed yet' : prettyDate(date), one('where')].filter(Boolean).join(', ');
+        return { type: one('type'), length: one('length'), rooms: one('rooms'), guests: one('guests'), coverage: one('coverage'),
+            uses: many('uses').join(', '), extras: many('extras').join(', '), speed: many('speed').join(', '), when: when, budget: one('budget'), date: date };
+    }
+
+    function closest(a) {
+        var video = a.coverage === 'Video' || a.coverage === 'Photos and video';
+        var multi = a.length === 'Two days' || a.length === 'Three days or more';
+        if (!a.length || !a.coverage) return null;
+        if (a.coverage === 'Not sure yet') video = a.length !== 'Half a day or less';
+        if (multi && video) return 'full';
+        if (video) return 'conf';
+        return 'day';
+    }
+    function extras(a, key) {
+        var out = [];
+        if (a.rooms === 'Two rooms at once' || a.rooms === 'Three or more rooms') out.push('Parallel rooms');
+        if (key === 'day' && (a.length === 'Two days' || a.length === 'Three days or more')) out.push('Extra days');
+        root.querySelectorAll('input[data-addon]:checked').forEach(function (i) {
+            var n = i.getAttribute('data-addon');
+            if (key === 'full' && (n === 'Press-ready set' || n === 'Faster highlight cut')) return;
+            out.push(n);
+        });
+        return out;
+    }
+
+    function renderRows() {
+        var a = answers();
+        root.querySelectorAll('[data-rows]').forEach(function (dl) {
+            dl.textContent = '';
+            ROWS.forEach(function (r) {
+                var d = el('div'); d.appendChild(el('dt', r[1])); d.appendChild(el('dd', a[r[0]] || ''));
+                dl.appendChild(d);
+            });
+        });
+        var key = closest(a);
+        $('sq-near').hidden = !key;
+        if (key) {
+            txt($('sq-near-name'), SCOPES[key].name);
+            var x = extras(a, key);
+            $('sq-near-plus').hidden = !x.length;
+            txt($('sq-near-plus'), x.length ? 'plus ' + x.join(', ').toLowerCase() : '');
+            txt($('sq-toggle-l'), 'Closest so far: ' + SCOPES[key].name);
+        }
+    }
+
+    function show(i) {
+        cur = i;
+        steps.forEach(function (s, n) { s.hidden = n !== i; });
+        var isContact = i === QCOUNT;
+        txt($('sq-count'), isContact ? 'Last step' : 'Question ' + (i + 1) + ' of ' + QCOUNT);
+        $('sq-bar').style.width = (isContact ? 100 : Math.round(i / QCOUNT * 100)) + '%';
+        backBtn.hidden = i === 0;
+        txt(nextBtn, isContact ? 'See your summary' : (i === QCOUNT - 1 ? 'Almost done' : 'Next question'));
+        $('sq-consent').hidden = !isContact;
+        errEl.hidden = true;
+        renderRows();
+    }
+    function focusStep() {
+        var h = steps[cur].querySelector('.sq-q');
+        var top = panel.getBoundingClientRect().top;
+        if (top < 0 || top > window.innerHeight * 0.5) window.scrollTo(0, window.pageYOffset + top - 96);
+        if (h) h.focus({ preventScroll: true });
+    }
+    function fail(msg) { txt(errEl, msg); errEl.hidden = false; }
+
+    function validStep() {
+        var s = steps[cur], kind = s.getAttribute('data-kind'), q = s.getAttribute('data-q');
+        if (kind === 'single' && !one(q)) return fail('Pick one to continue.');
+        if (kind === 'multi' && !many(q).length) return fail('Pick at least one to continue.');
+        if (kind === 'when') {
+            if (!$('sq-nodate').checked && !$('sq-date').value) return fail('Pick a date, or tick that it isn’t fixed yet.');
+            if (!one('where')) return fail('Pick where the event is.');
+        }
+        if (kind === 'contact') return validContact();
+        return true;
+    }
+    function validContact() {
+        var ok = true, first = null;
+        [['sq-first', function (v) { return v; }], ['sq-last', function (v) { return v; }],
+         ['sq-email', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }], ['sq-org', function (v) { return v; }]]
+            .forEach(function (p) {
+                var inp = $(p[0]), good = !!p[1](inp.value.trim()), f = inp.closest('.sq-field');
+                f.classList.toggle('has-err', !good);
+                f.querySelector('.sq-err').hidden = good;
+                inp.setAttribute('aria-invalid', good ? 'false' : 'true');
+                if (!good && !first) first = inp;
+                ok = ok && good;
+            });
+        if (first) first.focus();
+        return ok;
+    }
+
+    function summaryText(a, key, x) {
+        var lines = ['Scoping quiz (/packages)'];
+        ROWS.forEach(function (r) { lines.push(r[1] + ': ' + (a[r[0]] || '-')); });
+        lines.push('Closest example: ' + (key ? SCOPES[key].name : '-'));
+        if (x.length) lines.push('Add-ons from answers: ' + x.join(', '));
+        var notes = $('sq-notes').value.trim();
+        if (notes) lines.push('Notes: ' + notes);
+        return lines.join('\n');
+    }
+
+    function setGHL(elm, v) {
+        if (!elm) return false;
+        var proto = elm.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+        Object.getOwnPropertyDescriptor(proto, 'value').set.call(elm, v);
+        ['input', 'change', 'blur'].forEach(function (t) { elm.dispatchEvent(new Event(t, { bubbles: true })); });
+        return true;
+    }
+    function quizForm() {
+        var all = document.querySelectorAll('#form-builder');
+        for (var i = 0; i < all.length; i++) if (all[i].querySelector(GHL_QUIZ_FIELDS.scope)) return all[i];
+        return null;
+    }
+    function bridge(v) {
+        var ghl = quizForm();
+        if (!ghl || !ghl.querySelector('#email')) { try { console.error('[sq] the quiz GHL form was not found: answers NOT sent'); } catch (e) {} return false; }
+        var map = [['#first_name', v.first], ['#last_name', v.last], ['#email', v.email], ['#phone', v.phone], ['#organization', v.org],
+            [GHL_QUIZ_FIELDS.summary, v.summary], [GHL_QUIZ_FIELDS.budget, v.budget], [GHL_QUIZ_FIELDS.scope, v.scope]];
+        map.forEach(function (m) {
+            if (!setGHL(ghl.querySelector(m[0]), m[1] || '')) { try { console.warn('[sq] GHL field not found, value NOT sent:', m[0]); } catch (e) {} }
+        });
+        setTimeout(function () {
+            var b = ghl.querySelector('button[type="submit"]');
+            if (b) b.click();
+        }, 400);
+        return true;
+    }
+
+    function loadCalendar() {
+        var box = $('sq-cal');
+        if (box.querySelector('iframe')) return;
+        var f = document.createElement('iframe');
+        f.src = CAL_URL; f.id = CAL_ID + '_sq'; f.title = 'Book a call with Maks'; f.setAttribute('scrolling', 'no');
+        box.appendChild(f);
+        if (!document.querySelector('script[src*="form_embed.js"]')) {
+            var s = document.createElement('script'); s.src = 'https://link.vidlead.com/js/form_embed.js'; document.body.appendChild(s);
+        }
+    }
+
+    function finish() {
+        var a = answers(), key = closest(a) || 'conf', x = extras(a, key), sc = SCOPES[key];
+        var v = { first: $('sq-first').value.trim(), last: $('sq-last').value.trim(), email: $('sq-email').value.trim(),
+            org: $('sq-org').value.trim(), phone: $('sq-phone').value.trim(), date: a.date, budget: a.budget, scope: sc.name };
+        v.summary = summaryText(a, key, x);
+        var spam = form.querySelector('.sq-hp').value || Date.now() - loadedAt < 3000;
+        var ok = true;
+        if (!sent && !spam) {
+            ok = bridge(v); sent = ok;
+            $('sq-gdate').value = a.date;
+            relaying = true;
+            try { if (form.requestSubmit) form.requestSubmit(); } catch (e) {}
+            relaying = false;
+        }
+
+        txt($('sq-done-h'), 'Thanks, ' + v.first + '. We have what we need to start.');
+        txt($('sq-scope-name'), sc.name);
+        var ul = $('sq-scope-list'); ul.textContent = '';
+        sc.items.forEach(function (s) { ul.appendChild(el('li', s)); });
+        var tags = $('sq-extras'); tags.textContent = '';
+        x.forEach(function (s) { tags.appendChild(el('li', s)); });
+        tags.hidden = $('sq-extras-t').hidden = !x.length;
+        var link = $('sq-scope-link'); link.href = sc.link; txt(link, sc.linkText + ' →');
+        var low = root.querySelector('input[name="sq-budget"]:checked[data-low]') && key !== 'day';
+        $('sq-low').hidden = !low;
+        if (low) txt($('sq-low-t'), sc.name + ' usually sits above this budget, so your options will start with what matters most to you.');
+        $('sq-fail').hidden = ok;
+        renderRows();
+
+        panel.hidden = true; $('sq-alt').hidden = true; $('sq-done').hidden = false;
+        loadCalendar();
+        var top = $('sq-done').getBoundingClientRect().top;
+        window.scrollTo(0, window.pageYOffset + top - 120);
+        $('sq-done-h').focus({ preventScroll: true });
+    }
+
+    nextBtn.addEventListener('click', function () {
+        if (!validStep()) return;
+        if (cur === QCOUNT) { finish(); return; }
+        show(cur + 1); focusStep();
+    });
+    backBtn.addEventListener('click', function () { if (cur > 0) { show(cur - 1); focusStep(); } });
+    var relaying = false;
+    form.addEventListener('submit', function (e) { e.preventDefault(); if (!relaying) nextBtn.click(); });
+    root.addEventListener('change', function (e) {
+        var t = e.target;
+        if (t.type === 'checkbox' && t.name && t.checked) {
+            var group = root.querySelectorAll('input[name="' + t.name + '"]');
+            group.forEach(function (o) { if (o !== t && (t.hasAttribute('data-only') || o.hasAttribute('data-only'))) o.checked = false; });
+        }
+        if (t.id === 'sq-nodate' && t.checked) $('sq-date').value = '';
+        if (t.id === 'sq-date' && t.value) $('sq-nodate').checked = false;
+        errEl.hidden = true;
+        renderRows();
+    });
+    $('sq-toggle').addEventListener('click', function () {
+        var open = side.classList.toggle('is-open');
+        this.setAttribute('aria-expanded', open ? 'true' : 'false');
+        txt(this.querySelector('.sq-toggle-r'), open ? 'Hide ▴' : 'Show ▾');
+    });
+
+    show(0);
+})();
+</script>
+
 <section class="svc svc-dark pk-adds" aria-labelledby="pk-adds-h">
     <div class="svc-wrap">
         <p class="svc-eyebrow"><span class="svc-nw">Add-ons</span></p>
