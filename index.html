@@ -363,6 +363,7 @@ From one event to months of content. One crew for photo and video, founder-led e
     }
 
     main a.hero-secondary-link { color: var(--color-cream) !important; font-size: 1.0625rem !important; font-weight: 600; text-decoration: underline !important; text-decoration-color: var(--color-ember) !important; text-decoration-thickness: 2px !important; text-underline-offset: 5px !important; }
+    main a.hero-secondary-link:not([data-cta="call"]) { text-decoration: none !important; border-bottom: 2px solid var(--color-ember); padding-bottom: 3px; }
     main a.hero-secondary-link:hover { color: var(--color-ember) !important; }
     main a.hero-secondary-link[data-cta="call"] .arrow { display: none !important; }
     main a.hero-secondary-link.hws-ghost { padding: 0; border: 0; }
@@ -865,11 +866,9 @@ From one event to months of content. One crew for photo and video, founder-led e
 
     .hws-frame::before { content: ''; position: absolute; z-index: 2; left: 0; top: 0; width: 24px; height: 24px; border-top: 2px solid var(--color-ember); border-left: 2px solid var(--color-ember); }
 
-    .hws-stage[data-stage="5"] .hws-frame::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: repeating-linear-gradient(to right, var(--color-ember) 0 9px, transparent 9px 18px); }
 
     .hws-frame--art { background: var(--color-void); }
     .hws-frame--art > img { object-fit: contain; }
-    .hws-frame--art::before { display: none; }
     .hws-frame--doc { background: var(--hws-paper, var(--color-void)); outline: 1px solid rgba(255, 255, 255, 0.12); }
     .hws-frame--doc > picture > img { position: absolute; inset: 0; width: 100%; height: 100% !important; object-fit: contain; }
     main .hws-frame.hws-frame--doc img { filter: none !important; }
@@ -939,7 +938,7 @@ From one event to months of content. One crew for photo and video, founder-led e
 
     .hws-cue { display: none; }
 
-    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr); align-items: center; gap: var(--g-s0); margin: 0 0 var(--g-s2); }
+    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr); align-items: center; gap: var(--g-s0); margin: var(--g-s2) 0 var(--g-s2); }
     .hws-turn-line { font-family: var(--font-heading) !important; font-size: clamp(1.15rem, 2vw, 1.55rem); font-weight: 600; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0; text-wrap: balance; }
     .hws-turn-rule { height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(232, 89, 60, 0.18)); }
     .hws-turn-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
@@ -955,7 +954,7 @@ From one event to months of content. One crew for photo and video, founder-led e
     .hws-out[href]:hover .hws-out-name { color: var(--color-ember) !important; }
     .hws-out[href]:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 4px; }
 
-    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: var(--g-s2); padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: 0; padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
     .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
     .hws-ask-br { display: none; }
@@ -992,10 +991,10 @@ From one event to months of content. One crew for photo and video, founder-led e
         .hws-cap span { font-size: 0.8rem; }
 
         .hws-close { margin-top: var(--g-s3); }
-        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-bottom: var(--g-s1); }
+        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-top: var(--g-s2); margin-bottom: var(--g-s1); }
         .hws-turn-rule { display: none; }
         .hws-outs { grid-template-columns: 1fr; gap: var(--g-s1); }
-        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: var(--g-s2); padding-top: 15px; }
+        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: 0; padding-top: 15px; }
         .hws-ask-line { font-size: 0.88rem; }
         .hws-ask-br { display: inline; }
 
@@ -1228,6 +1227,16 @@ From one event to months of content. One crew for photo and video, founder-led e
         <div class="hws-shelfzone">
         <div class="hws-shelfpad" aria-hidden="true"></div>
         <div class="hws-close">
+            <div class="hws-ask">
+                <p class="hws-ask-line">Tell us about your event.<br class="hws-ask-br"> We'll help you get more from it.</p>
+                <div class="hero-cta-row hws-cta">
+                    <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
+                    <a href="https://recapmedia.no/contact#calendar"
+                       class="hero-secondary-link hws-ghost"
+                       data-cta="call">Book a free 20-minute call <span class="arrow">&rarr;</span></a>
+                </div>
+            </div>
+
             <div class="hws-turn">
                 <h3 class="hws-turn-line">The day ends. The content keeps going.</h3>
                 <span class="hws-turn-rule" aria-hidden="true"></span>
@@ -1252,15 +1261,6 @@ From one event to months of content. One crew for photo and video, founder-led e
                 </a>
             </div>
 
-            <div class="hws-ask">
-                <p class="hws-ask-line">Tell us about your event.<br class="hws-ask-br"> We'll help you get more from it.</p>
-                <div class="hero-cta-row hws-cta">
-                    <a href="#" class="btn btn-primary" data-cta="quote">Request a quote</a>
-                    <a href="https://recapmedia.no/contact#calendar"
-                       class="hero-secondary-link hws-ghost"
-                       data-cta="call">Book a free 20-minute call <span class="arrow">&rarr;</span></a>
-                </div>
-            </div>
         </div>
 
         <div class="hws-cue" aria-hidden="true">
@@ -2044,7 +2044,7 @@ From one event to months of content. One crew for photo and video, founder-led e
 }
 @media (min-width: 769px) { .hws-title { display: none; } }
 @media (min-width: 769px) {
-    .hws-stage > .hws-say { font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.45; color: var(--color-warm-grey); }
+    .hws-stage > .hws-say { font-size: clamp(1.2rem, 1.4vw, 1.35rem); line-height: 1.45; color: var(--color-warm-grey); }
     .hws-nav { margin-top: 18px; }
     .hws-stage > .hws-h { top: calc(var(--mk-top, 200px) + 52px); }
     .hws-stage > .hws-say { top: calc(var(--mk-top, 200px) + 52px + clamp(2.2rem, 3.2vw, 3rem) + 24px); }
