@@ -254,7 +254,7 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
       "@type": "VideoObject",
       "@id": "https://recapmedia.no/no/referanser/patch-eventfilm-oslo-bergen#film",
       "name": "Patch Norway Buyer Tour: eventfilm",
-      "description": "Eventfilm og bilder fra Patch Norway Buyer Tour, to dager med tog fra Oslo til Bergen for å se hvordan CO₂ fanges og lagres. Se filmen.",
+      "description": "Eventfilm og bilder fra Patch Norway Buyer Tour, en togtur over to dager fra Oslo til Bergen for å se hvordan CO₂ fanges og lagres. Se filmen.",
       "thumbnailUrl": "https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@a7b3bda/images/patch-film-poster-truck.webp",
       "uploadDate": "2026-10-30T12:00:00+01:00",
       "duration": "PT2M22S",
@@ -961,11 +961,11 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
         .hw-f-tab, .hw-f-body, .hw-f-doc img, .hw-f-sheet, .hw-f-cta svg { transition: none !important; }
     }
 
-    .hws-close { margin-top: var(--g-s4); }
+    .hws-close { margin-top: 40px; }
 
     .hws-cue { display: none; }
 
-    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr); align-items: center; gap: var(--g-s0); margin: 0 0 var(--g-s2); }
+    .hws-turn { display: grid; grid-template-columns: minmax(0, auto) minmax(40px, 1fr); align-items: center; gap: var(--g-s0); margin: var(--g-s3) 0 var(--g-s2); }
     .hws-turn-line { font-family: var(--font-heading) !important; font-size: clamp(1.15rem, 2vw, 1.55rem); font-weight: 600; line-height: 1.25 !important; color: var(--color-white) !important; margin: 0; text-wrap: balance; }
     .hws-turn-rule { height: 1px; background: linear-gradient(to right, rgba(232, 89, 60, 0.75), rgba(232, 89, 60, 0.18)); }
     .hws-turn-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.19em; text-transform: uppercase; color: var(--color-stone); white-space: nowrap; }
@@ -981,7 +981,7 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
     .hws-out[href]:hover .hws-out-name { color: var(--color-ember) !important; }
     .hws-out[href]:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 4px; }
 
-    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: var(--g-s2); padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .hws-ask { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: var(--g-s0) clamp(24px, 3vw, 48px); align-items: center; margin-top: 0; padding-top: var(--g-s1); border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
     .hws-ask-line { font-size: 0.95rem; line-height: 1.55; color: var(--color-warm-grey); margin: 0; }
     .hws-ask-br { display: none; }
@@ -1017,11 +1017,11 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
         .hws-frame--art { aspect-ratio: 1.945 / 1; }
         .hws-cap span { font-size: 0.8rem; }
 
-        .hws-close { margin-top: var(--g-s3); }
-        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-bottom: var(--g-s1); }
+        .hws-close { margin-top: var(--g-s2); }
+        .hws-turn { grid-template-columns: 1fr; gap: 7px; margin-top: var(--g-s3); margin-bottom: var(--g-s1); }
         .hws-turn-rule { display: none; }
         .hws-outs { grid-template-columns: 1fr; gap: var(--g-s1); }
-        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: var(--g-s2); padding-top: 15px; }
+        .hws-ask { grid-template-columns: 1fr; gap: 14px; margin-top: 0; padding-top: 15px; }
         .hws-ask-line { font-size: 0.88rem; }
         .hws-ask-br { display: inline; }
 
@@ -1254,6 +1254,16 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
         <div class="hws-shelfzone">
         <div class="hws-shelfpad" aria-hidden="true"></div>
         <div class="hws-close">
+            <div class="hws-ask">
+                <p class="hws-ask-line">Fortell oss om arrangementet ditt.<br class="hws-ask-br"> Vi hjelper deg med å få mer ut&nbsp;av&nbsp;arrangementet.</p>
+                <div class="hero-cta-row hws-cta">
+                    <a href="#" class="btn btn-primary" data-cta="quote">Be om tilbud</a>
+                    <a href="https://recapmedia.no/no/kontakt#calendar"
+                       class="hero-secondary-link hws-ghost"
+                       data-cta="call">Book en gratis samtale på 20&nbsp;minutter <span class="arrow">&rarr;</span></a>
+                </div>
+            </div>
+
             <div class="hws-turn">
                 <h3 class="hws-turn-line">Dagen er over. Innholdet lever videre.</h3>
                 <span class="hws-turn-rule" aria-hidden="true"></span>
@@ -1276,16 +1286,6 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
                     <span class="hws-out-name">Distribusjon</span>
                     <span class="hws-out-line">Vær synlig etter arrangementet uten å gi teamet ditt enda en fast oppgave.</span>
                 </a>
-            </div>
-
-            <div class="hws-ask">
-                <p class="hws-ask-line">Fortell oss om arrangementet ditt.<br class="hws-ask-br"> Vi hjelper deg med å få mer ut&nbsp;av&nbsp;arrangementet.</p>
-                <div class="hero-cta-row hws-cta">
-                    <a href="#" class="btn btn-primary" data-cta="quote">Be om tilbud</a>
-                    <a href="https://recapmedia.no/no/kontakt#calendar"
-                       class="hero-secondary-link hws-ghost"
-                       data-cta="call">Book en gratis samtale på 20&nbsp;minutter <span class="arrow">&rarr;</span></a>
-                </div>
             </div>
         </div>
 
@@ -1545,9 +1545,9 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
 
         <ul class="hw-cab gsap-stagger" aria-label="Kundecaser">
             <li class="hw-folder"><p class="hw-f-tab">Eventfilm og foto</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@a7b3bda/images/patch-1c0H4vjn3wuZMKMoUsoHabnQvA3y471-t-crop.webp" alt="Turgruppen i verneutstyr fra Northern Lights går forbi CO₂-rør ved terminalen utenfor Bergen" width="1600" height="1185" loading="lazy" decoding="async" style="--op:50% 38%"><div class="hw-f-sheet" id="hw-f1"><dl><div><dt>Kunde</dt><dd>Patch, <span lang="en">the AI-native services company scaling climate action</span></dd></div><div><dt>Arrangement</dt><dd>Togtur for kjøpere av karbonfjerning, to dager fra Oslo til Bergen</dd></div><div><dt>Oppdraget</dt><dd>Én person på film og foto begge dagene, pluss fire korte intervjuer</dd></div><div><dt>Levert</dt><dd>En eventfilm og 15 redigerte bilder</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/patch-eventfilm-oslo-bergen" aria-describedby="hw-f1">Patch Norway Buyer Tour</a></h3><p class="hw-f-sum">En film og 15 redigerte bilder fra en <span class="hw-nw">todagers</span> togtur for kjøpere, fra Oslo til&nbsp;Bergen.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
-            <li class="hw-folder"><p class="hw-f-tab">Konferansefoto og -video</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773.webp 1024w" sizes="(max-width: 999px) 100vw, 560px" alt="Oversiktsbilde fra bakerst i hovedsalen mot scenen og Flutter Vikings-bokstavene" width="1024" height="683" loading="lazy" decoding="async" style="--op:42% 50%"><div class="hw-f-sheet" id="hw-f2"><dl><div><dt>Kunde</dt><dd>Arrangørene av Flutter Vikings</dd></div><div><dt>Arrangement</dt><dd>En konferanse over <span class="hw-nw">to dager</span> i tre parallelle saler</dd></div><div><dt>Oppdraget</dt><dd>Livestream, opptak av sesjoner og bilder fra hele lokalet</dd></div><div><dt>Levert</dt><dd>43 publiserte foredragsvideoer fra ca. 20 timer med opptak</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/flutter-vikings-2022-konferanse-oslo" aria-describedby="hw-f2">Flutter Vikings-konferansen</a></h3><p class="hw-f-sum">På Flutter Vikings livestreamet vi tre saler og 46 foredragsholdere over to dager. Rundt 20 timer med opptak ble til 43 publiserte videoer, som har fått tusenvis av visninger siden den gang.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
+            <li class="hw-folder"><p class="hw-f-tab">Konferansefoto og -video</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dabb888e1e6c6bd81f773.webp 1024w" sizes="(max-width: 999px) 100vw, 560px" alt="Oversiktsbilde fra bakerst i hovedsalen mot scenen og Flutter Vikings-bokstavene" width="1024" height="683" loading="lazy" decoding="async" style="--op:42% 50%"><div class="hw-f-sheet" id="hw-f2"><dl><div><dt>Kunde</dt><dd>Arrangørene av Flutter Vikings</dd></div><div><dt>Arrangement</dt><dd>En konferanse over <span class="hw-nw">to dager</span> i tre parallelle saler</dd></div><div><dt>Oppdraget</dt><dd>Livestream, opptak av sesjoner og bilder fra hele lokalet</dd></div><div><dt>Levert</dt><dd>43 publiserte videoer fra ca. 20 timer med opptak</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/flutter-vikings-2022-konferanse-oslo" aria-describedby="hw-f2">Flutter Vikings-konferansen</a></h3><p class="hw-f-sum">På Flutter Vikings livestreamet vi tre saler og 46 foredragsholdere over to dager. Rundt 20 timer med opptak ble til 43 publiserte videoer, som har fått tusenvis av visninger siden den gang.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
             <li class="hw-folder"><p class="hw-f-tab">Eventfotografering</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/691dc06e300f0606f878d404.webp 1280w" sizes="(max-width: 999px) 100vw, 560px" alt="Et panel med fire foredragsholdere ved et bord foran publikum under Scotland–Norway Trade Mission" width="1280" height="853" loading="lazy" decoding="async" style="--op:50% 50%"><div class="hw-f-sheet" id="hw-f3"><dl><div><dt>Kunde</dt><dd>The Marketing Department, for NECCUS</dd></div><div><dt>Arrangement</dt><dd>En næringslivsdelegasjon på Oslo Event Hub, med avslutning i den britiske ambassadørens residens</dd></div><div><dt>Oppdraget</dt><dd>Lokal fotograf på begge stedene, så ingen måtte fly inn fra Skottland</dd></div><div><dt>Levert</dt><dd>Presseklare bilder innen 24 timer, hele galleriet innen en uke</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/skottland-norge-naeringslivsdelegasjon-oslo" aria-describedby="hw-f3">Scotland–Norway Trade Mission</a></h3><p class="hw-f-sum">Presseklare bilder innen 24 timer fra en næringslivsdelegasjon på Oslo Event Hub og i den britiske ambassadørens residens.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
-            <li class="hw-folder"><p class="hw-f-tab">Video og foto</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3.webp 1280w" sizes="(max-width: 999px) 100vw, 560px" alt="Aphra Shemza står ved panelene til Ocean Rise i parken" width="1280" height="853" loading="lazy" decoding="async" style="--op:72% 40%"><div class="hw-f-sheet" id="hw-f4"><dl><div><dt>Kunde</dt><dd>Aphra Shemza, kunstner</dd></div><div><dt>Prosjekt</dt><dd>Ocean Rise, et offentlig kunstverk i Tøyenparken i Oslo</dd></div><div><dt>Oppdraget</dt><dd>Workshopen for barn, skulpturen på film og et intervju med kunstneren</dd></div><div><dt>Levert</dt><dd>Video og bilder til dokumentaren, nettsiden hennes og Oslo kommunes&nbsp;kunstsamling</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/ocean-rise-kunstdokumentasjon-oslo" aria-describedby="hw-f4">Ocean Rise, offentlig kunstverk</a></h3><p class="hw-f-sum">Video, et intervju med kunstneren og bilder av skulpturen til Aphra Shemza i Tøyenparken, fra workshopen for barn til det ferdige verket.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
+            <li class="hw-folder"><p class="hw-f-tab">Video og foto</p><div class="hw-f-body"><div class="hw-f-doc"><img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3.webp" srcset="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3-800.webp 800w, https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@f3fc18c/images/6939791beeed04d17a9c3cc3.webp 1280w" sizes="(max-width: 999px) 100vw, 560px" alt="Aphra Shemza står ved panelene til Ocean Rise i parken" width="1280" height="853" loading="lazy" decoding="async" style="--op:72% 40%"><div class="hw-f-sheet" id="hw-f4"><dl><div><dt>Kunde</dt><dd>Aphra Shemza, kunstner</dd></div><div><dt>Prosjekt</dt><dd>Ocean Rise, et offentlig kunstverk i Tøyenparken i Oslo</dd></div><div><dt>Oppdraget</dt><dd>Workshopen for barn, skulpturen på film og et intervju med kunstneren</dd></div><div><dt>Levert</dt><dd>Video og bilder til dokumentaren, nettsiden hennes og Oslo kommunes&nbsp;kunstsamling</dd></div></dl></div></div><h3 class="hw-f-title"><a class="hw-f-link" href="https://recapmedia.no/no/referanser/ocean-rise-kunstdokumentasjon-oslo" aria-describedby="hw-f4">Ocean Rise, offentlig kunstverk</a></h3><p class="hw-f-sum">Video, et intervju med kunstneren og bilder av Aphra Shemzas skulptur i Tøyenparken, fra workshopen for barn til det ferdige verket.</p><p class="hw-f-cta" aria-hidden="true">Les kundecaset <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></p></div></li>
         </ul>
         <p class="work-all gsap-fade"><a href="https://recapmedia.no/no/referanser" class="section-header-link">Se alle referansene &rarr;</a></p>
     </div>
@@ -1825,7 +1825,7 @@ Fra ett arrangement til innhold i månedsvis. Foto og video for bedriftsarrangem
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dabb859e47bfe713fc48b.webp" alt="Foredragsholder på scenen foran publikum på en bedriftskonferanse i Oslo" loading="lazy">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dc06d840ed1175f2d7444.webp" alt="Deltakere følger en sesjon på et bedriftsarrangement i Oslo" loading="lazy">
                     <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dc06dc03e0f2905c417e9.webp" alt="Tre personer i samtale i en minglepause på en bedriftskonferanse i Oslo" loading="lazy">
-                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dc06dd4f9b3699b62ddd1.webp" alt="Deltakere mingler med drikke i hånden på en bedriftsmottakelse i Oslo" loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/maxmedialab/recap-media-assets@4946cde/images/691dc06dd4f9b3699b62ddd1.webp" alt="Deltakere mingler med glass i hånden på en bedriftsmottakelse i Oslo" loading="lazy">
                 </div>
                 <button class="cta-gallery-btn next" aria-label="Neste bilde">&#10095;</button>
                 <div class="cta-gallery-dots">
