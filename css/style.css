@@ -19,6 +19,8 @@
     /* Accents */
     --color-ember: #E8593C;
     --color-ember-deep: #D44A2E;
+    --color-ember-on-light: #C9432A; /* every filled button (white label 4.86:1; brand ember gives 3.54:1) and small orange text on LIGHT backgrounds (4.86:1 on white, 4.55:1 on warm-white). Large type, non-text fills and orange text on dark sections keep --color-ember (Max, 2026-11-03) */
+    --color-ember-hover: #B03A24; /* hover for the filled buttons above (white label 6.04:1) */
     --color-amber: #F2A623;
 
     /* Neutrals */
@@ -581,8 +583,8 @@ body {
     .nav-links { display: flex !important; list-style: none !important; gap: var(--space-lg) !important; align-items: center !important; }
     .nav-links a { color: rgba(255,255,255,0.82) !important; text-decoration: none !important; font-weight: 400 !important; font-size: 0.9rem !important; letter-spacing: 0.02em !important; transition: color var(--transition-fast) !important; }
     .nav-links a:hover { color: var(--color-white) !important; }
-    .nav-links .nav-cta a { background-color: var(--color-ember) !important; color: var(--color-white) !important; padding: 8px 20px !important; border-radius: var(--radius-md) !important; font-weight: 500 !important; transition: background-color var(--transition-fast), transform var(--transition-fast) !important; }
-    .nav-links .nav-cta a:hover { background-color: var(--color-ember-deep) !important; color: var(--color-white) !important; transform: translateY(-1px) !important; }
+    .nav-links .nav-cta a { background-color: var(--color-ember-on-light) !important; color: var(--color-white) !important; padding: 8px 20px !important; border-radius: var(--radius-md) !important; font-weight: 500 !important; transition: background-color var(--transition-fast), transform var(--transition-fast) !important; }
+    .nav-links .nav-cta a:hover { background-color: var(--color-ember-hover) !important; color: var(--color-white) !important; transform: translateY(-1px) !important; }
     .nav-hamburger { display: none !important; flex-direction: column !important; gap: 5px !important; cursor: pointer !important; background: none !important; border: none !important; padding: 4px !important; }
     .nav-hamburger span { display: block !important; width: 24px !important; height: 2px !important; background: var(--color-white) !important; transition: transform 0.3s ease, opacity 0.3s ease !important; transform-origin: center !important; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
@@ -639,10 +641,10 @@ body {
     .btn:active { transform: translateY(0) !important; }
     .btn::after { content: '' !important; position: absolute !important; top: 0 !important; left: -100% !important; width: 100% !important; height: 100% !important; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent) !important; transition: left 0.5s ease !important; }
     .btn:hover::after { left: 100% !important; }
-    .btn-primary { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
-    .btn-primary:hover { background-color: var(--color-ember-deep) !important; color: var(--color-white) !important; }
+    .btn-primary { background-color: var(--color-ember-on-light) !important; color: var(--color-white) !important; }
+    .btn-primary:hover { background-color: var(--color-ember-hover) !important; color: var(--color-white) !important; }
     .btn-outline-ember { background-color: transparent !important; color: var(--color-ember) !important; border: 2px solid var(--color-ember) !important; }
-    .btn-outline-ember:hover { background-color: var(--color-ember) !important; color: var(--color-white) !important; }
+    .btn-outline-ember:hover { background-color: var(--color-ember-on-light) !important; color: var(--color-white) !important; }
 
     /* Two-col */
     .two-col { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: var(--space-xl) !important; align-items: center !important; }
@@ -817,10 +819,9 @@ body {
     .modal-container h2 { color: var(--color-white) !important; font-size: 1.5rem !important; font-weight: 700 !important; margin-bottom: 6px !important; }
     .modal-subtitle { font-size: 0.875rem !important; color: var(--color-stone) !important; margin-bottom: 28px !important; }
 
-            /* .hero-video removed from this rule: re-filtering every frame of the autoplaying
-       100vh video is continuous GPU cost, and its 0.45 opacity over --color-void
-       already does the grading. */
-    img:not(.nav-logo img) { filter: sepia(0.15) hue-rotate(-5deg) saturate(1.1) contrast(1.05) !important; }
+    /* The site-wide photo filter (sepia/hue-rotate on every img) was removed 2026-11-03
+       (brand audit, Max): photos show natural, true colours and client logos keep their
+       own ink. A photo that looks flat gets graded in the file, not here. */
 
     @media (max-width: 960px) {
         .cards-grid, .packages-grid { grid-template-columns: 1fr 1fr !important; }
@@ -1299,3 +1300,39 @@ p a:not(.btn) { text-decoration: underline !important; }
    white 14px labels on brand ember were 3.54:1 — #C9432A is 4.86:1
    with white. Selector from the live-DOM audit (.banner-actions-container). */
 .banner-actions-container button { background: #C9432A !important; }
+
+
+/* ============================================================
+   ORANGE + GREY ON LIGHT BACKGROUNDS (brand audit, Max 2026-11-03)
+   ============================================================ */
+
+/* Light contexts: .section-light / .section-warm, the .svc page sections except
+   the dark ones (.svc-dark, .svc-close), the quote form card and the legal pages.
+   Orange TEXT in dark sections, the hero, the nav and the footer keeps brand ember. */
+
+/* Filled buttons use --color-ember-on-light everywhere (base rules: .btn-primary,
+   .nav-links .nav-cta a). The mobile-menu quote button is styled in the Global Header's
+   own <style>, which loads before this file, so the same selector here wins. */
+.mobile-menu.mobile-menu a[data-cta="quote"] { background-color: var(--color-ember-on-light) !important; }
+.mobile-menu.mobile-menu a[data-cta="quote"]:hover { background-color: var(--color-ember-hover) !important; }
+
+/* Outline buttons (packages cards on white). */
+.section-light .btn-outline-ember, .section-warm .btn-outline-ember,
+.svc:not(.svc-dark):not(.svc-close) .btn-outline-ember { color: var(--color-ember-on-light) !important; border-color: var(--color-ember-on-light) !important; }
+.section-light .btn-outline-ember:hover, .section-warm .btn-outline-ember:hover,
+.svc:not(.svc-dark):not(.svc-close) .btn-outline-ember:hover { color: var(--color-white) !important; }
+
+/* FAQ chevrons and links inside FAQ answers. */
+.section-light .faq-chevron, .section-warm .faq-chevron,
+.svc:not(.svc-dark):not(.svc-close) .faq-chevron,
+.section-light .faq-answer-inner a, .section-warm .faq-answer-inner a,
+.svc:not(.svc-dark):not(.svc-close) .faq-answer-inner a { color: var(--color-ember-on-light) !important; }
+
+/* Legal pages: section numbers were ember-deep, 4.08:1 on warm-white
+   (the page block sets them at .lg-h2 .svc-num, so this needs one more class). */
+.lg-sec .lg-h2 .svc-num { color: var(--color-ember-on-light) !important; }
+
+/* Greys: stone stays on dark; small stone text on the white review cards
+   moves to stone-dark (2.91:1 -> 5.30:1). */
+.section-light .testimonial-title, .section-warm .testimonial-title,
+.svc:not(.svc-dark):not(.svc-close) .testimonial-title { color: var(--color-stone-dark) !important; }
