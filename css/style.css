@@ -19,7 +19,7 @@
     /* Accents */
     --color-ember: #E8593C;
     --color-ember-deep: #D44A2E;
-    --color-ember-on-light: #C9432A; /* every filled button (white label 4.86:1; brand ember gives 3.54:1) and small orange text on LIGHT backgrounds (4.86:1 on white, 4.55:1 on warm-white). Large type, non-text fills and orange text on dark sections keep --color-ember (Max, 2026-11-03) */
+    --color-ember-on-light: #C54229; /* every filled button (white label 5.02:1; brand ember gives 3.54:1) and small orange text on LIGHT backgrounds (5.02:1 on white, 4.70:1 on warm-white, 4.53:1 on cream). Large type, non-text fills and orange text on dark sections keep --color-ember (Max, 2026-11-03; #C9432A -> #C54229 the same day, 4.39:1 on cream was under AA) */
     --color-ember-hover: #B03A24; /* hover for the filled buttons above (white label 6.04:1) */
     --color-amber: #F2A623;
 
@@ -880,7 +880,7 @@ body {
     .form-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
     .form-group label { font-size: 0.82rem !important; font-weight: 500 !important; color: var(--color-warm-grey) !important; letter-spacing: 0.02em !important; }
     .form-control { background: rgba(255,255,255,0.95) !important; border: 1px solid rgba(255,255,255,0.18) !important; border-radius: var(--radius-md) !important; color: var(--color-obsidian) !important; font-family: var(--font-body) !important; font-size: 0.9rem !important; padding: 12px 14px !important; width: 100% !important; transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important; outline: none !important; -webkit-appearance: none !important; }
-    .form-control::placeholder { color: var(--color-stone) !important; font-size: 0.875rem !important; }
+    .form-control::placeholder { color: var(--color-stone-dark) !important; font-size: 0.875rem !important; }
     .form-control:-webkit-autofill,
     .form-control:-webkit-autofill:hover,
     .form-control:-webkit-autofill:focus { -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.95) inset !important; -webkit-text-fill-color: var(--color-obsidian) !important; border-color: var(--color-ember) !important; transition: background-color 5000s ease-in-out 0s !important; }
@@ -895,13 +895,13 @@ body {
     .form-group.has-error .form-error { display: block !important; }
     .form-success.form-error { display: block !important; }
     .form-group.has-error .form-control { border-color: #E85C5C !important; }
-    .form-light .form-control { background: var(--color-white) !important; border-color: rgba(20,18,24,0.12) !important; color: var(--color-obsidian) !important; }
-    .form-light .form-control::placeholder { color: var(--color-warm-grey) !important; }
+    .form-light .form-control { background: var(--color-white) !important; border-color: var(--color-stone-dark) !important; color: var(--color-obsidian) !important; }
+    .form-light .form-control::placeholder { color: var(--color-stone-dark) !important; }
     .form-light .form-control:focus { border-color: var(--color-ember) !important; }
     .form-light label { color: var(--color-charcoal) !important; }
     .form-light select.form-control { background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555249' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 12px !important; color: var(--color-obsidian) !important; }
     .form-light select.form-control option { background: var(--color-white) !important; color: var(--color-obsidian) !important; }
-    .form-light .form-consent-text { color: var(--color-warm-grey) !important; }
+    .form-light .form-consent-text { color: var(--color-stone-dark) !important; }
     .form-light .form-consent-text a { color: var(--color-charcoal) !important; }
     .form-light .form-consent-text a:hover { color: var(--color-obsidian) !important; }
     .ghl-form-hidden { display: none !important; }
@@ -948,7 +948,7 @@ body {
     .hero-secondary-link:hover { color: var(--color-white) !important; }
     .hero-secondary-link .arrow { display: inline-block !important; transition: transform 0.25s ease !important; }
     .hero-secondary-link:hover .arrow { transform: translateX(4px) !important; }
-    .hero-trust { margin-top: 28px !important; font-size: 0.78rem !important; color: rgba(138,134,128,0.7) !important; letter-spacing: 0.02em !important; }
+    .hero-trust { margin-top: 28px !important; font-size: 0.78rem !important; color: var(--color-stone) !important; letter-spacing: 0.02em !important; }
     .hero-stats-strip { position: relative !important; z-index: 2 !important; width: 100% !important; border-top: 1px solid rgba(255,255,255,0.06) !important; margin-top: auto !important; }
     .hero-stats-inner { max-width: var(--max-width) !important; margin: 0 auto !important; padding: 32px var(--space-lg) !important; display: grid !important; grid-template-columns: repeat(4, 1fr) !important; }
     .hero-stat { padding: 0 28px !important; border-right: 1px solid rgba(255,255,255,0.06) !important; }
@@ -957,7 +957,7 @@ body {
     .hero-stat-number { display: block !important; font-family: var(--font-heading) !important; font-size: 2rem !important; font-weight: 700 !important; color: var(--color-white) !important; letter-spacing: -0.02em !important; line-height: 1 !important; }
     .hero-stat-number.ember { color: var(--color-ember) !important; }
     .hero-stat-number.amber { color: var(--color-amber) !important; }
-    .hero-stat-label { display: block !important; font-size: 0.7rem !important; color: rgba(138,134,128,0.65) !important; letter-spacing: 0.08em !important; text-transform: uppercase !important; margin-top: 6px !important; }
+    .hero-stat-label { display: block !important; font-size: 0.7rem !important; color: var(--color-stone) !important; letter-spacing: 0.08em !important; text-transform: uppercase !important; margin-top: 6px !important; }
     .marquee { overflow: hidden !important; background: var(--color-obsidian) !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; padding: 14px 0 !important; }
     .marquee-track { display: flex !important; gap: 40px !important; align-items: center !important; width: max-content !important; animation: marquee-scroll 30s linear infinite !important; }
     .marquee-item { font-size: 0.85rem !important; color: var(--color-warm-grey) !important; white-space: nowrap !important; letter-spacing: 0.02em !important; }
@@ -1297,9 +1297,9 @@ p a:not(.btn) { text-decoration: underline !important; }
 .section-light .section-header p, .section-warm .section-header p { color: var(--color-stone-dark) !important; }
 
 /* GHL's injected cookie-consent banner (markup not in this repo):
-   white 14px labels on brand ember were 3.54:1 — #C9432A is 4.86:1
-   with white. Selector from the live-DOM audit (.banner-actions-container). */
-.banner-actions-container button { background: #C9432A !important; }
+   white 14px labels on brand ember were 3.54:1 — #C54229 (= --color-ember-on-light)
+   is 5.02:1 with white. Selector from the live-DOM audit (.banner-actions-container). */
+.banner-actions-container button { background: #C54229 !important; }
 
 
 /* ============================================================
@@ -1336,3 +1336,18 @@ p a:not(.btn) { text-decoration: underline !important; }
    moves to stone-dark (2.91:1 -> 5.30:1). */
 .section-light .testimonial-title, .section-warm .testimonial-title,
 .svc:not(.svc-dark):not(.svc-close) .testimonial-title { color: var(--color-stone-dark) !important; }
+
+/* Review stars: amber is for dark grounds only (1.85:1 on cream, 2.05:1 on the white
+   review cards). On light contexts they take --color-ember-on-light (5.02:1 on white). */
+.section-light .star, .section-warm .star,
+.svc:not(.svc-dark):not(.svc-close) .star { color: var(--color-ember-on-light) !important; }
+
+/* Homepage "How it works": the active step number is a filled chip with a white label
+   (3.54:1 on brand ember). Same rule as the filled buttons. The page block sets it at
+   .hws-nav-item.is-active .hws-nav-num without !important. */
+.hws-nav-item.is-active .hws-nav-num { background: var(--color-ember-on-light) !important; border-color: var(--color-ember-on-light) !important; }
+
+/* Form controls on light grounds need a 3:1 boundary (WCAG 1.4.11): stone-dark, 5.30:1 on
+   white. /packages scoping quiz: text fields were 1.4:1, radio/checkbox marks 2.91:1.
+   No !important, so the page block's focus, error and checked states still win. */
+.sq .sq-input, .sq .sq-mark { border-color: var(--color-stone-dark); }
