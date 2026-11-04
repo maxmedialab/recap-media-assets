@@ -1,4 +1,7 @@
 // === main-v2.js ===
+// Runs once per page. The Global Footer loads this file before DOMContentLoaded;
+// while the Body Tracking Code still loads a second copy (late), that copy stands down.
+(function (run) { if (!window.__rmMainV2) { window.__rmMainV2 = true; run(); } })(function () {
 /* =============================================
    main.js (inlined)
    ============================================= */
@@ -196,10 +199,41 @@
         if (!lightbox) return;
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const closeBtn = lightbox.querySelector('.lightbox-close');
-        function open(src, alt) { lightboxImg.src = src; lightboxImg.alt = alt || ''; lightbox.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function close() { lightbox.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => { lightboxImg.src = ''; }, 300); }
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => { const img = item.querySelector('img'); if (img) open(img.src, img.alt); });
+        let opener = null;
+        // Lenis must not scroll the page behind the open viewer.
+        lightbox.setAttribute('data-lenis-prevent', '');
+        function open(src, alt) {
+            opener = document.activeElement;
+            lightboxImg.src = src; lightboxImg.alt = alt || '';
+            lightbox.classList.add('open'); document.body.style.overflow = 'hidden';
+            if (closeBtn) closeBtn.focus({ preventScroll: true });
+        }
+        function close() {
+            if (!lightbox.classList.contains('open')) return;
+            lightbox.classList.remove('open'); document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+            if (opener && opener.focus) opener.focus({ preventScroll: true });
+        }
+        // Gallery photos (case-study and service-page tiles; .gallery-item is the
+        // old markup) open larger. A tile that cross-fades two photos opens the
+        // one showing.
+        // Later photos stack on top of earlier ones, and the bottom one stays fully
+        // opaque underneath, so the photo showing is the topmost mostly-opaque one.
+        function shown(item) {
+            const imgs = Array.from(item.querySelectorAll('img'));
+            for (let i = imgs.length - 1; i > 0; i--) {
+                if (parseFloat(getComputedStyle(imgs[i]).opacity) > 0.5) return imgs[i];
+            }
+            return imgs[0];
+        }
+        document.querySelectorAll('.gallery-item, .cs-gallery-grid .svc-tile, .svc-gallery .svc-tile').forEach(item => {
+            if (item.closest('a') || !item.querySelector('img')) return;
+            const show = () => { const img = shown(item); open(img.currentSrc || img.src, img.alt); };
+            item.style.cursor = 'zoom-in';
+            item.setAttribute('role', 'button');
+            item.setAttribute('tabindex', '0');
+            item.addEventListener('click', show);
+            item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
         });
         if (closeBtn) closeBtn.addEventListener('click', close);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
@@ -797,18 +831,18 @@
 (function () {
     'use strict';
 
-    // Safari (incl. iOS) composites a transformed, decoding <video> far worse
-    // than Blink: Lenis smooth-wheel + a scrub parallax on the live hero video
-    // makes Safari scroll jank while Chrome stays smooth. Degrade Safari to
-    // native scroll (Mac trackpad already momentum-smooths) and drop the two
-    // scrub parallaxes below; ScrollTrigger still drives every reveal, so nothing
-    // else changes. No Safari branch existed before 2026-07-14 — this is the fix.
+    // Safari (incl. iOS) gets native scroll: Lenis takes over the wheel and moves
+    // the page from the main thread, which Safari keeps busy for the first seconds
+    // (scroll does nothing while the hero is already showing), and a scrub
+    // parallax on the decoding hero <video> makes every frame after that choppy.
+    // Ported from 9629d0d (2026-07-14), which never reached this hotfix line.
     var isSafari = /^((?!chrome|android|crios|fxios|edg|opr|opera).)*safari/i.test(navigator.userAgent || '');
 
-    // main-v2.js loads via GHL tracking code (early), but Lenis/GSAP/ScrollTrigger
-    // are loaded from the Global Footer HTML (late). Poll until all three are ready.
-    // Capped: past the deadline they aren't coming — nothing is pre-hidden without
-    // GSAP, so a missing lib means a static (but fully readable) page.
+    // The Global Footer loads Lenis/GSAP/ScrollTrigger just before this file, so they
+    // are normally ready at once; poll in case one arrives late (or this copy came
+    // from the tracking code). Capped: past the deadline they aren't coming —
+    // nothing is pre-hidden without GSAP, so a missing lib means a static (but
+    // fully readable) page.
     var _pollDeadline = performance.now() + 12000;
     function initGSAP() {
         if (typeof window.Lenis === 'undefined' || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
@@ -836,6 +870,10 @@
         });
     }
 
+    function _pinchZoomed() {
+        return !!(window.visualViewport && window.visualViewport.scale > 1.01);
+    }
+
     function _runGSAP() {
 
     // Reduced motion: no smooth-scroll hijack, no hide-then-reveal anywhere —
@@ -850,9 +888,9 @@
     gsap.registerPlugin(ScrollTrigger);
 
     if (isSafari) {
-        // Native scroll — no Lenis hijack. The truthy sentinel keeps the
-        // splash-dismiss gate (Global Footer) working; ScrollTrigger listens to
-        // native scroll, so every reveal below still fires.
+        // Native scroll, no Lenis. The truthy sentinel keeps the splash-dismiss
+        // gate (Global Footer) working; ScrollTrigger listens to native scroll, so
+        // every reveal below still fires.
         window.__lenis = { native: true };
     } else {
         window.__lenis = new Lenis({
@@ -864,6 +902,9 @@
                 // when cursor is over horizontal scroll containers
                 return false;
             },
+            // Pinch-zoomed: the browser scrolls, so the zoomed view pans where the
+            // visitor puts it instead of Lenis dragging the page under it.
+            virtualScroll: function () { return !_pinchZoomed(); },
         });
         var lenis = window.__lenis;
         lenis.on('scroll', ScrollTrigger.update);
@@ -871,56 +912,56 @@
         gsap.ticker.lagSmoothing(0);
     }
 
-    // Hero entrance is a progressive enhancement with a freshness window.
-    // The hero paints VISIBLE at first paint (CSS never pre-hides it); the
-    // intro re-hides it and replays it. When the lib chain arrives late (slow
-    // network — and every throttled Lighthouse/PSI run), re-hiding an already-
-    // painted hero (a) pins lab LCP to the end of the reveal instead of first
-    // paint (the documented 9s+ lab LCP and the run-to-run score swings) and
-    // (b) makes slow-connection visitors watch the page load twice. Past the
-    // window: skip the intro, keep everything else. The splash covers the
-    // fast-path hide→reveal, so users never see a flash either way.
-    if (performance.now() < 2500) {
-        var heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 }, delay: 0.15 });
-        gsap.set('.hero-heading .line', { y: '105%' });
-        gsap.set('.hero-overline, .hero-sub, .hero-body, .hero-cta-row, .hero-trust', { opacity: 0, y: 24 });
-        gsap.set('.hero-stat', { opacity: 0, y: 20 });
-        heroTl
-            .to('.hero-overline', { opacity: 1, y: 0, duration: 0.7 })
-            .to('.hero-heading .line', { y: '0%', duration: 1, stagger: 0.1, ease: 'power3.out' }, '-=0.35')
-            .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.55')
-            .to('.hero-body', { opacity: 1, y: 0, duration: 0.7 }, '-=0.45')
-            .to('.hero-cta-row', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
-            .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
-            .to('.hero-stat', { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, '-=0.3');
-    }
+    // ScrollTrigger re-measures on resize by jumping the page to the top and
+    // back. iOS reports pinch-zoom as a resize, so a zoomed-in visitor was thrown
+    // to the left edge and the page jumped. Re-measure only for real layout
+    // changes: never while zoomed, and on touch screens only when the width
+    // changes (the address bar only changes the height).
+    ScrollTrigger.config({ autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load' });
+    var _layoutW = document.documentElement.clientWidth, _layoutH = window.innerHeight, _resizeT;
+    window.addEventListener('resize', function () {
+        clearTimeout(_resizeT);
+        _resizeT = setTimeout(function () {
+            if (_pinchZoomed()) return;
+            var w = document.documentElement.clientWidth, h = window.innerHeight;
+            if (w === _layoutW && (ScrollTrigger.isTouch === 1 || h === _layoutH)) return;
+            _layoutW = w; _layoutH = h;
+            ScrollTrigger.refresh();
+        }, 200);
+    });
 
-    // Hero video parallax: skip on Safari — transforming the decoding hero
-    // <video> every scroll frame is the main WebKit jank source.
+    // No hero entrance: the hero stays exactly as CSS painted it. Re-hiding it to
+    // replay it made the page load twice (Max, 2026-07-16).
+
+    // Scrub parallaxes: not on Safari (transforming the decoding hero <video>
+    // every scroll frame is the main WebKit jank source).
     if (!isSafari) {
         gsap.to('.hero-bg', { y: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     }
 
-    gsap.set('.gsap-fade', { opacity: 0, y: 36 });
-    gsap.utils.toArray('.gsap-fade').forEach(function (el) {
+    // Reveals are only for content the visitor hasn't reached yet. On slow phones
+    // this file arrives seconds after the styled page, so anything already on
+    // screen or scrolled past stays as painted instead of vanishing and fading
+    // back in.
+    var notReached = function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.88; };
+
+    gsap.utils.toArray('.gsap-fade').filter(notReached).forEach(function (el) {
+        gsap.set(el, { opacity: 0, y: 36 });
         gsap.to(el, { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
 
-    gsap.utils.toArray('.gsap-stagger').forEach(function (group) {
+    gsap.utils.toArray('.gsap-stagger').filter(notReached).forEach(function (group) {
         var items = group.children;
         gsap.set(items, { opacity: 0, y: 30 });
         gsap.to(items, { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: group, start: 'top 88%', once: true } });
     });
 
-    gsap.utils.toArray('.gsap-stagger-items').forEach(function (list) {
+    gsap.utils.toArray('.gsap-stagger-items').filter(notReached).forEach(function (list) {
         var items = list.children;
         gsap.set(items, { opacity: 0, x: -16 });
         gsap.to(items, { opacity: 1, x: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out', scrollTrigger: { trigger: list, start: 'top 88%', once: true } });
     });
 
-    // Image parallax is scrub-linked too; drop it on Safari alongside the video
-    // one so a single live-Safari check is decisive (images composite fine, but a
-    // wasted GHL deploy cycle to re-test costs more than a subtle parallax).
     if (!isSafari) {
         gsap.utils.toArray('.parallax-img').forEach(function (img) {
             gsap.fromTo(img, { y: -30 }, { y: 30, ease: 'none', scrollTrigger: { trigger: img.closest('.col-image, .image-break') || img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
@@ -980,3 +1021,4 @@
         initNavDropdown();
     }
 })();
+}); // end run-once guard
