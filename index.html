@@ -515,9 +515,19 @@ From one event to months of content. One crew for photo and video, founder-led e
         return;
     }
     function loadHeroVideo() {
+        var retried = false;
+        function attemptPlay() {
+            var p = v.play();
+            if (!p || !p.catch) return;
+            p.catch(function() {
+                if (retried) return;
+                retried = true;
+                setTimeout(attemptPlay, 400);
+            });
+        }
+        v.addEventListener('canplay', attemptPlay, { once: true });
         v.src = src;
-        var p = v.play();
-        if (p && p.catch) p.catch(function() {});
+        v.load();
     }
 
     function queueHeroVideo() {
