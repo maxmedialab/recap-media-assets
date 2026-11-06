@@ -768,6 +768,76 @@
         videos.forEach(function (vid) { observer.observe(vid); });
     }
 
+    // ── Slideshow swipe (Max, 2026-11-06: the photos that change by
+    // themselves "should be swipeable"; slideshows only, not the tiles) ──
+    // The .svc-show slideshows cross-fade by CSS: every photo runs svc-fade
+    // and every dot svc-dot on one shared cycle, staggered by animation-delay.
+    // A sideways swipe seeks all of those animations to the moment the next
+    // (or previous) photo is fully in, so the CSS carries on cycling from
+    // there; a short Web Animations cross-fade covers the jump. A paused
+    // slideshow stays paused. Under reduced motion there are no animations,
+    // so the swipe just swaps which photo is shown.
+    function initSlideSwipe() {
+        var shows = document.querySelectorAll('.svc-show');
+        if (!shows.length) return;
+        var canAnimate = typeof Element !== 'undefined' && !!Element.prototype.getAnimations;
+        var IN = 0.045; // svc-fade is fully in from 4% of its cycle
+
+        shows.forEach(function (show) {
+            var box = show.querySelector('.svc-slides');
+            if (!box) return;
+            var imgs = Array.prototype.slice.call(box.querySelectorAll('img'));
+            if (imgs.length < 2) return;
+            var dots = Array.prototype.slice.call(show.querySelectorAll('.svc-dot'));
+
+            function cssAnim(el) {
+                if (!canAnimate) return null;
+                var list = el.getAnimations().filter(function (a) { return a.animationName; });
+                return list[0] || null;
+            }
+            var shown = 0; // reduced motion only: which photo the swipe left on
+            function go(step) {
+                var n = imgs.length;
+                var anims = imgs.map(cssAnim);
+                if (anims.some(function (a) { return !a; })) {
+                    shown = (shown + step + n) % n;
+                    imgs.forEach(function (img, i) { img.style.opacity = i === shown ? '1' : '0'; });
+                    return;
+                }
+                // The photo on screen is the one whose own cycle is in its first
+                // 1/n: read it from the animation clock, not from opacity, which
+                // is mid-fade if you swipe twice in a row.
+                var cycle = anims[0].effect.getComputedTiming().duration;
+                var now = anims[0].currentTime || 0;
+                var from = 0;
+                anims.forEach(function (a, i) {
+                    var local = ((now - a.effect.getTiming().delay) % cycle + cycle) % cycle;
+                    if (local < cycle / n) from = i;
+                });
+                var to = (from + step + n) % n;
+                var target = anims[to].effect.getTiming().delay + IN * cycle;
+                target += Math.ceil((now - target) / cycle) * cycle;
+                anims.concat(dots.map(cssAnim)).forEach(function (a) { if (a) a.currentTime = target; });
+                var fade = { duration: 350, easing: 'ease-out' };
+                imgs[from].animate([{ opacity: 1 }, { opacity: 0 }], fade);
+                imgs[to].animate([{ opacity: 0 }, { opacity: 1 }], fade);
+            }
+
+            var x0 = null, y0 = 0, t0 = 0;
+            show.addEventListener('touchstart', function (e) {
+                if (e.touches.length !== 1) { x0 = null; return; }
+                x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
+            }, { passive: true });
+            show.addEventListener('touchend', function (e) {
+                if (x0 === null) return;
+                var t = e.changedTouches[0];
+                var dx = t.clientX - x0, dy = t.clientY - y0;
+                x0 = null;
+                if (Math.abs(dx) > 40 && Math.abs(dx) > 1.5 * Math.abs(dy) && Date.now() - t0 < 800) go(dx < 0 ? 1 : -1);
+            }, { passive: true });
+        });
+    }
+
     function initAll() {
         // Wrap each init in try-catch so one failure doesn't kill the rest.
         // MutationObserver callbacks swallow errors silently, so without this
@@ -777,7 +847,7 @@
             initNav, initScrollReveal, initCardTilt, initFAQ,
             initCarousel, initGallery, initModal, initCtaGallery,
             initCursorGlow, initPageTransitions,
-            initPhotoStack, initVideoAutoPause
+            initPhotoStack, initVideoAutoPause, initSlideSwipe
         ];
         for (var i = 0; i < fns.length; i++) {
             try { fns[i](); } catch (e) {
