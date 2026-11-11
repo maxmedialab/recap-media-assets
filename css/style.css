@@ -1351,3 +1351,14 @@ p a:not(.btn) { text-decoration: underline !important; }
    white. /packages scoping quiz: text fields were 1.4:1, radio/checkbox marks 2.91:1.
    No !important, so the page block's focus, error and checked states still win. */
 .sq .sq-input, .sq .sq-mark { border-color: var(--color-stone-dark); }
+
+/* ============================================================
+   DESKTOP NAV BETWEEN 769 AND 960 PX (Max, 2026-11-11)
+   ============================================================ */
+
+/* The desktop nav needs ~870 px but showed from 769 px, so a narrow window (or a zoomed
+   one) broke "Request a quote", the wordmark and the Services arrow onto two lines.
+   No wrapping, a tighter gap below 960 px, the logo mark alone below 880 px. */
+.nav-links a, .nav-logo { white-space: nowrap !important; }
+@media (max-width: 960px) { .nav-links { gap: 20px !important; } }
+@media (max-width: 880px) { .nav-logo span { display: none !important; } }
